@@ -12,12 +12,6 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm -w packages/sdk run build && npm -w packages/cli run build",
-    "validate": "npx trsd seed treeseed --validate --json",
-    "verify": "npm run build && npm run validate && vitest run tests/platform-boundaries.test.ts"
-  },
-  "devDependencies": {
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "verify": "node scripts/verify-platform.mjs"
   }
 }
