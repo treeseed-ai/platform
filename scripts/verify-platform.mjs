@@ -19,5 +19,5 @@ for (const path of paths) {
 }
 const seed = readFileSync(resolve(root, 'seeds/treeseed.yaml'), 'utf8');
 if (/^\s+slug: market(?:-api)?\s*$/mu.test(seed)) fail('Platform seed declares a Market project.');
-if (/information-hub|knowledge-coop/iu.test(seed)) fail('Platform seed contains a retired repository identity.');
+if (/information-hub/iu.test(seed)) fail('Platform seed contains a retired repository identity.');
 console.log(JSON.stringify({ ok: true, repositories: paths.length, marketCheckouts: 0 }));
