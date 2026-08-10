@@ -1,0 +1,23 @@
+{
+  "name": "@treeseed/platform",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "npm@11.7.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm -w packages/sdk run build && npm -w packages/cli run build",
+    "validate": "npx trsd seed treeseed --validate --json",
+    "verify": "npm run build && npm run validate && vitest run tests/platform-boundaries.test.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.2"
+  }
+}
