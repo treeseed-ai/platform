@@ -69,15 +69,25 @@ The operation authenticates every `treeseed-ai/*` read and push with the central
 
 The old software-repository content workflow remains in place until the matching content repository and R2 publication verify. After cutover, content publication is manual or release-driven through `trsd content publish`; a Git push does not directly mutate R2.
 
+## Live authority checkpoint
+
+The staging migration now treats the live GitHub repositories as input, not the seed manifest as evidence. The Platform portfolio has thirteen paired content repositories with verified `main`, `staging`, and migration-history refs. `trsd content publish --seed treeseed --branch staging` fetches each exact live staging commit into an isolated checkout, verifies the ref before and after publication, and writes project-scoped immutable R2 releases. Replays reuse every object and upload zero objects.
+
+Local TreeDX reconciliation derives each paired content repository from the seed, fetches only its validated `refs/heads/staging` ref, compares the resolved TreeDX commit with fresh GitHub observations before and after fetch, and indexes that exact commit. Split-content projects never seed TreeDX from the software checkout. Interrupted Git fetch recovery is limited to an expired lock for the exact validated destination ref; unsafe or broad refspecs remain rejected. A converged replay must report `noop` for the TreeDX unit and an exact live-ref verification for every project.
+
+This checkpoint authorizes package metadata cutover to `split_site_content`, `src/content`, `r2_preview_overlay`, and `localContentMaterialization: none`. It does not yet authorize deleting the old software content paths: each runtime must first prove it serves the R2 staging publication without a disk fallback.
+
+The exact-ref publication manifest is also the canonical web-runtime manifest. It includes immutable raw source objects plus a deterministic runtime projection (entries, collection indexes, rendered source payloads, docs tree, and search index) under the same release root. The environment-scoped channel pointer is `content/{teamId}/{projectId}/{environment}/channels/current.json`, where `prod` resolves to `production`. Published web builds register empty Astro collections and read that exact pointer from `TREESEED_CONTENT_MANIFEST_KEY`; they never probe a local content directory as a fallback.
+
 ## Runtime paths
 
 Published objects are immutable:
 
 ```text
-content/<project-id>/<environment>/releases/<content-sha>/manifest.json
-content/<project-id>/<environment>/releases/<content-sha>/content/**
-content/<project-id>/<environment>/channels/current.json
-content/<project-id>/previews/<preview-id>/manifest.json
+content/<team-id>/<project-id>/<environment>/releases/<content-sha>/manifest.json
+content/<team-id>/<project-id>/<environment>/releases/<content-sha>/content/**
+content/<team-id>/<project-id>/<environment>/channels/current.json
+content/<team-id>/<project-id>/previews/<preview-id>/manifest.json
 ```
 
 Production reads the production channel. Staging reads the staging channel. Local development reads staging plus an exact preview overlay when declared. Missing staging content is a readiness blocker, not permission to fall back to disk.
