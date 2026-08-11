@@ -63,6 +63,7 @@ Updated: 2026-08-11
 
 ### Repository federation
 
+- Latest verified full federation after the API runtime-plane gate: `9239393aed7436a965c5a0321ab5baff5f2ac26e649c5c9e4d4866e7c6586c0f`; root `cd599155ba61cfbdb0d8d79d92d1fd2314710365`; 14 repositories with fresh remote proof.
 - Latest verified full federation before the ledger-only checkpoint: `acc41b230fc5f37d22bc5fb6c05e713f0518b4210e1dc33854b9ec070b8edf02`; root `0d4c3e94de21d17953876aad15930c468150a305`; 14 repositories with fresh remote proof.
 - Latest verified full federation before the singleton gateway reconciliation: `2e3726da4242bfb170862911150f6d6be36b86ebac531db25a61ed8d91739178`.
 - Transitional integration root ref at that checkpoint: `ee852d4b5cdd94184b9b22497535e159abc8254b`.
@@ -81,6 +82,7 @@ Updated: 2026-08-11
 
 ### Control-plane and singleton gateway
 
+- Public Admin API feature ref `25807b1371e4493da467de617e8da330cdbc31ad` classifies every descriptor route by runtime plane. The generated 579-route artifact currently reports 429 Admin routes, 150 Market routes, and `migrationReady: false`; full local verification passed 504 tests with 4 intentional skips plus the isolated acceptance matrix.
 - The Platform compiler supports `market-passthrough`, `external`, and `managed` modes and rejects inconsistent explicitly declared topology. Managed mode requires API, database, operations runner, and public TreeDX federation; pass-through and external modes reject those Platform-owned control-plane resources.
 - Market operations remain fixed to the immutable `treeseed` singleton profile and customer plans cannot declare a Market API service.
 - Bounded SDK staging gateway contract: `93690c1bcb569ac11554c16a03ba253dd8a8a141`; bounded CLI staging migration contract: `5e1b165814e22b81726cb2e68743a5c3bd4eac06`.
@@ -142,6 +144,7 @@ Updated: 2026-08-11
 6. Stable Platform promotion is still derived from stable branch heads rather than a reviewed feature federation receipt.
 7. Full GitHub and Cloudflare isolated acceptance, cleanup, and repeated `noop` evidence remain outstanding.
 8. Railway project/environment resolution must be proven against the rebuilt topology before hosted readiness can be claimed.
+9. The public Admin API descriptor currently contains Market-owned commerce, catalog, registry-seed, commons-governance, Market-profile, and template routes. Each route now carries an explicit `runtimePlane`, and the built descriptor reports `adminRouteCount`, `marketRouteCount`, and `migrationReady`; sovereign migration apply must remain blocked until `marketRouteCount` is zero and those routes are owned by the private Market API.
 
 ## Issues and Incident Log
 
@@ -197,14 +200,18 @@ The HTTP proxy exposed an injectable WebSocket callback, but the generated Node 
 
 The typed deploy configuration and generic reconciler already distinguish `market-passthrough`, `external`, and `managed`, reject customer-owned Market resources, and can compile API, PostgreSQL, operations-runner, public TreeDX, DNS, secrets, and runtime variables. The audit found no journaled `trsd control-plane migrate` workflow yet. Capacity-provider deployment variables now preserve the central Market URL separately from the resolved control plane, including root-managed API domains. Agent provider manifests and persisted connection state still use the legacy `marketUrl` name for control-plane connectivity; that terminology and end-to-end protocol wiring must be migrated atomically before sovereignty guarantees can become active.
 
+### Admin route inventory still contains singleton Market behavior
+
+The route audit found that the artifact named `admin-api-descriptor.json` still inventories `/v1/commerce/**`, catalog, registry seeds, templates, commons governance, and Market profile routes from the public API repository. The private Market API is currently a verified gateway over that full descriptor, not yet the owner of those implementations. Enabling sovereign export/import in this state could migrate commerce data into a customer control plane. Route descriptors now classify every route as `admin` or `market` and publish split counts plus a fail-closed migration-readiness bit. The Market API must adopt the Market-classified implementations and persistence before the Admin export contract or migration apply can be enabled. Admin-facing `/v1/ui/**` projections remain on the Admin plane because they expose project governance and operations rather than Market implementation.
+
 ### Receipt graph refreshes cascade by exact dependency
 
 Federation advanced CLI dependency pointers after the first gateway staging overlay. Gateway reconciliation correctly reported bounded CLI drift, advanced CLI staging to `da8bf211fa65410c1a5d4bb855703af753c954c4`, and replayed as `noop`. Platform then detected that exact downstream ref change and advanced only its staging snapshot to `bd9fa82a901dfa66ec8758547398749d8e5fb3cc`. This is expected receipt-graph behavior and demonstrates why a final plan must be taken after all upstream receipts settle.
 
 ## Ordered Next Work
 
-1. Complete full managed control-plane reconciliation and sovereign traffic/data-separation acceptance, including explicit provider-protocol URL separation and the journaled migration command.
-2. Extract Market UI/API ownership from Admin and remove Market implementation dependencies.
+1. Extract Market API ownership and persistence from Admin until the Admin descriptor reports zero Market routes; preserve exact route ownership and gateway coverage during the move.
+2. Complete full managed control-plane reconciliation and sovereign traffic/data-separation acceptance, including explicit provider-protocol URL separation and the journaled migration command.
 3. Complete TreeDX/R2 content authority project by project, then remove software content workflows and paths only through verified cutover receipts.
 4. Run isolated GitHub and Cloudflare acceptance with cleanup before and after; repair lifecycle drift and require final `noop` plans. Include a bounded dependency security audit for the generated Market API graph.
 5. Execute a reviewed receipt-only staging promotion after all non-hosted guarantees pass; do not use gitlinks as authority.
