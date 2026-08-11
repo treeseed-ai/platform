@@ -32,7 +32,7 @@
     {
       "path": "packages/cli",
       "repository": "treeseed-ai/cli",
-      "commit": "2aebb0c6921b621025fabf7f550c5503952e395c"
+      "commit": "03aadafd8512fa7c6e818041a45d8f23108294fd"
     },
     {
       "path": "packages/core",
@@ -47,7 +47,7 @@
     {
       "path": "packages/sdk",
       "repository": "treeseed-ai/sdk",
-      "commit": "7406c10e7010a719b6fea8f5710c59f2371cd8e5"
+      "commit": "ae3efe1bd91ebc0e0ea50fb460a89f8abbc227a0"
     },
     {
       "path": "packages/treedx",
