@@ -28,6 +28,16 @@ The final development model does not use a parent repository's gitlinks as portf
 
 `trsd save` is migrating to single-repository scope by default. Cross-project work is performed in an ephemeral workset materialized from the Platform portfolio manifest; an explicit federated save records and pushes the affected repositories in dependency order and emits one integration receipt. `trsd stage` consumes that receipt, verifies that every remote still matches it, runs the integration proof, and promotes those exact commits. `trsd release` consumes the staged receipt and its proof instead of reconstructing a portfolio from a checkout.
 
+A clean Platform clone assembles that workset through the SDK-owned operation:
+
+```bash
+npx trsd platform workset --plan --json
+npx trsd platform workset --apply --yes --json
+npx trsd platform workset --apply --yes --branch feature/cross-project-change --json
+```
+
+The manifest permits only unique, workspace-contained software paths at exact commits. Apply uses the central token when configured, creates independent repositories atomically, and records `.treeseed/worksets/platform/latest.json`. It never resets or deletes an existing path. A dirty checkout, wrong origin, unexpected branch, moved commit, nested repository, Market identity, or content-repository identity is blocking drift. Repeating an exact successful apply produces thirteen `noop` actions for the canonical Platform portfolio.
+
 During the transition, existing Market/Platform workspaces may retain software submodules and the recursive save adapter. That adapter must emit the same receipt and may update gitlinks for compatibility, but stage identity is the receipt, not the gitlinks. Content repositories, Market, and Market API are never materialized into a Platform workset. The compatibility adapter is removed after clean-clone workset, stage, close, recovery, and release scenarios pass without `.gitmodules`.
 
 ## Repository policy
@@ -79,7 +89,7 @@ The old software-repository content workflow remains in place until the matching
 
 ## Live authority checkpoint
 
-The staging migration now treats the live GitHub repositories as input, not the seed manifest as evidence. The Platform portfolio has thirteen paired content repositories with verified `main`, `staging`, and migration-history refs. `trsd content publish --seed treeseed --branch staging` fetches each exact live staging commit into an isolated checkout, verifies the ref before and after publication, and writes project-scoped immutable R2 releases. Replays reuse every object and upload zero objects.
+The staging migration now treats the live GitHub repositories as input, not the seed manifest as evidence. The Platform portfolio binds thirteen live primary/template/fixture repositories at exact refs; their paired content repositories remain outside the workset. Content repositories have verified `main`, `staging`, and migration-history refs. `trsd content publish --seed treeseed --branch staging` fetches each exact live staging commit into an isolated checkout, verifies the ref before and after publication, and writes project-scoped immutable R2 releases. Replays reuse every object and upload zero objects.
 
 Local TreeDX reconciliation derives each paired content repository from the seed, fetches only its validated `refs/heads/staging` ref, compares the resolved TreeDX commit with fresh GitHub observations before and after fetch, and indexes that exact commit. Split-content projects never seed TreeDX from the software checkout. Interrupted Git fetch recovery is limited to an expired lock for the exact validated destination ref; unsafe or broad refspecs remain rejected. A converged replay must report `noop` for the TreeDX unit and an exact live-ref verification for every project.
 
