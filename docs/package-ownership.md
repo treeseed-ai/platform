@@ -211,7 +211,7 @@ The target ecommerce architecture is split by surface. Existing API/Admin commer
 
 - `treeseed-ai/market` owns buyer-facing Market and ecosystem-governance presentation, including the extracted `/market` and `/app/market` families.
 - private `treeseed-ai/market-api` owns vendors, products, offers, prices, ownership, stewardship, contributions, ecosystem-governance policies, orders, payment groups, subscriptions, entitlements, refunds, fulfillment, scoped services, capacity listings/inquiries, marketplace aggregation, seller monitoring, webhooks, and commercial-license entitlements under `/v1/market/**`.
-- `@treeseed/api` owns hosted or sovereign Admin control-plane state only. Its complete `/v1/**` descriptor is passed through the singleton gateway without transferring implementation ownership.
+- `@treeseed/api` owns hosted or sovereign Admin control-plane state only. Its complete versioned route descriptor is pinned by exact API ref and passed through the singleton gateway without transferring implementation ownership. The gateway admits only descriptor-declared method/path pairs; an arbitrary non-Market `/v1/**` prefix is not a pass-through contract.
 - `@treeseed/admin` retains identity, teams, projects, project governance, knowledge, capacity/workday operations, services, secrets, audit, and control-plane administration. It contains no Market implementation after extraction.
 - `@treeseed/ui` owns reusable, Stripe-free, theme-native commerce and governance components.
 
