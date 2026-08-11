@@ -6,4 +6,4 @@ Market is external and immutable at `https://api.treeseed.dev`. This repository 
 
 ## Workspace
 
-`treeseed.portfolio.json` binds independent project repositories to exact refs. `trsd` materializes an ephemeral workset under `packages/`, `templates/`, and `.fixtures/` for integrated development; the Platform Git repository contains no project gitlinks. Paired content repositories are logical TreeDX/R2 bindings and are never workset checkouts.
+`treeseed.portfolio.json` binds independent project repositories to exact refs. `trsd platform workset --plan --json` previews local materialization and `trsd platform workset --apply --yes --json` assembles an ephemeral workset under `packages/`, `templates/`, and `.fixtures/`. Add `--branch feature/name` for cross-project development. The Platform Git repository contains no project gitlinks, and replay never resets dirty or divergent checkouts. Paired content repositories are logical TreeDX/R2 bindings and are never workset checkouts.
