@@ -22,6 +22,8 @@ The seed is the logical successor to the old parent-repository submodule map, bu
 5. `trsd save --federated` records exact pushed commits, dependency edges, contract digests, and remote proof in a `treeseed.integration-change-set/v1` receipt.
 6. Stage and release consume verified receipts. Gitlinks are not promotion authority.
 
+Governed agent execution now adds an authority layer before save: a reviewed assignment checkpoint produces a stable workset-local execution-authority receipt, and save embeds it only when repository identity, branch, and commit ancestry still match. This connects proposal/decision authority to exact source evidence without making local layout authoritative.
+
 The remaining transition is to stop using the Market workspace's compatibility gitlinks after active development moves to Platform worksets and the Platform snapshot can be promoted from reviewed federation evidence.
 
 ### Submodule-to-seed transition map
@@ -63,6 +65,7 @@ Updated: 2026-08-11
 
 ### Repository federation
 
+- Latest verified full federation before this ledger-only checkpoint: `3768153910c1bedb3986d18d916828a4441418035c8f7d5de55dd7c5aac83340`; root `12918d30e5437cbfa22ca87ba283ade81730d9a5`; 14 repositories with fresh remote proof. SDK authority implementation: `26551496454f36a32dfbbb92d328ca967e8a1e08`; CLI reporting: `5a9b5c0aa5bd3e6098bbf99f7728c88004634c4d`.
 - Latest verified full federation after the API runtime-plane gate: `9239393aed7436a965c5a0321ab5baff5f2ac26e649c5c9e4d4866e7c6586c0f`; root `cd599155ba61cfbdb0d8d79d92d1fd2314710365`; 14 repositories with fresh remote proof.
 - Latest verified full federation before the ledger-only checkpoint: `acc41b230fc5f37d22bc5fb6c05e713f0518b4210e1dc33854b9ec070b8edf02`; root `0d4c3e94de21d17953876aad15930c468150a305`; 14 repositories with fresh remote proof.
 - Latest verified full federation before the singleton gateway reconciliation: `2e3726da4242bfb170862911150f6d6be36b86ebac531db25a61ed8d91739178`.
@@ -71,6 +74,8 @@ Updated: 2026-08-11
 - Market API and content repositories are absent from the receipt checkout graph.
 - Repository-scoped saves cannot stage; stage verifies a federated receipt against live refs; release verifies staged refs.
 - Save, stage, close, release-plan, interruption, retry, and no-gitlink lifecycle scenarios pass.
+- Supervised checkpoint integration now emits `treeseed.governed-execution-authority/v1` evidence with proposal/decision, assignment graph, deliverable, repository, exact refs, changed paths, and optional cross-project decision dependencies. Repository and federated saves include matching authorities in the hashed integration receipt after ancestry validation.
+- Focused SDK checkpoint tests pass 5/5, and the full save/stage lifecycle file passes 14/14 with authority embedding, content-derived receipt integrity, and remote-ref consumption. Decision freshness/revocation and complete governed-diff coverage are not yet stage gates.
 
 ### API licensing
 
@@ -126,6 +131,7 @@ Updated: 2026-08-11
 | Central GitHub authentication | Implemented, acceptance pending | Cross-repository live acceptance proves only the central token is used and artifacts contain no secrets. |
 | Standalone Platform root | Operational, cutover pending | Normal development starts from Platform; transitional Market gitlinks and orchestration are removed. |
 | Receipt-based federation | Implemented | Stage consumes the reviewed receipt in a real promotion and repeat execution remains `noop`. |
+| Governance-to-receipt provenance | In progress | API compiles cross-project decision dependencies; stage revalidates accepted decision revisions and rejects governed changes without complete authority coverage. |
 | Control-plane modes | In progress | Typed routing and explicit topology validation compile; full managed reconciliation and sovereignty acceptance remain. |
 | Market gateway/Admin pass-through | In progress | Repository-level HTTP, cookie, SSE, WebSocket, timeout, cancellation, size-bound, error, idempotency, rate-limit, descriptor, health/readiness, and clean-clone acceptance pass; hosted integration remains suspended and unproven. |
 | Market/Admin UI split | Not complete | Admin contains no Market implementation; Market owns commerce and ecosystem-governance routes. |
@@ -223,15 +229,17 @@ The first Market-profile extraction correctly updated Admin staging, but an imme
 | 2026-08-11 | Receipt federation proven | 14-repository receipts with fresh remote proof; stage lifecycle scenarios pass | Perform the first reviewed real staging promotion from a full receipt after non-hosted gates settle. |
 | 2026-08-11 | Singleton gateway contract proven | Private clean clone, descriptor pin, HTTP/cookie/SSE/WebSocket tests | Continue route and persistence extraction; hosted proof remains suspended. |
 | 2026-08-11 | First Market route extracted | `/v1/market/profile`; Admin 578 routes / 149 Market; private staging `9193fbd809f11708914475cb52bffd6147782e74`; six tests | Extract the next cohesive Market route/persistence family without increasing cross-plane coupling. |
+| 2026-08-11 | Governance execution authority linked to save receipts | Stable checkpoint authority, clean repository boundary, ancestry-filtered embedding, tamper rejection; SDK focused 5/5 and lifecycle 14/14 | Add canonical API dependency compilation, stage freshness checks, and complete governed-diff coverage. |
 
 ## Ordered Next Work
 
-1. Extract Market API ownership and persistence from Admin until the Admin descriptor reports zero Market routes; preserve exact route ownership and gateway coverage during the move.
-2. Complete full managed control-plane reconciliation and sovereign traffic/data-separation acceptance, including explicit provider-protocol URL separation and the journaled migration command.
-3. Complete TreeDX/R2 content authority project by project, then remove software content workflows and paths only through verified cutover receipts.
-4. Run isolated GitHub and Cloudflare acceptance with cleanup before and after; repair lifecycle drift and require final `noop` plans. Include a bounded dependency security audit for the generated Market API graph.
-5. Execute a reviewed receipt-only staging promotion after all non-hosted guarantees pass; do not use gitlinks as authority.
-6. Finish and review OpenTofu topology, then explicitly restore protected singleton hosted staging and run the same gateway suite through `api.treeseed.dev`. Production release remains fail-closed until that review completes.
+1. Establish the private Market repository as the canonical proprietary source workspace, then extract Market API ownership and persistence from Admin until the Admin descriptor reports zero Market routes; preserve exact route ownership and gateway coverage during the move.
+2. Complete the governance-to-receipt gate: compile cross-project decision dependencies in the API, require bounded authority coverage, and revalidate decision revision/status at stage.
+3. Complete full managed control-plane reconciliation and sovereign traffic/data-separation acceptance, including explicit provider-protocol URL separation and the journaled migration command.
+4. Complete TreeDX/R2 content authority project by project, then remove software content workflows and paths only through verified cutover receipts.
+5. Run isolated GitHub and Cloudflare acceptance with cleanup before and after; repair lifecycle drift and require final `noop` plans. Include a bounded dependency security audit for the generated Market API graph.
+6. Execute a reviewed receipt-only staging promotion after all non-hosted guarantees pass; do not use gitlinks as authority.
+7. Finish and review OpenTofu topology, then explicitly restore protected singleton hosted staging and run the same gateway suite through `api.treeseed.dev`. Production release remains fail-closed until that review completes.
 
 ## Update Discipline
 
