@@ -18,7 +18,11 @@ for (const path of paths) {
 	const expected = path === 'packages/api' ? 'AGPL-3.0-only' : 'Apache-2.0';
 	if (metadata.license !== expected) fail(`${path} license is ${metadata.license}, expected ${expected}.`);
 }
+const config = readFileSync(resolve(root, 'treeseed.site.yaml'), 'utf8');
+const requiredConfig = [/^\s*kind: customer-platform\s*$/mu, /^\s*profile: treeseed\s*$/mu, /^\s*mode: market-passthrough\s*$/mu, /^runtime:\s*\n\s+mode: none\s*$/mu, /^\s*enabled: false\s*$/mu, /^services: \{\}\s*$/mu];
+if (requiredConfig.some((pattern) => !pattern.test(config))) fail('Platform configuration does not preserve its non-hosted customer authority and singleton Market binding.');
+if (/^\s*market-?api:/imu.test(config)) fail('Platform configuration declares a forbidden Market API service.');
 const seed = readFileSync(resolve(root, 'seeds/treeseed.yaml'), 'utf8');
 if (/^\s+slug: market(?:-api)?\s*$/mu.test(seed)) fail('Platform seed declares a Market project.');
 if (/information-hub/iu.test(seed)) fail('Platform seed contains a retired repository identity.');
-console.log(JSON.stringify({ ok: true, repositories: paths.length, marketCheckouts: 0 }));
+console.log(JSON.stringify({ ok: true, repositories: paths.length, marketCheckouts: 0, authority: 'customer-platform', marketProfile: 'treeseed', hostedSurfaces: 0 }));
