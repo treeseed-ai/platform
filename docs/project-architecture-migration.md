@@ -22,6 +22,14 @@ Projects use `split_site_content`, `localContentMaterialization: none`, and an R
 
 No service receives both a software checkout and a content checkout as an implicit shared filesystem.
 
+## Repository federation and local worksets
+
+The final development model does not use a parent repository's gitlinks as portfolio authority. Software repositories remain independent and are joined by an SDK-owned `treeseed.integration-change-set/v1` receipt. Each receipt records normalized remote identity, role, source branch, exact commit, dependency names, package/lockfile contract digests, verification disposition, and fresh remote read-back. Its identifier is derived from that canonical state rather than from local paths or a parent commit.
+
+`trsd save` is migrating to single-repository scope by default. Cross-project work is performed in an ephemeral workset materialized from the Platform portfolio manifest; an explicit federated save records and pushes the affected repositories in dependency order and emits one integration receipt. `trsd stage` consumes that receipt, verifies that every remote still matches it, runs the integration proof, and promotes those exact commits. `trsd release` consumes the staged receipt and its proof instead of reconstructing a portfolio from a checkout.
+
+During the transition, existing Market/Platform workspaces may retain software submodules and the recursive save adapter. That adapter must emit the same receipt and may update gitlinks for compatibility, but stage identity is the receipt, not the gitlinks. Content repositories, Market, and Market API are never materialized into a Platform workset. The compatibility adapter is removed after clean-clone workset, stage, close, recovery, and release scenarios pass without `.gitmodules`.
+
 ## Repository policy
 
 Seed repository policy declares visibility, `create-or-adopt` or `adopt-only`, `retain` or `archive`, fixed `main` and `staging` branches, and GitHub feature settings. Deletion defaults to retain. Repository creation, adoption, settings, branch verification, and remote read-back flow through SDK reconciliation.
@@ -65,7 +73,7 @@ npx trsd seed platform-workspace treeseed --apply --yes --json
 
 Platform content uses an explicit skeleton migration mode so root Market content can never be mistaken for Platform-owned content.
 
-The operation authenticates every `treeseed-ai/*` read and push with the central `TREESEED_GITHUB_TOKEN`, never overwrites an existing target branch, persists partial branch receipts under `.treeseed/repository-migrations/`, and reports `noop` on replay only when the source commit, normalized content path, live target commit, and verified journal receipt all match. A `history_verified` receipt covers Git history bootstrap only; TreeDX binding and immutable R2 publication remain separate required cutover gates.
+The operation authenticates every `treeseed-ai/*` read and push with the central `TREESEED_GITHUB_TOKEN`, never overwrites an existing target branch, persists partial branch receipts under `.treeseed/repository-migrations/`, and reports `noop` on replay only when the source commit, normalized content path, live target commit, and verified journal receipt all match. A `history_verified` receipt covers Git history bootstrap only; TreeDX binding and immutable R2 publication remain separate required cutover gates. Migration journals prove repository creation/history, while integration change-set receipts prove a development or promotion candidate; neither may be substituted for the other.
 
 The old software-repository content workflow remains in place until the matching content repository and R2 publication verify. After cutover, content publication is manual or release-driven through `trsd content publish`; a Git push does not directly mutate R2.
 
@@ -77,7 +85,16 @@ Local TreeDX reconciliation derives each paired content repository from the seed
 
 This checkpoint authorizes package metadata cutover to `split_site_content`, `src/content`, `r2_preview_overlay`, and `localContentMaterialization: none`. It does not yet authorize deleting the old software content paths: each runtime must first prove it serves the R2 staging publication without a disk fallback.
 
-The exact-ref publication manifest is also the canonical web-runtime manifest. It includes immutable raw source objects plus a deterministic runtime projection (entries, collection indexes, rendered source payloads, docs tree, and search index) under the same release root. The environment-scoped channel pointer is `content/{teamId}/{projectId}/{environment}/channels/current.json`, where `prod` resolves to `production`. Published web builds register empty Astro collections and read that exact pointer from `TREESEED_CONTENT_MANIFEST_KEY`; they never probe a local content directory as a fallback.
+The exact-ref publication manifest is also the canonical web-runtime manifest. Contract v3 includes immutable raw source objects plus a deterministic runtime projection (path-qualified entry identities, collection indexes, rendered source payloads, docs tree, and search index) under the same release root. Book-local knowledge slugs remain in entry data while repository-path-qualified runtime slugs prevent collisions between common page names such as `overview`. The environment-scoped channel pointer is `content/{teamId}/{projectId}/{environment}/channels/current.json`, where `prod` resolves to `production`. Published web builds register empty Astro collections and read that exact pointer from `TREESEED_CONTENT_MANIFEST_KEY`; they never probe a local content directory as a fallback.
+
+Software-path removal requires a journaled four-plane gate:
+
+```bash
+npx trsd content cutover --seed treeseed --project admin --branch staging --plan --json
+npx trsd content cutover --seed treeseed --project admin --branch staging --apply --yes --remove-software-content --json
+```
+
+The apply reconciles only the local TreeDX content unit, freshly verifies graph, search, frontmatter, and exact Git ref, compares the live software and content Git trees, requires the current R2 publication receipt, and writes `.treeseed/content-cutovers/<repository>--<branch>.json`. Removal is additionally blocked when the local legacy path is dirty or its `HEAD` tree differs from the verified live source tree.
 
 ## Runtime paths
 
