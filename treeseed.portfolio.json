@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "kind": "treeseed.portfolio",
+  "materialization": "ephemeral_workset",
+  "integrationAuthority": "treeseed.integration-change-set/v1",
+  "repositories": [
+    {
+      "path": ".fixtures/treeseed-fixtures",
+      "repository": "treeseed-ai/fixtures",
+      "commit": "57818e5f4d011c147d31bae2cac5cb30007e1434"
+    },
+    {
+      "path": "packages/admin",
+      "repository": "treeseed-ai/admin",
+      "commit": "048311fd997717aa3611bb90f0e835a58ff711d5"
+    },
+    {
+      "path": "packages/agent",
+      "repository": "treeseed-ai/agent",
+      "commit": "035741d196e2b26658a1cde6474e42609d47c0fe"
+    },
+    {
+      "path": "packages/ai",
+      "repository": "treeseed-ai/ai",
+      "commit": "696300f0bb472ee9e10b52979554292031609795"
+    },
+    {
+      "path": "packages/api",
+      "repository": "treeseed-ai/api",
+      "commit": "6ac886a2ad63902e72339b4a99672fab8ba23536"
+    },
+    {
+      "path": "packages/cli",
+      "repository": "treeseed-ai/cli",
+      "commit": "554126a8e4f5a72c17119f2015af73f803c76bbc"
+    },
+    {
+      "path": "packages/core",
+      "repository": "treeseed-ai/core",
+      "commit": "466026656acb7f3af68d3dc24d5cdd42272cd5c0"
+    },
+    {
+      "path": "packages/reviewer",
+      "repository": "treeseed-ai/reviewer",
+      "commit": "fc6387dbfba8c2474cda1c3fe6983842b1740f92"
+    },
+    {
+      "path": "packages/sdk",
+      "repository": "treeseed-ai/sdk",
+      "commit": "9ab22f8b22e75b27cb74bf375d4dc8c1a2691f3f"
+    },
+    {
+      "path": "packages/treedx",
+      "repository": "treeseed-ai/treedx",
+      "commit": "42cbef534a7abdd4457f5c3abcb36a35f8054a0e"
+    },
+    {
+      "path": "packages/ui",
+      "repository": "treeseed-ai/ui",
+      "commit": "6fb94ae8b1e3b493de92301f24fd7d371f6aabdd"
+    },
+    {
+      "path": "templates/engineering",
+      "repository": "treeseed-ai/template-engineering",
+      "commit": "02b27b7c05d0ef848698ee67cfcb3990d5a97a42"
+    },
+    {
+      "path": "templates/research",
+      "repository": "treeseed-ai/template-research",
+      "commit": "50db4c7050be9cf284be35d1af0fe6e54768d24f"
+    }
+  ]
+}

@@ -6,4 +6,4 @@ Market is external and immutable at `https://api.treeseed.dev`. This repository 
 
 ## Workspace
 
-Primary projects are checked out under `packages/`; templates live under `templates/`; the shared integration fixture lives under `.fixtures/`. Paired content repositories are logical TreeDX/R2 bindings and are never submodules.
+`treeseed.portfolio.json` binds independent project repositories to exact refs. `trsd` materializes an ephemeral workset under `packages/`, `templates/`, and `.fixtures/` for integrated development; the Platform Git repository contains no project gitlinks. Paired content repositories are logical TreeDX/R2 bindings and are never workset checkouts.
