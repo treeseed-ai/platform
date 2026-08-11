@@ -16,6 +16,8 @@ The portfolio is compiled in two mutually exclusive authority domains. The Platf
 
 GitHub repository reconciliation orders exact lifecycle units as repository, bootstrap observation, branches, rules/environments, secrets/variables, and workflow observation. A missing prerequisite is blocking drift; it is never papered over by a later unit. Every successful apply is followed by fresh read-back and a repeated plan must converge to `noop`.
 
+Singleton gateway reconciliation pins an exact Admin API ref and descriptor digest. SDK-owned admission compiles the descriptor's unique method/path templates and rejects undeclared routes, method mismatches, duplicate entries, and any Admin descriptor entry under `/v1/market/**`. Market API CI enumerates the complete pinned inventory before either singleton branch can verify. The gateway remains a protocol consumer and never imports Admin API implementation.
+
 Repository identity is the normalized provider, host, owner, and repository tuple, not a literal clone URL or a local path. SSH, HTTPS, `git+ssh`, trailing-`.git`, case, and relative-submodule forms of the same remote resolve to one canonical key. Checkout identity is separate: developer, capacity-provider, and TreeDX custody each use an independent checkout and Git common directory, even when they represent the same repository and commit.
 
 ## Package Ownership In Reconciliation
