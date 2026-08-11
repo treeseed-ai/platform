@@ -27,7 +27,7 @@
     {
       "path": "packages/api",
       "repository": "treeseed-ai/api",
-      "commit": "523388a7bd2535a2a2ec6516a3bd061f04cf7e6a"
+      "commit": "aef369129008da4a65701602b1cdd0a1c932b07b"
     },
     {
       "path": "packages/cli",
