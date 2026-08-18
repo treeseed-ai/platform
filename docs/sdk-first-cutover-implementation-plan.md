@@ -14,18 +14,18 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 - Updated: 2026-08-18
 - Active gate: Gate 0 — truthful Platform and SDK baseline
-- State: `in_progress`
-- Active repository: `treeseed-ai/platform`
+- State: `waiting_human`
+- Active repository: `treeseed-ai/cli` bootstrap closure, with progress recorded in `treeseed-ai/platform`
 - Next repository: `treeseed-ai/sdk`
-- Next action: publish this bookkeeping-only checkpoint, require GitHub to report a green check at the resulting exact PR head, then make PR #1 ready for staging review while completing the trusted CLI-closure investigation.
+- Next action: observe hosted CI on CLI PR [#1](https://github.com/treeseed-ai/cli/pull/1) while waiting for `H-002` guest disk-reserve recovery; then run the complete local scripted acceptance before any merge.
 - Pending human checkpoint: `H-001` Ubuntu host discovery; non-blocking for guest-side SDK standards work.
 
 ## Accepted and observed baselines
 
 | Subject | Exact identity | Disposition |
 | --- | --- | --- |
-| Platform staging | `5106b11b8945608aa185840a3b3ca74b98f90c50` | Accepted documentation baseline |
-| Platform SDK-first feature | PR [#1](https://github.com/treeseed-ai/platform/pull/1); reviewed implementation checkpoint `2b78adb18ed9d3869f43cc4019ae5c783baffffa` | Hosted Verify run [`32177288144`](https://github.com/treeseed-ai/platform/actions/runs/32177288144) passed at that checkpoint; independent re-review found only stale checkpoint bookkeeping. GitHub's PR head and check rollup are authoritative for the bookkeeping commit that records this result. |
+| Platform prior staging | `5106b11b8945608aa185840a3b3ca74b98f90c50` | SDK-first documentation base |
+| Platform staging | `8de5440e7dec41a225333d15e6e62bb8f53429c6` | PR [#1](https://github.com/treeseed-ai/platform/pull/1) merged; exact remote read-back verified |
 | SDK remote staging | `f843c3cb11853db737d28ecc6bcc3d5df5e183e9` | Required fresh canary base |
 | SDK published package | `@treeseed/sdk@0.12.62` | Current npm `latest` baseline |
 | SDK diagnostic commit | `c6db3626ab3cecd3dc74c321b40bb37e94c503eb` | Unaccepted diagnostic input; never cherry-pick implicitly |
@@ -38,7 +38,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 | Gate | State | Owning repositories | Exit evidence | Current note |
 | --- | --- | --- | --- | --- |
-| 0. Truthful Platform and SDK baseline | `in_progress` | Platform, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Corrected Platform PR #1 has an exact-head green hosted check. Trusted operator closure, official authentication, workset materialization, and the SDK canary remain open. |
+| 0. Truthful Platform and SDK baseline | `waiting_human` | Platform, CLI bootstrap, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Platform documentation is merged and read back. CLI lock repair is in draft review; guest storage is below reserve and blocks local scripted acceptance. |
 | 1. SDK standards foundation | `queued` | SDK, Platform composition; API read-only consumer case | Four portable metadata contracts; TS/OpenAPI comparison; SDK `0.13.0-rc.1`; exact composition | Starts only after Gate 0 source canary. |
 | 2. SDK-only save/stage/release | `queued` | SDK, CLI wrapper when adopted | PR-gated save/stage; bounded package release; local and live acceptance | Other packages must fail with `standards_migration_not_enabled`; unscoped release stays fail-closed. |
 | 3. SDK GitHub work-provider contracts | `queued` | SDK | Provider-neutral contracts; GitHub normalization/templates; token canary; next SDK RC | PR binds assignment/checkpoint, never lease. |
@@ -50,16 +50,16 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 ## Gate 0 work breakdown
 
-1. **Platform documentation and ledger** — PR [#1](https://github.com/treeseed-ai/platform/pull/1) preserves the cluster, standards, and GitHub direction and links this ledger. Independent review found stale ledger evidence, hard-coded verifier counts, rollout-order drift, and incomplete host network observation. Commit `2b78adb18ed9d3869f43cc4019ae5c783baffffa` addresses the substantive findings, hosted Verify run [`32177288144`](https://github.com/treeseed-ai/platform/actions/runs/32177288144) passed at that exact head, and independent re-review found only the stale checkpoint bookkeeping corrected by the following ledger-only commit. GitHub's exact PR-head/check read-back closes that bookkeeping transition without requiring the ledger to embed its own commit identity.
+1. **Platform documentation and ledger — verified** — PR [#1](https://github.com/treeseed-ai/platform/pull/1) preserves the cluster, standards, and GitHub direction and links this ledger. Independent review found stale ledger evidence, hard-coded verifier counts, rollout-order drift, and incomplete host network observation. Commit `2b78adb18ed9d3869f43cc4019ae5c783baffffa` addressed the substantive findings. Hosted Verify runs [`32177288144`](https://github.com/treeseed-ai/platform/actions/runs/32177288144) and [`32177648675`](https://github.com/treeseed-ai/platform/actions/runs/32177648675) passed at their exact heads. The PR merged to staging as `8de5440e7dec41a225333d15e6e62bb8f53429c6`, and `git ls-remote` returned that exact ref.
 2. **Platform package-local contract** — `verify:local` exists without weakening `verify`. The verifier now observes root-index gitlinks and nested Market custody, reports the available guarantee-definition count, and explicitly reports live activation as unobserved rather than claiming 15 active guarantees. Proving canonical `trsd save` independence from the transitional Market CLI remains pending.
-3. **Trusted operator closure** — use an immutable CLI/SDK closure that can authenticate and invoke `platform workset` without resolving transitional Market workspace links. A fresh checkout of CLI staging `3b0483a…` currently fails standalone `npm ci` because its lock omits `semver@7.8.5`; that checkout is diagnostic only. The transitional Market CLI and unpublished SDK `c6db3626…` cannot become evidence.
+3. **Trusted operator closure** — use an immutable CLI/SDK closure that can authenticate and invoke `platform workset` without resolving transitional Market workspace links. Published CLI `0.12.58` tarball SHA-256 is `8a695a0d15cb322878666b75b12d6ffea19a0f3208bfa7fbd5067a84da7034f2`; its npm SHA-512 integrity matches, but it has no `platform` command and ships no lock. Published SDK `0.12.62` tarball SHA-256 is `9ccef82ccd452905e5a1733a5ced81d6d629b0c0f0d893cf19ea1a3ed53bc9f5`; it exposes no workset operation. CLI PR [#1](https://github.com/treeseed-ai/cli/pull/1), commit `2c27100…` from exact staging `3b0483a…`, adds only the missing nested `semver@7.8.5` lock record. A standalone `corepack npm ci --ignore-scripts` passed with 1,202 packages; runtime execution then correctly failed because Git dependency build scripts had been suppressed. Full scripted install/build/pack acceptance is pending `H-002` and hosted CI. The transitional Market CLI and unpublished SDK `c6db3626…` cannot become evidence.
 4. **Bounded API bootstrap reconciliation** — authenticate the official control plane, consume API staging `b18379fe…` without a portfolio-wide exact-ref fan-out, and record workset plan/apply/read-back receipts. Authentication becomes a human checkpoint only after the trusted operator closure is proven.
 5. **Managed runtime** — start the local Platform stack and verify exact SDK/API/Agent source-closure and image identities.
 6. **Workset** — materialize the thirteen inventory-authorized software repositories read-only first. A later assignment-owned clean Platform checkout may grant assignment-write custody to SDK alone; reject forbidden, dirty, or standing-checkout reuse.
 7. **SDK canary** — start from a fresh checkout at `f843c3cb…`; reproduce only the malformed type-query and standalone test-fixture repairs; use the current governed lifecycle and a conventional review PR; require exact merge/read-back/settlement/cleanup.
 8. **Patch proof** — compare the packed candidate to `0.12.62`, prove no public contract change and no API/Agent/CLI/Core/Admin/UI ref movement, then request human approval for main merge and npm `0.12.63` publication.
 
-Before workset materialization, dependency installation, or image construction, re-read guest storage. The current root filesystem has approximately 22 GiB free against a provisional 20.8 GiB reserve, leaving only about 1.2 GiB margin. Reclaiming container storage must use an inspected managed cleanup path; an ad hoc Docker prune is not accepted evidence.
+Before workset materialization, dependency installation, or image construction, re-read guest storage. The standalone CLI install reduced free space to 16 GiB; removing its generated `node_modules` recovered only 18 GiB free, below the provisional 20.8 GiB reserve. The npm cache occupies approximately 6 GiB. No further local dependency or image build is permitted until `H-002` restores at least 21 GiB free. Reclaiming container storage must use an inspected managed cleanup path; an ad hoc Docker prune is not accepted evidence.
 
 ## SDK target interfaces
 
@@ -112,6 +112,28 @@ ss -ltnp
 
 - Expected result: identify the Mint VM domain, current libvirt networks, working NVIDIA/container runtime, available host storage, address collisions with `10.77.0.0/24`, and existing listening services.
 - Resume criterion: sanitized command output is supplied; the agent then emits an exact inspected plan for the isolated service network and trusted capacity runtime.
+
+### H-002 — Mint guest disk-reserve recovery
+
+- State: `waiting_human`
+- Blocking: local CLI acceptance, workset materialization, SDK dependency installation, and image builds
+- Required authority: human approval to remove the current user's re-downloadable npm cache on the Mint guest, or privileged host/guest disk expansion
+- Surface: Mint guest at `192.168.122.99`; Ubuntu host only if cache cleanup does not restore the reserve
+- Secret handling: commands below print filesystem/cache sizes only; do not paste environment variables, npm configuration, tokens, or credential files
+- Preferred guest cleanup:
+
+```bash
+df -h /
+du -sh "$HOME/.npm"
+npm cache verify
+npm cache clean --force
+df -h /
+```
+
+- Expected safe output: npm reports cache verification/removal and the final root filesystem has at least 21 GiB available
+- Failure criterion: final availability is below 21 GiB, any path other than the current user's npm cache would be removed, or npm reports a permissions/filesystem error
+- Agent verification: re-run `df -B1 /`, verify the exact CLI checkout remains clean except for its reviewed lock repair, then repeat clean scripted install/build/pack acceptance
+- Independent work while waiting: hosted CLI PR checks and read-only review may continue; no local dependency installation, workset apply, image construction, or cache/container deletion will run
 
 Future mandatory human checkpoints cover GitHub App creation/permission approval, initial or rotated PAT/npm credentials, SDK main merge, npm `latest` publication, destructive recovery, and authority expansion.
 
