@@ -20,6 +20,17 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 - Next action: open a separately governed SDK compatibility/export repair from reconciled `main`, restore a truthful packed public surface against `0.12.62`, and repeat clean-clone plus consumer acceptance before deciding whether `0.12.63` can exist. Keep npm publication blocked.
 - Pending human checkpoint: `H-001` Ubuntu host discovery; non-blocking for guest-side SDK standards work.
 
+### SDK-COMPAT-001 — active compatibility repair checkpoint
+
+- State: `in_progress`
+- Authority scope: bounded SDK-only diagnostic and repair; no consumer repository writes, npm publication, dist-tag mutation, hosted deployment, or global release
+- Exact source base: SDK main `ee9e9440596de14635bad1eb4b54ad14019ca574`
+- Immutable comparison baseline: published `@treeseed/sdk@0.12.62`
+- Standing-workset rule: `packages/sdk` remains detached/read-only at `f843c3cb11853db737d28ecc6bcc3d5df5e183e9`; work occurs only in a separate SDK checkout rooted at the exact main ref
+- Acceptance target: classify every added/removed export, restore every declared packed target, prove the intended public surface and semantic bump, run clean package and zero-commit API consumer acceptance, then submit an independently reviewable SDK PR
+- Current evidence: 81 baseline versus 90 candidate exports, with 15 additions, 6 removals, and five declared subpaths missing both JavaScript and declaration targets
+- Next executable action: reproduce and inventory the export/package delta from a clean SDK-main checkout before editing source
+
 ## Accepted and observed baselines
 
 | Subject | Exact identity | Disposition |
