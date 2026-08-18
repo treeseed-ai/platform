@@ -449,13 +449,13 @@ Exit: deterministic normalization, compatibility comparison, replay safety, and 
 
 This phase follows the mandatory four-metadata-contract standards slice; it does not replace it.
 
-### Phase 2: GitHub App installation and inbound sync
+### Phase 2: explicit token bootstrap and inbound sync
 
-1. Register a least-privilege development GitHub App and install it only on the canary repository.
-2. Add signed webhook ingress, durable deduplication, async processing, cursor backfill, and redelivery diagnostics.
+1. Configure an explicit server-side token binding for only the canary repository and diagnose its observed permissions without exposing the token.
+2. Add signed webhook ingress, durable deduplication, async processing, cursor backfill, and redelivery diagnostics; live token-mode operation may begin with bounded polling while callback authority is prepared.
 3. Bind GitHub actors to TreeSeed identities, keeping unknown actors as external participants without assignment authority.
 4. Import or link existing Issues and PRs only through an inspected plan.
-5. Prove App-key and token material never enters agent, journal, log, or evidence payloads.
+5. Prove token material never enters agent, journal, log, or evidence payloads.
 
 Exit: live inbound events reconcile after interruption and redelivery without duplicate lifecycle actions.
 
@@ -490,7 +490,17 @@ Exit: the four-stage assignment lifecycle is complete, readable, idempotent, and
 
 Exit: only the governed path settles and promotes; external merge drift is detectable and recoverable but never silently accepted.
 
-### Phase 6: portfolio and standards integration
+### Phase 6: GitHub App parity
+
+1. Register a least-privilege development GitHub App and install it only on the canary repository.
+2. Store the App private key and webhook secret only in the trusted API/secret-provider domain.
+3. Run the complete token-mode suite again with short-lived installation tokens, signed webhook delivery, expiry, rotation, permission loss, and repository removal.
+4. Require explicit credential selection and reject silent fallback from an unhealthy App binding to a broader token.
+5. Keep fine-grained token mode supported after parity passes.
+
+Exit: token and App modes have equivalent lifecycle behavior and secret-nondisclosure evidence; the SDK may leave prerelease only after this phase passes.
+
+### Phase 7: portfolio and standards integration
 
 1. Add Issue/PR bindings and exact provider receipts to the Platform composition and portfolio registry.
 2. Use contract compatibility results to choose required reviewers, checks, version bump, and affected consumer test kits.
@@ -500,7 +510,7 @@ Exit: only the governed path settles and promotes; external merge drift is detec
 
 Exit: GitHub collaboration respects independent project ownership and semantic release boundaries across the portfolio.
 
-### Phase 7: rollout and legacy retirement
+### Phase 8: rollout and legacy retirement
 
 1. Roll out App installation and templates repository by repository through inspected reconciliation.
 2. Retain explicit token bindings and test both App and token acceptance paths.

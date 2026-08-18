@@ -1,10 +1,30 @@
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { basename, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const fail = (message) => { throw new Error(message); };
 if (existsSync(resolve(root, '.gitmodules'))) fail('Platform must not encode team inventory as gitlinks.');
 if (existsSync(resolve(root, 'treeseed.portfolio.json'))) fail('Platform must read live team inventory instead of a repository portfolio file.');
+const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding: 'utf8' });
+const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
+if (gitlinks.length > 0) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
+const nestedRepositoryRoots = ['packages', 'templates', '.fixtures', 'starters']
+	.flatMap((directory) => {
+		const absolute = resolve(root, directory);
+		if (!existsSync(absolute) || !statSync(absolute).isDirectory()) return [];
+		return readdirSync(absolute, { withFileTypes: true })
+			.filter((entry) => entry.isDirectory() && existsSync(resolve(absolute, entry.name, '.git')))
+			.map((entry) => resolve(absolute, entry.name));
+	});
+const forbiddenRepositories = nestedRepositoryRoots.filter((repositoryRoot) => {
+	let remote = '';
+	try { remote = execFileSync('git', ['remote', 'get-url', 'origin'], { cwd: repositoryRoot, encoding: 'utf8' }).trim(); } catch { /* reported by identity checks when materialized */ }
+	const normalized = remote.toLowerCase().replace(/\.git$/u, '');
+	return ['market', 'market-api'].includes(basename(repositoryRoot).toLowerCase())
+		|| /(?:github\.com[/:])treeseed-ai\/(?:market|market-api)$/u.test(normalized);
+});
+if (forbiddenRepositories.length > 0) fail(`Platform contains forbidden Market custody: ${forbiddenRepositories.join(', ')}`);
 const config = readFileSync(resolve(root, 'treeseed.site.yaml'), 'utf8');
 const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^market: \{ profile: treeseed \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu, /^\s*api: \{ enabled: true, provider: local \}\s*$/mu, /^\s*treedx: \{ enabled: true, provider: local \}\s*$/mu];
 if (requiredConfig.some((pattern) => !pattern.test(config))) fail('Platform configuration does not match the canonical local-managed Codex template.');
@@ -15,4 +35,8 @@ if (/^\s*market-?api:/imu.test(config)) fail('Platform configuration declares a 
 const seed = readFileSync(resolve(root, 'seeds/treeseed.yaml'), 'utf8');
 if (/^\s+slug: market(?:-api)?\s*$/mu.test(seed)) fail('Platform seed declares a Market project.');
 if (/information-hub/iu.test(seed)) fail('Platform seed contains a retired repository identity.');
-console.log(JSON.stringify({ ok: true, inventoryAuthority: 'api', gitlinks: 0, marketCheckouts: 0, agentGuarantees: 15, authority: 'customer-platform', template: 'platform-local-managed-codex', hostedDeployment: false }));
+const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true })
+	.filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
+console.log(JSON.stringify({ ok: true, inventoryAuthority: 'api', gitlinks: gitlinks.length, marketCheckouts: forbiddenRepositories.length,
+	agentGuaranteeDefinitions, activeAgentGuarantees: null, activeAgentGuaranteesObservation: 'not_observed_by_package_verification',
+	authority: 'customer-platform', template: 'platform-local-managed-codex', hostedDeployment: false }));

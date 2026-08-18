@@ -17,7 +17,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 - State: `in_progress`
 - Active repository: `treeseed-ai/platform`
 - Next repository: `treeseed-ai/sdk`
-- Next action: push the bounded Platform change and open a draft PR to `staging`, then plan the API bootstrap reconciliation and managed runtime from the accepted refs.
+- Next action: resolve the independent review findings on Platform PR #1, obtain a fresh hosted check, then request staging review while preparing an exact trusted CLI closure for official inventory bootstrap.
 - Pending human checkpoint: `H-001` Ubuntu host discovery; non-blocking for guest-side SDK standards work.
 
 ## Accepted and observed baselines
@@ -25,7 +25,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 | Subject | Exact identity | Disposition |
 | --- | --- | --- |
 | Platform staging | `5106b11b8945608aa185840a3b3ca74b98f90c50` | Accepted documentation baseline |
-| Platform SDK-first feature | `8b8db26b` plus the ledger checkpoint commit containing this update | Bounded local feature; `npm run verify` and `npm run verify:local` passed; remote PR/read-back pending |
+| Platform SDK-first feature | PR [#1](https://github.com/treeseed-ai/platform/pull/1), head `ead9408b49168ea4a16a8beb8fcb80a9fa80f9c9` before review corrections | Draft PR to `staging`; hosted Verify run `32176736481` passed at the recorded head; review corrections and fresh check pending |
 | SDK remote staging | `f843c3cb11853db737d28ecc6bcc3d5df5e183e9` | Required fresh canary base |
 | SDK published package | `@treeseed/sdk@0.12.62` | Current npm `latest` baseline |
 | SDK diagnostic commit | `c6db3626ab3cecd3dc74c321b40bb37e94c503eb` | Unaccepted diagnostic input; never cherry-pick implicitly |
@@ -38,7 +38,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 | Gate | State | Owning repositories | Exit evidence | Current note |
 | --- | --- | --- | --- | --- |
-| 0. Truthful Platform and SDK baseline | `in_progress` | Platform, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Platform docs/ledger change is being prepared. SDK hosted CI currently fails on a malformed guarantee test and missing local-provider source-closure projection. |
+| 0. Truthful Platform and SDK baseline | `in_progress` | Platform, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Platform PR #1 is open and its initial hosted check passed. Review corrections are in progress. SDK hosted CI currently fails on a malformed guarantee test and a standalone test root assumption. |
 | 1. SDK standards foundation | `queued` | SDK, Platform composition; API read-only consumer case | Four portable metadata contracts; TS/OpenAPI comparison; SDK `0.13.0-rc.1`; exact composition | Starts only after Gate 0 source canary. |
 | 2. SDK-only save/stage/release | `queued` | SDK, CLI wrapper when adopted | PR-gated save/stage; bounded package release; local and live acceptance | Other packages must fail with `standards_migration_not_enabled`; unscoped release stays fail-closed. |
 | 3. SDK GitHub work-provider contracts | `queued` | SDK | Provider-neutral contracts; GitHub normalization/templates; token canary; next SDK RC | PR binds assignment/checkpoint, never lease. |
@@ -50,8 +50,8 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 ## Gate 0 work breakdown
 
-1. **Platform documentation and ledger** — local feature commit `8b8db26b` preserves the cluster, standards, and GitHub direction and links this ledger. `git diff --check`, `npm run verify`, and `npm run verify:local` passed. Push, PR review, staging integration, and remote read-back remain pending.
-2. **Platform package-local contract** — `verify:local` now exists and passes without weakening `verify`; proving canonical `trsd save` independence from the transitional Market CLI remains pending.
+1. **Platform documentation and ledger** — PR [#1](https://github.com/treeseed-ai/platform/pull/1) preserves the cluster, standards, and GitHub direction and links this ledger. Its initial hosted Verify run `32176736481` passed at `ead9408…`. Independent review found stale ledger evidence, hard-coded verifier counts, rollout-order drift, and incomplete host network observation; corrections require a fresh check before staging review.
+2. **Platform package-local contract** — `verify:local` exists without weakening `verify`. The verifier now observes root-index gitlinks and nested Market custody, reports the available guarantee-definition count, and explicitly reports live activation as unobserved rather than claiming 15 active guarantees. Proving canonical `trsd save` independence from the transitional Market CLI remains pending.
 3. **Bounded API bootstrap reconciliation** — consume API staging `b18379fe…` without a portfolio-wide exact-ref fan-out; record plan/apply/read-back receipts.
 4. **Managed runtime** — start the local Platform stack and verify exact SDK/API/Agent source-closure and image identities.
 5. **Workset** — materialize the thirteen inventory-authorized software repositories; SDK alone receives assignment-write custody; reject forbidden and dirty identities.
@@ -98,10 +98,12 @@ Before live agent execution, deterministic simulations cover success, plan revis
 hostnamectl
 virsh list --all
 virsh net-list --all
+for network in $(virsh net-list --all --name); do virsh net-dumpxml "$network"; done
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
 docker version --format '{{json .Server}}'
 df -h /
 ip -brief address
+ip route
 ss -ltnp
 ```
 
