@@ -6,7 +6,7 @@ const fail = (message) => { throw new Error(message); };
 if (existsSync(resolve(root, '.gitmodules'))) fail('Platform must not encode team inventory as gitlinks.');
 if (existsSync(resolve(root, 'treeseed.portfolio.json'))) fail('Platform must read live team inventory instead of a repository portfolio file.');
 const config = readFileSync(resolve(root, 'treeseed.site.yaml'), 'utf8');
-const requiredConfig = [/^\s*kind: customer-platform\s*$/mu, /^\s*profile: treeseed\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu, /^\s*api: \{ enabled: true, provider: local \}\s*$/mu, /^\s*treedx: \{ enabled: true, provider: local \}\s*$/mu];
+const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^market: \{ profile: treeseed \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu, /^\s*api: \{ enabled: true, provider: local \}\s*$/mu, /^\s*treedx: \{ enabled: true, provider: local \}\s*$/mu];
 if (requiredConfig.some((pattern) => !pattern.test(config))) fail('Platform configuration does not match the canonical local-managed Codex template.');
 if (/^\s*market-?api:/imu.test(config)) fail('Platform configuration declares a forbidden Market API service.');
 const seed = readFileSync(resolve(root, 'seeds/treeseed.yaml'), 'utf8');
