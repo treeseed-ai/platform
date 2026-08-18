@@ -26,7 +26,7 @@ const forbiddenRepositories = nestedRepositoryRoots.filter((repositoryRoot) => {
 });
 if (forbiddenRepositories.length > 0) fail(`Platform contains forbidden Market custody: ${forbiddenRepositories.join(', ')}`);
 const config = readFileSync(resolve(root, 'treeseed.site.yaml'), 'utf8');
-const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^market: \{ profile: treeseed \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu, /^\s*api: \{ enabled: true, provider: local \}\s*$/mu, /^\s*treedx: \{ enabled: true, provider: local \}\s*$/mu];
+const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^market: \{ profile: treeseed \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^\s*marketConnectivity: disabled\s*$/mu, /^\s*inventory: \{ source: seed, path: seeds\/treeseed\.yaml \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu, /^surfaces: \{ web: \{ enabled: false \}, admin: \{ enabled: false \}, api: \{ enabled: true \} \}\s*$/mu, /^\s*api: \{ enabled: true, provider: local \}\s*$/mu, /^\s*treedx: \{ enabled: true, provider: local \}\s*$/mu];
 if (requiredConfig.some((pattern) => !pattern.test(config))) fail('Platform configuration does not match the canonical local-managed Codex template.');
 const requiredVerificationFiles = ["packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml","packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml","packages/market-guarantee-catalog/guarantees/capacity/research/verify-autonomous-cited-research-starter.guarantee.yaml","packages/market-guarantee-catalog/guarantees/verifiers/service-workflows.verifiers.yaml","scripts/guarantees/verify-agent-capability.ts","scripts/guarantees/agent-catalog/cli-runtime.ts","scripts/guarantees/agent-catalog/json-evidence.ts","scripts/guarantees/agent-catalog/proof-executor.ts","scripts/guarantees/agent-catalog/proof-input.ts"];
 for (const path of requiredVerificationFiles) if (!existsSync(resolve(root, path))) fail(`Platform is missing agent proof catalog input: ${path}`);
@@ -37,6 +37,8 @@ if (/^\s+slug: market(?:-api)?\s*$/mu.test(seed)) fail('Platform seed declares a
 if (/information-hub/iu.test(seed)) fail('Platform seed contains a retired repository identity.');
 const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true })
 	.filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
-console.log(JSON.stringify({ ok: true, inventoryAuthority: 'api', gitlinks: gitlinks.length, marketCheckouts: forbiddenRepositories.length,
+const agentSeed = readFileSync(resolve(root, 'seeds/agents.yaml'), 'utf8');
+if (/project:treeseed\/market(?:-api)?(?:\s|$)/mu.test(agentSeed)) fail('Local agent capacity includes a forbidden Market project.');
+console.log(JSON.stringify({ ok: true, inventoryAuthority: 'local-seed-bootstrap', marketConnectivity: 'disabled', gitlinks: gitlinks.length, marketCheckouts: forbiddenRepositories.length,
 	agentGuaranteeDefinitions, activeAgentGuarantees: null, activeAgentGuaranteesObservation: 'not_observed_by_package_verification',
 	authority: 'customer-platform', template: 'platform-local-managed-codex', hostedDeployment: false }));
