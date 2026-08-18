@@ -10,6 +10,7 @@ const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^mar
 if (requiredConfig.some((pattern) => !pattern.test(config))) fail('Platform configuration does not match the canonical local-managed Codex template.');
 const requiredVerificationFiles = ["packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml","packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml","packages/market-guarantee-catalog/guarantees/capacity/research/verify-autonomous-cited-research-starter.guarantee.yaml","packages/market-guarantee-catalog/guarantees/verifiers/service-workflows.verifiers.yaml","scripts/guarantees/verify-agent-capability.ts","scripts/guarantees/agent-catalog/cli-runtime.ts","scripts/guarantees/agent-catalog/json-evidence.ts","scripts/guarantees/agent-catalog/proof-executor.ts","scripts/guarantees/agent-catalog/proof-input.ts"];
 for (const path of requiredVerificationFiles) if (!existsSync(resolve(root, path))) fail(`Platform is missing agent proof catalog input: ${path}`);
+for (const path of ['treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) if (!existsSync(resolve(root, path))) fail(`Platform is missing capacity-provider configuration: ${path}`);
 if (/^\s*market-?api:/imu.test(config)) fail('Platform configuration declares a forbidden Market API service.');
 const seed = readFileSync(resolve(root, 'seeds/treeseed.yaml'), 'utf8');
 if (/^\s+slug: market(?:-api)?\s*$/mu.test(seed)) fail('Platform seed declares a Market project.');
