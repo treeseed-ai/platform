@@ -1,6 +1,6 @@
-name: agents
+name: platform
 version: 1
-description: Local multi-execution-provider agent capacity for TreeSeed development
+description: Privileged platform-operation capacity for TreeSeed infrastructure work
 
 defaultEnvironments: [local]
 environments: [local]
@@ -25,12 +25,12 @@ resources: {}
 
 runtime:
   capacityProviders:
-    - key: capacity-provider:treeseed/agents
-      providerClass: agent
+    - key: capacity-provider:treeseed/platform
+      providerClass: platform-operation
       environments: [local]
       team: team:treeseed
-      manifest: treeseed.agents-capacity-provider.yaml
-      connectionId: primary-team-agents
+      manifest: treeseed.platform-capacity-provider.yaml
+      connectionId: primary-team-platform
       approval: trusted-local-owner
       projects:
         - project:treeseed/platform
@@ -46,16 +46,8 @@ runtime:
         - project:treeseed/ai
         - project:treeseed/template-engineering
         - project:treeseed/template-research
-      allowedModes: [planning, acting]
-      executionProviderIds:
-        - codex-sub
-        - codex-key
-        - codex-treeseed
-        - ghcopilot-key
-        - ghcopilot-treeseed
-        - opencode-sub
-        - opencode-key
-        - opencode-treeseed
+      allowedModes: [acting]
+      executionProviderIds: [platform-operation]
   agentLabServicePrincipals: []
 
 operationRecipes: []

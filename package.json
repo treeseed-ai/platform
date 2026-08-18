@@ -12,6 +12,7 @@
     "packages/*"
   ],
   "scripts": {
-    "verify": "node scripts/verify-platform.mjs"
+    "verify": "node scripts/verify-platform.mjs",
+    "verify:local": "node scripts/verify-platform.mjs"
   }
 }

@@ -11,7 +11,7 @@ development:
     inventory: { source: seed, path: seeds/treeseed.yaml }
 hub: { mode: customer_hosted }
 runtime: { mode: none, registration: none }
-processing: { mode: local, providerRef: codex-sub }
+processing: { mode: local, providerRef: codex-treeseed }
 surfaces: { web: { enabled: false }, admin: { enabled: false }, api: { enabled: true } }
 services:
   api: { enabled: true, provider: local }
@@ -19,4 +19,5 @@ services:
   operationsRunner: { enabled: true, provider: local }
   treedx: { enabled: true, provider: local }
   agentProvider: { enabled: true, provider: local }
+  aiAppliance: { enabled: true, provider: local }
 publicTreeDxFederation: {}
