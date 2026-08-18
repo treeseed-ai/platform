@@ -5,10 +5,14 @@ contactEmail: hello@treeseed.email
 authority: { kind: customer-platform }
 market: { profile: treeseed }
 controlPlane: { mode: managed }
+development:
+  local:
+    marketConnectivity: disabled
+    inventory: { source: seed, path: seeds/treeseed.yaml }
 hub: { mode: customer_hosted }
 runtime: { mode: none, registration: none }
 processing: { mode: local, providerRef: codex-sub }
-surfaces: { web: { enabled: true }, admin: { enabled: true }, api: { enabled: true } }
+surfaces: { web: { enabled: false }, admin: { enabled: false }, api: { enabled: true } }
 services:
   api: { enabled: true, provider: local }
   treeseedDatabase: { enabled: true, provider: local }

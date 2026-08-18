@@ -5,9 +5,9 @@
   "description": "A sovereign local TreeSeed control plane with external Codex execution.",
   "category": "platform",
   "tags": ["platform", "local", "managed", "codex"],
-  "templateVersion": "1.0.0",
+  "templateVersion": "2.0.0",
   "templateApiVersion": 2,
-  "minCliVersion": "0.12.0",
+  "minCliVersion": "0.12.59",
   "variables": [
     { "name": "Runtime portfolio username", "token": "__PORTFOLIO_USERNAME__", "deriveFrom": "runtime" },
     { "name": "Runtime portfolio email", "token": "__PORTFOLIO_EMAIL__", "deriveFrom": "runtime" },
@@ -21,7 +21,7 @@
   "platform": {
     "controlPlane": { "mode": "managed" },
     "processing": { "mode": "local" },
-    "admin": { "enabled": true },
+    "admin": { "enabled": false },
     "executionProvider": "codex",
     "aiAppliance": false,
     "services": ["api", "treeseedDatabase", "operationsRunner", "treedx", "agentProvider"],
