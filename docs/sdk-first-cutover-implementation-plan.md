@@ -14,10 +14,10 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 - Updated: 2026-08-18
 - Active gate: Gate 0 — truthful Platform and SDK baseline
-- State: `waiting_human`
-- Active repository: `treeseed-ai/platform` official-authentication bootstrap
+- State: `in_progress`
+- Active repository: `treeseed-ai/api` local bootstrap from accepted staging
 - Next repository: `treeseed-ai/sdk`
-- Next action: human completes `H-003` official device authentication using the accepted CLI source closure; then re-read identity and execute the read-only thirteen-repository workset plan.
+- Next action: restore the local API and operations runner from accepted API staging `b18379fe…`, prove local health and source closure, then authenticate against the local profile before inventory planning.
 - Pending human checkpoint: `H-001` Ubuntu host discovery; non-blocking for guest-side SDK standards work.
 
 ## Accepted and observed baselines
@@ -39,7 +39,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 | Gate | State | Owning repositories | Exit evidence | Current note |
 | --- | --- | --- | --- | --- |
-| 0. Truthful Platform and SDK baseline | `waiting_human` | Platform, CLI bootstrap, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Platform documentation and CLI bootstrap are merged/read back. `H-003` official authentication now blocks inventory planning. Guest storage reserve is restored. |
+| 0. Truthful Platform and SDK baseline | `in_progress` | Platform, CLI/API bootstrap, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Platform documentation and CLI bootstrap are merged/read back. Neither local nor hosted API is available; accepted local API restoration precedes authentication and inventory planning. |
 | 1. SDK standards foundation | `queued` | SDK, Platform composition; API read-only consumer case | Four portable metadata contracts; TS/OpenAPI comparison; SDK `0.13.0-rc.1`; exact composition | Starts only after Gate 0 source canary. |
 | 2. SDK-only save/stage/release | `queued` | SDK, CLI wrapper when adopted | PR-gated save/stage; bounded package release; local and live acceptance | Other packages must fail with `standards_migration_not_enabled`; unscoped release stays fail-closed. |
 | 3. SDK GitHub work-provider contracts | `queued` | SDK | Provider-neutral contracts; GitHub normalization/templates; token canary; next SDK RC | PR binds assignment/checkpoint, never lease. |
@@ -54,7 +54,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 1. **Platform documentation and ledger — verified** — PR [#1](https://github.com/treeseed-ai/platform/pull/1) preserves the cluster, standards, and GitHub direction and links this ledger. Independent review found stale ledger evidence, hard-coded verifier counts, rollout-order drift, and incomplete host network observation. Commit `2b78adb18ed9d3869f43cc4019ae5c783baffffa` addressed the substantive findings. Hosted Verify runs [`32177288144`](https://github.com/treeseed-ai/platform/actions/runs/32177288144) and [`32177648675`](https://github.com/treeseed-ai/platform/actions/runs/32177648675) passed at their exact heads. The PR merged to staging as `8de5440e7dec41a225333d15e6e62bb8f53429c6`, and `git ls-remote` returned that exact ref.
 2. **Platform package-local contract** — `verify:local` exists without weakening `verify`. The verifier now observes root-index gitlinks and nested Market custody, reports the available guarantee-definition count, and explicitly reports live activation as unobserved rather than claiming 15 active guarantees. Proving canonical `trsd save` independence from the transitional Market CLI remains pending.
 3. **Trusted operator closure — verified** — use an immutable CLI/SDK closure that can authenticate and invoke `platform workset` without resolving transitional Market workspace links. CLI PR [#1](https://github.com/treeseed-ai/cli/pull/1), exact reviewed head `2c27100dec54939be8846d6d5aba6f81eb8bc4c8`, adds only the missing nested `semver@7.8.5` lock record. Hosted runs [`32178152083`](https://github.com/treeseed-ai/cli/actions/runs/32178152083) and [`32178155520`](https://github.com/treeseed-ai/cli/actions/runs/32178155520) passed and emitted byte-identical artifacts. Local parity initialized fixtures at `940d1de…`, performed scripted `npm ci` with 1,202 packages under Node `24.15.0` and npm `11.7.0`, passed all 234 CLI tests, packed-install smoke, `pack:tool-closure`, and `platform workset` command discovery. The PR merged and remote staging read back at `37bdc9fb82656b0607410328685e6cbe75ebedc5`; its tree exactly equals the reviewed head. Closure SHA-256 digests are Agent `505a69d7dbde0c8e607cb25b90135132ec12058597f2c8bfd51727010e4239bc`, CLI `2db0368608233439c78010af8fa8ad885f3c2db2097488ca1ebaae822d9dd8fb`, Core `3ac86b779f6c452d882ab06ce06ce299f7a7c11ea9c2daf94c1d43ab6419f7e0`, SDK `fbebfef9e4b0589875dd058d4cc3d7b4ce0c7964f6009aa54f22f648b5ac8969`, and UI `3bae0cf732040afd4e7f87e652a71aa06d8d577891046c85456c62917c04e65e`. The accepted Git source and reviewed lock—not the tarball set alone—are bootstrap authority. A future nonblocking change must add a closure manifest/install lock and packed workset-plan smoke. The transitional Market CLI and unpublished SDK `c6db3626…` cannot become evidence.
-4. **Bounded API bootstrap reconciliation — waiting human** — `auth:whoami` from the accepted closure returned `Not logged in to market "treeseed"`. Complete `H-003`, re-read identity, consume API staging `b18379fe…` without a portfolio-wide exact-ref fan-out, and record workset plan/apply/read-back receipts.
+4. **Bounded API bootstrap reconciliation — in progress** — no process listens on local API ports `3000` or `8787`; only TreeDX, PostgreSQL, and Mailpit are healthy. The `treeseed` profile correctly targets `https://api.treeseed.dev`, but that host and `treeseed.dev` have no DNS records from the guest, consistent with the documented suspended hosted deployment. `platform status` reports `execute:false` and cannot count as readiness. Restore API staging `b18379fe…` locally, prove health/source closure, authenticate the `local` profile, then consume the inventory without a portfolio-wide exact-ref fan-out.
 5. **Managed runtime** — start the local Platform stack and verify exact SDK/API/Agent source-closure and image identities.
 6. **Workset** — materialize the thirteen inventory-authorized software repositories read-only first. A later assignment-owned clean Platform checkout may grant assignment-write custody to SDK alone; reject forbidden, dirty, or standing-checkout reuse.
 7. **SDK canary** — start from a fresh checkout at `f843c3cb…`; reproduce only the malformed type-query and standalone test-fixture repairs; use the current governed lifecycle and a conventional review PR; require exact merge/read-back/settlement/cleanup.
@@ -139,21 +139,21 @@ df -h /
 
 ### H-003 — Official TreeSeed device authentication
 
-- State: `waiting_human`
-- Blocking: official inventory read, workset plan/apply, and managed runtime bootstrap
+- State: `superseded`
+- Blocking: none; this checkpoint was issued prematurely and must not be retried while hosted deployment is suspended
 - Required authority: human approval in the browser for the official TreeSeed account
 - Surface: Mint guest Platform checkout and the browser approval page opened by the accepted CLI staging closure
-- Command, run from `/home/adrian/Projects/treeseed/platform`:
+- Superseded command retained only as failure evidence; do not run it again while hosted deployment is suspended:
 
 ```bash
 node /tmp/treeseed-cli-closure-root/cli-3b0483a.kkyhZ2/dist/cli/main.js auth:login --market treeseed --json
 ```
 
-- Expected safe result: browser approval completes and the command reports successful authentication for the configured `treeseed` profile
+- Observed result: `auth:login` returned `fetch failed`; direct health probes found no local API listener, and DNS lookup found no records for the configured hosted endpoint
 - Redaction: do not paste approval codes, login URLs containing codes, tokens, session material, cookies, or credential/configuration file contents; report only success/failure and non-sensitive account/team identifiers
 - Failure criterion: browser approval is denied or expires, the CLI cannot resolve the `treeseed` profile, or the final command reports `ok: false`
-- Agent verification: execute `auth:whoami --market treeseed --json`, then run read-only `platform workset --market treeseed --team treeseed --plan --json`; no write occurs until the plan proves the exact allowed inventory
-- Independent work while waiting: Platform ledger checks may complete; no official provider mutation, workset apply, or runtime start will occur
+- Replacement path: restore the accepted local API, verify health, then issue a separate local-authentication checkpoint only if the running API requires human participation
+- Safety disposition: no credentials or session material were created, and no provider or repository mutation occurred
 
 Future mandatory human checkpoints cover GitHub App creation/permission approval, initial or rotated PAT/npm credentials, SDK main merge, npm `latest` publication, destructive recovery, and authority expansion.
 
