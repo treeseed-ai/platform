@@ -4,6 +4,8 @@ Public Apache-2.0 installer and integration workspace for customer-centric TreeS
 
 Market is external and immutable at `https://api.treeseed.dev`. This repository cannot provision, deploy, or check out Market or Market API.
 
+The active migration is tracked in [SDK-First Standards, GitHub, and Cluster Cutover Ledger](./docs/sdk-first-cutover-implementation-plan.md). The integrated single-machine and multi-node target is defined in [Cluster Architecture and Cutover](./docs/cluster-architecture-cutover.md), cross-project compatibility in [Standards-Based Independent Development](./docs/standards-dev.md), and provider-neutral GitHub Issues and pull-request synchronization in [GitHub Issues and Pull Request Integration](./docs/github-work-integration.md).
+
 ## Workspace
 
-`treeseed.portfolio.json` binds independent project repositories to exact refs. `trsd platform workset --plan --json` previews local materialization and `trsd platform workset --apply --yes --json` assembles an ephemeral workset under `packages/`, `templates/`, and `.fixtures/`. Add `--branch feature/name` for cross-project development. The Platform Git repository contains no project gitlinks, and replay never resets dirty or divergent checkouts. Paired content repositories are logical TreeDX/R2 bindings and are never workset checkouts.
+`trsd platform workset --plan --json` reads the authenticated live team project inventory, observes exact repository refs, and previews assignment-owned custody. `trsd platform workset --apply --yes --json` materializes that disposable custody under `packages/`, `templates/`, and `.fixtures/`. The Platform Git repository contains no portfolio manifest or project gitlinks. Paired content repositories are logical TreeDX/R2 bindings and are never software workset checkouts.
