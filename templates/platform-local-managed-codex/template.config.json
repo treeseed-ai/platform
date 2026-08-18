@@ -7,7 +7,7 @@
   "tags": ["platform", "local", "managed", "codex"],
   "templateVersion": "2.0.0",
   "templateApiVersion": 2,
-  "minCliVersion": "0.12.0",
+  "minCliVersion": "0.12.59",
   "variables": [
     { "name": "Runtime portfolio username", "token": "__PORTFOLIO_USERNAME__", "deriveFrom": "runtime" },
     { "name": "Runtime portfolio email", "token": "__PORTFOLIO_EMAIL__", "deriveFrom": "runtime" },

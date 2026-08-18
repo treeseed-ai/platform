@@ -35,6 +35,7 @@ for (const templateId of localTemplateIds) {
 	const templateConfig = readFileSync(resolve(templateRoot, 'template/treeseed.site.yaml'), 'utf8');
 	const templateAgents = readFileSync(resolve(templateRoot, 'template/seeds/agents.yaml'), 'utf8');
 	if (manifest.templateVersion !== '2.0.0') fail(`${templateId} must use the breaking local-bootstrap template version 2.0.0.`);
+	if (manifest.minCliVersion !== '0.12.59') fail(`${templateId} must require the first CLI line that enforces Market-disabled seed inventory.`);
 	if (manifest.platform?.admin?.enabled !== false) fail(`${templateId} metadata must disable the unavailable local Admin surface.`);
 	for (const path of ['treeseed.site.yaml', 'seeds/agents.yaml']) {
 		if (!manifest.managedSurface?.coreManaged?.includes(path) || !manifest.managedSurface?.validatedOnly?.includes(path)) fail(`${templateId} does not manage and validate ${path}.`);
