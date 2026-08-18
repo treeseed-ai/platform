@@ -17,14 +17,15 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 - State: `in_progress`
 - Active repository: `treeseed-ai/platform`
 - Next repository: `treeseed-ai/sdk`
-- Next action: integrate and verify the bounded Platform documentation/ledger change, then make Platform's package-local verification contract truthful before attempting runtime reconciliation.
+- Next action: push the bounded Platform change and open a draft PR to `staging`, then plan the API bootstrap reconciliation and managed runtime from the accepted refs.
 - Pending human checkpoint: `H-001` Ubuntu host discovery; non-blocking for guest-side SDK standards work.
 
 ## Accepted and observed baselines
 
 | Subject | Exact identity | Disposition |
 | --- | --- | --- |
-| Platform staging | `5106b11b8945608aa185840a3b3ca74b98f90c50` | Accepted documentation baseline; current checkout contains the bounded uncommitted architecture/ledger change |
+| Platform staging | `5106b11b8945608aa185840a3b3ca74b98f90c50` | Accepted documentation baseline |
+| Platform SDK-first feature | `8b8db26b` plus the ledger checkpoint commit containing this update | Bounded local feature; `npm run verify` and `npm run verify:local` passed; remote PR/read-back pending |
 | SDK remote staging | `f843c3cb11853db737d28ecc6bcc3d5df5e183e9` | Required fresh canary base |
 | SDK published package | `@treeseed/sdk@0.12.62` | Current npm `latest` baseline |
 | SDK diagnostic commit | `c6db3626ab3cecd3dc74c321b40bb37e94c503eb` | Unaccepted diagnostic input; never cherry-pick implicitly |
@@ -49,8 +50,8 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 ## Gate 0 work breakdown
 
-1. **Platform documentation and ledger** — preserve the cluster, standards, and GitHub direction; link this ledger; run `git diff --check` and `npm run verify`; integrate as one bounded Platform documentation change.
-2. **Platform package-local contract** — add and verify `verify:local` without weakening `verify`; prove `trsd save` no longer depends on the transitional Market CLI path.
+1. **Platform documentation and ledger** — local feature commit `8b8db26b` preserves the cluster, standards, and GitHub direction and links this ledger. `git diff --check`, `npm run verify`, and `npm run verify:local` passed. Push, PR review, staging integration, and remote read-back remain pending.
+2. **Platform package-local contract** — `verify:local` now exists and passes without weakening `verify`; proving canonical `trsd save` independence from the transitional Market CLI remains pending.
 3. **Bounded API bootstrap reconciliation** — consume API staging `b18379fe…` without a portfolio-wide exact-ref fan-out; record plan/apply/read-back receipts.
 4. **Managed runtime** — start the local Platform stack and verify exact SDK/API/Agent source-closure and image identities.
 5. **Workset** — materialize the thirteen inventory-authorized software repositories; SDK alone receives assignment-write custody; reject forbidden and dirty identities.
