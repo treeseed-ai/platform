@@ -79,12 +79,12 @@ Source correction: estimating and reviewing now use the explicit governed `main-
 
 | Repository | Exact base | Exact candidate | Pull request | Local evidence |
 | --- | --- | --- | --- | --- |
-| SDK | `000a4a058e97ace3cc217cbfdea1a1ec096b8e93` | `2de71415477d7e19c332aa8062fe0f587d709651` | [#4](https://github.com/treeseed-ai/sdk/pull/4) | 30 agent-capacity files/147 tests; focused 9/9; build and architecture pass |
+| SDK | `000a4a058e97ace3cc217cbfdea1a1ec096b8e93` | `2cb803ab2db7db492adceae84cbdc0900a23a9a5` | [#4](https://github.com/treeseed-ai/sdk/pull/4) | 30 agent-capacity files/147 tests; focused 9/9 plus corrected contract fixture 14/14; build and architecture pass |
 | CLI | `49d1c225285ce72b0ba5a6b1e43cec23add45309` | `95cd2ef7e1aa2b093218f3269262bde77f243740` | [#6](https://github.com/treeseed-ai/cli/pull/6) | full clean install; 8/8 definition test; installable single-SDK closure |
 | API | `b18379fe1521339f71dbf85cf519eed95fe556c2` | `0ebccc6653e50176d01ec226f11ae8e033762c23` | [#1](https://github.com/treeseed-ai/api/pull/1) | full clean install; 8/8 definition test |
 | Agent | `6e1a7345e6ec1c75d8020ce4c08c68bea7ad99e7` | `0f619e0b6e1d4a8607621d31acfe05b64d2f013a` | [#2](https://github.com/treeseed-ai/agent/pull/2) | full clean install; 8/8 definition test; architecture check passed after functional test placement |
 
-The first SDK hosted head failed only the file-architecture limit and an external R2 publication attempt on feature push. The corrected head moves the evaluator into a compatibility subdomain and restricts push publication to `main`/`staging`; pull-request validation remains credential-free. The first Agent head similarly exceeded the direct-test-file architecture limit; corrected head `0f619e0b…` places the regression test under `tests/unit/agents/definitions`. Fresh exact-head hosted checks and independent reviews are required before any staging merge.
+The first SDK hosted head failed only the file-architecture limit and an external R2 publication attempt on feature push. Commit `2de71415…` moves the evaluator into a compatibility subdomain and restricts push publication to `main`/`staging`; pull-request validation remains credential-free. A subsequent full run correctly rejected one read-only question-answerer fixture with implicit mutation tools; head `2cb803ab…` makes those denials explicit. The first Agent head similarly exceeded the direct-test-file architecture limit; corrected head `0f619e0b…` places the regression test under `tests/unit/agents/definitions`. Fresh exact-head hosted checks and independent reviews are required before any staging merge.
 
 ### P1 — capability authority is currently widened across layers
 
