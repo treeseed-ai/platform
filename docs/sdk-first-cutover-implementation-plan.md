@@ -14,22 +14,64 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 - Updated: 2026-08-18
 - Active gate: Gate 0 — truthful Platform and SDK baseline
-- State: `in_progress`
-- Active repository: `treeseed-ai/sdk`, starting from the reconciled `main` source tree
+- State: `waiting_human`
+- Active repositories: SDK, CLI, API, and Agent, repairing and auditing one repository-neutral definition/provider lifecycle before any project source assignment
 - Completed bootstrap repositories: `treeseed-ai/cli`, `treeseed-ai/platform`, and the SDK source canary
-- Next action: open a separately governed SDK compatibility/export repair from reconciled `main`, restore a truthful packed public surface against `0.12.62`, and repeat clean-clone plus consumer acceptance before deciding whether `0.12.63` can exist. Keep npm publication blocked.
-- Pending human checkpoint: `H-001` Ubuntu host discovery; non-blocking for guest-side SDK standards work.
+- Next action: complete exact-head hosted verification and independent review for the SDK, CLI, API, and Agent definition-compatibility PRs; integrate SDK to staging first, then re-read and integrate the three exact SDK consumers. After source read-back, reconcile the same definitions through local TreeDX and rerun SDK planning from a new immutable generation. Keep npm publication blocked.
+- Pending human checkpoints: `H-001` Ubuntu host discovery is non-blocking for guest-side work. `H-004` contributor-grant affirmation is required before API PR #1 can merge; exact-head source checks and review can continue independently.
 
-### SDK-COMPAT-001 — active compatibility repair checkpoint
+### H-004 — API contributor-grant affirmation
 
-- State: `in_progress`
+- State: `waiting_human`
+- Why human authority is required: the API repository requires the contributor—not an agent—to affirm the rights statement in `CONTRIBUTING.md`; the hosted `Contributor License Grant` check fails closed until the exact checkbox is present
+- Surface: GitHub pull request [treeseed-ai/api#1](https://github.com/treeseed-ai/api/pull/1)
+- UI steps: open the pull request, choose **Edit** on the description, append the exact line below, review the statement personally, check it only if true, and save the description
+
+  `- [x] I have read \`CONTRIBUTING.md\`, have the right to submit this contribution, and grant the rights described there, including the right to offer my contribution under the project's AGPL and alternative commercial licenses.`
+
+- Expected safe result: the pull-request description visibly contains the checked line and the `Contributor License Grant / affirmation` check reruns successfully; no credential or private information is requested
+- Failure criteria: do not check the box if the statement is not true or acceptable; report that decision and API PR #1 will remain blocked
+- Agent verification: re-read the API PR body and exact-head check rollup, require a successful affirmation check, and record its run receipt before merge
+- Independent work while waiting: SDK/CLI/API/Agent source verification, independent review, ledger publication, and non-API staging preparation may continue
+
+### SDK-COMPAT-001 — superseded manual-checkout checkpoint
+
+- State: `superseded`
 - Authority scope: bounded SDK-only diagnostic and repair; no consumer repository writes, npm publication, dist-tag mutation, hosted deployment, or global release
 - Exact source base: SDK main `ee9e9440596de14635bad1eb4b54ad14019ca574`
 - Immutable comparison baseline: published `@treeseed/sdk@0.12.62`
-- Standing-workset rule: `packages/sdk` remains detached/read-only at `f843c3cb11853db737d28ecc6bcc3d5df5e183e9`; work occurs only in a separate SDK checkout rooted at the exact main ref
+- Standing-workset rule: `packages/sdk` remains detached/read-only at `f843c3cb11853db737d28ecc6bcc3d5df5e183e9`
 - Acceptance target: classify every added/removed export, restore every declared packed target, prove the intended public surface and semantic bump, run clean package and zero-commit API consumer acceptance, then submit an independently reviewable SDK PR
-- Current evidence: 81 baseline versus 90 candidate exports, with 15 additions, 6 removals, and five declared subpaths missing both JavaScript and declaration targets
-- Next executable action: reproduce and inventory the export/package delta from a clean SDK-main checkout before editing source
+- Current evidence: a separate SDK-main diagnostic clone performed only `npm ci` and a diagnostic pack; no SDK source edit or commit occurred. The checkout was moved to the desktop Trash when the user rejected repository-specific process.
+- Supersession reason: a manual SDK checkout bypasses proposal, decision, capacity, assignment, and workset custody and therefore cannot become accepted implementation evidence
+
+### REPO-LIFECYCLE-001 — active repository-neutral lifecycle repair
+
+- State: `in_progress`
+- Scope: one local operator/control-plane path for every software repository; SDK is only the first acceptance subject
+- Exact operator source target: CLI main `f8d3a9f14356cf0f3ec35cac83871e0725879382`
+- Required lifecycle: proposal → decision → accepted capacity plan → assignment/lease → assignment-writable workset → plan/status/commits/summary → PR → staging → main → authoritative read-back/settlement
+- Durable governance: proposal `2aacee09-6868-45ee-9916-b49e07820f78`; accepted decision `e83c29a4-8541-4649-9526-285ec7e8ae01`; accepted structured estimate `repo-lifecycle-001-estimate`; execution input `repo-lifecycle-001-execution-v2`; scheduled capacity plan `repo-lifecycle-001-capacity-plan-v3`; allocation set `seed-allocation-4f931c26d45d9a413f6df5ca`
+- Repository-neutral agent class: `44bef978-43d0-433f-b326-52baded90a15:agent-class:5ee4a86b`, slug `engineering`, supports planning and acting and requires `engineering`, `repo_read`, `repo_write`, `repository_work`, and `verification`; its repository output contract requires a commit and summary
+- Superseded workdays: `repo-lifecycle-001-run` targeted an expired legacy provider; `repo-lifecycle-001-run-v2` froze an incomplete agent-class generation and was cancelled after two bounded failed attempts. Attempt `assignment_D1DJW0lYjPzeLS2UbeJBe3r57Ips4HU5` returned because the local API proxy omitted its TreeDX JWT configuration. Supported cancellation/requeue created `assignment_ax9SiiBiVwNT4A23PLyS9fQQfm65tGjI`, which failed truthfully because its frozen class referenced an `engineer` definition that was not enabled at that immutable ref.
+- Reconciled provider authority: local provider `provider_XqCG5P_XN7crGeiWYpU4XXfog2bonlZs`; approved membership `771d896e-6f0e-4f7a-94d5-d475aa83c364`; SDK grant `01e30b27-212f-4f14-8289-c1848910ab9b` is active with `agent-execution`, `agent_mode_run`, engineering, planning/acting, repository read/write, repository work, and verification. Provider availability advertises the same common capability set on `codex-sub-operation`. The API now runs with the local TreeDX JWT secret/issuer/audience explicitly configured; no GitHub or hosted service is required for assignment execution.
+- Repository-neutral agent contract: SDK TreeDX staging commit `57bb6f507a9643f7d3ca7650a31224289f489538` was schema-valid but not runnable: its required `planning_note` had no model-level content authority. A governed local TreeDX simulation corrected the SDK definition at exact commit `0538364ebf8f1d9d0b49733b5edd720b12f42ff6`; validator and authority compilation pass, but live assignment acceptance is still pending. API, CLI, and Agent currently have zero live project agent classes and must receive the same reviewed definition contract before they can enter this lifecycle. Production authoring attempted to require `TREESEED_GITHUB_TOKEN` and was rejected; local TreeDX authoring/read-back remains the required local-only path.
+- Superseded API-owned acceptance workday: `repo-lifecycle-001-run-v3`; preflight froze definition `57bb6f50…` and admitted planning assignment `assignment_Yz_M2f32k8tWNyrHCU10d5pM4YJnH9fD`. The assignment wrote its mandatory plan, terminal status, and summary, then returned because content create/link/validate/commit were omitted from the provider catalog and the required `planning_note` was impossible. No source file changed. Cleanup remained unverified with one active demand/workspace and two stale authorities; this run cannot be retried as compatibility evidence because its immutable definition is obsolete.
+- Agent-definition audit: `docs/agent-definition-capacity-compatibility-audit.md` is the bounded SDK/CLI/API/Agent audit. Its original scan found 56 read-only-branch/content-write conflicts across 28 of 32 definitions. The remediated exact worktrees now report 32 passing definitions and zero findings. SDK PR [#4](https://github.com/treeseed-ai/sdk/pull/4) adds the portable compatibility evaluator and package-wide regression fixtures. CLI PR [#6](https://github.com/treeseed-ai/cli/pull/6), API PR [#1](https://github.com/treeseed-ai/api/pull/1), and Agent PR [#2](https://github.com/treeseed-ai/agent/pull/2) adopt its exact head and run package-owned definition checks. These are candidate branches, not accepted staging evidence yet.
+- Generic lifecycle defects found during bootstrap: administrative proposal approval can bypass proposal content-readiness; an administratively accepted decision does not initialize decision-planning state; CLI has no mutations for planning requests, structured estimates, or execution inputs; a manually created workday envelope can be active without governed grant provenance; `workday-status` inspects capacity envelopes while `workday` inspects API-owned workday runs; returned single-attempt assignments are reported `alreadyLeasable` even when the provider cannot reacquire them; provider scheduling initially considered only one lane; local API TreeDX admission and proxy token defaults diverged; agent-class reconciliation can add capabilities that the active grant does not contain; local authoring incorrectly routes production publication through GitHub; schema/authority compilation does not prove provider-catalog tool or required-artifact satisfiability; and terminal assignment lease-renew rejection is logged as a generic provider error.
+- Acceptance target: no repository-specific clone, branch, merge, or publication orchestration; repository differences are declarative manifest policy only
+- Next executable action: obtain green exact-head checks and independent review for all four definition PRs, merge/read back SDK first and its three consumers second, then settle/clean the superseded run, rotate the provider credential, deploy the reviewed definitions through local TreeDX, and schedule a new immutable SDK run before creating any writable project checkout
+
+### AGENT-DEFINITION-001 — common SDK/CLI/API/Agent definition cutover
+
+- State: `in_progress`
+- Common branch: `codex/agent-definition-compatibility`, based independently on each repository's exact staging head
+- Exact bases: SDK `000a4a058e97ace3cc217cbfdea1a1ec096b8e93`; CLI `49d1c225285ce72b0ba5a6b1e43cec23add45309`; API `b18379fe1521339f71dbf85cf519eed95fe556c2`; Agent `6e1a7345e6ec1c75d8020ce4c08c68bea7ad99e7`
+- Exact candidate heads: SDK `2de71415477d7e19c332aa8062fe0f587d709651`; CLI `95cd2ef7e1aa2b093218f3269262bde77f243740`; API `0ebccc6653e50176d01ec226f11ae8e033762c23`; Agent `44525fe2dc8bc258cb563cbbed870bc7c2739b01`
+- Pull requests: SDK [#4](https://github.com/treeseed-ai/sdk/pull/4), CLI [#6](https://github.com/treeseed-ai/cli/pull/6), API [#1](https://github.com/treeseed-ai/api/pull/1), Agent [#2](https://github.com/treeseed-ai/agent/pull/2); all target `staging` and remain draft pending exact-head checks and independent review
+- Static acceptance: 32 packaged definitions pass with zero compatibility diagnostics. SDK agent-capacity tests pass 30 files/147 tests; focused schema/compatibility tests pass 9/9; SDK build and architecture checks pass. CLI, API, and Agent each passed a clean install and its package-owned eight-definition check. CLI additionally requires `overrides: { "@treeseed/sdk": "$@treeseed/sdk" }` so its Agent/Core/UI closure cannot install multiple incompatible Git SDK instances; `npm ci --dry-run` now passes for all three consumers.
+- Hosted correction: the first SDK head failed architecture because the new evaluator created an eleventh direct validation file, and a feature-branch Content push attempted external R2 publication. Corrected head `2de71415…` moves the evaluator under functional ownership and limits content publication pushes to `main`/`staging`; PR validation remains local and credential-free. Fresh hosted checks are pending.
+- Residual gates: source branches are not staging authority; live API/CLI/Agent classes remain absent; the obsolete SDK workday still requires settlement/residue cleanup; TreeDX deployment, class/grant reconciliation, baseline/clean-repeat/interruption runs, staging/main read-back, and provider credential rotation remain open.
 
 ## Accepted and observed baselines
 
@@ -45,6 +87,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 | SDK remote staging | `f843c3cb11853db737d28ecc6bcc3d5df5e183e9` | Required fresh canary base |
 | SDK baseline repair | reviewed head `7bdb291dd8989359e9c94e39d22e3acd8b88ca3c`; staging merge `e9c99accdde7a335f8b54cee752196fc234407a1` | PR [#1](https://github.com/treeseed-ai/sdk/pull/1), exact base `f843c3cb…`; independently approved, hosted verification green, merged, and read back; local proposal `6795bdc7…`, accepted decision `85bd44c4…` |
 | SDK reconciled main/staging | main `ee9e9440596de14635bad1eb4b54ad14019ca574`; staging `000a4a058e97ace3cc217cbfdea1a1ec096b8e93` | PRs [#2](https://github.com/treeseed-ai/sdk/pull/2) and [#3](https://github.com/treeseed-ai/sdk/pull/3) integrated the exact staging source tree into main and restored shared branch history with a zero-file staging reconciliation. Source Verify run [`32193234521`](https://github.com/treeseed-ai/sdk/actions/runs/32193234521) passed; production publication failed closed before steps and published nothing |
+| Definition-compatibility candidates | SDK `2de71415477d7e19c332aa8062fe0f587d709651`; CLI `95cd2ef7e1aa2b093218f3269262bde77f243740`; API `0ebccc6653e50176d01ec226f11ae8e033762c23`; Agent `44525fe2dc8bc258cb563cbbed870bc7c2739b01` | Draft PRs target staging; exact-head hosted verification/review and staging read-back are pending. These refs are candidate inputs only. |
 | SDK published package | `@treeseed/sdk@0.12.62` | Current npm `latest` baseline |
 | SDK diagnostic commit | `c6db3626ab3cecd3dc74c321b40bb37e94c503eb` | Unaccepted diagnostic input; never cherry-pick implicitly |
 | API accepted staging | `b18379fe1521339f71dbf85cf519eed95fe556c2` | Required Platform bootstrap input |
@@ -56,9 +99,9 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 | Gate | State | Owning repositories | Exit evidence | Current note |
 | --- | --- | --- | --- | --- |
-| 0. Truthful Platform and SDK baseline | `in_progress` | Platform, CLI/API bootstrap, then SDK | Ready Platform runtime; exact 13-repository workset; governed SDK source canary; clean `0.12.63`; no consumer ref movement; zero residue | Local API and the exact 13-repository read-only workset are verified. Platform, CLI, and SDK source are integrated to main and reconciled back to staging. SDK npm publication remains blocked by independently reproduced public-surface drift; managed runtime/runner and compatibility repair remain. |
+| 0. Truthful Platform and SDK baseline | `waiting_human` | Platform, SDK, CLI, API, Agent | Ready Platform runtime; exact 13-repository workset; governed source canary; compatible agent definitions; no ungoverned publication; zero residue | `H-004` blocks API PR merge pending the human contributor-grant checkbox. The common definition repair otherwise has four draft staging PRs with 32/32 static compatibility; hosted exact-head verification/review and live acceptance remain. SDK npm publication is still blocked. |
 | 1. SDK standards foundation | `queued` | SDK, Platform composition; API read-only consumer case | Four portable metadata contracts; TS/OpenAPI comparison; SDK `0.13.0-rc.1`; exact composition | Starts only after Gate 0 source canary. |
-| 2. SDK-only save/stage/release | `queued` | SDK, CLI wrapper when adopted | PR-gated save/stage; bounded package release; local and live acceptance | Other packages must fail with `standards_migration_not_enabled`; unscoped release stays fail-closed. |
+| 2. Unified repository save/stage/release | `queued` | SDK, CLI, API, Platform; then every inventory repository | One PR-gated lifecycle engine with local and live acceptance | SDK is the first fixture, never a separately dispatched workflow. Repository capabilities and release policy are declarative; unscoped production release stays fail-closed. |
 | 3. SDK GitHub work-provider contracts | `queued` | SDK | Provider-neutral contracts; GitHub normalization/templates; token canary; next SDK RC | PR binds assignment/checkpoint, never lease. |
 | 4. API and CLI authority | `queued` | API, CLI | Durable sync/outbox/bindings; authenticated routes; CLI parity; replay-safe canary | Consumers change only through their own governed adoption. |
 | 5. Agent and review integration | `queued` | Agent, API, SDK | Deterministic simulations plus one live planning/acting/review/integration chain | Baseline, clean repeat, and interruption/resume required. |
@@ -92,12 +135,12 @@ The first compatible minor line adds bounded public entrypoints:
 
 The package manifest gains versioned `standards` declarations. Package commands build contracts, compare compatibility, resolve a composition, and verify the packed artifact deterministically.
 
-SDK workflow semantics converge to:
+The repository workflow semantics, first exercised by SDK, converge to:
 
 - `save`: assignment authority → package proof → contract/attestation → commit/push → draft PR update;
 - `stage`: exact PR head/reviews/checks → feature-to-staging merge → read-back → immutable prerelease;
 - `release --package @treeseed/sdk`: accepted staging composition → human-approved staging-to-main merge → npm publish/read-back;
-- every non-migrated package: explicit `standards_migration_not_enabled`;
+- every inventory repository: the same authority, assignment, workset, PR, staging, main, read-back, settlement, and cleanup state machine; unsupported capabilities return a typed capability/policy result derived from that repository's manifest, never a repository-name special case;
 - unscoped/global release: fail-closed.
 
 ## GitHub and agent rollout
