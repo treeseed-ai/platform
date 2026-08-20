@@ -70,6 +70,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 - Failure criteria: Mailpit has no reset message, the token is expired/rejected, the CLI echoes a secret, login returns another principal, or team-owner access is absent. On failure the agent diagnoses the route/session without asking for a secret.
 - Agent verification: re-run non-secret `auth whoami --market local --json`, compare the exact principal/team access, and prove the session enables planning but does not silently apply project authorization.
 - Independent work while waiting: hosted CLI PR checks, review preparation, SDK standards design, and provider/service-principal least-privilege audit may continue.
+- Retry receipt: the first attempted Mailpit message was stale (`4Yl4…`, created `2026-08-20T22:17:13.476Z`) and its token was rejected as expired. A fresh reset was issued without exposing the address or token. Mailpit message `7bsC…`, created `2026-08-20T22:28:55.761Z`, is now the only accepted message; authoritative database read-back reports its reset record `future`, `unused`, with approximately 3,578 seconds remaining at verification. The human should refresh Mailpit and use that newest message only.
 
 ### H-006 — local capacity-provider membership credential rotation
 
