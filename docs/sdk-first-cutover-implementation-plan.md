@@ -17,7 +17,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 - State: `in_progress`
 - Active repositories: SDK, API, CLI, and Agent, in that implementation order; Platform records cross-repository evidence only
 - Completed bootstrap repositories: `treeseed-ai/cli`, `treeseed-ai/platform`, and the SDK source canary
-- Next action: implement and independently verify the portable hierarchical-command, allocation-profile, workday-intent, preflight, start, schedule, and settlement contracts in SDK from exact staging `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865`; then adopt them in API, CLI, and Agent through separate issues and PRs. Do not launch a live agent or workday. Stop and notify the user after the four-repository prerequisite is verified and clean, immediately before the first live SDK workday.
+- Next action: complete hosted exact-head verification and independent review of SDK Issue [#20](https://github.com/treeseed-ai/sdk/issues/20) / draft PR [#21](https://github.com/treeseed-ai/sdk/pull/21) at head `0797a991ca8dab8a73fbbcc49beed81cf7a80663`; correct findings, merge/read back staging, and only then begin API adoption. Do not launch a live agent or workday. Stop and notify the user after the four-repository prerequisite is verified and clean, immediately before the first live SDK workday.
 - Pending human checkpoints: no contributor checkbox or standing contribution grant is pending. Apache/non-AGPL repositories have no contributor-approval process. API's AGPL/commercial contributor check uses the committed provider-authenticated GitHub username allowlist, initially `adrianwebb`; future unlisted accounts complete one approval request. Ubuntu host discovery remains non-blocking. Main merge, publication, secret rotation, and authority expansion retain their separate human gates.
 
 ### CONTRIBUTION-AUTH-001 — project-scoped agent contribution authorization
@@ -277,13 +277,22 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 | Repository | Starting staging ref | Target | Required outcome | State |
 | --- | --- | --- | --- | --- |
-| SDK | `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865` | `0.13.0-rc.2` | Portable command/result, allocation-profile, workday intent/preflight/start/schedule/settlement, one-class membership, borrowing evidence, and repository reconciliation contracts; standards compatibility coverage | `in_progress` |
+| SDK | `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865` | `0.13.0-rc.2` | Portable command/result, allocation-profile, workday intent/preflight/start/schedule/settlement, one-class membership, borrowing evidence, and repository reconciliation contracts; standards compatibility coverage | `in_progress` — Issue #20 / PR #21 |
 | API | `9a9e1b8443b3f8d65b8bf75b2f03bd7e1724cfaa` | `0.7.0-rc.1` | Sole deterministic plan/scheduler/assignment/reservation/settlement authority; intent-only preflight and digest-bound transactional start; accepted-profile indexing | `queued` |
 | CLI | `b3c4aa3cfed8cf11b8820bab58b6e06219c93b68` | `0.13.0-rc.1` | Canonical `trsd`-only command tree, generated help/schema/docs/completion, default mutation and universal `--plan`, removal of aliases/colon paths/`--execute`/internal integration commands | `queued` |
 | Agent | `d527ee6791ecee8770eba73721c484916ac7d7dd` | `0.13.0-rc.1` | Consume API-issued workday/class/assignment receipts without deriving policy; private-only runtime CLI; no provider/GitHub/host credentials in workspaces | `queued` |
 | Platform | `1e9766cdbc855c8062b37555321936d1987b0fff` | evidence only | Record issues, PRs, exact staging refs, semantic versions, digests, checks, simulations, and residue | `in_progress` |
 
 SDK is implemented first. Each consumer then adopts an exact semantic prerelease through its own issue and PR; Git commit dependencies are prohibited. npm `latest`, SDK main, production deployment, production images, and unscoped release remain unchanged and fail-closed.
+
+### SDK implementation evidence
+
+- SDK Issue [#20](https://github.com/treeseed-ai/sdk/issues/20) and draft PR [#21](https://github.com/treeseed-ai/sdk/pull/21) begin at exact staging `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865`; current head is `0797a991ca8dab8a73fbbcc49beed81cf7a80663`.
+- The new `@treeseed/sdk/operator-contracts` entrypoint contains the canonical `trsd` tree, stable result/error envelope, allocation profiles and invariants, exactly-one-class membership, high-level workday intent, digest-bound preflight/start receipts, schedules, settlement accounting, borrowing evidence, and repository profile generation/reconciliation receipts.
+- The public `@treeseed/sdk/agent-capacity` facade no longer exports direct definition authoring/deployment helpers or the old flat operator-capability matrix. Their implementation remains internal for backend migration; no client receives derived-record mutation authority.
+- Focused operator, compatibility, and public-boundary verification passed 22/22. The complete isolated package campaign passed 403 files/1,590 tests, 6 lifecycle files/60 tests, and packed-install smoke. Standards acceptance verified 176 export targets.
+- Exact-head package SHA-256 is `f04ab4cc22694d0c91b3b6807592c9ef26c0ac968bcfab28c3e3f049065505d9`; contract bundle SHA-256 is `20a2093e90aff67f80bd12430d1f191e4087f3a34ec5ddab81599f67dbbebfea`; export-map SHA-256 is `ff6219736fa899a3eac9e0527cef5b379a1f320d18247868309e1eb3c4bbd726`. Hosted checks and independent review are pending.
+- The first unisolated local verification attempt selected partial Platform scene files because the disposable SDK worktree is nested beneath Platform; five failures were environmental or caused by the intentionally narrowed public facade. Restoring SDK-internal authoring exports while retaining the narrow published facade fixed three. Running the package-owned isolated profile fixed the two workspace-root scene selections and produced the authoritative all-green campaign. No production assertion was weakened.
 
 ### Acceptance and live-agent boundary
 
