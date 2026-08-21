@@ -13,11 +13,11 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 ## Current checkpoint
 
 - Updated: 2026-08-21
-- Active gate: Gate 2 — unified repository save/stage/release, paused at the user-directed live-agent architecture boundary
-- State: `waiting_human`
-- Active repositories: SDK, CLI, API, and Agent, proving one repository-neutral definition/provider lifecycle before the next project source assignment
+- Active gate: Gate 2 prerequisite — Human CLI and time-based workday contract
+- State: `in_progress`
+- Active repositories: SDK, API, CLI, and Agent, in that implementation order; Platform records cross-repository evidence only
 - Completed bootstrap repositories: `treeseed-ai/cli`, `treeseed-ai/platform`, and the SDK source canary
-- Next action: stop before any live TreeSeed agent receives an assignment or performs repository/TreeDX mutations; review the agent identity, assignment authority, capacity-provider, GitHub work-provider, repository custody, and TreeDX operation architecture with the user. After that discussion, begin the repository-neutral Gate 2 workflow engine using SDK as the first fixture. SDK main, npm `latest`, and unrelated consumer adoption remain blocked.
+- Next action: implement and independently verify the portable hierarchical-command, allocation-profile, workday-intent, preflight, start, schedule, and settlement contracts in SDK from exact staging `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865`; then adopt them in API, CLI, and Agent through separate issues and PRs. Do not launch a live agent or workday. Stop and notify the user after the four-repository prerequisite is verified and clean, immediately before the first live SDK workday.
 - Pending human checkpoints: no contributor checkbox or standing contribution grant is pending. Apache/non-AGPL repositories have no contributor-approval process. API's AGPL/commercial contributor check uses the committed provider-authenticated GitHub username allowlist, initially `adrianwebb`; future unlisted accounts complete one approval request. Ubuntu host discovery remains non-blocking. Main merge, publication, secret rotation, and authority expansion retain their separate human gates.
 
 ### CONTRIBUTION-AUTH-001 — project-scoped agent contribution authorization
@@ -239,7 +239,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 | --- | --- | --- | --- | --- |
 | 0. Truthful Platform and SDK baseline | `in_progress` | Platform, SDK, CLI, API, Agent | Ready Platform runtime; exact 13-repository workset; governed source canary; compatible agent definitions; no ungoverned publication; zero residue | Four-package definition source, hosted artifacts, local TreeDX projections, eight active classes per project, clean repeat, superseded-run cleanup, and the provider-credential rotation are verified. SDK source and standards canaries are integrated and the RC is published; the managed-runtime supervisor plus live clean-repeat/interruption guarantees remain. No live TreeSeed agent was started for the standards implementation. |
 | 1. SDK standards foundation | `verified` | SDK, Platform composition; API read-only consumer case | Four portable metadata contracts; TS/OpenAPI comparison; SDK `0.13.0-rc.1`; exact composition | SDK Issue [#12](https://github.com/treeseed-ai/sdk/issues/12) is closed. PR [#13](https://github.com/treeseed-ai/sdk/pull/13) reviewed head `cdd29222…` merged as `0d33c967…`; release-browser PR [#15](https://github.com/treeseed-ai/sdk/pull/15) merged as `745bcf1c…`, the exact RC1 tag source; propagation-safety PR [#17](https://github.com/treeseed-ai/sdk/pull/17) merged as `5ac480df…`; identity PR [#19](https://github.com/treeseed-ai/sdk/pull/19) advanced staging to unpublished RC2 at `b30d7ebc…`. npm `rc` is `0.13.0-rc.1`, `latest` remains `0.12.62`, and the exact published tarball is `sha256:a8d5fb42…`. |
-| 2. Unified repository save/stage/release | `waiting_human` | SDK, CLI, API, Platform; then every inventory repository | One PR-gated lifecycle engine with local and live acceptance | SDK is the first fixture, never a separately dispatched workflow. Implementation is paused before live-agent execution so the user and agent can review the agent/capacity/work-provider architecture. Repository capabilities and release policy are declarative; unscoped production release stays fail-closed. |
+| 2. Unified repository save/stage/release | `in_progress` | SDK, API, CLI, Agent, Platform; then every inventory repository | Human CLI/time-based workday prerequisite plus one PR-gated lifecycle engine with local and live acceptance | Implement SDK → API → CLI → Agent. The prerequisite must be verified and residue-free before any live agent starts. SDK is the first fixture, never a repository-specific workflow. |
 | 3. SDK GitHub work-provider contracts | `queued` | SDK | Provider-neutral contracts; GitHub normalization/templates; token canary; next SDK RC | PR binds assignment/checkpoint, never lease. |
 | 4. API and CLI authority | `queued` | API, CLI | Durable sync/outbox/bindings; authenticated routes; CLI parity; replay-safe canary | Consumers change only through their own governed adoption. |
 | 5. Agent and review integration | `queued` | Agent, API, SDK | Deterministic simulations plus one live planning/acting/review/integration chain | Baseline, clean repeat, and interruption/resume required. |
@@ -257,6 +257,42 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 - Publish run [`32440725494`](https://github.com/treeseed-ai/sdk/actions/runs/32440725494) passed package verification, baseline acquisition, compatibility/composition, consumer verification, evidence sealing, artifact upload, and exact npm publication. npm propagation exceeded the original 18-second read-back window, so GitHub release creation was completed after independent registry read-back. npm now reports `rc=0.13.0-rc.1`, `latest=0.12.62`, integrity `sha512-xnu/d5Uf4xmjaynW8X6Ofqre4QTCHszH+wpe+TX8fFkp1sXPewN+Dx1IgtSd2zMzKu8sfd2G5fdqrvsVV2SV/w==`, and shasum `5c9b980d9b475d0c4eae957aa9e48bef7435541c`.
 - PR [#17](https://github.com/treeseed-ai/sdk/pull/17) added exact existing-artifact adoption and a genuinely bounded registry read-back with per-call timeouts and classified retries; transient recovery, deadline, authentication, `latest` drift, and digest mismatch tests pass. PR [#19](https://github.com/treeseed-ai/sdk/pull/19) moved the post-publication staging line to unpublished `0.13.0-rc.2`. Current SDK staging `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865` passed post-merge hosted run [`32443236437`](https://github.com/treeseed-ai/sdk/actions/runs/32443236437).
 - SDK main and npm `latest` were not changed. API, CLI, and Agent received no source or dependency commit from the RC publication. No live TreeSeed agent, assignment lease, repository mutation, or TreeDX mutation was started during Gate 1.
+
+## Gate 2 prerequisite — Human CLI and time-based workday contract
+
+### Fixed architecture
+
+- A workday is a team-portfolio time, budget, provider, reserve, concurrency, and allocation envelope. It can admit governed demand from multiple projects, decisions, questions, proposals, knowledge gaps, planning inputs, and reliability campaigns.
+- Acting demand remains assignment-authorized: it requires an approved decision, accepted execution evidence, an estimate, and an API-derived capacity plan. Planning and research demand may be admitted by the selected repository-governed profile without pretending that it is acting work.
+- Starting a workday accepts and schedules the exact deterministic preflight receipt. The API rejects a stale profile generation, demand set, provider/grant state, authorization, reservation set, or digest and requires a fresh preflight; it never silently recalculates at start.
+- Each project agent belongs to exactly one allocation class. Profiles allocate class minimum, target, and maximum percentages; borrowing is permitted only when explicitly enabled, never violates the lender minimum or borrower maximum, and records lent, borrowed, idle, reserved, active, released, and overrun seconds.
+- Allocation profiles are versioned repository content reviewed through GitHub PRs and indexed from accepted staging generations. The CLI validates and inspects profiles but does not author control-plane records.
+- The deterministic API is the sole creator of capacity plans, scheduler projections, assignments, leases, reservations, and settlements. Public clients submit high-level intent only and cannot set derived plan fields.
+- `trsd` is the only public executable. The public registry has arbitrary-depth trees, no aliases, no `:` segments, and no compound hyphenated action segments. Old paths are hard-removed and must produce unknown-command behavior with zero mutation.
+- Read commands execute immediately. Mutations execute by default; `--plan` is the universal no-mutation mode. `--execute` is removed. `--yes` only answers an otherwise required confirmation and cannot bypass API authorization or policy.
+- The public Agent runtime passthrough is removed. The Agent package retains private runtime/container entrypoints, while `trsd agents diagnose` and `trsd providers diagnose` expose human-oriented diagnostics.
+- No public agent-management command accepts commit SHA, source ref, expected base/commit, branch-integration, checkpoint-integration, or content-integration arguments. GitHub PR and exact-ref mechanics remain workflow-provider and control-plane responsibilities.
+
+### Implementation sequence and release boundaries
+
+| Repository | Starting staging ref | Target | Required outcome | State |
+| --- | --- | --- | --- | --- |
+| SDK | `b30d7ebcfc3086c35b3f8c40cd8a29cead97c865` | `0.13.0-rc.2` | Portable command/result, allocation-profile, workday intent/preflight/start/schedule/settlement, one-class membership, borrowing evidence, and repository reconciliation contracts; standards compatibility coverage | `in_progress` |
+| API | `9a9e1b8443b3f8d65b8bf75b2f03bd7e1724cfaa` | `0.7.0-rc.1` | Sole deterministic plan/scheduler/assignment/reservation/settlement authority; intent-only preflight and digest-bound transactional start; accepted-profile indexing | `queued` |
+| CLI | `b3c4aa3cfed8cf11b8820bab58b6e06219c93b68` | `0.13.0-rc.1` | Canonical `trsd`-only command tree, generated help/schema/docs/completion, default mutation and universal `--plan`, removal of aliases/colon paths/`--execute`/internal integration commands | `queued` |
+| Agent | `d527ee6791ecee8770eba73721c484916ac7d7dd` | `0.13.0-rc.1` | Consume API-issued workday/class/assignment receipts without deriving policy; private-only runtime CLI; no provider/GitHub/host credentials in workspaces | `queued` |
+| Platform | `1e9766cdbc855c8062b37555321936d1987b0fff` | evidence only | Record issues, PRs, exact staging refs, semantic versions, digests, checks, simulations, and residue | `in_progress` |
+
+SDK is implemented first. Each consumer then adopts an exact semantic prerelease through its own issue and PR; Git commit dependencies are prohibited. npm `latest`, SDK main, production deployment, production images, and unscoped release remain unchanged and fail-closed.
+
+### Acceptance and live-agent boundary
+
+- Registry tests reject aliases, colon paths, compound action segments, duplicates, ambiguous intermediate nodes, the `treeseed` binary, removed legacy commands, and every mutation attempted in `--plan` mode.
+- Profile and scheduler tests cover percentage invariants, exactly-one-class membership, project exclusions, borrowing/lending bounds, starvation limits, multiple projects and decisions, planning without a decision, acting without approval, stale preflight, overlapping reservation conflicts, restart/resume, expiry, cancellation, and exact settlement accounting.
+- API tests prove clients cannot create or edit derived capacity-plan content and prove `workdays start` atomically accepts the exact receipt, schedules plans, and reserves capacity.
+- CLI help, completion, Markdown, and JSON Schema are generated from the same typed tree. Human and JSON output are projections of one stable result envelope with redaction, warnings, blockers, receipts, and next actions.
+- Deterministic simulations cover feature-heavy, stability-heavy, documentation-heavy, and testing-heavy profiles plus stale state, interruption, failed checks, GitHub PR adoption, and zero residue.
+- Verification requires all four exact staging refs, hosted checks, packed consumer acceptance against semantic RCs, no open implementation PRs, no feature branches, and no disposable worktrees. At that point the agent stops and tells the user that live SDK agent testing is ready; it does not start the workday without that discussion.
 
 ## Pre-agent repository cleanup
 
