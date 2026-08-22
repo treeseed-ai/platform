@@ -4,6 +4,7 @@ import { basename, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const fail = (message) => { throw new Error(message); };
+execFileSync(process.execPath, [resolve(root, 'scripts/verify-treeseed-skill.mjs')], { cwd: root, stdio: 'inherit' });
 if (existsSync(resolve(root, '.gitmodules'))) fail('Platform must not encode team inventory as gitlinks.');
 if (existsSync(resolve(root, 'treeseed.portfolio.json'))) fail('Platform must read live team inventory instead of a repository portfolio file.');
 const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding: 'utf8' });
