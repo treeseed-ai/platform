@@ -1,0 +1,82 @@
+schemaVersion: 3
+ownership:
+  type: team
+  teamId: team:treeseed
+configuration:
+  generation: local-battery-v1
+identity:
+  privateKeyRef: data://identity-v3.json
+  displayName: TreeSeed local capacity battery
+capacity:
+  maxConcurrentWorkers: 4
+  cpuCores: 8
+  memoryBytes: 17179869184
+  maxActiveSeconds: 28800
+  maxInputTokens: 4000000
+  maxOutputTokens: 1000000
+  maxCost: 100
+  currency: USD
+  maxAttempts: 3
+credentialProfiles:
+  - { id: codex-auth, source: process-environment, reference: TREESEED_CODEX_AUTH_FILE, required: false }
+  - { id: platform-github, source: process-environment, reference: TREESEED_GITHUB_TOKEN, required: false }
+  - { id: platform-cloudflare, source: process-environment, reference: TREESEED_CLOUDFLARE_API_TOKEN, required: false }
+lanes:
+  - id: communication
+    purpose: communication
+    priority: 100
+    reservedConcurrentWorkers: 1
+    maxConcurrentWorkers: 2
+    borrowWhenIdle: true
+    lendWhenIdle: true
+    reclaimPolicy: admission
+    queueLimit: 100
+    timeoutSeconds: 120
+    capabilities: [communication, research, planning]
+  - id: platform
+    purpose: platform
+    priority: 70
+    reservedConcurrentWorkers: 0
+    maxConcurrentWorkers: 2
+    borrowWhenIdle: true
+    lendWhenIdle: true
+    reclaimPolicy: admission
+    queueLimit: 25
+    timeoutSeconds: 900
+    capabilities: [platform_operation, infrastructure_reconciliation, repository_reconciliation]
+  - id: workday
+    purpose: workday
+    priority: 50
+    reservedConcurrentWorkers: 0
+    maxConcurrentWorkers: 4
+    borrowWhenIdle: true
+    lendWhenIdle: true
+    reclaimPolicy: admission
+    queueLimit: 100
+    timeoutSeconds: 900
+    minimumAssignmentDuration: { amount: 600, unit: seconds }
+    capabilities: [agent-execution, engineering, research, planning, acting, verification, repository_work]
+adapters:
+  - id: codex-local
+    adapter: codex
+    isolation: process
+    profile: subscription
+    protocol: responses
+    credentialProfiles: [codex-auth]
+    laneIds: [communication, workday]
+    maxConcurrentWorkers: 4
+    minimumAssignmentDuration: { amount: 600, unit: seconds }
+    nativeLimits: { availableAgentSeconds: 28800 }
+    capabilities: [communication, agent-execution, engineering, research, planning, acting, verification, repository_work]
+  - id: platform-local
+    adapter: platform-operation
+    isolation: process
+    credentialProfiles: [platform-github, platform-cloudflare]
+    laneIds: [platform]
+    maxConcurrentWorkers: 2
+    nativeLimits: { availableAgentSeconds: 14400 }
+    capabilities: [platform_operation, infrastructure_reconciliation, repository_reconciliation]
+connections: []
+metadata:
+  custody: local-only
+  sharedBattery: true
