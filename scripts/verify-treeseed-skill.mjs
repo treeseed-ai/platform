@@ -5,7 +5,7 @@ const root = resolve(import.meta.dirname, '..');
 const skillRoot = resolve(root, 'skills/treeseed');
 const skill = readFileSync(resolve(skillRoot, 'SKILL.md'), 'utf8');
 const receipt = JSON.parse(readFileSync(resolve(skillRoot, 'catalog-receipt.json'), 'utf8'));
-const composition = JSON.parse(readFileSync(resolve(root, 'docs/evidence/treedx-control-plane-proxy-composition.json'), 'utf8'));
+const composition = JSON.parse(readFileSync(resolve(root, 'docs/evidence/unified-capacity-battery-composition.json'), 'utf8'));
 const fail = (message) => { throw new Error(message); };
 const categories = ['knowledge', 'governance', 'projects', 'execution', 'mcp'];
 
@@ -14,7 +14,7 @@ if (!/^  protocol: "2026-07-28"$/mu.test(skill)) fail('TreeSeed Skill does not d
 if (receipt.schemaVersion !== 'treeseed.skill-catalog-receipt/v1' || receipt.protocolVersion !== '2026-07-28') fail('TreeSeed Skill receipt version is unsupported.');
 if (JSON.stringify(receipt.categories) !== JSON.stringify(categories)) fail('TreeSeed Skill categories drifted from the accepted set.');
 if (!/^sha256:[0-9a-f]{64}$/u.test(receipt.sdk.operationCatalogDigest) || !/^sha256:[0-9a-f]{64}$/u.test(receipt.sdk.mcpInputDigest) || !/^sha256:[0-9a-f]{64}$/u.test(receipt.api.mcpCatalogDigest)) fail('TreeSeed Skill receipt contains an invalid catalog digest.');
-if (composition.schemaVersion !== 'treeseed.platform-composition-evidence/v1' || composition.status !== 'staging_accepted') fail('TreeSeed proxy composition evidence is not accepted.');
+if (composition.schemaVersion !== 'treeseed.platform-composition-evidence/v1' || composition.status !== 'staging_accepted') fail('TreeSeed capacity-battery composition evidence is not accepted.');
 const sdk = composition.members?.sdk;
 const api = composition.members?.api;
 if (receipt.sdk.version !== sdk?.version || receipt.sdk.stagingCommit !== sdk?.sourceCommit
