@@ -2,7 +2,7 @@
   "schemaVersion": "treeseed.platform-composition-evidence/v1",
   "id": "unified-capacity-battery-2026-08-23.2",
   "recordedAt": "2026-08-23T05:00:00-04:00",
-  "status": "waiting_executor_configuration",
+  "status": "staging_accepted",
   "members": {
     "treedx": {
       "version": "0.3.0-rc.4",
