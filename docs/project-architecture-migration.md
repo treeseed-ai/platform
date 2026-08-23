@@ -1,6 +1,8 @@
 # Project Architecture Migration
 
-## Decision
+> Historical migration record: the paired Git content-repository model below is superseded. The accepted model derives one TreeDX **virtual knowledge repository** from every root project. A project may also be content-only and omit a primary Git repository. Seeds declare root projects only; virtual knowledge repositories are created, reconciled, and retired through the control-plane/TreeDX lifecycle and never participate in GitHub workflows.
+
+## Superseded paired-repository decision
 
 Every TreeSeed project has two independently governed repositories:
 
