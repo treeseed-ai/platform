@@ -9,20 +9,20 @@
     "mcp"
   ],
   "sdk": {
-    "version": "0.13.0-rc.19",
-    "stagingCommit": "2c58b64928a4a1932a867504a0d38fd17dba6260",
-    "operationCatalogDigest": "sha256:2907213c311b8042291d72db57fe1d0bf103ab3a75f539716ecb1f0760e9d03f",
-    "mcpInputDigest": "sha256:1fdf743bb3edbd481fc7b50420c481b1a3a3de4eee2a270574a32a2c05594488"
+    "version": "0.13.0-rc.20",
+    "stagingCommit": "974bf855b57eac8e30250f4e3dcade2c8a4baa18",
+    "operationCatalogDigest": "sha256:a7610a95857cc5092aa1c95793cc1757d1dded74f853d265f16c76c4c0bdc0d4",
+    "mcpInputDigest": "sha256:cf9c77d9f81234b4fd123de68a197d8e32a8555c4534aa8b51fe36e384c8367f"
   },
   "api": {
-    "stagingCommit": "31d128d89f5bc9a86264090d5a9d281a5e496fa6",
-    "mcpCatalogDigest": "sha256:22e3d7df2854d4e91124aabf451d15c7e35cbbcbbb16d612d7bb1d069e3e9ab5",
-    "openApiDigest": "sha256:6837b1655e3d795b18b298cca512cba2d25b3be0f69825e1955e586a8dcd8ac9"
+    "stagingCommit": "0982d41dc64f6c9c6903bc147b81e76004124ec1",
+    "mcpCatalogDigest": "sha256:556297ce4e293df6e1446d5f081eeef6bc43ec76bbc6c59795a7d0414bd27d3a",
+    "openApiDigest": "sha256:18eaffb5ef58e17e7550a5a2d68eb48f0bfa4a9b767fd0070bf97dbd2d660d48"
   },
   "mcpSurface": {
-    "tools": 118,
+    "tools": 123,
     "resources": 5,
-    "resourceTemplates": 50,
+    "resourceTemplates": 51,
     "prompts": 5,
     "capabilities": [
       "completion",
