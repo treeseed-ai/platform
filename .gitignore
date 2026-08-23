@@ -5,3 +5,5 @@ dist/
 /templates/*
 !/templates/platform-*/
 /.fixtures/
+/products/market/
+/services/market-api/
