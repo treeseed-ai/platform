@@ -15,7 +15,7 @@
     "mcpInputDigest": "sha256:cf9c77d9f81234b4fd123de68a197d8e32a8555c4534aa8b51fe36e384c8367f"
   },
   "api": {
-    "stagingCommit": "0982d41dc64f6c9c6903bc147b81e76004124ec1",
+    "stagingCommit": "84e4ea1d9f697de91b2012f1e7dfcbdafcce5418",
     "mcpCatalogDigest": "sha256:556297ce4e293df6e1446d5f081eeef6bc43ec76bbc6c59795a7d0414bd27d3a",
     "openApiDigest": "sha256:18eaffb5ef58e17e7550a5a2d68eb48f0bfa4a9b767fd0070bf97dbd2d660d48"
   },
