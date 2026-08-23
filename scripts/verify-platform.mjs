@@ -14,7 +14,7 @@ const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding
 const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
 if (gitlinks.length) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
 
-for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml']) requireFile(path);
+for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/workstation-canary.json', 'docs/managed-host-canary-cutover.md']) requireFile(path);
 for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) {
 	if (existsSync(resolve(root, path))) fail(`Platform retains obsolete split-provider input ${path}.`);
 }
@@ -27,10 +27,13 @@ for (const forbidden of ['agentLabServicePrincipals', 'providerClass:', 'adrian.
 	if (seed.includes(forbidden)) fail(`Canonical seed retains forbidden legacy or secret field: ${forbidden}`);
 }
 const projects = [...seed.matchAll(/key: ['"]?(project:treeseed\/[a-z0-9-]+)/gu)].map((match) => match[1]);
-if (new Set(projects).size !== 15) fail(`Canonical seed must contain 15 unique primary projects; found ${new Set(projects).size}.`);
+if (new Set(projects).size !== 16) fail(`Canonical seed must contain 16 unique primary projects; found ${new Set(projects).size}.`);
 for (const project of ['project:treeseed/market', 'project:treeseed/market-api']) if (!projects.includes(project)) fail(`Canonical seed is missing ${project}.`);
+if (!projects.includes('project:treeseed/deployment')) fail('Canonical seed is missing the shared Deployment project.');
 const repositories = [...seed.matchAll(/key: ['"]?(repository:treeseed\/[a-z0-9-]+)/gu)].map((match) => match[1]);
-if (new Set(repositories).size !== 16) fail(`Canonical seed must contain 16 unique source repository bindings; found ${new Set(repositories).size}.`);
+if (new Set(repositories).size !== 17) fail(`Canonical seed must contain 17 unique source repository bindings; found ${new Set(repositories).size}.`);
+if (!/repository:treeseed\/deployment[^\n]+checkoutPath: packages\/deployment[^\n]+repositoryPolicy:/u.test(seed)) fail('Deployment must be a first-party checkout without a gitlink.');
+if (/repository:treeseed\/deployment[^\n]+submodulePath:/u.test(seed)) fail('Deployment must not be declared as a submodule.');
 if (/role: content(?:[,}\s]|$)/u.test(seed)) fail('TreeDX content repositories must not be encoded as Git provider repositories.');
 if (!/digest: sha256:[a-f0-9]{64}/u.test(seed)) fail('Canonical seed is not digest-bound.');
 
@@ -39,6 +42,16 @@ for (const required of ['schemaVersion: 3', 'purpose: communication', 'purpose: 
 	if (!provider.includes(required)) fail(`Unified provider manifest is missing ${required}.`);
 }
 for (const forbidden of ['providerClass:', 'registrationKeyRef:', 'membershipCredentialRef:']) if (provider.includes(forbidden)) fail(`Unified provider manifest retains ${forbidden}.`);
+
+const host = JSON.parse(read('deployment/host-configs/workstation-canary.json'));
+if (host.schemaVersion !== 'treeseed.host/v1' || host.runtime?.management !== 'managed') fail('Canary host fixture must use the managed host v1 contract.');
+if (host.updates?.defaultTrack !== 'stable' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Canary host fixture must retain the weekly stable activation policy.');
+for (const componentId of ['api', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Canary host fixture must select the development ${componentId} overlay.`);
+const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.components ?? {}).flatMap((component) => Object.values(component.aliases ?? {}))].flat();
+if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Canary aliases must be unique and remain in the .localhost namespace.');
+const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
+if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Canary alias overrides must use full component.service.endpoint identities.');
+if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Canary Codex custody must use the named manager secret rather than an embedded login cache.');
 
 const config = read('treeseed.site.yaml');
 const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^\s*inventory: \{ source: seed, path: seeds\/treeseed\.yaml \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu];
@@ -69,4 +82,4 @@ if (marketRoots.length > 2) fail(`Platform contains duplicate Market worksets: $
 for (const path of ['packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml', 'packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml', 'scripts/guarantees/verify-agent-capability.ts']) requireFile(path);
 const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true }).filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
 
-console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 15, sourceRepositories: 16, treeDxVirtualKnowledgeRepositories: 15, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
+console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 16, sourceRepositories: 17, treeDxVirtualKnowledgeRepositories: 16, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
