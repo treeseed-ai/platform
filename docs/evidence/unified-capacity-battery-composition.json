@@ -22,7 +22,7 @@
     },
     "api": {
       "version": "0.8.0-rc.3",
-      "sourceCommit": "0982d41dc64f6c9c6903bc147b81e76004124ec1",
+      "sourceCommit": "84e4ea1d9f697de91b2012f1e7dfcbdafcce5418",
       "openApiPathCount": 276,
       "openApiSha256": "18eaffb5ef58e17e7550a5a2d68eb48f0bfa4a9b767fd0070bf97dbd2d660d48",
       "mcpCatalogSha256": "556297ce4e293df6e1446d5f081eeef6bc43ec76bbc6c59795a7d0414bd27d3a",
@@ -33,7 +33,7 @@
         "resourceTemplates": 51,
         "prompts": 5
       },
-      "hostedRuns": [32620875360]
+      "hostedRuns": [32620875360, 32622288547, 32622290076, 32622290082]
     },
     "cli": {
       "version": "0.13.0-rc.6",
