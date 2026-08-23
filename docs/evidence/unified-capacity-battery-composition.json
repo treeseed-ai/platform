@@ -1,30 +1,30 @@
 {
   "schemaVersion": "treeseed.platform-composition-evidence/v1",
-  "id": "unified-capacity-battery-2026-08-23.1",
-  "recordedAt": "2026-08-23T06:00:00-04:00",
+  "id": "unified-capacity-battery-2026-08-23.2",
+  "recordedAt": "2026-08-23T05:00:00-04:00",
   "status": "staging_accepted",
   "members": {
     "treedx": {
-      "version": "0.3.0-rc.3",
-      "sourceCommit": "8403535752d51c5b8f80f408bfac970179be2954",
+      "version": "0.3.0-rc.4",
+      "sourceCommit": "557c41f8e631cb440f21512cc5f182195805c9b9",
       "openApiVersion": "0.11.0",
       "openApiSha256": "52ed190300922c388b115981e60635c306c643d48a3308ef9f79975510ae1926"
     },
     "sdk": {
-      "version": "0.13.0-rc.20",
-      "sourceCommit": "974bf855b57eac8e30250f4e3dcade2c8a4baa18",
-      "packageSha256": "35f8f1f48630f646d4806bb48d5a88f5614c105e8504cf7b20936a5e3690af74",
-      "npmIntegrity": "sha512-XM2ewAUACIO/umqZEsKlfdJxaDZW8IyMnH5pSoS7vcySKbMb/2bGPwJpfIIuNui9vMAkQ7KwkoIEV5fHXiFUvQ==",
-      "operationCatalogSha256": "a7610a95857cc5092aa1c95793cc1757d1dded74f853d265f16c76c4c0bdc0d4",
+      "version": "0.13.0-rc.24",
+      "sourceCommit": "d83f56db60818828e250a13e3c68de4dd7e20e1f",
+      "packageSha256": "d213427310c156fa624f31838c9709dc764dfa1c0ae31aff3e73d93b82cab3b8",
+      "npmIntegrity": "sha512-ocYAG2EOzxsNMc5Ix/tqMwAlX1THxfISTyT7Tit1F7ORpn1+4HXRXXQg1OM1jE33nMKMPrk0sfDts4cycx+zaw==",
+      "operationCatalogSha256": "e1d3ba43af80ed5978b22b86e8e0c43894fd27ddb48434940bac4659e391ce0f",
       "mcpInputSha256": "cf9c77d9f81234b4fd123de68a197d8e32a8555c4534aa8b51fe36e384c8367f",
-      "operationCount": 306,
-      "hostedRuns": [32619054665, 32619062873, 32619090785, 32619118808, 32619118800]
+      "operationCount": 307,
+      "hostedRuns": [32628765237, 32628766642, 32628841865]
     },
     "api": {
-      "version": "0.8.0-rc.3",
-      "sourceCommit": "84e4ea1d9f697de91b2012f1e7dfcbdafcce5418",
+      "version": "0.8.0-rc.5",
+      "sourceCommit": "67cb3c8eaf84ea1abdaab56b5cf59647524b1660",
       "openApiPathCount": 276,
-      "openApiSha256": "18eaffb5ef58e17e7550a5a2d68eb48f0bfa4a9b767fd0070bf97dbd2d660d48",
+      "openApiSha256": "ecf077312dc0a4cbe3f1c7879380dfb80317e9c391cb39b5a12b4af921ec92b1",
       "mcpCatalogSha256": "556297ce4e293df6e1446d5f081eeef6bc43ec76bbc6c59795a7d0414bd27d3a",
       "mcp": {
         "protocolVersion": "2026-07-28",
@@ -33,22 +33,22 @@
         "resourceTemplates": 51,
         "prompts": 5
       },
-      "hostedRuns": [32620875360, 32622288547, 32622290076, 32622290082]
+      "hostedRuns": [32629445190, 32629447403, 32629447494]
     },
     "cli": {
-      "version": "0.13.0-rc.6",
-      "sourceCommit": "3c843ba3e20a06e112c324c1bcc37460f206378d",
-      "packageSha256": "b3ed9beb746c53d8e088c701daaf9f5c70ccae0c42ed7f9c3f8fd186be95c6c5",
-      "npmIntegrity": "sha512-ATEkAMZgcUQ/H0/GHU0Nv5GdJMtv8GikTTIAW3bRf24PDT1Ro/jBHRCKJrqUnAweLQlxGLL8GFKh1i/8AqqkCA==",
+      "version": "0.13.0-rc.10",
+      "sourceCommit": "908bdd0bdfd50209752bcbc5217bb17f1d170948",
+      "packageSha256": "a70acbef18032391d8d7005cf5e81eaf25768eaf5cbabd39ddea54d51c2861ca",
+      "npmIntegrity": "sha512-9bsugwkVhXl52d7Nn+gB4uamE6y1yvcdZUWrM13PpXNoxa5ptv2Em8C17oYAVImy0iRGFUUVPJBOTpMqGVrnuw==",
       "commandTreeSha256": "1b61a6dd54c4077d8c8eba2756ae1d8658abd5f9e5101dff3648198b66311417",
-      "hostedRuns": [32620877790, 32620933139, 32620933158]
+      "hostedRuns": [32629612988, 32629615029, 32629640719]
     },
     "agent": {
-      "version": "0.13.0-rc.5",
-      "sourceCommit": "aedab50e6e7dd91212522511388dd6b438fe9969",
-      "packageSha256": "338986000944751110b512dd92f12e5f3e13e9c9e36504dea981df38c0877f8e",
-      "npmIntegrity": "sha512-cqsEiiv5AFYNmqR3lT9eT9jYpUoaSJAOnU1mO723MjCJp/50upbLBqClsRqcnzpQytdwXu8+otCrG5vk6uYhfw==",
-      "hostedRuns": [32621010655, 32621182869, 32621182858]
+      "version": "0.13.0-rc.7",
+      "sourceCommit": "59df02b1f01994fa37119dfbc32fa4235ca8fd05",
+      "packageSha256": "ce37db31e08ef592bdde1b44d30ab5e6b190ec77720a66e1cc983e5b3dada53b",
+      "npmIntegrity": "sha512-5h3JYNmM7m32SgUc/pLj4t9G/kTJQnrzULcUudFiKMQ2GjP2uPb2+QAAtVQn4Je0iaB8CSUbKVCjIeI/8ijqpg==",
+      "hostedRuns": [32629290583, 32629292521, 32629458418]
     },
     "market": {
       "sourceCommit": "b986298ff1a3f2ea72658f57eea191c718ee3434",
@@ -61,22 +61,28 @@
       "hostedRuns": [32620880491]
     },
     "platform": {
-      "sourceCommit": "50d0f17066a8f9d3f22785ce0bf2ec7977382886",
-      "seedBundleDigest": "sha256:4277f55449ed1d0a6e4d21f4d3e356890006a5383bdf0aa520a8a4121dd1bbb0",
-      "seedFileSha256": "4fcc25701c090b7b55b30738f9f8a0cac5bffff06cc2947747aaef9ebf1e3c1b",
+      "sourceCommit": "acf3db25a4fb0421d2c07a9876f06b72bec9f793",
+      "seedBundleDigest": "sha256:5c2ca42c74e21523940cf576fb08f4513eb6c21a49ccf23d8b573d945a577b0c",
+      "seedFileSha256": "1ff0a17eddc0f4b71b043b9ffa8872408016e9818792c3a190e4ccad1427e91f",
       "providerManifestSha256": "9b3f675f40a7f23d66cc7429600d68438cb28ba866ebe4ce8688e240a4fa482c",
       "hostedRuns": [32621354070]
     }
   },
   "runtimeClosure": {
-    "state": "waiting_human_authentication",
+    "state": "waiting_executor_configuration",
     "teamCount": 1,
     "ownerCount": 2,
     "projectCount": 15,
-    "repositoryCount": 31,
-    "providerCount": 1,
+    "repositoryCount": 16,
+    "approvedProviderMembershipCount": 5,
+    "targetProviderCount": 1,
     "lanePurposes": ["communication", "platform", "workday"],
-    "liveAgentExecutionAuthorized": false
+    "liveAgentExecutionAuthorized": false,
+    "blockers": [
+      "lane_execution_unavailable:communication",
+      "lane_execution_unavailable:platform",
+      "lane_execution_unavailable:workday"
+    ]
   },
   "boundaries": {
     "apiOwnsSeedAndProviderAuthority": true,
