@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "treeseed.platform-composition-evidence/v1",
+  "id": "treedx-control-plane-proxy-2026-08-23.1",
+  "recordedAt": "2026-08-23T00:00:04-04:00",
+  "status": "staging_accepted",
+  "members": {
+    "treedx": {
+      "version": "0.3.0-rc.3",
+      "sourceCommit": "8403535752d51c5b8f80f408bfac970179be2954",
+      "packageSha256": "9561e65bb31483dc3aa79fb07b52b94b923282340214b8d31d351860fa53a61d",
+      "openApiVersion": "0.11.0",
+      "openApiSha256": "52ed190300922c388b115981e60635c306c643d48a3308ef9f79975510ae1926",
+      "operationInventorySha256": "bcfaa9233fcfe7fb49dd0807f08105b3e4056e07ffc8a5dd890e5ec27f975764",
+      "generatedTypesSha256": "505c89e5a0778f79853d8ab652e1a5f8d1bb1fcf2c135571be4972fc3326166e",
+      "serviceImage": "docker.io/treeseed/treedx:0.3.0-rc.3@sha256:7a10ade6ab7db21275f2d34b1eb2437b7e11f8e295d0c5151d33763ecffa4efa",
+      "profilerImage": "docker.io/treeseed/treedx-profiler:0.3.0-rc.3@sha256:f7d6b358dc528700b377cf768bdcb1b9af38240cc906fd30ac06c38799a78b7c",
+      "hostedRuns": [32612057588, 32613210726]
+    },
+    "sdk": {
+      "version": "0.13.0-rc.19",
+      "sourceCommit": "2c58b64928a4a1932a867504a0d38fd17dba6260",
+      "packageSha256": "8fc1298c70fcd4ee322e09a766221be2353276df0000fbebe6cecb946daf2fed",
+      "operationCatalogSha256": "2907213c311b8042291d72db57fe1d0bf103ab3a75f539716ecb1f0760e9d03f",
+      "mcpInputSha256": "1fdf743bb3edbd481fc7b50420c481b1a3a3de4eee2a270574a32a2c05594488",
+      "treeDxServiceContractSha256": "59cff0889280ebc3bcc499907abf5f3fdf710039e8aa9bb31f83824e4f8f227b",
+      "contractBundleSha256": "c865e95d8473cb0ae973e402d8d535bb236e3b7fdfe0b8b97811babebc6fa9ab",
+      "exportMapSha256": "bd5fc3fb7eea600312ba794ada2afeb0840e7861efd1cace06f5e529c7c8ae28",
+      "hostedRuns": [32615075624, 32615077504, 32615376968, 32615409219, 32615409225]
+    },
+    "api": {
+      "version": "0.8.0-rc.2",
+      "sourceCommit": "31d128d89f5bc9a86264090d5a9d281a5e496fa6",
+      "privatePackageSha256": "0f168e33869fb4ac04e2cd751ac775128b5ce05f8968125369088fcb2a6f3efb",
+      "operationCount": 286,
+      "openApiPathCount": 256,
+      "openApiSha256": "6837b1655e3d795b18b298cca512cba2d25b3be0f69825e1955e586a8dcd8ac9",
+      "mcpCatalogSha256": "22e3d7df2854d4e91124aabf451d15c7e35cbbcbbb16d612d7bb1d069e3e9ab5",
+      "mcp": {
+        "protocolVersion": "2026-07-28",
+        "tools": 118,
+        "resources": 5,
+        "resourceTemplates": 50,
+        "prompts": 5
+      },
+      "hostedRuns": [32615782430, 32615785065, 32615843637, 32616596833, 32616605845, 32616650325]
+    },
+    "cli": {
+      "version": "0.13.0-rc.5",
+      "sourceCommit": "507277e08dbe83082a7c02385afcb7f324f0e0c5",
+      "packageSha256": "c014baadcc0529b817c22853abc39edc4373d3b9618c2b78f6fa218c6139d32d",
+      "commandTreeSha256": "453bb8c4a46340769706a3d0e9a9f519a103a9d5ba641b9817984d5da75bb7eb",
+      "hostedRuns": [32615961345, 32615979918, 32616003620, 32616031746, 32616031678]
+    },
+    "agent": {
+      "version": "0.13.0-rc.4",
+      "sourceCommit": "7642b289fff6ad47fbe8b33a34cf1c06a1736072",
+      "packageSha256": "981cd0aa05f3b40413e79a13df575523f81be4c678c01a52e675b3ef8cc9c25c",
+      "hostedRuns": [32616317776, 32616329207, 32616365346, 32616394740, 32616394737]
+    }
+  },
+  "boundaries": {
+    "treeDxWireAuthority": "treedx.openapi",
+    "treeSeedSemanticAuthority": "sdk.operation-catalog",
+    "treeSeedImplementationAuthority": "api.application-services",
+    "directTreeDxTransportConsumers": ["api"],
+    "treeDxCredentialConsumers": ["api"],
+    "liveAgentExecutionAuthorized": false,
+    "productionPromotionAuthorized": false,
+    "npmLatestChanged": false
+  },
+  "retainedRecovery": {
+    "apiOwnerDatabaseBackups": "retained_pending_explicit_deletion_approval",
+    "rejectedAgentRc3Package": "immutable_diagnostic_only"
+  }
+}

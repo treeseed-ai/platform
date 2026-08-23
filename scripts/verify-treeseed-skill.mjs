@@ -5,6 +5,7 @@ const root = resolve(import.meta.dirname, '..');
 const skillRoot = resolve(root, 'skills/treeseed');
 const skill = readFileSync(resolve(skillRoot, 'SKILL.md'), 'utf8');
 const receipt = JSON.parse(readFileSync(resolve(skillRoot, 'catalog-receipt.json'), 'utf8'));
+const composition = JSON.parse(readFileSync(resolve(root, 'docs/evidence/treedx-control-plane-proxy-composition.json'), 'utf8'));
 const fail = (message) => { throw new Error(message); };
 const categories = ['knowledge', 'governance', 'projects', 'execution', 'mcp'];
 
@@ -13,9 +14,17 @@ if (!/^  protocol: "2026-07-28"$/mu.test(skill)) fail('TreeSeed Skill does not d
 if (receipt.schemaVersion !== 'treeseed.skill-catalog-receipt/v1' || receipt.protocolVersion !== '2026-07-28') fail('TreeSeed Skill receipt version is unsupported.');
 if (JSON.stringify(receipt.categories) !== JSON.stringify(categories)) fail('TreeSeed Skill categories drifted from the accepted set.');
 if (!/^sha256:[0-9a-f]{64}$/u.test(receipt.sdk.operationCatalogDigest) || !/^sha256:[0-9a-f]{64}$/u.test(receipt.sdk.mcpInputDigest) || !/^sha256:[0-9a-f]{64}$/u.test(receipt.api.mcpCatalogDigest)) fail('TreeSeed Skill receipt contains an invalid catalog digest.');
-if (receipt.sdk.version !== '0.13.0-rc.18' || receipt.sdk.stagingCommit !== '0e4a163cbe6b5a781b82c1682c234f9b0b9a6134') fail('TreeSeed Skill SDK source receipt drifted.');
-if (receipt.api.stagingCommit !== 'af763107efa08ad33202c70082f89ae961f38646') fail('TreeSeed Skill API source receipt drifted.');
-if (receipt.mcpSurface.tools !== 56 || receipt.mcpSurface.resources !== 32 || receipt.mcpSurface.resourceTemplates !== 27 || receipt.mcpSurface.prompts !== 5) fail('TreeSeed Skill MCP surface receipt drifted.');
+if (composition.schemaVersion !== 'treeseed.platform-composition-evidence/v1' || composition.status !== 'staging_accepted') fail('TreeSeed proxy composition evidence is not accepted.');
+const sdk = composition.members?.sdk;
+const api = composition.members?.api;
+if (receipt.sdk.version !== sdk?.version || receipt.sdk.stagingCommit !== sdk?.sourceCommit
+	|| receipt.sdk.operationCatalogDigest !== `sha256:${sdk?.operationCatalogSha256}`
+	|| receipt.sdk.mcpInputDigest !== `sha256:${sdk?.mcpInputSha256}`) fail('TreeSeed Skill SDK receipt drifted from the accepted composition.');
+if (receipt.api.stagingCommit !== api?.sourceCommit || receipt.api.openApiDigest !== `sha256:${api?.openApiSha256}`
+	|| receipt.api.mcpCatalogDigest !== `sha256:${api?.mcpCatalogSha256}`) fail('TreeSeed Skill API receipt drifted from the accepted composition.');
+for (const field of ['tools', 'resources', 'resourceTemplates', 'prompts']) {
+	if (receipt.mcpSurface[field] !== api?.mcp?.[field]) fail(`TreeSeed Skill MCP ${field} receipt drifted from the accepted composition.`);
+}
 
 for (const category of categories) {
 	const reference = `references/${category}.md`;
