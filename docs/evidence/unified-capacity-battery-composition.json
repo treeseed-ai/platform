@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.platform-composition-evidence/v1",
-  "id": "unified-capacity-battery-2026-08-23.2",
-  "recordedAt": "2026-08-23T13:13:14-04:00",
+  "id": "unified-capacity-battery-2026-08-23.3",
+  "recordedAt": "2026-08-23T13:56:28-04:00",
   "status": "staging_accepted",
   "members": {
     "treedx": {
@@ -11,20 +11,20 @@
       "openApiSha256": "52ed190300922c388b115981e60635c306c643d48a3308ef9f79975510ae1926"
     },
     "sdk": {
-      "version": "0.13.0-rc.24",
-      "sourceCommit": "d83f56db60818828e250a13e3c68de4dd7e20e1f",
-      "packageSha256": "d213427310c156fa624f31838c9709dc764dfa1c0ae31aff3e73d93b82cab3b8",
-      "npmIntegrity": "sha512-ocYAG2EOzxsNMc5Ix/tqMwAlX1THxfISTyT7Tit1F7ORpn1+4HXRXXQg1OM1jE33nMKMPrk0sfDts4cycx+zaw==",
+      "version": "0.13.0-rc.25",
+      "sourceCommit": "548c13ac8bf156361c0329fd4117e266bc541d41",
+      "packageSha256": "9ccb505c61fa937cda888a47ddc709181a530f3f69c6a55e24c7dc3917fc87b5",
+      "npmIntegrity": "sha512-xzHZL/m7omxKB0Sn32yYiOoohx5L99jCCjLGEyZjhnalZk1GuMOj/F082VMx59wSY4ppY7D6EVGtdSfbzRXjiw==",
       "operationCatalogSha256": "e1d3ba43af80ed5978b22b86e8e0c43894fd27ddb48434940bac4659e391ce0f",
       "mcpInputSha256": "cf9c77d9f81234b4fd123de68a197d8e32a8555c4534aa8b51fe36e384c8367f",
       "operationCount": 307,
-      "hostedRuns": [32628765237, 32628766642, 32628841865]
+      "hostedRuns": [32654891034, 32654940729, 32654940730]
     },
     "api": {
-      "version": "0.8.0-rc.5",
-      "sourceCommit": "67cb3c8eaf84ea1abdaab56b5cf59647524b1660",
-      "openApiPathCount": 276,
-      "openApiSha256": "ecf077312dc0a4cbe3f1c7879380dfb80317e9c391cb39b5a12b4af921ec92b1",
+      "version": "0.8.0-rc.7",
+      "sourceCommit": "819dbcd3aa24661ceab98df4e1413853a0166548",
+      "openApiPathCount": 279,
+      "openApiSha256": "8679239462624d57bdc285d6727042944081ac8b6c9c8eadd96e6fb76a2df0c2",
       "mcpCatalogSha256": "556297ce4e293df6e1446d5f081eeef6bc43ec76bbc6c59795a7d0414bd27d3a",
       "mcp": {
         "protocolVersion": "2026-07-28",
@@ -33,22 +33,22 @@
         "resourceTemplates": 51,
         "prompts": 5
       },
-      "hostedRuns": [32629445190, 32629447403, 32629447494]
+      "hostedRuns": [32656291945, 32656363514, 32656365753]
     },
     "cli": {
-      "version": "0.13.0-rc.10",
-      "sourceCommit": "908bdd0bdfd50209752bcbc5217bb17f1d170948",
-      "packageSha256": "a70acbef18032391d8d7005cf5e81eaf25768eaf5cbabd39ddea54d51c2861ca",
-      "npmIntegrity": "sha512-9bsugwkVhXl52d7Nn+gB4uamE6y1yvcdZUWrM13PpXNoxa5ptv2Em8C17oYAVImy0iRGFUUVPJBOTpMqGVrnuw==",
-      "commandTreeSha256": "1b61a6dd54c4077d8c8eba2756ae1d8658abd5f9e5101dff3648198b66311417",
-      "hostedRuns": [32629612988, 32629615029, 32629640719]
+      "version": "0.13.0-rc.11",
+      "sourceCommit": "de880f4e6abeba8b9e484f80486d595f76ef73fa",
+      "packageSha256": "f626cf398e9abab842a20b55e08ce0d9f0e84168697ab9cabfdb307cd1bbd2fa",
+      "npmIntegrity": "sha512-lMiAqSHJXVm22EPlxPhvE5KTWKQsgnj19AFccHpFvZplFCX7qyw+tM8Wf/XRnwjjqJozANTfz4g0UCnp93s1Xg==",
+      "commandTreeSha256": "392238935eef6ef1a632f5adc012ec0fc3101efaede4ade4b4bab5e5e4670ee3",
+      "hostedRuns": [32655593875, 32655595745, 32655595754]
     },
     "agent": {
-      "version": "0.13.0-rc.7",
-      "sourceCommit": "59df02b1f01994fa37119dfbc32fa4235ca8fd05",
-      "packageSha256": "ce37db31e08ef592bdde1b44d30ab5e6b190ec77720a66e1cc983e5b3dada53b",
-      "npmIntegrity": "sha512-5h3JYNmM7m32SgUc/pLj4t9G/kTJQnrzULcUudFiKMQ2GjP2uPb2+QAAtVQn4Je0iaB8CSUbKVCjIeI/8ijqpg==",
-      "hostedRuns": [32629290583, 32629292521, 32629458418]
+      "version": "0.13.0-rc.9",
+      "sourceCommit": "dfdda15d9aa72d14cb88186965c3bb5bf3b60c6c",
+      "packageSha256": "27ef7e8118e92c8041c4d5d1f262a1a4c2c5dbad2e5236b785fba1a4a278d007",
+      "npmIntegrity": "sha512-7X0/e+rGUJEVvmQfqu/1zp/m4KUJ5n8R/ErDXl2vJf583ng1f2z3e20QYq/aW6Ud7xR+M88JXnT6INe14TJgAQ==",
+      "hostedRuns": [32656164915, 32656167609, 32656167616]
     },
     "market": {
       "sourceCommit": "b986298ff1a3f2ea72658f57eea191c718ee3434",
@@ -61,15 +61,15 @@
       "hostedRuns": [32620880491]
     },
     "platform": {
-      "sourceCommit": "acf3db25a4fb0421d2c07a9876f06b72bec9f793",
+      "sourceCommit": "4d0a847255104373daa94ac01b166dbb681ad486",
       "seedBundleDigest": "sha256:5c2ca42c74e21523940cf576fb08f4513eb6c21a49ccf23d8b573d945a577b0c",
       "seedFileSha256": "1ff0a17eddc0f4b71b043b9ffa8872408016e9818792c3a190e4ccad1427e91f",
-      "providerManifestSha256": "9b3f675f40a7f23d66cc7429600d68438cb28ba866ebe4ce8688e240a4fa482c",
+      "providerManifestSha256": "f2bec2041d455f88f9b0bcdabab84a6bad4ab36853111bc1dedbff60d1bca4f9",
       "hostedRuns": [32621354070]
     }
   },
   "runtimeClosure": {
-    "state": "waiting_executor_configuration",
+    "state": "communication_execution_ready",
     "teamCount": 1,
     "ownerCount": 2,
     "projectCount": 15,
@@ -80,17 +80,16 @@
     "targetProviderMembershipId": "79405b81-ef7a-4f4a-b0c8-f4d12a4df7d3",
     "targetProviderApproved": true,
     "targetProviderAvailabilitySessionId": "5e033c5a-c8c2-439d-8a0c-96dff8da1e24",
-    "activeExecutionProviderCount": 0,
-    "activeProjectGrantCount": 0,
+    "activeExecutionProviderCount": 1,
+    "activeProjectGrantCount": 15,
     "lanePurposes": ["communication", "platform", "workday"],
     "liveAgentExecutionAuthorized": false,
     "blockers": [
-      "lane_execution_unavailable:communication",
       "lane_execution_unavailable:platform",
       "lane_execution_unavailable:workday"
     ],
     "seedReadback": {
-      "appliedAt": "2026-08-23T17:13:13.477Z",
+      "appliedAt": "2026-08-23T17:54:33.012Z",
       "create": 0,
       "update": 0,
       "unchanged": 34,
@@ -99,8 +98,9 @@
     "communicationReadiness": {
       "sdkAcceptedChatAgentCount": 8,
       "sdkAcceptedChatAgents": ["architect", "engineer", "releaser", "reporter", "researcher", "reviewer", "technical-writer", "tester"],
-      "liveExecutionReady": false,
-      "simulationReady": false,
+      "liveExecutionReady": true,
+      "simulationReady": true,
+      "firstLiveSendPending": true,
       "report": "docs/agent-communication-readiness.md"
     }
   },

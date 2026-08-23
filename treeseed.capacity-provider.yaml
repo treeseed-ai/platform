@@ -18,7 +18,8 @@ capacity:
   currency: USD
   maxAttempts: 3
 credentialProfiles:
-  - { id: codex-auth, source: process-environment, reference: TREESEED_CODEX_AUTH_FILE, required: false }
+  - { id: codex-auth, source: process-environment, reference: TREESEED_CODEX_AUTH_FILE, required: true }
+  - { id: codex-executable, source: process-environment, reference: TREESEED_CODEX_EXECUTABLE, required: true }
   - { id: platform-github, source: process-environment, reference: TREESEED_GITHUB_TOKEN, required: false }
   - { id: platform-cloudflare, source: process-environment, reference: TREESEED_CLOUDFLARE_API_TOKEN, required: false }
 lanes:
@@ -60,14 +61,15 @@ adapters:
   - id: codex-local
     adapter: codex
     isolation: process
+    module: module:codex-chat
     profile: subscription
     protocol: responses
-    credentialProfiles: [codex-auth]
-    laneIds: [communication, workday]
-    maxConcurrentWorkers: 4
+    credentialProfiles: [codex-auth, codex-executable]
+    laneIds: [communication]
+    maxConcurrentWorkers: 2
     minimumAssignmentDuration: { amount: 600, unit: seconds }
     nativeLimits: { availableAgentSeconds: 28800 }
-    capabilities: [communication, agent-execution, engineering, research, planning, acting, verification, repository_work]
+    capabilities: [communication, agent-execution]
   - id: platform-local
     adapter: platform-operation
     isolation: process

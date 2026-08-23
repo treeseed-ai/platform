@@ -9,9 +9,9 @@ The owner memberships are:
 - Adrian Webb, bound to `adrian.webb@knowledge.coop` as an interactive human owner.
 - `service-principal:treeseed/automation`, bound as a non-login service owner. Provider workers do not inherit this owner's authority.
 
-The unified local capacity provider is enrolled and owner-approved as `provider_LtqmnSGecDlhDPb2-7WgyLkKwxI8VDAO`. Its manager is renewing availability and its `communication`, `platform`, and `workday` lanes are registered. It is not yet runnable: both declared adapters lack trusted executor modules, so the API reports zero active execution providers. The fifteen project grants are intentionally not activated while execution is unavailable. Seed verification therefore remains `waiting_provider` with one blocker for each lane. This is a truthful readiness failure, not seed drift.
+The unified local capacity provider is enrolled and owner-approved as `provider_LtqmnSGecDlhDPb2-7WgyLkKwxI8VDAO`. Its manager is renewing availability session `5e033c5a-c8c2-439d-8a0c-96dff8da1e24`, and its runner is live and polling without claiming work. `codex-local` is available only on the `communication` lane with one reserved worker and two-worker maximum. Exactly fifteen active project grants are narrowed to that adapter and lane. `platform-local` remains unavailable and the `workday` lane is paused, so global seed closure truthfully retains `lane_execution_unavailable:platform` and `lane_execution_unavailable:workday` without blocking communication.
 
-No live agent, assignment, workday, repository mutation, or TreeDX content mutation was started during this audit.
+No live message, agent assignment, workday, repository mutation, model execution, or TreeDX discussion mutation was started during this readiness campaign.
 
 ## Existing communication foundation
 
@@ -29,15 +29,16 @@ The modern control plane already contains most of the required communication lif
 
 The SDK project currently has eight active agent classes with enabled chat profiles: `architect`, `engineer`, `releaser`, `reporter`, `researcher`, `reviewer`, `technical-writer`, and `tester`.
 
-## Gaps before the first communication run
+## Closure before the first communication run
 
-1. **Trusted execution adapters.** Agent has the process-isolated executor contract and credential projection boundary, but no production `createAgentExecutor()` module. The Codex adapter must use local Codex custody without exposing credentials to assignments. The platform adapter must remain a separate process and receive only assignment-derived infrastructure credentials.
-2. **Agent semantic tool host.** Chat profiles declare `treeseed.discussion.*`, content, status, assignment, and TreeDX tools, but the stripped Agent runtime does not yet provide the semantic tool dispatcher. Direct raw-path or broad-token access is not an acceptable substitute.
-3. **Durable response transition.** The API has the guarded conversation-suspension/final-message lifecycle, but no catalogued provider operation currently invokes it. A response operation must atomically commit the agent message through TreeDX, read it back, record the final message reference, revoke the assignment proxy, settle the reservation, and terminalize the hidden conversation execution.
-4. **Team channel ownership.** The current Discussion implementation persists through a selected project's virtual knowledge repository. The target channels are team resources. A team channel needs a stable team-scoped identity and message log while every addressed agent invocation retains an explicit project scope for definitions, permissions, and knowledge access.
-5. **Agent inventory projection.** The SDK project has eight configured chat agents, while `agents list` currently projects only agents observed in historical runtime activity. The operation must enumerate accepted active definitions and join runtime state, not derive identity from mode runs.
-6. **Scene harness.** Current core packages have guarantee scene documents but no accepted `trsd scenes ...` command tree or catalogued scene simulation runner. Historical Market documentation describes a removed runtime and is not evidence. The new harness must exercise normal API/provider/TreeDX paths with deterministic fake model adapters before live model use.
-7. **Human rendering.** The slim CLI has no shared Markdown panel renderer. Human output must use a reusable renderer; structured envelopes remain exclusive to `--json`.
+- SDK `0.13.0-rc.25` owns the portable send, send-status, and provider discussion-response contracts, catalog bindings, command descriptor, and deterministic catalog projections.
+- API `0.8.0-rc.6` owns recipient resolution, accepted-definition inventory, team-channel metadata over the project-bound TreeDX Discussion, invocation admission, response commit, assignment suspension, settlement guards, OpenAPI, and MCP projection. API `0.8.0-rc.7` additionally reconciles least-privilege partial-lane grants and retires stale availability state.
+- Agent `0.13.0-rc.9` owns the trusted process-isolated Codex chat executor. It receives only the local executable and copied local auth custody, reads the source message through the assignment-scoped TreeDX facade, runs Codex with tools disabled and a read-only empty workspace, posts through the catalogued provider response operation, settles, and closes the suspended communication execution. Portable module identifiers resolve through a reviewed registry and observation workers are shut down after use.
+- CLI `0.13.0-rc.11` maps `trsd send` directly to `communications.send`, supports bounded `--wait`, renders human Markdown response panels, and reserves the stable command-result envelope for `--json`.
+- `agents list` now resolves all eight accepted SDK definitions and joins runtime state. All eight report `chatEnabled: true` and `status: ready`.
+- Focused deterministic simulations cover catalog shape, command-to-operation mapping, no-mutation planning, executor isolation, response publication, settlement ordering, unknown module rejection, and idle runner behavior. SDK passed 6 assertions, CLI 15, and Agent 13. API seed/provider focused tests and hosted checks passed.
+
+The first live run intentionally uses the executor's narrow no-tools response profile. The richer semantic chat-tool dispatcher remains a later capability expansion; it is not required to prove the initial Discussion message/response plumbing and must not be implied by this readiness state.
 
 ## Proposed `send` contract
 
@@ -55,15 +56,21 @@ Human CLI output renders one Markdown-aware panel per response with project-qual
 
 The same semantic operations project to MCP tools/resources. REST, CLI, MCP, and the future site harness must share authorization, idempotency, recipient resolution, receipts, and response state.
 
-## Readiness sequence
+## First live execution boundary
 
-1. Implement and verify the trusted Codex and isolated platform executor modules.
-2. Add the provider semantic tool dispatcher and catalogued durable Discussion response operation.
-3. Reconcile the provider; require active observations for all three lanes; then activate exactly fifteen project grants.
-4. Fix accepted-definition inventory so SDK read-back returns all eight chat agents.
-5. Add team channel and project-qualified recipient contracts, the `send` operation, MCP projection, and CLI panel/JSON rendering.
-6. Add deterministic scenes for one agent, all eight SDK agents, ambiguous-name rejection, cancellation, provider outage, interruption/reassignment, and response settlement.
-7. Run simulation baseline, clean repeat, and interruption/resume. Only then run the first live Codex-backed SDK communication.
-8. Retire the four old unhealthy memberships only after the new provider is runnable, granted, and read back.
+Communication execution is ready. The first run should address one SDK agent, wait for one response, and verify the durable chain before expanding fan-out:
 
-Agent execution readiness is achieved only when seed verification is green, the target provider has active adapters and fifteen active grants, all eight SDK agents read back from accepted definitions, deterministic communication scenes pass, and no credential or disposable execution residue remains.
+```bash
+TREESEED_API_BASE_URL=http://127.0.0.1:3002 \
+node packages/cli/dist/cli/main.js send sdk-readiness \
+  "Confirm your role and readiness for SDK discussion work." \
+  --server local \
+  --team 6f7b1b49-ea7c-4013-8a3a-f5709389681e \
+  --project 44bef978-43d0-433f-b326-52baded90a15 \
+  --to engineer \
+  --wait 180
+```
+
+The accepted preflight uses the same arguments with `--plan --json` and returns `mutation: false`. Acceptance for the live run requires one committed source message, one communication-lane assignment, one agent response committed through TreeDX, one exact settlement, a completed send receipt, human Markdown rendering, and no remaining lease, reservation, child process, or temporary Codex custody.
+
+Global provider closure is not green and is not claimed: platform and workday execution remain fail-closed. Retiring historical provider memberships and adding semantic chat tools, multi-agent fan-out, cancellation, outage, and interruption/reassignment scenes follow the successful single-agent baseline and clean repeat.
