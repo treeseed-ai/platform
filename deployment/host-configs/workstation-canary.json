@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "workstation-canary",
-  "generation": 1,
+  "generation": 2,
   "host": {
     "id": "adrian-workstation",
     "role": "development-workstation",
@@ -29,7 +29,7 @@
         },
         "secretEnvironment": {
           "POSTGRES_PASSWORD": "api-postgres-password",
-          "DATABASE_URL": "api-database-url",
+          "TREESEED_DATABASE_URL": "api-database-url",
           "SESSION_SECRET": "api-session-secret"
         }
       }
