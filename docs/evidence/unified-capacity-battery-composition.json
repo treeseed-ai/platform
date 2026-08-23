@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.platform-composition-evidence/v1",
-  "id": "unified-capacity-battery-2026-08-23.3",
-  "recordedAt": "2026-08-23T13:56:28-04:00",
+  "id": "unified-capacity-battery-2026-08-23.4",
+  "recordedAt": "2026-08-23T14:01:00-04:00",
   "status": "staging_accepted",
   "members": {
     "treedx": {
@@ -61,11 +61,11 @@
       "hostedRuns": [32620880491]
     },
     "platform": {
-      "sourceCommit": "4d0a847255104373daa94ac01b166dbb681ad486",
+      "sourceCommit": "85e5b51061df7c2102a97f06ec6709d446de1dc6",
       "seedBundleDigest": "sha256:5c2ca42c74e21523940cf576fb08f4513eb6c21a49ccf23d8b573d945a577b0c",
       "seedFileSha256": "1ff0a17eddc0f4b71b043b9ffa8872408016e9818792c3a190e4ccad1427e91f",
       "providerManifestSha256": "f2bec2041d455f88f9b0bcdabab84a6bad4ab36853111bc1dedbff60d1bca4f9",
-      "hostedRuns": [32621354070]
+      "hostedRuns": [32656656020, 32656678476]
     }
   },
   "runtimeClosure": {
