@@ -1,9 +1,9 @@
 schemaVersion: treeseed.seed-bundle/v2
 name: treeseed
-version: 2
+version: 3
 description: Reproducible local TreeSeed portfolio with one unified capacity-provider battery.
 environments: [local, staging, prod]
-digest: sha256:5c2ca42c74e21523940cf576fb08f4513eb6c21a49ccf23d8b573d945a577b0c
+digest: sha256:4582a27479c775393bd56180990762a831a4483b8334e630d0d5ac34dc7e4968
 resources:
   teams:
     - { key: 'team:treeseed', slug: treeseed, name: treeseed, displayName: TreeSeed, profileSummary: 'TreeSeed platform, packages, products, and agent operations.' }
@@ -15,6 +15,7 @@ resources:
       roles: [team_owner]
   projects:
     - { key: 'project:treeseed/platform', team: 'team:treeseed', slug: platform, name: TreeSeed Platform, description: Public installer and portfolio integration workspace., kind: platform, primaryRepository: 'repository:treeseed/platform' }
+    - { key: 'project:treeseed/deployment', team: 'team:treeseed', slug: deployment, name: TreeSeed Deployment, description: Shared Debian bootstrap, host manager, edge, and component integration system., kind: platform, primaryRepository: 'repository:treeseed/deployment' }
     - { key: 'project:treeseed/api', team: 'team:treeseed', slug: api, name: TreeSeed API, description: Authoritative TreeSeed control plane., kind: package, primaryRepository: 'repository:treeseed/api', metadata: { packageId: '@treeseed/api' } }
     - { key: 'project:treeseed/treedx', team: 'team:treeseed', slug: treedx, name: TreeDX, description: Independent content and knowledge service., kind: service, primaryRepository: 'repository:treeseed/treedx' }
     - { key: 'project:treeseed/sdk', team: 'team:treeseed', slug: sdk, name: TreeSeed SDK, description: Portable contracts and remote clients., kind: package, primaryRepository: 'repository:treeseed/sdk', metadata: { packageId: '@treeseed/sdk' } }
@@ -31,6 +32,7 @@ resources:
     - { key: 'project:treeseed/market-api', team: 'team:treeseed', slug: market-api, name: TreeSeed Market API, description: First-party Market service managed independently from Platform deployment., kind: service, primaryRepository: 'repository:treeseed/market-api' }
   repositories:
     - &platform_repo { key: 'repository:treeseed/platform', project: 'project:treeseed/platform', role: primary, provider: github, owner: treeseed-ai, name: platform, gitUrl: 'git@github.com:treeseed-ai/platform.git', defaultBranch: main, checkoutPath: '.', repositoryPolicy: &public_repo { visibility: public, lifecycle: create-or-adopt, deletionPolicy: retain, defaultBranch: main, stagingBranch: staging, issues: true, actions: true, workflows: [verify.yml] } }
+    - { key: 'repository:treeseed/deployment', project: 'project:treeseed/deployment', role: primary, provider: github, owner: treeseed-ai, name: deployment, gitUrl: 'git@github.com:treeseed-ai/deployment.git', defaultBranch: main, checkoutPath: packages/deployment, repositoryPolicy: *public_repo, metadata: { deploymentAuthority: host-manager, treeDxKnowledgeRepository: derived } }
     - { key: 'repository:treeseed/api', project: 'project:treeseed/api', role: primary, provider: github, owner: treeseed-ai, name: api, gitUrl: 'git@github.com:treeseed-ai/api.git', defaultBranch: main, checkoutPath: packages/api, submodulePath: packages/api, repositoryPolicy: *public_repo }
     - { key: 'repository:treeseed/treedx', project: 'project:treeseed/treedx', role: primary, provider: github, owner: treeseed-ai, name: treedx, gitUrl: 'git@github.com:treeseed-ai/treedx.git', defaultBranch: main, checkoutPath: packages/treedx, submodulePath: packages/treedx, repositoryPolicy: *public_repo }
     - { key: 'repository:treeseed/sdk', project: 'project:treeseed/sdk', role: primary, provider: github, owner: treeseed-ai, name: sdk, gitUrl: 'git@github.com:treeseed-ai/sdk.git', defaultBranch: main, checkoutPath: packages/sdk, submodulePath: packages/sdk, repositoryPolicy: *public_repo }
@@ -54,6 +56,6 @@ runtime:
       manifestDigest: sha256:9b3f675f40a7f23d66cc7429600d68438cb28ba866ebe4ce8688e240a4fa482c
       manifestRef: treeseed.capacity-provider.yaml
       approval: trusted-local-owner
-      projects: ['project:treeseed/platform', 'project:treeseed/api', 'project:treeseed/treedx', 'project:treeseed/sdk', 'project:treeseed/ui', 'project:treeseed/cli', 'project:treeseed/core', 'project:treeseed/admin', 'project:treeseed/agent', 'project:treeseed/reviewer', 'project:treeseed/ai', 'project:treeseed/template-engineering', 'project:treeseed/template-research', 'project:treeseed/market', 'project:treeseed/market-api']
+      projects: ['project:treeseed/platform', 'project:treeseed/deployment', 'project:treeseed/api', 'project:treeseed/treedx', 'project:treeseed/sdk', 'project:treeseed/ui', 'project:treeseed/cli', 'project:treeseed/core', 'project:treeseed/admin', 'project:treeseed/agent', 'project:treeseed/reviewer', 'project:treeseed/ai', 'project:treeseed/template-engineering', 'project:treeseed/template-research', 'project:treeseed/market', 'project:treeseed/market-api']
       allowedModes: [planning, acting]
       requiredLanePurposes: [communication, platform, workday]
