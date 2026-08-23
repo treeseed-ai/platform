@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.platform-composition-evidence/v1",
   "id": "unified-capacity-battery-2026-08-23.2",
-  "recordedAt": "2026-08-23T05:00:00-04:00",
+  "recordedAt": "2026-08-23T13:13:14-04:00",
   "status": "staging_accepted",
   "members": {
     "treedx": {
@@ -76,13 +76,33 @@
     "repositoryCount": 16,
     "approvedProviderMembershipCount": 5,
     "targetProviderCount": 1,
+    "targetProviderId": "provider_LtqmnSGecDlhDPb2-7WgyLkKwxI8VDAO",
+    "targetProviderMembershipId": "79405b81-ef7a-4f4a-b0c8-f4d12a4df7d3",
+    "targetProviderApproved": true,
+    "targetProviderAvailabilitySessionId": "5e033c5a-c8c2-439d-8a0c-96dff8da1e24",
+    "activeExecutionProviderCount": 0,
+    "activeProjectGrantCount": 0,
     "lanePurposes": ["communication", "platform", "workday"],
     "liveAgentExecutionAuthorized": false,
     "blockers": [
       "lane_execution_unavailable:communication",
       "lane_execution_unavailable:platform",
       "lane_execution_unavailable:workday"
-    ]
+    ],
+    "seedReadback": {
+      "appliedAt": "2026-08-23T17:13:13.477Z",
+      "create": 0,
+      "update": 0,
+      "unchanged": 34,
+      "error": 0
+    },
+    "communicationReadiness": {
+      "sdkAcceptedChatAgentCount": 8,
+      "sdkAcceptedChatAgents": ["architect", "engineer", "releaser", "reporter", "researcher", "reviewer", "technical-writer", "tester"],
+      "liveExecutionReady": false,
+      "simulationReady": false,
+      "report": "docs/agent-communication-readiness.md"
+    }
   },
   "boundaries": {
     "apiOwnsSeedAndProviderAuthority": true,
