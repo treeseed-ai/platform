@@ -30,7 +30,8 @@ const projects = [...seed.matchAll(/key: ['"]?(project:treeseed\/[a-z0-9-]+)/gu)
 if (new Set(projects).size !== 15) fail(`Canonical seed must contain 15 unique primary projects; found ${new Set(projects).size}.`);
 for (const project of ['project:treeseed/market', 'project:treeseed/market-api']) if (!projects.includes(project)) fail(`Canonical seed is missing ${project}.`);
 const repositories = [...seed.matchAll(/key: ['"]?(repository:treeseed\/[a-z0-9-]+)/gu)].map((match) => match[1]);
-if (new Set(repositories).size !== 31) fail(`Canonical seed must contain 31 unique repository bindings; found ${new Set(repositories).size}.`);
+if (new Set(repositories).size !== 16) fail(`Canonical seed must contain 16 unique source repository bindings; found ${new Set(repositories).size}.`);
+if (/role: content(?:[,}\s]|$)/u.test(seed)) fail('TreeDX content repositories must not be encoded as Git provider repositories.');
 if (!/digest: sha256:[a-f0-9]{64}/u.test(seed)) fail('Canonical seed is not digest-bound.');
 
 const provider = read('treeseed.capacity-provider.yaml');
@@ -68,4 +69,4 @@ if (marketRoots.length > 2) fail(`Platform contains duplicate Market worksets: $
 for (const path of ['packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml', 'packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml', 'scripts/guarantees/verify-agent-capability.ts']) requireFile(path);
 const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true }).filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
 
-console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 15, repositories: 31, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
+console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 15, sourceRepositories: 16, treeDxVirtualKnowledgeRepositories: 15, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
