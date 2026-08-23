@@ -49,6 +49,8 @@ if (host.updates?.defaultTrack !== 'stable' || host.updates?.stable?.maintenance
 for (const componentId of ['api', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Canary host fixture must select the development ${componentId} overlay.`);
 const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.components ?? {}).flatMap((component) => Object.values(component.aliases ?? {}))].flat();
 if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Canary aliases must be unique and remain in the .localhost namespace.');
+const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
+if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Canary alias overrides must use full component.service.endpoint identities.');
 if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Canary Codex custody must use the named manager secret rather than an embedded login cache.');
 
 const config = read('treeseed.site.yaml');

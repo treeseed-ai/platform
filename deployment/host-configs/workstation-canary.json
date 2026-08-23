@@ -20,7 +20,7 @@
     "api": {
       "enabled": true,
       "track": "development",
-      "aliases": { "api.http": "api-canary.treeseed.localhost" },
+      "aliases": { "api.api.http": "api-canary.treeseed.localhost" },
       "configuration": {
         "environment": {
           "NODE_ENV": "production",
@@ -51,15 +51,15 @@
     "treedx": {
       "enabled": true,
       "track": "development",
-      "aliases": { "treedx.http": "treedx-canary.treeseed.localhost" },
+      "aliases": { "treedx.treedx.http": "treedx-canary.treeseed.localhost" },
       "configuration": { "environment": {} }
     },
     "lab": {
       "enabled": true,
       "track": "development",
       "aliases": {
-        "mailpit.web": "mail-canary.treeseed.localhost",
-        "diagnostics.http": "lab-canary.treeseed.localhost"
+        "lab.mailpit.web": "mail-canary.treeseed.localhost",
+        "lab.diagnostics.http": "lab-canary.treeseed.localhost"
       },
       "configuration": { "environment": {} }
     },
