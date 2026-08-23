@@ -38,3 +38,9 @@ Failures are corrected as new signed RC packages or immutable images. Installed 
 7. Prove reboot recovery and updates while every application checkout is unavailable to launch tooling.
 
 Success means `trsd host doctor` is healthy and the manager restores and converges API, development Agent, TreeDX, lab, edge, and selected AI services using only signed Debian payloads and immutable registry images—without Git fetch, npm build, local Docker build, or source-mounted Compose.
+
+## Live canary ledger
+
+- RC6 installed the signed host payloads but exposed the bootstrap dpkg-lock, local socket ownership, and pre-install Compose validation defects. Deployment RC7 corrected those defects without editing installed files.
+- RC7 upgraded the host asynchronously, enrolled the configured operator, installed the exact Agent RC13, API RC9, TreeDX RC5, and Lab RC7 component packages, and preserved the legacy TreeDX and PostgreSQL containers.
+- The first RC7 activation correctly entered rollback when the API migration rejected the generation-1 `DATABASE_URL` mapping. Generation 2 uses the API's authoritative `TREESEED_DATABASE_URL` contract. No legacy writer or volume was stopped or removed.
