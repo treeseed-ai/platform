@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "workstation-canary",
-  "generation": 6,
+  "generation": 7,
   "host": {
     "id": "adrian-workstation",
     "role": "development-workstation",
@@ -25,7 +25,9 @@
         "environment": {
           "NODE_ENV": "production",
           "POSTGRES_USER": "treeseed",
-          "POSTGRES_DB": "treeseed_api"
+          "POSTGRES_DB": "treeseed_api",
+          "TREESEED_TREEDX_JWT_ISSUER": "https://api-canary.treeseed.localhost/treedx",
+          "TREESEED_TREEDX_JWT_AUDIENCE": "treedx-canary"
         },
         "secretEnvironment": {
           "POSTGRES_PASSWORD": "api-postgres-password",
@@ -57,7 +59,11 @@
       "configuration": {
         "environment": {
           "TREEDX_GIT_ALLOWED_HOSTS": "github.com",
-          "TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID": "node_local"
+          "TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID": "node_local",
+          "TREEDX_JWT_ISSUER": "https://api-canary.treeseed.localhost/treedx",
+          "TREEDX_JWT_AUDIENCE": "treedx-canary",
+          "TREEDX_JWKS_URL": "http://api:3000/.well-known/treedx-jwks.json",
+          "TREEDX_JWT_ALLOWED_ALGS": "RS256"
         },
         "secretEnvironment": {
           "TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION": "treedx-credential-broker-assertion"

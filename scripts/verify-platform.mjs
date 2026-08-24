@@ -52,13 +52,21 @@ if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Canary alias overrides must use full component.service.endpoint identities.');
 if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Canary Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 6) fail('Canary host fixture must retain the reviewed generation 6 TreeDX broker configuration.');
+if (host.generation !== 7) fail('Canary host fixture must retain the reviewed generation 7 TreeDX connected-auth configuration.');
 const brokerSecret = 'treedx-credential-broker-assertion';
 if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| host.components?.treedx?.configuration?.secretEnvironment?.TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| !host.secrets?.[brokerSecret]) fail('API and TreeDX must share one manager-custodied credential-broker assertion.');
 if (host.components?.treedx?.configuration?.environment?.TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID !== 'node_local'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_GIT_ALLOWED_HOSTS !== 'github.com') fail('TreeDX must declare its broker node identity and bounded Git host allowlist.');
+const treeDxIssuer = 'https://api-canary.treeseed.localhost/treedx';
+const treeDxAudience = 'treedx-canary';
+if (host.components?.api?.configuration?.environment?.TREESEED_TREEDX_JWT_ISSUER !== treeDxIssuer
+	|| host.components?.api?.configuration?.environment?.TREESEED_TREEDX_JWT_AUDIENCE !== treeDxAudience
+	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_ISSUER !== treeDxIssuer
+	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_AUDIENCE !== treeDxAudience
+	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWKS_URL !== 'http://api:3000/.well-known/treedx-jwks.json'
+	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_ALLOWED_ALGS !== 'RS256') fail('API and TreeDX must share the generation 7 RS256 issuer, audience, and private JWKS discovery contract.');
 
 const config = read('treeseed.site.yaml');
 const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^\s*inventory: \{ source: seed, path: seeds\/treeseed\.yaml \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu];
