@@ -2,7 +2,7 @@
 
 TreeSeed Deployment is the only target host runtime for the local API, Agent capacity provider, TreeDX, optional AI services, and development lab. Project repositories remain development and release inputs; they are not a boot or service-launch dependency. Market and Market API remain portfolio-only and are not deployment inputs.
 
-The first canary uses `deployment/host-configs/workstation-canary.json`. Its stable default checks metadata daily and activates during the Sunday 03:00 local window with jitter. Agent, API, TreeDX, and lab are explicit development overlays polled every 60 seconds. The development Agent is the normal provider component, not a second lab scheduler.
+The current generation 6 canary uses `deployment/host-configs/workstation-canary.json`. Its stable default checks metadata daily and activates during the Sunday 03:00 local window with jitter. Agent, API, TreeDX, and lab are explicit development overlays polled every 60 seconds. The development Agent is the normal provider component, not a second lab scheduler. API and TreeDX receive one generated, manager-custodied credential-broker assertion; TreeDX is restricted to its declared node identity and the `github.com` Git host.
 
 ## Preserved source environment
 
