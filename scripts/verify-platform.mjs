@@ -14,7 +14,7 @@ const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding
 const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
 if (gitlinks.length) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
 
-for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/workstation-canary.json', 'docs/managed-host-canary-cutover.md']) requireFile(path);
+for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'docs/multi-host-deployment.md']) requireFile(path);
 for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) {
 	if (existsSync(resolve(root, path))) fail(`Platform retains obsolete split-provider input ${path}.`);
 }
@@ -43,30 +43,45 @@ for (const required of ['schemaVersion: 3', 'purpose: communication', 'purpose: 
 }
 for (const forbidden of ['providerClass:', 'registrationKeyRef:', 'membershipCredentialRef:']) if (provider.includes(forbidden)) fail(`Unified provider manifest retains ${forbidden}.`);
 
-const host = JSON.parse(read('deployment/host-configs/workstation-canary.json'));
-if (host.schemaVersion !== 'treeseed.host/v1' || host.runtime?.management !== 'managed') fail('Canary host fixture must use the managed host v1 contract.');
-if (host.updates?.defaultTrack !== 'stable' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Canary host fixture must retain the weekly stable activation policy.');
-for (const componentId of ['api', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Canary host fixture must select the development ${componentId} overlay.`);
+const host = JSON.parse(read('deployment/host-configs/development-workstation.json'));
+if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed') fail('Development workstation must use the current integrated managed-host contract.');
+if (host.updates?.defaultTrack !== 'development' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Development workstation must poll development while preserving the stable weekly activation policy.');
+for (const componentId of ['api', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Development workstation must select the development ${componentId} release.`);
 const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.components ?? {}).flatMap((component) => Object.values(component.aliases ?? {}))].flat();
-if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Canary aliases must be unique and remain in the .localhost namespace.');
+if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Local aliases must be unique and remain in the .localhost namespace.');
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
-if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Canary alias overrides must use full component.service.endpoint identities.');
-if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Canary Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 7) fail('Canary host fixture must retain the reviewed generation 7 TreeDX connected-auth configuration.');
+if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
+if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Codex custody must use the named manager secret rather than an embedded login cache.');
+if (host.generation !== 1) fail('Development workstation must start its adopted configuration identity at generation 1.');
 const brokerSecret = 'treedx-credential-broker-assertion';
 if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| host.components?.treedx?.configuration?.secretEnvironment?.TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| !host.secrets?.[brokerSecret]) fail('API and TreeDX must share one manager-custodied credential-broker assertion.');
 if (host.components?.treedx?.configuration?.environment?.TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID !== 'node_local'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_GIT_ALLOWED_HOSTS !== 'github.com') fail('TreeDX must declare its broker node identity and bounded Git host allowlist.');
-const treeDxIssuer = 'https://api-canary.treeseed.localhost/treedx';
-const treeDxAudience = 'treedx-canary';
+const treeDxIssuer = 'https://api.treeseed.localhost/treedx';
+const treeDxAudience = 'treedx';
 if (host.components?.api?.configuration?.environment?.TREESEED_TREEDX_JWT_ISSUER !== treeDxIssuer
 	|| host.components?.api?.configuration?.environment?.TREESEED_TREEDX_JWT_AUDIENCE !== treeDxAudience
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_ISSUER !== treeDxIssuer
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_AUDIENCE !== treeDxAudience
-	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWKS_URL !== 'http://api:3000/.well-known/treedx-jwks.json'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_ALLOWED_ALGS !== 'RS256') fail('API and TreeDX must share the generation 7 RS256 issuer, audience, and private JWKS discovery contract.');
+if (host.components?.agent?.connections?.['control-plane']?.kind !== 'local' || host.components?.treedx?.connections?.['control-plane']?.kind !== 'local') fail('Integrated Agent and TreeDX components require explicit local control-plane connections.');
+if (JSON.stringify(aliases.sort()) !== JSON.stringify(['api.treeseed.localhost', 'lab.treeseed.localhost', 'mail.treeseed.localhost', 'manager.treeseed.localhost', 'treedx.treeseed.localhost'])) fail('Development workstation must use only the canonical local aliases.');
+const providerHost = JSON.parse(read('deployment/host-configs/capacity-provider-development.json'));
+if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.components ?? {}).join(',') !== 'agent' || providerHost.components.agent?.connections?.['control-plane']?.kind !== 'remote') fail('Capacity-provider fixture must select only Agent with an explicit remote control plane.');
+if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
+
+const stableIntegration = JSON.parse(read('deployment/integration-releases/stable.json'));
+const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));
+if (stableIntegration.schemaVersion !== 'treeseed.integration-release/v1' || stableIntegration.track !== 'stable' || stableIntegration.components?.length !== 0) fail('Preproduction stable integration must remain an explicit empty base.');
+if (developmentIntegration.schemaVersion !== 'treeseed.integration-release/v1' || developmentIntegration.track !== 'development') fail('Development integration lock must use the current SDK-owned contract.');
+if (developmentIntegration.platform?.commit !== stableIntegration.platform?.commit || developmentIntegration.deployment?.commit !== stableIntegration.deployment?.commit) fail('Stable and development locks must identify the same reviewed Platform and Deployment sources.');
+if (JSON.stringify(developmentIntegration.components?.map(({ componentId }) => componentId).sort()) !== JSON.stringify(['agent', 'api', 'lab'])) fail('Development generation 1 must select the exact API, Agent, and Lab component set.');
+for (const integration of [stableIntegration, developmentIntegration]) for (const payload of integration.hostPayloads ?? []) if (!/^https:\/\//u.test(payload.artifact?.url) || !/^[a-f0-9]{64}$/u.test(payload.artifact?.sha256 ?? '')) fail(`Integration payload ${payload.id} lacks an immutable artifact identity.`);
+for (const component of developmentIntegration.components ?? []) {
+	if (!/^[a-f0-9]{64}$/u.test(component.manifest?.sha256 ?? '') || component.files?.some(({ artifact }) => !/^[a-f0-9]{64}$/u.test(artifact?.sha256 ?? ''))) fail(`Component ${component.componentId} is not fully digest locked.`);
+}
 
 const config = read('treeseed.site.yaml');
 const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^\s*inventory: \{ source: seed, path: seeds\/treeseed\.yaml \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu];
