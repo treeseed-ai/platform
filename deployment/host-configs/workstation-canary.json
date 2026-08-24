@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "workstation-canary",
-  "generation": 4,
+  "generation": 5,
   "host": {
     "id": "adrian-workstation",
     "role": "development-workstation",
@@ -30,7 +30,8 @@
         "secretEnvironment": {
           "POSTGRES_PASSWORD": "api-postgres-password",
           "TREESEED_DATABASE_URL": "api-database-url",
-          "SESSION_SECRET": "api-session-secret"
+          "SESSION_SECRET": "api-session-secret",
+          "TREESEED_TREEDX_DELEGATION_PRIVATE_KEY": "api-treedx-delegation-private-key"
         }
       }
     },
@@ -82,6 +83,7 @@
     "agent-codex-auth": { "provider": "file", "reference": "/etc/treeseed/credentials/agent-codex-auth" },
     "api-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/api-postgres-password" },
     "api-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/api-database-url" },
-    "api-session-secret": { "provider": "file", "reference": "/etc/treeseed/credentials/api-session-secret" }
+    "api-session-secret": { "provider": "file", "reference": "/etc/treeseed/credentials/api-session-secret" },
+    "api-treedx-delegation-private-key": { "provider": "file", "reference": "/etc/treeseed/credentials/api-treedx-delegation-private-key" }
   }
 }
