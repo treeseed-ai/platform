@@ -14,7 +14,7 @@ const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding
 const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
 if (gitlinks.length) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
 
-for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'docs/multi-host-deployment.md']) requireFile(path);
+for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'docs/multi-host-deployment.md']) requireFile(path);
 for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) {
 	if (existsSync(resolve(root, path))) fail(`Platform retains obsolete split-provider input ${path}.`);
 }
@@ -71,6 +71,17 @@ if (JSON.stringify(aliases.sort()) !== JSON.stringify(['api.treeseed.localhost',
 const providerHost = JSON.parse(read('deployment/host-configs/capacity-provider-development.json'));
 if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.components ?? {}).join(',') !== 'agent' || providerHost.components.agent?.connections?.['control-plane']?.kind !== 'remote') fail('Capacity-provider fixture must select only Agent with an explicit remote control plane.');
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
+
+const stableIntegration = JSON.parse(read('deployment/integration-releases/stable.json'));
+const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));
+if (stableIntegration.schemaVersion !== 'treeseed.integration-release/v1' || stableIntegration.track !== 'stable' || stableIntegration.components?.length !== 0) fail('Preproduction stable integration must remain an explicit empty base.');
+if (developmentIntegration.schemaVersion !== 'treeseed.integration-release/v1' || developmentIntegration.track !== 'development') fail('Development integration lock must use the current SDK-owned contract.');
+if (developmentIntegration.platform?.commit !== stableIntegration.platform?.commit || developmentIntegration.deployment?.commit !== stableIntegration.deployment?.commit) fail('Stable and development locks must identify the same reviewed Platform and Deployment sources.');
+if (JSON.stringify(developmentIntegration.components?.map(({ componentId }) => componentId).sort()) !== JSON.stringify(['agent', 'api', 'lab'])) fail('Development generation 1 must select the exact API, Agent, and Lab component set.');
+for (const integration of [stableIntegration, developmentIntegration]) for (const payload of integration.hostPayloads ?? []) if (!/^https:\/\//u.test(payload.artifact?.url) || !/^[a-f0-9]{64}$/u.test(payload.artifact?.sha256 ?? '')) fail(`Integration payload ${payload.id} lacks an immutable artifact identity.`);
+for (const component of developmentIntegration.components ?? []) {
+	if (!/^[a-f0-9]{64}$/u.test(component.manifest?.sha256 ?? '') || component.files?.some(({ artifact }) => !/^[a-f0-9]{64}$/u.test(artifact?.sha256 ?? ''))) fail(`Component ${component.componentId} is not fully digest locked.`);
+}
 
 const config = read('treeseed.site.yaml');
 const requiredConfig = [/^authority: \{ kind: customer-platform \}\s*$/mu, /^controlPlane: \{ mode: managed \}\s*$/mu, /^\s*inventory: \{ source: seed, path: seeds\/treeseed\.yaml \}\s*$/mu, /^processing: \{ mode: local, providerRef: codex-sub \}\s*$/mu];
