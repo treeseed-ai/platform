@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "workstation-canary",
-  "generation": 2,
+  "generation": 3,
   "host": {
     "id": "adrian-workstation",
     "role": "development-workstation",
