@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "workstation-canary",
-  "generation": 5,
+  "generation": 6,
   "host": {
     "id": "adrian-workstation",
     "role": "development-workstation",
@@ -31,7 +31,8 @@
           "POSTGRES_PASSWORD": "api-postgres-password",
           "TREESEED_DATABASE_URL": "api-database-url",
           "SESSION_SECRET": "api-session-secret",
-          "TREESEED_TREEDX_DELEGATION_PRIVATE_KEY": "api-treedx-delegation-private-key"
+          "TREESEED_TREEDX_DELEGATION_PRIVATE_KEY": "api-treedx-delegation-private-key",
+          "TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION": "treedx-credential-broker-assertion"
         }
       }
     },
@@ -53,7 +54,15 @@
       "enabled": true,
       "track": "development",
       "aliases": { "treedx.treedx.http": "treedx-canary.treeseed.localhost" },
-      "configuration": { "environment": {} }
+      "configuration": {
+        "environment": {
+          "TREEDX_GIT_ALLOWED_HOSTS": "github.com",
+          "TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID": "node_local"
+        },
+        "secretEnvironment": {
+          "TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION": "treedx-credential-broker-assertion"
+        }
+      }
     },
     "lab": {
       "enabled": true,
@@ -84,6 +93,7 @@
     "api-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/api-postgres-password" },
     "api-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/api-database-url" },
     "api-session-secret": { "provider": "file", "reference": "/etc/treeseed/credentials/api-session-secret" },
-    "api-treedx-delegation-private-key": { "provider": "file", "reference": "/etc/treeseed/credentials/api-treedx-delegation-private-key" }
+    "api-treedx-delegation-private-key": { "provider": "file", "reference": "/etc/treeseed/credentials/api-treedx-delegation-private-key" },
+    "treedx-credential-broker-assertion": { "provider": "file", "reference": "/etc/treeseed/credentials/treedx-credential-broker-assertion" }
   }
 }
