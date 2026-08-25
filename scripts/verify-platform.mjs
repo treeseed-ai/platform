@@ -52,7 +52,8 @@ if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
 if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 1) fail('Development workstation must start its adopted configuration identity at generation 1.');
+if (host.generation !== 2) fail('Development workstation must use configuration generation 2.');
+if (host.components?.api?.configuration?.environment?.TREESEED_API_BASE_URL !== 'https://api.treeseed.localhost') fail('The API and managed providers must use the canonical API audience.');
 const brokerSecret = 'treedx-credential-broker-assertion';
 if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| host.components?.treedx?.configuration?.secretEnvironment?.TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION !== brokerSecret

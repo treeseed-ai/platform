@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 1,
+  "generation": 2,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
@@ -26,6 +26,7 @@
           "NODE_ENV": "production",
           "POSTGRES_USER": "treeseed",
           "POSTGRES_DB": "treeseed_api",
+          "TREESEED_API_BASE_URL": "https://api.treeseed.localhost",
           "TREESEED_TREEDX_JWT_ISSUER": "https://api.treeseed.localhost/treedx",
           "TREESEED_TREEDX_JWT_AUDIENCE": "treedx"
         },
