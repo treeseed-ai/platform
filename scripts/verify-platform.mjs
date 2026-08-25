@@ -56,7 +56,7 @@ if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
 if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 6) fail('Development workstation must use configuration generation 6.');
+if (host.generation !== 7) fail('Development workstation must use configuration generation 7.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BASE_URL !== 'https://api.treeseed.localhost') fail('The API and managed providers must use the canonical API audience.');
 if (host.components?.api?.configuration?.environment?.TREESEED_TREEDX_URL !== 'http://treedx:4000') fail('The integrated API must use the manager-owned TreeDX service over the private platform network.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST !== 'adrian.webb@knowledge.coop') fail('A fresh workstation must assign its configured initial account through the API bootstrap-admin allowlist.');
@@ -70,6 +70,7 @@ if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_TREEDX_CRED
 if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_GITHUB_TOKEN !== 'github-repository-token'
 	|| host.secrets?.['github-repository-token']?.reference !== '/etc/treeseed/credentials/github-repository-token') fail('Library reconciliation requires a manager-custodied GitHub repository token outside the development data root.');
 if (host.components?.treedx?.configuration?.environment?.TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID !== 'node_local'
+	|| host.components?.treedx?.configuration?.environment?.TREEDX_GIT_EXTERNAL_TRANSPORT_ENABLED !== 'true'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_GIT_ALLOWED_HOSTS !== 'github.com'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_BOOTSTRAP_TRUST_ACTOR_ID !== 'treeseed-api'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_BOOTSTRAP_TRUST_TENANT_ID !== 'treeseed-control-plane') fail('TreeDX must declare its broker identity, bounded Git hosts, and API delegation trust identity.');

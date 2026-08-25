@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 6,
+  "generation": 7,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
@@ -76,6 +76,7 @@
       },
       "configuration": {
         "environment": {
+          "TREEDX_GIT_EXTERNAL_TRANSPORT_ENABLED": "true",
           "TREEDX_GIT_ALLOWED_HOSTS": "github.com",
           "TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID": "node_local",
           "TREEDX_BOOTSTRAP_TRUST_ACTOR_ID": "treeseed-api",
