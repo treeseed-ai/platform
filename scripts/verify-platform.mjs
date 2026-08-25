@@ -7,6 +7,9 @@ const fail = (message) => { throw new Error(message); };
 const read = (path) => readFileSync(resolve(root, path), 'utf8');
 const requireFile = (path) => { if (!existsSync(resolve(root, path))) fail(`Platform is missing ${path}.`); };
 
+const rootPackage = JSON.parse(read('package.json'));
+if ('workspaces' in rootPackage) fail('Platform must not treat independent project repositories as npm workspaces.');
+if (existsSync(resolve(root, 'package-lock.json'))) fail('Platform must not create a root package lock; each project repository owns its lock independently.');
 execFileSync(process.execPath, [resolve(root, 'scripts/verify-treeseed-skill.mjs')], { cwd: root, stdio: 'inherit' });
 if (existsSync(resolve(root, '.gitmodules'))) fail('Platform must not encode team inventory as gitlinks.');
 if (existsSync(resolve(root, 'treeseed.portfolio.json'))) fail('Platform must read live team inventory from its portable seed bundle.');
