@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 3,
+  "generation": 4,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
@@ -31,6 +31,7 @@
           "TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST": "adrian.webb@knowledge.coop",
           "TREESEED_MAILPIT_SMTP_HOST": "mailpit",
           "TREESEED_MAILPIT_SMTP_PORT": "1025",
+          "TREESEED_TREEDX_URL": "http://treedx:4000",
           "TREESEED_TREEDX_JWT_ISSUER": "https://api.treeseed.localhost/treedx",
           "TREESEED_TREEDX_JWT_AUDIENCE": "treedx"
         },
