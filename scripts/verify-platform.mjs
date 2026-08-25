@@ -52,8 +52,12 @@ if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
 if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 2) fail('Development workstation must use configuration generation 2.');
+if (host.generation !== 3) fail('Development workstation must use configuration generation 3.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BASE_URL !== 'https://api.treeseed.localhost') fail('The API and managed providers must use the canonical API audience.');
+if (host.components?.api?.configuration?.environment?.TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST !== 'adrian.webb@knowledge.coop') fail('A fresh workstation must assign its configured initial account through the API bootstrap-admin allowlist.');
+if (host.components?.api?.configuration?.environment?.TREESEED_SITE_URL !== 'https://api.treeseed.localhost'
+	|| host.components?.api?.configuration?.environment?.TREESEED_MAILPIT_SMTP_HOST !== 'mailpit'
+	|| host.components?.api?.configuration?.environment?.TREESEED_MAILPIT_SMTP_PORT !== '1025') fail('A fresh workstation must route account confirmation through the managed Lab Mailpit service.');
 const brokerSecret = 'treedx-credential-broker-assertion';
 if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| host.components?.treedx?.configuration?.secretEnvironment?.TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION !== brokerSecret

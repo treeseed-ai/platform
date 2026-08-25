@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 2,
+  "generation": 3,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
@@ -27,6 +27,10 @@
           "POSTGRES_USER": "treeseed",
           "POSTGRES_DB": "treeseed_api",
           "TREESEED_API_BASE_URL": "https://api.treeseed.localhost",
+          "TREESEED_SITE_URL": "https://api.treeseed.localhost",
+          "TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST": "adrian.webb@knowledge.coop",
+          "TREESEED_MAILPIT_SMTP_HOST": "mailpit",
+          "TREESEED_MAILPIT_SMTP_PORT": "1025",
           "TREESEED_TREEDX_JWT_ISSUER": "https://api.treeseed.localhost/treedx",
           "TREESEED_TREEDX_JWT_AUDIENCE": "treedx"
         },
