@@ -46,7 +46,8 @@
           "TREESEED_DATABASE_URL": "api-database-url",
           "SESSION_SECRET": "api-session-secret",
           "TREESEED_TREEDX_DELEGATION_PRIVATE_KEY": "api-treedx-delegation-private-key",
-          "TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION": "treedx-credential-broker-assertion"
+          "TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION": "treedx-credential-broker-assertion",
+          "TREESEED_GITHUB_TOKEN": "github-repository-token"
         }
       }
     },
@@ -122,6 +123,7 @@
     "api-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/api-database-url" },
     "api-session-secret": { "provider": "file", "reference": "/etc/treeseed/credentials/api-session-secret" },
     "api-treedx-delegation-private-key": { "provider": "file", "reference": "/etc/treeseed/credentials/api-treedx-delegation-private-key" },
-    "treedx-credential-broker-assertion": { "provider": "file", "reference": "/etc/treeseed/credentials/treedx-credential-broker-assertion" }
+    "treedx-credential-broker-assertion": { "provider": "file", "reference": "/etc/treeseed/credentials/treedx-credential-broker-assertion" },
+    "github-repository-token": { "provider": "file", "reference": "/etc/treeseed/credentials/github-repository-token" }
   }
 }

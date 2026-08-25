@@ -67,6 +67,8 @@ const brokerSecret = 'treedx-credential-broker-assertion';
 if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| host.components?.treedx?.configuration?.secretEnvironment?.TREEDX_REMOTE_CREDENTIAL_BROKER_ASSERTION !== brokerSecret
 	|| !host.secrets?.[brokerSecret]) fail('API and TreeDX must share one manager-custodied credential-broker assertion.');
+if (host.components?.api?.configuration?.secretEnvironment?.TREESEED_GITHUB_TOKEN !== 'github-repository-token'
+	|| host.secrets?.['github-repository-token']?.reference !== '/etc/treeseed/credentials/github-repository-token') fail('Library reconciliation requires a manager-custodied GitHub repository token outside the development data root.');
 if (host.components?.treedx?.configuration?.environment?.TREEDX_REMOTE_CREDENTIAL_BROKER_SERVICE_ID !== 'node_local'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_GIT_ALLOWED_HOSTS !== 'github.com'
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_BOOTSTRAP_TRUST_ACTOR_ID !== 'treeseed-api'
