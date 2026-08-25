@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc30",
-  "generation": 5,
+  "release": "0.1.0~rc31",
+  "generation": 6,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": { "repository": "treeseed-ai/platform", "commit": "eac8d6e0d2a36a497a828a4035c7639a5f8ed94a" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "f4b16acb5accfdb9e8eef93b7cfa1c23f5dcf5de", "tag": "0.1.0-rc.30" },
+  "platform": { "repository": "treeseed-ai/platform", "commit": "bd2eb68cb04d3de905db8225a41f01d78c27bec9" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "f7e23728057e37524634f0240551fc026f7d4dad", "tag": "0.1.0-rc.31" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.32", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.32.tgz", "sha256": "5aaa2e84ae2a8b74943a371b47bcf753e3ceb5973d3ea8e601577971f89305c8" } },
     { "id": "cli", "packageName": "@treeseed/cli", "version": "0.13.0-rc.14", "artifact": { "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.14.tgz", "sha256": "37693dbf7a1e12127b0e97f5dce701b1cbc8f673383eea7ca4b1ed2634e22c34" } },
@@ -17,7 +17,7 @@
     { "componentId": "api", "release": "0.8.0~rc12-2", "manifest": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.12-runtime.2/component-release.json", "sha256": "4ffe64b09b61b155c845a9579b68eaf250f8a2a61eb2c43b75ee69ceeb65bec2" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.12-runtime.2/compose.yml", "sha256": "60abeb31cc7219de2705da55b134c5ae4b9a98069c0ccf9594eaea1fe4d4189a" } }] },
     { "componentId": "agent", "release": "0.13.0~rc15-1", "manifest": { "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.15/component-release.json", "sha256": "7866c15c69bec45f04a8e607e00c387cdc850eb0af5ed0b69c71b1cc86d9af3e" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.15/compose.yml", "sha256": "fd123b4bf7d6ac68bc564c5e072f5da995e222e622847460e496471daf8efbae" } }] },
     { "componentId": "treedx", "release": "0.3.0~rc8-1", "manifest": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.8/component-release.json", "sha256": "362bb869b0196f5c3685653a124bf8238fedb3bac6b95abbf8e1c97c9da2eff7" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.8/compose.yml", "sha256": "e9f2d1ccc2823081a47448bb57e6ad2539fd0522b5055bb4573c83d9978e8021" } }] },
-    { "componentId": "lab", "release": "0.1.0~rc30-1", "manifest": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.30/component-release.json", "sha256": "01694b5dd77ed689d77cf9ab759f40f270e7d94c8201580ee673a20a97689c0d" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.30/compose.yml", "sha256": "d89a517dcfe1097d35e534ef45e9c5e1f465a5f93e5b0973add4cc85f826bb09" } }] }
+    { "componentId": "lab", "release": "0.1.0~rc31-1", "manifest": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.31/component-release.json", "sha256": "a6d36b8fb5e6435388c8487eb3248bf0558798638d52f16c1015cd071ee5d367" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.31/compose.yml", "sha256": "04207d01a3b4927676e0bf03dae57a791e96c44d3762ecbb1dc5caaf24de9ebc" } }] }
   ],
-  "createdAt": "2026-08-25T01:15:00.000Z"
+  "createdAt": "2026-08-25T01:35:00.000Z"
 }
