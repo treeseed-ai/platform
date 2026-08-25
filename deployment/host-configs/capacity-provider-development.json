@@ -3,7 +3,7 @@
   "configurationId": "capacity-provider-development",
   "generation": 1,
   "host": { "id": "provider-development-01", "role": "capacity-provider", "architecture": "amd64" },
-  "runtime": { "management": "managed" },
+  "runtime": { "management": "managed", "environment": "production" },
   "updates": {
     "defaultTrack": "development",
     "stable": {

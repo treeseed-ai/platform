@@ -1,13 +1,17 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 5,
+  "generation": 6,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
     "architecture": "amd64"
   },
-  "runtime": { "management": "managed" },
+  "runtime": {
+    "management": "managed",
+    "environment": "development",
+    "dataRoot": "/home/adrian/Projects/treeseed/platform/.treeseed/data"
+  },
   "updates": {
     "defaultTrack": "development",
     "stable": {
@@ -24,6 +28,8 @@
       "configuration": {
         "environment": {
           "NODE_ENV": "production",
+          "TREESEED_ENVIRONMENT": "local",
+          "TREESEED_LOCAL_DEV_MODE": "1",
           "POSTGRES_USER": "treeseed",
           "POSTGRES_DB": "treeseed_api",
           "TREESEED_API_BASE_URL": "https://api.treeseed.localhost",

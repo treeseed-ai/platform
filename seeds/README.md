@@ -1,7 +1,7 @@
 # TreeSeed seed bundle
 
 `treeseed.yaml` is the only canonical Platform seed. It is a portable,
-digest-bound `treeseed.seed-bundle/v2` document; the CLI reads it and sends the
+digest-bound `treeseed.seed-bundle/v3` document; the CLI reads it and sends the
 bundle to the control-plane API. The API never reads this repository path.
 
 Use the human command surface:

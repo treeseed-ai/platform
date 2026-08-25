@@ -19,6 +19,7 @@ Treat the connected TreeSeed server as the authority for identity, access, gover
 - Treat `input_required` as a signed, exact-argument confirmation checkpoint. Ask the human when required; never alter, reuse, or synthesize confirmation state.
 - Follow durable `treeseed://` resource links for asynchronous work. Use progress, cancellation, completion, and subscriptions when advertised instead of polling invented endpoints.
 - Do not invoke or emulate `save`, `stage`, or `release` until the server advertises their accepted governed operations.
+- For repository-backed project knowledge, use the `trsd library` workflow in `references/knowledge.md`; never assume an unbound virtual repository or a `src/content` library root.
 
 ## Choose the relevant guidance
 

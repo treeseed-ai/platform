@@ -23,7 +23,7 @@ for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents
 }
 
 const seed = read('seeds/treeseed.yaml');
-for (const required of ['schemaVersion: treeseed.seed-bundle/v2', 'adrian.webb@knowledge.coop', 'service-principal:treeseed/automation', 'interactiveLogin: false', 'capacity-provider:treeseed/local', 'requiredLanePurposes: [communication, platform, workday]']) {
+for (const required of ['schemaVersion: treeseed.seed-bundle/v3', 'adrian.webb@knowledge.coop', 'service-principal:treeseed/automation', 'interactiveLogin: false', 'capacity-provider:treeseed/local', 'requiredLanePurposes: [communication, platform, workday]']) {
 	if (!seed.includes(required)) fail(`Canonical seed is missing required contract text: ${required}`);
 }
 for (const forbidden of ['agentLabServicePrincipals', 'providerClass:', 'adrian.webb@treeseed.dev', 'registrationKey', 'privateKey']) {
@@ -34,10 +34,11 @@ if (new Set(projects).size !== 16) fail(`Canonical seed must contain 16 unique p
 for (const project of ['project:treeseed/market', 'project:treeseed/market-api']) if (!projects.includes(project)) fail(`Canonical seed is missing ${project}.`);
 if (!projects.includes('project:treeseed/deployment')) fail('Canonical seed is missing the shared Deployment project.');
 const repositories = [...seed.matchAll(/key: ['"]?(repository:treeseed\/[a-z0-9-]+)/gu)].map((match) => match[1]);
-if (new Set(repositories).size !== 17) fail(`Canonical seed must contain 17 unique source repository bindings; found ${new Set(repositories).size}.`);
+if (new Set(repositories).size !== 33) fail(`Canonical seed must contain 16 primary repositories, 16 libraries, and one fixture repository; found ${new Set(repositories).size}.`);
 if (!/repository:treeseed\/deployment[^\n]+checkoutPath: packages\/deployment[^\n]+repositoryPolicy:/u.test(seed)) fail('Deployment must be a first-party checkout without a gitlink.');
 if (/repository:treeseed\/deployment[^\n]+submodulePath:/u.test(seed)) fail('Deployment must not be declared as a submodule.');
-if (/role: content(?:[,}\s]|$)/u.test(seed)) fail('TreeDX content repositories must not be encoded as Git provider repositories.');
+if (/role: content(?:[,}\s]|$)/u.test(seed)) fail('Legacy content repository roles must not remain in the v3 seed.');
+if ((seed.match(/role: library/gmu) ?? []).length !== 16 || (seed.match(/libraryRepository:/gmu) ?? []).length !== 16) fail('Every seeded project must declare exactly one repository-backed library.');
 if (!/digest: sha256:[a-f0-9]{64}/u.test(seed)) fail('Canonical seed is not digest-bound.');
 
 const provider = read('treeseed.capacity-provider.yaml');
@@ -47,7 +48,7 @@ for (const required of ['schemaVersion: 3', 'purpose: communication', 'purpose: 
 for (const forbidden of ['providerClass:', 'registrationKeyRef:', 'membershipCredentialRef:']) if (provider.includes(forbidden)) fail(`Unified provider manifest retains ${forbidden}.`);
 
 const host = JSON.parse(read('deployment/host-configs/development-workstation.json'));
-if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed') fail('Development workstation must use the current integrated managed-host contract.');
+if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed' || host.runtime?.environment !== 'development' || !host.runtime?.dataRoot?.endsWith('/platform/.treeseed/data')) fail('Development workstation must use the current integrated managed-host contract and workspace-visible data root.');
 if (host.updates?.defaultTrack !== 'development' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Development workstation must poll development while preserving the stable weekly activation policy.');
 for (const componentId of ['api', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Development workstation must select the development ${componentId} release.`);
 const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.components ?? {}).flatMap((component) => Object.values(component.aliases ?? {}))].flat();
@@ -55,7 +56,7 @@ if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
 if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 5) fail('Development workstation must use configuration generation 5.');
+if (host.generation !== 6) fail('Development workstation must use configuration generation 6.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BASE_URL !== 'https://api.treeseed.localhost') fail('The API and managed providers must use the canonical API audience.');
 if (host.components?.api?.configuration?.environment?.TREESEED_TREEDX_URL !== 'http://treedx:4000') fail('The integrated API must use the manager-owned TreeDX service over the private platform network.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST !== 'adrian.webb@knowledge.coop') fail('A fresh workstation must assign its configured initial account through the API bootstrap-admin allowlist.');
@@ -123,4 +124,4 @@ if (marketRoots.length > 2) fail(`Platform contains duplicate Market worksets: $
 for (const path of ['packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml', 'packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml', 'scripts/guarantees/verify-agent-capability.ts']) requireFile(path);
 const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true }).filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
 
-console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 16, sourceRepositories: 17, treeDxVirtualKnowledgeRepositories: 16, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
+console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 16, primaryRepositories: 16, projectLibraries: 16, fixtureRepositories: 1, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
