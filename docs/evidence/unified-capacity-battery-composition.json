@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "treeseed.platform-composition-evidence/v1",
+  "id": "unified-capacity-battery-2026-08-23.4",
+  "recordedAt": "2026-08-23T14:01:00-04:00",
+  "status": "staging_accepted",
+  "members": {
+    "treedx": {
+      "version": "0.3.0-rc.4",
+      "sourceCommit": "557c41f8e631cb440f21512cc5f182195805c9b9",
+      "openApiVersion": "0.11.0",
+      "openApiSha256": "52ed190300922c388b115981e60635c306c643d48a3308ef9f79975510ae1926"
+    },
+    "sdk": {
+      "version": "0.13.0-rc.25",
+      "sourceCommit": "548c13ac8bf156361c0329fd4117e266bc541d41",
+      "packageSha256": "9ccb505c61fa937cda888a47ddc709181a530f3f69c6a55e24c7dc3917fc87b5",
+      "npmIntegrity": "sha512-xzHZL/m7omxKB0Sn32yYiOoohx5L99jCCjLGEyZjhnalZk1GuMOj/F082VMx59wSY4ppY7D6EVGtdSfbzRXjiw==",
+      "operationCatalogSha256": "e1d3ba43af80ed5978b22b86e8e0c43894fd27ddb48434940bac4659e391ce0f",
+      "mcpInputSha256": "cf9c77d9f81234b4fd123de68a197d8e32a8555c4534aa8b51fe36e384c8367f",
+      "operationCount": 307,
+      "hostedRuns": [32654891034, 32654940729, 32654940730]
+    },
+    "api": {
+      "version": "0.8.0-rc.7",
+      "sourceCommit": "819dbcd3aa24661ceab98df4e1413853a0166548",
+      "openApiPathCount": 279,
+      "openApiSha256": "8679239462624d57bdc285d6727042944081ac8b6c9c8eadd96e6fb76a2df0c2",
+      "mcpCatalogSha256": "556297ce4e293df6e1446d5f081eeef6bc43ec76bbc6c59795a7d0414bd27d3a",
+      "mcp": {
+        "protocolVersion": "2026-07-28",
+        "tools": 123,
+        "resources": 5,
+        "resourceTemplates": 51,
+        "prompts": 5
+      },
+      "hostedRuns": [32656291945, 32656363514, 32656365753]
+    },
+    "cli": {
+      "version": "0.13.0-rc.11",
+      "sourceCommit": "de880f4e6abeba8b9e484f80486d595f76ef73fa",
+      "packageSha256": "f626cf398e9abab842a20b55e08ce0d9f0e84168697ab9cabfdb307cd1bbd2fa",
+      "npmIntegrity": "sha512-lMiAqSHJXVm22EPlxPhvE5KTWKQsgnj19AFccHpFvZplFCX7qyw+tM8Wf/XRnwjjqJozANTfz4g0UCnp93s1Xg==",
+      "commandTreeSha256": "392238935eef6ef1a632f5adc012ec0fc3101efaede4ade4b4bab5e5e4670ee3",
+      "hostedRuns": [32655593875, 32655595745, 32655595754]
+    },
+    "agent": {
+      "version": "0.13.0-rc.9",
+      "sourceCommit": "dfdda15d9aa72d14cb88186965c3bb5bf3b60c6c",
+      "packageSha256": "27ef7e8118e92c8041c4d5d1f262a1a4c2c5dbad2e5236b785fba1a4a278d007",
+      "npmIntegrity": "sha512-7X0/e+rGUJEVvmQfqu/1zp/m4KUJ5n8R/ErDXl2vJf583ng1f2z3e20QYq/aW6Ud7xR+M88JXnT6INe14TJgAQ==",
+      "hostedRuns": [32656164915, 32656167609, 32656167616]
+    },
+    "market": {
+      "sourceCommit": "b986298ff1a3f2ea72658f57eea191c718ee3434",
+      "license": "Apache-2.0",
+      "hostedRuns": [32621181113]
+    },
+    "marketApi": {
+      "sourceCommit": "1a1474f7792465cef650033f5c06f11d060c4766",
+      "license": "AGPL-3.0-only",
+      "hostedRuns": [32620880491]
+    },
+    "platform": {
+      "sourceCommit": "85e5b51061df7c2102a97f06ec6709d446de1dc6",
+      "seedBundleDigest": "sha256:5c2ca42c74e21523940cf576fb08f4513eb6c21a49ccf23d8b573d945a577b0c",
+      "seedFileSha256": "1ff0a17eddc0f4b71b043b9ffa8872408016e9818792c3a190e4ccad1427e91f",
+      "providerManifestSha256": "f2bec2041d455f88f9b0bcdabab84a6bad4ab36853111bc1dedbff60d1bca4f9",
+      "hostedRuns": [32656656020, 32656678476]
+    }
+  },
+  "runtimeClosure": {
+    "state": "communication_execution_ready",
+    "teamCount": 1,
+    "ownerCount": 2,
+    "projectCount": 15,
+    "repositoryCount": 16,
+    "approvedProviderMembershipCount": 5,
+    "targetProviderCount": 1,
+    "targetProviderId": "provider_LtqmnSGecDlhDPb2-7WgyLkKwxI8VDAO",
+    "targetProviderMembershipId": "79405b81-ef7a-4f4a-b0c8-f4d12a4df7d3",
+    "targetProviderApproved": true,
+    "targetProviderAvailabilitySessionId": "5e033c5a-c8c2-439d-8a0c-96dff8da1e24",
+    "activeExecutionProviderCount": 1,
+    "activeProjectGrantCount": 15,
+    "lanePurposes": ["communication", "platform", "workday"],
+    "liveAgentExecutionAuthorized": false,
+    "blockers": [
+      "lane_execution_unavailable:platform",
+      "lane_execution_unavailable:workday"
+    ],
+    "seedReadback": {
+      "appliedAt": "2026-08-23T17:54:33.012Z",
+      "create": 0,
+      "update": 0,
+      "unchanged": 34,
+      "error": 0
+    },
+    "communicationReadiness": {
+      "sdkAcceptedChatAgentCount": 8,
+      "sdkAcceptedChatAgents": ["architect", "engineer", "releaser", "reporter", "researcher", "reviewer", "technical-writer", "tester"],
+      "liveExecutionReady": true,
+      "simulationReady": true,
+      "firstLiveSendPending": true,
+      "report": "docs/agent-communication-readiness.md"
+    }
+  },
+  "boundaries": {
+    "apiOwnsSeedAndProviderAuthority": true,
+    "agentOwnsProviderRuntimeOnly": true,
+    "cliOwnsLocalHandoffOnly": true,
+    "treeDxCredentialConsumers": ["api"],
+    "productionPromotionAuthorized": false,
+    "npmLatestChanged": false
+  },
+  "retainedRecovery": {
+    "databaseBackupSha256": "b5c2717ec4ce0322035c0b0c0ff0b7fbdfc6dfb501d03624e188407b2e74db94",
+    "databaseBackupState": "retained_pending_explicit_deletion_approval"
+  }
+}
