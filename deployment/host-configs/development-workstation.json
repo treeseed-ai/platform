@@ -55,7 +55,6 @@
     "admin": {
       "enabled": true,
       "track": "development",
-      "aliases": { "admin.admin.http": "admin.treeseed.localhost" },
       "connections": {
         "api": { "kind": "local", "componentId": "api", "serviceId": "api", "endpointId": "http" }
       },
