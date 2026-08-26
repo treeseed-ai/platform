@@ -1,0 +1,23 @@
+schemaVersion: treeseed.development-selection/v1
+projects:
+  - manifest: packages/sdk/treeseed.package.yaml
+    worktree: packages/sdk
+    targets: [{ id: package, mode: released }]
+  - manifest: packages/ui/treeseed.package.yaml
+    worktree: packages/ui
+    targets: [{ id: package, mode: released }, { id: sandbox, mode: released }]
+  - manifest: packages/core/treeseed.package.yaml
+    worktree: packages/core
+    targets: [{ id: package, mode: released }]
+  - manifest: packages/api/treeseed.package.yaml
+    worktree: packages/api
+    targets: [{ id: service, mode: released }, { id: operations-runner, mode: released }]
+  - manifest: packages/admin/treeseed.package.yaml
+    worktree: packages/admin
+    targets: [{ id: web, mode: released }]
+  - manifest: packages/agent/treeseed.package.yaml
+    worktree: packages/agent
+    targets: [{ id: provider, mode: released }]
+  - manifest: packages/reviewer/treeseed.package.yaml
+    worktree: packages/reviewer
+    targets: [{ id: companion, mode: released }]
