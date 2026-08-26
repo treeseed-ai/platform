@@ -9,6 +9,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "verify:development": "node --import ./packages/cli/node_modules/tsx/dist/loader.mjs scripts/verify-development-workflow.ts",
     "verify": "node scripts/verify-platform.mjs",
     "verify:local": "node scripts/verify-platform.mjs"
   }
