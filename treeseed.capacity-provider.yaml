@@ -3,7 +3,7 @@ ownership:
   type: team
   teamId: team:treeseed
 configuration:
-  generation: local-battery-v1
+  generation: local-battery-v2
 identity:
   privateKeyRef: data://identity-v3.json
   displayName: TreeSeed local capacity battery
@@ -33,7 +33,7 @@ lanes:
     reclaimPolicy: admission
     queueLimit: 100
     timeoutSeconds: 120
-    capabilities: [communication, research, planning]
+    capabilities: [communication, agent-execution, research, planning]
   - id: platform
     purpose: platform
     priority: 70
