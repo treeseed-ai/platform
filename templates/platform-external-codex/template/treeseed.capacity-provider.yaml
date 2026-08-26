@@ -33,7 +33,7 @@ lanes:
     reclaimPolicy: admission
     queueLimit: 100
     timeoutSeconds: 120
-    capabilities: [communication, research, planning]
+    capabilities: [communication, agent-execution, research, planning]
   - id: platform
     purpose: platform
     priority: 70
