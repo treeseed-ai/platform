@@ -9,6 +9,8 @@
     "node": ">=22"
   },
   "scripts": {
+	"guarantees:plan": "node scripts/plan-composition-guarantees.mjs",
+	"test:guarantee-plan": "node scripts/test-composition-guarantee-plan.mjs",
     "verify:development": "node --import ./packages/cli/node_modules/tsx/dist/loader.mjs scripts/verify-development-workflow.ts",
     "verify": "node scripts/verify-platform.mjs",
     "verify:local": "node scripts/verify-platform.mjs"
