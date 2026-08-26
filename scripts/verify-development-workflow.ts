@@ -1,4 +1,5 @@
 import { mkdtempSync, rmSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { DevelopmentSessionStore, affectedDevelopmentClosure } from '../packages/deployment/src/manager/development-sessions.ts';
@@ -36,6 +37,16 @@ async function hostInvoke(input: { handlerId: string; options: Record<string, un
 const output: string[] = [];
 const context = { cwd: workspace, env: { ...process.env, XDG_STATE_HOME: resolve(temporary, 'state'), TREESEED_API_BASE_URL: process.env.TREESEED_API_BASE_URL ?? 'https://api.treeseed.localhost', NODE_EXTRA_CA_CERTS: process.env.NODE_EXTRA_CA_CERTS ?? '/etc/treeseed/cli/localhost-ca.crt' }, interactiveUi: false, hostInvoke, write: (value: string) => output.push(value) };
 
+function verifyAdminAgainstLivePackages() {
+	try {
+		execFileSync('npm', ['run', 'check'], { cwd: resolve(workspace, 'packages/admin'), env: context.env, encoding: 'utf8', maxBuffer: 2_000_000 });
+	} catch (error) {
+		const result = error as { stdout?: string; stderr?: string };
+		const diagnostic = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.trim().slice(-12_000);
+		throw new Error(`Admin check failed against the live package overlays.\n${diagnostic}`);
+	}
+}
+
 try {
 	let exit = await runCommandLine(['dev', 'session', 'start', 'development.session.yaml', '--actor', 'development-workflow-verifier', '--lease-seconds', '900', '--json'], context);
 	if (exit !== 0 || !activeSessionId) throw new Error('Unable to start the development workflow session.');
@@ -45,9 +56,10 @@ try {
 	if (exit !== 0) throw new Error('Unable to activate the Admin live-web target.');
 	const health = await fetch('http://127.0.0.1:4322/healthz');
 	if (health.status !== 200) throw new Error(`Admin live health returned ${health.status}.`);
+	verifyAdminAgainstLivePackages();
 	const record = sessions.load(activeSessionId);
 	const live = record.session.targets.filter((target) => target.mode === 'live').map((target) => `${target.projectId}.${target.targetId}`).sort();
-	process.stdout.write(`${JSON.stringify({ ok: true, sessionId: activeSessionId, live, adminHealth: health.status, packageGenerations: record.session.targets.filter((target) => target.targetId === 'package').map((target) => ({ target: `${target.projectId}.${target.targetId}`, generation: target.generation })) }, null, 2)}\n`);
+	process.stdout.write(`${JSON.stringify({ ok: true, sessionId: activeSessionId, live, adminHealth: health.status, adminCheck: 'passed', packageGenerations: record.session.targets.filter((target) => target.targetId === 'package').map((target) => ({ target: `${target.projectId}.${target.targetId}`, generation: target.generation })) }, null, 2)}\n`);
 } finally {
 	if (activeSessionId) await runCommandLine(['dev', 'session', 'stop', '--session', activeSessionId, '--restore', '--json'], context).catch(() => 1);
 	rmSync(temporary, { recursive: true, force: true });
