@@ -1,23 +1,23 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc45",
-  "generation": 20,
+  "release": "0.1.0~rc79",
+  "generation": 54,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": { "repository": "treeseed-ai/platform", "commit": "342000a8653b6cd74c92621ca7476ab1651222bf" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "8776837e65ffd69e38ee6e9e4594f53574c56e19", "tag": "0.1.0-rc.45" },
+  "platform": { "repository": "treeseed-ai/platform", "commit": "b4ae096f8838a9acff4f6e775289ff503d478f22" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "41b07f44a3b1ddb71b3b68578843868bd4db0c79", "tag": "0.1.0-rc.79" },
   "hostPayloads": [
-    { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.35", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.35.tgz", "sha256": "a7bd2322cc282465f116d463a8399b4e4d2956bda1404984de7712b5a05291b0" } },
-    { "id": "cli", "packageName": "@treeseed/cli", "version": "0.13.0-rc.18", "artifact": { "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.18.tgz", "sha256": "76487731ca69f096e17e8c7b8770aa893edd0c19fc5122f08a5b0a754dfd896b" } },
-    { "id": "treedx", "packageName": "@treeseed/treedx", "version": "0.3.0-rc.4", "artifact": { "url": "https://registry.npmjs.org/@treeseed/treedx/-/treedx-0.3.0-rc.4.tgz", "sha256": "55b9007d60c0dbd572cc6aa725ececd97b70e4474892abc156f85f8b23d4399b" } },
+    { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.38", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.38.tgz", "sha256": "afe26c7f48ef180679c7983e7dc4bbb21e2a8745fd470b2d3441b4512f04cdef" } },
+    { "id": "cli", "packageName": "@treeseed/cli", "version": "0.13.0-rc.23", "artifact": { "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.23.tgz", "sha256": "7e10d0f64a7a0b9ae042f5a19eed82e90bccf41d10140eeafe17769811fc9ba7" } },
+    { "id": "treedx", "packageName": "@treeseed/treedx", "version": "0.3.0-rc.9", "artifact": { "url": "https://registry.npmjs.org/@treeseed/treedx/-/treedx-0.3.0-rc.9.tgz", "sha256": "892f51d2626d275e966e9271492e3fc6edb62e14eed8020a002b4016a9b262e7" } },
     { "id": "yaml", "packageName": "yaml", "version": "2.9.0", "artifact": { "url": "https://registry.npmjs.org/yaml/-/yaml-2.9.0.tgz", "sha256": "008fa204cb1ba700e0272ba045abbf09a6ffe63456e8146ba97cac6c2ad1ef91" } },
     { "id": "zod", "packageName": "zod", "version": "3.25.76", "artifact": { "url": "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz", "sha256": "9e1f1a05f0dd0c1dab64ee91ceb9bf55cd44d35368c70edda80a2fdc70a88377" } }
   ],
   "components": [
-    { "componentId": "api", "release": "0.8.0~rc14-1", "manifest": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.14/component-release.json", "sha256": "5347907a564c78cd3e408383a5555b569aa9af9916f6dc10decb4d47d5ce3a17" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.14/compose.yml", "sha256": "c9b4987f4efbf2aeda1aaa83316ef09c0cc8b52b6f61e068aeca791aacc0cdd0" } }] },
-    { "componentId": "agent", "release": "0.13.0~rc16-1", "manifest": { "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.16/component-release.json", "sha256": "2cc164938129cc8a0e6ee0f088644b4f46c02498a08941d7a362037b9a25f2b0" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.16/compose.yml", "sha256": "28585f094f75179e709760bc032b77cb074aeff29047081f57c38ec4a5e2a031" } }] },
-    { "componentId": "treedx", "release": "0.3.0~rc8-1", "manifest": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.8/component-release.json", "sha256": "362bb869b0196f5c3685653a124bf8238fedb3bac6b95abbf8e1c97c9da2eff7" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.8/compose.yml", "sha256": "e9f2d1ccc2823081a47448bb57e6ad2539fd0522b5055bb4573c83d9978e8021" } }] },
+    { "componentId": "api", "release": "0.8.0~rc37-1", "manifest": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.37/component-release.json", "sha256": "4fb2fe3fefe43c4c9d87b3560b23d33bdf441f54b15563b46328075bd70634a8" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.37/compose.yml", "sha256": "7d6d58107a19f2761547d806d83de6b3c78da3a01d14821f080bb7d428951306" } }] },
+    { "componentId": "agent", "release": "0.13.0~rc24-1", "manifest": { "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.24/component-release.json", "sha256": "9af9dcff181e0e1146920e999d29440040e24ba8f1c1df72a572ac1995fe0f5b" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.24/compose.yml", "sha256": "c265e73fdede0687b5be2deee4711f85f4ceb21f1d09140f07af1f9151cc774d" } }] },
+    { "componentId": "treedx", "release": "0.3.0~rc9-1", "manifest": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/component-release.json", "sha256": "6a4a9d91c4ced612ac4a8c09f9d53e82128e298819b922efe459cde08a11a8cf" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/compose.yml", "sha256": "f2fb2013ff2170b299d84c8c2701fc32c0542c5dd4cc5476af322cc75cef8054" } }] },
     { "componentId": "lab", "release": "0.1.0~rc34-1", "manifest": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/component-release.json", "sha256": "553e9bcfd99755a5f55eae2b59da7c3be6c35e9dcb985515bce79ed2d1a399a7" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/compose.yml", "sha256": "ef646932604e580762c1a26a1f6fb973c5d669b141158f6be930f05c5e965115" } }] }
   ],
-  "createdAt": "2026-08-25T14:57:00.000Z"
+  "createdAt": "2026-08-26T05:30:00.000Z"
 }
