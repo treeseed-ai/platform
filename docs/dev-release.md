@@ -594,6 +594,10 @@ Deployment consumes an immutable Platform commit URL, verifies every selected pa
 8. records a known-good receipt;
 9. proves repeated reconciliation is `noop`.
 
+Manager self-updates use a two-phase handoff. A running manager may refresh and install the exact core package set, but once any core package changes it must stop that reconciliation before loading the new catalog or composing components. It schedules a bounded restart and the upgraded process performs planning and activation from the beginning. The stale process must never interpret a newer catalog, schema, component type, or rollback set.
+
+Component packages remain installable across that handoff. Their package installation creates the manager-owned component configuration directory and a non-overwriting environment file before Compose can run; the upgraded manager then renders the authoritative connection environment. Production Compose joins only declared manager-owned external networks, publishes no application host ports, and relies on the edge network for public aliases and the private platform network for local component dependencies. The supervisor creates those networks before activation. Remote dependencies replace the injected connection URL without changing the component bundle.
+
 Development sessions are detached or explicitly excluded before a host composition is accepted. A host with a live overlay cannot claim that its released composition is fully active.
 
 ## Promotion and production
