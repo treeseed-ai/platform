@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 10,
+  "generation": 11,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
@@ -33,7 +33,8 @@
           "POSTGRES_USER": "treeseed",
           "POSTGRES_DB": "treeseed_api",
           "TREESEED_API_BASE_URL": "https://api.treeseed.localhost",
-          "TREESEED_SITE_URL": "https://api.treeseed.localhost",
+          "TREESEED_SITE_URL": "https://admin.treeseed.localhost",
+          "TREESEED_API_AUTH_APPROVAL_BASE_URL": "https://admin.treeseed.localhost",
           "TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST": "adrian.webb@knowledge.coop",
           "TREESEED_MAILPIT_SMTP_HOST": "mailpit",
           "TREESEED_MAILPIT_SMTP_PORT": "1025",
@@ -48,6 +49,20 @@
           "TREESEED_TREEDX_DELEGATION_PRIVATE_KEY": "api-treedx-delegation-private-key",
           "TREESEED_TREEDX_CREDENTIAL_BROKER_ASSERTION": "treedx-credential-broker-assertion",
           "TREESEED_GITHUB_TOKEN": "github-repository-token"
+        }
+      }
+    },
+    "admin": {
+      "enabled": true,
+      "track": "development",
+      "aliases": { "admin.admin.http": "admin.treeseed.localhost" },
+      "connections": {
+        "api": { "kind": "local", "componentId": "api", "serviceId": "api", "endpointId": "http" }
+      },
+      "configuration": {
+        "environment": {
+          "NODE_ENV": "production",
+          "TREESEED_SITE_URL": "https://admin.treeseed.localhost"
         }
       }
     },
