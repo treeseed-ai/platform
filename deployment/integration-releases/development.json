@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc62",
-  "generation": 37,
+  "release": "0.1.0~rc63",
+  "generation": 38,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": { "repository": "treeseed-ai/platform", "commit": "ffbfc7e0ec682a2627ffc97f278873eb775b782a" },
