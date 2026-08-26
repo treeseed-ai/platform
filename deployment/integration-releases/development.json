@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc85",
-  "generation": 59,
+  "release": "0.1.0~rc86",
+  "generation": 60,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": { "repository": "treeseed-ai/platform", "commit": "065f04fcf18f03c589d9d1d00a784d22981c2bbf" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "38396f3d9f341206cd054bb9ce0298cbd7780cf9", "tag": "0.1.0-rc.83" },
+  "platform": { "repository": "treeseed-ai/platform", "commit": "472ebc2a25cad1a66a24fb2711ebabbb9fcd6a04" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "7ffef1a40ccc650781b9a74580c77f2a0ea4d0d1", "tag": "0.1.0-rc.84" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.40", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.40.tgz", "sha256": "1cf973aa9df4a67eecbb2ab697d164c515cdda7091ba402f043c771807d12c0a" } },
     { "id": "ui", "packageName": "@treeseed/ui", "version": "0.12.18-rc.1", "artifact": { "url": "https://registry.npmjs.org/@treeseed/ui/-/ui-0.12.18-rc.1.tgz", "sha256": "8fb16d3dfdebbab09223956b35b75c07b0c6b6d0a88b91bcf3e422d4b775114f" } },
@@ -24,5 +24,5 @@
     { "componentId": "treedx", "release": "0.3.0~rc9-1", "manifest": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/component-release.json", "sha256": "6a4a9d91c4ced612ac4a8c09f9d53e82128e298819b922efe459cde08a11a8cf" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/compose.yml", "sha256": "f2fb2013ff2170b299d84c8c2701fc32c0542c5dd4cc5476af322cc75cef8054" } }] },
     { "componentId": "lab", "release": "0.1.0~rc34-1", "manifest": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/component-release.json", "sha256": "553e9bcfd99755a5f55eae2b59da7c3be6c35e9dcb985515bce79ed2d1a399a7" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/compose.yml", "sha256": "ef646932604e580762c1a26a1f6fb973c5d669b141158f6be930f05c5e965115" } }] }
   ],
-  "createdAt": "2026-08-26T21:03:06.000Z"
+  "createdAt": "2026-08-26T21:08:15.000Z"
 }
