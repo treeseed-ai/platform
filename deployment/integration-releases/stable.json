@@ -4,8 +4,8 @@
   "generation": 29,
   "track": "stable",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": { "repository": "treeseed-ai/platform", "commit": "28ff394d4e18199e33cd66639d3be4cfc5027508" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "10576f04725838d8274cd52c1725197098e3e3bf", "tag": "0.1.0-rc.82" },
+  "platform": { "repository": "treeseed-ai/platform", "commit": "bea3409b5f37eb58284ed2c5e39b96f5d563c93b" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "38396f3d9f341206cd054bb9ce0298cbd7780cf9", "tag": "0.1.0-rc.83" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.34", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.34.tgz", "sha256": "0413cbeab3314ac7f90c5e6420fec2f3790f38ffa1e41b86dd571a364ae38a79" } },
     { "id": "cli", "packageName": "@treeseed/cli", "version": "0.13.0-rc.16", "artifact": { "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.16.tgz", "sha256": "3b26bdeca38ef33fa94c4487f65eea76c454c4d0c82829afae8a8f707e8034cb" } },
