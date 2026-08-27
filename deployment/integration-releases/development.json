@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc102",
-  "generation": 72,
+  "release": "0.1.0~rc103",
+  "generation": 73,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": { "repository": "treeseed-ai/platform", "commit": "311d02b3cf6cb3b6ff497a6a3367f89a63b9fc6b" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "9832d7e96b16b258672810a09243c56777641b3b", "tag": "0.1.0-rc.102" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "89ec66a95f57c45d9fc712988ef2b29447f25dba", "tag": "0.1.0-rc.103" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.45", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.45.tgz", "sha256": "26c953c8e38779b67f8084f876dcf4f47cd590bc3e8246731e293e9ac9867c1f" } },
     { "id": "api", "packageName": "@treeseed/api", "version": "0.8.0-rc.45", "artifact": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.45/treeseed-api-0.8.0-rc.45.tgz", "sha256": "9d04ad55dc5031d2420a207e46f36f59bfbe24fd4ccebfb917dd658c7842016e" } },
@@ -26,5 +26,5 @@
     { "componentId": "treedx", "release": "0.3.0~rc9-1", "manifest": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/component-release.json", "sha256": "6a4a9d91c4ced612ac4a8c09f9d53e82128e298819b922efe459cde08a11a8cf" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/compose.yml", "sha256": "f2fb2013ff2170b299d84c8c2701fc32c0542c5dd4cc5476af322cc75cef8054" } }] },
     { "componentId": "lab", "release": "0.1.0~rc34-1", "manifest": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/component-release.json", "sha256": "553e9bcfd99755a5f55eae2b59da7c3be6c35e9dcb985515bce79ed2d1a399a7" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/compose.yml", "sha256": "ef646932604e580762c1a26a1f6fb973c5d669b141158f6be930f05c5e965115" } }] }
   ],
-  "createdAt": "2026-08-27T19:55:00.000Z"
+  "createdAt": "2026-08-27T20:03:00.000Z"
 }
