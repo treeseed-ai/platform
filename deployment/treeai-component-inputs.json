@@ -5,6 +5,45 @@
   "releaseUrl": "https://github.com/treeseed-ai/ai/releases/tag/0.11.0-rc2",
   "contractReleaseSha256": "59b5fe6f0f766fa730943ae90301a3aac2e751fe6a528ea0e5271972941dc2ae",
   "imageManifestSha256": "09791390dd254e116f003ed9b6d99530423a97d7e7eb39cc00a68d88456df7c3",
+  "contracts": {
+    "genericSdk": {
+      "packageName": "@treeseed/treeai",
+      "version": "0.11.0-rc2",
+      "url": "https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc2/treeseed-treeai-0.11.0-rc2.tgz",
+      "sha256": "90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2"
+    },
+    "openapi": {
+      "inference": "3a00f1d91635d87d0aad2c6d329f495ff210f393bc9851570aa3e3ad1f5c1db4",
+      "training": "89dc70cecc85079853e4f177827d681e66f4b24b93ef17713051b99f07c2fe00",
+      "lab": "bccafa27b00a63b9fb22b132b850f9af6e77d44047dbc8966344088266d65898",
+      "qualification": "3f68b78845ec19c5de389663f1cb677ab4df0683ecd113c4f5780885a89370b7"
+    },
+    "operationInventorySha256": "dc60eb514e11a4b867b3353830d886205df6254c7c4ecfab9a06b1b4dcb4e1fc",
+    "sdkManifestSha256": "032fcc4a96d6fca185b23d6b98a778bb438d833b6e077818eab100ab2ef1d849",
+    "treeSeedSdk": {
+      "packageName": "@treeseed/sdk",
+      "version": "0.13.0-rc.48",
+      "sourceCommit": "b039b5f69abb81de57cb20c09348cc5a3e9c3040",
+      "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.48.tgz",
+      "sha256": "8d97c3c4efc3661e6e447714506fec1d0479207e15259f1b60cc784a28e8675e"
+    },
+    "api": {
+      "packageName": "@treeseed/api",
+      "version": "0.8.0-rc.49",
+      "sourceCommit": "330da2e218f8507904bd8036bcff98eba6958e7c",
+      "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.49/treeseed-api-0.8.0-rc.49.tgz",
+      "sha256": "1fa497f2c0cf2f0e05d148f6fd903765f6b8d2558dbfd6f4514aa6cf13423037",
+      "componentManifestSha256": "9f5cbe4ac6cc00b91e44051d854fc84d6b50ef7d8abf365011b542450ba4675d",
+      "composeSha256": "0c490630e465a6df14b702278bb1e51936621712e9dac1322c23a180c47e4fe2"
+    },
+    "cli": {
+      "packageName": "@treeseed/cli",
+      "version": "0.13.0-rc.29",
+      "sourceCommit": "ce3884ce817ca7552929d95929a1e545cfa8742b",
+      "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.29.tgz",
+      "sha256": "20e041d25d827807b7609354f5a60471fd1f903b23705135e525bd9fbaf27325"
+    }
+  },
   "components": [
     {
       "componentId": "ai-inference",
