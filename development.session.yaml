@@ -1,5 +1,11 @@
 schemaVersion: treeseed.development-selection/v1
 projects:
+  - manifest: packages/ai/treeseed.package.yaml
+    worktree: packages/ai
+    targets:
+      - { id: ai-inference, mode: released }
+      - { id: ai-training, mode: released }
+      - { id: ai-lab, mode: released }
   - manifest: packages/sdk/treeseed.package.yaml
     worktree: packages/sdk
     targets: [{ id: package, mode: released }]

@@ -19,7 +19,7 @@ const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding
 const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
 if (gitlinks.length) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
 
-for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'docs/multi-host-deployment.md']) requireFile(path);
+for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'deployment/treeai-component-inputs.json', 'docs/multi-host-deployment.md']) requireFile(path);
 for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) {
 	if (existsSync(resolve(root, path))) fail(`Platform retains obsolete split-provider input ${path}.`);
 }
@@ -53,6 +53,7 @@ const host = JSON.parse(read('deployment/host-configs/development-workstation.js
 if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed' || host.runtime?.environment !== 'development' || !host.runtime?.dataRoot?.endsWith('/platform/.treeseed/data')) fail('Development workstation must use the current integrated managed-host contract and workspace-visible data root.');
 if (host.updates?.defaultTrack !== 'development' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Development workstation must poll development while preserving the stable weekly activation policy.');
 for (const componentId of ['api', 'admin', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Development workstation must select the development ${componentId} release.`);
+for (const componentId of ['ai-inference', 'ai-training', 'ai-lab']) if (host.components?.[componentId]?.enabled !== false) fail(`Default workstation must leave ${componentId} disabled.`);
 const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.components ?? {}).flatMap((component) => Object.values(component.aliases ?? {}))].flat();
 if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Local aliases must be unique and remain in the .localhost namespace.');
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
@@ -91,6 +92,18 @@ if (JSON.stringify(aliases.sort()) !== JSON.stringify(['api.treeseed.localhost',
 const providerHost = JSON.parse(read('deployment/host-configs/capacity-provider-development.json'));
 if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.components ?? {}).join(',') !== 'agent' || providerHost.components.agent?.connections?.['control-plane']?.kind !== 'remote') fail('Capacity-provider fixture must select only Agent with an explicit remote control plane.');
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
+
+const treeAiInputs = JSON.parse(read('deployment/treeai-component-inputs.json'));
+if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc2' || !/^[a-f0-9]{40}$/u.test(treeAiInputs.sourceCommit)) fail('TreeAI component inputs must identify the exact independent RC source.');
+if (JSON.stringify(treeAiInputs.components?.map(({ componentId }) => componentId)) !== JSON.stringify(['ai-inference', 'ai-training', 'ai-lab'])) fail('TreeAI component inputs must preserve inference, training, and lab ownership order.');
+for (const component of treeAiInputs.components) {
+	if (!/^https:\/\/github\.com\/treeseed-ai\/ai\/releases\/download\//u.test(component.manifest?.url)
+		|| !/^[a-f0-9]{64}$/u.test(component.manifest?.sha256 ?? '') || !/^[a-f0-9]{64}$/u.test(component.compose?.sha256 ?? '')) fail(`TreeAI ${component.componentId} is not independently digest locked.`);
+}
+for (const profileId of ['ai-inference', 'ai-training', 'ai-factory', 'ai-connected']) {
+	const profile = JSON.parse(read(`deployment/profiles/${profileId}.json`));
+	if (profile.schemaVersion !== 'treeseed.platform-profile/v1' || profile.id !== profileId || profile.default !== false) fail(`TreeAI profile ${profileId} must remain explicit and opt-in.`);
+}
 
 const stableIntegration = JSON.parse(read('deployment/integration-releases/stable.json'));
 const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));

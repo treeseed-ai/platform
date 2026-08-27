@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "treeseed.platform-profile/v1",
+  "id": "ai-inference",
+  "default": false,
+  "components": {
+    "ai-inference": { "enabled": true, "track": "development", "aliases": { "inference-api.http": "inference.ai.treeseed.localhost" } },
+    "ai-training": { "enabled": false },
+    "ai-lab": { "enabled": false }
+  }
+}

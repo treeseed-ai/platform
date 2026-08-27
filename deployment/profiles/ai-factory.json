@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "treeseed.platform-profile/v1",
+  "id": "ai-factory",
+  "default": false,
+  "components": {
+    "ai-inference": { "enabled": true, "track": "development", "aliases": { "inference-api.http": "inference.ai.treeseed.localhost" } },
+    "ai-training": { "enabled": true, "track": "development", "aliases": { "training-api.http": "training.ai.treeseed.localhost" } },
+    "ai-lab": { "enabled": true, "track": "development", "aliases": { "open-webui.https": "chat.ai.treeseed.localhost", "hermes-dashboard.https": "hermes.ai.treeseed.localhost" } }
+  }
+}
