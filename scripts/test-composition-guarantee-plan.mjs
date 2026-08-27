@@ -19,11 +19,18 @@ function fixture(name, withCatalog) {
 			guarantees: [{ sourcePath: 'guarantees/example.guarantee.yaml', manifest: {
 				schemaVersion: 'treeseed.guarantee/v1', id: 'guarantee.user.auth.example.001', journey: 'Example',
 				ownerPackage: '@treeseed/admin', type: 'user', subtype: 'auth', status: 'active', dependencies: { guarantees: [] },
+				scene: { required: true, manifest: './example.scene.yaml', executionKey: 'admin.example.scene' },
 				api: { required: true, verifierRefs: ['api.example'] },
 			} }],
-			verifierRegistries: [{ sourcePath: 'guarantees/verifiers/ui.verifiers.yaml', document: {
+			verifierRegistries: [{ sourcePath: 'guarantees/verifiers/legacy.verifiers.yaml', document: {
 				schemaVersion: 'treeseed.guarantee-verifiers/v1', ownerPackage: '@treeseed/admin',
-				verifiers: { 'api.example': { kind: 'catalogOperation', ownerPackage: '@treeseed/api' } },
+				verifiers: { 'api.example': { kind: 'nodeScript', ownerPackage: '@treeseed/admin', testFile: 'removed.ts' } },
+			} }, { sourcePath: 'guarantees/verifiers/composition.verifiers.yaml', document: {
+				schemaVersion: 'treeseed.guarantee-verifiers/v1', ownerPackage: '@treeseed/admin',
+				verifiers: {
+					'api.example': { kind: 'artifact', ownerPackage: '@treeseed/admin', artifactId: '@treeseed/admin/example', entrypoint: 'dist/example.js', caseId: 'example' },
+					'admin.example.scene': { kind: 'artifact', ownerPackage: '@treeseed/admin', artifactId: '@treeseed/admin/example', entrypoint: 'dist/example.js', caseId: 'scene' },
+				},
 			} }],
 		}));
 	}
@@ -48,6 +55,9 @@ try {
 	assert.equal(accepted.status, 0);
 	assert.equal(accepted.report.ok, true);
 	assert.deepEqual(accepted.report.counts, { selected: 1, withDependencies: 1, errors: 0 });
+	assert.equal(accepted.report.verifiers.length, 2);
+	assert.equal(accepted.report.verifiers[0].registrySource, 'guarantees/verifiers/composition.verifiers.yaml');
+	assert.equal(accepted.report.verifiers[0].definition.kind, 'artifact');
 
 	const missing = run(fixture('missing', false));
 	assert.equal(missing.status, 1);

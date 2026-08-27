@@ -21,6 +21,20 @@ function verifierRefs(value, out = new Set()) {
 	return out;
 }
 
+function guaranteeVerifierRefs(manifest) {
+	const refs = verifierRefs(manifest);
+	if (manifest?.scene?.required === true && manifest.scene.executionKey) refs.add(String(manifest.scene.executionKey));
+	for (const negative of manifest?.negativeCases ?? []) {
+		if (negative?.scene?.executionKey) refs.add(String(negative.scene.executionKey));
+	}
+	return refs;
+}
+
+function sceneVerifierRefs(manifest) {
+	return [manifest?.scene?.required === true ? manifest.scene.executionKey : null,
+		...(manifest?.negativeCases ?? []).map((entry) => entry?.scene?.executionKey)].filter(Boolean).map(String);
+}
+
 function dependencyIds(manifest) {
 	return Array.isArray(manifest?.dependencies?.guarantees) ? manifest.dependencies.guarantees.map(String) : [];
 }
@@ -54,6 +68,7 @@ const statuses = new Set(String(option('statuses', 'active')).split(',').map((en
 const release = JSON.parse(readFileSync(releasePath, 'utf8'));
 const payload = release.hostPayloads?.find((entry) => entry.packageName === ownerFilter);
 if (!payload) throw new Error(`Composition ${release.release} does not select ${ownerFilter}.`);
+const payloadsByPackage = new Map((release.hostPayloads ?? []).map((entry) => [entry.packageName, entry]));
 
 const temporary = mkdtempSync(resolve(tmpdir(), 'treeseed-guarantee-plan-'));
 try {
@@ -81,9 +96,17 @@ try {
 		else { closure.set(dependency, { ...found, selected: false }); queue.push(found); }
 	}
 
-	const registry = Array.isArray(catalog?.verifierRegistries) ? catalog.verifierRegistries[0]?.document : null;
-	const declared = registry?.verifiers && typeof registry.verifiers === 'object' ? registry.verifiers : {};
-	for (const entry of closure.values()) for (const ref of verifierRefs(entry.manifest)) {
+	const declared = {};
+	const registrySources = {};
+	for (const registry of catalog?.verifierRegistries ?? []) {
+		for (const [id, verifier] of Object.entries(registry?.document?.verifiers ?? {})) {
+			declared[id] = verifier;
+			registrySources[id] = registry.sourcePath;
+		}
+	}
+	const usedVerifierRefs = new Set();
+	for (const entry of closure.values()) for (const ref of guaranteeVerifierRefs(entry.manifest)) {
+		usedVerifierRefs.add(ref);
 		const verifier = declared[ref];
 		if (!verifier) diagnostics.push(diagnostic('guarantee.verifier_undeclared', `${entry.manifest.id} references undeclared verifier ${ref}.`));
 		else if (!['artifact', 'catalogOperation'].includes(String(verifier.kind))) diagnostics.push(diagnostic(
@@ -92,11 +115,33 @@ try {
 			{ ownerPackage: verifier.ownerPackage, sourcePath: verifier.testFile ?? verifier.command ?? verifier.caseId },
 		));
 	}
+	for (const ref of usedVerifierRefs) {
+		const verifier = declared[ref];
+		if (!verifier || !['artifact', 'catalogOperation'].includes(String(verifier.kind))) continue;
+		for (const field of verifier.kind === 'artifact'
+			? ['ownerPackage', 'artifactId', 'entrypoint', 'caseId']
+			: ['ownerPackage', 'operationId', 'caseId']) {
+			if (typeof verifier[field] !== 'string' || !verifier[field].trim()) diagnostics.push(diagnostic(
+				'guarantee.verifier_field_missing', `${ref} is missing required ${field}.`, { verifierRef: ref, field },
+			));
+		}
+		if (!payloadsByPackage.has(verifier.ownerPackage)) diagnostics.push(diagnostic(
+			'guarantee.verifier_payload_missing', `${ref} owner ${verifier.ownerPackage} is not selected as an exact host payload.`,
+			{ verifierRef: ref, ownerPackage: verifier.ownerPackage },
+		));
+		if (verifier.kind === 'artifact' && (verifier.entrypoint.startsWith('/') || verifier.entrypoint.split('/').includes('..'))) diagnostics.push(diagnostic(
+			'guarantee.verifier_entrypoint_unsafe', `${ref} has an unsafe artifact entrypoint.`, { verifierRef: ref, entrypoint: verifier.entrypoint },
+		));
+	}
 
 	const results = [...closure.values()].map((entry) => ({
 		id: String(entry.manifest.id), journey: String(entry.manifest.journey ?? entry.manifest.id), ownerPackage: String(entry.manifest.ownerPackage),
 		type: String(entry.manifest.type), subtype: String(entry.manifest.subtype), status: String(entry.manifest.status), selected: entry.selected,
-		sourcePath: relative(packageRoot, entry.path).replaceAll('\\', '/'), verifierRefs: [...verifierRefs(entry.manifest)].sort(),
+		dependency: !entry.selected, journeyIndex: entry.manifest.journeyIndex, gates: Array.isArray(entry.manifest.gates) ? entry.manifest.gates.map(String) : [],
+		releaseBlocking: entry.manifest.run?.requiredForRelease === true,
+		sourcePath: relative(packageRoot, entry.path).replaceAll('\\', '/'), sceneManifest: entry.manifest.scene?.manifest,
+		sceneVerifierRefs: sceneVerifierRefs(entry.manifest),
+		verifierRefs: [...guaranteeVerifierRefs(entry.manifest)].sort(),
 	})).sort((a, b) => a.id.localeCompare(b.id));
 	const report = {
 		schemaVersion: 'treeseed.guarantee-plan/v1', ok: diagnostics.length === 0,
@@ -104,7 +149,9 @@ try {
 		catalog: { packageName: ownerFilter, version: payload.version, artifact: payload.artifact },
 		filter: { statuses: [...statuses], types: [...types] },
 		counts: { selected: results.filter((entry) => entry.selected).length, withDependencies: results.length, errors: diagnostics.length },
-		results, diagnostics,
+		verifiers: [...usedVerifierRefs].sort().map((ref) => ({ ref, registrySource: registrySources[ref], definition: declared[ref] })),
+		payloads: [...new Set([...usedVerifierRefs].map((ref) => declared[ref]?.ownerPackage).filter(Boolean))].map((packageName) => payloadsByPackage.get(packageName)),
+		entries: results, results, diagnostics,
 	};
 	process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 	process.exitCode = report.ok ? 0 : 1;
