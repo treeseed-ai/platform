@@ -63,11 +63,11 @@ function parseReport(stdout, definition) {
 	return report;
 }
 
-function verifierArgs({ adminPackageRoot } = {}) {
+function verifierArgs({ adminPackageRoot, apiOrigin, mailpitOrigin, adminOrigin } = {}) {
 	const args = [
-		'--api-origin', option('api-origin', 'http://api:3000'),
-		'--mailpit-origin', option('mailpit-origin', 'http://mailpit:8025'),
-		'--admin-origin', option('admin-origin', 'https://admin.treeseed.localhost'),
+		'--api-origin', apiOrigin ?? option('api-origin', 'http://api:3000'),
+		'--mailpit-origin', mailpitOrigin ?? option('mailpit-origin', 'http://mailpit:8025'),
+		'--admin-origin', adminOrigin ?? option('admin-origin', 'https://admin.treeseed.localhost'),
 	];
 	for (const name of ['device', 'scene-artifacts']) if (option(name, '')) args.push(`--${name}`, option(name, ''));
 	if (adminPackageRoot) args.push('--admin-package-root', adminPackageRoot);
@@ -108,7 +108,10 @@ function executeInContainer(definition, container, nodeModules, runId) {
 		child = spawnSync('docker', ['cp', `${nodeModules}/.`, `${container}:${target}/node_modules`], { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
 		if (child.status !== 0) throw new Error(redact(child.stderr));
 		child = spawnSync('docker', ['exec', container, 'node', `${packagePath}/${definition.entrypoint}`,
-			...verifierArgs({ adminPackageRoot: `${target}/node_modules/@treeseed/admin` })], {
+			...verifierArgs({ adminPackageRoot: `${target}/node_modules/@treeseed/admin`,
+				apiOrigin: option('container-api-origin', 'http://api:3000'),
+				mailpitOrigin: option('container-mailpit-origin', 'http://mailpit:8025'),
+				adminOrigin: option('container-admin-origin', 'https://admin.treeseed.localhost') })], {
 			encoding: 'utf8', maxBuffer: 10 * 1024 * 1024,
 		});
 		const report = parseReport(redact(child.stdout), definition);

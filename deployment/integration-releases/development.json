@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc100",
-  "generation": 70,
+  "release": "0.1.0~rc101",
+  "generation": 71,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": { "repository": "treeseed-ai/platform", "commit": "311d02b3cf6cb3b6ff497a6a3367f89a63b9fc6b" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "d984e058221f38d6a327e8a9e2076aa250579477", "tag": "0.1.0-rc.100" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "3908323cd3b04379a13c59fd361ce5c9922a8c67", "tag": "0.1.0-rc.101" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.45", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.45.tgz", "sha256": "26c953c8e38779b67f8084f876dcf4f47cd590bc3e8246731e293e9ac9867c1f" } },
     { "id": "api", "packageName": "@treeseed/api", "version": "0.8.0-rc.45", "artifact": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.45/treeseed-api-0.8.0-rc.45.tgz", "sha256": "9d04ad55dc5031d2420a207e46f36f59bfbe24fd4ccebfb917dd658c7842016e" } },
@@ -13,6 +13,7 @@
     { "id": "core", "packageName": "@treeseed/core", "version": "0.12.60-rc.4", "artifact": { "url": "https://registry.npmjs.org/@treeseed/core/-/core-0.12.60-rc.4.tgz", "sha256": "d12b4bfc89c7784bd7e7db2d672f7e5ac065986a01663fb910c3790dee7c2564" } },
     { "id": "admin", "packageName": "@treeseed/admin", "version": "0.12.59-rc.16", "artifact": { "url": "https://registry.npmjs.org/@treeseed/admin/-/admin-0.12.59-rc.16.tgz", "sha256": "843a5414d08a0758d5717525cc3d202aa807e1c2bcd8a936d8d74d2284c389fe" } },
     { "id": "reviewer", "packageName": "@treeseed/reviewer", "version": "0.1.0-rc.9", "artifact": { "url": "https://github.com/treeseed-ai/reviewer/releases/download/0.1.0-rc.9/treeseed-reviewer-0.1.0-rc.9.tgz", "sha256": "f09730ab09b7d2eb547e978374855bfb83ee8cae76e19e59823169ae4aabafd5" } },
+    { "id": "playwright-core", "packageName": "playwright-core", "version": "1.60.0", "artifact": { "url": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.60.0.tgz", "sha256": "8b1df81ba75e90a41eb5c996350ea7ecc1c915ea643ec55138f91c949c5a25bf" } },
     { "id": "cli", "packageName": "@treeseed/cli", "version": "0.13.0-rc.26", "artifact": { "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.26.tgz", "sha256": "378271976e9e9cf06cbe5cd19c826b65900eff95f2b3e0d5488c273d2c54def7" } },
     { "id": "treedx", "packageName": "@treeseed/treedx", "version": "0.3.0-rc.9", "artifact": { "url": "https://registry.npmjs.org/@treeseed/treedx/-/treedx-0.3.0-rc.9.tgz", "sha256": "892f51d2626d275e966e9271492e3fc6edb62e14eed8020a002b4016a9b262e7" } },
     { "id": "yaml", "packageName": "yaml", "version": "2.9.0", "artifact": { "url": "https://registry.npmjs.org/yaml/-/yaml-2.9.0.tgz", "sha256": "008fa204cb1ba700e0272ba045abbf09a6ffe63456e8146ba97cac6c2ad1ef91" } },
@@ -25,5 +26,5 @@
     { "componentId": "treedx", "release": "0.3.0~rc9-1", "manifest": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/component-release.json", "sha256": "6a4a9d91c4ced612ac4a8c09f9d53e82128e298819b922efe459cde08a11a8cf" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.9/compose.yml", "sha256": "f2fb2013ff2170b299d84c8c2701fc32c0542c5dd4cc5476af322cc75cef8054" } }] },
     { "componentId": "lab", "release": "0.1.0~rc34-1", "manifest": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/component-release.json", "sha256": "553e9bcfd99755a5f55eae2b59da7c3be6c35e9dcb985515bce79ed2d1a399a7" }, "files": [{ "path": "compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.34/compose.yml", "sha256": "ef646932604e580762c1a26a1f6fb973c5d669b141158f6be930f05c5e965115" } }] }
   ],
-  "createdAt": "2026-08-27T10:36:00.000Z"
+  "createdAt": "2026-08-27T11:10:00.000Z"
 }
