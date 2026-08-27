@@ -539,6 +539,10 @@ Verification escalates in cost and authority:
 
 Failure at one level does not erase useful diagnostics from cheaper levels, but cheaper evidence cannot satisfy a more authoritative gate.
 
+Platform plans active guarantees from the guarantee catalog contained in the exact selected Admin tarball. It merges verifier registries in catalog order so a reviewed composition registry can supersede historical source-test references. Every selected verifier must name an artifact or catalog operation, its owning package, case, and safe entrypoint; artifact owners must also be exact host payloads in that composition. Planning fails when any owner or immutable binding is absent.
+
+`npm run guarantees:run` materializes every selected payload by URL and SHA-256 into an isolated package graph, executes each unique verifier artifact once, and maps its case results back to the selected guarantee closure. Runtime verifiers may execute inside their declared managed component container while static package verifiers execute locally from the packed graph. The runner writes an atomic `.treeseed/guarantees/runs/<run-id>` bundle containing `plan.json`, `report.json`, `report.md`, and redacted verifier evidence. Reviewer consumes that bundle; it does not reconstruct source tests or claim evidence from branch state.
+
 ## Independent RC release workflow
 
 TreeSeed uses independently versioned release candidates cut from each project's protected staging branch.
