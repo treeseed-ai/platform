@@ -109,6 +109,14 @@ for (const profileId of ['ai-inference', 'ai-training', 'ai-factory', 'ai-connec
 	const profile = JSON.parse(read(`deployment/profiles/${profileId}.json`));
 	if (profile.schemaVersion !== 'treeseed.platform-profile/v1' || profile.id !== profileId || profile.default !== false) fail(`TreeAI profile ${profileId} must remain explicit and opt-in.`);
 }
+const inferenceProfile = JSON.parse(read('deployment/profiles/ai-inference.json'));
+const trainingProfile = JSON.parse(read('deployment/profiles/ai-training.json'));
+const factoryProfile = JSON.parse(read('deployment/profiles/ai-factory.json'));
+if (inferenceProfile.components?.['ai-inference']?.aliases?.['ai-inference.inference-api.control'] !== 'inference.ai.treeseed.localhost') fail('Inference alias must use the SDK endpoint identity.');
+if (trainingProfile.components?.['ai-training']?.aliases?.['ai-training.training-api.control'] !== 'training.ai.treeseed.localhost') fail('Training alias must use the SDK endpoint identity.');
+if (factoryProfile.components?.['ai-lab']?.aliases?.['ai-lab.open-webui.web'] !== 'chat.ai.treeseed.localhost' || factoryProfile.components?.['ai-lab']?.aliases?.['ai-lab.hermes-dashboard.web'] !== 'hermes.ai.treeseed.localhost') fail('Lab aliases must use SDK endpoint identities.');
+const labConnections = factoryProfile.components?.['ai-lab']?.connections;
+if (JSON.stringify(labConnections?.inference) !== JSON.stringify({ kind: 'local', componentId: 'ai-inference', serviceId: 'inference-api', endpointId: 'inference' }) || JSON.stringify(labConnections?.training) !== JSON.stringify({ kind: 'local', componentId: 'ai-training', serviceId: 'training-api', endpointId: 'control' })) fail('AI lab must declare its required local inference and training connections.');
 
 const stableIntegration = JSON.parse(read('deployment/integration-releases/stable.json'));
 const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));

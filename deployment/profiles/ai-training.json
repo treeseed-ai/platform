@@ -4,7 +4,7 @@
   "default": false,
   "components": {
     "ai-inference": { "enabled": false },
-    "ai-training": { "enabled": true, "track": "development", "aliases": { "training-api.http": "training.ai.treeseed.localhost" } },
+    "ai-training": { "enabled": true, "track": "development", "aliases": { "ai-training.training-api.control": "training.ai.treeseed.localhost" } },
     "ai-lab": { "enabled": false }
   }
 }
