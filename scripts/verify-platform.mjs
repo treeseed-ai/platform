@@ -11,6 +11,8 @@ const rootPackage = JSON.parse(read('package.json'));
 if ('workspaces' in rootPackage) fail('Platform must not treat independent project repositories as npm workspaces.');
 if (existsSync(resolve(root, 'package-lock.json'))) fail('Platform must not create a root package lock; each project repository owns its lock independently.');
 execFileSync(process.execPath, [resolve(root, 'scripts/verify-treeseed-skill.mjs')], { cwd: root, stdio: 'inherit' });
+execFileSync(process.execPath, [resolve(root, 'scripts/test-composition-guarantee-plan.mjs')], { cwd: root, stdio: 'inherit' });
+execFileSync(process.execPath, [resolve(root, 'scripts/test-composition-guarantee-run.mjs')], { cwd: root, stdio: 'inherit' });
 if (existsSync(resolve(root, '.gitmodules'))) fail('Platform must not encode team inventory as gitlinks.');
 if (existsSync(resolve(root, 'treeseed.portfolio.json'))) fail('Platform must read live team inventory from its portable seed bundle.');
 const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding: 'utf8' });
