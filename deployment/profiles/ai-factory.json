@@ -3,8 +3,26 @@
   "id": "ai-factory",
   "default": false,
   "components": {
-    "ai-inference": { "enabled": true, "track": "development", "aliases": { "ai-inference.inference-api.control": "inference.ai.treeseed.localhost" } },
-    "ai-training": { "enabled": true, "track": "development", "aliases": { "ai-training.training-api.control": "training.ai.treeseed.localhost" } },
+    "ai-inference": {
+      "enabled": true,
+      "track": "development",
+      "aliases": { "ai-inference.inference-api.control": "inference.ai.treeseed.localhost" },
+      "configuration": { "secretEnvironment": {
+        "INFERENCE_DATABASE_URL": "ai-inference-database-url",
+        "INFERENCE_POSTGRES_PASSWORD": "ai-inference-postgres-password",
+        "AI_API_KEYS": "ai-inference-api-keys"
+      } }
+    },
+    "ai-training": {
+      "enabled": true,
+      "track": "development",
+      "aliases": { "ai-training.training-api.control": "training.ai.treeseed.localhost" },
+      "configuration": { "secretEnvironment": {
+        "TRAINING_DATABASE_URL": "ai-training-database-url",
+        "TRAINING_POSTGRES_PASSWORD": "ai-training-postgres-password",
+        "AI_API_KEYS": "ai-training-api-keys"
+      } }
+    },
     "ai-lab": {
       "enabled": true,
       "track": "development",
@@ -15,7 +33,27 @@
       "connections": {
         "inference": { "kind": "local", "componentId": "ai-inference", "serviceId": "inference-api", "endpointId": "inference" },
         "training": { "kind": "local", "componentId": "ai-training", "serviceId": "training-api", "endpointId": "control" }
-      }
+      },
+      "configuration": { "secretEnvironment": { "AI_LAB_API_KEYS": "ai-lab-api-keys" } }
     }
+  },
+  "secrets": {
+    "ai-inference-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-database-url" },
+    "ai-inference-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-postgres-password" },
+    "ai-inference-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-api-keys" },
+    "ai-training-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-training-database-url" },
+    "ai-training-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-training-postgres-password" },
+    "ai-training-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-training-api-keys" },
+    "artifact-signing-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-artifact-signing-key" },
+    "ai-lab-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-api-keys" },
+    "training-source": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-training-source" },
+    "factory-control-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-factory-control-key" },
+    "factory-inference-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-factory-inference-key" },
+    "factory-training-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-factory-training-key" },
+    "hermes-api-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-hermes-api-key" },
+    "hermes-password-hash": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-hermes-password-hash" },
+    "hermes-session-secret": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-hermes-session-secret" },
+    "training-ingest-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-training-ingest-key" },
+    "lab-library-action-key": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-lab-lab-library-action-key" }
   }
 }
