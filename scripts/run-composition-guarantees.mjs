@@ -63,17 +63,19 @@ function parseReport(stdout, definition) {
 	return report;
 }
 
-function verifierArgs() {
+function verifierArgs({ adminPackageRoot } = {}) {
 	const args = [
 		'--api-origin', option('api-origin', 'http://api:3000'),
 		'--mailpit-origin', option('mailpit-origin', 'http://mailpit:8025'),
 		'--admin-origin', option('admin-origin', 'https://admin.treeseed.localhost'),
 	];
 	for (const name of ['device', 'scene-artifacts']) if (option(name, '')) args.push(`--${name}`, option(name, ''));
+	if (adminPackageRoot) args.push('--admin-package-root', adminPackageRoot);
+	args.push('--device-profile', option('device', 'desktop_chromium'));
 	return args;
 }
 
-async function executeLocal(definition, packageRoot) {
+async function executeLocal(definition, packageRoot, roots) {
 	const entrypoint = resolve(packageRoot, definition.entrypoint);
 	if (!entrypoint.startsWith(`${packageRoot}/`) || !existsSync(entrypoint)) throw new Error(`Missing safe entrypoint ${definition.entrypoint}.`);
 	if (definition.exportName) {
@@ -82,7 +84,7 @@ async function executeLocal(definition, packageRoot) {
 		const report = await module[definition.exportName]();
 		return { report: parseReport(JSON.stringify(report), definition), execution: { mode: 'local-export' } };
 	}
-	const child = spawnSync(process.execPath, [entrypoint, ...verifierArgs()], { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
+	const child = spawnSync(process.execPath, [entrypoint, ...verifierArgs({ adminPackageRoot: roots.get('@treeseed/admin') })], { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
 	const report = parseReport(redact(child.stdout), definition);
 	if (child.status !== 0 && report.ok) throw new Error(`${definition.artifactId} exited ${child.status}: ${redact(child.stderr)}`);
 	return { report, execution: { mode: 'local-process', exitCode: child.status } };
@@ -105,7 +107,8 @@ function executeInContainer(definition, container, nodeModules, runId) {
 		if (child.status !== 0) throw new Error(redact(child.stderr));
 		child = spawnSync('docker', ['cp', `${nodeModules}/.`, `${container}:${target}/node_modules`], { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
 		if (child.status !== 0) throw new Error(redact(child.stderr));
-		child = spawnSync('docker', ['exec', container, 'node', `${packagePath}/${definition.entrypoint}`, ...verifierArgs()], {
+		child = spawnSync('docker', ['exec', container, 'node', `${packagePath}/${definition.entrypoint}`,
+			...verifierArgs({ adminPackageRoot: `${target}/node_modules/@treeseed/admin` })], {
 			encoding: 'utf8', maxBuffer: 10 * 1024 * 1024,
 		});
 		const report = parseReport(redact(child.stdout), definition);
@@ -156,7 +159,7 @@ try {
 					const container = containers.get(definition.ownerPackage);
 					const executed = container
 						? executeInContainer(definition, container, nodeModules, runId)
-						: await executeLocal(definition, roots.get(definition.ownerPackage));
+						: await executeLocal(definition, roots.get(definition.ownerPackage), roots);
 					executions.set(key, executed);
 				} catch (error) {
 					executions.set(key, { error: redact(error instanceof Error ? error.message : error), execution: { mode: 'failed' } });
