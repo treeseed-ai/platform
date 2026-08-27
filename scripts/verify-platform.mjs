@@ -94,10 +94,10 @@ if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
 
 const treeAiInputs = JSON.parse(read('deployment/treeai-component-inputs.json'));
-if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc2' || !/^[a-f0-9]{40}$/u.test(treeAiInputs.sourceCommit)) fail('TreeAI component inputs must identify the exact independent RC source.');
-if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc2 artifact.');
+if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc3' || treeAiInputs.sourceCommit !== 'dd6450f4eba43b0886cfa631c60f7b9058c494b9') fail('TreeAI component inputs must identify the exact independent RC source.');
+if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc3 artifact.');
 if (treeAiInputs.contracts?.operationInventorySha256 !== 'dc60eb514e11a4b867b3353830d886205df6254c7c4ecfab9a06b1b4dcb4e1fc') fail('TreeAI operation inventory digest is not the adopted release.');
-if (treeAiInputs.contracts?.treeSeedSdk?.version !== '0.13.0-rc.48' || treeAiInputs.contracts.treeSeedSdk.sha256 !== '8d97c3c4efc3661e6e447714506fec1d0479207e15259f1b60cc784a28e8675e') fail('TreeSeed SDK must bind the published TreeAI adoption RC.');
+if (treeAiInputs.contracts?.treeSeedSdk?.version !== '0.13.0-rc.49' || treeAiInputs.contracts.treeSeedSdk.sha256 !== 'e71fa1444d442605fc1c79a14ab26887b4e71745b01de76c07611bf922dcabca') fail('TreeSeed SDK must bind the published TreeAI adoption RC.');
 if (treeAiInputs.contracts?.api?.version !== '0.8.0-rc.49' || treeAiInputs.contracts.api.sha256 !== '1fa497f2c0cf2f0e05d148f6fd903765f6b8d2558dbfd6f4514aa6cf13423037') fail('TreeSeed API must bind the SDK-driven TreeAI proxy RC.');
 if (treeAiInputs.contracts?.cli?.version !== '0.13.0-rc.29' || treeAiInputs.contracts.cli.sha256 !== '20e041d25d827807b7609354f5a60471fd1f903b23705135e525bd9fbaf27325') fail('TreeSeed CLI must bind the SDK-driven TreeAI command RC.');
 if (JSON.stringify(treeAiInputs.components?.map(({ componentId }) => componentId)) !== JSON.stringify(['ai-inference', 'ai-training', 'ai-lab'])) fail('TreeAI component inputs must preserve inference, training, and lab ownership order.');
@@ -117,6 +117,11 @@ if (trainingProfile.components?.['ai-training']?.aliases?.['ai-training.training
 if (factoryProfile.components?.['ai-lab']?.aliases?.['ai-lab.open-webui.web'] !== 'chat.ai.treeseed.localhost' || factoryProfile.components?.['ai-lab']?.aliases?.['ai-lab.hermes-dashboard.web'] !== 'hermes.ai.treeseed.localhost') fail('Lab aliases must use SDK endpoint identities.');
 const labConnections = factoryProfile.components?.['ai-lab']?.connections;
 if (JSON.stringify(labConnections?.inference) !== JSON.stringify({ kind: 'local', componentId: 'ai-inference', serviceId: 'inference-api', endpointId: 'inference' }) || JSON.stringify(labConnections?.training) !== JSON.stringify({ kind: 'local', componentId: 'ai-training', serviceId: 'training-api', endpointId: 'control' })) fail('AI lab must declare its required local inference and training connections.');
+const connectedProfile = JSON.parse(read('deployment/profiles/ai-connected.json'));
+const treeAiNodes = JSON.parse(connectedProfile.components?.api?.configuration?.environment?.TREESEED_TREEAI_NODES ?? '{}');
+const treeAiEndpoints = treeAiNodes['local-ai']?.endpoints;
+if (treeAiEndpoints?.lab !== 'http://controller:8081') fail('Connected AI must address the released lab controller service and port.');
+if ('qualification' in (treeAiEndpoints ?? {})) fail('Connected AI must not advertise the retired TreeAI host manager as a qualification endpoint.');
 
 const stableIntegration = JSON.parse(read('deployment/integration-releases/stable.json'));
 const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));

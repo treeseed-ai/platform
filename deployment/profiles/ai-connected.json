@@ -7,7 +7,7 @@
     "api": {
       "enabled": true,
       "configuration": {
-        "environment": { "TREESEED_TREEAI_NODES": "{\"local-ai\":{\"endpoints\":{\"inference\":\"http://inference-api:4770\",\"training\":\"http://training-api:4780\",\"lab\":\"http://lab-controller:4793\",\"qualification\":\"http://manager:4790\"},\"tokenEnvironment\":\"TREESEED_TREEAI_OPERATOR_TOKEN\"}}" },
+        "environment": { "TREESEED_TREEAI_NODES": "{\"local-ai\":{\"endpoints\":{\"inference\":\"http://inference-api:4770\",\"training\":\"http://training-api:4780\",\"lab\":\"http://controller:8081\"},\"tokenEnvironment\":\"TREESEED_TREEAI_OPERATOR_TOKEN\"}}" },
         "secretEnvironment": { "TREESEED_TREEAI_OPERATOR_TOKEN": "treeai-operator-token" }
       }
     }
