@@ -12,6 +12,10 @@ function option(name, fallback) {
 	return index >= 0 ? process.argv[index + 1] : fallback;
 }
 
+function csvOption(name) {
+	return new Set(String(option(name, '')).split(',').map((entry) => entry.trim()).filter(Boolean));
+}
+
 function verifierRefs(value, out = new Set()) {
 	if (Array.isArray(value)) for (const entry of value) verifierRefs(entry, out);
 	else if (value && typeof value === 'object') for (const [key, entry] of Object.entries(value)) {
@@ -65,6 +69,12 @@ const releasePath = resolve(root, option('release', 'deployment/integration-rele
 const ownerFilter = option('owner-package', '@treeseed/admin');
 const types = new Set(String(option('types', 'user,team')).split(',').map((entry) => entry.trim()).filter(Boolean));
 const statuses = new Set(String(option('statuses', 'active')).split(',').map((entry) => entry.trim()).filter(Boolean));
+const guaranteeOwners = csvOption('guarantee-owner-package');
+const subtypes = csvOption('subtypes');
+const gates = csvOption('gates');
+const ids = csvOption('ids');
+const journeyIndexes = csvOption('journey-indexes');
+const includeDependencies = !process.argv.includes('--no-dependencies');
 const release = JSON.parse(readFileSync(releasePath, 'utf8'));
 const payload = release.hostPayloads?.find((entry) => entry.packageName === ownerFilter);
 if (!payload) throw new Error(`Composition ${release.release} does not select ${ownerFilter}.`);
@@ -86,10 +96,15 @@ try {
 	if (catalog && catalog.schemaVersion !== 'treeseed.guarantee-catalog/v1') diagnostics.push(diagnostic('guarantee.invalid_catalog', 'Packed guarantee catalog has an unsupported schema version.'));
 	const loaded = Array.isArray(catalog?.guarantees) ? catalog.guarantees.map((entry) => ({ path: resolve(packageRoot, entry.sourcePath), manifest: entry.manifest })) : [];
 	const byId = new Map(loaded.map((entry) => [String(entry.manifest.id ?? ''), entry]));
-	const selected = loaded.filter((entry) => statuses.has(String(entry.manifest.status)) && types.has(String(entry.manifest.type)));
+	const selected = loaded.filter((entry) => statuses.has(String(entry.manifest.status)) && types.has(String(entry.manifest.type))
+		&& (!guaranteeOwners.size || guaranteeOwners.has(String(entry.manifest.ownerPackage)))
+		&& (!subtypes.size || subtypes.has(String(entry.manifest.subtype)))
+		&& (!gates.size || (entry.manifest.gates ?? []).some((gate) => gates.has(String(gate))))
+		&& (!ids.size || ids.has(String(entry.manifest.id)))
+		&& (!journeyIndexes.size || journeyIndexes.has(String(entry.manifest.journeyIndex))));
 	const closure = new Map(selected.map((entry) => [String(entry.manifest.id), { ...entry, selected: true }]));
 	const queue = [...selected];
-	while (queue.length) for (const dependency of dependencyIds(queue.shift().manifest)) {
+	while (includeDependencies && queue.length) for (const dependency of dependencyIds(queue.shift().manifest)) {
 		if (closure.has(dependency)) continue;
 		const found = byId.get(dependency);
 		if (!found) diagnostics.push(diagnostic('guarantee.dependency_missing', `Guarantee dependency ${dependency} is absent from the packed catalog.`));
@@ -147,7 +162,7 @@ try {
 		schemaVersion: 'treeseed.guarantee-plan/v1', ok: diagnostics.length === 0,
 		composition: { release: release.release, generation: release.generation, track: release.track },
 		catalog: { packageName: ownerFilter, version: payload.version, artifact: payload.artifact },
-		filter: { statuses: [...statuses], types: [...types] },
+		filter: { statuses: [...statuses], types: [...types], guaranteeOwners: [...guaranteeOwners], subtypes: [...subtypes], gates: [...gates], ids: [...ids], journeyIndexes: [...journeyIndexes], includeDependencies },
 		counts: { selected: results.filter((entry) => entry.selected).length, withDependencies: results.length, errors: diagnostics.length },
 		verifiers: [...usedVerifierRefs].sort().map((ref) => ({ ref, registrySource: registrySources[ref], definition: declared[ref] })),
 		payloads: [...new Set([...usedVerifierRefs].map((ref) => declared[ref]?.ownerPackage).filter(Boolean))].map((packageName) => payloadsByPackage.get(packageName)),

@@ -45,8 +45,8 @@ function fixture(name, withCatalog) {
 	return release;
 }
 
-function run(release) {
-	const result = spawnSync(process.execPath, ['scripts/plan-composition-guarantees.mjs', '--release', release], { cwd: root, encoding: 'utf8' });
+function run(release, args = []) {
+	const result = spawnSync(process.execPath, ['scripts/plan-composition-guarantees.mjs', '--release', release, ...args], { cwd: root, encoding: 'utf8' });
 	return { ...result, report: JSON.parse(result.stdout) };
 }
 
@@ -58,12 +58,16 @@ try {
 	assert.equal(accepted.report.verifiers.length, 2);
 	assert.equal(accepted.report.verifiers[0].registrySource, 'guarantees/verifiers/composition.verifiers.yaml');
 	assert.equal(accepted.report.verifiers[0].definition.kind, 'artifact');
+	const focused = run(fixture('focused', true), ['--ids', 'guarantee.user.auth.example.001', '--no-dependencies']);
+	assert.equal(focused.status, 0);
+	assert.equal(focused.report.filter.includeDependencies, false);
+	assert.deepEqual(focused.report.filter.ids, ['guarantee.user.auth.example.001']);
 
 	const missing = run(fixture('missing', false));
 	assert.equal(missing.status, 1);
 	assert.equal(missing.report.ok, false);
 	assert.equal(missing.report.diagnostics[0].code, 'guarantee.catalog_missing_from_artifact');
-	process.stdout.write(`${JSON.stringify({ ok: true, cases: 2 })}\n`);
+	process.stdout.write(`${JSON.stringify({ ok: true, cases: 3 })}\n`);
 } finally {
 	rmSync(temporary, { recursive: true, force: true });
 }

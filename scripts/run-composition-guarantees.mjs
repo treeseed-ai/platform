@@ -64,11 +64,13 @@ function parseReport(stdout, definition) {
 }
 
 function verifierArgs() {
-	return [
+	const args = [
 		'--api-origin', option('api-origin', 'http://api:3000'),
 		'--mailpit-origin', option('mailpit-origin', 'http://mailpit:8025'),
 		'--admin-origin', option('admin-origin', 'https://admin.treeseed.localhost'),
 	];
+	for (const name of ['device', 'scene-artifacts']) if (option(name, '')) args.push(`--${name}`, option(name, ''));
+	return args;
 }
 
 async function executeLocal(definition, packageRoot) {
@@ -126,8 +128,11 @@ const runId = option('run-id', `${new Date().toISOString().replace(/[:.]/gu, '-'
 const startedAt = new Date().toISOString();
 if (!/^[A-Za-z0-9_.-]+$/u.test(runId)) throw new Error('Run ID must be filesystem and container safe.');
 const release = JSON.parse(readFileSync(releasePath, 'utf8'));
-const planner = spawnSync(process.execPath, [resolve(root, 'scripts/plan-composition-guarantees.mjs'), '--release', releasePath,
-	'--owner-package', option('owner-package', '@treeseed/admin'), '--types', option('types', 'user,team'), '--statuses', option('statuses', 'active')],
+const plannerArgs = [resolve(root, 'scripts/plan-composition-guarantees.mjs'), '--release', releasePath,
+	'--owner-package', option('owner-package', '@treeseed/admin'), '--types', option('types', 'user,team'), '--statuses', option('statuses', 'active')];
+for (const name of ['guarantee-owner-package', 'subtypes', 'gates', 'ids', 'journey-indexes']) if (option(name, '')) plannerArgs.push(`--${name}`, option(name, ''));
+if (process.argv.includes('--no-dependencies')) plannerArgs.push('--no-dependencies');
+const planner = spawnSync(process.execPath, plannerArgs,
 	{ cwd: root, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
 const plan = JSON.parse(planner.stdout);
 const finalRoot = resolve(outputRoot, runId);
