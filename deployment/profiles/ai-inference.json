@@ -19,6 +19,8 @@
   "secrets": {
     "ai-inference-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-database-url" },
     "ai-inference-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-postgres-password" },
-    "ai-inference-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-api-keys" }
+    "ai-inference-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-api-keys" },
+    "artifact-source-registry": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-artifact-source" },
+    "artifact-destination-registry": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-artifact-destination" }
   }
 }
