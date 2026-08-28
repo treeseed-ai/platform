@@ -12,7 +12,7 @@ const temporary = mkdtempSync(resolve(tmpdir(), 'treeseed-guarantee-run-test-'))
 try {
 	const packageRoot = resolve(temporary, 'source/package');
 	mkdirSync(resolve(packageRoot, 'dist/standards'), { recursive: true });
-	writeFileSync(resolve(packageRoot, 'dist/verifier.js'), `#!/usr/bin/env node\nprocess.stdout.write(JSON.stringify({schemaVersion:'treeseed.guarantee-verifier-result/v1',verifierId:'fixture',startedAt:new Date().toISOString(),completedAt:new Date().toISOString(),ok:true,checks:[{id:'fixture.case',status:'passed',durationMs:1}]}));\n`);
+	writeFileSync(resolve(packageRoot, 'dist/verifier.js'), `#!/usr/bin/env node\nconst fs=require('node:fs'); const value=name=>{const index=process.argv.indexOf('--'+name); return process.argv[index+1]}; const evidenceRoot=value('evidence-root'); fs.mkdirSync(evidenceRoot,{recursive:true}); fs.writeFileSync(evidenceRoot+'/marker.json',JSON.stringify({runId:value('run-id')})); process.stdout.write(JSON.stringify({schemaVersion:'treeseed.guarantee-verifier-result/v1',verifierId:'fixture',startedAt:new Date().toISOString(),completedAt:new Date().toISOString(),ok:true,checks:[{id:'desktop_chromium:fixture.case',status:'passed',durationMs:1}]}));\n`);
 	writeFileSync(resolve(packageRoot, 'dist/standards/guarantee-catalog.json'), JSON.stringify({
 		schemaVersion: 'treeseed.guarantee-catalog/v1', package: { name: '@treeseed/admin', version: '1.0.0-rc.1' },
 		guarantees: [{ sourcePath: 'guarantees/example.guarantee.yaml', manifest: {
@@ -42,6 +42,9 @@ try {
 	assert.equal(report.environment, 'local');
 	assert.equal(report.results[0].steps[0].status, 'passed');
 	assert.equal(report.results[0].checks[0].caseId, 'fixture.case');
+	assert.equal(report.results[0].checks[0].evidenceCheckId, 'desktop_chromium:fixture.case');
+	const executionKey = report.verifiers[0].executionKey;
+	assert.deepEqual(JSON.parse(readFileSync(resolve(summary.runRoot, 'evidence', `${executionKey}-assets/marker.json`), 'utf8')), { runId: 'fixture-run' });
 	assert.equal(report.payloads[0].artifact.sha256, digest);
 	process.stdout.write(`${JSON.stringify({ ok: true, cases: 1 })}\n`);
 } finally {

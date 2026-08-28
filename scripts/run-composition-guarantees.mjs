@@ -63,19 +63,28 @@ function parseReport(stdout, definition) {
 	return report;
 }
 
-function verifierArgs({ adminPackageRoot, apiOrigin, mailpitOrigin, adminOrigin } = {}) {
+function verifierCheck(report, caseId) {
+	const exact = report?.checks?.find((candidate) => candidate.id === caseId);
+	if (exact) return exact;
+	const scoped = report?.checks?.filter((candidate) => candidate.id.endsWith(`:${caseId}`)) ?? [];
+	return scoped.length === 1 ? scoped[0] : undefined;
+}
+
+function verifierArgs({ adminPackageRoot, apiOrigin, mailpitOrigin, adminOrigin, runId, evidenceRoot } = {}) {
 	const args = [
 		'--api-origin', apiOrigin ?? option('api-origin', 'http://api:3000'),
 		'--mailpit-origin', mailpitOrigin ?? option('mailpit-origin', 'http://mailpit:8025'),
 		'--admin-origin', adminOrigin ?? option('admin-origin', 'https://admin.treeseed.localhost'),
 	];
+	if (runId) args.push('--run-id', runId);
+	if (evidenceRoot) args.push('--evidence-root', evidenceRoot);
 	for (const name of ['device', 'scene-artifacts']) if (option(name, '')) args.push(`--${name}`, option(name, ''));
 	if (adminPackageRoot) args.push('--admin-package-root', adminPackageRoot);
 	args.push('--device-profile', option('device', 'desktop_chromium'));
 	return args;
 }
 
-async function executeLocal(definition, packageRoot, roots) {
+async function executeLocal(definition, packageRoot, roots, correlatedRunId, evidenceRoot) {
 	const entrypoint = resolve(packageRoot, definition.entrypoint);
 	if (!entrypoint.startsWith(`${packageRoot}/`) || !existsSync(entrypoint)) throw new Error(`Missing safe entrypoint ${definition.entrypoint}.`);
 	if (definition.exportName) {
@@ -84,7 +93,7 @@ async function executeLocal(definition, packageRoot, roots) {
 		const report = await module[definition.exportName]();
 		return { report: parseReport(JSON.stringify(report), definition), execution: { mode: 'local-export' } };
 	}
-	const child = spawnSync(process.execPath, [entrypoint, ...verifierArgs({ adminPackageRoot: roots.get('@treeseed/admin') })], { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
+	const child = spawnSync(process.execPath, [entrypoint, ...verifierArgs({ adminPackageRoot: roots.get('@treeseed/admin'), runId: correlatedRunId, evidenceRoot })], { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 });
 	const report = parseReport(redact(child.stdout), definition);
 	if (child.status !== 0 && report.ok) throw new Error(`${definition.artifactId} exited ${child.status}: ${redact(child.stderr)}`);
 	return { report, execution: { mode: 'local-process', exitCode: child.status } };
@@ -111,7 +120,7 @@ function executeInContainer(definition, container, nodeModules, runId) {
 			...verifierArgs({ adminPackageRoot: `${target}/node_modules/@treeseed/admin`,
 				apiOrigin: option('container-api-origin', 'http://api:3000'),
 				mailpitOrigin: option('container-mailpit-origin', 'http://mailpit:8025'),
-				adminOrigin: option('container-admin-origin', 'https://admin.treeseed.localhost') })], {
+				adminOrigin: option('container-admin-origin', 'https://admin.treeseed.localhost'), runId })], {
 			encoding: 'utf8', maxBuffer: 10 * 1024 * 1024,
 		});
 		const report = parseReport(redact(child.stdout), definition);
@@ -156,20 +165,21 @@ try {
 		for (const verifier of plan.verifiers) {
 			const definition = verifier.definition;
 			const key = JSON.stringify([definition.kind, definition.ownerPackage, definition.artifactId, definition.entrypoint, definition.exportName]);
+			const executionKey = createHash('sha256').update(key).digest('hex').slice(0, 16);
 			if (!executions.has(key)) {
 				try {
 					if (definition.kind !== 'artifact') throw new Error(`Catalog operation execution is not configured for ${verifier.ref}.`);
 					const container = containers.get(definition.ownerPackage);
 					const executed = container
 						? executeInContainer(definition, container, nodeModules, runId)
-						: await executeLocal(definition, roots.get(definition.ownerPackage), roots);
+						: await executeLocal(definition, roots.get(definition.ownerPackage), roots, runId, resolve(stagingRoot, 'evidence', `${executionKey}-assets`));
 					executions.set(key, executed);
 				} catch (error) {
 					executions.set(key, { error: redact(error instanceof Error ? error.message : error), execution: { mode: 'failed' } });
 				}
 			}
 			const executed = executions.get(key);
-			verifier.executionKey = createHash('sha256').update(key).digest('hex').slice(0, 16);
+			verifier.executionKey = executionKey;
 			verifier.execution = executed.execution;
 			verifier.error = executed.error;
 			verifier.report = executed.report;
@@ -180,8 +190,8 @@ try {
 	const results = plan.results.map((entry) => {
 		const checks = entry.verifierRefs.map((ref) => {
 			const verifier = verifierByRef.get(ref), definition = verifier?.definition;
-			const check = verifier?.report?.checks?.find((candidate) => candidate.id === definition?.caseId);
-			return { ref, caseId: definition?.caseId, status: check?.status ?? 'blocked', error: verifier?.error ?? check?.error };
+			const check = verifierCheck(verifier?.report, definition?.caseId);
+			return { ref, caseId: definition?.caseId, evidenceCheckId: check?.id, status: check?.status ?? 'blocked', error: verifier?.error ?? check?.error };
 		});
 		const status = checks.some((check) => check.status === 'failed') ? 'failed'
 			: checks.length > 0 && checks.every((check) => check.status === 'passed') ? 'passed' : 'blocked';
