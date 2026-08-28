@@ -94,12 +94,12 @@ if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
 
 const treeAiInputs = JSON.parse(read('deployment/treeai-component-inputs.json'));
-if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc4' || treeAiInputs.sourceCommit !== 'd5ea430d4f297a44f002f12e6b6daa53b21ad66a') fail('TreeAI component inputs must identify the exact independent RC source.');
-if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc4 artifact.');
+if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc6' || treeAiInputs.sourceCommit !== '7a5d590a8eeeb0b61173ae6a206aea7e4e24266c') fail('TreeAI component inputs must identify the exact independent RC source.');
+if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc6 artifact.');
 if (treeAiInputs.contracts?.operationInventorySha256 !== 'dc60eb514e11a4b867b3353830d886205df6254c7c4ecfab9a06b1b4dcb4e1fc') fail('TreeAI operation inventory digest is not the adopted release.');
-if (treeAiInputs.contracts?.treeSeedSdk?.version !== '0.13.0-rc.51' || treeAiInputs.contracts.treeSeedSdk.sha256 !== 'b3fc58a42bac9f3c635b933423066d580e87ddb79ea97c8aa9181f7000765e89') fail('TreeSeed SDK must bind the published TreeAI adoption RC.');
+if (treeAiInputs.contracts?.treeSeedSdk?.version !== '0.13.0-rc.52' || treeAiInputs.contracts.treeSeedSdk.sha256 !== '2ae7abe16f23c6471d8844973720e7d821a3185fbdb97e1ffce5988f042cf2cc') fail('TreeSeed SDK must bind the published TreeAI adoption RC.');
 if (treeAiInputs.contracts?.api?.version !== '0.8.0-rc.49' || treeAiInputs.contracts.api.sha256 !== '1fa497f2c0cf2f0e05d148f6fd903765f6b8d2558dbfd6f4514aa6cf13423037') fail('TreeSeed API must bind the SDK-driven TreeAI proxy RC.');
-if (treeAiInputs.contracts?.cli?.version !== '0.13.0-rc.29' || treeAiInputs.contracts.cli.sha256 !== '20e041d25d827807b7609354f5a60471fd1f903b23705135e525bd9fbaf27325') fail('TreeSeed CLI must bind the SDK-driven TreeAI command RC.');
+if (treeAiInputs.contracts?.cli?.version !== '0.13.0-rc.30' || treeAiInputs.contracts.cli.sha256 !== 'a57056e368c49015d355caccb00d57b7e0ea4487286ebbb291e7b11b963931e7') fail('TreeSeed CLI must bind the SDK-driven TreeAI command RC.');
 if (JSON.stringify(treeAiInputs.components?.map(({ componentId }) => componentId)) !== JSON.stringify(['ai-inference', 'ai-training', 'ai-lab'])) fail('TreeAI component inputs must preserve inference, training, and lab ownership order.');
 for (const component of treeAiInputs.components) {
 	if (!/^https:\/\/github\.com\/treeseed-ai\/ai\/releases\/download\//u.test(component.manifest?.url)
@@ -138,10 +138,11 @@ verifyInputCustody(factoryProfile, 'ai-inference');
 verifyInputCustody(factoryProfile, 'ai-training');
 if (JSON.stringify(factoryProfile.components?.['ai-lab']?.configuration?.secretEnvironment) !== JSON.stringify({ AI_LAB_API_KEYS: 'ai-lab-api-keys' })) fail('AI factory does not bind the lab API credential environment.');
 const labSecretPaths = {
-	'ai-lab-api-keys': '/etc/treeseed/credentials/ai-lab-api-keys', 'training-source': '/etc/treeseed/credentials/ai-lab-training-source', 'factory-control-key': '/etc/treeseed/credentials/ai-lab-factory-control-key',
+	'ai-lab-api-keys': '/etc/treeseed/credentials/ai-lab-api-keys', 'training-source': '/etc/treeseed/credentials/ai-lab-training-source',
 	'factory-inference-key': '/etc/treeseed/credentials/ai-lab-factory-inference-key', 'factory-training-key': '/etc/treeseed/credentials/ai-lab-factory-training-key', 'hermes-api-key': '/etc/treeseed/credentials/ai-lab-hermes-api-key',
 	'hermes-password-hash': '/etc/treeseed/credentials/ai-lab-hermes-password-hash', 'hermes-session-secret': '/etc/treeseed/credentials/ai-lab-hermes-session-secret', 'training-ingest-key': '/etc/treeseed/credentials/ai-lab-training-ingest-key',
-	'lab-library-action-key': '/etc/treeseed/credentials/ai-lab-lab-library-action-key',
+	'lab-library-action-key': '/etc/treeseed/credentials/ai-lab-lab-library-action-key', 'ai-mode-ca': '/etc/treeseed/credentials/ai-mode-ca.crt',
+	'ai-mode-client-cert': '/etc/treeseed/credentials/ai-mode-client.crt', 'ai-mode-client-key': '/etc/treeseed/credentials/ai-mode-client.key',
 };
 for (const [id, reference] of Object.entries(labSecretPaths)) if (factoryProfile.secrets?.[id]?.provider !== 'file' || factoryProfile.secrets[id].reference !== reference) fail(`AI factory does not bind ${id} to the released lab custody path.`);
 if (factoryProfile.components?.['ai-lab']?.configuration?.environment?.RUNTIME_GID !== undefined) fail('Platform must leave RUNTIME_GID under manager-derived custody.');
