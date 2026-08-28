@@ -94,8 +94,8 @@ if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
 
 const treeAiInputs = JSON.parse(read('deployment/treeai-component-inputs.json'));
-if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc8' || treeAiInputs.sourceCommit !== '0ab34e98d10601d62dadc547b2d7ed4492a994cd') fail('TreeAI component inputs must identify the exact independent RC source.');
-if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc8 artifact.');
+if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc9' || treeAiInputs.sourceCommit !== '92c7b2edc73416d77c5c0a6789ef73dba71ddf92') fail('TreeAI component inputs must identify the exact independent RC source.');
+if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc9 artifact.');
 if (treeAiInputs.contracts?.operationInventorySha256 !== 'dc60eb514e11a4b867b3353830d886205df6254c7c4ecfab9a06b1b4dcb4e1fc') fail('TreeAI operation inventory digest is not the adopted release.');
 if (treeAiInputs.contracts?.treeSeedSdk?.version !== '0.13.0-rc.52' || treeAiInputs.contracts.treeSeedSdk.sha256 !== '2ae7abe16f23c6471d8844973720e7d821a3185fbdb97e1ffce5988f042cf2cc') fail('TreeSeed SDK must bind the published TreeAI adoption RC.');
 if (treeAiInputs.contracts?.api?.version !== '0.8.0-rc.49' || treeAiInputs.contracts.api.sha256 !== '1fa497f2c0cf2f0e05d148f6fd903765f6b8d2558dbfd6f4514aa6cf13423037') fail('TreeSeed API must bind the SDK-driven TreeAI proxy RC.');
