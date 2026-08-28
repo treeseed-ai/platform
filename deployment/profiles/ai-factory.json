@@ -41,6 +41,8 @@
     "ai-inference-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-database-url" },
     "ai-inference-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-postgres-password" },
     "ai-inference-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-api-keys" },
+    "artifact-source-registry": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-artifact-source" },
+    "artifact-destination-registry": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-artifact-destination" },
     "ai-training-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-training-database-url" },
     "ai-training-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-training-postgres-password" },
     "ai-training-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-training-api-keys" },
