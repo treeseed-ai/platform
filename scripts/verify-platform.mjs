@@ -155,7 +155,10 @@ const stableIntegration = JSON.parse(read('deployment/integration-releases/stabl
 const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));
 if (stableIntegration.schemaVersion !== 'treeseed.integration-release/v1' || stableIntegration.track !== 'stable' || stableIntegration.components?.length !== 0) fail('Preproduction stable integration must remain an explicit empty base.');
 if (developmentIntegration.schemaVersion !== 'treeseed.integration-release/v1' || developmentIntegration.track !== 'development') fail('Development integration lock must use the current SDK-owned contract.');
-if (developmentIntegration.platform?.commit !== stableIntegration.platform?.commit || developmentIntegration.deployment?.commit !== stableIntegration.deployment?.commit) fail('Stable and development locks must identify the same reviewed Platform and Deployment sources.');
+for (const integration of [stableIntegration, developmentIntegration]) {
+	if (!/^[a-f0-9]{40}$/u.test(integration.platform?.commit ?? '') || !/^[a-f0-9]{40}$/u.test(integration.deployment?.commit ?? '')) fail(`${integration.track} integration must identify exact reviewed Platform and Deployment commits.`);
+}
+if (developmentIntegration.generation <= stableIntegration.generation) fail('Development integration generation must advance beyond the immutable stable baseline.');
 if (JSON.stringify(developmentIntegration.hostPayloads?.map(({ id }) => id).sort()) !== JSON.stringify(['admin', 'api', 'cli', 'core', 'playwright-core', 'reviewer', 'sdk', 'treedx', 'ui', 'yaml', 'zod'])) fail('Development integration must select the exact managed host payload and verifier set.');
 if (JSON.stringify(developmentIntegration.components?.map(({ componentId }) => componentId).sort()) !== JSON.stringify(['admin', 'agent', 'ai-inference', 'ai-lab', 'ai-training', 'api', 'lab', 'treedx'])) fail('Development integration must select the exact Admin, API, Agent, TreeDX, Lab, and TreeAI component set.');
 for (const integration of [stableIntegration, developmentIntegration]) for (const payload of integration.hostPayloads ?? []) if (!/^https:\/\//u.test(payload.artifact?.url) || !/^[a-f0-9]{64}$/u.test(payload.artifact?.sha256 ?? '')) fail(`Integration payload ${payload.id} lacks an immutable artifact identity.`);
