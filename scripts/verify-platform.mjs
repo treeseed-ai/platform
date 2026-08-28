@@ -19,7 +19,7 @@ const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding
 const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
 if (gitlinks.length) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
 
-for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'docs/multi-host-deployment.md']) requireFile(path);
+for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'deployment/treeai-component-inputs.json', 'docs/multi-host-deployment.md']) requireFile(path);
 for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) {
 	if (existsSync(resolve(root, path))) fail(`Platform retains obsolete split-provider input ${path}.`);
 }
@@ -53,6 +53,7 @@ const host = JSON.parse(read('deployment/host-configs/development-workstation.js
 if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed' || host.runtime?.environment !== 'development' || !host.runtime?.dataRoot?.endsWith('/platform/.treeseed/data')) fail('Development workstation must use the current integrated managed-host contract and workspace-visible data root.');
 if (host.updates?.defaultTrack !== 'development' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Development workstation must poll development while preserving the stable weekly activation policy.');
 for (const componentId of ['api', 'admin', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Development workstation must select the development ${componentId} release.`);
+for (const componentId of ['ai-inference', 'ai-training', 'ai-lab']) if (host.components?.[componentId]?.enabled !== false) fail(`Default workstation must leave ${componentId} disabled.`);
 const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.components ?? {}).flatMap((component) => Object.values(component.aliases ?? {}))].flat();
 if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Local aliases must be unique and remain in the .localhost namespace.');
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
@@ -92,13 +93,71 @@ const providerHost = JSON.parse(read('deployment/host-configs/capacity-provider-
 if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.components ?? {}).join(',') !== 'agent' || providerHost.components.agent?.connections?.['control-plane']?.kind !== 'remote') fail('Capacity-provider fixture must select only Agent with an explicit remote control plane.');
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
 
+const treeAiInputs = JSON.parse(read('deployment/treeai-component-inputs.json'));
+if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc4' || treeAiInputs.sourceCommit !== 'd5ea430d4f297a44f002f12e6b6daa53b21ad66a') fail('TreeAI component inputs must identify the exact independent RC source.');
+if (treeAiInputs.contracts?.genericSdk?.sha256 !== '90d695d499088f2788da36863128efe57079915d3999cc876888ceb091cb95f2') fail('TreeAI generic SDK must bind the published rc4 artifact.');
+if (treeAiInputs.contracts?.operationInventorySha256 !== 'dc60eb514e11a4b867b3353830d886205df6254c7c4ecfab9a06b1b4dcb4e1fc') fail('TreeAI operation inventory digest is not the adopted release.');
+if (treeAiInputs.contracts?.treeSeedSdk?.version !== '0.13.0-rc.51' || treeAiInputs.contracts.treeSeedSdk.sha256 !== 'b3fc58a42bac9f3c635b933423066d580e87ddb79ea97c8aa9181f7000765e89') fail('TreeSeed SDK must bind the published TreeAI adoption RC.');
+if (treeAiInputs.contracts?.api?.version !== '0.8.0-rc.49' || treeAiInputs.contracts.api.sha256 !== '1fa497f2c0cf2f0e05d148f6fd903765f6b8d2558dbfd6f4514aa6cf13423037') fail('TreeSeed API must bind the SDK-driven TreeAI proxy RC.');
+if (treeAiInputs.contracts?.cli?.version !== '0.13.0-rc.29' || treeAiInputs.contracts.cli.sha256 !== '20e041d25d827807b7609354f5a60471fd1f903b23705135e525bd9fbaf27325') fail('TreeSeed CLI must bind the SDK-driven TreeAI command RC.');
+if (JSON.stringify(treeAiInputs.components?.map(({ componentId }) => componentId)) !== JSON.stringify(['ai-inference', 'ai-training', 'ai-lab'])) fail('TreeAI component inputs must preserve inference, training, and lab ownership order.');
+for (const component of treeAiInputs.components) {
+	if (!/^https:\/\/github\.com\/treeseed-ai\/ai\/releases\/download\//u.test(component.manifest?.url)
+		|| !/^[a-f0-9]{64}$/u.test(component.manifest?.sha256 ?? '') || !/^[a-f0-9]{64}$/u.test(component.compose?.sha256 ?? '')) fail(`TreeAI ${component.componentId} is not independently digest locked.`);
+}
+for (const profileId of ['ai-inference', 'ai-training', 'ai-factory', 'ai-connected']) {
+	const profile = JSON.parse(read(`deployment/profiles/${profileId}.json`));
+	if (profile.schemaVersion !== 'treeseed.platform-profile/v1' || profile.id !== profileId || profile.default !== false) fail(`TreeAI profile ${profileId} must remain explicit and opt-in.`);
+}
+const inferenceProfile = JSON.parse(read('deployment/profiles/ai-inference.json'));
+const trainingProfile = JSON.parse(read('deployment/profiles/ai-training.json'));
+const factoryProfile = JSON.parse(read('deployment/profiles/ai-factory.json'));
+if (inferenceProfile.components?.['ai-inference']?.aliases?.['ai-inference.inference-api.control'] !== 'inference.ai.treeseed.localhost') fail('Inference alias must use the SDK endpoint identity.');
+if (trainingProfile.components?.['ai-training']?.aliases?.['ai-training.training-api.control'] !== 'training.ai.treeseed.localhost') fail('Training alias must use the SDK endpoint identity.');
+if (factoryProfile.components?.['ai-lab']?.aliases?.['ai-lab.open-webui.web'] !== 'chat.ai.treeseed.localhost' || factoryProfile.components?.['ai-lab']?.aliases?.['ai-lab.hermes-dashboard.web'] !== 'hermes.ai.treeseed.localhost') fail('Lab aliases must use SDK endpoint identities.');
+const labConnections = factoryProfile.components?.['ai-lab']?.connections;
+if (JSON.stringify(labConnections?.inference) !== JSON.stringify({ kind: 'local', componentId: 'ai-inference', serviceId: 'inference-api', endpointId: 'inference' }) || JSON.stringify(labConnections?.training) !== JSON.stringify({ kind: 'local', componentId: 'ai-training', serviceId: 'training-api', endpointId: 'control' })) fail('AI lab must declare its required local inference and training connections.');
+const requiredInputCustody = {
+	'ai-inference': {
+		environment: { INFERENCE_DATABASE_URL: 'ai-inference-database-url', INFERENCE_POSTGRES_PASSWORD: 'ai-inference-postgres-password', AI_API_KEYS: 'ai-inference-api-keys' },
+		secrets: { 'ai-inference-database-url': '/etc/treeseed/credentials/ai-inference-database-url', 'ai-inference-postgres-password': '/etc/treeseed/credentials/ai-inference-postgres-password', 'ai-inference-api-keys': '/etc/treeseed/credentials/ai-inference-api-keys' },
+	},
+	'ai-training': {
+		environment: { TRAINING_DATABASE_URL: 'ai-training-database-url', TRAINING_POSTGRES_PASSWORD: 'ai-training-postgres-password', AI_API_KEYS: 'ai-training-api-keys' },
+		secrets: { 'ai-training-database-url': '/etc/treeseed/credentials/ai-training-database-url', 'ai-training-postgres-password': '/etc/treeseed/credentials/ai-training-postgres-password', 'ai-training-api-keys': '/etc/treeseed/credentials/ai-training-api-keys', 'artifact-signing-key': '/etc/treeseed/credentials/ai-artifact-signing-key' },
+	},
+};
+function verifyInputCustody(profile, componentId) {
+	const expected = requiredInputCustody[componentId];
+	if (JSON.stringify(profile.components?.[componentId]?.configuration?.secretEnvironment) !== JSON.stringify(expected.environment)) fail(`${profile.id} does not bind the complete ${componentId} secret environment.`);
+	for (const [id, reference] of Object.entries(expected.secrets)) if (profile.secrets?.[id]?.provider !== 'file' || profile.secrets[id].reference !== reference) fail(`${profile.id} does not bind ${id} to its declared custody path.`);
+}
+verifyInputCustody(inferenceProfile, 'ai-inference');
+verifyInputCustody(trainingProfile, 'ai-training');
+verifyInputCustody(factoryProfile, 'ai-inference');
+verifyInputCustody(factoryProfile, 'ai-training');
+if (JSON.stringify(factoryProfile.components?.['ai-lab']?.configuration?.secretEnvironment) !== JSON.stringify({ AI_LAB_API_KEYS: 'ai-lab-api-keys' })) fail('AI factory does not bind the lab API credential environment.');
+const labSecretPaths = {
+	'ai-lab-api-keys': '/etc/treeseed/credentials/ai-lab-api-keys', 'training-source': '/etc/treeseed/credentials/ai-lab-training-source', 'factory-control-key': '/etc/treeseed/credentials/ai-lab-factory-control-key',
+	'factory-inference-key': '/etc/treeseed/credentials/ai-lab-factory-inference-key', 'factory-training-key': '/etc/treeseed/credentials/ai-lab-factory-training-key', 'hermes-api-key': '/etc/treeseed/credentials/ai-lab-hermes-api-key',
+	'hermes-password-hash': '/etc/treeseed/credentials/ai-lab-hermes-password-hash', 'hermes-session-secret': '/etc/treeseed/credentials/ai-lab-hermes-session-secret', 'training-ingest-key': '/etc/treeseed/credentials/ai-lab-training-ingest-key',
+	'lab-library-action-key': '/etc/treeseed/credentials/ai-lab-lab-library-action-key',
+};
+for (const [id, reference] of Object.entries(labSecretPaths)) if (factoryProfile.secrets?.[id]?.provider !== 'file' || factoryProfile.secrets[id].reference !== reference) fail(`AI factory does not bind ${id} to the released lab custody path.`);
+if (factoryProfile.components?.['ai-lab']?.configuration?.environment?.RUNTIME_GID !== undefined) fail('Platform must leave RUNTIME_GID under manager-derived custody.');
+const connectedProfile = JSON.parse(read('deployment/profiles/ai-connected.json'));
+const treeAiNodes = JSON.parse(connectedProfile.components?.api?.configuration?.environment?.TREESEED_TREEAI_NODES ?? '{}');
+const treeAiEndpoints = treeAiNodes['local-ai']?.endpoints;
+if (treeAiEndpoints?.lab !== 'http://controller:8081') fail('Connected AI must address the released lab controller service and port.');
+if ('qualification' in (treeAiEndpoints ?? {})) fail('Connected AI must not advertise the retired TreeAI host manager as a qualification endpoint.');
+
 const stableIntegration = JSON.parse(read('deployment/integration-releases/stable.json'));
 const developmentIntegration = JSON.parse(read('deployment/integration-releases/development.json'));
 if (stableIntegration.schemaVersion !== 'treeseed.integration-release/v1' || stableIntegration.track !== 'stable' || stableIntegration.components?.length !== 0) fail('Preproduction stable integration must remain an explicit empty base.');
 if (developmentIntegration.schemaVersion !== 'treeseed.integration-release/v1' || developmentIntegration.track !== 'development') fail('Development integration lock must use the current SDK-owned contract.');
 if (developmentIntegration.platform?.commit !== stableIntegration.platform?.commit || developmentIntegration.deployment?.commit !== stableIntegration.deployment?.commit) fail('Stable and development locks must identify the same reviewed Platform and Deployment sources.');
 if (JSON.stringify(developmentIntegration.hostPayloads?.map(({ id }) => id).sort()) !== JSON.stringify(['admin', 'api', 'cli', 'core', 'playwright-core', 'reviewer', 'sdk', 'treedx', 'ui', 'yaml', 'zod'])) fail('Development integration must select the exact managed host payload and verifier set.');
-if (JSON.stringify(developmentIntegration.components?.map(({ componentId }) => componentId).sort()) !== JSON.stringify(['admin', 'agent', 'api', 'lab', 'treedx'])) fail('Development integration must select the exact Admin, API, Agent, TreeDX, and Lab component set.');
+if (JSON.stringify(developmentIntegration.components?.map(({ componentId }) => componentId).sort()) !== JSON.stringify(['admin', 'agent', 'ai-inference', 'ai-lab', 'ai-training', 'api', 'lab', 'treedx'])) fail('Development integration must select the exact Admin, API, Agent, TreeDX, Lab, and TreeAI component set.');
 for (const integration of [stableIntegration, developmentIntegration]) for (const payload of integration.hostPayloads ?? []) if (!/^https:\/\//u.test(payload.artifact?.url) || !/^[a-f0-9]{64}$/u.test(payload.artifact?.sha256 ?? '')) fail(`Integration payload ${payload.id} lacks an immutable artifact identity.`);
 for (const component of developmentIntegration.components ?? []) {
 	if (!/^[a-f0-9]{64}$/u.test(component.manifest?.sha256 ?? '') || component.files?.some(({ artifact }) => !/^[a-f0-9]{64}$/u.test(artifact?.sha256 ?? ''))) fail(`Component ${component.componentId} is not fully digest locked.`);

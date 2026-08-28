@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "treeseed.platform-profile/v1",
+  "id": "ai-inference",
+  "default": false,
+  "components": {
+    "ai-inference": {
+      "enabled": true,
+      "track": "development",
+      "aliases": { "ai-inference.inference-api.control": "inference.ai.treeseed.localhost" },
+      "configuration": { "secretEnvironment": {
+        "INFERENCE_DATABASE_URL": "ai-inference-database-url",
+        "INFERENCE_POSTGRES_PASSWORD": "ai-inference-postgres-password",
+        "AI_API_KEYS": "ai-inference-api-keys"
+      } }
+    },
+    "ai-training": { "enabled": false },
+    "ai-lab": { "enabled": false }
+  },
+  "secrets": {
+    "ai-inference-database-url": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-database-url" },
+    "ai-inference-postgres-password": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-postgres-password" },
+    "ai-inference-api-keys": { "provider": "file", "reference": "/etc/treeseed/credentials/ai-inference-api-keys" }
+  }
+}

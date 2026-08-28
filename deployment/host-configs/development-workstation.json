@@ -113,7 +113,19 @@
       },
       "configuration": { "environment": {} }
     },
-    "ai": {
+    "ai-inference": {
+      "enabled": false,
+      "track": "stable",
+      "aliases": {},
+      "configuration": {}
+    },
+    "ai-training": {
+      "enabled": false,
+      "track": "stable",
+      "aliases": {},
+      "configuration": {}
+    },
+    "ai-lab": {
       "enabled": false,
       "track": "stable",
       "aliases": {},
