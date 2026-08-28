@@ -5,7 +5,7 @@
   "track": "stable",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": { "repository": "treeseed-ai/platform", "commit": "b7475626a452264d9f05261a1d1371452e06cf4f" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "575b0510409f75196c74cf93f7f7c4fa6a7b31e4", "tag": "0.1.0-rc.104" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "d5bc4934af03b4858103944974c3f875ec297c64", "tag": "0.1.0-rc.105" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.34", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.34.tgz", "sha256": "0413cbeab3314ac7f90c5e6420fec2f3790f38ffa1e41b86dd571a364ae38a79" } },
     { "id": "cli", "packageName": "@treeseed/cli", "version": "0.13.0-rc.16", "artifact": { "url": "https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.16.tgz", "sha256": "3b26bdeca38ef33fa94c4487f65eea76c454c4d0c82829afae8a8f707e8034cb" } },
