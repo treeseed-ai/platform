@@ -149,7 +149,7 @@
       "encryption": "luks2",
       "backingPath": "/var/lib/treeseed/encrypted/provider-data.luks",
       "mountPath": "/var/lib/treeseed/agent",
-      "sizeBytes": 68719476736,
+      "sizeBytes": 17179869184,
       "unlock": "tpm2",
       "recoveryRequired": true
     },
