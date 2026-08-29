@@ -22,10 +22,10 @@
     "sdkManifestSha256": "032fcc4a96d6fca185b23d6b98a778bb438d833b6e077818eab100ab2ef1d849",
     "treeSeedSdk": {
       "packageName": "@treeseed/sdk",
-      "version": "0.13.0-rc.52",
-      "sourceCommit": "9b102945bde239b4980c7ff133cc854571e8b101",
-      "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.52.tgz",
-      "sha256": "2ae7abe16f23c6471d8844973720e7d821a3185fbdb97e1ffce5988f042cf2cc"
+      "version": "0.13.0-rc.53",
+      "sourceCommit": "ac6a535b99867cfc9e955b71ec333ed28980020a",
+      "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.53.tgz",
+      "sha256": "7793d4184d821fbaca58476c11821500e40eebf1732b1353e0f8da64fb011fe4"
     },
     "api": {
       "packageName": "@treeseed/api",
