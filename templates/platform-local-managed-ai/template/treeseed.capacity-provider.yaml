@@ -1,9 +1,9 @@
-schemaVersion: 3
+schemaVersion: 4
 ownership:
   type: team
   teamId: team:treeseed
 configuration:
-  generation: local-battery-v2
+  generation: local-battery-v3
 identity:
   privateKeyRef: data://identity-v3.json
   displayName: TreeSeed local capacity battery
@@ -17,11 +17,62 @@ capacity:
   maxCost: 100
   currency: USD
   maxAttempts: 3
-credentialProfiles:
-  - { id: codex-auth, source: process-environment, reference: TREESEED_CODEX_AUTH_FILE, required: true }
-  - { id: codex-executable, source: process-environment, reference: TREESEED_CODEX_EXECUTABLE, required: true }
-  - { id: platform-github, source: process-environment, reference: TREESEED_GITHUB_TOKEN, required: false }
-  - { id: platform-cloudflare, source: process-environment, reference: TREESEED_CLOUDFLARE_API_TOKEN, required: false }
+credentialProfiles: []
+sandbox:
+  required: true
+  brokerSocket: /run/treeseed/sandbox/broker.sock
+  runtime: kata-runtime-rs-qemu
+  profiles:
+    - id: read
+      guestImage: treeseed/agent-sandbox-guest
+      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      defaultDenyNetwork: true
+      resources:
+        cpuCores: 2
+        memoryBytes: 4294967296
+        diskBytes: 8589934592
+        processLimit: 512
+        outputBytes: 67108864
+    - id: unit
+      guestImage: treeseed/agent-sandbox-guest
+      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      defaultDenyNetwork: true
+      resources:
+        cpuCores: 4
+        memoryBytes: 8589934592
+        diskBytes: 17179869184
+        processLimit: 1024
+        outputBytes: 134217728
+    - id: integration
+      guestImage: treeseed/agent-sandbox-guest
+      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      defaultDenyNetwork: true
+      resources:
+        cpuCores: 4
+        memoryBytes: 12884901888
+        diskBytes: 25769803776
+        processLimit: 2048
+        outputBytes: 268435456
+    - id: platform
+      guestImage: treeseed/agent-sandbox-guest
+      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      defaultDenyNetwork: true
+      resources:
+        cpuCores: 8
+        memoryBytes: 17179869184
+        diskBytes: 34359738368
+        processLimit: 4096
+        outputBytes: 536870912
+    - id: connected
+      guestImage: treeseed/agent-sandbox-guest
+      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      defaultDenyNetwork: true
+      resources:
+        cpuCores: 4
+        memoryBytes: 8589934592
+        diskBytes: 17179869184
+        processLimit: 1024
+        outputBytes: 134217728
 lanes:
   - id: communication
     purpose: communication
@@ -33,18 +84,26 @@ lanes:
     reclaimPolicy: admission
     queueLimit: 100
     timeoutSeconds: 120
-    capabilities: [communication, agent-execution, research, planning]
+    capabilities:
+      - communication
+      - agent-execution
+      - research
+      - planning
   - id: platform
     purpose: platform
     priority: 70
     reservedConcurrentWorkers: 0
-    maxConcurrentWorkers: 2
+    maxConcurrentWorkers: 4
     borrowWhenIdle: true
     lendWhenIdle: true
     reclaimPolicy: admission
-    queueLimit: 25
+    queueLimit: 100
     timeoutSeconds: 900
-    capabilities: [platform_operation, infrastructure_reconciliation, repository_reconciliation]
+    capabilities:
+      - agent-execution
+      - engineering
+      - verification
+      - repository_work
   - id: workday
     purpose: workday
     priority: 50
@@ -55,29 +114,51 @@ lanes:
     reclaimPolicy: admission
     queueLimit: 100
     timeoutSeconds: 900
-    minimumAssignmentDuration: { amount: 600, unit: seconds }
-    capabilities: [agent-execution, engineering, research, planning, acting, verification, repository_work]
+    minimumAssignmentDuration:
+      amount: 600
+      unit: seconds
+    capabilities:
+      - agent-execution
+      - engineering
+      - research
+      - planning
+      - acting
+      - verification
+      - repository_work
 adapters:
   - id: codex-local
     adapter: codex
-    isolation: process
+    isolation: microvm
     module: module:codex-chat
-    profile: subscription
+    profile: api
     protocol: responses
-    credentialProfiles: [codex-auth, codex-executable]
-    laneIds: [communication]
-    maxConcurrentWorkers: 2
-    minimumAssignmentDuration: { amount: 600, unit: seconds }
-    nativeLimits: { availableAgentSeconds: 28800 }
-    capabilities: [communication, agent-execution]
-  - id: platform-local
-    adapter: platform-operation
-    isolation: process
-    credentialProfiles: [platform-github, platform-cloudflare]
-    laneIds: [platform]
-    maxConcurrentWorkers: 2
-    nativeLimits: { availableAgentSeconds: 14400 }
-    capabilities: [platform_operation, infrastructure_reconciliation, repository_reconciliation]
+    model:
+      model: gpt-5.4
+    credentialProfiles: []
+    laneIds:
+      - communication
+      - platform
+      - workday
+    sandboxProfileIds:
+      - read
+      - unit
+      - integration
+      - platform
+      - connected
+    maxConcurrentWorkers: 4
+    minimumAssignmentDuration:
+      amount: 600
+      unit: seconds
+    nativeLimits:
+      availableAgentSeconds: 28800
+    capabilities:
+      - communication
+      - agent-execution
+      - engineering
+      - research
+      - planning
+      - acting
+      - verification
 connections: []
 metadata:
   custody: local-only

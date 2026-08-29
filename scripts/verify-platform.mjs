@@ -44,9 +44,10 @@ if ((seed.match(/role: library/gmu) ?? []).length !== 16 || (seed.match(/library
 if (!/digest: sha256:[a-f0-9]{64}/u.test(seed)) fail('Canonical seed is not digest-bound.');
 
 const provider = read('treeseed.capacity-provider.yaml');
-for (const required of ['schemaVersion: 3', 'purpose: communication', 'purpose: platform', 'purpose: workday', 'reclaimPolicy: admission', 'isolation: process']) {
+for (const required of ['schemaVersion: 4', 'purpose: communication', 'purpose: platform', 'purpose: workday', 'reclaimPolicy: admission', 'isolation: microvm', 'runtime: kata-runtime-rs-qemu', 'defaultDenyNetwork: true']) {
 	if (!provider.includes(required)) fail(`Unified provider manifest is missing ${required}.`);
 }
+if (provider.includes('isolation: process') || provider.includes('isolation: worker')) fail('Unified provider manifest must not retain non-microVM execution adapters.');
 for (const forbidden of ['providerClass:', 'registrationKeyRef:', 'membershipCredentialRef:']) if (provider.includes(forbidden)) fail(`Unified provider manifest retains ${forbidden}.`);
 
 const host = JSON.parse(read('deployment/host-configs/development-workstation.json'));
@@ -58,8 +59,10 @@ const aliases = [host.network?.manager?.aliases ?? [], ...Object.values(host.com
 if (aliases.length !== new Set(aliases).size || aliases.some((alias) => !/^[a-z0-9.-]+\.localhost$/u.test(alias))) fail('Local aliases must be unique and remain in the .localhost namespace.');
 const overrideKeys = Object.values(host.components ?? {}).flatMap((component) => Object.keys(component.aliases ?? {}));
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
-if (!host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('Codex custody must use the named manager secret rather than an embedded login cache.');
-if (host.generation !== 11) fail('Development workstation must use configuration generation 11.');
+if (host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('MicroVM model authority must remain in the host credential broker rather than the provider or guest.');
+if (host.security?.sandbox?.required !== true || host.security.sandbox.runtime !== 'kata-runtime-rs-qemu' || host.security.providerVolume?.encryption !== 'luks2' || host.security.applicationEncryption?.provider !== 'systemd-credential') fail('Development workstation must require Kata, LUKS2, and application-level encryption.');
+if (host.security.sandbox.profiles.some((profile) => !/^sha256:[a-f0-9]{64}$/u.test(profile.guestImageDigest))) fail('Every sandbox profile must bind an immutable guest image digest.');
+if (host.generation !== 12) fail('Development workstation must use configuration generation 12.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BASE_URL !== 'https://api.treeseed.localhost') fail('The API and managed providers must use the canonical API audience.');
 if (host.components?.api?.configuration?.environment?.TREESEED_TREEDX_URL !== 'http://treedx:4000') fail('The integrated API must use the manager-owned TreeDX service over the private platform network.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BOOTSTRAP_ADMIN_ALLOWLIST !== 'adrian.webb@knowledge.coop') fail('A fresh workstation must assign its configured initial account through the API bootstrap-admin allowlist.');
