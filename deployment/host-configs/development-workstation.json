@@ -1,7 +1,7 @@
 {
   "schemaVersion": "treeseed.host/v1",
   "configurationId": "development-workstation",
-  "generation": 12,
+  "generation": 20,
   "host": {
     "id": "adrian-workstation",
     "role": "integrated",
