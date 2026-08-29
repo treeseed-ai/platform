@@ -249,7 +249,7 @@
       "encryption": "luks2",
       "backingPath": "/home/adrian/Projects/treeseed/platform/.treeseed/data/.encrypted/provider-data.luks",
       "mountPath": "/home/adrian/Projects/treeseed/platform/.treeseed/data/agent",
-      "sizeBytes": 68719476736,
+      "sizeBytes": 17179869184,
       "unlock": "systemd-credential",
       "recoveryRequired": true
     },
