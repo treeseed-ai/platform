@@ -18,6 +18,12 @@ if (existsSync(resolve(root, 'treeseed.portfolio.json'))) fail('Platform must re
 const index = execFileSync('git', ['ls-files', '--stage'], { cwd: root, encoding: 'utf8' });
 const gitlinks = index.split('\n').filter((line) => line.startsWith('160000 '));
 if (gitlinks.length) fail(`Platform contains forbidden gitlinks: ${gitlinks.join(', ')}`);
+const trackedFiles = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' }).split('\0').filter(Boolean);
+const homePathFiles = trackedFiles.filter((path) => {
+	const absolute = resolve(root, path);
+	return existsSync(absolute) && statSync(absolute).isFile() && /\/(?:home|Users)\//u.test(read(path));
+});
+if (homePathFiles.length) fail(`Platform must not contain host-specific home-directory paths: ${homePathFiles.join(', ')}`);
 
 for (const path of ['seeds/treeseed.yaml', 'treeseed.capacity-provider.yaml', 'deployment/host-configs/development-workstation.json', 'deployment/host-configs/capacity-provider-development.json', 'deployment/integration-releases/stable.json', 'deployment/integration-releases/development.json', 'deployment/treeai-component-inputs.json', 'docs/multi-host-deployment.md']) requireFile(path);
 for (const path of ['seeds/agents.yaml', 'seeds/platform.yaml', 'treeseed.agents-capacity-provider.yaml', 'treeseed.platform-capacity-provider.yaml']) {
@@ -51,7 +57,7 @@ if (provider.includes('isolation: process') || provider.includes('isolation: wor
 for (const forbidden of ['providerClass:', 'registrationKeyRef:', 'membershipCredentialRef:']) if (provider.includes(forbidden)) fail(`Unified provider manifest retains ${forbidden}.`);
 
 const host = JSON.parse(read('deployment/host-configs/development-workstation.json'));
-if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed' || host.runtime?.environment !== 'development' || !host.runtime?.dataRoot?.endsWith('/platform/.treeseed/data')) fail('Development workstation must use the current integrated managed-host contract and workspace-visible data root.');
+if (host.schemaVersion !== 'treeseed.host/v1' || host.configurationId !== 'development-workstation' || host.host?.role !== 'integrated' || host.runtime?.management !== 'managed' || host.runtime?.environment !== 'development' || host.runtime?.dataRoot !== '/var/lib/treeseed/development/.treeseed/data') fail('Development workstation must use the current integrated managed-host contract and standard TreeSeed development data root.');
 if (host.updates?.defaultTrack !== 'development' || host.updates?.stable?.maintenanceWindow?.weekday !== 'sunday' || host.updates?.stable?.maintenanceWindow?.localTime !== '03:00') fail('Development workstation must poll development while preserving the stable weekly activation policy.');
 for (const componentId of ['api', 'admin', 'agent', 'treedx', 'lab']) if (!host.components?.[componentId]?.enabled || host.components[componentId].track !== 'development') fail(`Development workstation must select the development ${componentId} release.`);
 for (const componentId of ['ai-inference', 'ai-training', 'ai-lab']) if (host.components?.[componentId]?.enabled !== false) fail(`Default workstation must leave ${componentId} disabled.`);
@@ -61,6 +67,7 @@ const overrideKeys = Object.values(host.components ?? {}).flatMap((component) =>
 if (overrideKeys.some((key) => !/^[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+\.[a-z][a-z0-9.-]+$/u.test(key))) fail('Alias overrides must use full component.service.endpoint identities.');
 if (host.secrets?.['agent-codex-auth'] || JSON.stringify(host).includes('auth.json')) fail('MicroVM model authority must remain in the host credential broker rather than the provider or guest.');
 if (host.security?.sandbox?.required !== true || host.security.sandbox.runtime !== 'kata-runtime-rs-qemu' || host.security.providerVolume?.encryption !== 'luks2' || host.security.applicationEncryption?.provider !== 'systemd-credential') fail('Development workstation must require Kata, LUKS2, and application-level encryption.');
+if (host.security?.providerVolume?.backingPath !== '/var/lib/treeseed/encrypted/provider-data.luks' || host.security?.providerVolume?.mountPath !== '/var/lib/treeseed/agent') fail('Development workstation provider storage must use standard TreeSeed paths.');
 if (host.security.sandbox.profiles.some((profile) => !/^sha256:[a-f0-9]{64}$/u.test(profile.guestImageDigest))) fail('Every sandbox profile must bind an immutable guest image digest.');
 if (host.generation !== 21) fail('Development workstation must use configuration generation 21.');
 if (host.components?.api?.configuration?.environment?.TREESEED_API_BASE_URL !== 'https://api.treeseed.localhost') fail('The API and managed providers must use the canonical API audience.');
