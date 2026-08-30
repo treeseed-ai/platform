@@ -10,7 +10,7 @@
   "runtime": {
     "management": "managed",
     "environment": "development",
-    "dataRoot": "/home/adrian/Projects/treeseed/platform/.treeseed/data"
+    "dataRoot": "/var/lib/treeseed/development/.treeseed/data"
   },
   "updates": {
     "defaultTrack": "development",
@@ -247,8 +247,8 @@
     },
     "providerVolume": {
       "encryption": "luks2",
-      "backingPath": "/home/adrian/Projects/treeseed/platform/.treeseed/data/.encrypted/provider-data.luks",
-      "mountPath": "/home/adrian/Projects/treeseed/platform/.treeseed/data/agent",
+      "backingPath": "/var/lib/treeseed/encrypted/provider-data.luks",
+      "mountPath": "/var/lib/treeseed/agent",
       "sizeBytes": 17179869184,
       "unlock": "systemd-credential",
       "recoveryRequired": true
