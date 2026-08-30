@@ -117,17 +117,17 @@
   "components": [
     {
       "componentId": "api",
-      "release": "0.8.0~rc55-1",
+      "release": "0.8.0~rc56-1",
       "manifest": {
-        "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.55/component-release.json",
-        "sha256": "b6b11479e4168ad806554c3f7f540b9dce6c43201d27c7c0bd3228faa415be42"
+        "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.56/component-release.json",
+        "sha256": "cf7a281a2b9ddf26d5fd01aac6a4bdd11ef58e664d1390f57cb02dd955cf432f"
       },
       "files": [
         {
           "path": "compose.yml",
           "artifact": {
-            "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.55/compose.yml",
-            "sha256": "3bfde9c7b9d43608f89ba8cd559b7788666ad1a29fea6da0f6e4afbb83da0afe"
+            "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.56/compose.yml",
+            "sha256": "a3ff065bd6855c89c3be7a2d3ffc4d5dcf1c657e889b31c3f9ad661002a37fe8"
           }
         }
       ]
