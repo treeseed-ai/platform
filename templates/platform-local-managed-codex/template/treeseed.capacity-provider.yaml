@@ -3,7 +3,7 @@ ownership:
   type: team
   teamId: team:treeseed
 configuration:
-  generation: local-battery-v3
+  generation: local-battery-v4
 identity:
   privateKeyRef: data://identity-v3.json
   displayName: TreeSeed local capacity battery
