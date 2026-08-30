@@ -151,17 +151,17 @@
     },
     {
       "componentId": "agent",
-      "release": "0.13.0~rc29-1",
+      "release": "0.13.0~rc30-1",
       "manifest": {
-        "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.29/component-release.json",
-        "sha256": "a662745bd43d30ddfe4c8b72b4d6bc9ceb3c8082227bbc06ae8e85f429ac2661"
+        "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.30/component-release.json",
+        "sha256": "d9b1840fea8ed5352adf944a64519a5354369b55b421ff36f621986b3220742f"
       },
       "files": [
         {
           "path": "compose.yml",
           "artifact": {
-            "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.29/compose.yml",
-            "sha256": "15533c315a946a6870e077b8c46ff8c259fbb56369d9509514f9aa5ba6f35dd5"
+            "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.30/compose.yml",
+            "sha256": "99e3c4f708ecb2d8212786b4e2391ff53bd32e022e6aa4396b9ebfdc4dc988d8"
           }
         }
       ]
