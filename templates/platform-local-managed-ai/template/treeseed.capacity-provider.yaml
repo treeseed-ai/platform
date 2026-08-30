@@ -25,7 +25,7 @@ sandbox:
   profiles:
     - id: read
       guestImage: treeseed/sandbox-codex
-      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
+      guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
       defaultDenyNetwork: true
       resources:
         cpuCores: 2
@@ -35,7 +35,7 @@ sandbox:
         outputBytes: 67108864
     - id: unit
       guestImage: treeseed/sandbox-codex
-      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
+      guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
       defaultDenyNetwork: true
       resources:
         cpuCores: 4
@@ -45,7 +45,7 @@ sandbox:
         outputBytes: 134217728
     - id: integration
       guestImage: treeseed/sandbox-codex
-      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
+      guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
       defaultDenyNetwork: true
       resources:
         cpuCores: 4
@@ -55,7 +55,7 @@ sandbox:
         outputBytes: 268435456
     - id: platform
       guestImage: treeseed/sandbox-codex
-      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
+      guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
       defaultDenyNetwork: true
       resources:
         cpuCores: 8
@@ -65,7 +65,7 @@ sandbox:
         outputBytes: 536870912
     - id: connected
       guestImage: treeseed/sandbox-codex
-      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
+      guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
       defaultDenyNetwork: true
       resources:
         cpuCores: 4
