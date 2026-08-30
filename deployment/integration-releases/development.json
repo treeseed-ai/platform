@@ -1,17 +1,17 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc151",
-  "generation": 122,
+  "release": "0.1.0~rc152",
+  "generation": 123,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": {
     "repository": "treeseed-ai/platform",
-    "commit": "11d7210c17e6949599025acc2a7a797cf7812010"
+    "commit": "a4d462c763a8641bbef21663161bbdbc499a66c1"
   },
   "deployment": {
     "repository": "treeseed-ai/deployment",
-    "commit": "2661e53fb173649800e19a9a16aa528955216fb4",
-    "tag": "0.1.0-rc.151"
+    "commit": "f7ac5e995a54d1af478b2624bce313290bb684e6",
+    "tag": "0.1.0-rc.152"
   },
   "hostPayloads": [
     {
@@ -151,17 +151,17 @@
     },
     {
       "componentId": "agent",
-      "release": "0.13.0~rc27-1",
+      "release": "0.13.0~rc28-1",
       "manifest": {
-        "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.27/component-release.json",
-        "sha256": "a8a9802e62cfb9633260baa3b7320ad1860549e1bfd3c2bb616365acdb0f104c"
+        "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.28/component-release.json",
+        "sha256": "2a5deae4ae67d0a991ffaf05c709710192628bf756e56624374fc090fa5010a9"
       },
       "files": [
         {
           "path": "compose.yml",
           "artifact": {
-            "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.27/compose.yml",
-            "sha256": "ad8e2903cf370523662375684aa099abaf4ed2e0cf6a53490fb8317fdb70f238"
+            "url": "https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.28/compose.yml",
+            "sha256": "f97d6027861260bf7b5087335211aa03fe6d2b7a213f414c962f20d955fd2f08"
           }
         }
       ]
