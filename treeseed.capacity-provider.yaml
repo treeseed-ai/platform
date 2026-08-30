@@ -24,8 +24,8 @@ sandbox:
   runtime: kata-runtime-rs-qemu
   profiles:
     - id: read
-      guestImage: treeseed/agent-sandbox-guest
-      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      guestImage: treeseed/sandbox-codex
+      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
       defaultDenyNetwork: true
       resources:
         cpuCores: 2
@@ -34,8 +34,8 @@ sandbox:
         processLimit: 512
         outputBytes: 67108864
     - id: unit
-      guestImage: treeseed/agent-sandbox-guest
-      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      guestImage: treeseed/sandbox-codex
+      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
       defaultDenyNetwork: true
       resources:
         cpuCores: 4
@@ -44,8 +44,8 @@ sandbox:
         processLimit: 1024
         outputBytes: 134217728
     - id: integration
-      guestImage: treeseed/agent-sandbox-guest
-      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      guestImage: treeseed/sandbox-codex
+      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
       defaultDenyNetwork: true
       resources:
         cpuCores: 4
@@ -54,8 +54,8 @@ sandbox:
         processLimit: 2048
         outputBytes: 268435456
     - id: platform
-      guestImage: treeseed/agent-sandbox-guest
-      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      guestImage: treeseed/sandbox-codex
+      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
       defaultDenyNetwork: true
       resources:
         cpuCores: 8
@@ -64,8 +64,8 @@ sandbox:
         processLimit: 4096
         outputBytes: 536870912
     - id: connected
-      guestImage: treeseed/agent-sandbox-guest
-      guestImageDigest: sha256:9a8c0884b4be25fac33af7b68e810ea78c2f51a32337eb9fa885ee0565ab1544
+      guestImage: treeseed/sandbox-codex
+      guestImageDigest: sha256:14c1db33cb98b7d7998df97b783e6e0bdc7422e9cda302fdce70193ca5c81f5f
       defaultDenyNetwork: true
       resources:
         cpuCores: 4
@@ -145,6 +145,9 @@ adapters:
       - integration
       - platform
       - connected
+    defaultSandboxProfiles:
+      conversation: read
+      execution: unit
     maxConcurrentWorkers: 4
     minimumAssignmentDuration:
       amount: 600
