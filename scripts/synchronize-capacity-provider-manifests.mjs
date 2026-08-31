@@ -1,13 +1,13 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { parse, stringify } from '../packages/sdk/node_modules/yaml/dist/index.js';
+import { parse, stringify } from 'yaml';
 import {
 	CORE_CAPABILITY_DEFINITIONS,
 	CORE_CAPABILITY_ONTOLOGY_GENERATION,
 	capabilityContractDigest,
 	capabilityOfferDigest,
 	capabilityOfferSchema,
-} from '../packages/sdk/dist/capacity-provider/index.js';
+} from '@treeseed/sdk/capacity-provider';
 
 const root = resolve(import.meta.dirname, '..');
 const checkOnly = process.argv.includes('--check');
