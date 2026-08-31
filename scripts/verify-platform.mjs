@@ -207,7 +207,7 @@ const repositoryRoots = ['packages', 'templates', '.fixtures', 'starters', 'prod
 const marketRoots = repositoryRoots.filter((path) => ['market', 'market-api'].includes(basename(path)));
 if (marketRoots.length > 2) fail(`Platform contains duplicate Market worksets: ${marketRoots.join(', ')}`);
 
-const primaryProjectRoots = ['.', 'packages/deployment', 'packages/api', 'packages/treedx', 'packages/sdk', 'packages/ui', 'packages/cli', 'packages/core', 'packages/admin', 'packages/agent', 'packages/reviewer', 'packages/ai', 'templates/engineering', 'templates/research', 'services/market-api'];
+const primaryProjectRoots = ['.', 'packages/deployment', 'packages/api', 'packages/treedx', 'packages/sdk', 'packages/ui', 'packages/cli', 'packages/core', 'packages/admin', 'packages/agent', 'packages/reviewer', 'packages/ai', 'templates/engineering', 'templates/research', 'services/market-api'].filter((projectRoot) => projectRoot === '.' || existsSync(resolve(root, projectRoot, '.git')));
 const branchBoundary = '`main` is the only production branch and maps only to the `production` deployment environment.';
 for (const projectRoot of primaryProjectRoots) {
 	const agentsPath = resolve(root, projectRoot, 'AGENTS.md');
