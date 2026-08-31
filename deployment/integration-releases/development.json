@@ -1,17 +1,17 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc177",
-  "generation": 138,
+  "release": "0.1.0~rc178",
+  "generation": 139,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": {
     "repository": "treeseed-ai/platform",
-    "commit": "5dfec752c0f0a831c2b0bc20a8c3374ee29446bd"
+    "commit": "e5a707b60396c1966e54916b258da66e02a1a02f"
   },
   "deployment": {
     "repository": "treeseed-ai/deployment",
-    "commit": "b4a9d63998c4487bee34d12b081518003f972fc2",
-    "tag": "0.1.0-rc.177"
+    "commit": "68c52d46cbac82635a75ea4297e907a049b9aa6c",
+    "tag": "0.1.0-rc.178"
   },
   "hostPayloads": [
     {
@@ -26,10 +26,10 @@
     {
       "id": "api",
       "packageName": "@treeseed/api",
-      "version": "0.8.0-rc.59",
+      "version": "0.8.0-rc.60",
       "artifact": {
-        "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.59/treeseed-api-0.8.0-rc.59.tgz",
-        "sha256": "aa6909f2470cb116c3af763e785c65745fcaa0a2809eccc96feb5ae1b1115afc"
+        "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.60/treeseed-api-0.8.0-rc.60.tgz",
+        "sha256": "89bb45f6819d3ab10335318c7a49cc1be6966a904bb5cedef01f896f055b7981"
       }
     },
     {
@@ -117,17 +117,17 @@
   "components": [
     {
       "componentId": "api",
-      "release": "0.8.0~rc59-1",
+      "release": "0.8.0~rc60-1",
       "manifest": {
-        "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.59/component-release.json",
-        "sha256": "6307220cb551d579c99ab684cb22a09c551ad2b4326ec24fca758709b61c1ce7"
+        "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.60/component-release.json",
+        "sha256": "78353fa375658c8a3617db891b8fc6eb234bff1132fd02aeefbef0ecbcd0ccbf"
       },
       "files": [
         {
           "path": "compose.yml",
           "artifact": {
-            "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.59/compose.yml",
-            "sha256": "3cafd6deba444ce563d8d5f8dd8df3f58aabdcdd4780586e5ae9e921f8c9e14c"
+            "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.60/compose.yml",
+            "sha256": "13d577c3491646e9c9c9e85141179743d0d23ca9fe5bb3d039e69840f781ad32"
           }
         }
       ]
