@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "treeseed.host-initialization-profile/v1",
+  "id": "core",
+  "role": "integrated",
+  "runtime": { "management": "managed", "environment": "track-default" },
+  "components": ["api", "admin", "agent", "treedx", "lab"],
+  "security": { "requirement": "required" },
+  "inputs": []
+}
