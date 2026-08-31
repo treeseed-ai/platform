@@ -1,7 +1,7 @@
 schemaVersion: treeseed.platform-host-template/v1
 id: development
 profiles: [core]
-integration: { id: development, digest: 'sha256:67d0b51a457bbb20e9ec3e3f94f8abe238fa03327c09969c1dff551040abab07' }
+integration: { id: development, digest: 'sha256:35e05c17d407383dfbd5e15eaf3f29224933f95c6ac472b1a823f5258a5ce325' }
 inputs:
   - { name: hostIdentity, required: false, sensitive: false }
   - { name: initialAdministrator, required: false, sensitive: false }
