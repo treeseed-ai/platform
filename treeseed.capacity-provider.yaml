@@ -1,9 +1,9 @@
-schemaVersion: 4
+schemaVersion: 5
 ownership:
   type: team
   teamId: team:treeseed
 configuration:
-  generation: local-battery-v4
+  generation: local-battery-v5
 identity:
   privateKeyRef: data://identity-v3.json
   displayName: TreeSeed local capacity battery
@@ -33,6 +33,16 @@ sandbox:
         diskBytes: 8589934592
         processLimit: 512
         outputBytes: 67108864
+      lineage:
+        baseImageDigest: sha256:81a790925bd78d55d44a20413fb721868424718c81ec64e49b5f09d733f6c19b
+        provenanceDigest: sha256:8b4c00d17e53e7c85517c28cd68afae9b6f7c5e731e1cd6cca1e8112a9ac26b0
+        architectures:
+          - amd64
+          - arm64
+        signature:
+          keyId: runtime-provider
+          algorithm: Ed25519
+          value: materialize-at-runtime
     - id: unit
       guestImage: treeseed/sandbox-codex
       guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
@@ -43,6 +53,16 @@ sandbox:
         diskBytes: 17179869184
         processLimit: 1024
         outputBytes: 134217728
+      lineage:
+        baseImageDigest: sha256:81a790925bd78d55d44a20413fb721868424718c81ec64e49b5f09d733f6c19b
+        provenanceDigest: sha256:8b4c00d17e53e7c85517c28cd68afae9b6f7c5e731e1cd6cca1e8112a9ac26b0
+        architectures:
+          - amd64
+          - arm64
+        signature:
+          keyId: runtime-provider
+          algorithm: Ed25519
+          value: materialize-at-runtime
     - id: integration
       guestImage: treeseed/sandbox-codex
       guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
@@ -53,6 +73,16 @@ sandbox:
         diskBytes: 25769803776
         processLimit: 2048
         outputBytes: 268435456
+      lineage:
+        baseImageDigest: sha256:81a790925bd78d55d44a20413fb721868424718c81ec64e49b5f09d733f6c19b
+        provenanceDigest: sha256:8b4c00d17e53e7c85517c28cd68afae9b6f7c5e731e1cd6cca1e8112a9ac26b0
+        architectures:
+          - amd64
+          - arm64
+        signature:
+          keyId: runtime-provider
+          algorithm: Ed25519
+          value: materialize-at-runtime
     - id: platform
       guestImage: treeseed/sandbox-codex
       guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
@@ -63,6 +93,16 @@ sandbox:
         diskBytes: 34359738368
         processLimit: 4096
         outputBytes: 536870912
+      lineage:
+        baseImageDigest: sha256:81a790925bd78d55d44a20413fb721868424718c81ec64e49b5f09d733f6c19b
+        provenanceDigest: sha256:8b4c00d17e53e7c85517c28cd68afae9b6f7c5e731e1cd6cca1e8112a9ac26b0
+        architectures:
+          - amd64
+          - arm64
+        signature:
+          keyId: runtime-provider
+          algorithm: Ed25519
+          value: materialize-at-runtime
     - id: connected
       guestImage: treeseed/sandbox-codex
       guestImageDigest: sha256:9c9a7bc5361bfed2aaa380967af6992373310f5e3bb169bf92c7b86b688a681a
@@ -73,6 +113,16 @@ sandbox:
         diskBytes: 17179869184
         processLimit: 1024
         outputBytes: 134217728
+      lineage:
+        baseImageDigest: sha256:81a790925bd78d55d44a20413fb721868424718c81ec64e49b5f09d733f6c19b
+        provenanceDigest: sha256:8b4c00d17e53e7c85517c28cd68afae9b6f7c5e731e1cd6cca1e8112a9ac26b0
+        architectures:
+          - amd64
+          - arm64
+        signature:
+          keyId: runtime-provider
+          algorithm: Ed25519
+          value: materialize-at-runtime
 lanes:
   - id: communication
     purpose: communication
@@ -85,10 +135,9 @@ lanes:
     queueLimit: 100
     timeoutSeconds: 120
     capabilities:
-      - communication
-      - agent-execution
-      - research
-      - planning
+      - treeseed.coordination.conversation
+      - treeseed.engineering.repository-analysis
+      - treeseed.research.synthesis
   - id: platform
     purpose: platform
     priority: 70
@@ -100,10 +149,9 @@ lanes:
     queueLimit: 100
     timeoutSeconds: 900
     capabilities:
-      - agent-execution
-      - engineering
-      - verification
-      - repository_work
+      - treeseed.engineering.architecture
+      - treeseed.engineering.code-change
+      - treeseed.engineering.review
   - id: workday
     purpose: workday
     priority: 50
@@ -118,13 +166,10 @@ lanes:
       amount: 600
       unit: seconds
     capabilities:
-      - agent-execution
-      - engineering
-      - research
-      - planning
-      - acting
-      - verification
-      - repository_work
+      - treeseed.coordination.planning
+      - treeseed.engineering.code-change
+      - treeseed.research.synthesis
+      - treeseed.publishing.documentation
 adapters:
   - id: codex-local
     adapter: codex
@@ -139,30 +184,1243 @@ adapters:
       - communication
       - platform
       - workday
-    sandboxProfileIds:
-      - read
-      - unit
-      - integration
-      - platform
-      - connected
-    defaultSandboxProfiles:
-      conversation: read
-      execution: unit
     maxConcurrentWorkers: 4
     minimumAssignmentDuration:
       amount: 600
       unit: seconds
     nativeLimits:
       availableAgentSeconds: 28800
-    capabilities:
-      - communication
-      - agent-execution
-      - engineering
-      - research
-      - planning
-      - acting
-      - verification
+    offers:
+      - offer:
+          schemaVersion: treeseed.capability-offer/v1
+          offerId: codex-conversation
+          capabilities:
+            - &a1
+              id: treeseed.coordination.conversation
+              version: 1.0.0
+              digest: sha256:576049cf0d72cec60b40b77cc84bfd18b759b44a4934ec37f04dbc6a2d174d25
+            - &a2
+              id: treeseed.coordination.question-answering
+              version: 1.0.0
+              digest: sha256:328094f02972b190549cdfa2fa2a9edbcc07821e799bfe0c569c4abe11614ca2
+            - &a3
+              id: treeseed.coordination.planning
+              version: 1.0.0
+              digest: sha256:9fba3d3ba6b70b0f8a887ca757e277de09986ac7483aac67816eacefef07ccd8
+            - &a4
+              id: treeseed.coordination.estimation
+              version: 1.0.0
+              digest: sha256:ea59cd62f1c435c74e9d2ca3f2e0d7046477f68f42c40e19dc16ffaa9bfc44f5
+            - &a5
+              id: treeseed.coordination.review
+              version: 1.0.0
+              digest: sha256:792d086c3b367ee614c8203970a4360ef11cfa7105b352d296c4bec8e5bcd2dd
+            - &a6
+              id: treeseed.coordination.reporting
+              version: 1.0.0
+              digest: sha256:4db038b93d9efa987f6c5eca3b78feb559bb476ff20a357c2bc65c8a8b41daa2
+            - &a7
+              id: treeseed.coordination.human-task-routing
+              version: 1.0.0
+              digest: sha256:0cea51ee8e57ef6154c980fba7030695397bffcc3fe764f4a78cec7c18c4f405
+            - &a8
+              id: treeseed.coordination.decision-support
+              version: 1.0.0
+              digest: sha256:5e5b8adbf05656bce2e78d5d7c4a5a1d58c1520fac5b36bd4681aa5340720a2a
+            - &a9
+              id: treeseed.research.web
+              version: 1.0.0
+              digest: sha256:4eb312c242ccd113ad9f8c83ddb50c585d7ab838639ff3b41c75b1c217c0a371
+            - &a10
+              id: treeseed.research.literature
+              version: 1.0.0
+              digest: sha256:93c2c8d9681f38bca81ca49411a397a2536d39a94523e8a21de3efa6b5c669ee
+            - &a11
+              id: treeseed.research.market
+              version: 1.0.0
+              digest: sha256:1f6ab97b0944ee2eecc9f69b2b7862414048e11be13562171d7a951113096568
+            - &a12
+              id: treeseed.research.repository
+              version: 1.0.0
+              digest: sha256:6b23cf64d151bbea7e545f49990629563ea69fa6f61d669e344d1eb86101f7b7
+            - &a13
+              id: treeseed.research.dataset-discovery
+              version: 1.0.0
+              digest: sha256:ed4dd2b8fd9d8d758ac2c1428de77fd71945306114c9882857b855d4a6837b4a
+            - &a14
+              id: treeseed.research.retrieval
+              version: 1.0.0
+              digest: sha256:d49cfe884d57572929549581e66c5473a568b787f1db4b44ac5153ecb7193a1c
+            - &a15
+              id: treeseed.research.extraction
+              version: 1.0.0
+              digest: sha256:2c06c4b2b37ff1373d402eee4d8c4b43953be52e25f74922db0274360f5ddd37
+            - &a16
+              id: treeseed.research.verification
+              version: 1.0.0
+              digest: sha256:4f8fb5b7a790e1b6b33798bbb7bb90e3d48c528f728c721ecf265fd80c6e6e60
+            - &a17
+              id: treeseed.research.citation
+              version: 1.0.0
+              digest: sha256:2097ae23ecda75450f830b5827b393abeaee1068b3bdb4c60cc9e5f328a061d9
+            - &a18
+              id: treeseed.research.synthesis
+              version: 1.0.0
+              digest: sha256:6355354f3b05f271a96ca2661dd4effd714056eae4bbb670c6b6f2d03f6ebf96
+            - &a19
+              id: treeseed.research.experimentation
+              version: 1.0.0
+              digest: sha256:7c195c6f467e36ef12c898a2c5b28860c6ff37fbfbe6a97bdfeb1b60cb2f8d2e
+            - &a20
+              id: treeseed.engineering.architecture
+              version: 1.0.0
+              digest: sha256:cf9fc9cd85d2fa3359c6e3c75af51bda72c978f57535ccb1557caf58620ae58f
+            - &a21
+              id: treeseed.engineering.repository-analysis
+              version: 1.0.0
+              digest: sha256:a95e6036e4f54be98a36717fe83d9a83da7fd57cf91dac69bdc6584c68e6f8b3
+            - &a22
+              id: treeseed.engineering.review
+              version: 1.0.0
+              digest: sha256:162f589904aa1213e7d087e1dbf68517aa80870330848c42c2770a3b0adb6ab3
+          features: []
+          configurationSupport: &a23
+            instructions.system:
+              required: true
+              preferred: true
+            instructions.task:
+              required: true
+              preferred: true
+            instructions.templates:
+              required: true
+              preferred: true
+            context.queries:
+              required: true
+              preferred: true
+            tools.policy:
+              required: true
+              preferred: true
+            intelligence.reasoning-effort:
+              required: true
+              preferred: true
+          permissionClasses:
+            - content-policy
+            - repository-policy
+            - network-policy
+            - shell-policy
+            - tool-policy
+          contextModes:
+            - inline
+            - manifest
+          inputContracts: []
+          outputContracts: []
+          interactionModes:
+            - asynchronous
+            - interactive
+          conformance:
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a1
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:614820ae211ff15817d54335488a51cc46ddb810f71eea1eff4932196576b55d
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a2
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:5eaf73b3922e41c975e6b6b87f5b2a9f0ee70b245f0b013b796a1ca940224479
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a3
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:098e3548a9ded67c2af6650a6c3de3839dc78e4c1bf0d6393267342eaee5fd53
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a4
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:05f1fb29606133f489393cbfd0186c5d40e202d9bd57bd5e725ad8fc75d1189c
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a5
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:02a09c93550dd5aed100963a71b09951153784f2478c46f568411dc5af830963
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a6
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:df2749bd55296cba9250705296c0def1794098b0beeb70ea653df48e3b4e2cf1
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a7
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e4fe5e5049c271cd66efe95b267344844f60d99c59b91bfa9aa822f1ebb1d6d8
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a8
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e734dea966d1908e12649f9d4815da25f0a7fc36a97d547a9b8b542ae87a10f8
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a9
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:7cdc5aadba7e9a0c85824b63dfc652b0e89d6a1196bf4c951c561adc767d93a7
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a10
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e9614b472ae4b5b884b824c36153c0a9bbc379a90aa2cd05888cb32865d166eb
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a11
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:2c11a18413be46f2ef6f2a4a030228db3d01bcebeef3bc88447a33a9cea3500d
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a12
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:3c5f86768f9711a477073ac29f54645fbd7a025fafd383e79d3e61bef54149dd
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a13
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:70638c878d9ed800e4365c22d671f43b658e04ac891f9c19fe81124f20f0751c
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a14
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:b46b7bce50da69bf0e0e8cdcaada0da0884209a305e49aaa85c992d56c91ca30
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a15
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e83b07e5be855c9144102a73fc9fa913e869c71bf3942fad707079472b5cfd74
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a16
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:89769beb4b5a9b936a32532d0093e522b64875309f38711826b573d56266e884
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a17
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:49c6740d1952f33f5e02b3448aed1376ca8715d2b6118d93634c035676720881
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a18
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:70d3ee5942cc6d41e7a87780ca51cf19818596315ef8b5c685be4bc31a32a604
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a19
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:f17752cab92d16afe95fb11b57e3232f40fa2bec243ddfc37d62112faaa692e5
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a20
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:5ceb64dcef53c1833dfbaa16530dd9cb758a5bafbb2bff4a4f19e334ff2eac04
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a21
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:0b10776b4b1061f56bf53f6e7bb6f49e96a692e09137a6c7f98bff108b554899
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a22
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:9ee06bf527dd12d2db47c1b17636847a42d5fb8277cd59dd406f64deac5e9e0c
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+          limits: {}
+          commercial:
+            currency: null
+            estimatedCost: null
+          region: null
+          trust:
+            - provider-signed
+          offerDigest: sha256:cda6739e612bab5021b3055faf96a71bef9b7bde77b9901451e6c6b01dcbf74e
+        sandboxProfileId: read
+      - offer:
+          schemaVersion: treeseed.capability-offer/v1
+          offerId: codex-engineering
+          capabilities:
+            - &a24
+              id: treeseed.engineering.architecture
+              version: 1.0.0
+              digest: sha256:cf9fc9cd85d2fa3359c6e3c75af51bda72c978f57535ccb1557caf58620ae58f
+            - &a25
+              id: treeseed.engineering.repository-analysis
+              version: 1.0.0
+              digest: sha256:a95e6036e4f54be98a36717fe83d9a83da7fd57cf91dac69bdc6584c68e6f8b3
+            - &a26
+              id: treeseed.engineering.code-change
+              version: 1.0.0
+              digest: sha256:1a192328470f6299e7b569cbb3778bf64da08272619a4b4b96bc7ea3f6f978d5
+            - &a27
+              id: treeseed.engineering.refactoring
+              version: 1.0.0
+              digest: sha256:d489b29b12e939514a0111ce85ae2ff0234c9c15cb91840bdbcd60d05d66c447
+            - &a28
+              id: treeseed.engineering.dependency-update
+              version: 1.0.0
+              digest: sha256:95f8816d9369d7dbf74955740f1a3c59e373d08b533578b21fc37ad4118d1980
+            - &a29
+              id: treeseed.engineering.build
+              version: 1.0.0
+              digest: sha256:305090e9b6ff006b85d367cb6a1d781043be50c5f82fa8ceb26e39d48aa34e22
+            - &a30
+              id: treeseed.engineering.unit-testing
+              version: 1.0.0
+              digest: sha256:5d0609a4887df8f4d824355629443c70c45aae88ec05553fea983d89b597cf1e
+            - &a31
+              id: treeseed.engineering.integration-testing
+              version: 1.0.0
+              digest: sha256:5ad014e0c16459f5d08dcb163ef46bb6e935d25a95cabaab8729d26107da6e96
+            - &a32
+              id: treeseed.engineering.end-to-end-testing
+              version: 1.0.0
+              digest: sha256:c5af48b981ebacab95a12d82144dae9d1ade6a3cfa58a142e11924830b7a5d03
+            - &a33
+              id: treeseed.engineering.debugging
+              version: 1.0.0
+              digest: sha256:93b3d423e3c342085887a504da7348dade4f53f18eb4a4d3690096209b7584d4
+            - &a34
+              id: treeseed.engineering.review
+              version: 1.0.0
+              digest: sha256:162f589904aa1213e7d087e1dbf68517aa80870330848c42c2770a3b0adb6ab3
+            - &a35
+              id: treeseed.engineering.performance-analysis
+              version: 1.0.0
+              digest: sha256:0f612bf1fca8fe67bcf6a7717e06d5cdf337eb07f7eeb68012ebdfa98533d6b8
+            - &a36
+              id: treeseed.engineering.accessibility
+              version: 1.0.0
+              digest: sha256:6d9b37e8cf00cfabf0e9390f33c458a3ae9a19d37c7014d6a1b64b4a5ff5ce18
+            - &a37
+              id: treeseed.engineering.infrastructure
+              version: 1.0.0
+              digest: sha256:0ee8410f4d1d78d7392d2cd63fa5677390e57ac067c51bac596e01320967f971
+          features: []
+          configurationSupport: *a23
+          permissionClasses:
+            - content-policy
+            - repository-policy
+            - network-policy
+            - shell-policy
+            - tool-policy
+          contextModes:
+            - inline
+            - manifest
+          inputContracts: []
+          outputContracts: []
+          interactionModes:
+            - asynchronous
+            - interactive
+          conformance:
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a24
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:4eab793b13eb3f0fa0ac87dbbf4f7f808d74c51ade648c51361c66afdee97cbf
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a25
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e7e7d8a885455262e486520109662288f556f2fdc2628e56bb190ab1f9cef601
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a26
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:afc00a6d112219a158ad70e256e0ad28f3b39cb63ec5b8b3011da9b908e96dbc
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a27
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e1ee8dc762f4d60bc56847fbbeddb5fb48260344b9daa5e24de55f62a4900775
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a28
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:6aa3006b1cdc6721fa9ffe4776d59ede756960da7050847276650db9d36b27d6
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a29
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:79faa546f32c39a3d0ac730a089b9af1e0b42b872ccd8677c06ddcbe57003d8d
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a30
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:a99115091ea7a95a53c4d3946329f4d73fc1bb35f385b5dd4192fb66d9be83e3
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a31
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:f947c842eb3c3d76ca0ad04a5cfb2869c67e1d92b3b0189daa71deaf0201a4ea
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a32
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:5247cdaf6c816b6763bc7a71b8bab81f06bb9139b3e75afc5a11e7ec4e765444
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a33
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:44b130de11d006bab6fc17ddb10f3378983e52ee0483abe5a2781be1d209a70d
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a34
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:5a7e4e52ecbfe79579d1c1804f26481fa150156f11da5b11fcc4cdcb06ee9a6a
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a35
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:bdbb4b327f940f4519f4d8a7b5435b26bdefca10284b29ad3f0adf3cacb69966
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a36
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:44a3aa274c618904a0c7967b1f1bea35a7a05e007bf0aac450046d75f5c27c9f
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a37
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:522b7e6b36ccf654da98748eb9edb2891cba625e824852c49bd47de674a12ceb
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+          limits: {}
+          commercial:
+            currency: null
+            estimatedCost: null
+          region: null
+          trust:
+            - provider-signed
+          offerDigest: sha256:9e74c106355aaf4db53af997cb1733c1bfc3c3e1bf74dd8ac45946c3e688d80d
+        sandboxProfileId: unit
+      - offer:
+          schemaVersion: treeseed.capability-offer/v1
+          offerId: codex-data
+          capabilities:
+            - &a38
+              id: treeseed.data.source-connection
+              version: 1.0.0
+              digest: sha256:5b01c6541698567d7c214c212e396384b392a5f69011e4ff59da0ef5cf7f0ef9
+            - &a39
+              id: treeseed.data.extraction
+              version: 1.0.0
+              digest: sha256:37745a099486cfa3a99ed91175303b61d7861cf96a64e763f6354bfa48928ab7
+            - &a40
+              id: treeseed.data.ingestion
+              version: 1.0.0
+              digest: sha256:475fc6c430db50498e943a9a1785a652727cf7aa12888f661f1be020f82ff060
+            - &a41
+              id: treeseed.data.synchronization
+              version: 1.0.0
+              digest: sha256:77dc67104ee56594f6c03890130d9592e71e9ca2d5507375d5404a5f517dadbc
+            - &a42
+              id: treeseed.data.schema-inference
+              version: 1.0.0
+              digest: sha256:59ac4cc5b87f1f2b304cb683c8ffd8005035f96357bf868243920d60e095d8c9
+            - &a43
+              id: treeseed.data.schema-mapping
+              version: 1.0.0
+              digest: sha256:6685e2ee388fc8d9e91458a5d128a447278ec24e5b099d0ea51c02a3c3331b77
+            - &a44
+              id: treeseed.data.normalization
+              version: 1.0.0
+              digest: sha256:3ed0fb171aa3d3efa309dfb87298882f8cef96504f63b69ba05f4fc09e7c76b2
+            - &a45
+              id: treeseed.data.transformation
+              version: 1.0.0
+              digest: sha256:a51756e63ae472736ca5d92828857a21d2569f17ddf9da59dce758d4ed0040f7
+            - &a46
+              id: treeseed.data.enrichment
+              version: 1.0.0
+              digest: sha256:98fd215c48d0275a563c3c2494d4ec746a1b636246eed7816e8d6bb618777806
+            - &a47
+              id: treeseed.data.entity-resolution
+              version: 1.0.0
+              digest: sha256:e42233db1be3a1e9e3411b8c4d9f50e092722006b21d8ba4c1e3105cdc93363a
+            - &a48
+              id: treeseed.data.validation
+              version: 1.0.0
+              digest: sha256:a303b8cc26cab8e3b8fa9689e3f6c3b18df5ffa899e24e5793cfcc811b9f4061
+            - &a49
+              id: treeseed.data.quality-analysis
+              version: 1.0.0
+              digest: sha256:cd9aaaa7a930e6107c02526e78c63ed3c72d4d366a84a73be67b913755cd8e06
+            - &a50
+              id: treeseed.data.lineage
+              version: 1.0.0
+              digest: sha256:8ab128f5fa3dd68b25a4c4842d61d5ac41b333f1f7d6fa6e419d6a4939c8c345
+            - &a51
+              id: treeseed.data.statistical-analysis
+              version: 1.0.0
+              digest: sha256:f6790200a9e12cfd1c8443d2acf359231a3ef0839106b0e7fb8926a4f95a5ce0
+            - &a52
+              id: treeseed.data.visualization
+              version: 1.0.0
+              digest: sha256:ec2d5a44e660113df5e7582d73ca4dffd00d83bbd83a131ed6a07580d5edcfdf
+            - &a53
+              id: treeseed.data.export
+              version: 1.0.0
+              digest: sha256:f823e9404981572aa23f7d6e7032bc71a96b7827905617e2645c7c697ee07d53
+          features: []
+          configurationSupport: *a23
+          permissionClasses:
+            - content-policy
+            - repository-policy
+            - network-policy
+            - shell-policy
+            - tool-policy
+          contextModes:
+            - inline
+            - manifest
+          inputContracts: []
+          outputContracts: []
+          interactionModes:
+            - asynchronous
+            - interactive
+          conformance:
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a38
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:a4d7a4cc3a8dc7608af89067c0fe187123ac4dc719d6c82335cd5b21213c05b1
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a39
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:7dc36fe0eac8b806e55214cf0bcaaea2574ec5f8c9264d32868bef7c1a810574
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a40
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:344c10ed776885fec5f106409dcf29a2a8339ceeb08f4b0bd10b1dcc3c2f700b
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a41
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:28e5fcb040c5460bb94105a38ac38e3c26c737be51f2ed2e41c419d9fd7cd89d
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a42
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:76a6ea4ee773a77a2a1561e3b8cc68f6060ae5b249834bfcef15bea0d2a3fda1
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a43
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:e10316b43d39caaa6909c5e148a2851ae8002a43ca98a2789b30e9cbf3183db9
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a44
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:dfe4ed2d63ad84015cc01c89ad1b64345360a1bed4ff6e9cbd4592bed5713829
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a45
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:20988d2e3a8df4e90d8437e3fbf7657c7799787e7cc2143a010faa2d4008afa4
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a46
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:f7e46af3ee9e294fd55b1228075288648e1c1ac45a498021b63c7779c1bbcf71
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a47
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:a37b1e8231e07189078fd393cc69ba9c74f43f6f03bfee387eebaf7f44543c5b
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a48
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:d43eec677395e18ee535526f3f10dbfaa979538729f0f838dfa4d70dbcbe6ca3
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a49
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:36b2bd5bf94e4ee68f8a144f3e0aee22f143a96f8c45179cd14a07f9c04af561
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a50
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:fb4069bc6dfc773dbbec8a255da599bb9ed07958a6208678d20fcf6b95083b79
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a51
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:6fa8fe83bd738ae81e788e5320cc919cb37fda627c67d4acff37e7ec883bee69
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a52
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:4ea9ff9fbf8dc3519b6f7938fd8da8f551378eb9a375e25d4297f4253250a9d0
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a53
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:def1d831e8d3f787cb27088acbc964ad5567ec177901dbf6cccea5a97029b613
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+          limits: {}
+          commercial:
+            currency: null
+            estimatedCost: null
+          region: null
+          trust:
+            - provider-signed
+          offerDigest: sha256:059292b156a609c22141b6569677e5326f0f902e0d846c433184fbf16bd982ac
+        sandboxProfileId: unit
+      - offer:
+          schemaVersion: treeseed.capability-offer/v1
+          offerId: codex-publishing
+          capabilities:
+            - &a54
+              id: treeseed.publishing.drafting
+              version: 1.0.0
+              digest: sha256:a6f6770e1f6026c84b85cf63b9d47ad079cf5dc3725aa14d4f447fe445841c47
+            - &a55
+              id: treeseed.publishing.editing
+              version: 1.0.0
+              digest: sha256:88bdf58385154e97893d173171be99ad1d31a43f51b8fe94193551423fb22e92
+            - &a56
+              id: treeseed.publishing.translation
+              version: 1.0.0
+              digest: sha256:c467bf962015fe52f9728bd821befe6f87457cd6d891f01ae57a4f90ef8226c4
+            - &a57
+              id: treeseed.publishing.structured-content
+              version: 1.0.0
+              digest: sha256:67b6bc51428038c5db0b02b50b57ef8f10520f52af7e8c0c834f1768b7444d7d
+            - &a58
+              id: treeseed.publishing.documentation
+              version: 1.0.0
+              digest: sha256:429b0d777d5cfd6061d17c70f4b004bab723e2d8b68fbb31bc58cde8ec7b921b
+            - &a59
+              id: treeseed.publishing.cms
+              version: 1.0.0
+              digest: sha256:c717b098a360ae11d05d5a3cb4cbdeb4340259aa99d8e7ef95515aff51b510ab
+            - &a60
+              id: treeseed.publishing.repository
+              version: 1.0.0
+              digest: sha256:c707ad7ffe303fe6fa0bccb15a1db96ce4f7cfdfd9be8729a2b72346db92c4b4
+            - &a61
+              id: treeseed.publishing.package-artifact
+              version: 1.0.0
+              digest: sha256:b0ffa8246394d4f1393f6ab9a71309952b8e1aa8afebf51559fac0d2e93fe815
+            - &a62
+              id: treeseed.publishing.site-build
+              version: 1.0.0
+              digest: sha256:dceccbcd2117986300ed526e932910f77de2a1dcf03d818452ab69f1b2f56f53
+            - &a63
+              id: treeseed.publishing.site-deployment
+              version: 1.0.0
+              digest: sha256:e6ebee085a5c1779d3fe118bbda8c0857c5017f34dea94b4a4a83794bce7a264
+            - &a64
+              id: treeseed.publishing.syndication
+              version: 1.0.0
+              digest: sha256:55f238491990a9052e8792ae69ac0c3146d2c86dc2782b6b0c65ec28b322a50e
+            - &a65
+              id: treeseed.publishing.release-notes
+              version: 1.0.0
+              digest: sha256:0ddc90bc3d50445862c84988838bd9884b3c90dcaa6ce81a9c9d97cef76a0ad1
+          features: []
+          configurationSupport: *a23
+          permissionClasses:
+            - content-policy
+            - repository-policy
+            - network-policy
+            - shell-policy
+            - tool-policy
+          contextModes:
+            - inline
+            - manifest
+          inputContracts: []
+          outputContracts: []
+          interactionModes:
+            - asynchronous
+            - interactive
+          conformance:
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a54
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:caecba7001636881336b5db084d65b45b847abfbe2d0fe80feb111f38cda4ed7
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a55
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:85fbd93053e55f1fe987e4bf03d45f52144e871db6d6e0a2c24ac43e1703a915
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a56
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:493c309f64aecb122753fd44687b3cfae76b44c24fd65b2e982dfb9a85b0bdab
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a57
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:4e6af3f9d46f81522572a2c680ba7905079fd41540c41556b5146fa9c3711f75
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a58
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:a4afd8179702dd4064170211e0b44685bf4fef68c467e58cd9b418df41256c01
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a59
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:1cd13cef3d0f69747735704c34fcc1bd3236c55227e3be42a4e2cab01130826a
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a60
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:cf82a53e4b6a2e11ba5a0a3c0488987b1eb1107991c52824492f1b334d2afab7
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a61
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:aa647ee6ccba8910c2fcf5126a5f9b27bb67ec829e499eef79b20ced23f155c2
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a62
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:db861fbab926627a1ccd9d6441d8b90e88e7cc434a87e2e323f0eb6c3f433aa6
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a63
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:c11e8bfc5f30ccbafa3cf2f31530f781aec9894c3cc1e7c4ffcd3fe74025516e
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a64
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:9477a0c1b552993f694d7e0cdb63bd606d10bc5a50b19b966869064e69ee0fec
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+            - schemaVersion: treeseed.capability-conformance/v1
+              providerId: runtime-provider
+              capability: *a65
+              tier: signed-attestation
+              status: passed
+              evidenceDigest: sha256:c5568a6b459f8a469476836e34de13ab6d9623171beea97a8c7a426ef4135929
+              suite: null
+              issuedAt: 2026-08-30T00:00:00.000Z
+              expiresAt: null
+              signature:
+                keyId: runtime-provider
+                algorithm: Ed25519
+                value: materialize-at-runtime
+          limits: {}
+          commercial:
+            currency: null
+            estimatedCost: null
+          region: null
+          trust:
+            - provider-signed
+          offerDigest: sha256:312e467faba5f0ec7747eb61ab3eb2aed1a118bea547a8c84d3431ef6ae0b029
+        sandboxProfileId: unit
 connections: []
 metadata:
   custody: local-only
   sharedBattery: true
+ontology:
+  generation: 2
+  digest: sha256:ed47ae4c5556d123c0b64260baab082ba22a5f096536efdaaaab0fb583c414d1

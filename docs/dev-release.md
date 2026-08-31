@@ -439,7 +439,7 @@ The manager does not infer semantic compatibility from timestamps. It reports wh
 ### CLI
 
 - Kind: `package-watch` or direct executable rebuild.
-- A session-scoped shim may select the locally built CLI while normal host commands remain on the released CLI.
+- The installed `trsd` launcher automatically selects the completed local CLI generation recorded by `trsd dev use` and falls back to the released CLI when that selection is absent, expired, or unreadable.
 - Machine JSON schemas, exit statuses, confirmation behavior, and stdout/stderr boundaries remain contract-tested.
 - Freeze produces the npm tarball and later the Deployment-qualified Debian payload.
 
