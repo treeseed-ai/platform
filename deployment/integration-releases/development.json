@@ -1,17 +1,17 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc178",
-  "generation": 139,
+  "release": "0.1.0~rc179",
+  "generation": 140,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
   "platform": {
     "repository": "treeseed-ai/platform",
-    "commit": "e5a707b60396c1966e54916b258da66e02a1a02f"
+    "commit": "14e4df35d7f2f91f9b8a8cc89a7e8b6fcd0817de"
   },
   "deployment": {
     "repository": "treeseed-ai/deployment",
-    "commit": "68c52d46cbac82635a75ea4297e907a049b9aa6c",
-    "tag": "0.1.0-rc.178"
+    "commit": "7e8e58a6e499aef2a35c9dd036db36694fcb48a4",
+    "tag": "0.1.0-rc.179"
   },
   "hostPayloads": [
     {
