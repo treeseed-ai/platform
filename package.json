@@ -9,12 +9,14 @@
     "node": ">=22"
   },
   "scripts": {
+	"capacity-provider:sync": "node scripts/synchronize-capacity-provider-manifests.mjs",
+	"capacity-provider:check": "node scripts/synchronize-capacity-provider-manifests.mjs --check",
 	"guarantees:plan": "node scripts/plan-composition-guarantees.mjs",
 	"guarantees:run": "node scripts/run-composition-guarantees.mjs",
 	"test:guarantee-plan": "node scripts/test-composition-guarantee-plan.mjs",
 	"test:guarantee-run": "node scripts/test-composition-guarantee-run.mjs",
     "verify:development": "node --import ./packages/cli/node_modules/tsx/dist/loader.mjs scripts/verify-development-workflow.ts",
-    "verify": "node scripts/verify-platform.mjs",
-    "verify:local": "node scripts/verify-platform.mjs"
+    "verify": "npm run capacity-provider:check && node scripts/verify-platform.mjs",
+    "verify:local": "npm run capacity-provider:check && node scripts/verify-platform.mjs"
   }
 }

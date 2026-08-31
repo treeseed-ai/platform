@@ -50,10 +50,10 @@ if ((seed.match(/role: library/gmu) ?? []).length !== 16 || (seed.match(/library
 if (!/digest: sha256:[a-f0-9]{64}/u.test(seed)) fail('Canonical seed is not digest-bound.');
 
 const provider = read('treeseed.capacity-provider.yaml');
-for (const required of ['schemaVersion: 4', 'purpose: communication', 'purpose: platform', 'purpose: workday', 'reclaimPolicy: admission', 'isolation: microvm', 'runtime: kata-runtime-rs-qemu', 'defaultDenyNetwork: true']) {
+for (const required of ['schemaVersion: 5', 'ontology:', 'offers:', 'purpose: communication', 'purpose: platform', 'purpose: workday', 'reclaimPolicy: admission', 'isolation: microvm', 'runtime: kata-runtime-rs-qemu', 'defaultDenyNetwork: true']) {
 	if (!provider.includes(required)) fail(`Unified provider manifest is missing ${required}.`);
 }
-if (provider.includes('isolation: process') || provider.includes('isolation: worker')) fail('Unified provider manifest must not retain non-microVM execution adapters.');
+if (provider.includes('schemaVersion: 4') || provider.includes('isolation: process') || provider.includes('isolation: worker')) fail('Unified provider manifest must not retain v4 or non-microVM execution adapters.');
 for (const forbidden of ['providerClass:', 'registrationKeyRef:', 'membershipCredentialRef:']) if (provider.includes(forbidden)) fail(`Unified provider manifest retains ${forbidden}.`);
 
 const host = JSON.parse(read('deployment/host-configs/development-workstation.json'));
@@ -96,12 +96,16 @@ if (host.components?.api?.configuration?.environment?.TREESEED_TREEDX_JWT_ISSUER
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_AUDIENCE !== treeDxAudience
 	|| host.components?.treedx?.configuration?.environment?.TREEDX_JWT_ALLOWED_ALGS !== 'RS256') fail('API and TreeDX must share the generation 7 RS256 issuer, audience, and private JWKS discovery contract.');
 if (host.components?.agent?.connections?.['control-plane']?.kind !== 'local' || host.components?.treedx?.connections?.['control-plane']?.kind !== 'local') fail('Integrated Agent and TreeDX components require explicit local control-plane connections.');
+const embeddedProvider = host.components?.agent?.configuration?.files?.['treeseed.capacity-provider.yaml'] ?? '';
+if (!embeddedProvider.startsWith('schemaVersion: 5\n') || !embeddedProvider.includes('\nontology:\n') || embeddedProvider.includes('schemaVersion: 4') || embeddedProvider.includes('sandboxProfileIds:') || embeddedProvider.includes('\n    capabilities:\n      - communication\n')) fail('Integrated Agent must receive only the synchronized capability-driven provider manifest v5.');
 if (host.components?.admin?.connections?.api?.kind !== 'local') fail('Managed Admin requires an explicit local or remote API connection.');
 if (Object.keys(host.components?.admin?.aliases ?? {}).length) fail('Managed Admin must use its component-owned canonical alias rather than a forbidden host override.');
 if (JSON.stringify(aliases.sort()) !== JSON.stringify(['api.treeseed.localhost', 'lab.treeseed.localhost', 'mail.treeseed.localhost', 'manager.treeseed.localhost', 'treedx.treeseed.localhost'])) fail('Development workstation must use only the permitted local alias overrides.');
 const providerHost = JSON.parse(read('deployment/host-configs/capacity-provider-development.json'));
 if (providerHost.host?.role !== 'capacity-provider' || Object.keys(providerHost.components ?? {}).join(',') !== 'agent' || providerHost.components.agent?.connections?.['control-plane']?.kind !== 'remote') fail('Capacity-provider fixture must select only Agent with an explicit remote control plane.');
 if ((providerHost.network?.manager?.aliases ?? []).length || Object.values(providerHost.components.agent?.aliases ?? {}).length) fail('Private capacity-provider fixture must remain edge-free.');
+const embeddedDedicatedProvider = providerHost.components?.agent?.configuration?.files?.['treeseed.capacity-provider.yaml'] ?? '';
+if (!embeddedDedicatedProvider.startsWith('schemaVersion: 5\n') || !embeddedDedicatedProvider.includes('\nontology:\n') || embeddedDedicatedProvider.includes('schemaVersion: 4') || embeddedDedicatedProvider.includes('sandboxProfileIds:')) fail('Dedicated capacity-provider fixture must receive only the synchronized provider manifest v5.');
 
 const treeAiInputs = JSON.parse(read('deployment/treeai-component-inputs.json'));
 if (treeAiInputs.schemaVersion !== 'treeseed.platform-component-inputs/v1' || treeAiInputs.release !== '0.11.0-rc9' || treeAiInputs.sourceCommit !== '92c7b2edc73416d77c5c0a6789ef73dba71ddf92') fail('TreeAI component inputs must identify the exact independent RC source.');
@@ -206,4 +210,4 @@ if (marketRoots.length > 2) fail(`Platform contains duplicate Market worksets: $
 for (const path of ['packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml', 'packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml', 'scripts/guarantees/verify-agent-capability.ts']) requireFile(path);
 const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true }).filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
 
-console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 16, primaryRepositories: 16, projectLibraries: 16, fixtureRepositories: 1, owners: 2, providerModel: 'unified-battery-v3', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
+console.log(JSON.stringify({ ok: true, inventoryAuthority: 'portable-seed-bundle', projects: 16, primaryRepositories: 16, projectLibraries: 16, fixtureRepositories: 1, owners: 2, providerModel: 'capability-marketplace-v5', lanes: ['communication', 'platform', 'workday'], gitlinks: 0, marketCheckouts: marketRoots.length, agentGuaranteeDefinitions, hostedDeployment: false }));
