@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "treeseed.host-initialization-profile/v1",
+  "id": "control-plane",
+  "role": "control-plane",
+  "runtime": { "management": "managed", "environment": "track-default" },
+  "components": ["api", "admin", "treedx", "lab"],
+  "security": { "requirement": "optional" },
+  "inputs": []
+}

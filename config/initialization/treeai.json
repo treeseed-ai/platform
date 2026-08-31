@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "treeseed.host-initialization-profile/v1",
+  "id": "treeai",
+  "role": "integrated",
+  "runtime": { "management": "managed", "environment": "track-default" },
+  "components": ["api", "admin", "agent", "treedx", "lab", "ai-inference", "ai-training", "ai-lab"],
+  "security": { "requirement": "required" },
+  "inputs": []
+}
