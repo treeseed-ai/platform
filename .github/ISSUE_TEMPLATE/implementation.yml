@@ -1,0 +1,65 @@
+name: Bounded implementation
+description: Define one reviewable Platform integration outcome and its authoritative evidence.
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Issues are the plan and status authority. Update this body instead of posting
+        routine progress comments; retain detailed verification in GitHub Actions.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State the concrete outcome and owning repository boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: exact-inputs
+    attributes:
+      label: Exact inputs
+      description: Record protected-branch heads, released artifacts, schemas, and dependencies.
+    validations:
+      required: true
+  - type: textarea
+    id: interfaces
+    attributes:
+      label: Interfaces and behavior
+      description: Define public commands, schemas, configuration, and failure behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance gates
+      description: List deterministic, package, integration, read-back, noop, and rollback evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and authority
+      description: Link prerequisite Issues and identify any human or environment approval boundary.
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback
+      description: Identify the retained immutable state and exact recovery path.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Actions evidence
+      description: Maintain a compact table of authoritative workflow runs and artifacts.
+      value: |
+        | Gate | Run/artifact | Status |
+        |---|---|---|
+        | Focused verification | pending | pending |
+        | Release/read-back | pending | pending |
+        | Managed acceptance | pending | pending |
+    validations:
+      required: true
