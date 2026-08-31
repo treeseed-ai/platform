@@ -1,0 +1,6 @@
+schemaVersion: treeseed.platform-profile/v1
+id: control-plane
+extends: []
+sources: { projects: [sdk, cli, ui, core, admin, api, reviewer, treedx, deployment] }
+runtime:
+  targets: [control-plane.api, control-plane.postgres, control-plane.operations, control-plane.admin, control-plane.treedx, development.lab]

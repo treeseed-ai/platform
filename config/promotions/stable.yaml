@@ -1,0 +1,5 @@
+schemaVersion: treeseed.platform-promotion/v1
+id: stable
+state: blocked
+candidate: development
+blockers: [clean-host-acceptance, universal-installer-acceptance, complete-uninstall-acceptance, cloudflare-railway-readback, three-provider-canary-and-rollout, rollback-acceptance]

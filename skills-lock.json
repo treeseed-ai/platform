@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "skills": {
+    "treeseed": {
+      "source": "treeseed-ai/skill",
+      "ref": "0.1.0-rc.1",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "9f7ee249da009916505cf5d4ca9ad1091080221ae5f17577f17d824a1ec710f6"
+    }
+  }
+}

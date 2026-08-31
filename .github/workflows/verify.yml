@@ -15,13 +15,19 @@ concurrency:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: npm install --ignore-scripts --no-audit --no-fund --package-lock=false
-      - run: npm run verify
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: { fetch-depth: 0 }
+      - uses: treeseed-ai/cli/.github/actions/setup-cli@0.13.0-rc.40
+        with: { version: 0.13.0-rc.40 }
+      - run: trsd platform verify . --json
+      - run: trsd platform verify . --profile core --json
+      - run: trsd platform verify . --profile control-plane --profile capacity-provider --profile treeai --json
+      - name: Verify exact project-scoped skill lock
+        run: |
+          workspace="$(mktemp -d)"
+          cd "$workspace"
+          git init --quiet
+          npx --yes skills@1.5.23 add https://github.com/treeseed-ai/skill/tree/0.1.0-rc.1 --skill treeseed --agent codex --yes --copy
+          cmp skills-lock.json "$GITHUB_WORKSPACE/skills-lock.json"
