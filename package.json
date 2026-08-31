@@ -8,6 +8,10 @@
   "engines": {
     "node": ">=22"
   },
+  "devDependencies": {
+    "@treeseed/sdk": "0.13.0-rc.59",
+    "yaml": "2.9.0"
+  },
   "scripts": {
 	"capacity-provider:sync": "node scripts/synchronize-capacity-provider-manifests.mjs",
 	"capacity-provider:check": "node scripts/synchronize-capacity-provider-manifests.mjs --check",
