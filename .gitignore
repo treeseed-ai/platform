@@ -1,9 +1,8 @@
 node_modules/
-.treeseed/
 dist/
+.treeseed/
 /packages/
-/templates/*
-!/templates/platform-*/
+/.agents/skills/
+/.claude/skills/
+/.codex/skills/
 /.fixtures/
-/products/market/
-/services/market-api/

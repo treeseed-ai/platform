@@ -1,0 +1,7 @@
+schemaVersion: treeseed.platform-profile/v1
+id: treeai
+extends: []
+sources: { projects: [sdk, cli, api, admin, agent, reviewer, treedx, deployment] }
+runtime:
+  targets: [treeai.inference, treeai.training, treeai.lab]
+  defaultEnabled: false

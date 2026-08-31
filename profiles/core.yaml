@@ -1,0 +1,6 @@
+schemaVersion: treeseed.platform-profile/v1
+id: core
+extends: []
+sources:
+  projects: [platform, deployment, api, treedx, sdk, ui, cli, core, admin, agent, reviewer, template-engineering, template-research, market, market-api, skill]
+runtime: { targets: [released.all] }

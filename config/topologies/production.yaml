@@ -1,0 +1,9 @@
+schemaVersion: treeseed.platform-topology/v1
+id: production
+mutation: blocked
+providers:
+  admin: { kind: cloudflare, resourceIds: installation-input }
+  controlPlane: { kind: railway, resourceIds: installation-input }
+  capacity: { kind: bare-metal, count: installation-input }
+requirements: [reviewed-plan, authoritative-readback, drift-noop, rollback, environment-approval]
+boundaries: { marketHostedDeployment: external, marketApiHostedDeployment: external }

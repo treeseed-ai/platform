@@ -1,0 +1,5 @@
+schemaVersion: treeseed.platform-profile/v1
+id: capacity-provider
+extends: []
+sources: { projects: [sdk, cli, agent, deployment] }
+runtime: { targets: [capacity-provider.agent, capacity-provider.sandbox] }
