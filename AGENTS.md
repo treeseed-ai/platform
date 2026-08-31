@@ -2,6 +2,10 @@
 
 This is the public TreeSeed installer and integration workspace. Preserve independent package builds and route infrastructure changes through SDK reconciliation and `trsd`. Market and Market API are first-party portfolio projects governed through the same seed, reconciliation, and exact-ref custody model as the other TreeSeed repositories. Their hosted deployment remains fail-closed until the reviewed OpenTofu topology restores it.
 
+## Branch and deployment boundary
+
+`main` is the only production branch and maps only to the `production` deployment environment. `staging` is the only development-integration branch and maps only to the `staging` deployment environment. Short-lived pull-request branches may validate without deploying, but they must never define another deployment environment. Do not create or use `development`, `preview`, `stable`, or any other GitHub deployment environment; preview deployments are prohibited. Release tags may promote an exact reviewed `staging` commit to `production` without creating another branch or environment. Artifact channel names must never become GitHub deployment environments.
+
 ## Project library
 
 The Platform library is `treeseed-ai/platform-library`; its TreeDX binding is authoritative. Start with `trsd library show platform` and `trsd library status platform`. Discover with `paths`, `search`, `query`, or `context`, and read a known file with `trsd library read platform <path> --ref <exact-commit>`. Use exact commits for reproducible work and protected `main` or `staging` only for deliberate moving-head inspection.

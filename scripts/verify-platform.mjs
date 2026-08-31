@@ -207,6 +207,19 @@ const repositoryRoots = ['packages', 'templates', '.fixtures', 'starters', 'prod
 const marketRoots = repositoryRoots.filter((path) => ['market', 'market-api'].includes(basename(path)));
 if (marketRoots.length > 2) fail(`Platform contains duplicate Market worksets: ${marketRoots.join(', ')}`);
 
+const primaryProjectRoots = ['.', 'packages/deployment', 'packages/api', 'packages/treedx', 'packages/sdk', 'packages/ui', 'packages/cli', 'packages/core', 'packages/admin', 'packages/agent', 'packages/reviewer', 'packages/ai', 'templates/engineering', 'templates/research', 'services/market-api'];
+const branchBoundary = '`main` is the only production branch and maps only to the `production` deployment environment.';
+for (const projectRoot of primaryProjectRoots) {
+	const agentsPath = resolve(root, projectRoot, 'AGENTS.md');
+	if (!existsSync(agentsPath) || !readFileSync(agentsPath, 'utf8').includes(branchBoundary)) fail(`${projectRoot} must enforce the canonical main/production and staging/integration boundary in AGENTS.md.`);
+	const workflowsRoot = resolve(root, projectRoot, '.github/workflows');
+	if (!existsSync(workflowsRoot)) continue;
+	for (const workflow of readdirSync(workflowsRoot, { recursive: true }).filter((path) => typeof path === 'string' && /\.ya?ml$/u.test(path))) {
+		const source = readFileSync(resolve(workflowsRoot, workflow), 'utf8');
+		if (/^\s*environment:\s*(?:development|preview|stable)\b|^\s*environment:[^\n]*github-pages|refs\/heads\/(?:development|preview)\b|\bCHANNEL=preview\b|--preview-id\b|WORKFLOW_PREVIEW/mu.test(source)) fail(`${projectRoot}/.github/workflows/${workflow} violates the canonical deployment boundary.`);
+	}
+}
+
 for (const path of ['packages/market-guarantee-catalog/guarantees/agent/system/guide-golden.guarantee.yaml', 'packages/market-guarantee-catalog/guarantees/agent/system/source-golden.guarantee.yaml', 'scripts/guarantees/verify-agent-capability.ts']) requireFile(path);
 const agentGuaranteeDefinitions = readdirSync(resolve(root, 'packages/market-guarantee-catalog/guarantees'), { recursive: true }).filter((path) => typeof path === 'string' && path.endsWith('.guarantee.yaml')).length;
 
