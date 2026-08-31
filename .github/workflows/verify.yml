@@ -19,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with: { fetch-depth: 0 }
-      - uses: treeseed-ai/cli/.github/actions/setup-cli@0.13.0-rc.40
-        with: { version: 0.13.0-rc.40 }
+      - uses: treeseed-ai/cli/.github/actions/setup-cli@0.13.0-rc.41
+        with: { version: 0.13.0-rc.41 }
       - run: trsd platform verify . --json
       - run: trsd platform verify . --profile core --json
       - run: trsd platform verify . --profile control-plane --profile capacity-provider --profile treeai --json
