@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc197",
-  "generation": 157,
+  "release": "0.1.0~rc198",
+  "generation": 158,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": { "repository": "treeseed-ai/platform", "commit": "ddd7ffe4e2f90f3002052551199a86c3dab2dc5c" },
-  "deployment": { "repository": "treeseed-ai/deployment", "commit": "163c3a4d6aa73d9f3a9c85c283fa83c98a6d2a9e", "tag": "0.1.0-rc.197" },
+  "platform": { "repository": "treeseed-ai/platform", "commit": "4b4f139bdc00405ccf23eadfd4884c25a6d19315" },
+  "deployment": { "repository": "treeseed-ai/deployment", "commit": "de046dbcaf81250eb0cffd418450d6d94912240a", "tag": "0.1.0-rc.198" },
   "hostPayloads": [
     { "id": "sdk", "packageName": "@treeseed/sdk", "version": "0.13.0-rc.66", "artifact": { "url": "https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.66.tgz", "sha256": "0935be9c80fb11c026643b0318aacbda51377887735465e461cc59c078649677" } },
     { "id": "api", "packageName": "@treeseed/api", "version": "0.8.0-rc.62", "artifact": { "url": "https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.62/treeseed-api-0.8.0-rc.62.tgz", "sha256": "182641455a560852c1e4ba37ce1a08727cd5f922d0288e19005cfdae316f5e56" } },
@@ -35,5 +35,5 @@
     { "componentId": "ai-training", "release": "0.11.0~rc19-1", "manifest": { "url": "https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-training-component-release.json", "sha256": "aef99efd51ea0fad2b3df7912ffa21cae7141f6507011a279fd2c6668e58e678" }, "files": [{ "path": "ai-training-compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-training-compose.yml", "sha256": "d6c245c80434769cff305d30f5c25325a1a31fe529b2de7497cea9f641c58a73" } }] },
     { "componentId": "ai-lab", "release": "0.11.0~rc19-1", "manifest": { "url": "https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-lab-component-release.json", "sha256": "97582df517927fa839661e596aeeb88736463364f53476babf78e08132aceb5b" }, "files": [{ "path": "ai-lab-compose.yml", "artifact": { "url": "https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-lab-compose.yml", "sha256": "4dec25b2f0883fb848eb2b9c7b105af5ddc0bd59c1841ec5e80845b93c7b61ec" } }] }
   ],
-  "createdAt": "2026-09-01T03:35:00.000Z"
+  "createdAt": "2026-09-01T04:05:00.000Z"
 }
