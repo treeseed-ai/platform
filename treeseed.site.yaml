@@ -9,4 +9,6 @@ profiles: { path: profiles }
 integrations: { development: config/integrations/development.yaml, stablePromotion: config/promotions/stable.yaml }
 skill: { lock: config/skills/treeseed.lock.yaml }
 runtime: { mode: none, identity: installation-input }
+staging: { mutation: approval-required, topology: config/topologies/staging.yaml }
 production: { mutation: blocked, topology: config/topologies/production.yaml }
+capacityProviders: { topology: config/topologies/capacity-providers.yaml }
