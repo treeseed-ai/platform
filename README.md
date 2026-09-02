@@ -32,4 +32,6 @@ One generic Debian bootstrap installs only the manager foundation. `trsd host in
 
 Production topology is declared under `config/topologies/` and remains fail-closed. Cloudflare hosts Admin, Railway hosts the control plane, and bare-metal providers run Agent. Market and Market API participate in development worksets but retain independent hosted-deployment authority.
 
+Staging and production use portable templates plus separately generated immutable artifact inputs. See [hosted deployment](docs/hosted-deployment.md) for state isolation, credential custody, planning, and the Ubuntu 26.04 capacity-provider fleet boundary.
+
 Current delivery work and evidence are tracked in [Platform issue #280](https://github.com/treeseed-ai/platform/issues/280). GitHub Issues are status authority and Actions are verification authority.

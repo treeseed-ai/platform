@@ -1,9 +1,72 @@
-schemaVersion: treeseed.platform-topology/v1
-id: production
-mutation: blocked
-providers:
-  admin: { kind: cloudflare, resourceIds: installation-input }
-  controlPlane: { kind: railway, resourceIds: installation-input }
-  capacity: { kind: bare-metal, count: installation-input }
-requirements: [reviewed-plan, authoritative-readback, drift-noop, rollback, environment-approval]
-boundaries: { marketHostedDeployment: external, marketApiHostedDeployment: external }
+schemaVersion: treeseed.hosted-topology-template/v1
+id: treeseed-production
+deploymentId: treeseed-cloud
+stackId: control-plane
+environment: production
+mutation: approval-required
+stateBackend: { connectionRef: cloudflare-state-production }
+providerConnections:
+  cloudflare: { connectionRef: cloudflare-hosting-production }
+  railway: { connectionRef: railway-hosting-production }
+artifactBindings:
+  admin: { input: admin-pages, kind: archive }
+  api-proxy: { input: api-proxy-worker, kind: file }
+  api: { input: control-plane-api-image, kind: oci-image }
+  operations: { input: operations-runner-image, kind: oci-image }
+  postgres: { input: postgres-image, kind: oci-image }
+  treedx: { input: treedx-image, kind: oci-image }
+resources:
+  - id: postgres
+    provider: railway
+    kind: postgresql
+    dependsOn: []
+    parameters: { name: { input: postgres-service-name }, artifact: { artifact: postgres }, volume-name: { input: postgres-volume-name }, volume-mount-path: { literal: /var/lib/postgresql/data } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: api
+    provider: railway
+    kind: control-plane-api
+    dependsOn: [postgres]
+    parameters: { name: { input: api-service-name }, artifact: { artifact: api }, healthcheck-path: { literal: /health }, variable.TREESEED_DATABASE_URL: { resourceOutput: { resourceId: postgres, output: database-url } }, variable.TREESEED_WEB_SERVICE_ID: { literal: operations-runner } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: operations
+    provider: railway
+    kind: operations-runner
+    dependsOn: [api, postgres]
+    parameters: { name: { input: operations-service-name }, artifact: { artifact: operations }, healthcheck-path: { literal: /health }, variable.TREESEED_DATABASE_URL: { resourceOutput: { resourceId: postgres, output: database-url } }, variable.TREESEED_API_BASE_URL: { resourceOutput: { resourceId: api, output: private-url } } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: treedx
+    provider: railway
+    kind: treedx-service
+    dependsOn: [api]
+    parameters: { name: { input: treedx-service-name }, artifact: { artifact: treedx }, healthcheck-path: { literal: /health }, variable.TREESEED_API_BASE_URL: { resourceOutput: { resourceId: api, output: private-url } } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: api-proxy
+    provider: cloudflare
+    kind: api-proxy
+    dependsOn: [api]
+    parameters: { name: { input: api-proxy-worker-name }, artifact: { artifact: api-proxy }, compatibility-date: { literal: 2026-09-01 }, variable.TREESEED_UPSTREAM_URL: { input: api-public-url } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: admin
+    provider: cloudflare
+    kind: pages-application
+    dependsOn: [api-proxy]
+    parameters: { name: { input: admin-pages-project-name }, artifact: { artifact: admin }, artifact-format: { literal: tar+gzip }, production-branch: { literal: main }, destination-dir: { literal: . } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: api-dns
+    provider: cloudflare
+    kind: dns-record
+    dependsOn: [api-proxy]
+    parameters: { name: { input: api-dns-name }, type: { literal: CNAME }, content: { input: api-proxy-dns-target }, proxied: { literal: true } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: admin-dns
+    provider: cloudflare
+    kind: dns-record
+    dependsOn: [admin]
+    parameters: { name: { input: admin-dns-name }, type: { literal: CNAME }, content: { input: admin-pages-dns-target }, proxied: { literal: true } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
+  - id: tls
+    provider: cloudflare
+    kind: tls-policy
+    dependsOn: [api-dns, admin-dns]
+    parameters: { mode: { literal: strict } }
+    adoption: { mode: adopt-or-create, replacement: forbidden }
