@@ -3,7 +3,7 @@ id: treeseed-staging
 deploymentId: treeseed-cloud
 stackId: control-plane
 environment: staging
-mutation: approval-required
+mutation: agent-authorized
 stateBackend: { connectionRef: cloudflare-state-staging }
 providerConnections:
   cloudflare: { connectionRef: cloudflare-hosting-staging }
