@@ -3,7 +3,7 @@ id: treeseed-production
 deploymentId: treeseed-cloud
 stackId: control-plane
 environment: production
-mutation: approval-required
+mutation: agent-authorized
 stateBackend: { connectionRef: cloudflare-state-production }
 providerConnections:
   cloudflare: { connectionRef: cloudflare-hosting-production }
