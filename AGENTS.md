@@ -8,6 +8,8 @@ Conserve human and AI capacity by optimizing for verified outcomes rather than r
 
 Every delivery follows `Issue -> branch -> pull request -> Actions -> staging merge -> release/read-back -> Platform composition -> managed acceptance -> main/production`. Before branching, merging, or releasing, fetch and verify the exact protected-branch head. Do not create undocumented side channels for plans, progress, or acceptance.
 
+Human approval is reserved exclusively for pull requests targeting `main` as the production promotion boundary. Staging pull requests, candidate publication, staging deployments, infrastructure plans, reconciliation, and acceptance proceed through authorized agents and required automated checks without human-only approval gates.
+
 ## Branch and deployment boundary
 
 `main` is the only production branch and maps only to the `production` deployment environment. `staging` is the only development-integration branch and maps only to the `staging` deployment environment. Short-lived pull-request branches may validate without deploying, but they must never define another deployment environment. Do not create or use `development`, `preview`, `stable`, or any other GitHub deployment environment; preview deployments are prohibited. Release tags may promote an exact reviewed `staging` commit to `production` without creating another branch or environment. Artifact channel names must never become GitHub deployment environments.
