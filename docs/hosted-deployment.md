@@ -10,6 +10,8 @@ teams/<teamId>/opentofu/v1/deployments/<deploymentId>/environments/<environment>
 
 The R2 bucket and endpoint come from the active team's Cloudflare storage connection. State access uses a short-lived, team-scoped storage session and state encryption key resolved through the team's OpenBao service credential vault. Provider credentials are resolved only by the operations runner and never enter Platform Git, API records, plans, receipts, logs, or evidence.
 
+Each `connectionRef` is a portable, provider-scoped reference. In Admin, set the service connection's **Connection name** to that exact value (for example, `cloudflare-hosting-staging`); the API resolves it to the team-local immutable connection ID. Database IDs, account IDs, and credential material never belong in a Platform topology template.
+
 ## Plan an environment
 
 Release automation produces an ignored `treeseed.hosted-topology-artifacts/v1` document containing exactly the Admin Pages archive, API-proxy Worker file, and immutable Railway OCI image identities required by the selected template. From a clean Platform commit:
