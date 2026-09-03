@@ -10,7 +10,15 @@ teams/<teamId>/opentofu/v1/deployments/<deploymentId>/environments/<environment>
 
 The R2 bucket and endpoint come from the active team's Cloudflare storage connection. State access uses a short-lived, team-scoped storage session and state encryption key resolved through the team's OpenBao service credential vault. Provider credentials are resolved only by the operations runner and never enter Platform Git, API records, plans, receipts, logs, or evidence.
 
-Each `connectionRef` is a portable, provider-scoped reference. In Admin, set the service connection's **Connection name** to that exact value (for example, `cloudflare-hosting-staging`); the API resolves it to the team-local immutable connection ID. Database IDs, account IDs, and credential material never belong in a Platform topology template.
+Each `connectionRef` is a portable, provider-scoped reference. In Admin, set the service connection's **Connection reference** to that exact value; the API resolves it to the team-local immutable connection ID. Database IDs, account IDs, and credential material never belong in a Platform topology template.
+
+The staging topology requires these active, team-scoped connections:
+
+- `cloudflare-hosting-staging` for Pages, Workers, DNS, and TLS.
+- `cloudflare-state-staging` for the R2 state bucket and endpoint, with the state-encryption key reference held by the service credential vault.
+- `railway-hosting-staging` for the Railway workspace and staging project/environment.
+
+Account, zone, workspace, project, environment, bucket, endpoint, and key references are connection metadata supplied at installation time. Credential values remain vault-backed and must not be committed to this repository.
 
 ## Plan an environment
 
