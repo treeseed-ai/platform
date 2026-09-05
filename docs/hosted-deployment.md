@@ -12,11 +12,11 @@ The R2 bucket and endpoint come from the active team's Cloudflare storage connec
 
 ## Credential bootstrap
 
-The bootstrap authority is TreeSeed's client-encrypted team service vault. A team owner initializes the vault in Admin or `trsd`; the client encrypts every value before sending it to the API, and the personal unlock material remains with the user. Planning, apply, and rollback state the exact team, environment, subject digest, purpose, required fields, connection profile, and expiry before an authorized operator or agent unlocks the required access.
+Core OpenBao is a required private service alongside the control-plane API. Deployment owns its immutable image, TLS, persistent Raft storage, initialization, bounded AppRole sessions and OS-backed seal/recovery custody. It is not an optional external provider. API readiness fails closed when OpenBao is unavailable.
 
-For an authorized operation, the operations runner creates an ephemeral public key. The client decrypts only the requested fields locally, seals them to that key, and submits a short-lived single-use delivery. The runner consumes the delivery in memory and destroys the ciphertext and ephemeral private key after use. Reuse, expiry, a changed plan digest, a different purpose, a different profile, extra fields, or a cross-team request fails closed.
+A credential administrator creates a team service connection and enters its credential profiles in Admin or through `trsd services credentials`. The authenticated API authorizes the team, enabled capability, profile and environment before writing to OpenBao with an exact expected version. Only non-secret descriptors and authority versions enter PostgreSQL. There is no personal vault passphrase, browser key/grant/envelope, interactive runner delivery or environment-reference authority.
 
-OpenBao is an optional authority for a team that later enables unattended reconciliation. It is not required to install TreeSeed, initialize a team, configure Cloudflare or Railway, create the first plan, or provision OpenBao itself. An OpenBao outage therefore blocks only operations explicitly configured for unattended external-vault authority; interactive client-vault operations continue to use the bootstrap path. If a team deploys OpenBao on Railway or another target, that service and its dependencies are reconciled by Deployment like any other explicitly selected hosted resource—Platform does not bundle or assume it.
+The operations runner obtains a short-lived OpenBao session, reads only the operation's authorized scope, and revokes the session on completion or failure. State/backend/profile authority and current secret version are rechecked before use. An outage blocks credential-dependent work; it never enables a fallback vault. See [Secret custody](secret-custody.md) for bootstrap and recovery boundaries.
 
 Each `connectionRef` is a portable, provider-scoped reference. In Admin, set the service connection's **Connection reference** to that exact value; the API resolves it to the team-local immutable connection ID. Database IDs, account IDs, and credential material never belong in a Platform topology template.
 
@@ -28,13 +28,13 @@ The staging topology requires these active, team-scoped connections:
 
 Their bootstrap profiles are exact:
 
-| Connection | Non-secret configuration | Client-encrypted profile and fields | Approved capabilities |
+| Connection | Non-secret configuration | OpenBao profile and fields | Approved capabilities |
 |---|---|---|---|
 | `cloudflare-hosting-staging` | `deploymentEnvironment=staging`, account ID, zone ID | `cloudflare-runtime.apiToken`; `cloudflare-dns.apiToken` | `frontend-hosting`, `dns-management` |
 | `cloudflare-state-staging` | `deploymentEnvironment=staging`, account ID, state bucket, HTTPS state endpoint, optional region, state-encryption key reference | `s3-state-session.accessKeyId`, `secretAccessKey`, optional `sessionToken`; `opentofu-state-encryption.stateEncryptionKey` | `object-storage`, `state-encryption` |
 | `railway-hosting-staging` | `deploymentEnvironment=staging`, workspace ID, project ID, environment ID | `railway-workspace.apiToken` | `backend-hosting`, `database-hosting`, `private-knowledge-index-hosting` |
 
-Account, zone, workspace, project, environment, bucket, endpoint, and key references are connection metadata supplied at installation time. Credential values remain encrypted in the team service vault and must not be committed to this repository. Connections intended for bootstrap are `interactive-only`; changing one to unattended authority is a separate reviewed team decision.
+Account, zone, workspace, project, environment, bucket, endpoint, and key references are installation-time connection metadata. Credential values remain in OpenBao and must not be committed here. Authorized agents can use the same capability-scoped connections without a separate human approval or personal unlock session.
 
 ## Plan an environment
 
@@ -45,6 +45,6 @@ trsd platform topology plan config/topologies/staging.yaml --artifacts .treeseed
 trsd platform topology plan config/topologies/production.yaml --artifacts .treeseed/topology-artifacts/production.json --json
 ```
 
-The CLI binds the active authenticated team and exact current Platform commit. In an interactive terminal it displays the bounded credential request and prompts for the personal vault passphrase without echo; headless execution accepts the passphrase only from standard input. Template changes, extra or missing artifacts, mutable images, wrong artifact kinds, incomplete connection profiles, unavailable service connections, provider drift, expired or replayed credential delivery, and cross-team state custody all fail closed. Apply requires authenticated `infrastructure.write` authority, the exact reviewed plan, its digest precondition, and `--yes`; no separate environment approval exists. Production is authorized only by human review of the exact Platform pull request targeting `main`, then proceeds through automated reconciliation without a second approval gate.
+The CLI binds the active authenticated team and exact current Platform commit. Credential resolution is server-side through core OpenBao; planning does not prompt for a personal vault passphrase. Template changes, extra or missing artifacts, mutable images, wrong artifact kinds, incomplete connection profiles, unavailable service connections, provider drift, expired custody sessions or stale credential versions, and cross-team state custody all fail closed. Apply requires authenticated `infrastructure.write` authority, the exact reviewed plan, its digest precondition, and `--yes`; no separate environment approval exists. Production is authorized only by human review of the exact Platform pull request targeting `main`, then proceeds through automated reconciliation without a second approval gate.
 
-Cloudflare owns the Admin Pages project, API-proxy Worker, DNS, and TLS policy. Railway owns PostgreSQL, the control-plane API, operations runner, and TreeDX service. The three production capacity providers use the generic Debian installer on Ubuntu 26.04, generate identities locally, and require admin approval after registration; OpenTofu does not manage those physical hosts.
+Cloudflare owns the Admin Pages project, API-proxy Worker, DNS, and TLS policy. The target Railway composition must include PostgreSQL, core OpenBao, the control-plane API, operations runner, and TreeDX service. Cloud rollout remains blocked until Deployment has provisioned and accepted an independent cloud seal authority, private TLS, persistent storage and recovery; the older topology templates must not be applied without that closure. The three production capacity providers use the generic Debian installer on Ubuntu 26.04, generate identities locally, and require admin approval after registration; OpenTofu does not manage those physical hosts.
