@@ -1,7 +1,7 @@
 schemaVersion: treeseed.platform-host-template/v1
 id: capacity-provider
 profiles: [capacity-provider]
-integration: { id: development, digest: 'sha256:8c8d119c0fce5d946c23af45038a77c5386e7a413c7cf4e79fb8b9da6558e9e5' }
+integration: { id: development, digest: 'sha256:c90291ffaec034e494867f155c12ef4e98ec8089d667053a88699e714cec5d41' }
 inputs:
   - { name: controlPlaneUrl, required: true, sensitive: false }
   - { name: teamRegistrationCode, required: true, sensitive: true }
