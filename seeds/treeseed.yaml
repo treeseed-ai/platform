@@ -1,9 +1,9 @@
 schemaVersion: treeseed.seed-bundle/v3
 name: treeseed
-version: 6
+version: 7
 description: Portable first-party source and library inventory for integrated and selective development.
 environments: [local]
-digest: sha256:e3613e0ffeee07fd9ccd461f756c6fe9490069a8d8ceaa155bf1b247963ed57d
+digest: sha256:928477997d71d9f462de94341b9c761c5acd6667e44e1aa9bb4fece0d63abb39
 resources:
   teams:
     - { key: 'team:treeseed', slug: treeseed, name: treeseed, displayName: TreeSeed, profileSummary: 'TreeSeed platform, packages, products, and agent operations.' }
@@ -11,6 +11,7 @@ resources:
   # personal identities and host-specific membership bootstrap out of Platform.
   memberships: []
   projects:
+    - { key: 'project:treeseed/team', team: 'team:treeseed', slug: team, name: Team Library, description: Shared TreeSeed team knowledge and context., kind: content, libraryRepository: 'repository:treeseed/team-library' }
     - { key: 'project:treeseed/platform', team: 'team:treeseed', slug: platform, name: TreeSeed Platform, description: Public installer and portfolio integration workspace., kind: platform, primaryRepository: 'repository:treeseed/platform', libraryRepository: 'repository:treeseed/platform-library' }
     - { key: 'project:treeseed/deployment', team: 'team:treeseed', slug: deployment, name: TreeSeed Deployment, description: Debian bootstrap and host-manager integration system., kind: platform, primaryRepository: 'repository:treeseed/deployment', libraryRepository: 'repository:treeseed/deployment-library' }
     - { key: 'project:treeseed/api', team: 'team:treeseed', slug: api, name: TreeSeed API, description: Authoritative TreeSeed control plane., kind: package, primaryRepository: 'repository:treeseed/api', libraryRepository: 'repository:treeseed/api-library', metadata: { packageId: '@treeseed/api' } }
@@ -28,6 +29,7 @@ resources:
     - { key: 'project:treeseed/market-api', team: 'team:treeseed', slug: market-api, name: TreeSeed Market API, description: First-party Market service with independent hosted-deployment authority., kind: service, primaryRepository: 'repository:treeseed/market-api', libraryRepository: 'repository:treeseed/market-api-library' }
     - { key: 'project:treeseed/skill', team: 'team:treeseed', slug: skill, name: TreeSeed Skill, description: Versioned agent skill for operating the TreeSeed ecosystem., kind: skill, primaryRepository: 'repository:treeseed/skill', libraryRepository: 'repository:treeseed/skill-library' }
   repositories:
+    - { key: 'repository:treeseed/team-library', project: 'project:treeseed/team', role: library, provider: github, owner: treeseed-ai, name: team-library, gitUrl: 'https://github.com/treeseed-ai/team-library.git', defaultBranch: main, repositoryPolicy: { visibility: private, lifecycle: adopt, deletionPolicy: retain, defaultBranch: main, stagingBranch: staging, issues: true, actions: true, workflows: [] }, metadata: { libraryRoot: '.', synchronizedRefs: [main, staging] } }
     - { key: 'repository:treeseed/platform', project: 'project:treeseed/platform', role: primary, provider: github, owner: treeseed-ai, name: platform, gitUrl: 'https://github.com/treeseed-ai/platform.git', defaultBranch: main, checkoutPath: '.', repositoryPolicy: &public_repo { visibility: public, lifecycle: create-or-adopt, deletionPolicy: retain, defaultBranch: main, stagingBranch: staging, issues: true, actions: true, workflows: [verify.yml] } }
     - { key: 'repository:treeseed/deployment', project: 'project:treeseed/deployment', role: primary, provider: github, owner: treeseed-ai, name: deployment, gitUrl: 'https://github.com/treeseed-ai/deployment.git', defaultBranch: main, checkoutPath: packages/deployment, repositoryPolicy: *public_repo, metadata: { deploymentAuthority: host-manager } }
     - { key: 'repository:treeseed/api', project: 'project:treeseed/api', role: primary, provider: github, owner: treeseed-ai, name: api, gitUrl: 'https://github.com/treeseed-ai/api.git', defaultBranch: main, checkoutPath: packages/api, repositoryPolicy: *public_repo }
