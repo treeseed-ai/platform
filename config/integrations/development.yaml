@@ -1,15 +1,15 @@
 schemaVersion: treeseed.platform-integration-lock/v1
-release: development-212
+release: development-213
 components:
-  - { id: deployment, version: 0.1.0-rc.260, commit: cd3bc485a2a4378afc4ca3793f1bf500b7aaf466, digest: 'sha256:550b88d073f27592d0e4450175a94ad032464d42904c9fcbf44185fbdedeca70', artifact: 'https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.260/exact-head.json' }
+  - {"id":"deployment","version":"0.1.0-rc.261","commit":"c21e169fc3fa581761ac5a7f6c02c93601dd5ed7","digest":"sha256:c89d802cc72c853351934ab8755bebe685e08205514a9861612b84ea81515378","artifact":"https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.261/exact-head.json"}
   - { id: sdk, version: 0.13.0-rc.92, commit: f59f99079b5e404e59a200ea68b4eb7efcc7bed2, digest: 'sha256:86bca16dc26c96c22b78c2de5439b3558a360d85df4d07b6795a8c0512a8f667', artifact: 'https://github.com/treeseed-ai/sdk/releases/tag/0.13.0-rc.92' }
   - { id: cli, version: 0.13.0-rc.63, commit: c6e04cec70567c6aeeeee46a96669e2002ff2b05, digest: 'sha256:dde46032cf1efaebee6da35e1dcbd4c075756edefa04f495383135a700f72023', artifact: 'https://github.com/treeseed-ai/cli/releases/tag/0.13.0-rc.63' }
-  - { id: api, version: 0.8.0-rc.87, commit: f127d337e2bf02cb4d2b916b9b38a62e7a775d2d, digest: 'sha256:852adc5c1d82537909d4dc6fde36089e956b95c6dffdf634e932323291ccdb30', artifact: 'https://github.com/treeseed-ai/api/releases/tag/0.8.0-rc.87' }
+  - {"id":"api","version":"0.8.0-rc.88","commit":"8cbd0b410850c7e732080e0b29f08381475b0b68","digest":"sha256:97a0cd142de054745c1993b8baea48148c39c690cad7592466d5a84d620bb73b","artifact":"https://github.com/treeseed-ai/api/releases/tag/0.8.0-rc.88"}
   - { id: admin, version: 0.12.59-rc.34, commit: cadbb591d1c97a266ce0b132c75402082bb275e8, digest: 'sha256:7e0a634741444a1af2410d3656e45c06d248bee5d72fdad6a1be6f87d1d8f1bb', artifact: 'https://github.com/treeseed-ai/admin/releases/tag/0.12.59-rc.34' }
-  - { id: agent, version: 0.13.0-rc.44, commit: c5145b3503af550ccc4250794537e1d6bb6da8e3, digest: 'sha256:580d1a73afab964e74aa6b827a75d6f5286f1e81afba8534ba8dc520c0c93c9e', artifact: 'https://github.com/treeseed-ai/agent/releases/tag/0.13.0-rc.44' }
-  - { id: treedx, version: 0.3.0-rc.15, commit: 94865a8a2c51cd8893872c685f99666b0de1ffbe, digest: 'sha256:b24e6d7580ed6c3f3ffefecc021bd1b9d452fc58155f32c9c16261dae1bd7389', artifact: 'https://github.com/treeseed-ai/treedx/releases/tag/0.3.0-rc.15' }
+  - {"id":"agent","version":"0.13.0-rc.45","commit":"df7520d41523be0a70e8c2b2d68531e5770a4271","digest":"sha256:ec93a341addcecc3dee9b7010a2f4d5923a326c36a91b120b729c9acab9ff514","artifact":"https://github.com/treeseed-ai/agent/releases/tag/0.13.0-rc.45"}
+  - {"id":"treedx","version":"0.3.0-rc.16","commit":"c2273ed29d2ba7b961f93e3b01c0bfddfd3cf552","digest":"sha256:ce6a0881f14b922d75486c96dd80e650dc34cb0c3d765f112235806693cc1709","artifact":"https://github.com/treeseed-ai/treedx/releases/tag/0.3.0-rc.16"}
   - { id: treeai-inference, version: 0.11.0-rc19, commit: 8bc0d8aa186aedc05af2db8ee199e5af23e5e396, digest: 'sha256:f067e0594bfa3de41f0db03e4213abd73f29515e86197e3f4927ff0b78db5ea1', artifact: 'https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-inference-component-release.json' }
   - { id: treeai-training, version: 0.11.0-rc19, commit: 8bc0d8aa186aedc05af2db8ee199e5af23e5e396, digest: 'sha256:aef99efd51ea0fad2b3df7912ffa21cae7141f6507011a279fd2c6668e58e678', artifact: 'https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-training-component-release.json' }
   - { id: treeai-lab, version: 0.11.0-rc19, commit: 8bc0d8aa186aedc05af2db8ee199e5af23e5e396, digest: 'sha256:97582df517927fa839661e596aeeb88736463364f53476babf78e08132aceb5b', artifact: 'https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-lab-component-release.json' }
   - { id: ui, version: 0.12.18-rc.18, commit: 9bbd5da9e674ba189fd69c89fdc4582fb64e1306, digest: 'sha256:ddf52786096e44b66a184c9f26cfa3c813d95d70e60b63e10ee2f40ed68cc144', artifact: 'https://github.com/treeseed-ai/ui/releases/tag/0.12.18-rc.18' }
-digest: 'sha256:19c7f60f6b9e698fc650025a16962961b85b34866b295d40b11a937788a182de'
+digest: 'sha256:30f3c3a2860b733a249a0badd17acee3a8ca6b547ddcee3aed958f308b2e4b9a'
