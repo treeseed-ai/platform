@@ -1,14 +1,15 @@
 schemaVersion: treeseed.platform-integration-lock/v1
-release: development-210
+release: development-211
 components:
-  - { id: deployment, version: 0.1.0-rc.251, commit: 47d67a9205bdc7578dec7a84e1b1030d24e2a813, digest: 'sha256:411b9558b890af9c224e59ca06cfab8c97a7540c983d297330f20876b31232af', artifact: 'https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.251/exact-head.json' }
-  - { id: sdk, version: 0.13.0-rc.91, commit: dcd44ccb686da6d3c32ea5bc826bffb1ae5dbf25, digest: 'sha256:6cf4b1e1cdf818f8279c3668b994626b49f25794b9d6e4b8569b43f36135e1d0', artifact: 'https://github.com/treeseed-ai/sdk/releases/tag/0.13.0-rc.91' }
-  - { id: cli, version: 0.13.0-rc.62, commit: 98f2da703ec3cbba2c7c003f1f57107c36259f8b, digest: 'sha256:659690305b4d8f66f8c270006620bd1d5d9d267b85c8f788e6266ad74e1ca5bc', artifact: 'https://github.com/treeseed-ai/cli/releases/tag/0.13.0-rc.62' }
-  - { id: api, version: 0.8.0-rc.85, commit: f6648fa41efcbcefba4b512442805afb1fe16a64, digest: 'sha256:c29b67eb7bc11eb4e737cb15a264e67eb1a66782c0f02994f7d2477128b92dc7', artifact: 'https://github.com/treeseed-ai/api/releases/tag/0.8.0-rc.85' }
-  - { id: admin, version: 0.12.59-rc.33, commit: 1590afec3123e1c1c886fbdd65a820d1ff40e527, digest: 'sha256:de6cfac7954be019460c91ad111c9cf9e87c410b038310f3a9d081ba247ab5d3', artifact: 'https://github.com/treeseed-ai/admin/releases/tag/0.12.59-rc.33' }
+  - { id: deployment, version: 0.1.0-rc.259, commit: 8d6e746acbb5384595788320399093c03981669a, digest: 'sha256:b40492bc4cc43732cde2251fc51fa6be06bfd7c12405f2960e7104f3da6b9890', artifact: 'https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.259/exact-head.json' }
+  - { id: sdk, version: 0.13.0-rc.92, commit: f59f99079b5e404e59a200ea68b4eb7efcc7bed2, digest: 'sha256:86bca16dc26c96c22b78c2de5439b3558a360d85df4d07b6795a8c0512a8f667', artifact: 'https://github.com/treeseed-ai/sdk/releases/tag/0.13.0-rc.92' }
+  - { id: cli, version: 0.13.0-rc.63, commit: c6e04cec70567c6aeeeee46a96669e2002ff2b05, digest: 'sha256:dde46032cf1efaebee6da35e1dcbd4c075756edefa04f495383135a700f72023', artifact: 'https://github.com/treeseed-ai/cli/releases/tag/0.13.0-rc.63' }
+  - { id: api, version: 0.8.0-rc.87, commit: f127d337e2bf02cb4d2b916b9b38a62e7a775d2d, digest: 'sha256:852adc5c1d82537909d4dc6fde36089e956b95c6dffdf634e932323291ccdb30', artifact: 'https://github.com/treeseed-ai/api/releases/tag/0.8.0-rc.87' }
+  - { id: admin, version: 0.12.59-rc.34, commit: cadbb591d1c97a266ce0b132c75402082bb275e8, digest: 'sha256:7e0a634741444a1af2410d3656e45c06d248bee5d72fdad6a1be6f87d1d8f1bb', artifact: 'https://github.com/treeseed-ai/admin/releases/tag/0.12.59-rc.34' }
   - { id: agent, version: 0.13.0-rc.43, commit: e96088f8aae10b4b4cde171f0b84c4b186a2f2d2, digest: 'sha256:2fb685809d4a8a9609a53788b697a241bf1d9a30dad03455c976a392ddc5a950', artifact: 'https://github.com/treeseed-ai/agent/releases/tag/0.13.0-rc.43' }
   - { id: treedx, version: 0.3.0-rc.15, commit: 94865a8a2c51cd8893872c685f99666b0de1ffbe, digest: 'sha256:b24e6d7580ed6c3f3ffefecc021bd1b9d452fc58155f32c9c16261dae1bd7389', artifact: 'https://github.com/treeseed-ai/treedx/releases/tag/0.3.0-rc.15' }
   - { id: treeai-inference, version: 0.11.0-rc19, commit: 8bc0d8aa186aedc05af2db8ee199e5af23e5e396, digest: 'sha256:f067e0594bfa3de41f0db03e4213abd73f29515e86197e3f4927ff0b78db5ea1', artifact: 'https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-inference-component-release.json' }
   - { id: treeai-training, version: 0.11.0-rc19, commit: 8bc0d8aa186aedc05af2db8ee199e5af23e5e396, digest: 'sha256:aef99efd51ea0fad2b3df7912ffa21cae7141f6507011a279fd2c6668e58e678', artifact: 'https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-training-component-release.json' }
   - { id: treeai-lab, version: 0.11.0-rc19, commit: 8bc0d8aa186aedc05af2db8ee199e5af23e5e396, digest: 'sha256:97582df517927fa839661e596aeeb88736463364f53476babf78e08132aceb5b', artifact: 'https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc19/ai-lab-component-release.json' }
-digest: 'sha256:1e8f22f53c69c3898857ea0d00d9a61a984d654fe5f9f8d8cce667fc4a5c810d'
+  - { id: ui, version: 0.12.18-rc.18, commit: 9bbd5da9e674ba189fd69c89fdc4582fb64e1306, digest: 'sha256:ddf52786096e44b66a184c9f26cfa3c813d95d70e60b63e10ee2f40ed68cc144', artifact: 'https://github.com/treeseed-ai/ui/releases/tag/0.12.18-rc.18' }
+digest: 'sha256:7a171bf4eaf5ef5ce1477fc88a27a110f5f597e68f003bbce77f3de75a7469e6'
