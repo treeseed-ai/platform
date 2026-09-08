@@ -12,4 +12,4 @@ components:
   - {"id":"treeai-training","version":"0.11.0-rc22","commit":"e3a462f30bfdc3539d3a5511932f28212f06a936","digest":"sha256:07b32a13db84826ae75d7e7725ac99e78342151161bb8afd556762a8f0a5198b","artifact":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc22/ai-training-component-release.json"}
   - {"id":"treeai-lab","version":"0.11.0-rc22","commit":"e3a462f30bfdc3539d3a5511932f28212f06a936","digest":"sha256:695f0461edae24c548b4765ff2572d00193c7c6d2212b8dcae68345ca0184df4","artifact":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc22/ai-lab-component-release.json"}
   - {"id":"ui","version":"0.12.18-rc.19","commit":"ed8bbbc44a323650f13156e64b4fd3a919808971","digest":"sha256:9f31d328fc4ee818049c45f6b870bd2b291b5fc7ad72c09a31268fe114f4c519","artifact":"https://github.com/treeseed-ai/ui/releases/tag/0.12.18-rc.19"}
-digest: "sha256:6aed54bbd111da0b82d727fafd4db01b360d0dda3e1e0e8172faa41f40f35721"
+digest: sha256:729faa287093559ac3f2bd2f0fb347a7e5822d5335bf0552aec10d3d6a8bd796
