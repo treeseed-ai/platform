@@ -1,9 +1,9 @@
 schemaVersion: treeseed.seed-bundle/v3
 name: treeseed
-version: 8
+version: 9
 description: Portable first-party source and library inventory for integrated and selective development.
 environments: [local]
-digest: sha256:536079ba725ecfe61dc5eef0a812b0b98b029e9b3fd52e974e6e13e74e1b07f1
+digest: sha256:2fde78efade16fb7ad2385a9a764549988a603f1647619c2d2faf1a76446c19e
 resources:
   teams:
     - { key: 'team:treeseed', slug: treeseed, name: treeseed, displayName: TreeSeed, profileSummary: 'TreeSeed platform, packages, products, and agent operations.' }
@@ -11,6 +11,7 @@ resources:
   # personal identities and host-specific membership bootstrap out of Platform.
   memberships: []
   projects:
+    - { key: 'project:treeseed/identity', team: 'team:treeseed', slug: identity, name: TreeSeed Identity, description: Sovereign identity and session integration., kind: package, primaryRepository: 'repository:treeseed/identity', libraryRepository: 'repository:treeseed/identity-library', metadata: { packageId: '@treeseed/identity' } }
     - { key: 'project:treeseed/team', team: 'team:treeseed', slug: team, name: Team Library, description: Shared TreeSeed team knowledge and context., kind: content, libraryRepository: 'repository:treeseed/team-library' }
     - { key: 'project:treeseed/platform', team: 'team:treeseed', slug: platform, name: TreeSeed Platform, description: Public installer and portfolio integration workspace., kind: platform, primaryRepository: 'repository:treeseed/platform', libraryRepository: 'repository:treeseed/platform-library' }
     - { key: 'project:treeseed/deployment', team: 'team:treeseed', slug: deployment, name: TreeSeed Deployment, description: Debian bootstrap and host-manager integration system., kind: platform, primaryRepository: 'repository:treeseed/deployment', libraryRepository: 'repository:treeseed/deployment-library' }
@@ -33,6 +34,7 @@ resources:
     - { key: 'repository:treeseed/platform', project: 'project:treeseed/platform', role: primary, provider: github, owner: treeseed-ai, name: platform, gitUrl: 'https://github.com/treeseed-ai/platform.git', defaultBranch: main, checkoutPath: '.', repositoryPolicy: &public_repo { visibility: public, lifecycle: create-or-adopt, deletionPolicy: retain, defaultBranch: main, stagingBranch: staging, issues: true, actions: true, workflows: [verify.yml] } }
     - { key: 'repository:treeseed/deployment', project: 'project:treeseed/deployment', role: primary, provider: github, owner: treeseed-ai, name: deployment, gitUrl: 'https://github.com/treeseed-ai/deployment.git', defaultBranch: main, checkoutPath: packages/deployment, repositoryPolicy: *public_repo, metadata: { deploymentAuthority: host-manager } }
     - { key: 'repository:treeseed/api', project: 'project:treeseed/api', role: primary, provider: github, owner: treeseed-ai, name: api, gitUrl: 'https://github.com/treeseed-ai/api.git', defaultBranch: main, checkoutPath: packages/api, repositoryPolicy: *public_repo }
+    - { key: 'repository:treeseed/identity', project: 'project:treeseed/identity', role: primary, provider: github, owner: treeseed-ai, name: identity, gitUrl: 'https://github.com/treeseed-ai/identity.git', defaultBranch: main, checkoutPath: packages/identity, repositoryPolicy: *public_repo }
     - { key: 'repository:treeseed/treedx', project: 'project:treeseed/treedx', role: primary, provider: github, owner: treeseed-ai, name: treedx, gitUrl: 'https://github.com/treeseed-ai/treedx.git', defaultBranch: main, checkoutPath: packages/treedx, repositoryPolicy: *public_repo }
     - { key: 'repository:treeseed/sdk', project: 'project:treeseed/sdk', role: primary, provider: github, owner: treeseed-ai, name: sdk, gitUrl: 'https://github.com/treeseed-ai/sdk.git', defaultBranch: main, checkoutPath: packages/sdk, repositoryPolicy: *public_repo }
     - { key: 'repository:treeseed/ui', project: 'project:treeseed/ui', role: primary, provider: github, owner: treeseed-ai, name: ui, gitUrl: 'https://github.com/treeseed-ai/ui.git', defaultBranch: main, checkoutPath: packages/ui, repositoryPolicy: *public_repo }
@@ -49,6 +51,7 @@ resources:
     - { key: 'repository:treeseed/platform-library', project: 'project:treeseed/platform', role: library, provider: github, owner: treeseed-ai, name: platform-library, gitUrl: 'https://github.com/treeseed-ai/platform-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: &library_metadata { libraryRoot: '.', synchronizedRefs: [main, staging] } }
     - { key: 'repository:treeseed/deployment-library', project: 'project:treeseed/deployment', role: library, provider: github, owner: treeseed-ai, name: deployment-library, gitUrl: 'https://github.com/treeseed-ai/deployment-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
     - { key: 'repository:treeseed/api-library', project: 'project:treeseed/api', role: library, provider: github, owner: treeseed-ai, name: api-library, gitUrl: 'https://github.com/treeseed-ai/api-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
+    - { key: 'repository:treeseed/identity-library', project: 'project:treeseed/identity', role: library, provider: github, owner: treeseed-ai, name: identity-library, gitUrl: 'https://github.com/treeseed-ai/identity-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
     - { key: 'repository:treeseed/treedx-library', project: 'project:treeseed/treedx', role: library, provider: github, owner: treeseed-ai, name: treedx-library, gitUrl: 'https://github.com/treeseed-ai/treedx-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
     - { key: 'repository:treeseed/sdk-library', project: 'project:treeseed/sdk', role: library, provider: github, owner: treeseed-ai, name: sdk-library, gitUrl: 'https://github.com/treeseed-ai/sdk-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
     - { key: 'repository:treeseed/ui-library', project: 'project:treeseed/ui', role: library, provider: github, owner: treeseed-ai, name: ui-library, gitUrl: 'https://github.com/treeseed-ai/ui-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
