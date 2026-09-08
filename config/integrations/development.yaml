@@ -1,5 +1,5 @@
 schemaVersion: treeseed.platform-integration-lock/v1
-release: development-224
+release: development-225
 components:
   - {"id":"deployment","version":"0.1.0-rc.274","commit":"c14d192182ce2d9a867a55e319629db971950888","digest":"sha256:3432f7d1a71c98d0b846f69c7d6d428cd3e7bcb434198c9cfe998966c343d16e","artifact":"https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.274/exact-head.json"}
   - {"id":"sdk","version":"0.13.0-rc.99","commit":"4f36c713a65931304bd0d92e73b6a743d7ceb85d","digest":"sha256:5a52cb26df4a446f0f19fcae0ad8572945a94dbd2ec8885ecb1cc9ad9a7646f3","artifact":"https://github.com/treeseed-ai/sdk/releases/tag/0.13.0-rc.99"}
