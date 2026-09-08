@@ -35,5 +35,5 @@
     {"componentId":"ai-training","release":"0.11.0~rc22-1","manifest":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc22/ai-training-component-release.json","sha256":"07b32a13db84826ae75d7e7725ac99e78342151161bb8afd556762a8f0a5198b"},"files":[{"path":"ai-training-compose.yml","artifact":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc22/ai-training-compose.yml","sha256":"4b6bbb198ab495baf1e168e83270ff1ba1bab97414cc476a185ee880054c66d6"}}]},
     {"componentId":"ai-lab","release":"0.11.0~rc22-1","manifest":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc22/ai-lab-component-release.json","sha256":"695f0461edae24c548b4765ff2572d00193c7c6d2212b8dcae68345ca0184df4"},"files":[{"path":"ai-lab-compose.yml","artifact":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc22/ai-lab-compose.yml","sha256":"5a226e2006f5bebb670bccb2a8e0cd288d02fc996a2297f3ade656a28fdf7c89"}}]}
   ],
-  "createdAt": "2026-09-08T06:27:37.041Z"
+  "createdAt": "2026-09-08T16:02:58Z"
 }
