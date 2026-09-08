@@ -1,9 +1,9 @@
 schemaVersion: treeseed.seed-bundle/v3
 name: treeseed
-version: 7
+version: 8
 description: Portable first-party source and library inventory for integrated and selective development.
 environments: [local]
-digest: sha256:928477997d71d9f462de94341b9c761c5acd6667e44e1aa9bb4fece0d63abb39
+digest: sha256:536079ba725ecfe61dc5eef0a812b0b98b029e9b3fd52e974e6e13e74e1b07f1
 resources:
   teams:
     - { key: 'team:treeseed', slug: treeseed, name: treeseed, displayName: TreeSeed, profileSummary: 'TreeSeed platform, packages, products, and agent operations.' }
@@ -64,6 +64,32 @@ resources:
     - { key: 'repository:treeseed/skill-library', project: 'project:treeseed/skill', role: library, provider: github, owner: treeseed-ai, name: skill-library, gitUrl: 'https://github.com/treeseed-ai/skill-library.git', defaultBranch: main, repositoryPolicy: *public_repo, metadata: *library_metadata }
     - { key: 'repository:treeseed/fixtures', project: 'project:treeseed/platform', role: fixture, provider: github, owner: treeseed-ai, name: fixtures, gitUrl: 'https://github.com/treeseed-ai/fixtures.git', defaultBranch: main, checkoutPath: .fixtures, repositoryPolicy: { visibility: public, lifecycle: create-or-adopt, deletionPolicy: retain, defaultBranch: main, stagingBranch: staging, issues: true, actions: false, workflows: [] } }
 runtime:
-  # Capacity, identity, enrollment, and credentials are runtime host inputs. They
-  # must not be captured in this portable repository seed.
-  capacityProviders: []
+  # Local development adopts the approved provider or uses protected local
+  # enrollment. Identity, machine capacity and credentials remain runtime inputs.
+  # This local-only seed does not authorize production provider enrollment.
+  capacityProviders:
+    - key: capacity-provider:treeseed/local
+      team: team:treeseed
+      environments: [local]
+      approval: trusted-local-owner
+      manifestRef: https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.45/component-release.json
+      manifestDigest: sha256:ec93a341addcecc3dee9b7010a2f4d5923a326c36a91b120b729c9acab9ff514
+      requiredLanePurposes: [communication, platform, workday]
+      allowedModes: [planning, acting]
+      projects:
+        - project:treeseed/platform
+        - project:treeseed/deployment
+        - project:treeseed/api
+        - project:treeseed/treedx
+        - project:treeseed/sdk
+        - project:treeseed/ui
+        - project:treeseed/cli
+        - project:treeseed/core
+        - project:treeseed/admin
+        - project:treeseed/agent
+        - project:treeseed/reviewer
+        - project:treeseed/template-engineering
+        - project:treeseed/template-research
+        - project:treeseed/market
+        - project:treeseed/market-api
+        - project:treeseed/skill
