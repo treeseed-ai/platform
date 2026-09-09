@@ -8,7 +8,7 @@
   "deployment": {"repository":"treeseed-ai/deployment","commit":"0f3c805da98a1109ace3b09b01a69bdc6623c2dc","tag":"0.1.0-rc.284"},
   "hostPayloads": [
     {"id":"sdk","packageName":"@treeseed/sdk","version":"0.13.0-rc.108","artifact":{"url":"https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.108.tgz","sha256":"26cc35256cb008e2e20ee90d7a54c69f403f9a20d318f730eb0173926e84693d"}},
-    {"id":"identity","packageName":"@treeseed/identity","version":"0.1.0-rc.17","artifact":{"url":"https://registry.npmjs.org/@treeseed/identity/-/identity-0.1.0-rc.17.tgz","sha256":"bbae7ea3f2ebd3043e2e9f71f0f531b650dc54bd344cecf586d342311d0c9d08"}},
+    {"id":"identity","packageName":"@treeseed/identity","version":"0.1.0-rc.16","artifact":{"url":"https://registry.npmjs.org/@treeseed/identity/-/identity-0.1.0-rc.16.tgz","sha256":"cd124338b5e45153a1dcd220f1a309218f99cb80d55653136a8ec0eb34619f2b"}},
     {"id":"jose","packageName":"jose","version":"6.2.12","artifact":{"url":"https://registry.npmjs.org/jose/-/jose-6.2.12.tgz","sha256":"32d9da2aaa0e110cacef2ae21e8dae866201f1428424f839001085fe7351ebfe"}},
     {"id":"oauth4webapi","packageName":"oauth4webapi","version":"3.8.8","artifact":{"url":"https://registry.npmjs.org/oauth4webapi/-/oauth4webapi-3.8.8.tgz","sha256":"bac088aecc7cc80e2469b08592c8eb01b9ae6d4a749d89a6016aa54bb1533690"}},
     {"id":"api","packageName":"@treeseed/api","version":"0.8.0-rc.96","artifact":{"url":"https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.96/treeseed-api-0.8.0-rc.96.tgz","sha256":"03b1a52d53671033db7f0a8ca623494e48410c3aaaa3f0e44be2521edb20a2b8"}},
