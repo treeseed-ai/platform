@@ -10,6 +10,10 @@ Every delivery follows `Issue -> branch -> pull request -> Actions -> staging me
 
 Human approval is reserved exclusively for pull requests targeting `main` as the production promotion boundary. Staging pull requests, candidate publication, staging deployments, infrastructure plans, reconciliation, and acceptance proceed through authorized agents and required automated checks without human-only approval gates.
 
+## TypeScript source standard
+
+Use TypeScript for handwritten application, infrastructure, CLI, tooling, and test code across the integrated projects. JavaScript is generated build output, not a parallel source implementation. Keep strict type-checking enabled; do not use unchecked JavaScript or disable TypeScript checks to bypass this standard. Convert handwritten JavaScript when extending that implementation, and update its build and test entrypoints together. Keep configuration declarative. This does not authorize implementation in Platform: functional code still belongs in its owning package.
+
 ## Development selection lifetime
 
 Local development selections persist until explicitly switched or stopped through `trsd`. Do not add session expiration, wall-clock watchdog shutdowns, or time-based fallback to released code. Preserve process ownership, readiness checks, explicit stop/drain behavior, and normal credential/token expiration; those are separate from development selection lifetime.
