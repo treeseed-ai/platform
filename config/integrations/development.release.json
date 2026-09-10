@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc288",
-  "generation": 237,
+  "release": "0.1.0~rc289",
+  "generation": 238,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": {"repository":"treeseed-ai/platform","commit":"3c3c999cd6e5616e663043f36254aa57b486e41c"},
-  "deployment": {"repository":"treeseed-ai/deployment","commit":"70093494705d6e991083533ab6e6fa1522b9aad8","tag":"0.1.0-rc.288"},
+  "platform": {"repository":"treeseed-ai/platform","commit":"f9b52d05bd450278b9d624e3249ce59b729ff9c4"},
+  "deployment": {"repository":"treeseed-ai/deployment","commit":"142a10b0f6a9f2f716f37718488647950734a100","tag":"0.1.0-rc.289"},
   "hostPayloads": [
     {"id":"sdk","packageName":"@treeseed/sdk","version":"0.13.0-rc.108","artifact":{"url":"https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.108.tgz","sha256":"26cc35256cb008e2e20ee90d7a54c69f403f9a20d318f730eb0173926e84693d"}},
     {"id":"identity","packageName":"@treeseed/identity","version":"0.1.0-rc.16","artifact":{"url":"https://registry.npmjs.org/@treeseed/identity/-/identity-0.1.0-rc.16.tgz","sha256":"cd124338b5e45153a1dcd220f1a309218f99cb80d55653136a8ec0eb34619f2b"}},
@@ -29,6 +29,7 @@
     { "id": "treeai", "artifact": { "url": "https://raw.githubusercontent.com/treeseed-ai/platform/e54a28744253d220a44119ee700854fdf76c3e9d/config/initialization/treeai.json", "sha256": "bbe2083772140e0abe883d3787fc43cd4823b26c426d89e48805b91c80440191" } }
   ],
   "components": [
+    {"componentId":"postgres","release":"0.1.0~rc288-1","manifest":{"url":"https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.288/postgres-component-release.json","sha256":"8b16128fd584af603e96ec8865c9b102319a587ca9600a09cfc6e5281fa3e0f4"},"files":[{"path":"compose.yml","artifact":{"url":"https://github.com/treeseed-ai/deployment/releases/download/0.1.0-rc.288/postgres-compose.yml","sha256":"07620d83ca8fcae3791063cc34854ca98740cc167d65c57d9e0838c5bb9b4105"}}]},
     {"componentId":"api","release":"0.8.0~rc96-1","manifest":{"url":"https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.96/component-release.json","sha256":"fca9b1ecfd2deca01800ac9e96408fb8fb44ff53f30fd76eba16cd0a5ff433a2"},"files":[{"path":"compose.yml","artifact":{"url":"https://github.com/treeseed-ai/api/releases/download/0.8.0-rc.96/compose.yml","sha256":"d73cdbf86ed3c065b615fd4773159ce002f5240dea9bc76d91dfd9422fc4c6d5"}}]},
     {"componentId":"admin","release":"0.12.59~rc35-1","manifest":{"url":"https://github.com/treeseed-ai/admin/releases/download/0.12.59-rc.35/component-release.json","sha256":"1911171cffcb12cff350ac99cd027928eb8a193f6c6d536eb082ea762c4a4d75"},"files":[{"path":"compose.yml","artifact":{"url":"https://github.com/treeseed-ai/admin/releases/download/0.12.59-rc.35/compose.yml","sha256":"c6c9be83c48aa7fc599e0355f444697ff196d200d76464c4d956e115727295da"}}]},
     {"componentId":"agent","release":"0.13.0~rc47-1","manifest":{"url":"https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.47/component-release.json","sha256":"2450729922300c13da1b1e77fa99bb954ad1a26561e6fae10a7c4cb52c4d7cbe"},"files":[{"path":"compose.yml","artifact":{"url":"https://github.com/treeseed-ai/agent/releases/download/0.13.0-rc.47/compose.yml","sha256":"2c2f3ae22367258c91c9b0436a3c01ede8e383197582178d60c27258c9214231"}}]},
@@ -38,5 +39,5 @@
     {"componentId":"ai-training","release":"0.11.0~rc23-1","manifest":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc23/ai-training-component-release.json","sha256":"b02939951e9d2eaed22a0347c1e84c0c5340f5c63b0e852c05867a86f7b32889"},"files":[{"path":"ai-training-compose.yml","artifact":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc23/ai-training-compose.yml","sha256":"4b6bbb198ab495baf1e168e83270ff1ba1bab97414cc476a185ee880054c66d6"}}]},
     {"componentId":"ai-lab","release":"0.11.0~rc23-1","manifest":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc23/ai-lab-component-release.json","sha256":"14daae1a08b85b892d4cde00461e83463f1bad40149b2168d379ae404f095079"},"files":[{"path":"ai-lab-compose.yml","artifact":{"url":"https://github.com/treeseed-ai/ai/releases/download/0.11.0-rc23/ai-lab-compose.yml","sha256":"5a226e2006f5bebb670bccb2a8e0cd288d02fc996a2297f3ade656a28fdf7c89"}}]}
   ],
-  "createdAt": "2026-09-10T01:20:11Z"
+  "createdAt": "2026-09-10T06:17:49Z"
 }
