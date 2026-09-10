@@ -1,11 +1,11 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
-  "release": "0.1.0~rc296",
-  "generation": 246,
+  "release": "0.1.0~rc297",
+  "generation": 247,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": {"repository":"treeseed-ai/platform","commit":"2e62b802c27fed6c051b78e6780157b1e68d5dbf"},
-  "deployment": {"repository":"treeseed-ai/deployment","commit":"dfa678ded1a2b80b7afc0b5bb0904cbf6295c4c2","tag":"0.1.0-rc.296"},
+  "platform": {"repository":"treeseed-ai/platform","commit":"b75a80a03522c67b91c75ff2a4a2ccfa02ba3003"},
+  "deployment": {"repository":"treeseed-ai/deployment","commit":"6a28e7c62859415e37d7176b2b52f10c7899e281","tag":"0.1.0-rc.297"},
   "hostPayloads": [
     {"id":"sdk","packageName":"@treeseed/sdk","version":"0.13.0-rc.109","artifact":{"url":"https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.109.tgz","sha256":"ce529374703f581734bdb0edf5332e9fcc6ceecb165fdd4b760efc16367f7f1e"}},
     {"id":"identity","packageName":"@treeseed/identity","version":"0.1.0-rc.18","artifact":{"url":"https://registry.npmjs.org/@treeseed/identity/-/identity-0.1.0-rc.18.tgz","sha256":"3ff2b6de60a8be46a58d06ffb06f9db02a632c50705a426042bba32e34ecc070"}},
