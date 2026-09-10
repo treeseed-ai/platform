@@ -1,10 +1,10 @@
 {
   "schemaVersion": "treeseed.integration-release/v1",
   "release": "0.1.0~rc295",
-  "generation": 244,
+  "generation": 245,
   "track": "development",
   "compatibilityId": "treeseed-linux-amd64-v1",
-  "platform": {"repository":"treeseed-ai/platform","commit":"2331a1ce826637cc1a7b54aea50d5e4e01fa382f"},
+  "platform": {"repository":"treeseed-ai/platform","commit":"7048bb2f33968542646027ee4b1d3cb8f09a4851"},
   "deployment": {"repository":"treeseed-ai/deployment","commit":"e805386203c155c027adecd935e0ed63ec5b73bc","tag":"0.1.0-rc.295"},
   "hostPayloads": [
     {"id":"sdk","packageName":"@treeseed/sdk","version":"0.13.0-rc.109","artifact":{"url":"https://registry.npmjs.org/@treeseed/sdk/-/sdk-0.13.0-rc.109.tgz","sha256":"ce529374703f581734bdb0edf5332e9fcc6ceecb165fdd4b760efc16367f7f1e"}},
@@ -17,7 +17,7 @@
     {"id":"admin","packageName":"@treeseed/admin","version":"0.12.59-rc.37","artifact":{"url":"https://github.com/treeseed-ai/admin/releases/download/0.12.59-rc.37/treeseed-admin-0.12.59-rc.37.tgz","sha256":"810a6b07fc418186bc4d9012bedf3a096f93824dc8ebe47e17f1a43ba216db86"}},
     { "id": "reviewer", "packageName": "@treeseed/reviewer", "version": "0.1.0-rc.13", "artifact": { "url": "https://github.com/treeseed-ai/reviewer/releases/download/0.1.0-rc.13/treeseed-reviewer-0.1.0-rc.13.tgz", "sha256": "f30fc8697fd06f26b8278fe07e28e5065819d2962043693447a77d1ace070b14" } },
     { "id": "playwright-core", "packageName": "playwright-core", "version": "1.60.0", "artifact": { "url": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.60.0.tgz", "sha256": "8b1df81ba75e90a41eb5c996350ea7ecc1c915ea643ec55138f91c949c5a25bf" } },
-    {"id":"cli","packageName":"@treeseed/cli","version":"0.13.0-rc.76","artifact":{"url":"https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.76.tgz","sha256":"145d2c40a6fccb64bd9fcfce30c8fb54bd1e931314624ea963ed284588221e94"}},
+    {"id":"cli","packageName":"@treeseed/cli","version":"0.13.0-rc.77","artifact":{"url":"https://registry.npmjs.org/@treeseed/cli/-/cli-0.13.0-rc.77.tgz","sha256":"fe58178eed3624dfc33dbe5eb98b56c58d7041b1827175a7b3d77decb7554982"}},
     {"id":"treedx","packageName":"@treeseed/treedx","version":"0.3.0-rc.17","artifact":{"url":"https://github.com/treeseed-ai/treedx/releases/download/0.3.0-rc.17/treeseed-treedx-0.3.0-rc.17.tgz","sha256":"7bbee8d24700b2066f0df5f4906e0a5d809466c827e6136b4ad23a7e3c97e8a3"}},
     { "id": "yaml", "packageName": "yaml", "version": "2.9.0", "artifact": { "url": "https://registry.npmjs.org/yaml/-/yaml-2.9.0.tgz", "sha256": "008fa204cb1ba700e0272ba045abbf09a6ffe63456e8146ba97cac6c2ad1ef91" } },
     { "id": "zod", "packageName": "zod", "version": "3.25.76", "artifact": { "url": "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz", "sha256": "9e1f1a05f0dd0c1dab64ee91ceb9bf55cd44d35368c70edda80a2fdc70a88377" } }
