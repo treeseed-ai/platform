@@ -2,6 +2,10 @@
 
 This is the public TreeSeed installer and integration workspace. Preserve independent package builds and route infrastructure changes through SDK reconciliation and `trsd`. Market and Market API are first-party portfolio projects governed through the same seed, reconciliation, and exact-ref custody model as the other TreeSeed repositories. Their hosted deployment remains fail-closed until the reviewed OpenTofu topology restores it.
 
+## First-party repository visibility and licensing
+
+All TreeSeed repositories are public, including Team Library and Market API. First-party repositories use Apache-2.0 except API and Market API, which use AGPLv3. Preserve their exact license notices. This policy does not relicense third-party dependencies or make customer repositories public. The TreeSeed seed must declare public repository visibility; license choice is independent of visibility.
+
 ## Efficient delivery is mandatory
 
 Conserve human and AI capacity by optimizing for verified outcomes rather than repeated discussion or duplicated evidence. GitHub Issues are the planning and status authority, GitHub Actions are the verification authority, and agents must not post routine issue or pull-request comments. Keep the current decision-complete contract and evidence table in the Issue body; put implementation context in commits and the pull-request description; retain detailed logs as Actions artifacts. Read only the exact context needed, batch independent reads and checks, reuse immutable receipts, inspect failed jobs rather than rerunning successful work, and batch known defects into one replacement release candidate before repeating expensive activation. Stop at real authority boundaries instead of spending quota speculating around them.
