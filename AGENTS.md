@@ -8,7 +8,7 @@ Conserve human and AI capacity by optimizing for verified outcomes rather than r
 
 Every delivery follows `Issue -> branch -> pull request -> Actions -> staging merge -> release/read-back -> Platform composition -> managed acceptance -> main/production`. Before branching, merging, or releasing, fetch and verify the exact protected-branch head. Do not create undocumented side channels for plans, progress, or acceptance.
 
-Human approval is reserved exclusively for pull requests targeting `main` as the production promotion boundary. Staging pull requests, candidate publication, staging deployments, infrastructure plans, reconciliation, and acceptance proceed through authorized agents and required automated checks without human-only approval gates.
+During pre-launch integration, no human approval or review is required for pull requests (including `main`), releases, deployments, infrastructure plans, reconciliation, or acceptance. Authorized agents may merge after required automated checks pass; retain pull requests, exact-ref custody, and all unrelated protections. This temporary policy is tracked in Platform #489. Before public production launch, establish a separate reviewer identity and explicitly restore required human review for PRs to `main`; verify the restored settings before promoting a public production release. Do not reintroduce human-only gates for staging or non-production work.
 
 ## TypeScript source standard
 
