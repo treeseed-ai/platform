@@ -2,6 +2,12 @@
 
 This is the public TreeSeed installer and integration workspace. Preserve independent package builds and route infrastructure changes through SDK reconciliation and `trsd`. Market and Market API are first-party portfolio projects governed through the same seed, reconciliation, and exact-ref custody model as the other TreeSeed repositories. Their hosted deployment remains fail-closed until the reviewed OpenTofu topology restores it.
 
+## CRITICAL: simplicity and non-duplication are mandatory
+
+Always choose the simplest complete solution. Avoid new models, schemas, storage, services, abstractions, adapters, artifacts, workflows, configuration fields, and compatibility paths unless they are strictly necessary to produce a verified requirement. One fact must have one authority, one representation, and one implementation path. Reuse existing contracts, Git state, TreeDX content, receipts, commands, and runtime boundaries instead of copying or translating them. Do not encode the same policy in profiles, prompts, handlers, assignments, providers, and API services. Delete superseded paths as part of the replacement; do not preserve speculative flexibility or backward compatibility. Before adding any concept, identify why the current simplest mechanism cannot satisfy the requirement. If that necessity cannot be demonstrated, do not add it.
+
+Optimize first for the smallest end-to-end path that works and can be verified through the supported CLI. Prefer ordinary commits, branches, exact refs, typed assignment inputs/results, and small class-based handlers over new artifact taxonomies or orchestration layers. Do not create work whose only purpose is to reconcile duplication introduced by the design itself. Complexity and duplicated effort are critical defects, not acceptable tradeoffs.
+
 ## First-party repository visibility and licensing
 
 All TreeSeed repositories are public, including Team Library and Market API. First-party repositories use Apache-2.0 except API and Market API, which use AGPLv3. Preserve their exact license notices. This policy does not relicense third-party dependencies or make customer repositories public. The TreeSeed seed must declare public repository visibility; license choice is independent of visibility.

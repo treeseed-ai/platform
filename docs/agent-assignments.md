@@ -37,6 +37,28 @@ Checkboxes report implementation status only:
 - `[x]` implemented and verified
 - `BLOCKED:` requires an active entry under **Observations and blockers**
 
+## Golden Development Acceptance
+
+Development advances one ordinary accepted proposal through the real local system before broader scenarios or releases:
+
+```text
+accepted proposal
+        ↓
+Architect result → Reviewer approval
+        ↓
+Tester evidence → Reviewer approval
+        ↓
+Engineer candidate → request changes → same Engineer revision
+        ↓
+same Reviewer re-review → approval → terminal reconciliation
+```
+
+This is the primary acceptance test. Every defect found on this path receives one focused regression test in the owning package, a local development rebuild, and an immediate replay of the same frontier. Do not cut an RC, broaden diagnostics, or pursue an unrelated defect before the path passes; record non-blocking discoveries in Platform Issue #520 or a bounded owner-repository issue.
+
+Use the agents themselves as soon as a node is runnable. Read-only discussion work may diagnose the current boundary; Tester produces executable evidence; Engineer receives exact approved predecessor results; Reviewer evaluates exact immutable candidates. Productive agent work and system acceptance are the same workflow, not separate exercises.
+
+After this golden path passes, the tested SDK agent team becomes the development baseline. A single SDK/API/CLI plan/apply operation must clone that team into selected projects or every eligible team project, adapt only project identity and exact content bindings, and return `noop` when repeated. Do not copy files manually, duplicate agent policy in Platform, or broaden the activity matrix before the golden receipt exists.
+
 ## Decisions
 
 - TreeDX is the durable authority for proposals, questions, answers, decisions, reviews, reports, and other planning content.
@@ -325,7 +347,7 @@ Acceptance:
 - [x] Store nodes, edges, assignments, and graph revisions once each; remove duplicated node JSON fields.
 - [ ] Resolve activity-profile agent selectors and lifecycle selectors into concrete edges.
 - [ ] Apply dependencies only to the declaring activity; exclude chat from implicit workflow dependencies.
-- [ ] Expand every `review: required` acting work item into stable actor and Reviewer nodes under the same work-item identity.
+- [x] Expand every `review: required` acting work item into stable actor and Reviewer nodes under the same work-item identity.
 - [x] Project proposal governance review through the same Reviewer `reviewing` profile without creating an acting pair.
 - [ ] Project lifecycle events as condition nodes, including `workday-closing`.
 - [ ] Union profile and work-item edges with deterministic provenance and cycle validation.
@@ -338,44 +360,44 @@ Acceptance:
 - [ ] Proposal review gates decision and every required Actor → Reviewer pair gates downstream work-item readiness.
 - [ ] Releaser waits for approved Engineer and Technical Writer work-item pairs and every other applicable required review.
 - [x] `workday-closing` → Reporter materializes as an ordinary condition dependency.
-- [ ] Replaying identical inputs produces no changes, duplicate nodes, or duplicate edges.
+- [x] Replaying identical inputs produces no changes, duplicate nodes, or duplicate edges.
 
 ### Phase 3 — Direct assignment lifecycle
 
 - [x] Treat every ready assignable node as demand for the allocator defined in `docs/agent-architecture.md`.
 - [ ] Claim a node and create its immutable assignment, lease, reservation, and idempotency receipt transactionally.
 - [x] Compile required capabilities during reconciliation and compare them directly with provider offers during admission.
-- [ ] Validate requested content/tool authority against the activity profile ceiling and team/project policy; freeze the exact grant on the assignment.
-- [ ] Select the accepted work item's `read-only`, `treedx`, or `git` workspace and permit exact read context from either custody system.
+- [x] Validate requested content/tool authority against the activity profile ceiling and team/project policy; freeze the exact grant on the assignment.
+- [x] Select the accepted work item's `read-only`, `treedx`, or `git` workspace and permit exact read context from either custody system.
 - [ ] Enforce one mutable workspace per assignment and reject dual Git/TreeDX mutation work items.
 - [ ] Preserve running assignments when the graph changes; cancel or supersede only through explicit lifecycle rules.
-- [ ] Advance node revision for retry or replacement so a new assignment has a distinct deterministic identity.
+- [x] Advance node revision for retry or replacement so a new assignment has a distinct deterministic identity.
 - [ ] Remove decision execution inputs, capacity-plan work units, workday demand rows, and alternate assignment-synthesis paths.
 
 Acceptance:
 
-- [ ] One CLI-visible ready node produces exactly one assignment and reservation.
-- [ ] The assignment exposes its profile ceiling, exact grant, workspace mode, mutable scope, and denied or missing authority explanation.
-- [ ] Replay produces no duplicate assignment or charge.
+- [x] One CLI-visible ready node produces exactly one assignment and reservation.
+- [x] The assignment exposes its profile ceiling, exact grant, workspace mode, mutable scope, and denied or missing authority explanation.
+- [x] Replay produces no duplicate assignment or charge.
 - [ ] Ineligible providers and blocked dependencies have exact explanations.
 
 ### Phase 4 — Results, review, revision, and multiple projects
 
 - [x] Accept only the one general result contract and ordinary Git, TreeDX, or URL references.
-- [ ] Complete an actor attempt on candidate return while keeping its work item incomplete until the paired review is approved.
-- [ ] Pass predecessor results into dependent assignment context.
+- [x] Complete an actor attempt on candidate return while keeping its work item incomplete until the paired review is approved.
+- [x] Pass predecessor results into dependent assignment context.
 - [x] Record review findings as notes/questions and formal disposition as a decision bound to the exact candidate.
-- [ ] Advance the same actor/reviewer node pair on request changes; create no unrelated revision work item.
+- [x] Advance the same actor/reviewer node pair on request changes; create no unrelated revision work item.
 - [ ] Enforce bounded review cycles and block for a new decision when exhausted.
 - [ ] Support one team graph spanning multiple projects and decisions.
 - [ ] Preserve project-scoped content and repository authority across cross-project scheduling.
 - [ ] Fail closed when a cross-project dependency lacks an explicit TreeDX relation and read grant.
-- [ ] Admit newly ready work during the current active workday.
+- [x] Admit newly ready work during the current active workday.
 
 Acceptance:
 
 - [ ] Proposal review → decision and each required Actor → Reviewer pair → downstream readiness pass through the CLI.
-- [ ] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews.
+- [x] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews.
 - [ ] Two projects progress in one team graph without copying project graphs or leaking context.
 
 ### Phase 5 — Clean cutover and managed CLI acceptance
@@ -427,21 +449,21 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 |---|---|---|
 | 2026-09-14 | Draft proposal intake, exact proposal revision/digest binding, and proposal-governance review use the living graph contracts | Focused SDK/API proposal and projection suites; current development read-back |
 | 2026-09-14 | Ready-node admission compiles provider capability demand and closing Reporter dependency from the same graph | Focused API admission/projector suites; Reporter settlement receipt retained in Issue #520 |
-| 2026-09-14 | The complete generated Actor → Reviewer request-changes cycle is not yet accepted | This remains the sole end-to-end frontier below |
+| 2026-09-14 | The SDK golden proposal completed Architect and Tester review, then the same Engineer and Reviewer nodes advanced through request changes to approval without duplicate node revisions | Decision `d0def93c-29de-4096-909e-a7cc44c5858f`; workday `workday-7f49152f-ae12-48bc-9531-dd13f9d6245a`; eight completed assignment receipts retained in Issue #520 |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- The canonical proposal-review path runs through the living graph, provider admission, Kata isolation, AgentKernel, the Reviewer handler, one general result contract, TreeDX disposition, cleanup, and settlement. Focused SDK, API, and Agent suites pass against the current development sources; detailed defect evidence is maintained in Platform Issue #520.
+- The SDK golden proposal runs through one content-derived graph, provider admission, isolated Kata guests, exact grants, all three workspace modes, AgentKernel, TreeDX review decisions, revision-preserving Git candidates, verified teardown, and one result/settlement path. The graph contains six stable nodes and eight unique completed node-revision assignments.
 
 ### Current active blocker
 
-- No external blocker is active. The unproven boundary is the complete generated work-review cycle; prior proposal-review and isolated profile evidence do not prove it.
+- No active blocker exists for the accepted SDK golden proposal path.
 
 ### Next acceptance milestone
 
-- Accept one exact proposal, generate its Git Actor and Reviewer nodes, obtain request changes, revise the same work item, re-review the replacement candidate, approve it, and prove terminal reconciliation without duplicate assignments or settlements.
+- Implement and verify the native plan/apply operation that clones the accepted SDK agent team into eligible projects, then use those agents for the remaining activity and multi-project acceptance.
 
 ## Completion
 

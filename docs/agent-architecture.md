@@ -44,6 +44,14 @@ Checkboxes report implementation status only:
 - `[x]` implemented and verified
 - `BLOCKED:` requires an active entry under **Observations and blockers**
 
+## Local Development Loop
+
+Persistent development mode is the only implementation loop before coordinated acceptance. A changed package rebuilds with its actual dependents, becomes active only after compilation and readiness succeed, and leaves the previous known-good process serving on failure. Assignment diagnostics expose the exact SDK, API, Agent, Deployment, guest image, provider offer, source authority, workspace, grant, sandbox lifecycle, result, settlement, and successor outcome from existing records rather than creating another tracking system.
+
+The golden proposal and agent-assisted workflow are owned by [`docs/agent-assignments.md`](./agent-assignments.md). Architecture work must move that same live path forward; component tests alone do not prove an activity profile. Publish one coordinated RC set only after local end-to-end acceptance.
+
+Once that receipt exists, use the SDK agent team on real bounded development and clone it to eligible projects only through the native plan/apply operation defined by the assignments plan. Unrelated defects are recorded in the owning GitHub issue and deferred unless they prevent the active assignment frontier.
+
 ## Decisions
 
 - The Agent package owns AgentKernel and the reusable default handlers.
@@ -413,7 +421,7 @@ Acceptance:
 
 - [x] Implement the single AgentKernel entry point and build-time handler registry.
 - [x] Route the existing isolated provider transport through AgentKernel.
-- [ ] Compile exact grants within the activity ceiling and team/project policy; block admission when required authority is unavailable.
+- [x] Compile exact grants within the activity ceiling and team/project policy; block admission when required authority is unavailable.
 - [x] Enforce immutable assignment grants at runtime-service calls and validate the one result contract.
 - [x] Implement deterministic `ReporterHandler` with no model dependency.
 - [x] Commit the report through TreeDX and return its ordinary exact reference.
@@ -444,8 +452,8 @@ Acceptance:
 - [ ] Every enabled activity resolves exactly one handler from its pinned runtime build.
 - [ ] Default handlers are reused across agent classes.
 - [ ] Project prompt/context customization requires no handler copy.
-- [ ] One reviewed acting work item automatically dispatches Actor then Reviewer assignments without either profile naming the generated node.
-- [ ] Request changes returns exact findings to a new actor attempt against the same objective and then dispatches the next Reviewer attempt.
+- [x] One reviewed acting work item automatically dispatches Actor then Reviewer assignments without either profile naming the generated node.
+- [x] Request changes returns exact findings to a new actor attempt against the same objective and then dispatches the next Reviewer attempt.
 - [ ] One project-owned behavior override passes a real CLI assignment.
 
 ### Phase 4 — Workday planning and fair capacity
@@ -469,13 +477,13 @@ Acceptance:
 
 ### Phase 5 — Integration, clean cutover, and managed acceptance
 
-- [ ] Consume ready nodes and predecessor results only through the contracts owned by `docs/agent-assignments.md`.
-- [ ] Use one assignment-selected `read-only`, `treedx`, or `git` workspace mode and permit reads from exact refs in either custody system.
+- [x] Consume ready nodes and predecessor results only through the contracts owned by `docs/agent-assignments.md`.
+- [x] Use one assignment-selected `read-only`, `treedx`, or `git` workspace mode and permit reads from exact refs in either custody system.
 - [ ] Split required Git and TreeDX mutations into dependent assignments; add no dual-write workspace.
 - [ ] Create explicit integration assignments whenever several Git predecessors must be combined.
 - [ ] Delete AgentKernelProfile/Policy, metadata-only handler routing, dynamic module/process loading, duplicate authority presets/raw tools/branch policies/context, old allocation hierarchy, fixed team polling, and alternate provider execution paths.
 - [ ] Remove every compatibility field, parser, alias, route, table, fixture, test, document, and feature switch associated with the retired architecture.
-- [ ] Run architecture-specific CLI acceptance, then reference the assignment plan's graph acceptance receipt rather than repeating it.
+- [x] Run architecture-specific CLI acceptance, then reference the assignment plan's graph acceptance receipt rather than repeating it.
 - [ ] Publish and read back one coordinated compatible release set.
 
 Architecture CLI surface:
@@ -519,20 +527,21 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 | 2026-09-14 | One build-time handler registry and AgentKernel execute the isolated provider transport | Focused Agent kernel/provider suites; source-backed Kata acceptance retained in Issue #520 |
 | 2026-09-14 | Deterministic Reporter commits through TreeDX and settles through the ordinary completion path | Focused Agent/API tests; live Reporter receipt retained in Issue #520 |
 | 2026-09-14 | Persistent development selections run the touched SDK, API, Agent, and TreeDX components | Managed development status read-back; no RC required |
+| 2026-09-14 | The SDK golden path exercised Architect, Tester, Engineer, and Reviewer through isolated Kata guests, exact grants, read-only/TreeDX/Git workspaces, revision, teardown, and terminal approval | Cross-reference the decision, workday, and assignment receipts in `docs/agent-assignments.md` and Issue #520 |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. Reporter closeout and source-backed Kata execution are proven; assignment-graph evidence remains owned by `docs/agent-assignments.md`.
+- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. The SDK golden receipt proves exact workspace selection, request-changes continuity, and teardown; graph details remain owned by `docs/agent-assignments.md`.
 
 ### Current active blocker
 
-- No external blocker is active. The architecture remains incomplete until the generated Git Actor and Reviewer cycle proves exact workspace enforcement and one AgentKernel completion path end to end.
+- No active blocker exists for the accepted SDK golden proposal path.
 
 ### Next acceptance milestone
 
-- Complete the proposal-to-approval frontier defined in `docs/agent-assignments.md`, then use that receipt as the architecture acceptance reference before expanding the activity-profile matrix.
+- Clone the accepted SDK agent team through the native plan/apply operation defined in `docs/agent-assignments.md`, then expand acceptance across eligible projects and the remaining activity profiles.
 
 ## Completion
 
