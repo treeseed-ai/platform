@@ -1,0 +1,2219 @@
+# Canonical target contract for the agent execution system.
+#
+# This is JSON Schema 2020-12 written as YAML. It is intentionally strict:
+# stored records reject unknown fields so architecture drift becomes a validation
+# failure. Generate SDK types and validators from this file, or prove exact
+# structural equivalence in CI. Do not copy these definitions into another
+# handwritten schema.
+#
+# Storage boundary:
+#   - TreeDX stores governed content and its exact revision history.
+#   - PostgreSQL stores operational execution, capacity, and custody state.
+#   - Git stores source candidates; PostgreSQL results hold exact Git references.
+# Package use:
+#   - SDK owns this portable contract and generated validators/types.
+#   - API validates content projections and owns PostgreSQL records/lifecycle.
+#   - Agent consumes immutable assignments and emits AssignmentResult.
+#   - Capacity providers exchange offers, assignments, leases, and results.
+#   - CLI renders and validates these same contracts without business-rule copies.
+#
+# Deliberately absent:
+#   architecture, review, workday-report, assignment_plan, assignment_status,
+#   assignment_summary, source-candidate, capacity-plan, and demand models.
+# Architecture is a book/knowledge convention, review uses note/question/decision,
+# and a workday report is a classified note. Assignment lifecycle belongs solely
+# to the PostgreSQL records below.
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://treeseed.ai/schema/agent-execution/v1"
+title: TreeSeed agent execution object model
+description: >-
+  The complete ideal object model from governed planning content through a living
+  execution graph, assignment execution, review, release or publication, workday
+  reporting, and usage settlement.
+$comment: >-
+  The root union validates stored records. Runtime-only DTOs such as
+  AssignmentContext are addressable through $defs. SDK/API semantic validation
+  must additionally enforce ordered estimate bounds; unique work-item IDs;
+  local, acyclic dependencies; requested permissions within profile and policy
+  ceilings; exact current authority refs; deterministic node/edge identity;
+  one active assignment per node revision; two ordered planning rounds; bounded
+  review cycles; immutable assignment inputs; and exactly-once settlement.
+
+# A document validated at the root must be exactly one stored record type.
+oneOf:
+  - $ref: "#/$defs/AgentProfile"
+  - $ref: "#/$defs/Book"
+  - $ref: "#/$defs/Knowledge"
+  - $ref: "#/$defs/Objective"
+  - $ref: "#/$defs/Discussion"
+  - $ref: "#/$defs/DiscussionMessage"
+  - $ref: "#/$defs/Proposal"
+  - $ref: "#/$defs/Question"
+  - $ref: "#/$defs/Note"
+  - $ref: "#/$defs/Decision"
+  - $ref: "#/$defs/TreeDxWorkspace"
+  - $ref: "#/$defs/TreeDxWorkspaceReview"
+  - $ref: "#/$defs/TreeDxPublicationReceipt"
+  - $ref: "#/$defs/Team"
+  - $ref: "#/$defs/Project"
+  - $ref: "#/$defs/AgentRegistration"
+  - $ref: "#/$defs/WorkdayPolicy"
+  - $ref: "#/$defs/ProviderOffer"
+  - $ref: "#/$defs/ProviderState"
+  - $ref: "#/$defs/Workday"
+  - $ref: "#/$defs/GraphRevision"
+  - $ref: "#/$defs/ExecutionNode"
+  - $ref: "#/$defs/ExecutionEdge"
+  - $ref: "#/$defs/AssignmentAttempt"
+  - $ref: "#/$defs/Lease"
+  - $ref: "#/$defs/Reservation"
+  - $ref: "#/$defs/AssignmentResult"
+  - $ref: "#/$defs/UsageSettlement"
+
+$defs:
+  # ---------------------------------------------------------------------------
+  # Shared scalar and reference contracts
+  # ---------------------------------------------------------------------------
+
+  Identifier:
+    type: string
+    minLength: 1
+    maxLength: 200
+    pattern: "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+
+  Slug:
+    type: string
+    minLength: 1
+    maxLength: 100
+    pattern: "^[a-z0-9]+(?:[._/-][a-z0-9]+)*$"
+
+  NonEmptyText:
+    type: string
+    minLength: 1
+
+  Timestamp:
+    type: string
+    format: date-time
+
+  Sha256Digest:
+    type: string
+    pattern: "^sha256:[a-f0-9]{64}$"
+
+  GitCommit:
+    type: string
+    pattern: "^[a-f0-9]{40}$"
+
+  PositiveSeconds:
+    type: integer
+    minimum: 1
+
+  NonNegativeSeconds:
+    type: integer
+    minimum: 0
+
+  ContentModel:
+    # This is the entire core vocabulary available to profile permissions.
+    enum:
+      - agent
+      - book
+      - knowledge
+      - objective
+      - discussion
+      - discussion-message
+      - proposal
+      - question
+      - note
+      - decision
+
+  DecisionClass:
+    # One decision model, with classes that select its governance semantics.
+    enum: [proposal, work-review, publication]
+
+  DecisionDisposition:
+    enum: [approved, rejected, request-changes, deferred, superseded]
+
+  DecisionPosition:
+    # Embedded signed position for approval or voting; it is not another model.
+    type: object
+    required: [actorRef, position, recordedAt]
+    properties:
+      actorRef:
+        $ref: "#/$defs/ExactEntityReference"
+      position:
+        enum: [approve, reject, abstain]
+      rationale:
+        type: string
+      recordedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  WorkspaceMode:
+    enum: [read-only, treedx, git]
+
+  ActivityName:
+    enum: [planning, estimating, acting, reviewing, reporting, chat]
+
+  ExecutionKind:
+    enum: [planning, estimating, acting, reviewing, reporting, communication, condition]
+
+  AgentClass:
+    # Project-defined classes remain possible; first-party defaults use these IDs.
+    type: string
+    minLength: 1
+    maxLength: 100
+    pattern: "^[a-z][a-z0-9-]*$"
+
+  ToolGroup:
+    # Profiles use stable groups, never provider-specific raw tool names.
+    enum:
+      - discussion
+      - source.read
+      - source.write
+      - verification
+      - release
+
+  ExactEntityReference:
+    # Shared by notes, questions, decisions, assignment context, and reports.
+    # revision/digest pins TreeDX; commit pins Git or a TreeDX repository snapshot.
+    type: object
+    required: [store, model, id]
+    properties:
+      store:
+        enum: [treedx, postgresql, git, url]
+      model:
+        type: string
+        minLength: 1
+      id:
+        $ref: "#/$defs/Identifier"
+      revision:
+        type: integer
+        minimum: 1
+      digest:
+        $ref: "#/$defs/Sha256Digest"
+      repository:
+        type: string
+        minLength: 1
+      commit:
+        $ref: "#/$defs/GitCommit"
+      path:
+        type: string
+        minLength: 1
+      anchor:
+        type: string
+        minLength: 1
+      startLine:
+        type: integer
+        minimum: 1
+      endLine:
+        type: integer
+        minimum: 1
+      url:
+        type: string
+        format: uri
+    allOf:
+      - if:
+          type: object
+          required: [endLine]
+        then:
+          type: object
+          required: [startLine]
+      - if:
+          type: object
+          properties:
+            store:
+              const: treedx
+          required: [store]
+        then:
+          type: object
+          anyOf:
+            - type: object
+              required: [revision, digest]
+            - type: object
+              required: [commit]
+      - if:
+          type: object
+          properties:
+            store:
+              const: git
+          required: [store]
+        then:
+          type: object
+          required: [repository, commit]
+      - if:
+          type: object
+          properties:
+            store:
+              const: url
+          required: [store]
+        then:
+          type: object
+          required: [url]
+    additionalProperties: false
+
+  GitReference:
+    type: object
+    required: [kind, repository, commit]
+    properties:
+      kind:
+        const: git
+      repository:
+        type: string
+        minLength: 1
+      commit:
+        $ref: "#/$defs/GitCommit"
+      branch:
+        type: string
+        minLength: 1
+      path:
+        type: string
+        minLength: 1
+    additionalProperties: false
+
+  TreeDxReference:
+    type: object
+    required: [kind, projectId, repository, commit, path]
+    properties:
+      kind:
+        const: treedx
+      projectId:
+        $ref: "#/$defs/Identifier"
+      repository:
+        type: string
+        minLength: 1
+      commit:
+        $ref: "#/$defs/GitCommit"
+      path:
+        type: string
+        minLength: 1
+      workspaceId:
+        $ref: "#/$defs/Identifier"
+    additionalProperties: false
+
+  UrlReference:
+    type: object
+    required: [kind, url]
+    properties:
+      kind:
+        const: url
+      url:
+        type: string
+        format: uri
+      digest:
+        $ref: "#/$defs/Sha256Digest"
+    additionalProperties: false
+
+  AssignmentReference:
+    oneOf:
+      - $ref: "#/$defs/GitReference"
+      - $ref: "#/$defs/TreeDxReference"
+      - $ref: "#/$defs/UrlReference"
+
+  Estimate:
+    # minimum <= expected <= maximum is also enforced by semantic validation.
+    type: object
+    required: [minimumSeconds, expectedSeconds, maximumSeconds]
+    properties:
+      minimumSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      expectedSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      maximumSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      rationale:
+        type: string
+    additionalProperties: false
+
+  DependencySelectors:
+    # Human-authored standing dependencies never contain generated IDs.
+    type: object
+    minProperties: 1
+    properties:
+      agents:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/AgentClass"
+      events:
+        type: array
+        uniqueItems: true
+        items:
+          enum: [workday-closing]
+    additionalProperties: false
+
+  ContentPermissions:
+    type: object
+    required: [read, write]
+    properties:
+      read:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ContentModel"
+      write:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ContentModel"
+    additionalProperties: false
+
+  PermissionSet:
+    # In a profile this is a ceiling; in a work item it is requested authority.
+    type: object
+    required: [content, tools]
+    properties:
+      content:
+        $ref: "#/$defs/ContentPermissions"
+      tools:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ToolGroup"
+    additionalProperties: false
+
+  ExactGrant:
+    # Assignment-time authority uses concrete refs and paths, not broad model groups.
+    type: object
+    required: [contentRead, contentWrite, sourceRead, sourceWrite, tools]
+    properties:
+      contentRead:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      contentWrite:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      sourceRead:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      sourceWrite:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+      tools:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ToolGroup"
+    additionalProperties: false
+
+  Prompt:
+    type: object
+    required: [system]
+    properties:
+      system:
+        type: string
+        minLength: 20
+      instructions:
+        type: array
+        items:
+          $ref: "#/$defs/NonEmptyText"
+    additionalProperties: false
+
+  ActivityProfile:
+    type: object
+    required: [handler, permissions, prompt]
+    properties:
+      handler:
+        $ref: "#/$defs/Identifier"
+      dependsOn:
+        $ref: "#/$defs/DependencySelectors"
+      permissions:
+        $ref: "#/$defs/PermissionSet"
+      prompt:
+        $ref: "#/$defs/Prompt"
+      additionalContext:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      parameters:
+        # Handler-specific values are allowed only here and remain ordinary data.
+        type: object
+        additionalProperties: true
+    additionalProperties: false
+
+  ActivityProfiles:
+    type: object
+    minProperties: 1
+    properties:
+      planning:
+        $ref: "#/$defs/ActivityProfile"
+      estimating:
+        $ref: "#/$defs/ActivityProfile"
+      acting:
+        $ref: "#/$defs/ActivityProfile"
+      reviewing:
+        $ref: "#/$defs/ActivityProfile"
+      reporting:
+        $ref: "#/$defs/ActivityProfile"
+      chat:
+        $ref: "#/$defs/ActivityProfile"
+    additionalProperties: false
+
+  WorkItem:
+    # Stable proposal-owned unit. Generated Reviewer nodes are not authored here.
+    type: object
+    required:
+      - id
+      - activity
+      - agentClass
+      - workspace
+      - review
+      - objective
+      - estimate
+      - dependsOn
+      - requestedPermissions
+      - acceptanceCriteria
+    properties:
+      id:
+        $ref: "#/$defs/Slug"
+      activity:
+        enum: [acting]
+      agentClass:
+        $ref: "#/$defs/AgentClass"
+      workspace:
+        $ref: "#/$defs/WorkspaceMode"
+      review:
+        enum: [required, none]
+      objective:
+        $ref: "#/$defs/NonEmptyText"
+      estimate:
+        $ref: "#/$defs/Estimate"
+      reviewEstimate:
+        $ref: "#/$defs/Estimate"
+      maximumReviewCycles:
+        type: integer
+        minimum: 1
+      dependsOn:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Slug"
+      requestedPermissions:
+        $ref: "#/$defs/PermissionSet"
+      requiredCapabilities:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      contextRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      acceptanceCriteria:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/NonEmptyText"
+    allOf:
+      - if:
+          type: object
+          properties:
+            review:
+              const: required
+          required: [review]
+        then:
+          type: object
+          required: [reviewEstimate, maximumReviewCycles]
+      - if:
+          type: object
+          properties:
+            review:
+              const: none
+          required: [review]
+        then:
+          type: object
+          not:
+            type: object
+            anyOf:
+              - type: object
+                required: [reviewEstimate]
+              - type: object
+                required: [maximumReviewCycles]
+    additionalProperties: false
+
+  ExecutionPlan:
+    type: object
+    required: [workItems]
+    properties:
+      workItems:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/WorkItem"
+    additionalProperties: false
+
+  # ---------------------------------------------------------------------------
+  # Governed TreeDX content
+  # ---------------------------------------------------------------------------
+
+  AgentProfile:
+    # Storage: TreeDX. Owner: SDK contract; authored as governed project content.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - name
+      - agentClass
+      - purpose
+      - responsibilities
+      - capabilities
+      - context
+      - activityProfiles
+    properties:
+      schemaVersion:
+        const: treeseed.agent/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      name:
+        $ref: "#/$defs/NonEmptyText"
+      agentClass:
+        $ref: "#/$defs/AgentClass"
+      purpose:
+        $ref: "#/$defs/NonEmptyText"
+      responsibilities:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/NonEmptyText"
+      capabilities:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      context:
+        type: object
+        required: [include]
+        properties:
+          include:
+            type: array
+            minItems: 1
+            uniqueItems: true
+            items:
+              $ref: "#/$defs/Identifier"
+        additionalProperties: false
+      activityProfiles:
+        $ref: "#/$defs/ActivityProfiles"
+    allOf:
+      # Reviewing is reserved for Reviewer by default. A future policy exception
+      # must change this canonical contract rather than bypass validation.
+      - if:
+          type: object
+          properties:
+            agentClass:
+              not:
+                const: reviewer
+          required: [agentClass]
+        then:
+          type: object
+          properties:
+            activityProfiles:
+              not:
+                type: object
+                required: [reviewing]
+    additionalProperties: false
+
+  Book:
+    # Architecture is represented by a conventional "<Project> Architecture" book.
+    type: object
+    required: [schemaVersion, id, projectId, title, summary]
+    properties:
+      schemaVersion:
+        const: treeseed.book/v2
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      title:
+        $ref: "#/$defs/NonEmptyText"
+      summary:
+        $ref: "#/$defs/NonEmptyText"
+      pageRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+    additionalProperties: false
+
+  Knowledge:
+    # Validated page content within a book, including architecture knowledge.
+    type: object
+    required: [schemaVersion, id, projectId, bookRef, title, body]
+    properties:
+      schemaVersion:
+        const: treeseed.knowledge-page/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      bookRef:
+        $ref: "#/$defs/ExactEntityReference"
+      title:
+        $ref: "#/$defs/NonEmptyText"
+      body:
+        $ref: "#/$defs/NonEmptyText"
+      relatedRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+    additionalProperties: false
+
+  Objective:
+    # Durable outcome sought by a team or project; proposals may cite it.
+    type: object
+    required: [schemaVersion, id, projectId, title, outcome, status]
+    properties:
+      schemaVersion:
+        const: treeseed.objective/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      title:
+        $ref: "#/$defs/NonEmptyText"
+      outcome:
+        $ref: "#/$defs/NonEmptyText"
+      status:
+        enum: [active, achieved, abandoned]
+      evidenceRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+    additionalProperties: false
+
+  Discussion:
+    # Thread metadata only; messages are independently revisioned content.
+    type: object
+    required: [schemaVersion, id, projectId, subjectRef, status, participantClasses]
+    properties:
+      schemaVersion:
+        const: treeseed.discussion/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      subjectRef:
+        $ref: "#/$defs/ExactEntityReference"
+      status:
+        enum: [open, resolved, closed]
+      participantClasses:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/AgentClass"
+    additionalProperties: false
+
+  DiscussionMessage:
+    type: object
+    required: [schemaVersion, id, discussionRef, authorRef, body, createdAt]
+    properties:
+      schemaVersion:
+        const: treeseed.discussion-message/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      discussionRef:
+        $ref: "#/$defs/ExactEntityReference"
+      authorRef:
+        $ref: "#/$defs/ExactEntityReference"
+      body:
+        $ref: "#/$defs/NonEmptyText"
+      replyToRef:
+        $ref: "#/$defs/ExactEntityReference"
+      createdAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  Proposal:
+    # The executable plan and accepted estimates live directly on this content.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - projectId
+      - title
+      - request
+      - status
+    properties:
+      schemaVersion:
+        const: treeseed.proposal/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      title:
+        $ref: "#/$defs/NonEmptyText"
+      request:
+        $ref: "#/$defs/NonEmptyText"
+      summary:
+        $ref: "#/$defs/NonEmptyText"
+      status:
+        enum: [draft, discussing, ready, decided, withdrawn]
+      objectiveRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      evidenceRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      discussionRef:
+        $ref: "#/$defs/ExactEntityReference"
+      executionPlan:
+        $ref: "#/$defs/ExecutionPlan"
+    allOf:
+      - if:
+          type: object
+          properties:
+            status:
+              enum: [ready, decided]
+          required: [status]
+        then:
+          type: object
+          required: [summary, executionPlan]
+    additionalProperties: false
+
+  Question:
+    # Open questions become graph conditions until answered or withdrawn.
+    type: object
+    required: [schemaVersion, id, projectId, subjectRef, question, status, askedAt]
+    properties:
+      schemaVersion:
+        const: treeseed.question/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      subjectRef:
+        $ref: "#/$defs/ExactEntityReference"
+      question:
+        $ref: "#/$defs/NonEmptyText"
+      status:
+        enum: [open, answered, withdrawn]
+      addressedTo:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/AgentClass"
+      answer:
+        type: string
+        minLength: 1
+      answerRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      askedAt:
+        $ref: "#/$defs/Timestamp"
+      answeredAt:
+        $ref: "#/$defs/Timestamp"
+    allOf:
+      - if:
+          type: object
+          properties:
+            status:
+              const: answered
+          required: [status]
+        then:
+          type: object
+          anyOf:
+            - type: object
+              required: [answer]
+            - type: object
+              required: [answerRefs]
+    additionalProperties: false
+
+  Note:
+    # Review findings and workday reports are classifications of this core model.
+    type: object
+    required: [schemaVersion, id, projectId, classification, subjectRefs, body, createdAt]
+    properties:
+      schemaVersion:
+        const: treeseed.note/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      classification:
+        enum: [general, feedback, research, workday-report]
+      subjectRefs:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      body:
+        $ref: "#/$defs/NonEmptyText"
+      createdAt:
+        $ref: "#/$defs/Timestamp"
+    allOf:
+      # A workday report must cite its exact PostgreSQL workday record. Its other
+      # subject refs cite results, usage, releases, and publications summarized.
+      - if:
+          type: object
+          properties:
+            classification:
+              const: workday-report
+          required: [classification]
+        then:
+          type: object
+          properties:
+            subjectRefs:
+              type: array
+              contains:
+                type: object
+                required: [store, model]
+                properties:
+                  store:
+                    const: postgresql
+                  model:
+                    const: workday
+    additionalProperties: false
+
+  Decision:
+    # Class selects governance; subjectRef binds disposition to exact evidence.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - projectId
+      - decisionClass
+      - decisionMethod
+      - subjectRef
+      - disposition
+      - rationale
+      - authorityRefs
+      - decidedByRefs
+      - decidedAt
+    properties:
+      schemaVersion:
+        const: treeseed.decision/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      decisionClass:
+        $ref: "#/$defs/DecisionClass"
+      decisionMethod:
+        # Classes define semantics; method records how authority was exercised.
+        enum: [authority, approval, vote]
+      subjectRef:
+        $ref: "#/$defs/ExactEntityReference"
+      disposition:
+        $ref: "#/$defs/DecisionDisposition"
+      rationale:
+        $ref: "#/$defs/NonEmptyText"
+      findingRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      authorityRefs:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      decidedByRefs:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      positions:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/DecisionPosition"
+      decidedAt:
+        $ref: "#/$defs/Timestamp"
+    allOf:
+      - if:
+          type: object
+          properties:
+            decisionMethod:
+              enum: [approval, vote]
+          required: [decisionMethod]
+        then:
+          type: object
+          required: [positions]
+      - if:
+          type: object
+          properties:
+            decisionClass:
+              const: work-review
+          required: [decisionClass]
+        then:
+          type: object
+          properties:
+            disposition:
+              enum: [approved, request-changes]
+      - if:
+          type: object
+          properties:
+            decisionClass:
+              const: proposal
+          required: [decisionClass]
+        then:
+          type: object
+          properties:
+            disposition:
+              enum: [approved, rejected, deferred, superseded]
+      - if:
+          type: object
+          properties:
+            decisionClass:
+              const: publication
+          required: [decisionClass]
+        then:
+          type: object
+          properties:
+            disposition:
+              enum: [approved, rejected, deferred, superseded]
+    additionalProperties: false
+
+  # ---------------------------------------------------------------------------
+  # TreeDX service custody records
+  # ---------------------------------------------------------------------------
+
+  TreeDxWorkspace:
+    # Storage: TreeDX service metadata. A governed mutable content workspace.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - teamId
+      - projectId
+      - repository
+      - baseCommit
+      - headCommit
+      - assignmentId
+      - status
+      - createdAt
+    properties:
+      schemaVersion:
+        const: treeseed.treedx-workspace/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      repository:
+        type: string
+        minLength: 1
+      baseCommit:
+        $ref: "#/$defs/GitCommit"
+      headCommit:
+        $ref: "#/$defs/GitCommit"
+      assignmentId:
+        $ref: "#/$defs/Identifier"
+      status:
+        enum: [open, submitted, accepted, rejected, abandoned]
+      createdAt:
+        $ref: "#/$defs/Timestamp"
+      submittedAt:
+        $ref: "#/$defs/Timestamp"
+      closedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  TreeDxWorkspaceReview:
+    # Records governance over an exact TreeDX candidate; not a content model.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - workspaceId
+      - candidateCommit
+      - decisionRef
+      - status
+      - decidedAt
+    properties:
+      schemaVersion:
+        const: treeseed.treedx-workspace-review/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      workspaceId:
+        $ref: "#/$defs/Identifier"
+      candidateCommit:
+        $ref: "#/$defs/GitCommit"
+      decisionRef:
+        $ref: "#/$defs/ExactEntityReference"
+      status:
+        enum: [approved, request-changes]
+      decidedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  TreeDxPublicationReceipt:
+    # Exact read-back evidence after an approved publication operation.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - projectId
+      - repository
+      - sourceCommit
+      - publishedCommit
+      - destination
+      - decisionRef
+      - publishedAt
+    properties:
+      schemaVersion:
+        const: treeseed.treedx-publication-receipt/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      repository:
+        type: string
+        minLength: 1
+      sourceCommit:
+        $ref: "#/$defs/GitCommit"
+      publishedCommit:
+        $ref: "#/$defs/GitCommit"
+      destination:
+        type: string
+        minLength: 1
+      url:
+        type: string
+        format: uri
+      decisionRef:
+        $ref: "#/$defs/ExactEntityReference"
+      publishedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  # ---------------------------------------------------------------------------
+  # Shared operational value objects
+  # ---------------------------------------------------------------------------
+
+  RepositoryBinding:
+    type: object
+    required: [repository, defaultBranch]
+    properties:
+      repository:
+        type: string
+        minLength: 1
+      defaultBranch:
+        type: string
+        minLength: 1
+    additionalProperties: false
+
+  TreeDxBinding:
+    type: object
+    required: [repository, collection, protectedRef]
+    properties:
+      repository:
+        type: string
+        minLength: 1
+      collection:
+        type: string
+        minLength: 1
+      protectedRef:
+        type: string
+        minLength: 1
+    additionalProperties: false
+
+  WeightMap:
+    type: object
+    minProperties: 1
+    additionalProperties:
+      type: integer
+      minimum: 1
+
+  ProjectWeight:
+    type: object
+    required: [projectId, weight]
+    properties:
+      projectId:
+        $ref: "#/$defs/Identifier"
+      weight:
+        type: integer
+        minimum: 1
+    additionalProperties: false
+
+  AgentClassWeight:
+    type: object
+    required: [agentClass, weight]
+    properties:
+      agentClass:
+        $ref: "#/$defs/AgentClass"
+      weight:
+        type: integer
+        minimum: 1
+    additionalProperties: false
+
+  WorkdayPolicyFields:
+    # Embedded in Workday as a snapshot so later policy edits cannot alter history.
+    type: object
+    required:
+      - durationSeconds
+      - maximumConcurrency
+      - planningSecondsPerAgent
+      - communicationConcurrency
+      - projectWeights
+      - agentClassWeights
+    properties:
+      durationSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      maximumConcurrency:
+        type: integer
+        minimum: 1
+      planningSecondsPerAgent:
+        $ref: "#/$defs/PositiveSeconds"
+      communicationConcurrency:
+        type: integer
+        minimum: 1
+      projectWeights:
+        type: object
+        minProperties: 1
+        additionalProperties:
+          type: number
+          exclusiveMinimum: 0
+      agentClassWeights:
+        type: object
+        minProperties: 1
+        additionalProperties:
+          type: number
+          exclusiveMinimum: 0
+    additionalProperties: false
+
+  AvailabilityWindow:
+    type: object
+    required: [startsAt, endsAt]
+    properties:
+      startsAt:
+        $ref: "#/$defs/Timestamp"
+      endsAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  NativeLimit:
+    # Provider-specific finite limits stay supply facts, not scheduling policy.
+    type: object
+    required: [name, unit, maximum]
+    properties:
+      name:
+        $ref: "#/$defs/Identifier"
+      unit:
+        $ref: "#/$defs/Identifier"
+      maximum:
+        type: number
+        exclusiveMinimum: 0
+    additionalProperties: false
+
+  PlanningRound:
+    type: object
+    required: [round, state, assignmentIds]
+    properties:
+      round:
+        enum: [1, 2]
+      state:
+        enum: [pending, active, complete]
+      assignmentIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      startedAt:
+        $ref: "#/$defs/Timestamp"
+      completedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  GraphChangeSet:
+    # Compact audit summary; node and edge tables remain the state authority.
+    type: object
+    required: [added, changed, completed, blocked, stale, removedEdges, addedEdges]
+    properties:
+      added:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      changed:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      completed:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      blocked:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      stale:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      addedEdges:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      removedEdges:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+    additionalProperties: false
+
+  ReadOnlyWorkspace:
+    type: object
+    required: [mode]
+    properties:
+      mode:
+        const: read-only
+    additionalProperties: false
+
+  TreeDxAssignmentWorkspace:
+    type: object
+    required: [mode, workspaceId, repository, baseCommit, writablePaths]
+    properties:
+      mode:
+        const: treedx
+      workspaceId:
+        $ref: "#/$defs/Identifier"
+      repository:
+        type: string
+        minLength: 1
+      baseCommit:
+        $ref: "#/$defs/GitCommit"
+      writablePaths:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+    additionalProperties: false
+
+  GitAssignmentWorkspace:
+    type: object
+    required: [mode, repository, baseCommit, branch, writablePaths]
+    properties:
+      mode:
+        const: git
+      repository:
+        type: string
+        minLength: 1
+      baseCommit:
+        $ref: "#/$defs/GitCommit"
+      branch:
+        type: string
+        minLength: 1
+      writablePaths:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+          minLength: 1
+    additionalProperties: false
+
+  AssignmentWorkspace:
+    oneOf:
+      - $ref: "#/$defs/ReadOnlyWorkspace"
+      - $ref: "#/$defs/TreeDxAssignmentWorkspace"
+      - $ref: "#/$defs/GitAssignmentWorkspace"
+
+  AssignmentLimits:
+    type: object
+    required: [maximumSeconds, maximumContextBytes, maximumContextItems]
+    properties:
+      maximumSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      maximumContextBytes:
+        type: integer
+        minimum: 1
+      maximumContextTokens:
+        type: integer
+        minimum: 1
+      maximumContextItems:
+        type: integer
+        minimum: 1
+    additionalProperties: false
+
+  VerificationRecord:
+    type: object
+    required: [command, status, exitCode, outputDigest]
+    properties:
+      command:
+        $ref: "#/$defs/NonEmptyText"
+      status:
+        enum: [passed, failed, skipped]
+      exitCode:
+        type: integer
+      outputDigest:
+        $ref: "#/$defs/Sha256Digest"
+      durationSeconds:
+        $ref: "#/$defs/NonNegativeSeconds"
+    additionalProperties: false
+
+  Usage:
+    # Attempt-local observed usage. Settlement is a separate exactly-once record.
+    type: object
+    required: [elapsedSeconds]
+    properties:
+      elapsedSeconds:
+        $ref: "#/$defs/NonNegativeSeconds"
+      modelInputTokens:
+        type: integer
+        minimum: 0
+      modelOutputTokens:
+        type: integer
+        minimum: 0
+      native:
+        type: object
+        additionalProperties:
+          type: number
+          minimum: 0
+    additionalProperties: false
+
+  Diagnostic:
+    type: object
+    required: [code, severity, message]
+    properties:
+      code:
+        $ref: "#/$defs/Identifier"
+      severity:
+        enum: [info, warning, error]
+      message:
+        $ref: "#/$defs/NonEmptyText"
+      ref:
+        $ref: "#/$defs/ExactEntityReference"
+    additionalProperties: false
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL portfolio, provider, and workday records
+  # ---------------------------------------------------------------------------
+
+  Team:
+    # Storage: PostgreSQL. Portfolio-level scheduling and isolation boundary.
+    type: object
+    required: [schemaVersion, id, slug, name, active]
+    properties:
+      schemaVersion:
+        const: treeseed.team/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      slug:
+        $ref: "#/$defs/Slug"
+      name:
+        $ref: "#/$defs/NonEmptyText"
+      active:
+        type: boolean
+    additionalProperties: false
+
+  Project:
+    # Connects portfolio identity to exact Git and TreeDX custody boundaries.
+    type: object
+    required: [schemaVersion, id, teamId, slug, name, source, treeDx, active]
+    properties:
+      schemaVersion:
+        const: treeseed.project/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      slug:
+        $ref: "#/$defs/Slug"
+      name:
+        $ref: "#/$defs/NonEmptyText"
+      source:
+        $ref: "#/$defs/RepositoryBinding"
+      treeDx:
+        $ref: "#/$defs/TreeDxBinding"
+      active:
+        type: boolean
+    additionalProperties: false
+
+  AgentRegistration:
+    # A team/project can schedule only an active, exact governed profile revision.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - teamId
+      - projectIds
+      - agentClass
+      - profileRef
+      - active
+    properties:
+      schemaVersion:
+        const: treeseed.agent-registration/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      projectIds:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      agentClass:
+        $ref: "#/$defs/AgentClass"
+      profileRef:
+        $ref: "#/$defs/ExactEntityReference"
+      active:
+        type: boolean
+    additionalProperties: false
+
+  WorkdayPolicy:
+    # Small durable policy. No allocation tiers, reserve pools, or borrow rules.
+    type: object
+    required: [schemaVersion, id, teamId, revision, policy, active]
+    properties:
+      schemaVersion:
+        const: treeseed.workday-policy/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      revision:
+        type: integer
+        minimum: 1
+      policy:
+        $ref: "#/$defs/WorkdayPolicyFields"
+      active:
+        type: boolean
+    additionalProperties: false
+
+  ProviderOffer:
+    # Versioned supply contract; providers describe runtime, not agent behavior.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - providerId
+      - revision
+      - runtimeBuild
+      - capabilities
+      - toolGroups
+      - maximumConcurrency
+      - availability
+      - nativeLimits
+      - validFrom
+    properties:
+      schemaVersion:
+        const: treeseed.provider-offer/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      providerId:
+        $ref: "#/$defs/Identifier"
+      revision:
+        type: integer
+        minimum: 1
+      runtimeBuild:
+        $ref: "#/$defs/Sha256Digest"
+      capabilities:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      toolGroups:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ToolGroup"
+      maximumConcurrency:
+        type: integer
+        minimum: 1
+      availability:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/AvailabilityWindow"
+      nativeLimits:
+        type: array
+        items:
+          $ref: "#/$defs/NativeLimit"
+      validFrom:
+        $ref: "#/$defs/Timestamp"
+      validUntil:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  ProviderState:
+    # Mutable observed supply state, separate from the versioned offer.
+    type: object
+    required:
+      - schemaVersion
+      - providerId
+      - offerId
+      - healthy
+      - activeAssignmentIds
+      - observedNativeUsage
+      - observedAt
+    properties:
+      schemaVersion:
+        const: treeseed.provider-state/v1
+      providerId:
+        $ref: "#/$defs/Identifier"
+      offerId:
+        $ref: "#/$defs/Identifier"
+      healthy:
+        type: boolean
+      activeAssignmentIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      observedNativeUsage:
+        type: object
+        additionalProperties:
+          type: number
+          minimum: 0
+      observedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  Workday:
+    # Applied plan plus lifecycle; it is not a frozen work graph.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - teamId
+      - policyId
+      - policyRevision
+      - policySnapshot
+      - state
+      - startsAt
+      - endsAt
+      - planningRounds
+      - admittedSecondsByProject
+      - admittedSecondsByAgentClass
+    properties:
+      schemaVersion:
+        const: treeseed.workday/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      policyId:
+        $ref: "#/$defs/Identifier"
+      policyRevision:
+        type: integer
+        minimum: 1
+      policySnapshot:
+        $ref: "#/$defs/WorkdayPolicyFields"
+      state:
+        enum: [planned, active, closing, ended]
+      startsAt:
+        $ref: "#/$defs/Timestamp"
+      endsAt:
+        $ref: "#/$defs/Timestamp"
+      planningRounds:
+        type: array
+        minItems: 2
+        maxItems: 2
+        items:
+          $ref: "#/$defs/PlanningRound"
+      admittedSecondsByProject:
+        type: object
+        additionalProperties:
+          $ref: "#/$defs/NonNegativeSeconds"
+      admittedSecondsByAgentClass:
+        type: object
+        additionalProperties:
+          $ref: "#/$defs/NonNegativeSeconds"
+      activatedAt:
+        $ref: "#/$defs/Timestamp"
+      closingAt:
+        $ref: "#/$defs/Timestamp"
+      endedAt:
+        $ref: "#/$defs/Timestamp"
+      reportRef:
+        $ref: "#/$defs/ExactEntityReference"
+    additionalProperties: false
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL living graph, assignments, and accounting
+  # ---------------------------------------------------------------------------
+
+  ConditionDefinition:
+    # Conditions are deterministic projections of governed or lifecycle state.
+    type: object
+    required: [conditionType, subjectRef, expectedState]
+    properties:
+      conditionType:
+        enum: [question, external, authority, lifecycle]
+      subjectRef:
+        $ref: "#/$defs/ExactEntityReference"
+      expectedState:
+        $ref: "#/$defs/Identifier"
+    additionalProperties: false
+
+  GraphRevision:
+    # Append-only revision, reconciliation receipt, audit summary, and watch cursor.
+    type: object
+    required:
+      - schemaVersion
+      - teamId
+      - revision
+      - ruleRevision
+      - changedSourceRefs
+      - graphDigest
+      - changes
+      - createdAt
+    properties:
+      schemaVersion:
+        const: treeseed.graph-revision/v1
+      teamId:
+        $ref: "#/$defs/Identifier"
+      revision:
+        type: integer
+        minimum: 1
+      ruleRevision:
+        type: integer
+        minimum: 1
+      changedSourceRefs:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      graphDigest:
+        $ref: "#/$defs/Sha256Digest"
+      changes:
+        $ref: "#/$defs/GraphChangeSet"
+      createdAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  ExecutionNode:
+    # Edges, active assignment IDs, and derived explanations are not duplicated here.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - teamId
+      - projectId
+      - kind
+      - pairRole
+      - sourceRef
+      - ruleRevision
+      - nodeRevision
+      - status
+      - graphRevisionCreated
+      - graphRevisionUpdated
+    properties:
+      schemaVersion:
+        const: treeseed.execution-node/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      workdayId:
+        $ref: "#/$defs/Identifier"
+      workItemId:
+        $ref: "#/$defs/Slug"
+      kind:
+        $ref: "#/$defs/ExecutionKind"
+      pairRole:
+        type: [string, "null"]
+        enum: [actor, reviewer, null]
+      sourceRef:
+        $ref: "#/$defs/ExactEntityReference"
+      authorityRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      ruleRevision:
+        type: integer
+        minimum: 1
+      nodeRevision:
+        type: integer
+        minimum: 1
+      agentClass:
+        $ref: "#/$defs/AgentClass"
+      status:
+        enum: [proposed, blocked, ready, assigned, running, completed, failed, cancelled, stale]
+      estimate:
+        $ref: "#/$defs/Estimate"
+      requiredCapabilities:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      requestedPermissions:
+        $ref: "#/$defs/PermissionSet"
+      workspace:
+        $ref: "#/$defs/WorkspaceMode"
+      acceptanceCriteria:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/NonEmptyText"
+      maximumReviewCycles:
+        type: integer
+        minimum: 1
+      condition:
+        $ref: "#/$defs/ConditionDefinition"
+      graphRevisionCreated:
+        type: integer
+        minimum: 1
+      graphRevisionUpdated:
+        type: integer
+        minimum: 1
+    allOf:
+      - if:
+          type: object
+          properties:
+            kind:
+              const: condition
+          required: [kind]
+        then:
+          type: object
+          required: [condition]
+          not:
+            type: object
+            anyOf:
+              - type: object
+                required: [agentClass]
+              - type: object
+                required: [estimate]
+              - type: object
+                required: [requestedPermissions]
+              - type: object
+                required: [workspace]
+      - if:
+          type: object
+          properties:
+            kind:
+              not:
+                const: condition
+          required: [kind]
+        then:
+          type: object
+          required:
+            - agentClass
+            - estimate
+            - requiredCapabilities
+            - requestedPermissions
+            - workspace
+      - if:
+          type: object
+          properties:
+            pairRole:
+              enum: [actor, reviewer]
+          required: [pairRole]
+        then:
+          type: object
+          required: [workItemId, maximumReviewCycles]
+    additionalProperties: false
+
+  ExecutionEdge:
+    # Every dependency—profile, proposal, review pair, or condition—is one edge.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - teamId
+      - fromNodeId
+      - toNodeId
+      - provenance
+      - graphRevisionCreated
+    properties:
+      schemaVersion:
+        const: treeseed.execution-edge/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      fromNodeId:
+        $ref: "#/$defs/Identifier"
+      toNodeId:
+        $ref: "#/$defs/Identifier"
+      provenance:
+        enum: [profile-agent, profile-event, work-item, review-pair, governance]
+      sourceRef:
+        $ref: "#/$defs/ExactEntityReference"
+      graphRevisionCreated:
+        type: integer
+        minimum: 1
+      graphRevisionRemoved:
+        type: integer
+        minimum: 1
+    additionalProperties: false
+
+  ProviderOfferSelection:
+    type: object
+    required: [providerId, offerId, offerRevision, runtimeBuild]
+    properties:
+      providerId:
+        $ref: "#/$defs/Identifier"
+      offerId:
+        $ref: "#/$defs/Identifier"
+      offerRevision:
+        type: integer
+        minimum: 1
+      runtimeBuild:
+        $ref: "#/$defs/Sha256Digest"
+    additionalProperties: false
+
+  EffectiveActivityProfile:
+    # Frozen resolved profile—not a second editable profile authority.
+    type: object
+    required:
+      - profileRef
+      - activity
+      - handler
+      - handlerOrigin
+      - prompt
+      - permissionCeiling
+    properties:
+      profileRef:
+        $ref: "#/$defs/ExactEntityReference"
+      activity:
+        $ref: "#/$defs/ActivityName"
+      handler:
+        $ref: "#/$defs/Identifier"
+      handlerOrigin:
+        enum: [agent-package, project-runtime]
+      prompt:
+        $ref: "#/$defs/Prompt"
+      permissionCeiling:
+        $ref: "#/$defs/PermissionSet"
+      additionalContext:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      parameters:
+        type: object
+        additionalProperties: true
+    additionalProperties: false
+
+  AssignmentAttempt:
+    # Immutable execution snapshot. Lifecycle timestamps/status advance on this row;
+    # its authority, context, build, limits, and workspace never change.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - idempotencyKey
+      - teamId
+      - projectId
+      - workdayId
+      - nodeId
+      - nodeRevision
+      - graphRevision
+      - sourceRef
+      - authorityRefs
+      - effectiveProfile
+      - requiredCapabilities
+      - grant
+      - provider
+      - contextRefs
+      - predecessorResultIds
+      - workspace
+      - estimate
+      - limits
+      - deadline
+      - leaseId
+      - reservationId
+      - attempt
+      - status
+      - createdAt
+    properties:
+      schemaVersion:
+        const: treeseed.assignment-attempt/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      idempotencyKey:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      workdayId:
+        $ref: "#/$defs/Identifier"
+      nodeId:
+        $ref: "#/$defs/Identifier"
+      nodeRevision:
+        type: integer
+        minimum: 1
+      graphRevision:
+        type: integer
+        minimum: 1
+      sourceRef:
+        $ref: "#/$defs/ExactEntityReference"
+      authorityRefs:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      effectiveProfile:
+        $ref: "#/$defs/EffectiveActivityProfile"
+      requiredCapabilities:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      grant:
+        $ref: "#/$defs/ExactGrant"
+      provider:
+        $ref: "#/$defs/ProviderOfferSelection"
+      contextRefs:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/ExactEntityReference"
+      predecessorResultIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
+      workspace:
+        $ref: "#/$defs/AssignmentWorkspace"
+      estimate:
+        $ref: "#/$defs/Estimate"
+      limits:
+        $ref: "#/$defs/AssignmentLimits"
+      deadline:
+        $ref: "#/$defs/Timestamp"
+      leaseId:
+        $ref: "#/$defs/Identifier"
+      reservationId:
+        $ref: "#/$defs/Identifier"
+      attempt:
+        type: integer
+        minimum: 1
+      status:
+        enum: [created, leased, running, completed, blocked, failed, cancelled, expired]
+      createdAt:
+        $ref: "#/$defs/Timestamp"
+      startedAt:
+        $ref: "#/$defs/Timestamp"
+      finishedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  AuthorizedContextItem:
+    # Runtime envelope. The referenced record is validated by its own model before
+    # materialization; value is intentionally opaque to this transport wrapper.
+    type: object
+    required: [ref, mediaType, digest, value]
+    properties:
+      ref:
+        $ref: "#/$defs/ExactEntityReference"
+      mediaType:
+        type: string
+        minLength: 1
+      digest:
+        $ref: "#/$defs/Sha256Digest"
+      value: true
+    additionalProperties: false
+
+  AssignmentContext:
+    # API/provider-to-AgentKernel DTO. It reuses the immutable assignment instead
+    # of restating identity, authority, workspace, prompt, limits, or deadline.
+    type: object
+    required: [assignment, context, predecessorResults]
+    properties:
+      assignment:
+        $ref: "#/$defs/AssignmentAttempt"
+      context:
+        type: array
+        items:
+          $ref: "#/$defs/AuthorizedContextItem"
+      predecessorResults:
+        type: array
+        items:
+          $ref: "#/$defs/AssignmentResult"
+    additionalProperties: false
+
+  Lease:
+    # Exclusive, renewable claim over one assignment attempt.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - assignmentId
+      - providerId
+      - state
+      - acquiredAt
+      - expiresAt
+      - revision
+    properties:
+      schemaVersion:
+        const: treeseed.lease/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      assignmentId:
+        $ref: "#/$defs/Identifier"
+      providerId:
+        $ref: "#/$defs/Identifier"
+      state:
+        enum: [active, released, expired, revoked]
+      acquiredAt:
+        $ref: "#/$defs/Timestamp"
+      expiresAt:
+        $ref: "#/$defs/Timestamp"
+      releasedAt:
+        $ref: "#/$defs/Timestamp"
+      revision:
+        type: integer
+        minimum: 1
+    additionalProperties: false
+
+  Reservation:
+    # Capacity reservation for exactly one attempt and its accepted estimate.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - assignmentId
+      - workdayId
+      - providerId
+      - estimatedSeconds
+      - state
+      - reservedAt
+    properties:
+      schemaVersion:
+        const: treeseed.reservation/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      assignmentId:
+        $ref: "#/$defs/Identifier"
+      workdayId:
+        $ref: "#/$defs/Identifier"
+      providerId:
+        $ref: "#/$defs/Identifier"
+      estimatedSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      state:
+        enum: [held, consumed, released, expired]
+      reservedAt:
+        $ref: "#/$defs/Timestamp"
+      closedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  AssignmentResult:
+    # One result for every Handler. References carry products and handoffs.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - assignmentId
+      - status
+      - summary
+      - references
+      - verification
+      - usage
+      - diagnostics
+      - completedAt
+    properties:
+      schemaVersion:
+        const: treeseed.assignment-result/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      assignmentId:
+        $ref: "#/$defs/Identifier"
+      status:
+        enum: [completed, blocked, failed]
+      summary:
+        $ref: "#/$defs/NonEmptyText"
+      references:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/AssignmentReference"
+      verification:
+        type: array
+        items:
+          $ref: "#/$defs/VerificationRecord"
+      usage:
+        $ref: "#/$defs/Usage"
+      diagnostics:
+        type: array
+        items:
+          $ref: "#/$defs/Diagnostic"
+      completedAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
+
+  UsageSettlement:
+    # Exactly-once accounting. Fairness uses actualSeconds; native usage remains
+    # distinct because providers expose different units and limits.
+    type: object
+    required:
+      - schemaVersion
+      - id
+      - idempotencyKey
+      - assignmentId
+      - reservationId
+      - workdayId
+      - teamId
+      - projectId
+      - agentClass
+      - providerId
+      - actualSeconds
+      - nativeUsage
+      - settledAt
+    properties:
+      schemaVersion:
+        const: treeseed.usage-settlement/v1
+      id:
+        $ref: "#/$defs/Identifier"
+      idempotencyKey:
+        $ref: "#/$defs/Identifier"
+      assignmentId:
+        $ref: "#/$defs/Identifier"
+      reservationId:
+        $ref: "#/$defs/Identifier"
+      workdayId:
+        $ref: "#/$defs/Identifier"
+      teamId:
+        $ref: "#/$defs/Identifier"
+      projectId:
+        $ref: "#/$defs/Identifier"
+      agentClass:
+        $ref: "#/$defs/AgentClass"
+      providerId:
+        $ref: "#/$defs/Identifier"
+      actualSeconds:
+        $ref: "#/$defs/NonNegativeSeconds"
+      nativeUsage:
+        type: object
+        additionalProperties:
+          type: number
+          minimum: 0
+      cost:
+        type: number
+        minimum: 0
+      currency:
+        type: string
+        pattern: "^[A-Z]{3}$"
+      settledAt:
+        $ref: "#/$defs/Timestamp"
+    additionalProperties: false
