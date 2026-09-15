@@ -3,7 +3,7 @@
   "id": "control-plane",
   "role": "control-plane",
   "runtime": { "management": "managed", "environment": "track-default" },
-  "components": ["api", "admin", "treedx", "lab"],
+  "components": ["identity", "api", "admin", "treedx", "lab"],
   "security": { "requirement": "optional" },
   "inputs": []
 }

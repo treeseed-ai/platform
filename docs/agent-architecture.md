@@ -64,7 +64,7 @@ Once that receipt exists, use the SDK agent team on real bounded development and
 - Every activity profile declares a simple deny-by-default content and tool permission ceiling. The profile is not a runtime grant.
 - The API creates exact assignment grants within the profile ceiling and team/project policy. AgentKernel enforces that immutable grant at every runtime service.
 - Handlers share one assignment context and one result contract. Do not create schemas for every handler or work product.
-- Every model-backed assignment receives one API-authoritative productive window. Its prompt states the total budget, the runtime exposes the live remaining time, and successful completion requires model-initiated checks near execution start and immediately before finalization.
+- Every model-backed assignment receives one API-authoritative productive window. Its prompt states the total budget, its first execution action must query the live remaining time, and its final tool action before the response must query it again. The provider rejects completion retryably unless both boundary checks are proven, and agents must use each reading to reduce scope, reserve verification time, and finish within the window.
 - AgentKernel has one public assignment entry point. Providers do not dispatch behavior by prompt or activity.
 - Assignments, not profiles or agents, select and own their one mutable workspace and any Git branch.
 - Workdays guarantee self-directed and collaborative planning before proposal-driven work can consume the remaining capacity.
@@ -433,7 +433,7 @@ Acceptance:
 - [x] One real closing Reporter assignment executes API → provider → AgentKernel → Reporter → result → settlement through the CLI.
 - [x] Identical authorized inputs produce identical report bytes.
 - [ ] Unknown handler, wrong build, expired assignment, denied service, invalid result, cancellation, and timeout fail closed.
-- [ ] Every model-backed activity receives its authoritative productive window, completes two live time-status checks, and scopes its work to finish within that window. Chat, planning, estimating, Architect acting, Tester acting, Engineer acting, and Reviewer reviewing are proven; Releaser, Researcher, and Technical Writer acting remain.
+- [ ] Every model-backed activity receives its authoritative productive window, uses the clock as its first execution and final tool actions, and scopes its work to finish within that window. Chat, planning, estimating, Architect acting, Tester acting, Engineer acting, and Reviewer reviewing are proven; Releaser, Researcher, and Technical Writer acting remain to be proven against the strengthened boundary-order gate.
 
 ### Phase 3 — Reusable and project-owned handlers
 
