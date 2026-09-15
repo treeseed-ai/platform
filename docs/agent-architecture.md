@@ -64,6 +64,7 @@ Once that receipt exists, use the SDK agent team on real bounded development and
 - Every activity profile declares a simple deny-by-default content and tool permission ceiling. The profile is not a runtime grant.
 - The API creates exact assignment grants within the profile ceiling and team/project policy. AgentKernel enforces that immutable grant at every runtime service.
 - Handlers share one assignment context and one result contract. Do not create schemas for every handler or work product.
+- Every model-backed assignment receives one API-authoritative productive window. Its prompt states the total budget, the runtime exposes the live remaining time, and successful completion requires model-initiated checks near execution start and immediately before finalization.
 - AgentKernel has one public assignment entry point. Providers do not dispatch behavior by prompt or activity.
 - Assignments, not profiles or agents, select and own their one mutable workspace and any Git branch.
 - Workdays guarantee self-directed and collaborative planning before proposal-driven work can consume the remaining capacity.
@@ -432,7 +433,7 @@ Acceptance:
 - [x] One real closing Reporter assignment executes API → provider → AgentKernel → Reporter → result → settlement through the CLI.
 - [x] Identical authorized inputs produce identical report bytes.
 - [ ] Unknown handler, wrong build, expired assignment, denied service, invalid result, cancellation, and timeout fail closed.
-- [ ] Every model-backed activity receives its authoritative productive window, completes two live time-status checks, and scopes its work to finish within that window. Communication is proven; the remaining activity profiles still require integrated graph evidence.
+- [ ] Every model-backed activity receives its authoritative productive window, completes two live time-status checks, and scopes its work to finish within that window. Communication is proven with enforced provider evidence; each remaining activity profile still requires the same integrated graph proof.
 
 ### Phase 3 — Reusable and project-owned handlers
 
@@ -529,12 +530,13 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 | 2026-09-14 | Deterministic Reporter commits through TreeDX and settles through the ordinary completion path | Focused Agent/API tests; live Reporter receipt retained in Issue #520 |
 | 2026-09-14 | Persistent development selections run the touched SDK, API, Agent, and TreeDX components | Managed development status read-back; no RC required |
 | 2026-09-14 | The SDK golden path exercised Architect, Tester, Engineer, and Reviewer through isolated Kata guests, exact grants, read-only/TreeDX/Git workspaces, revision, teardown, and terminal approval | Cross-reference the decision, workday, and assignment receipts in `docs/agent-assignments.md` and Issue #520 |
+| 2026-09-14 | Model timing awareness is an enforced provider boundary: the prompt states the productive budget, the guest exposes the authoritative clock, and completion requires two successful model-initiated checks | Agent focused timing/provider tests; live SDK Architect assignment `assignment_bjg8VtklDe9HjHp7FdcMh4oLwkO81DkS` completed a 180-second source inspection after two checks |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. A real source-backed communication assignment proved two model-initiated authoritative time checks and bounded completion; graph and team-clone details remain owned by `docs/agent-assignments.md`.
+- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. Timing awareness is prompt-visible, tool-checkable, provider-enforced, and retained as sanitized execution evidence; graph and team-clone details remain owned by `docs/agent-assignments.md`.
 
 ### Current active blocker
 

@@ -450,12 +450,13 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 | 2026-09-14 | Draft proposal intake, exact proposal revision/digest binding, and proposal-governance review use the living graph contracts | Focused SDK/API proposal and projection suites; current development read-back |
 | 2026-09-14 | Ready-node admission compiles provider capability demand and closing Reporter dependency from the same graph | Focused API admission/projector suites; Reporter settlement receipt retained in Issue #520 |
 | 2026-09-14 | The SDK golden proposal completed Architect and Tester review, then the same Engineer and Reviewer nodes advanced through request changes to approval without duplicate node revisions | Decision `d0def93c-29de-4096-909e-a7cc44c5858f`; workday `workday-7f49152f-ae12-48bc-9531-dd13f9d6245a`; eight completed assignment receipts retained in Issue #520 |
+| 2026-09-14 | Real planning and estimating workdays projected standing dependencies, executed two rounds through ordinary graph nodes, and closed through Reporter | Workdays `workday-0f15032a-3c4a-4409-8708-a88f2ee343c9` and `workday-4388ebd1-57b5-4da3-8eb8-ac80a1d5d4e1`; detailed receipts retained in Issue #520 |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- The SDK golden proposal runs through one content-derived graph, provider admission, isolated Kata guests, exact grants, all three workspace modes, AgentKernel, TreeDX review decisions, revision-preserving Git candidates, verified teardown, and one result/settlement path. The native team-clone operation projected the eight accepted SDK agents into all 17 eligible project libraries and repeated with `noop`.
+- The SDK golden proposal and real planning/estimating workdays run through one content-derived graph and assignment path. Standing dependencies controlled readiness across two rounds, Reporter closed each completed workday, and native team cloning projected eight SDK agents into all 17 eligible project libraries with a `noop` replay.
 
 ### Current active blocker
 
