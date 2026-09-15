@@ -1597,6 +1597,7 @@ $defs:
       - schemaVersion
       - id
       - teamId
+      - executionMode
       - policyId
       - policyRevision
       - policySnapshot
@@ -1613,6 +1614,8 @@ $defs:
         $ref: "#/$defs/Identifier"
       teamId:
         $ref: "#/$defs/Identifier"
+      executionMode:
+        enum: [simulation, production]
       policyId:
         $ref: "#/$defs/Identifier"
       policyRevision:

@@ -1,9 +1,9 @@
 schemaVersion: treeseed.seed-bundle/v3
 name: treeseed
-version: 10
+version: 11
 description: Portable first-party source and library inventory for integrated and selective development.
 environments: [local]
-digest: sha256:e105e21f1f433f6fad9f60ff12098d2d16cb189ec24aaf3d812139e28257d342
+digest: sha256:8a71ce152df9fdb9696855c48da28f77a8755635a380caecc0386c6310c6ec60
 resources:
   teams:
     - { key: 'team:treeseed', slug: treeseed, name: treeseed, displayName: TreeSeed, profileSummary: 'TreeSeed platform, packages, products, and agent operations.' }
@@ -83,6 +83,7 @@ runtime:
         - project:treeseed/platform
         - project:treeseed/deployment
         - project:treeseed/api
+        - project:treeseed/identity
         - project:treeseed/treedx
         - project:treeseed/sdk
         - project:treeseed/ui

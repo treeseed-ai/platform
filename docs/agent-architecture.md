@@ -485,7 +485,7 @@ Acceptance:
 - [ ] Create explicit integration assignments whenever several Git predecessors must be combined.
 - [ ] Delete AgentKernelProfile/Policy, metadata-only handler routing, dynamic module/process loading, duplicate authority presets/raw tools/branch policies/context, old allocation hierarchy, fixed team polling, and alternate provider execution paths.
 - [ ] Remove every compatibility field, parser, alias, route, table, fixture, test, document, and feature switch associated with the retired architecture.
-- [x] Run architecture-specific CLI acceptance, then reference the assignment plan's graph acceptance receipt rather than repeating it.
+- [ ] Run architecture-specific CLI acceptance, then reference the assignment plan's graph acceptance receipt rather than repeating it. Earlier synthetic workdays are diagnostic evidence only.
 - [ ] Publish and read back one coordinated compatible release set.
 
 Architecture CLI surface:
@@ -529,23 +529,20 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 | 2026-09-14 | One build-time handler registry and AgentKernel execute the isolated provider transport | Focused Agent kernel/provider suites; source-backed Kata acceptance retained in Issue #520 |
 | 2026-09-14 | Deterministic Reporter commits through TreeDX and settles through the ordinary completion path | Focused Agent/API tests; live Reporter receipt retained in Issue #520 |
 | 2026-09-14 | Persistent development selections run the touched SDK, API, Agent, and TreeDX components | Managed development status read-back; no RC required |
-| 2026-09-15 | The SDK golden path exercised Architect, Tester, Engineer, Reviewer, and Reporter through isolated Kata guests, exact grants, read-only/TreeDX/Git workspaces, request-changes revision, teardown, terminal approval, and closeout | Cross-reference workday `workday-4521844e-4d95-467d-94fa-18c11fabb4a3` and final decision `c14d7d852a4199067dc5b2350fa0d9461d793a21` in `docs/agent-assignments.md` and Issue #520 |
-| 2026-09-15 | Model timing awareness is an enforced provider boundary: the prompt states the productive budget, the first tool call and pre-finalization call query the authoritative clock, and completion with fewer than two successful model-initiated checks is rejected | Agent timing/provider tests and the golden workday above; the final Reviewer recorded 113 seconds near start and 78 seconds before closeout |
-| 2026-09-14 | Shared workday plan/start, two planning rounds, predecessor-result context, active/closing/ended lifecycle, and deterministic Reporter passed for every SDK agent planning or estimating profile | Workday `workday-37d55a3f-9fa3-4680-bb84-da80109b093a`; 14 model assignments stored 2/2 timing evidence and round 2 received all seven round-1 results |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. Chat, planning, estimating, Architect, Tester, Engineer, and Reviewer model work have passed the mandatory two-check assignment-clock contract; graph and team-clone details remain owned by `docs/agent-assignments.md`.
+- Persistent development mode runs SDK, API, Agent, and TreeDX source builds through the provider-to-AgentKernel path. Component tests prove the kernel, deterministic Reporter, and development activation; activity-profile acceptance remains governed solely by `docs/agent-acceptance.md`.
 
 ### Current active blocker
 
-- No active blocker exists for the accepted SDK golden proposal path.
+- Stage 0 is blocked on integrating the single simulation-mode workday authority and campaign freeze into the live runtime; graph details are tracked in `docs/agent-assignments.md`.
 
 ### Next acceptance milestone
 
-- Complete Releaser, Researcher, and Technical Writer acting plus project-owned-handler acceptance through the real graph under the same assignment-clock gate.
+- Run every SDK activity and all six reviewed work items through isolated provider execution during the unchanged SDK golden proposal.
 
 ## Completion
 

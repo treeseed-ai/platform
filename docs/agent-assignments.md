@@ -39,25 +39,7 @@ Checkboxes report implementation status only:
 
 ## Golden Development Acceptance
 
-Development advances one ordinary accepted proposal through the real local system before broader scenarios or releases:
-
-```text
-accepted proposal
-        ↓
-Architect result → Reviewer approval
-        ↓
-Tester evidence → Reviewer approval
-        ↓
-Engineer candidate → request changes → same Engineer revision
-        ↓
-same Reviewer re-review → approval → terminal reconciliation
-```
-
-This is the primary acceptance test. Every defect found on this path receives one focused regression test in the owning package, a local development rebuild, and an immediate replay of the same frontier. Do not cut an RC, broaden diagnostics, or pursue an unrelated defect before the path passes; record non-blocking discoveries in Platform Issue #520 or a bounded owner-repository issue.
-
-Use the agents themselves as soon as a node is runnable. Read-only discussion work may diagnose the current boundary; Tester produces executable evidence; Engineer receives exact approved predecessor results; Reviewer evaluates exact immutable candidates. Productive agent work and system acceptance are the same workflow, not separate exercises.
-
-After this golden path passes, the tested SDK agent team becomes the development baseline. A single SDK/API/CLI plan/apply operation must clone that team into selected projects or every eligible team project, adapt only project identity and exact content bindings, and return `noop` when repeated. Do not copy files manually, duplicate agent policy in Platform, or broaden the activity matrix before the golden receipt exists.
+[`docs/agent-acceptance.md`](./agent-acceptance.md) is the complete and exclusive testing guide. This plan records only implementation TODOs and fully proven completion. Earlier synthetic or reduced workdays are diagnostics and do not satisfy acceptance. The current frontier is Stage 0 followed by the unchanged SDK golden proposal; do not broaden scenarios or cut an RC before that path passes.
 
 ## Decisions
 
@@ -396,8 +378,8 @@ Acceptance:
 
 Acceptance:
 
-- [x] Proposal review → decision and each required Actor → Reviewer pair → downstream readiness pass through the CLI.
-- [x] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews.
+- [ ] Proposal review → decision and each required Actor → Reviewer pair → downstream readiness pass through the CLI. The earlier reduced proposal did not include the six fixed SDK work items required by the acceptance specification.
+- [ ] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews. This remains to be replayed inside the unchanged SDK golden campaign.
 - [ ] Two projects progress in one team graph without copying project graphs or leaking context.
 
 ### Phase 5 — Clean cutover and managed CLI acceptance
@@ -449,23 +431,20 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 |---|---|---|
 | 2026-09-14 | Draft proposal intake, exact proposal revision/digest binding, and proposal-governance review use the living graph contracts | Focused SDK/API proposal and projection suites; current development read-back |
 | 2026-09-14 | Ready-node admission compiles provider capability demand and closing Reporter dependency from the same graph | Focused API admission/projector suites; Reporter settlement receipt retained in Issue #520 |
-| 2026-09-15 | The SDK golden proposal completed Architect and Tester review, then the same Engineer and Reviewer nodes advanced through request changes to approval without duplicate node revisions; every model-backed attempt completed two authoritative clock checks | Decision `ce5c641e-afa1-49cb-bd16-4c8f4ba815bb`; workday `workday-4521844e-4d95-467d-94fa-18c11fabb4a3`; final review decision `c14d7d852a4199067dc5b2350fa0d9461d793a21`; detailed receipts retained in Issue #520 |
-| 2026-09-14 | Real planning and estimating workdays projected standing dependencies, executed two rounds through ordinary graph nodes, and closed through Reporter | Workdays `workday-0f15032a-3c4a-4409-8708-a88f2ee343c9` and `workday-4388ebd1-57b5-4da3-8eb8-ac80a1d5d4e1`; detailed receipts retained in Issue #520 |
-| 2026-09-14 | Every SDK planning/estimating profile completed a two-round targeted workday; round 2 received the exact seven round-1 general results before Reporter closeout | Workday `workday-37d55a3f-9fa3-4680-bb84-da80109b093a`; assignment/result details retained in Issue #520 |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- The SDK golden proposal now completes proposal acceptance, Architect and Tester work with review, Engineer request-changes revision, Reviewer approval, Reporter closeout, and terminal reconciliation through one content-derived graph; no node revision produced more than one assignment.
+- Component tests prove proposal intake, exact decision binding, deterministic living-graph projection, and ordinary assignment/result plumbing. No golden project has yet passed the authoritative acceptance specification.
 
 ### Current active blocker
 
-- No active blocker exists for the accepted SDK golden proposal path.
+- Stage 0 is blocked until the required single workday execution-mode authority and frozen campaign manifest are integrated into the live development runtime.
 
 ### Next acceptance milestone
 
-- Prove the remaining multi-project graph, bounded review-cycle exhaustion, and clean-cutover checkboxes without creating another assignment path.
+- Freeze Stage 0, then run the unchanged SDK proposal through discussion, estimates, decision, the living graph, all six reviewed work items, simulated release, and Reporter closeout.
 
 ## Completion
 

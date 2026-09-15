@@ -1,6 +1,6 @@
 # Agent execution acceptance
 
-**Status:** proposed acceptance authority  
+**Status:** authoritative acceptance specification
 **Scope:** proposal governance, activity profiles, living execution graph, workdays, capacity allocation, isolated workspaces, review, simulated release, reporting, and portfolio coordination  
 **Contract:** [`docs/agent.schema.yml`](./agent.schema.yml)  
 **Architecture:** [`docs/agent-assignments.md`](./agent-assignments.md) and [`docs/agent-architecture.md`](./agent-architecture.md)
