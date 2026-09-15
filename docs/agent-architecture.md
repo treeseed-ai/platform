@@ -534,11 +534,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Persistent development mode runs SDK, API, Agent, and TreeDX source builds through the provider-to-AgentKernel path. Component tests prove the kernel, deterministic Reporter, and development activation; activity-profile acceptance remains governed solely by `docs/agent-acceptance.md`.
+- Persistent development mode runs SDK, API, Agent, and TreeDX source builds through the provider-to-AgentKernel path. The strict host-development generation, migrated API, operations runner, provider, and Kata broker are healthy; activity-profile acceptance remains governed solely by `docs/agent-acceptance.md`.
 
 ### Current active blocker
 
-- Stage 0 is blocked on integrating the single simulation-mode workday authority and campaign freeze into the live runtime; graph details are tracked in `docs/agent-assignments.md`.
+- No architecture blocker is known; the authenticated Stage 0 campaign freeze is tracked in `docs/agent-assignments.md`.
 
 ### Next acceptance milestone
 

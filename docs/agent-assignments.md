@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Component tests prove proposal intake, exact decision binding, deterministic living-graph projection, and ordinary assignment/result plumbing. No golden project has yet passed the authoritative acceptance specification.
+- Component tests and live development read-back prove proposal intake, exact decision binding, deterministic living-graph projection, one durable workday `executionMode`, simulation-only source custody, and ordinary assignment/result plumbing. No golden project has yet passed the authoritative acceptance specification.
 
 ### Current active blocker
 
-- Stage 0 is blocked until the required single workday execution-mode authority and frozen campaign manifest are integrated into the live development runtime.
+- No architecture blocker is known. Stage 0 awaits an authenticated campaign freeze containing exact local team, profile, policy, offer, and governed content refs.
 
 ### Next acceptance milestone
 
