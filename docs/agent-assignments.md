@@ -2,7 +2,7 @@
 
 **Status:** in progress
 **Plan created:** 2026-09-12
-**Last architecture review:** 2026-09-13
+**Last architecture review:** 2026-09-15
 **Scope:** proposal planning, decisions, living execution graph, assignments, results, review, and graph reconciliation
 **Related plan:** [`docs/agent-architecture.md`](./agent-architecture.md) owns profiles, handlers, AgentKernel, workspaces, workday allocation, and provider selection
 **Explicit non-goal:** UI implementation
@@ -345,7 +345,7 @@ Acceptance:
 - [x] Add monotonic team graph revisions and deterministic projection from test TreeDX fixtures.
 - [x] Make projection replay order-independent and idempotent.
 - [x] Store nodes, edges, assignments, and graph revisions once each; remove duplicated node JSON fields.
-- [ ] Resolve activity-profile agent selectors and lifecycle selectors into concrete edges.
+- [x] Resolve activity-profile agent selectors and lifecycle selectors into concrete edges.
 - [ ] Apply dependencies only to the declaring activity; exclude chat from implicit workflow dependencies.
 - [x] Expand every `review: required` acting work item into stable actor and Reviewer nodes under the same work-item identity.
 - [x] Project proposal governance review through the same Reviewer `reviewing` profile without creating an acting pair.
@@ -396,7 +396,7 @@ Acceptance:
 
 Acceptance:
 
-- [ ] Proposal review → decision and each required Actor → Reviewer pair → downstream readiness pass through the CLI.
+- [x] Proposal review → decision and each required Actor → Reviewer pair → downstream readiness pass through the CLI.
 - [x] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews.
 - [ ] Two projects progress in one team graph without copying project graphs or leaking context.
 
@@ -449,14 +449,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 |---|---|---|
 | 2026-09-14 | Draft proposal intake, exact proposal revision/digest binding, and proposal-governance review use the living graph contracts | Focused SDK/API proposal and projection suites; current development read-back |
 | 2026-09-14 | Ready-node admission compiles provider capability demand and closing Reporter dependency from the same graph | Focused API admission/projector suites; Reporter settlement receipt retained in Issue #520 |
-| 2026-09-14 | The SDK golden proposal completed Architect and Tester review, then the same Engineer and Reviewer nodes advanced through request changes to approval without duplicate node revisions | Decision `d0def93c-29de-4096-909e-a7cc44c5858f`; workday `workday-7f49152f-ae12-48bc-9531-dd13f9d6245a`; eight completed assignment receipts retained in Issue #520 |
+| 2026-09-15 | The SDK golden proposal completed Architect and Tester review, then the same Engineer and Reviewer nodes advanced through request changes to approval without duplicate node revisions; every model-backed attempt completed two authoritative clock checks | Decision `ce5c641e-afa1-49cb-bd16-4c8f4ba815bb`; workday `workday-4521844e-4d95-467d-94fa-18c11fabb4a3`; final review decision `c14d7d852a4199067dc5b2350fa0d9461d793a21`; detailed receipts retained in Issue #520 |
 | 2026-09-14 | Real planning and estimating workdays projected standing dependencies, executed two rounds through ordinary graph nodes, and closed through Reporter | Workdays `workday-0f15032a-3c4a-4409-8708-a88f2ee343c9` and `workday-4388ebd1-57b5-4da3-8eb8-ac80a1d5d4e1`; detailed receipts retained in Issue #520 |
+| 2026-09-14 | Every SDK planning/estimating profile completed a two-round targeted workday; round 2 received the exact seven round-1 general results before Reporter closeout | Workday `workday-37d55a3f-9fa3-4680-bb84-da80109b093a`; assignment/result details retained in Issue #520 |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- The SDK golden proposal and real planning/estimating workdays run through one content-derived graph and assignment path. Standing dependencies controlled readiness across two rounds, Reporter closed each completed workday, and native team cloning projected eight SDK agents into all 17 eligible project libraries with a `noop` replay.
+- The SDK golden proposal now completes proposal acceptance, Architect and Tester work with review, Engineer request-changes revision, Reviewer approval, Reporter closeout, and terminal reconciliation through one content-derived graph; no node revision produced more than one assignment.
 
 ### Current active blocker
 
@@ -464,7 +465,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Next acceptance milestone
 
-- Use the cloned agents for remaining activity-profile and multi-project graph acceptance without creating another assignment path.
+- Prove the remaining multi-project graph, bounded review-cycle exhaustion, and clean-cutover checkboxes without creating another assignment path.
 
 ## Completion
 

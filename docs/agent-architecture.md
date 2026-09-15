@@ -2,7 +2,7 @@
 
 **Status:** in progress
 **Plan created:** 2026-09-12
-**Last architecture review:** 2026-09-13
+**Last architecture review:** 2026-09-15
 **Scope:** agent profiles, handlers, AgentKernel, assignment workspaces, workday planning, capacity allocation, and provider selection
 **Related plan:** [`docs/agent-assignments.md`](./agent-assignments.md) owns proposal planning, decisions, living-graph projection, assignments, results, review, and reconciliation
 **Explicit non-goal:** UI implementation
@@ -433,7 +433,7 @@ Acceptance:
 - [x] One real closing Reporter assignment executes API → provider → AgentKernel → Reporter → result → settlement through the CLI.
 - [x] Identical authorized inputs produce identical report bytes.
 - [ ] Unknown handler, wrong build, expired assignment, denied service, invalid result, cancellation, and timeout fail closed.
-- [ ] Every model-backed activity receives its authoritative productive window, completes two live time-status checks, and scopes its work to finish within that window. Communication is proven with enforced provider evidence; each remaining activity profile still requires the same integrated graph proof.
+- [ ] Every model-backed activity receives its authoritative productive window, completes two live time-status checks, and scopes its work to finish within that window. Chat, planning, estimating, Architect acting, Tester acting, Engineer acting, and Reviewer reviewing are proven; Releaser, Researcher, and Technical Writer acting remain.
 
 ### Phase 3 — Reusable and project-owned handlers
 
@@ -460,19 +460,19 @@ Acceptance:
 
 ### Phase 4 — Workday planning and fair capacity
 
-- [ ] Implement `workday plan` and `workday start` with one shared compiler.
-- [ ] Guarantee every eligible agent self-directed planning time and two planning rounds.
+- [x] Implement `workday plan` and `workday start` with one shared compiler.
+- [x] Guarantee every eligible agent self-directed planning time and two planning rounds.
 - [ ] Admit ready graph nodes directly; create no capacity-plan or demand records.
 - [ ] Implement project and agent-class weighted fairness with stable ties and automatic idle-share flow.
 - [ ] Implement provider-global team fairness and hard provider-native gates.
-- [ ] Implement active → closing → ended lifecycle and derive closeout capacity from required closeout estimates.
+- [x] Implement active → closing → ended lifecycle and derive closeout capacity from required closeout estimates.
 - [ ] Keep communication concurrency independent from ordinary work.
 - [ ] Settle every attempt exactly once and expose allocation explanations through the CLI.
 
 Acceptance:
 
-- [ ] A zero-proposal workday gives every participating agent planning work and can create new proposals.
-- [ ] Second-round assignments can use accepted first-round contributions.
+- [x] A zero-proposal workday gives every participating agent planning work and can create new proposals.
+- [x] Second-round assignments can use accepted first-round contributions.
 - [ ] Mid-workday content changes add eligible work without restarting the workday.
 - [ ] Multi-project, multi-class, multi-team, retries, failures, idle share, and stable ties pass deterministic tests.
 - [x] Reporter runs during closing and the workday ends only after report completion and settlement.
@@ -529,14 +529,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 | 2026-09-14 | One build-time handler registry and AgentKernel execute the isolated provider transport | Focused Agent kernel/provider suites; source-backed Kata acceptance retained in Issue #520 |
 | 2026-09-14 | Deterministic Reporter commits through TreeDX and settles through the ordinary completion path | Focused Agent/API tests; live Reporter receipt retained in Issue #520 |
 | 2026-09-14 | Persistent development selections run the touched SDK, API, Agent, and TreeDX components | Managed development status read-back; no RC required |
-| 2026-09-14 | The SDK golden path exercised Architect, Tester, Engineer, and Reviewer through isolated Kata guests, exact grants, read-only/TreeDX/Git workspaces, revision, teardown, and terminal approval | Cross-reference the decision, workday, and assignment receipts in `docs/agent-assignments.md` and Issue #520 |
-| 2026-09-14 | Model timing awareness is an enforced provider boundary: the prompt states the productive budget, the guest exposes the authoritative clock, and completion requires two successful model-initiated checks | Agent focused timing/provider tests; live SDK Architect assignment `assignment_bjg8VtklDe9HjHp7FdcMh4oLwkO81DkS` completed a 180-second source inspection after two checks |
+| 2026-09-15 | The SDK golden path exercised Architect, Tester, Engineer, Reviewer, and Reporter through isolated Kata guests, exact grants, read-only/TreeDX/Git workspaces, request-changes revision, teardown, terminal approval, and closeout | Cross-reference workday `workday-4521844e-4d95-467d-94fa-18c11fabb4a3` and final decision `c14d7d852a4199067dc5b2350fa0d9461d793a21` in `docs/agent-assignments.md` and Issue #520 |
+| 2026-09-15 | Model timing awareness is an enforced provider boundary: the prompt states the productive budget, the first tool call and pre-finalization call query the authoritative clock, and completion with fewer than two successful model-initiated checks is rejected | Agent timing/provider tests and the golden workday above; the final Reviewer recorded 113 seconds near start and 78 seconds before closeout |
+| 2026-09-14 | Shared workday plan/start, two planning rounds, predecessor-result context, active/closing/ended lifecycle, and deterministic Reporter passed for every SDK agent planning or estimating profile | Workday `workday-37d55a3f-9fa3-4680-bb84-da80109b093a`; 14 model assignments stored 2/2 timing evidence and round 2 received all seven round-1 results |
 
 ## Observations and Blockers
 
 ### Current integrated state
 
-- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. Timing awareness is prompt-visible, tool-checkable, provider-enforced, and retained as sanitized execution evidence; graph and team-clone details remain owned by `docs/agent-assignments.md`.
+- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. Chat, planning, estimating, Architect, Tester, Engineer, and Reviewer model work have passed the mandatory two-check assignment-clock contract; graph and team-clone details remain owned by `docs/agent-assignments.md`.
 
 ### Current active blocker
 
@@ -544,7 +545,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Next acceptance milestone
 
-- Exercise the cloned project agents across the remaining activity profiles through the real graph, including the time-awareness requirement above.
+- Complete Releaser, Researcher, and Technical Writer acting plus project-owned-handler acceptance through the real graph under the same assignment-clock gate.
 
 ## Completion
 
