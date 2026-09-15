@@ -530,13 +530,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [ ] Freeze the campaign manifest and exact proposal bytes.
-- [ ] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules.
-- [ ] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
-- [ ] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
-- [ ] Confirm upstream write credentials and all external mutation tools are absent.
-- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work.
-- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state.
+- [x] Freeze the campaign manifest and exact proposal bytes.
+- [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules.
+- [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
+- [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
+- [x] Confirm upstream write credentials and all external mutation tools are absent.
+- [x] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work.
+- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state.
 
 ### Stage 1 — SDK alone
 
@@ -712,7 +712,7 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 0 | not started | — | — |
+| Preflight | — | 1 | pass | campaign `agent-golden-20260915`, manifest `sha256:638c81db4b89ea1dd792014ffeb8ba5cdc5f7bf73f0934a46a3462ae8bf6c78b`, baseline `sha256:a4ac396b8cb92052273dff2372f0f9414f03144a91bf67a15b7645de1e954b88` | Frozen 17-project inputs, profiles, provider supply, simulation custody, live graph watch, teardown, credential exclusion, and external state baseline are verified. |
 | SDK | — | 0 | not started | — | — |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
