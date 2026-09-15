@@ -432,6 +432,7 @@ Acceptance:
 - [x] One real closing Reporter assignment executes API → provider → AgentKernel → Reporter → result → settlement through the CLI.
 - [x] Identical authorized inputs produce identical report bytes.
 - [ ] Unknown handler, wrong build, expired assignment, denied service, invalid result, cancellation, and timeout fail closed.
+- [ ] Every model-backed activity receives its authoritative productive window, completes two live time-status checks, and scopes its work to finish within that window. Communication is proven; the remaining activity profiles still require integrated graph evidence.
 
 ### Phase 3 — Reusable and project-owned handlers
 
@@ -533,7 +534,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. The SDK golden receipt proves exact workspace selection, request-changes continuity, and teardown; graph details remain owned by `docs/agent-assignments.md`.
+- Persistent development mode runs the current SDK, API, Agent, and TreeDX sources through the canonical provider-to-AgentKernel path. A real source-backed communication assignment proved two model-initiated authoritative time checks and bounded completion; graph and team-clone details remain owned by `docs/agent-assignments.md`.
 
 ### Current active blocker
 
@@ -541,7 +542,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Next acceptance milestone
 
-- Clone the accepted SDK agent team through the native plan/apply operation defined in `docs/agent-assignments.md`, then expand acceptance across eligible projects and the remaining activity profiles.
+- Exercise the cloned project agents across the remaining activity profiles through the real graph, including the time-awareness requirement above.
 
 ## Completion
 

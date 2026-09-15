@@ -455,7 +455,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The SDK golden proposal runs through one content-derived graph, provider admission, isolated Kata guests, exact grants, all three workspace modes, AgentKernel, TreeDX review decisions, revision-preserving Git candidates, verified teardown, and one result/settlement path. The graph contains six stable nodes and eight unique completed node-revision assignments.
+- The SDK golden proposal runs through one content-derived graph, provider admission, isolated Kata guests, exact grants, all three workspace modes, AgentKernel, TreeDX review decisions, revision-preserving Git candidates, verified teardown, and one result/settlement path. The native team-clone operation projected the eight accepted SDK agents into all 17 eligible project libraries and repeated with `noop`.
 
 ### Current active blocker
 
@@ -463,7 +463,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Next acceptance milestone
 
-- Implement and verify the native plan/apply operation that clones the accepted SDK agent team into eligible projects, then use those agents for the remaining activity and multi-project acceptance.
+- Use the cloned agents for remaining activity-profile and multi-project graph acceptance without creating another assignment path.
 
 ## Completion
 
