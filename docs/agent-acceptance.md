@@ -531,7 +531,7 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 ### Stage 0 — preflight
 
 - [x] Freeze the campaign manifest and exact proposal bytes.
-- [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules.
+- [ ] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Schema validation passed, but frozen work-item criteria incorrectly copy whole-project acceptance instead of each role's product boundary; campaign correction requires review.
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
@@ -712,8 +712,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 1 | pass | campaign `agent-golden-20260915`, manifest `sha256:638c81db4b89ea1dd792014ffeb8ba5cdc5f7bf73f0934a46a3462ae8bf6c78b`, baseline `sha256:a4ac396b8cb92052273dff2372f0f9414f03144a91bf67a15b7645de1e954b88` | Frozen 17-project inputs, profiles, provider supply, simulation custody, live graph watch, teardown, credential exclusion, and external state baseline are verified. |
-| SDK | — | 0 | not started | — | — |
+| Preflight | — | 1 | review required | Platform #520; frozen campaign `agent-golden-20260915` | Work-item acceptance boundaries in the materialized proposals must match the fixed role-specific products before the freeze is accepted. |
+| SDK | — | 0 | lifecycle in progress; review required | Platform #520; protected eight-role send receipt | Eight source-grounded discussion responses are proven; no estimating/acting golden workday has started and no golden lifecycle has passed. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

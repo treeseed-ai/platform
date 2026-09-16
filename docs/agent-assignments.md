@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Component tests and live development read-back prove proposal intake, exact decision binding, deterministic living-graph projection, one durable workday `executionMode`, simulation-only source custody, and ordinary assignment/result plumbing. No golden project has yet passed the authoritative acceptance specification.
+- The unchanged SDK draft has eight source-grounded discussion responses. Component tests pass, but the frozen campaign's work-item criteria fail semantic validation; no complete golden lifecycle has passed. Evidence remains in Platform #520.
 
 ### Current active blocker
 
-- No architecture blocker is known. Stage 0 awaits an authenticated campaign freeze containing exact local team, profile, policy, offer, and governed content refs.
+- Campaign review is required: frozen work-item criteria copy whole-project acceptance instead of each role's required product, making prerequisite reviews impossible before implementation.
 
 ### Next acceptance milestone
 
-- Freeze Stage 0, then run the unchanged SDK proposal through discussion, estimates, decision, the living graph, all six reviewed work items, simulated release, and Reporter closeout.
+- After the frozen-input correction is authorized, verify the single-round estimating correction, then resume the unchanged specified SDK product chain through final closeout.
 
 ## Completion
 
