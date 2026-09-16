@@ -440,11 +440,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- PLAN_REVIEW_REQUIRED: the source-grounded SDK Engineer estimate exceeds the frozen implementation budget; the attempt is stopped pending budget review (Platform #520).
+- Golden execution is paused until the integrated allocation prerequisite in `agent-architecture.md` is proven; manually prescribed assignment budgets are not acceptance evidence.
 
 ### Next acceptance milestone
 
-- Resolve the frozen budget review, verify all seven estimates, then execute the SDK product chain through final closeout before API acceptance.
+- After allocation acceptance, refreeze allocation rules rather than estimate triples and prove the unchanged SDK proposal → Actor → Reviewer → revision → re-review → approval path.
 
 ## Completion
 
