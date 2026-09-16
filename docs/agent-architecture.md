@@ -333,27 +333,33 @@ A single predecessor commit may be the next assignment's base. When several pred
 ```yaml
 durationSeconds: 28800
 maximumConcurrency: 8
-planningSecondsPerAgent: 900
+planningPercent: 20
+allocationWeight: 1
+planningTurnMaximumSeconds: 180
 communicationConcurrency: 1
-projectWeights:
-  sdk: 4
-  api: 3
-agentClassWeights:
-  engineer: 4
-  reviewer: 2
-  reporter: 1
+projectPercentages:
+  sdk: 60
+  api: 40
+agentClassPercentages:
+  sdk:
+    engineer: 60
+    reviewer: 30
+    reporter: 10
+  api:
+    engineer: 60
+    reviewer: 30
+    reporter: 10
 ```
 
 Do not add allocation sets, minimum/target/maximum tiers, priority bands, borrow rules, a generic reserve, or separate capacity-plan and demand records.
 
 ### Planning phase
 
-Every eligible participating agent receives `planningSecondsPerAgent` before proposal-driven work is admitted. The initial implementation has exactly two rounds:
+Planning uses the first `planningPercent` of wall-clock duration and allocated capacity. Repeated short turns follow activity dependencies, give eligible agents equal turn ceilings, and load previous contributions through TreeDX. Class/project percentages govern opportunity frequency. Planning requires no existing proposal and admits no implementation, deployment, or release. Estimates are authored during planning; proposals may originate in any authorized activity. At the phase boundary, stop unfinished planning turns and release unused capacity to acting/review.
 
-1. self-directed study, questions, proposals, and estimates;
-2. collaboration using accepted first-round contributions.
+Provider-owned capability caps and a shared execution-provider/model cap bound every workday. Normalize active workday weights (default 1), preserve existing reservations, and redistribute idle project/class target shares only to admissible graph-ready work. Both production and simulation consume real supply. Charge active harness/model/tool time, including model-backed preparation and closeout; record infrastructure setup, queueing, and teardown separately.
 
-Round count is not configurable initially. Unused planning time joins the ordinary execution pool only after every selected agent completes, exhausts, or becomes explicitly ineligible.
+Cold-start acting uses the task's maximum estimate, bounded by provider limits and available allocations. Replay the latest 20 eligible measurements within the same provider/model, capability, class, and activity, normalized by expected task duration. Successful completion targets 1.25 times observed duration with at most 10% downward adjustment per sample; expiration increases allocation by at least 25%. Other failure classes do not calibrate task duration. Insufficient viable capacity defers work without changing the graph.
 
 The read-only `workday plan` operation and mutating `workday start` use the same compiler. The workday stores the applied plan rather than creating another scheduling authority.
 
@@ -365,7 +371,7 @@ Workday lifecycle is:
 planned → active → closing → ended
 ```
 
-- `active` admits planning, communication, and ordinary ready nodes.
+- `active` admits phase-eligible graph nodes and addressed communication; acting waits until the planning boundary.
 - `closing` stops ordinary admissions and satisfies the `workday-closing` condition.
 - Reporter and any required settlement/closeout nodes run during closing.
 - `ended` is reached only after required closeout nodes finish and usage settles.
@@ -461,18 +467,22 @@ Acceptance:
 ### Phase 4 — Workday planning and fair capacity
 
 - [x] Implement `workday plan` and `workday start` with one shared compiler.
-- [x] Guarantee every eligible agent self-directed planning time and two planning rounds.
+- [ ] Guarantee repeated dependency-ordered planning turns within the planning percentage/window; fixed two-round evidence does not prove this replacement requirement.
 - [ ] Admit ready graph nodes directly; create no capacity-plan or demand records.
 - [ ] Implement project and agent-class weighted fairness with stable ties and automatic idle-share flow.
 - [ ] Implement provider-global team fairness and hard provider-native gates.
+- [ ] Enforce UTC-day capability and shared model caps at provider and atomic API admission, including restart/monotonic-report safety.
+- [ ] Allocate concurrent workdays by weight, then phase/project/class shares, preserving reservations and redistributing only idle opportunities.
+- [ ] Calibrate task budgets from scoped terminal usage, including censored timeouts, and issue one active duration/deadline through AgentKernel.
+- [ ] Replace fixed planning/profile contracts in SDK/API/CLI/schema and remove the retired allocator without compatibility paths.
 - [x] Implement active → closing → ended lifecycle and derive closeout capacity from required closeout estimates.
 - [ ] Keep communication concurrency independent from ordinary work.
 - [ ] Settle every attempt exactly once and expose allocation explanations through the CLI.
 
 Acceptance:
 
-- [x] A zero-proposal workday gives every participating agent planning work and can create new proposals.
-- [x] Second-round assignments can use accepted first-round contributions.
+- [ ] A zero-proposal workday gives every participating agent allocation-derived repeated planning opportunities and can create new proposals; earlier fixed-round evidence is insufficient.
+- [ ] Later planning cycles load prior published contributions through TreeDX; earlier second-round evidence does not prove repeating cycles.
 - [ ] Mid-workday content changes add eligible work without restarting the workday.
 - [ ] Multi-project, multi-class, multi-team, retries, failures, idle share, and stable ties pass deterministic tests.
 - [x] Reporter runs during closing and the workday ends only after report completion and settlement.
@@ -534,15 +544,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Persistent development mode runs SDK, API, Agent, and TreeDX source builds through the provider-to-AgentKernel path. The strict host-development generation, migrated API, operations runner, provider, and Kata broker are healthy; activity-profile acceptance remains governed solely by `docs/agent-acceptance.md`.
+- SDK allocation contracts are merged to staging. API full local suite passes (1,035 tests); Agent strict typecheck and 141 tests pass. Default graph turns produced genuine source-grounded estimates through TreeDX, with clock checks and measured active usage. Live research and implementation limits remain 7,200 and 28,800 daily seconds. No golden lifecycle has passed; exact evidence is in Platform #520.
 
 ### Current active blocker
 
-- No architecture blocker is known; the authenticated Stage 0 campaign freeze is tracked in `docs/agent-assignments.md`.
+- No external blocker is active. The stopped SDK run exposed lost accounting token counters and invalid Reviewer verification; repairs pass local tests, but live read-back and the unchanged golden rerun remain pending. Concurrent entitlement, phase cancellation, recovery/rollover and final settlement are not yet accepted (Platform #520).
 
 ### Next acceptance milestone
 
-- Run every SDK activity and all six reviewed work items through isolated provider execution during the unchanged SDK golden proposal.
+- Prove allocator-derived planning and acting budgets, provider enforcement, settlement, and concurrent workday sharing locally; then resume the lifecycle in `agent-assignments.md`.
 
 ## Completion
 

@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Component tests and live development read-back prove proposal intake, exact decision binding, deterministic living-graph projection, one durable workday `executionMode`, simulation-only source custody, and ordinary assignment/result plumbing. No golden project has yet passed the authoritative acceptance specification.
+- SDK proposal revision 4 preserves the role-specific requirements and removes operator-authored estimate triples through governed TreeDX publication. The allocation prerequisite owns current execution evidence (`agent-architecture.md`); no complete golden lifecycle has passed. Evidence remains in Platform #520.
 
 ### Current active blocker
 
-- No architecture blocker is known. Stage 0 awaits an authenticated campaign freeze containing exact local team, profile, policy, offer, and governed content refs.
+- Golden execution is paused until the integrated allocation prerequisite in `agent-architecture.md` is proven; manually prescribed assignment budgets are not acceptance evidence.
 
 ### Next acceptance milestone
 
-- Freeze Stage 0, then run the unchanged SDK proposal through discussion, estimates, decision, the living graph, all six reviewed work items, simulated release, and Reporter closeout.
+- After allocation acceptance, refreeze allocation rules rather than estimate triples and prove the unchanged SDK proposal → Actor → Reviewer → revision → re-review → approval path.
 
 ## Completion
 

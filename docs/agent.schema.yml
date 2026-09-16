@@ -37,7 +37,7 @@ $comment: >-
   must additionally enforce ordered estimate bounds; unique work-item IDs;
   local, acyclic dependencies; requested permissions within profile and policy
   ceilings; exact current authority refs; deterministic node/edge identity;
-  one active assignment per node revision; two ordered planning rounds; bounded
+  one active assignment per node revision; repeated dependency-ordered planning cycles; bounded
   review cycles; immutable assignment inputs; and exactly-once settlement.
 
 # A document validated at the root must be exactly one stored record type.
@@ -469,7 +469,6 @@ $defs:
       - workspace
       - review
       - objective
-      - estimate
       - dependsOn
       - requestedPermissions
       - acceptanceCriteria
@@ -524,7 +523,7 @@ $defs:
           required: [review]
         then:
           type: object
-          required: [reviewEstimate, maximumReviewCycles]
+          required: [maximumReviewCycles]
       - if:
           type: object
           properties:
@@ -785,6 +784,23 @@ $defs:
         then:
           type: object
           required: [summary, executionPlan]
+          properties:
+            executionPlan:
+              type: object
+              properties:
+                workItems:
+                  type: array
+                  items:
+                    type: object
+                    required: [estimate]
+                    allOf:
+                      - if:
+                          properties:
+                            review:
+                              const: required
+                          required: [review]
+                        then:
+                          required: [reviewEstimate]
     additionalProperties: false
 
   Question:
@@ -1165,33 +1181,44 @@ $defs:
     required:
       - durationSeconds
       - maximumConcurrency
-      - planningSecondsPerAgent
+      - planningPercent
+      - allocationWeight
+      - planningTurnMaximumSeconds
       - communicationConcurrency
-      - projectWeights
-      - agentClassWeights
+      - projectPercentages
+      - agentClassPercentages
     properties:
       durationSeconds:
         $ref: "#/$defs/PositiveSeconds"
       maximumConcurrency:
         type: integer
         minimum: 1
-      planningSecondsPerAgent:
+      planningTurnMaximumSeconds:
         $ref: "#/$defs/PositiveSeconds"
+      planningPercent:
+        type: number
+        minimum: 0
+        maximum: 100
+        default: 20
+      allocationWeight:
+        type: number
+        exclusiveMinimum: 0
+        default: 1
       communicationConcurrency:
         type: integer
         minimum: 1
-      projectWeights:
+      projectPercentages:
         type: object
-        minProperties: 1
         additionalProperties:
           type: number
           exclusiveMinimum: 0
-      agentClassWeights:
+      agentClassPercentages:
         type: object
-        minProperties: 1
         additionalProperties:
-          type: number
-          exclusiveMinimum: 0
+          type: object
+          additionalProperties:
+            type: number
+            exclusiveMinimum: 0
     additionalProperties: false
 
   AvailabilityWindow:
@@ -1223,7 +1250,8 @@ $defs:
     required: [round, state, assignmentIds]
     properties:
       round:
-        enum: [1, 2]
+        type: integer
+        minimum: 1
       state:
         enum: [pending, active, complete]
       assignmentIds:
@@ -1631,8 +1659,6 @@ $defs:
         $ref: "#/$defs/Timestamp"
       planningRounds:
         type: array
-        minItems: 2
-        maxItems: 2
         items:
           $ref: "#/$defs/PlanningRound"
       admittedSecondsByProject:
@@ -1868,11 +1894,17 @@ $defs:
 
   ProviderOfferSelection:
     type: object
-    required: [providerId, offerId, offerRevision, runtimeBuild]
+    required: [providerId, offerId, executionProviderId, modelConfigurationId, executionCapabilityId, offerRevision, runtimeBuild]
     properties:
       providerId:
         $ref: "#/$defs/Identifier"
       offerId:
+        $ref: "#/$defs/Identifier"
+      executionProviderId:
+        $ref: "#/$defs/Identifier"
+      modelConfigurationId:
+        $ref: "#/$defs/Identifier"
+      executionCapabilityId:
         $ref: "#/$defs/Identifier"
       offerRevision:
         type: integer
