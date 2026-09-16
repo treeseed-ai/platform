@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- SDK allocation contracts are merged to staging. API component/PostgreSQL gates and the Agent full suite pass; a real SDK workday completed all eight first-cycle planning turns with measured usage and two clock checks, then generated a second cycle. Selected proposals now automatically generate ordinary estimating turns after planning contributions; that integrated replacement is not yet accepted. Live supply remains research (Sol/Medium, 7,200 daily seconds) and implementation (Terra/Medium, 28,800), sharing Codex. No golden lifecycle has passed (Platform #520).
+- SDK allocation contracts are merged to staging. API full local suite passes (1,035 tests); Agent strict typecheck and 141 tests pass. Default graph turns produced genuine source-grounded estimates through TreeDX, with clock checks and measured active usage. Live research and implementation limits remain 7,200 and 28,800 daily seconds. No golden lifecycle has passed; exact evidence is in Platform #520.
 
 ### Current active blocker
 
-- No external blocker is active. The next gate is automatic genuine estimate generation on the default workday path; full Actor/Reviewer completion, live weighted concurrent entitlement, phase-boundary cancellation, daily/restart accounting, and final settlement remain unproven (Platform #520).
+- No external blocker is active. The stopped SDK run exposed lost accounting token counters and invalid Reviewer verification; repairs pass local tests, but live read-back and the unchanged golden rerun remain pending. Concurrent entitlement, phase cancellation, recovery/rollover and final settlement are not yet accepted (Platform #520).
 
 ### Next acceptance milestone
 
