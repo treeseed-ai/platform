@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Component tests cover weighted allocation, repeated planning, task sizing, one productive deadline, and durable provider accounting. Real PostgreSQL verifies atomic capability/model admission and replay. Capability-specific `codex-research` and `codex-implementation` share the Codex harness; live configuration and golden acceptance remain unproven. Evidence remains in Platform #520.
+- Component tests cover weighted allocation, repeated planning, task sizing, productive deadlines, and durable provider accounting; PostgreSQL checks cover admission and replay. Managed cutover and CLI read-back verify active `codex-research` (Sol/Medium, 7,200 daily seconds) and `codex-implementation` (Terra/Medium, 28,800), using the shared Codex harness with healthy accounting observations. No golden lifecycle has passed (Platform #520).
 
 ### Current active blocker
 
-- Capability-configuration cutover exposed rejection of an ordinary, intentionally held development writer during PostgreSQL health checking. The repair passes 36 focused tests and type-checking; managed update acceptance remains pending. Cross-session monotonicity, UTC-day settlement, calibration, concurrent entitlement, and phase-boundary cancellation remain unproven (Platform #520).
+- No external blocker is active. Cross-session atomic monotonicity, UTC-day settlement and historical unattributed usage, real timeout settlement, concurrent entitlement, and phase-boundary cancellation still require complete implementation/acceptance; component tests do not prove these integrated boundaries (Platform #520).
 
 ### Next acceptance milestone
 
