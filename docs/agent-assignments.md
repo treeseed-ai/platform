@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The unchanged SDK draft has eight source-grounded discussion responses. Component tests pass, but the frozen campaign's work-item criteria fail semantic validation; no complete golden lifecycle has passed. Evidence remains in Platform #520.
+- The SDK draft has eight source-grounded discussion responses. Authorized role-specific acceptance criteria are refrozen and published as proposal revision 3; no complete golden lifecycle has passed. Evidence remains in Platform #520.
 
 ### Current active blocker
 
-- Campaign review is required: frozen work-item criteria copy whole-project acceptance instead of each role's required product, making prerequisite reviews impossible before implementation.
+- No active plan blocker is known; live estimating and downstream product acceptance remain unproven.
 
 ### Next acceptance milestone
 
-- After the frozen-input correction is authorized, verify the single-round estimating correction, then resume the unchanged specified SDK product chain through final closeout.
+- Verify six owner estimates and the independent Reviewer estimate, then execute the fixed SDK product chain through final closeout before API acceptance.
 
 ## Completion
 

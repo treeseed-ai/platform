@@ -538,7 +538,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Frozen-input semantic review is tracked in `docs/agent-assignments.md`; no separate provider architecture blocker is known.
+- No active provider architecture blocker is known; proposal refreeze and graph acceptance are tracked in `docs/agent-assignments.md`.
 
 ### Next acceptance milestone
 
