@@ -469,7 +469,6 @@ $defs:
       - workspace
       - review
       - objective
-      - estimate
       - dependsOn
       - requestedPermissions
       - acceptanceCriteria
@@ -524,7 +523,7 @@ $defs:
           required: [review]
         then:
           type: object
-          required: [reviewEstimate, maximumReviewCycles]
+          required: [maximumReviewCycles]
       - if:
           type: object
           properties:
@@ -785,6 +784,23 @@ $defs:
         then:
           type: object
           required: [summary, executionPlan]
+          properties:
+            executionPlan:
+              type: object
+              properties:
+                workItems:
+                  type: array
+                  items:
+                    type: object
+                    required: [estimate]
+                    allOf:
+                      - if:
+                          properties:
+                            review:
+                              const: required
+                          required: [review]
+                        then:
+                          required: [reviewEstimate]
     additionalProperties: false
 
   Question:

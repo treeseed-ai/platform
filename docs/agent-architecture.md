@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Persistent development mode runs SDK, API, Agent, and TreeDX sources. Source contracts now support percentage/weighted allocation, repeated dependency-ordered planning cycles, and reserved-plus-active fairness; component tests do not prove live allocation enforcement. Evidence remains in Platform #520.
+- Persistent development mode runs SDK, API, Agent, and TreeDX sources. Component tests cover percentage/weighted allocation, repeated planning, cold-start task sizing, reservation explanations, one productive deadline, and durable provider accounting; live supply enforcement remains unproven. Evidence remains in Platform #520.
 
 ### Current active blocker
 
-- The living-graph reservation path bypasses allocation admission; capability/model accounting, repeated planning, and calibrated task budgets must be integrated before golden acceptance.
+- Admission now uses calculated task duration, but shared capability/model supply, scoped calibration history, concurrent workday entitlement, and phase-boundary cancellation are not yet integrated end to end.
 
 ### Next acceptance milestone
 

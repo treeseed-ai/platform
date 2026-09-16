@@ -47,7 +47,7 @@ The first two proposals are SDK and API because they exercise the portable contr
 
 ### Required contract correction
 
-The current `Workday` definition in `docs/agent.schema.yml` has no execution-mode field, while existing runtime records have already demonstrated contradictory workday and assignment labels. Before Stage 0 can pass, add one required `Workday.executionMode` with supported values `simulation` and `production`. It is the sole mode authority. The immutable assignment identifies its workday and receives the exact grants, remotes, workspace, and provider instructions compiled for that mode; it does not own another independently mutable mode field.
+`Workday.executionMode` is required with supported values `simulation` and `production`. It is the sole mode authority. The immutable assignment identifies its workday and receives the exact grants, remotes, workspace, and provider instructions compiled for that mode; it does not own another independently mutable mode field. Stage 0 must verify this existing contract end to end.
 
 For `simulation`, grant compilation must remove every upstream or external mutation capability and replace writable Git destinations with the local simulation repository. For `production`, ordinary governed authority applies. Do not add compatibility aliases, separate run mode, assignment mode, provider mode, or result mode.
 
@@ -64,9 +64,35 @@ Before the first run, create one acceptance campaign record outside the product 
 - exact governed agent-profile refs;
 - exact workday-policy revision;
 - provider offer revision;
-- the proposal IDs and exact draft and ready proposal bytes defined here.
+- the proposal IDs and exact draft bytes, fixed work-item topology and acceptance criteria, and subsequently the ready proposal bytes containing genuine agent estimates.
 
-The campaign manifest is test configuration, not a new control-plane resource. Once frozen, subject repository bases and both expected proposal revisions do not change during retries. Runtime-under-test builds may change as defects are repaired; every run records their new exact digests.
+The campaign manifest is test configuration, not a new control-plane resource. Once frozen, subject repository bases, proposal objectives, work-item topology, permissions and acceptance criteria do not change during retries. Agent estimates are measured planning outputs, not prescribed inputs. Record each ready revision/digest and its contributing estimating results; do not coerce estimates to make a run pass. Runtime-under-test builds may change as defects are repaired; every run records their new exact digests.
+
+### High-level allocation inputs
+
+Freeze the resolved workday policy and actual provider offer/configuration alongside the campaign. Single-project runs use the following allocation inputs; joint SDK/API runs use `projectPercentages: {sdk: 50, api: 50}` with the same class percentages in each project. Portfolio runs use equal normalized project shares.
+
+```yaml
+allocation:
+  planningPercent: 20
+  allocationWeight: 1
+  planningTurnMaximumSeconds: 180
+  projectPercentages: {sdk: 100}
+  agentClassPercentages:
+    sdk:
+      architect: 12.5
+      researcher: 12.5
+      tester: 12.5
+      engineer: 12.5
+      technical-writer: 12.5
+      releaser: 12.5
+      reviewer: 12.5
+      reporter: 12.5
+```
+
+Resolve project and class keys to their canonical seeded identities before submission. Project/class percentages are redistributable opportunity targets, not per-assignment durations. Provider-owned capability caps, shared execution-provider/model caps, assignment bounds, remaining usage and reservations must be read back and frozen; a simulation consumes the same real supply as other workdays. Duration and concurrency remain explicit workday inputs. Never insert reservations directly or supply hand-authored assignment allocations.
+
+Admission must explain weighted workday entitlement, the planning pool, project/class opportunity, scoped calibration measurements, viable task minimum, limiting constraint, active-duration reservation and hard deadline. Agent-authored estimate triples and rationale remain unchanged content authority. With no eligible history, acting starts from the maximum estimate subject to real supply/provider ceilings; later allocations use measured calibration. Insufficient viable capacity defers a node without changing its dependencies. At the phase boundary unused planning entitlement becomes acting/review capacity.
 
 ### Local Git custody
 
@@ -100,15 +126,15 @@ Failed historical records remain auditable, but they cannot satisfy dependencies
 Every project follows the same lifecycle. The project sections below supply the exact project-specific request and expected products.
 
 1. Submit the fixed proposal as `draft` with its objective, evidence, and six work items.
-2. Open one proposal discussion addressed to Architect, Researcher, Tester, Engineer, Technical Writer, Releaser, Reviewer, and Reporter.
+2. Start the simulation workday with the frozen high-level allocation policy, then open one proposal discussion addressed to Architect, Researcher, Tester, Engineer, Technical Writer, Releaser, Reviewer, and Reporter. Planning/estimating turns use ordinary graph admission against actual remaining supply.
 3. Run one relevant `chat` probe for all eight project agents while the discussion is open. Chat must use the communication lane, must not inherit standing work dependencies, and must not create graph edges.
 4. Collect one discussion contribution from each of the eight project agents. Contributions identify risks, questions, dependencies, verification, documentation, release, and reporting concerns without changing the fixed objective.
-5. Run estimating assignments for Researcher, Architect, Tester, Engineer, Technical Writer, and Releaser work plus one Reviewer assignment covering all paired-review estimates. Every estimate contains `minimumSeconds`, `expectedSeconds`, `maximumSeconds`, and a rationale, with `minimum <= expected <= maximum`.
-6. Update the same proposal to the exact `ready` form. The accepted estimates are the fixed estimates in this document; agent estimates must support them or the run stops for proposal review.
+5. During allocator-driven planning, run estimating assignments for Researcher, Architect, Tester, Engineer, Technical Writer, and Releaser work plus one Reviewer assignment covering all paired-review estimates. Every estimate contains `minimumSeconds`, `expectedSeconds`, `maximumSeconds`, and a rationale, with `minimum <= expected <= maximum`.
+6. Update the same proposal to `ready` using those genuine estimating outputs, preserving its fixed objective, topology, permissions and acceptance criteria. Record the exact ready revision/digest; differing estimate values are not a plan-review failure.
 7. Resolve every question or gate. The proposal-governance Reviewer binds its disposition to the exact ready proposal revision and digest.
 8. Create one classed `proposal` decision accepting that exact proposal. No decision may carry a separate plan, graph, role map, source commit, or capacity plan.
 9. Reconcile the accepted content into the living team execution graph.
-10. Start the simulation workday. Execute two planning rounds, ready project work, generated Reviewer pairs, simulated release, Reporter closeout, and exactly-once settlement.
+10. Continue the same simulation workday from repeated planning turns into ready project work, generated Reviewer pairs, simulated release, Reporter closeout, and exactly-once settlement. The workday starts before planning/estimating, not after the estimates exist. Acting cannot begin during planning.
 
 If the current implementation cannot represent this lifecycle without an alternate assignment path or duplicate plan authority, stop. Do not simplify the acceptance case to match the implementation.
 
@@ -120,7 +146,7 @@ These expectations apply to every project and are not repeated in each proposal.
 |---|---|---|---|
 | `chat` | All eight agents | Addressed message, exact subject refs, profile prompt and grant | One general result or discussion message that answers only the addressed question; no graph mutation |
 | `planning`, round 1 | All eight agents | Proposal, project objectives and knowledge, exact source base, own profile | Independent contribution from that agent's responsibility; questions use the core `question` model |
-| `planning`, round 2 | Same eight agents | All eight exact round-1 results plus unchanged source context | A synthesis that explicitly cites consumed predecessor result IDs and identifies any changed recommendation |
+| `planning`, later cycles | Same eight agents | Prior published contributions plus unchanged source context | A synthesis that explicitly cites consumed predecessor result IDs and identifies any changed recommendation |
 | `estimating` | Six work owners plus Reviewer | Exact work item, acceptance criteria, dependencies, workspace and grants | Valid estimate triple and rationale; Reviewer estimates each generated review independently |
 | `acting` | Researcher, Architect, Tester, Engineer, Technical Writer, Releaser | Immutable assignment, exact proposal/decision, predecessor results, profile, grant, base and deadline | One `AssignmentResult` with ordinary TreeDX or Git refs, verification, non-zero observed usage when time elapsed, diagnostics and two clock checks |
 | `reviewing` | Reviewer only | Exact objective, acceptance criteria, candidate result/ref, verification and immutable source authority | Notes/questions as needed and one classed `work-review` decision bound to the exact candidate; Reviewer never mutates it |
@@ -137,7 +163,7 @@ These expectations apply to every project and are not repeated in each proposal.
 - Reviewer: ambiguity, authority, security, correctness, and evidence weaknesses.
 - Reporter: evidence completeness, expected workday narrative, accounting checks, and closeout omissions that must prevent acceptance.
 
-Round 2 must prove collaboration by consuming all eight round-1 results. Merely receiving them in context is insufficient; the result must identify the material contribution consumed from each.
+At least two complete cycles must prove collaboration by consuming the preceding cycle's eight results. Merely receiving them in context is insufficient; the result must identify the material contribution consumed from each. Two cycles are a minimum acceptance observation, not a fixed runtime round limit. Turns follow standing dependencies and fit within their allocator-issued active duration; no implementation, deployment or release is permitted during planning.
 
 ## Common proposal work-item contract
 
@@ -162,16 +188,16 @@ The shorthand in this document must be expanded into the actual schema before su
 
 ### Fixed work-item graph
 
-| ID | Class | Workspace | Depends on | Estimate min/expected/max | Review estimate | Review cycles |
-|---|---|---|---|---:|---:|---:|
-| `research-context` | Researcher | `treedx` | none | 180/360/720 | 120/240/480 | 2 |
-| `architecture-contract` | Architect | `treedx` | none | 300/600/1200 | 120/240/480 | 2 |
-| `tests-first` | Tester | `git` | `research-context`, `architecture-contract` | 300/600/1200 | 120/240/480 | 2 |
-| `implement-change` | Engineer | `git` | `tests-first` | 600/1200/2400 | 180/360/720 | 2 |
-| `document-change` | Technical Writer | `git` | `tests-first`, `implement-change` | 180/360/720 | 120/240/480 | 2 |
-| `simulate-release` | Releaser | `git` | `implement-change`, `document-change` | 180/360/720 | 120/240/480 | 2 |
+| ID | Class | Workspace | Depends on | Review cycles |
+|---|---|---|---|---:|
+| `research-context` | Researcher | `treedx` | none | 2 |
+| `architecture-contract` | Architect | `treedx` | none | 2 |
+| `tests-first` | Tester | `git` | `research-context`, `architecture-contract` | 2 |
+| `implement-change` | Engineer | `git` | `tests-first` | 2 |
+| `document-change` | Technical Writer | `git` | `tests-first`, `implement-change` | 2 |
+| `simulate-release` | Releaser | `git` | `implement-change`, `document-change` | 2 |
 
-Every row has `activity: acting`, `review: required`, a non-empty project-specific objective, the estimate and review estimate above, `maximumReviewCycles: 2`, exact `contextRefs`, requested permissions, required capabilities, and project-specific acceptance criteria.
+Every ready row has `activity: acting`, `review: required`, a non-empty project-specific objective, its owner's genuine estimate and the Reviewer's genuine review estimate, `maximumReviewCycles: 2`, exact `contextRefs`, requested permissions, required capabilities, and project-specific acceptance criteria. Draft intake must support estimating before those values exist; fabricating seed estimates does not satisfy acceptance.
 
 Reconciliation generates one Reviewer node for each row. Generated Reviewer nodes are not written into the proposal. A downstream work item becomes ready only after the predecessor's exact review decision is approved.
 
@@ -650,8 +676,8 @@ A project passes only when all checks below are evidenced from authoritative rec
 ### Profiles and collaboration
 
 - [ ] All eight chat probes use exact addressed context and create no workflow edges.
-- [ ] All eight agents complete both planning rounds; round 2 materially cites all eight round-1 results.
-- [ ] Seven valid estimating results support the accepted fixed estimates.
+- [ ] All eight agents complete at least two bounded, dependency-ordered planning cycles; later turns materially cite all eight predecessor contributions.
+- [ ] Seven valid estimating results supply the accepted owner/review estimates without manually prescribed allocation values.
 - [ ] Researcher, Architect, Tester, Engineer, Technical Writer, Releaser, Reviewer, and Reporter all perform their distinct responsibilities.
 - [ ] Tester authors the tests before Engineer implementation; Engineer consumes the approved Tester result rather than replacing it.
 
@@ -712,8 +738,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 1 | refrozen | Platform #520; frozen campaign `agent-golden-20260915` | Authorized role-specific criteria validate; objectives, dependencies, estimates, permissions, source bases, and final project gates are unchanged. |
-| SDK | — | 3 | PLAN_REVIEW_REQUIRED | Platform #520; source-grounded Engineer estimate | Engineer requires 900/1500/3000 seconds versus frozen 600/1200/2400; attempt stopped without changing inputs. Full estimating and acting acceptance remain unproven. |
+| Preflight | — | 1 | allocation refreeze pending | Platform #520 | Role-specific criteria remain; resolved allocation policy and actual capability/model supply must be frozen after integrated enforcement passes. |
+| SDK | — | 3 | allocation prerequisite pending | Platform #520 | Historical fixed-budget attempts are diagnostics only; no complete golden lifecycle has passed. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
