@@ -548,7 +548,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No external blocker is active. Cross-session atomic monotonicity, UTC-day settlement and historical unattributed usage, real timeout settlement, concurrent entitlement, and phase-boundary cancellation still require complete implementation/acceptance; component tests do not prove these integrated boundaries (Platform #520).
+- No external blocker is active. Provider-scoped observation/publication passed a real PostgreSQL cross-membership race regression. UTC-day settlement and historical unattributed usage, real timeout settlement, concurrent entitlement, and phase-boundary cancellation still require complete implementation/acceptance (Platform #520).
 
 ### Next acceptance milestone
 
