@@ -548,7 +548,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Live cutover is blocked by recovery of the development API and its held operations writer; released writers must not restart against the development migration inventory. Exact-image ownership and restored credential-mount refresh require live acceptance. Allocation/reporting, calibration, concurrent entitlement, and phase-boundary cancellation still require integrated acceptance (Platform #520).
+- Capability-configuration cutover exposed rejection of an ordinary, intentionally held development writer during PostgreSQL health checking. The repair passes 36 focused tests and type-checking; managed update acceptance remains pending. Cross-session monotonicity, UTC-day settlement, calibration, concurrent entitlement, and phase-boundary cancellation remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
