@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Persistent development mode runs SDK, API, Agent, and TreeDX sources. Component tests cover percentage/weighted allocation, repeated planning, cold-start task sizing, reservation explanations, one productive deadline, and durable provider accounting; live supply enforcement remains unproven. Evidence remains in Platform #520.
+- Component tests cover weighted allocation, repeated planning, task sizing, one productive deadline, and durable provider accounting. Real PostgreSQL verifies atomic capability/model admission and replay. Capability-specific `codex-research` and `codex-implementation` share the Codex harness; live configuration and golden acceptance remain unproven. Evidence remains in Platform #520.
 
 ### Current active blocker
 
-- Admission now uses calculated task duration, but shared capability/model supply, scoped calibration history, concurrent workday entitlement, and phase-boundary cancellation are not yet integrated end to end.
+- Live cutover, monotonic supply reconciliation, scoped calibration, concurrent entitlement, and phase-boundary cancellation remain unverified end to end; no golden lifecycle has passed.
 
 ### Next acceptance milestone
 

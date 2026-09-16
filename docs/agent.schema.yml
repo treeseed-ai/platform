@@ -1894,11 +1894,17 @@ $defs:
 
   ProviderOfferSelection:
     type: object
-    required: [providerId, offerId, offerRevision, runtimeBuild]
+    required: [providerId, offerId, executionProviderId, modelConfigurationId, executionCapabilityId, offerRevision, runtimeBuild]
     properties:
       providerId:
         $ref: "#/$defs/Identifier"
       offerId:
+        $ref: "#/$defs/Identifier"
+      executionProviderId:
+        $ref: "#/$defs/Identifier"
+      modelConfigurationId:
+        $ref: "#/$defs/Identifier"
+      executionCapabilityId:
         $ref: "#/$defs/Identifier"
       offerRevision:
         type: integer

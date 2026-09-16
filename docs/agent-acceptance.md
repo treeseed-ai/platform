@@ -92,6 +92,8 @@ allocation:
 
 Resolve project and class keys to their canonical seeded identities before submission. Project/class percentages are redistributable opportunity targets, not per-assignment durations. Provider-owned capability caps, shared execution-provider/model caps, assignment bounds, remaining usage and reservations must be read back and frozen; a simulation consumes the same real supply as other workdays. Duration and concurrency remain explicit workday inputs. Never insert reservations directly or supply hand-authored assignment allocations.
 
+For this local campaign, configure `codex-research` with Sol/Medium and a 7,200-active-second daily cap, and `codex-implementation` with Terra/Medium and a 28,800-active-second daily cap. These are installation inputs, not universal release defaults. Both reuse the Codex harness; capability identity remains independent of the execution-provider ID so other providers can supply the same capability. Freeze actual model and capability limits from provider read-back before running the campaign.
+
 Admission must explain weighted workday entitlement, the planning pool, project/class opportunity, scoped calibration measurements, viable task minimum, limiting constraint, active-duration reservation and hard deadline. Agent-authored estimate triples and rationale remain unchanged content authority. With no eligible history, acting starts from the maximum estimate subject to real supply/provider ceilings; later allocations use measured calibration. Insufficient viable capacity defers a node without changing its dependencies. At the phase boundary unused planning entitlement becomes acting/review capacity.
 
 ### Local Git custody
