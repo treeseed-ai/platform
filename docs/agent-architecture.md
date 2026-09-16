@@ -548,7 +548,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Live cutover, monotonic supply reconciliation, scoped calibration, concurrent entitlement, and phase-boundary cancellation remain unverified end to end; no golden lifecycle has passed.
+- Live cutover is blocked by PostgreSQL component activation/recovery; the manager retains its development hold. After recovery, monotonic supply reconciliation, scoped calibration, concurrent entitlement, and phase-boundary cancellation still require integrated acceptance (Platform #520).
 
 ### Next acceptance milestone
 
