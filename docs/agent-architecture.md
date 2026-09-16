@@ -544,7 +544,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Persistent development mode runs SDK, API, Agent, and TreeDX sources. Eight SDK chat roles have unique Kata assignments, observed usage, successful first/final clock checks, and verified teardown; this does not prove their other activities. Evidence remains in Platform #520.
+- Persistent development mode runs SDK, API, Agent, and TreeDX sources. Source contracts now support percentage/weighted allocation, repeated dependency-ordered planning cycles, and reserved-plus-active fairness; component tests do not prove live allocation enforcement. Evidence remains in Platform #520.
 
 ### Current active blocker
 
