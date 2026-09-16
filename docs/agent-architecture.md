@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- SDK allocation contracts are merged to staging. API full local suite passes (1,035 tests); Agent strict typecheck and 141 tests pass. Default graph turns produced genuine source-grounded estimates through TreeDX, with clock checks and measured active usage. Live research and implementation limits remain 7,200 and 28,800 daily seconds. No golden lifecycle has passed; exact evidence is in Platform #520.
+- SDK/API allocation and bounded Reporter closeout are merged to staging. API's PostgreSQL-backed full local suite passes (1,050 tests); Agent strict typecheck and 142 tests pass. Live accounting returns active time and input/cached/output/reasoning tokens; a stopped workday closes through Reporter. Research and implementation limits remain 7,200 and 28,800 daily seconds. No golden lifecycle has passed; exact evidence is in Platform #520.
 
 ### Current active blocker
 
-- No external blocker is active. The stopped SDK run exposed lost accounting token counters and invalid Reviewer verification; repairs pass local tests, but live read-back and the unchanged golden rerun remain pending. Concurrent entitlement, phase cancellation, recovery/rollover and final settlement are not yet accepted (Platform #520).
+- No external blocker is active. Contradictory estimator instructions changed foreign estimates; the strict ownership guard rejected them. The prompt and productive-clock teardown boundary are repaired and tested; live rerun, concurrent sharing, phase cancellation and recovery/rollover acceptance remain pending (Platform #520).
 
 ### Next acceptance milestone
 
