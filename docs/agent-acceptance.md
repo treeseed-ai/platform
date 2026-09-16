@@ -713,7 +713,7 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 1 | refrozen | Platform #520; frozen campaign `agent-golden-20260915` | Authorized role-specific criteria validate; objectives, dependencies, estimates, permissions, source bases, and final project gates are unchanged. |
-| SDK | — | 0 | lifecycle in progress | Platform #520; protected eight-role send receipt | Corrected proposal revision 3 is published; estimating and acting acceptance are not yet proven. |
+| SDK | — | 1 | estimating retry pending | Platform #520; Agent proposal-scope regression tests | First estimating attempt stopped on incomplete proposal output; scope enforcement is repaired, but complete estimating and acting acceptance remain unproven. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
