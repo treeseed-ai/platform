@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Component tests cover weighted allocation, repeated planning, task sizing, productive deadlines, and durable provider accounting; PostgreSQL checks cover admission and replay. Managed cutover and CLI read-back verify active `codex-research` (Sol/Medium, 7,200 daily seconds) and `codex-implementation` (Terra/Medium, 28,800), using the shared Codex harness with healthy accounting observations. No golden lifecycle has passed (Platform #520).
+- Component tests cover weighted allocation, repeated planning, task sizing, productive deadlines, and durable provider accounting. API `ee965b62` passes 27 focused tests including PostgreSQL timeout/admission/publication races; Agent `47aefb5` preserves failed/returned execution usage. Live supply is `codex-research` (Sol/Medium, 7,200 daily seconds) and `codex-implementation` (Terra/Medium, 28,800), sharing the Codex harness. No golden lifecycle has passed (Platform #520).
 
 ### Current active blocker
 
-- No external blocker is active. Provider-scoped observation/publication passed a real PostgreSQL cross-membership race regression. UTC-day settlement and historical unattributed usage, real timeout settlement, concurrent entitlement, and phase-boundary cancellation still require complete implementation/acceptance (Platform #520).
+- No external blocker is active. Timeout settlement and UTC-bound deadline custody pass component/PostgreSQL gates; live weighted concurrent entitlement, phase-boundary cancellation, daily/restart accounting, and genuine golden workday settlement/teardown remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
