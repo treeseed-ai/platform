@@ -440,11 +440,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- No active plan blocker is known; live estimating and downstream product acceptance remain unproven.
+- PLAN_REVIEW_REQUIRED: the source-grounded SDK Engineer estimate exceeds the frozen implementation budget; the attempt is stopped pending budget review (Platform #520).
 
 ### Next acceptance milestone
 
-- Verify six owner estimates and the independent Reviewer estimate, then execute the fixed SDK product chain through final closeout before API acceptance.
+- Resolve the frozen budget review, verify all seven estimates, then execute the SDK product chain through final closeout before API acceptance.
 
 ## Completion
 

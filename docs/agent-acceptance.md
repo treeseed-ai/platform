@@ -713,7 +713,7 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 1 | refrozen | Platform #520; frozen campaign `agent-golden-20260915` | Authorized role-specific criteria validate; objectives, dependencies, estimates, permissions, source bases, and final project gates are unchanged. |
-| SDK | — | 3 | estimating in progress | Platform #520; Agent proposal-scope/provenance regressions | Full-proposal scope and immutable evidence references are enforced; complete seven-role estimating and acting acceptance remain unproven. |
+| SDK | — | 3 | PLAN_REVIEW_REQUIRED | Platform #520; source-grounded Engineer estimate | Engineer requires 900/1500/3000 seconds versus frozen 600/1200/2400; attempt stopped without changing inputs. Full estimating and acting acceptance remain unproven. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
