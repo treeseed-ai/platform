@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Component tests cover weighted allocation, repeated planning, task sizing, productive deadlines, and durable provider accounting. API `ee965b62` passes 27 focused tests including PostgreSQL timeout/admission/publication races; Agent `47aefb5` preserves failed/returned execution usage. Live supply is `codex-research` (Sol/Medium, 7,200 daily seconds) and `codex-implementation` (Terra/Medium, 28,800), sharing the Codex harness. No golden lifecycle has passed (Platform #520).
+- SDK allocation contracts are merged to staging. API component/PostgreSQL gates and the Agent full suite pass; a real SDK workday completed all eight first-cycle planning turns with measured usage and two clock checks, then generated a second cycle. Selected proposals now automatically generate ordinary estimating turns after planning contributions; that integrated replacement is not yet accepted. Live supply remains research (Sol/Medium, 7,200 daily seconds) and implementation (Terra/Medium, 28,800), sharing Codex. No golden lifecycle has passed (Platform #520).
 
 ### Current active blocker
 
-- No external blocker is active. Timeout settlement and UTC-bound deadline custody pass component/PostgreSQL gates; live weighted concurrent entitlement, phase-boundary cancellation, daily/restart accounting, and genuine golden workday settlement/teardown remain unproven (Platform #520).
+- No external blocker is active. The next gate is automatic genuine estimate generation on the default workday path; full Actor/Reviewer completion, live weighted concurrent entitlement, phase-boundary cancellation, daily/restart accounting, and final settlement remain unproven (Platform #520).
 
 ### Next acceptance milestone
 

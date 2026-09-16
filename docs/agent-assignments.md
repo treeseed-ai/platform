@@ -436,7 +436,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The SDK draft has eight source-grounded discussion responses. Authorized role-specific acceptance criteria are refrozen and published as proposal revision 3; no complete golden lifecycle has passed. Evidence remains in Platform #520.
+- SDK proposal revision 4 preserves the role-specific requirements and removes operator-authored estimate triples through governed TreeDX publication. The allocation prerequisite owns current execution evidence (`agent-architecture.md`); no complete golden lifecycle has passed. Evidence remains in Platform #520.
 
 ### Current active blocker
 

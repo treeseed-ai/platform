@@ -96,6 +96,8 @@ For this local campaign, configure `codex-research` with Sol/Medium and a 7,200-
 
 Admission must explain weighted workday entitlement, the planning pool, project/class opportunity, scoped calibration measurements, viable task minimum, limiting constraint, active-duration reservation and hard deadline. Agent-authored estimate triples and rationale remain unchanged content authority. With no eligible history, acting starts from the maximum estimate subject to real supply/provider ceilings; later allocations use measured calibration. Insufficient viable capacity defers a node without changing its dependencies. At the phase boundary unused planning entitlement becomes acting/review capacity.
 
+Selecting a governed proposal must automatically generate estimating turns for its work owners and Reviewer through the ordinary graph, after planning contributions. Do not require an operator activity override to obtain genuine estimates. Without a selected proposal, autonomous planning remains valid and no subjectless estimating work is generated.
+
 ### Local Git custody
 
 For each project and run, the provider creates a disposable checkout from the campaign's exact upstream base and a local bare simulation repository:
@@ -225,7 +227,7 @@ Reconciliation generates one Reviewer node for each row. Generated Reviewer node
 
 ### Reporter selection
 
-Each workday has exactly one closeout Reporter and one `Workday.reportRef`. Individual project runs use that project's Reporter. The SDK/API joint run uses `sdk/reporter`; the all-project run uses `platform/reporter`. The applied workday plan records this selection before activation. Other participating Reporter agents still perform chat and both planning rounds, but reconciliation must not create duplicate project reports or a second summary layer.
+Each workday has exactly one closeout Reporter and one `Workday.reportRef`. Individual project runs use that project's Reporter. The SDK/API joint run uses `sdk/reporter`; the all-project run uses `platform/reporter`. The applied workday plan records this selection before activation. Other participating Reporter agents still perform chat and repeated planning cycles, but reconciliation must not create duplicate project reports or a second summary layer.
 
 ## Project golden proposals
 
@@ -696,7 +698,7 @@ A project passes only when all checks below are evidenced from authoritative rec
 
 ### Workday, capacity, and cleanup
 
-- [ ] Both planning rounds are terminal and list their exact assignment IDs.
+- [ ] All admitted planning turns are terminal and list their exact assignment IDs; at least two complete collaborative cycles are proven.
 - [ ] Admitted seconds by project and agent class are populated and agree with reservations/results.
 - [ ] Assignment elapsed usage agrees with timestamps within an explained tolerance; visibly elapsed work is not stored as zero.
 - [ ] Every attempt has exactly one UsageSettlement, including failed controlled attempts.
