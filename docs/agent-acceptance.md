@@ -745,7 +745,7 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 1 | allocation refreeze pending | Platform #520 | Role-specific criteria remain; resolved allocation policy and actual capability/model supply must be frozen after integrated enforcement passes. |
-| SDK | workday-b924a482-351e-4dc2-a84a-57156a6535ca | 3 | allocation campaign in progress | Platform #520 | Canonical parent-workday chat and allocator-driven planning are running; prerequisite failures remain diagnostics, and no complete golden lifecycle has passed. |
+| SDK | workday-88d82018-99f8-47ed-9dbf-fd06d3559a04 | 4 | allocation campaign in progress | Platform #520 | Retrying the unchanged proposal on the repaired live runtime; eight canonical chat targets and allocator-driven planning admitted. No complete golden lifecycle has passed. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
