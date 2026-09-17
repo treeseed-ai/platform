@@ -745,7 +745,7 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 1 | allocation refreeze pending | Platform #520 | Role-specific criteria remain; resolved allocation policy and actual capability/model supply must be frozen after integrated enforcement passes. |
-| SDK | workday-b91907f8-9053-4c63-991c-3005022f504e | 8 | stopped before simulation handoff; golden not passed | Platform #520; API #377 | Eight first-cycle planning contributions/chat responses and seven genuine estimates. Two collaborative cycles, safe ready-proposal handoff and the full lifecycle remain unproven. |
+| SDK | workday-a9d5af6f-962f-4651-8eb7-5ebd90756716 | 10 | stopped at ready-content discovery; golden not passed | Platform #520; API #377; Deployment #747; TreeDX #63 | Two materially collaborative planning cycles, two genuine estimating rounds and eight durable chat responses; one guest termination required chat retry. Simulation ready authoring succeeded. Existing TreeDX Unicode repair is now live; generated review/decision and full lifecycle require replay. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

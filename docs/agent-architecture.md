@@ -546,11 +546,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. Managed planning/estimating results prove nonzero native usage and both required clock checks; integrated golden and concurrent-sharing gates remain unproven (Platform #520).
+- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. All eight SDK agents completed two planning cycles; each second-cycle result materially cites all eight prior contributions and passes both clock checks with nonzero native usage. Two genuine seven-agent estimating rounds and eight durable chat responses are proven; integrated golden and concurrent-sharing gates remain unproven (Platform #520).
 
 ### Current active blocker
 
-- No user-action blocker exists. The current required-path integration repair is owned by `agent-assignments.md`; component tests do not satisfy the integrated acceptance boundary.
+- The remaining end-to-end frontier is owned by `agent-assignments.md`; component tests and collaborative planning alone do not satisfy its integrated acceptance boundary.
 
 ### Next acceptance milestone
 
