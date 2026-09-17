@@ -546,7 +546,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. Native research/implementation limits and live clock/usage evidence are recorded in Platform #520; integrated golden and concurrent-sharing gates remain unproven.
+- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. Managed planning/estimating results prove nonzero native usage and both required clock checks; integrated golden and concurrent-sharing gates remain unproven (Platform #520).
 
 ### Current active blocker
 

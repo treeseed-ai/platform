@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK proposal revision 4 retains the fixed role requirements without operator-authored estimates. The latest diagnostic replay produced all eight first-cycle planning contributions and chat responses; two collaborative cycles, the complete estimate set and the golden lifecycle remain unproven. Allocation evidence is owned by `agent-architecture.md` (Platform #520).
+- SDK proposal revision 4 retains fixed role requirements without operator-authored estimates. Managed read-back proves eight first-cycle planning contributions, eight chat responses and seven genuine estimating results; two collaborative cycles and the golden lifecycle remain unproven. Allocation evidence is owned by `agent-architecture.md` (Platform #520).
 
 ### Current active blocker
 
-- Estimating completion schemas failed harness validation. Agent #141's supported scalar-only repair awaits managed estimate acceptance; no user-action blocker exists (Platform #520).
+- Simulation proposal handoff requires workday-scoped custody rather than the publication branch. API #377 repairs the existing writer; managed handoff acceptance remains required. No user-action blocker exists (Platform #520).
 
 ### Next acceptance milestone
 
