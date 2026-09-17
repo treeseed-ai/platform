@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- SDK/API allocation and bounded Reporter closeout are merged to staging. API's PostgreSQL-backed full local suite passes (1,050 tests); Agent strict typecheck and 142 tests pass. Live accounting returns active time and input/cached/output/reasoning tokens; a stopped workday closes through Reporter. Research and implementation limits remain 7,200 and 28,800 daily seconds. No golden lifecycle has passed; exact evidence is in Platform #520.
+- SDK/API allocation, single-path executor cleanup, graph operational-state fencing and bounded Reporter closeout are merged to staging. API's PostgreSQL-backed full local suite passes (1,051 tests); Agent strict typecheck and 142 tests pass. Live accounting returns active time and input/cached/output/reasoning tokens. Research and implementation limits remain 7,200 and 28,800 daily seconds. No golden lifecycle has passed; exact evidence is in Platform #520.
 
 ### Current active blocker
 
-- No external blocker is active. Contradictory estimator instructions changed foreign estimates; the strict ownership guard rejected them. The prompt and productive-clock teardown boundary are repaired and tested; live rerun, concurrent sharing, phase cancellation and recovery/rollover acceptance remain pending (Platform #520).
+- No external blocker is active. The repaired estimator, productive-clock and graph-state boundaries require the unchanged live SDK rerun; concurrent sharing, phase cancellation, recovery/rollover and remaining retired allocation-profile cleanup are not yet accepted (Platform #520).
 
 ### Next acceptance milestone
 
