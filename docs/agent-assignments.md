@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Estimate generation was rejected before model execution because fixed output constraints lacked explicit schema types. Agent #140 repairs the schema with strict-shape regressions; managed replay remains required. No user-action blocker exists (Platform #520).
+- Estimating completion schemas failed harness validation. Agent #141's supported scalar-only repair awaits managed estimate acceptance; no user-action blocker exists (Platform #520).
 
 ### Next acceptance milestone
 
