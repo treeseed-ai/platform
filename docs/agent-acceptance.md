@@ -72,6 +72,8 @@ The campaign manifest is test configuration, not a new control-plane resource. O
 
 Freeze the resolved workday policy and actual provider offer/configuration alongside the campaign. Single-project runs use the following allocation inputs; joint SDK/API runs use `projectPercentages: {sdk: 50, api: 50}` with the same class percentages in each project. Portfolio runs use equal normalized project shares.
 
+Use the team's canonical `default` policy (`--profile default`). Freeze its revision and the resolved workday snapshot. Update team defaults through version-checked `workdays profiles update default --input <policy-file>`; explicit workday allocation overrides do not change that policy or existing assignments. Repository allocation profiles, tiers, borrowing, and fixed assignment budgets are not campaign inputs.
+
 ```yaml
 allocation:
   planningPercent: 20

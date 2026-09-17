@@ -1510,14 +1510,12 @@ $defs:
     additionalProperties: false
 
   WorkdayPolicy:
-    # Small durable policy. No allocation tiers, reserve pools, or borrow rules.
+    # The team's single default policy, stored with team metadata and snapshotted by workdays.
     type: object
-    required: [schemaVersion, id, teamId, revision, policy, active]
+    required: [id, teamId, revision, policy]
     properties:
-      schemaVersion:
-        const: treeseed.workday-policy/v1
       id:
-        $ref: "#/$defs/Identifier"
+        const: default
       teamId:
         $ref: "#/$defs/Identifier"
       revision:
@@ -1525,8 +1523,6 @@ $defs:
         minimum: 1
       policy:
         $ref: "#/$defs/WorkdayPolicyFields"
-      active:
-        type: boolean
     additionalProperties: false
 
   ProviderOffer:
