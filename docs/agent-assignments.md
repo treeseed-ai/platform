@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK proposal revision 4 retains fixed role requirements without operator-authored estimates. Managed read-back proves eight first-cycle planning contributions, eight chat responses and seven genuine estimating results; two collaborative cycles and the golden lifecycle remain unproven. Allocation evidence is owned by `agent-architecture.md` (Platform #520).
+- The unchanged SDK proposal retains fixed role requirements without operator-authored estimates. Managed simulation authoring produced an exact ready version on its workday ref; generated proposal review, accepted decision and the golden lifecycle remain unproven. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
 
 ### Current active blocker
 
-- Simulation proposal handoff requires workday-scoped custody rather than the publication branch. API #377 repairs the existing writer; managed handoff acceptance remains required. No user-action blocker exists (Platform #520).
+- No active implementation or user-action blocker is currently known after activating the existing TreeDX Unicode repair. The unchanged proposal is reset for managed replay; exact ready-content discovery and generated proposal review remain acceptance gaps (Platform #520).
 
 ### Next acceptance milestone
 
