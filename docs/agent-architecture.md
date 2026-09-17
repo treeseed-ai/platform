@@ -544,15 +544,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- SDK's canonical team policy and allocation contracts are merged to staging. API's replacement removes repository profiles and retired lease authority; its PostgreSQL-backed local suite passes, including concurrent policy replacement and preserved metadata. No golden lifecycle has passed; exact refs, counts and live accounting evidence belong in Platform #520.
+- Canonical team policy, graph-only admission, truthful terminal accounting and managed migration are integrated on staging; API, runner and provider are live. The unchanged SDK golden workday is exercising percentage-derived allocation. No golden lifecycle has passed; exact refs and evidence belong in Platform #520.
 
 ### Current active blocker
 
-- No external blocker is active. API contract integration and managed activation precede the unchanged SDK rerun; concurrent sharing, phase cancellation and recovery/rollover remain unaccepted (Platform #520).
+- No external blocker is active. Repeated collaborative planning, provider enforcement, concurrent sharing and recovery/rollover still require integrated acceptance (Platform #520).
 
 ### Next acceptance milestone
 
-- Prove allocator-derived planning and acting budgets, provider enforcement, settlement, and concurrent workday sharing locally; then resume the lifecycle in `agent-assignments.md`.
+- Complete the unchanged SDK lifecycle owned by `agent-assignments.md`, then API and concurrent simulation; verify allocation explanations, measured settlement and clean teardown throughout.
 
 ## Completion
 
