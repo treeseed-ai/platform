@@ -548,7 +548,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- The current golden run stopped on missing mandatory clock calls; direct MCP presentation is under managed verification. No external/user-action blocker is active (Platform #520).
+- No active external blocker exists. Mandatory clock awareness passes on the live Kata guest; complete golden lifecycles, repeated collaboration and concurrent sharing remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
