@@ -544,11 +544,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, graph-only admission, truthful terminal accounting and managed migration are integrated on staging; API, runner and provider are live. The unchanged SDK golden workday is exercising percentage-derived allocation. No golden lifecycle has passed; exact refs and evidence belong in Platform #520.
+- Canonical team policy, graph-only admission, truthful terminal accounting and managed migration are integrated on staging; API, runner and provider are live. Role-owned estimating outputs are proven, but no complete golden lifecycle has passed. Exact refs and evidence belong in Platform #520.
 
 ### Current active blocker
 
-- No external blocker is active. Repeated collaborative planning, provider enforcement, concurrent sharing and recovery/rollover still require integrated acceptance (Platform #520).
+- The current golden run stopped on missing mandatory clock calls; direct MCP presentation is under managed verification. No external/user-action blocker is active (Platform #520).
 
 ### Next acceptance milestone
 

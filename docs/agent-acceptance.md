@@ -562,13 +562,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [x] Freeze the campaign manifest and exact proposal bytes.
+- [ ] Refreeze the campaign manifest and exact proposal bytes against the integrated allocation runtime; the prior campaign predates capability accounting acceptance.
 - [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
 - [x] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work.
-- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state.
+- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the allocation-refrozen campaign; prior baselines do not prove the current run's non-mutation boundary.
 
 ### Stage 1 — SDK alone
 
