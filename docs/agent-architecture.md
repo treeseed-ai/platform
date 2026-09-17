@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- API #378 repairs readiness accounting that omitted shared proposal graph nodes and therefore assigned zero capacity to eligible review work. The PostgreSQL-compatible regression and 23 focused tests pass locally; required Actions and managed replay remain pending. The end-to-end frontier remains owned by `agent-assignments.md`.
+- No active implementation or user-action blocker is known. API #379 merged the shared-graph readiness repair with a PostgreSQL-compatible regression, 23 passing focused tests and green required Actions; API and runner are live. Fresh integrated replay remains required, with its end-to-end frontier owned by `agent-assignments.md` (Platform #520).
 
 ### Next acceptance milestone
 
