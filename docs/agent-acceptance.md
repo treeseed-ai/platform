@@ -745,7 +745,7 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 1 | allocation refreeze pending | Platform #520 | Role-specific criteria remain; resolved allocation policy and actual capability/model supply must be frozen after integrated enforcement passes. |
-| SDK | workday-88d82018-99f8-47ed-9dbf-fd06d3559a04 | 4 | stopped diagnostic attempt; golden not passed | Platform #520 | Drain settled cleanly; acting Writer content and remaining allocation contracts must be integrated before refreezing the unchanged proposal. |
+| SDK | workday-4704cd25-4a95-4cf3-9790-6ba22791403f | 5 | stopped diagnostic attempt; golden not passed | Platform #520 | Eight planning contributions, eight chat responses and four estimates; stopped before acting to repair exact TreeDX candidate review. Two cycles and the full lifecycle remain unproven. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

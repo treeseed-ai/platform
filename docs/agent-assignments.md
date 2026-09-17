@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK proposal revision 4 preserves the role-specific requirements and removes operator-authored estimate triples through governed TreeDX publication. Addressed communication now retains exact parent-run/invocation provenance without superseding or settling unrelated workdays. Allocation execution evidence belongs in `agent-architecture.md`; no complete golden lifecycle has passed (Platform #520).
+- SDK proposal revision 4 retains the fixed role requirements without operator-authored estimates. One diagnostic run produced eight planning contributions, eight chat responses and four genuine estimating outputs; it does not prove repeated collaboration or a complete golden lifecycle. Allocation evidence is owned by `agent-architecture.md` (Platform #520).
 
 ### Current active blocker
 
-- Golden execution is paused until the integrated allocation prerequisite in `agent-architecture.md` is proven; manually prescribed assignment budgets are not acceptance evidence.
+- No user-action blocker exists. Exact TreeDX actor-candidate custody and Reviewer binding component tests pass; repeated collaboration and the integrated Actor/Reviewer revision cycle remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
-- After allocation acceptance, refreeze allocation rules rather than estimate triples and prove the unchanged SDK proposal → Actor → Reviewer → revision → re-review → approval path.
+- Prove the unchanged SDK proposal, using real allocation and genuine estimates, through accepted decision → generated Actor → generated Reviewer → request-changes revision → re-review → approval; this same path is the allocation acceptance gate, not a subsequent campaign.
 
 ## Completion
 
