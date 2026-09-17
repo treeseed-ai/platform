@@ -546,11 +546,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, graph-only admission, terminal accounting and managed migration are integrated on staging; governed acting Writer outputs are repaired. Recurring-intent migration, explicit custody selection and allocation explanations are under integration. No complete golden lifecycle has passed; exact refs and evidence belong in Platform #520.
+- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. Native research/implementation limits and live clock/usage evidence are recorded in Platform #520; integrated golden and concurrent-sharing gates remain unproven.
 
 ### Current active blocker
 
-- No active external blocker exists. Mandatory clock awareness passes on the live Kata guest; complete golden lifecycles, repeated collaboration and concurrent sharing remain unproven (Platform #520).
+- No user-action blocker exists. The current required-path integration repair is owned by `agent-assignments.md`; component tests do not satisfy the integrated acceptance boundary.
 
 ### Next acceptance milestone
 
