@@ -353,6 +353,8 @@ agentClassPercentages:
 
 Do not add allocation sets, minimum/target/maximum tiers, priority bands, borrow rules, a generic reserve, or separate capacity-plan and demand records.
 
+Manual and recurring workdays use one high-level intent and the same preflight/start admission path. Intent selects simulation or production custody; the resolved Workday remains the sole execution-mode authority. Recurrence retains canonical intent and existing receipts, not separate time tiers or manually supplied capacity. Allocation receipts expose weighted supply opportunities and the SDK selector's project/class deficits.
+
 ### Planning phase
 
 Planning uses the first `planningPercent` of wall-clock duration and allocated capacity. Repeated short turns follow activity dependencies, give eligible agents equal turn ceilings, and load previous contributions through TreeDX. Class/project percentages govern opportunity frequency. Planning requires no existing proposal and admits no implementation, deployment, or release. Estimates are authored during planning; proposals may originate in any authorized activity. At the phase boundary, stop unfinished planning turns and release unused capacity to acting/review.
@@ -544,7 +546,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, graph-only admission, terminal accounting and managed migration are integrated on staging. Parent-workday communication uses canonical send and frozen chat profiles; tool-relay failure containment and failed-report drain are repaired. Role-owned estimating outputs are proven, but no complete golden lifecycle has passed; exact refs and evidence belong in Platform #520.
+- Canonical team policy, graph-only admission, terminal accounting and managed migration are integrated on staging; governed acting Writer outputs are repaired. Recurring-intent migration, explicit custody selection and allocation explanations are under integration. No complete golden lifecycle has passed; exact refs and evidence belong in Platform #520.
 
 ### Current active blocker
 
