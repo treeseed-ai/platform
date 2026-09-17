@@ -59,6 +59,7 @@ oneOf:
   - $ref: "#/$defs/Project"
   - $ref: "#/$defs/AgentRegistration"
   - $ref: "#/$defs/WorkdayPolicy"
+  - $ref: "#/$defs/WorkdaySchedule"
   - $ref: "#/$defs/ProviderOffer"
   - $ref: "#/$defs/ProviderState"
   - $ref: "#/$defs/Workday"
@@ -1507,6 +1508,72 @@ $defs:
         $ref: "#/$defs/ExactEntityReference"
       active:
         type: boolean
+    additionalProperties: false
+
+  WorkdayIntent:
+    # Manual and recurring workdays use this one high-level input; resolved Workday owns mode and policy.
+    type: object
+    required: [schemaVersion, teamId, profileId, projects, startsAt]
+    properties:
+      schemaVersion: {const: treeseed.workday-intent/v1}
+      teamId: {$ref: "#/$defs/Identifier"}
+      profileId: {$ref: "#/$defs/Identifier"}
+      projects:
+        oneOf:
+          - {const: all}
+          - {type: array, minItems: 1, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
+      executionMode: {enum: [simulation, production], default: simulation}
+      startsAt: {$ref: "#/$defs/Timestamp"}
+      endsAt: {$ref: "#/$defs/Timestamp"}
+      durationSeconds: {$ref: "#/$defs/PositiveSeconds"}
+      planningOnly: {type: boolean}
+      objectiveFilters: {type: array, items: {$ref: "#/$defs/Identifier"}}
+      proposalIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
+      decisionIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
+      allocation:
+        type: object
+        properties:
+          planningPercent: {$ref: "#/$defs/WorkdayPolicyFields/properties/planningPercent"}
+          allocationWeight: {$ref: "#/$defs/WorkdayPolicyFields/properties/allocationWeight"}
+          planningTurnMaximumSeconds: {$ref: "#/$defs/WorkdayPolicyFields/properties/planningTurnMaximumSeconds"}
+          projectPercentages: {$ref: "#/$defs/WorkdayPolicyFields/properties/projectPercentages"}
+          agentClassPercentages: {$ref: "#/$defs/WorkdayPolicyFields/properties/agentClassPercentages"}
+        additionalProperties: false
+      agentSelection:
+        type: object
+        anyOf: [{required: [agentSlugs]}, {required: [activityTypes]}, {required: [classIds]}, {required: [classSlugs]}]
+        properties:
+          agentSlugs: {type: array, minItems: 1, items: {$ref: "#/$defs/Identifier"}}
+          activityTypes: {type: array, minItems: 1, items: {enum: [planning, estimating, reviewing, reporting, chat]}}
+          classIds: {type: array, minItems: 1, items: {$ref: "#/$defs/Identifier"}}
+          classSlugs: {type: array, minItems: 1, items: {$ref: "#/$defs/Identifier"}}
+          mode: {const: intersection}
+        additionalProperties: false
+      operatorConstraints:
+        type: object
+        properties:
+          providerIds: {type: array, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
+          maxConcurrency: {type: integer, minimum: 1}
+        additionalProperties: false
+    not: {required: [endsAt, durationSeconds]}
+    additionalProperties: false
+
+  WorkdaySchedule:
+    # A recurrence stores canonical intent, never an alternate allocator or a manual reservation budget.
+    type: object
+    required: [id, teamId, status, purpose, cadenceSeconds, intent, lastRunId, nextRunAt, stateVersion, createdAt, updatedAt]
+    properties:
+      id: {$ref: "#/$defs/Identifier"}
+      teamId: {$ref: "#/$defs/Identifier"}
+      status: {enum: [active, paused, completed, failed]}
+      purpose: {type: string}
+      cadenceSeconds: {type: integer, minimum: 60}
+      intent: {$ref: "#/$defs/WorkdayIntent"}
+      lastRunId: {type: [string, "null"]}
+      nextRunAt: {$ref: "#/$defs/Timestamp"}
+      stateVersion: {type: integer, minimum: 1}
+      createdAt: {$ref: "#/$defs/Timestamp"}
+      updatedAt: {$ref: "#/$defs/Timestamp"}
     additionalProperties: false
 
   WorkdayPolicy:
