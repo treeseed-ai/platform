@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The unchanged SDK proposal retains fixed role requirements without operator-authored estimates. Managed simulation authoring produced an exact ready version on its workday ref; generated proposal review, accepted decision and the golden lifecycle remain unproven. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
+- The unchanged SDK proposal retains fixed role requirements without operator-authored estimates. Normal simulation authoring now generates an independent proposal Reviewer with exact source provenance; review completion, accepted decision and the golden lifecycle remain unproven. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
 
 ### Current active blocker
 
-- No active implementation or user-action blocker is currently known after activating the existing TreeDX Unicode repair. The unchanged proposal is reset for managed replay; exact ready-content discovery and generated proposal review remain acceptance gaps (Platform #520).
+- Review admission is blocked by the allocation readiness defect owned by `agent-architecture.md` and API #378; no user action is required.
 
 ### Next acceptance milestone
 
