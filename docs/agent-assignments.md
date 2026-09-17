@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Exact TreeDX actor-candidate custody and Reviewer binding repairs must be integrated and installed before the next run; regression tests reproduce the missing context and incorrect proposal binding (Platform #520).
+- No user-action blocker exists. Exact TreeDX actor-candidate custody and Reviewer binding component tests pass; repeated collaboration and the integrated Actor/Reviewer revision cycle remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
