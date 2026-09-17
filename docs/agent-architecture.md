@@ -544,7 +544,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, graph-only admission, truthful terminal accounting and managed migration are integrated on staging. Parent-workday communication validates the existing frozen agent profiles, including selected chat activity. Role-owned estimating outputs are proven, but no complete golden lifecycle has passed; exact refs and evidence belong in Platform #520.
+- Canonical team policy, graph-only admission, truthful terminal accounting and managed migration are integrated on staging. Parent-workday communication uses canonical send, API-resolved proposal context and the existing frozen chat profiles. Role-owned estimating outputs are proven, but no complete golden lifecycle has passed; exact refs and evidence belong in Platform #520.
 
 ### Current active blocker
 
