@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Review admission is blocked by the allocation readiness defect owned by `agent-architecture.md` and API #378; no user action is required.
+- No active implementation or user-action blocker is known after the readiness repair; managed review admission still requires the fresh replay owned by `agent-architecture.md` (Platform #520).
 
 ### Next acceptance milestone
 
