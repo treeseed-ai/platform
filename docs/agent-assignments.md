@@ -436,7 +436,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK proposal revision 4 preserves the role-specific requirements and removes operator-authored estimate triples through governed TreeDX publication. The allocation prerequisite owns current execution evidence (`agent-architecture.md`); no complete golden lifecycle has passed. Evidence remains in Platform #520.
+- SDK proposal revision 4 preserves the role-specific requirements and removes operator-authored estimate triples through governed TreeDX publication. Addressed communication now retains exact parent-run/invocation provenance without superseding or settling unrelated workdays. Allocation execution evidence belongs in `agent-architecture.md`; no complete golden lifecycle has passed (Platform #520).
 
 ### Current active blocker
 
