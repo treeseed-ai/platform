@@ -562,13 +562,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [ ] Refreeze the campaign manifest and exact proposal bytes against the integrated allocation runtime; the prior campaign predates capability accounting acceptance.
+- [x] Refreeze the campaign manifest and exact proposal bytes against the integrated allocation runtime. The SDK draft retains its original digest without estimates; current authoritative revision and managed builds are recorded in the allocation campaign snapshot (Platform #520).
 - [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
 - [x] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work.
-- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the allocation-refrozen campaign; prior baselines do not prove the current run's non-mutation boundary.
+- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the allocation-refrozen campaign: all 35 GitHub repositories, all 17 project registry/deployment declarations, and all 30 public Docker Hub repositories with 4,205 tag/digest observations (Platform #520).
 
 ### Stage 1 — SDK alone
 
@@ -745,7 +745,7 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 1 | allocation refreeze pending | Platform #520 | Role-specific criteria remain; resolved allocation policy and actual capability/model supply must be frozen after integrated enforcement passes. |
-| SDK | workday-a9d5af6f-962f-4651-8eb7-5ebd90756716 | 10 | stopped at ready-content discovery; golden not passed | Platform #520; API #377; Deployment #747; TreeDX #63 | Two materially collaborative planning cycles, two genuine estimating rounds and eight durable chat responses; one guest termination required chat retry. Simulation ready authoring succeeded. Existing TreeDX Unicode repair is now live; generated review/decision and full lifecycle require replay. |
+| SDK | workday-fbb617ba-5a7f-461c-878f-df4c9d2da9eb | 11 | drained at shared review admission; golden not passed | Platform #520; API #378 / PR #379 | Genuine estimates produced an exact ready proposal and generated independent Reviewer. Accounting omitted shared graph readiness; repair and fresh managed replay are required. All pre/post upstream inventories match. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
