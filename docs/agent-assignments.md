@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK proposal revision 4 retains the fixed role requirements without operator-authored estimates. One diagnostic run produced eight planning contributions, eight chat responses and four genuine estimating outputs; it does not prove repeated collaboration or a complete golden lifecycle. Allocation evidence is owned by `agent-architecture.md` (Platform #520).
+- SDK proposal revision 4 retains the fixed role requirements without operator-authored estimates. The latest diagnostic replay produced all eight first-cycle planning contributions and chat responses; two collaborative cycles, the complete estimate set and the golden lifecycle remain unproven. Allocation evidence is owned by `agent-architecture.md` (Platform #520).
 
 ### Current active blocker
 
-- No user-action blocker exists. Exact TreeDX actor-candidate custody and Reviewer binding component tests pass; repeated collaboration and the integrated Actor/Reviewer revision cycle remain unproven (Platform #520).
+- Estimate generation was rejected before model execution because fixed output constraints lacked explicit schema types. Agent #140 repairs the schema with strict-shape regressions; managed replay remains required. No user-action blocker exists (Platform #520).
 
 ### Next acceptance milestone
 
