@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No active implementation or user-action blocker is known. API #379 merged the shared-graph readiness repair with a PostgreSQL-compatible regression, 23 passing focused tests and green required Actions; API and runner are live. Fresh integrated replay remains required, with its end-to-end frontier owned by `agent-assignments.md` (Platform #520).
+- Fresh integrated replay is blocked by an intentional host shutdown on 2026-09-17: manager API, supervisor, timers, sandbox broker, edge and encrypted provider volume were stopped, and development-resume units were stopped. API #379 and the standalone-chat project-scope repair in API #380 are merged with passing checks, but managed activation and the golden lifecycle have not been retested; confirm the shutdown may be reversed before restarting the stack (Platform #520).
 
 ### Next acceptance milestone
 
