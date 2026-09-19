@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- No active implementation or user-action blocker is known after the readiness repair; managed review admission still requires the fresh replay owned by `agent-architecture.md` (Platform #520).
+- Fresh managed replay is paused by the host shutdown recorded in `agent-architecture.md`; no review, decision, actor or paired-reviewer acceptance is claimed (Platform #520).
 
 ### Next acceptance milestone
 
