@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Fresh managed replay is paused by the host shutdown recorded in `agent-architecture.md`; no review, decision, actor or paired-reviewer acceptance is claimed (Platform #520).
+- The prior host-shutdown blocker is resolved (see `agent-architecture.md`). The fresh campaign freeze and unchanged SDK proposal review/decision/actor path remain unproven; do not count the earlier reduced proposal or drained workday as acceptance (Platform #520).
 
 ### Next acceptance milestone
 
