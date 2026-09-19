@@ -507,10 +507,10 @@ trsd agents handlers list --json
 trsd agents handlers show <handler-id> --json
 trsd agents profiles validate <profile-ref> --json
 trsd agents profiles show <profile-ref> --json
-trsd capacity workday plan --team <team> --json
-trsd capacity workday start --team <team> --json
-trsd capacity workday status <workday-id> --json
-trsd capacity workday stop <workday-id> --json
+trsd workdays plan --team <team> --profile default --json
+trsd workdays start --team <team> --preflight <id> --digest <digest> --yes --json
+trsd workdays show <workday-id> --team <team> --json
+trsd workdays stop <workday-id> --team <team> --json
 trsd capacity explain --team <team> --json
 ```
 
@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Fresh integrated replay is blocked by an intentional host shutdown on 2026-09-17: manager API, supervisor, timers, sandbox broker, edge and encrypted provider volume were stopped, and development-resume units were stopped. API #379 and the standalone-chat project-scope repair in API #380 are merged with passing checks, but managed activation and the golden lifecycle have not been retested; confirm the shutdown may be reversed before restarting the stack (Platform #520).
+- No host-shutdown blocker remains: installed rc.320/Platform generation 266 passed managed stop/start acceptance; manager, provider, sandbox, and API were healthy on 2026-09-19. The current CLI session and exact Stage 0 runtime/provider/proposal freeze must be revalidated before the unchanged SDK golden replay. No golden lifecycle has passed (Platform #520).
 
 ### Next acceptance milestone
 

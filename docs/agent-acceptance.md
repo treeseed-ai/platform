@@ -70,7 +70,32 @@ The campaign manifest is test configuration, not a new control-plane resource. O
 
 ### High-level allocation inputs
 
-Freeze the resolved workday policy and actual provider offer/configuration alongside the campaign. Single-project runs use the following allocation inputs; joint SDK/API runs use `projectPercentages: {sdk: 50, api: 50}` with the same class percentages in each project. Portfolio runs use equal normalized project shares.
+Freeze the resolved workday policy and actual provider offer/configuration alongside the campaign. The campaign manifest must contain one fully expanded, schema-validated workday input for **every** individual project, the SDK/API joint run, the portfolio run, and each controlled failure rerun. The table below is the authoring rule; submit canonical seeded project IDs and agent-class IDs, and retain the exact submitted input and resolved policy snapshot with each run. A table entry is not permission to omit fields from a submitted input.
+
+| Run | Selected projects and `projectPercentages` | `agentClassPercentages` |
+|---|---|---|
+| SDK | `sdk: 100` | SDK: eight classes at `12.5` each |
+| API | `api: 100` | API: eight classes at `12.5` each |
+| Agent | `agent: 100` | Agent: eight classes at `12.5` each |
+| TreeDX | `treedx: 100` | TreeDX: eight classes at `12.5` each |
+| CLI | `cli: 100` | CLI: eight classes at `12.5` each |
+| Deployment | `deployment: 100` | Deployment: eight classes at `12.5` each |
+| Identity | `identity: 100` | Identity: eight classes at `12.5` each |
+| UI | `ui: 100` | UI: eight classes at `12.5` each |
+| Core | `core: 100` | Core: eight classes at `12.5` each |
+| Admin | `admin: 100` | Admin: eight classes at `12.5` each |
+| Reviewer | `reviewer: 100` | Reviewer: eight classes at `12.5` each |
+| Engineering Template | `template-engineering: 100` | Engineering Template: eight classes at `12.5` each |
+| Research Template | `template-research: 100` | Research Template: eight classes at `12.5` each |
+| Market | `market: 100` | Market: eight classes at `12.5` each |
+| Market API | `market-api: 100` | Market API: eight classes at `12.5` each |
+| Skill | `skill: 100` | Skill: eight classes at `12.5` each |
+| Platform | `platform: 100` | Platform: eight classes at `12.5` each |
+| SDK + API | `sdk: 50, api: 50` | Both projects: eight classes at `12.5` each |
+| All-project portfolio | All 17 seeded projects, each with equal positive weight `1`; the allocator normalizes to `100/17` percent per project | Every project: eight classes at `12.5` each |
+| Controlled failure | Reuse the exact accepted run's selection and allocation snapshot | Reuse the exact accepted run's class targets; only the specified injected fault changes |
+
+The eight classes are `architect`, `researcher`, `tester`, `engineer`, `technical-writer`, `releaser`, `reviewer`, and `reporter`. Every submitted input must also record `executionMode: simulation`, `profileId: default`, the profile revision, `durationSeconds`, `maximumConcurrency`, `communicationConcurrency`, `planningPercent: 20`, `allocationWeight: 1`, `planningTurnMaximumSeconds: 180`, the selected proposal/decision IDs, the provider offer revision, capability/model daily caps, reservations, and remaining supply read-back. Start individual and joint runs from the current `durationSeconds: 28800`, `maximumConcurrency: 1`, `communicationConcurrency: 1` default unless a read-only preflight proves the run cannot fit. Version-check any required policy update and freeze the resulting revision before starting. Expand all class and project mappings into the manifest; do not infer missing mappings from this Markdown table at execution time.
 
 Use the team's canonical `default` policy (`--profile default`). Freeze its revision and the resolved workday snapshot. Update team defaults through version-checked `workdays profiles update default --input <policy-file>`; explicit workday allocation overrides do not change that policy or existing assignments. Repository allocation profiles, tiers, borrowing, and fixed assignment budgets are not campaign inputs.
 
@@ -92,9 +117,11 @@ allocation:
       reporter: 12.5
 ```
 
-Resolve project and class keys to their canonical seeded identities before submission. Project/class percentages are redistributable opportunity targets, not per-assignment durations. Provider-owned capability caps, shared execution-provider/model caps, assignment bounds, remaining usage and reservations must be read back and frozen; a simulation consumes the same real supply as other workdays. Duration and concurrency remain explicit workday inputs. Never insert reservations directly or supply hand-authored assignment allocations.
+Resolve project and class keys to their canonical seeded identities before submission. Project/class percentages are redistributable opportunity targets, not per-assignment durations. Each assignment read-back must identify its workday-policy snapshot, genuine estimate and rationale, allocator-selected active duration and deadline, limiting constraint, reservation, measured usage, and settlement. Provider-owned capability caps, shared execution-provider/model caps, assignment bounds, remaining usage and reservations must be read back and frozen; a simulation consumes the same real supply as other workdays. Duration and concurrency remain explicit workday inputs. Never insert reservations directly or supply hand-authored assignment allocations.
 
 For this local campaign, configure `codex-research` with Sol/Medium and a 7,200-active-second daily cap, and `codex-implementation` with Terra/Medium and a 28,800-active-second daily cap. These are installation inputs, not universal release defaults. Both reuse the Codex harness; capability identity remains independent of the execution-provider ID so other providers can supply the same capability. Freeze actual model and capability limits from provider read-back before running the campaign.
+
+For the all-project portfolio run only, calculate required planning, acting, bounded review, and Reporter supply from the individually accepted genuine estimates. If the normal caps cannot support that work inside the eight-hour window at actual safe concurrency, raise test capability/model caps through versioned provider configuration, preflight again, and freeze the exact temporary offer. Never lower a viable assignment minimum or exceed host/model limits to force admission. Restore and verify the ordinary caps after settlement. If the host cannot supply a viable plan, do not start the portfolio workday; report the exact shortfall.
 
 Admission must explain weighted workday entitlement, the planning pool, project/class opportunity, scoped calibration measurements, viable task minimum, limiting constraint, active-duration reservation and hard deadline. Agent-authored estimate triples and rationale remain unchanged content authority. With no eligible history, acting starts from the maximum estimate subject to real supply/provider ceilings; later allocations use measured calibration. Insufficient viable capacity defers a node without changing its dependencies. At the phase boundary unused planning entitlement becomes acting/review capacity.
 
@@ -562,13 +589,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [x] Refreeze the campaign manifest and exact proposal bytes against the integrated allocation runtime. The SDK draft retains its original digest without estimates; current authoritative revision and managed builds are recorded in the allocation campaign snapshot (Platform #520).
+- [ ] Refreeze the campaign manifest and exact proposal bytes against the **current** integrated runtime. The prior SDK draft and allocation snapshot are retained as historical evidence, but the current manifest reports `formalStage0Accepted: false`; refresh exact builds, provider offer, policy, and proposal refs before the next golden run (Platform #520).
 - [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
 - [x] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work.
-- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the allocation-refrozen campaign: all 35 GitHub repositories, all 17 project registry/deployment declarations, and all 30 public Docker Hub repositories with 4,205 tag/digest observations (Platform #520).
+- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the **current** campaign. The prior 35-repository, 17-project, 30-Docker-Hub inventory remains historical evidence; it must be refreshed or proven unchanged at the new freeze (Platform #520).
 
 ### Stage 1 — SDK alone
 
@@ -744,7 +771,7 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 1 | allocation refreeze pending | Platform #520 | Role-specific criteria remain; resolved allocation policy and actual capability/model supply must be frozen after integrated enforcement passes. |
+| Preflight | — | 1 | current freeze pending | Platform #520 | Prior component checks remain evidence, not a formal Stage 0 pass. Refresh the runtime, provider offer, policy, proposal refs, and external inventory; validate expanded inputs for every run. |
 | SDK | workday-fbb617ba-5a7f-461c-878f-df4c9d2da9eb | 11 | drained at shared review admission; golden not passed | Platform #520; API #378 / PR #379 | Genuine estimates produced an exact ready proposal and generated independent Reviewer. Accounting omitted shared graph readiness; repair and fresh managed replay are required. All pre/post upstream inventories match. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
