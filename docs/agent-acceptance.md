@@ -771,8 +771,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 4 | retry-4 Stage 0 freeze recorded | Platform #520; manifest `sha256:e41074b3ed881a73bb79261f7704f91f8fe3cff4cddf6cc1050137b0a711ac5f` | Exact refs and external baseline recorded after API #389 merged to staging; no runtime source change is permitted during the run. |
-| SDK | workday-9dd43fef-5c84-4071-8a51-8078e16aec45 | 19 | retry-4 running; golden not passed | Platform #520; API #388/#390, PR #389 | Eight-agent chat posted before voting from the post-merge freeze. Durable responses, estimates, decision, acting/review, settlement, and teardown remain unproven. |
+| Preflight | — | 4 | retry-4 freeze spent; next freeze pending | Platform #520; manifest `sha256:e41074b3ed881a73bb79261f7704f91f8fe3cff4cddf6cc1050137b0a711ac5f` | Exact refs were valid for retry-4. Agent #148 changes the runtime; capture new refs and digest before another run. |
+| SDK | workday-9dd43fef-5c84-4071-8a51-8078e16aec45 | 19 | retry-4 stopped; golden not passed | Platform #520; Agent #148 / PR #149 | Eight chat replies and eight first-cycle planning turns completed. First Architect estimator failed a required predecessor citation; no accepted decision or acting result. Refreeze after the bounded Agent repair. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
