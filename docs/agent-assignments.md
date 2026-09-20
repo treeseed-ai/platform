@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The prior SDK retry reached governed proposal v8, an independent Reviewer disposition, exact accepted decision, and twelve projected Actor/Reviewer nodes, but was stopped before acting acceptance. Retry-3 retains the six fixed work items and has posted the required eight-role Discussion before voting. No complete golden lifecycle has passed (Platform #520). Allocation and provider evidence belong in `agent-architecture.md`.
+- Retry-2 reached governed proposal v8, an independent Reviewer disposition, exact accepted decision, and twelve projected Actor/Reviewer nodes, but stopped before acting acceptance. Retry-3 proved workday-bound Discussion authoring, then stopped because a live API repair invalidated its freeze. Retry-4 preserves the six fixed work items and has a fresh Stage 0 freeze. No complete golden lifecycle has passed (Platform #520). Allocation and provider evidence belong in `agent-architecture.md`.
 
 ### Current active blocker
 
-- No active content-authority blocker remains. Eight addressed chat invocations are running; their responses and the retry-3 governed estimates are not yet complete (Platform #520).
+- No active content-authority blocker remains. Retry-4 is running from the fresh Stage 0 freeze; the eight-role chat is posted before voting, while durable responses and estimates remain outstanding (Platform #520).
 
 ### Next acceptance milestone
 
-- Verify eight durable chat responses and genuine estimates before decision, then prove generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in the same workday.
+- Verify eight durable chat responses and genuine estimates before decision in retry-4, then prove generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in the same workday.
 
 ## Completion
 

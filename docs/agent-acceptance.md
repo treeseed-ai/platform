@@ -771,8 +771,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 3 | current retry-3 freeze recorded | Platform #520; manifest `sha256:6b812ab853af8c565b8e590281b5ace17346ae4bd3b04d3ccaa5e0795a0b0f2c` | Exact refs and external baseline recorded for the current SDK retry; later source changes require a new freeze before any fresh run. |
-| SDK | workday-cee24b4d-3122-4b5f-b067-672aa5491759 | 18 | retry-3 running; golden not passed | Platform #520; API #388/#390, PR #389 | Eight-role chat posted before voting; durable responses, governed estimates, accepted decision, acting/review cycle, settlement, and teardown remain unproven. |
+| Preflight | — | 4 | retry-4 Stage 0 freeze recorded | Platform #520; manifest `sha256:e41074b3ed881a73bb79261f7704f91f8fe3cff4cddf6cc1050137b0a711ac5f` | Exact refs and external baseline recorded after API #389 merged to staging; no runtime source change is permitted during the run. |
+| SDK | workday-9dd43fef-5c84-4071-8a51-8078e16aec45 | 19 | retry-4 running; golden not passed | Platform #520; API #388/#390, PR #389 | Eight-agent chat posted before voting from the post-merge freeze. Durable responses, estimates, decision, acting/review, settlement, and teardown remain unproven. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

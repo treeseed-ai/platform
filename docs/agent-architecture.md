@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical policy, graph-only admission, explicit workday mode, allocation explanations, and terminal accounting remain active in development mode. The prior SDK retry completed eight first-cycle planning turns and seven genuine estimators; retry-3 is running the eight-role chat probe before decision. The managed Codex Kata guest reads back a 4 GiB limit without a repeated exit 137 (Platform #520).
+- Canonical policy, graph-only admission, explicit workday mode, allocation explanations, and terminal accounting remain active in development mode. Retry-2 completed eight first-cycle planning turns and seven genuine estimators; retry-3 proved the workday-bound chat path but was stopped after a mid-run API repair invalidated its freeze. A fresh retry-4 Stage 0 freeze is recorded. The managed Codex Kata guest reads back a 4 GiB limit without a repeated exit 137 (Platform #520).
 
 ### Current active blocker
 
-- No current provider or runtime outage is known. Retry-3 has not yet proved completed second planning cycle, acting, paired review, settlement, or clean teardown (Platform #520).
+- No current provider or runtime outage is known. Retry-3 is terminal and retry-4 is running with the ordinary capability supply. No SDK run has proved acting, paired review, settlement, or clean teardown (Platform #520).
 
 ### Next acceptance milestone
 
-- Verify retry-3 planning, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; then proceed to API and concurrent simulation.
+- Verify retry-4 planning, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; then proceed to API and concurrent simulation.
 
 ## Completion
 
