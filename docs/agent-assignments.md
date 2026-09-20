@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Retry-2 reached governed proposal v8, an independent Reviewer disposition, exact accepted decision, and twelve projected Actor/Reviewer nodes, but stopped before acting acceptance. Retry-3 proved workday-bound Discussion authoring. Retry-4 proved eight chat replies and first-cycle planning, but failed in estimation; its freeze is invalid after the Agent repair. No complete golden lifecycle has passed (Platform #520). Allocation and provider evidence belong in `agent-architecture.md`.
+- Retry-2 reached governed proposal v8, an independent Reviewer disposition, exact accepted decision, and twelve projected Actor/Reviewer nodes, but stopped before acting acceptance. Retry-4 proved eight chat replies and first-cycle planning, but failed in estimation. Retry-5 is running from a fresh post-repair freeze with the same six fixed work items. No complete golden lifecycle has passed (Platform #520). Allocation and provider evidence belong in `agent-architecture.md`.
 
 ### Current active blocker
 
-- Retry-4 returned all eight role-specific chat replies, but the first Architect estimator failed a required predecessor citation before any proposal update. Agent #148 / PR #149 owns this result defect; no content-authority failure is known (Platform #520).
+- Agent #148 / PR #149 repaired the bounded estimator prompt without weakening citation validation. Retry-5 has not yet proved eight replies, genuine estimates, or decision readiness (Platform #520).
 
 ### Next acceptance milestone
 
-- After the Agent repair and fresh freeze, verify eight durable chat replies and seven genuine estimates before decision, then prove generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one workday.
+- Verify eight durable chat replies and seven genuine estimates in retry-5 before decision, then prove generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one workday.
 
 ## Completion
 

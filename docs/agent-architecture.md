@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical policy, graph-only admission, explicit workday mode, allocation explanations, and terminal accounting remain active in development mode. Retry-4 proved eight chat replies and eight planning turns under the post-API-merge freeze, then failed the first estimator's strict predecessor check. The managed Codex Kata guest reads back a 4 GiB limit without a repeated exit 137 (Platform #520).
+- Canonical policy, graph-only admission, explicit workday mode, allocation explanations, and terminal accounting remain active in development mode. Retry-4 proved eight chat replies and eight planning turns, then failed the first estimator's strict predecessor check. The bounded Agent prompt repair is merged; retry-5 runs against a new guest-image digest. The managed Codex Kata guest reads back a 4 GiB limit without a repeated exit 137 (Platform #520).
 
 ### Current active blocker
 
-- No provider outage or memory error is known. Retry-4's Architect estimating completion omitted one of eight required predecessor citations and failed in the guest; Agent #148 / PR #149 is under development rebuild. No SDK run has proved acting, paired review, settlement, or clean teardown (Platform #520).
+- No provider outage or memory error is known. Retry-5 has not yet proved predecessor synthesis, acting, paired review, settlement, or clean teardown (Platform #520).
 
 ### Next acceptance milestone
 
-- Re-freeze after the Agent repair and verify planning, complete predecessor synthesis, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; then proceed to API and concurrent simulation.
+- Verify retry-5 planning, complete predecessor synthesis, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; then proceed to API and concurrent simulation.
 
 ## Completion
 
