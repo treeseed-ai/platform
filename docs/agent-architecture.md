@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No active environment blocker. The local provider, broker, and live API are healthy; the prior Stage 0 freeze is stale after the SDK library and API development changes. No golden lifecycle has passed (Platform #520).
+- The current Stage 0 campaign is refrozen and the local provider, broker, and live API are healthy. The first SDK retry stopped on an invalid Engineer planning completion; Agent #144 / PR #145 are under local sandbox acceptance. No golden lifecycle has passed (Platform #520).
 
 ### Next acceptance milestone
 

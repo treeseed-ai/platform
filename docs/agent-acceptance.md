@@ -589,13 +589,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [ ] Refreeze the campaign manifest and exact proposal bytes against the **current** integrated runtime. The previous freeze is historical evidence; API development source and the SDK library staging ref changed after the failed SDK workday (Platform #520).
+- [x] Refreeze the campaign manifest and exact proposal bytes against the current integrated runtime. The SDK retry retains all six fixed work-item objectives, dependencies, criteria, and permissions; 17 proposals, 136 agent profiles, and 25 real CLI allocation inputs validate. Current manifest digest: `sha256:808592936f8f01d59c2380e0cb200781aa5e44aaed9b84922563f274acd7662d` (Platform #520).
 - [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
-- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. The accepted SDK proposal is immutable and no scoped retry/reset has been proven after a failed simulation workday.
-- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the **current** campaign. The prior baseline is historical evidence; refresh it after establishing a safe retry state (Platform #520).
+- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. The scoped retry preserved the accepted prior proposal, but the new SDK workday failed during planning; the complete reset/teardown and acceptance watch remain unproven.
+- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the current campaign. Baseline digest: `sha256:1fb914e10e49756a734dce8699ef6531665e528fa719dd582ba02673c2994b8c` across 35 repositories, 17 registry inventories, 30 Docker Hub repositories, and managed deployment state (Platform #520).
 
 ### Stage 1 — SDK alone
 

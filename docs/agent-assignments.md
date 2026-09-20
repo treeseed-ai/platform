@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The unchanged SDK proposal retains fixed role requirements without operator-authored estimates. Normal simulation authoring now generates an independent proposal Reviewer with exact source provenance; review completion, accepted decision and the golden lifecycle remain unproven. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
+- The SDK diagnostic completed genuine estimation, independent proposal review, and an accepted exact decision, but failed before acting admission. The scoped retry preserves the original accepted proposal and all six fixed work items; no golden lifecycle has passed. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
 
 ### Current active blocker
 
-- No active environment blocker. The SDK diagnostic produced an accepted exact proposal revision, but the workday failed before acting admission; safe retry from the frozen draft and the Actor–Reviewer cycle remain unproven (Platform #520).
+- The first retry workday stopped after an Engineer planning completion falsely reported chained source inspection as passing verification. Agent #144 / PR #145 constrain non-acting verification at generation and runtime; the patched sandbox is under a fresh local rerun. API #385 tracks the separate failed-create orphan-content defect (Platform #520).
 
 ### Next acceptance milestone
 
