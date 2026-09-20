@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No host-shutdown blocker remains: installed rc.320/Platform generation 266 passed managed stop/start acceptance; manager, provider, sandbox, and API were healthy on 2026-09-19. The current CLI session and exact Stage 0 runtime/provider/proposal freeze must be revalidated before the unchanged SDK golden replay. No golden lifecycle has passed (Platform #520).
+- No active environment blocker. The local provider, broker, and live API are healthy; the prior Stage 0 freeze is stale after the SDK library and API development changes. No golden lifecycle has passed (Platform #520).
 
 ### Next acceptance milestone
 

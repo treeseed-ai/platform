@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- The prior host-shutdown blocker is resolved (see `agent-architecture.md`). The fresh campaign freeze and unchanged SDK proposal review/decision/actor path remain unproven; do not count the earlier reduced proposal or drained workday as acceptance (Platform #520).
+- No active environment blocker. The SDK diagnostic produced an accepted exact proposal revision, but the workday failed before acting admission; safe retry from the frozen draft and the Actor–Reviewer cycle remain unproven (Platform #520).
 
 ### Next acceptance milestone
 

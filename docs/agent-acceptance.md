@@ -589,13 +589,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [ ] Refreeze the campaign manifest and exact proposal bytes against the **current** integrated runtime. The prior SDK draft and allocation snapshot are retained as historical evidence, but the current manifest reports `formalStage0Accepted: false`; refresh exact builds, provider offer, policy, and proposal refs before the next golden run (Platform #520).
+- [ ] Refreeze the campaign manifest and exact proposal bytes against the **current** integrated runtime. The previous freeze is historical evidence; API development source and the SDK library staging ref changed after the failed SDK workday (Platform #520).
 - [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
-- [x] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work.
-- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the **current** campaign. The prior 35-repository, 17-project, 30-Docker-Hub inventory remains historical evidence; it must be refreshed or proven unchanged at the new freeze (Platform #520).
+- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. The accepted SDK proposal is immutable and no scoped retry/reset has been proven after a failed simulation workday.
+- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the **current** campaign. The prior baseline is historical evidence; refresh it after establishing a safe retry state (Platform #520).
 
 ### Stage 1 — SDK alone
 
@@ -771,8 +771,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 1 | current freeze pending | Platform #520 | Prior component checks remain evidence, not a formal Stage 0 pass. Refresh the runtime, provider offer, policy, proposal refs, and external inventory; validate expanded inputs for every run. |
-| SDK | workday-fbb617ba-5a7f-461c-878f-df4c9d2da9eb | 11 | drained at shared review admission; golden not passed | Platform #520; API #378 / PR #379 | Genuine estimates produced an exact ready proposal and generated independent Reviewer. Accounting omitted shared graph readiness; repair and fresh managed replay are required. All pre/post upstream inventories match. |
+| Preflight | — | 2 | prior freeze invalidated; current freeze pending | Platform #520 | SDK library staging and API development source changed after the diagnostic run; recapture exact refs and external baseline before retry. |
+| SDK | workday-4e7d6e11-4fa9-4823-86de-09bfc14c3a6a | 15 | failed/ended; golden not passed | Platform #520; API #383 / PR #384 | Eight planning turns, seven genuine estimates, and one independent Reviewer accepted proposal v13; acting graph permission check failed. Current repair is in development mode. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
