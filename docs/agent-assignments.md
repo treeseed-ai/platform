@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Retry-2 reached governed proposal v8, an independent Reviewer disposition, exact accepted decision, and twelve projected Actor/Reviewer nodes, but stopped before acting acceptance. Retry-4 proved eight chat replies and first-cycle planning, but failed in estimation. Retry-5 is running from a fresh post-repair freeze with the same six fixed work items. No complete golden lifecycle has passed (Platform #520). Allocation and provider evidence belong in `agent-architecture.md`.
+- The SDK golden has not passed. Retry-5 proved eight durable role-specific chat replies and eight first-cycle planning assignments. Its first genuine estimate could not enter proposal governance because proposal publication collided with the workday discussion branch; API #391 / PR #392 repaired branch custody. Retry-6 retained the six fixed work items but stopped after its first planning guest exited 137 (Platform #520).
 
 ### Current active blocker
 
-- Agent #148 / PR #149 repaired the bounded estimator prompt without weakening citation validation. Retry-5 has not yet proved eight replies, genuine estimates, or decision readiness (Platform #520).
+- The retry-6 sandbox kill must be classified before another frozen replay. Live read-back of seven estimates entering one governed proposal remains unproven (Platform #520).
 
 ### Next acceptance milestone
 
-- Verify eight durable chat replies and seven genuine estimates in retry-5 before decision, then prove generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one workday.
+- Refreeze after classifying the sandbox kill, then prove seven genuine estimates, accepted decision, generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one SDK workday.
 
 ## Completion
 

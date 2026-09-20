@@ -772,7 +772,9 @@ The agent running this campaign must update only this section's checkboxes and t
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
 | Preflight | — | 5 | retry-5 Stage 0 freeze recorded | Platform #520; manifest `sha256:94528ef8cf501317d9761c4258fae8e21138cc9d0e62bf17ccfc46e491cdc08d` | Exact refs, external state, allocation inputs, and managed guest image were recaptured after Agent #149 merged. |
-| SDK | workday-0a888dd7-aaec-4203-af58-7319d9bf9d06 | 20 | retry-5 running; golden not passed | Platform #520; Agent #148 / PR #149 | Pre-vote eight-role chat is posted; durable replies, genuine estimates, decision, acting/review, settlement, and teardown remain unproven. |
+| SDK | workday-0a888dd7-aaec-4203-af58-7319d9bf9d06 | 20 | retry-5 stopped; golden not passed | Platform #520; API #391 / PR #392 | Eight durable chat replies and eight first-cycle planning assignments passed. The first genuine estimate was committed but not reconciled into the proposal because the workday discussion branch and proposal source had different heads. API branch custody is repaired; retry-6 is being refrozen. |
+| Preflight | — | 6 | retry-6 Stage 0 freeze recorded | Platform #520; manifest `sha256:ca1cbc5f2aceaf430e99826fe895d02ecf9c2549462d36f7b5086d950adbf3ad` | 17 proposals, 136 agents, 25 allocation inputs, exact refs, managed guest image, and external baseline were validated. |
+| SDK | workday-94762fad-18e5-4b02-93e0-96bc78533278 | 20 | retry-6 stopped; golden not passed | Platform #520; API PR #392 | Fresh estimate-free proposal and workday started from the frozen campaign; first planning Kata guest exited 137 after about 75 seconds. Classification is pending; no genuine estimate or decision was accepted. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
