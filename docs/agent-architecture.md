@@ -550,11 +550,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Retry-6 first planning guest exited 137 about 75 seconds into a 180-second turn. Host RAM was available; guest OOM versus lease/source-deadline kill is not yet established. Provider execution, accounting, and clean teardown through the complete SDK golden path remain unproven (Platform #520).
+- Retry-6 first planning guest exited 137 about 75 seconds into a 180-second turn. Host RAM was available; guest OOM versus broker authority kill remains unproven. Deployment #774 / PR #775 now reports the broker termination reason and is active in development mode. Retry-7 first Architect and Engineer planning assignments completed; this does not prove the full lifecycle (Platform #520).
 
 ### Next acceptance milestone
 
-- Classify the guest kill, then refreeze and verify provider execution, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle before API and concurrent simulation.
+- Verify retry-7 provider execution, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; classify any repeated guest kill before API and concurrent simulation.
 
 ## Completion
 

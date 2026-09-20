@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The SDK golden has not passed. Retry-5 proved eight durable role-specific chat replies and eight first-cycle planning assignments. Its first genuine estimate could not enter proposal governance because proposal publication collided with the workday discussion branch; API #391 / PR #392 repaired branch custody. Retry-6 retained the six fixed work items but stopped after its first planning guest exited 137 (Platform #520).
+- The SDK golden has not passed. Retry-5 proved eight chat replies and eight first-cycle planning assignments but its first genuine estimate could not enter proposal governance; API #391 / PR #392 repaired proposal branch custody. Retry-6 stopped after its first planning guest exited 137. Retry-7 retains the six fixed work items and is running from a new Stage 0 freeze (Platform #520).
 
 ### Current active blocker
 
-- The retry-6 sandbox kill must be classified before another frozen replay. Live read-back of seven estimates entering one governed proposal remains unproven (Platform #520).
+- No assignment-path blocker is currently known; seven genuine estimates entering one governed proposal remain unproven. Retry-6 sandbox termination classification belongs in `agent-architecture.md` (Platform #520).
 
 ### Next acceptance milestone
 
-- Refreeze after classifying the sandbox kill, then prove seven genuine estimates, accepted decision, generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one SDK workday.
+- Complete retry-7 pre-vote discussion and seven genuine estimates, then prove accepted decision, generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one SDK workday.
 
 ## Completion
 
