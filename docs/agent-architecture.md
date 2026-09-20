@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. All eight SDK agents completed two planning cycles; each second-cycle result materially cites all eight prior contributions and passes both clock checks with nonzero native usage. Two genuine seven-agent estimating rounds and eight durable chat responses are proven; integrated golden and concurrent-sharing gates remain unproven (Platform #520).
+- Canonical policy, graph-only admission, explicit workday mode, allocation explanations, and terminal accounting remain active in development mode. The prior SDK retry completed eight first-cycle planning turns and seven genuine estimators; retry-3 is running the eight-role chat probe before decision. The managed Codex Kata guest reads back a 4 GiB limit without a repeated exit 137 (Platform #520).
 
 ### Current active blocker
 
-- The current Stage 0 campaign is refrozen and the local provider, broker, and live API are healthy. The first SDK retry stopped on an invalid Engineer planning completion; Agent #144 / PR #145 are under local sandbox acceptance. No golden lifecycle has passed (Platform #520).
+- No current provider or runtime outage is known. Retry-3 has not yet proved completed second planning cycle, acting, paired review, settlement, or clean teardown (Platform #520).
 
 ### Next acceptance milestone
 
-- Complete the unchanged SDK lifecycle owned by `agent-assignments.md`, then API and concurrent simulation; verify allocation explanations, measured settlement and clean teardown throughout.
+- Verify retry-3 planning, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; then proceed to API and concurrent simulation.
 
 ## Completion
 

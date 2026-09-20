@@ -771,8 +771,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 2 | prior freeze invalidated; current freeze pending | Platform #520 | SDK library staging and API development source changed after the diagnostic run; recapture exact refs and external baseline before retry. |
-| SDK | workday-4e7d6e11-4fa9-4823-86de-09bfc14c3a6a | 15 | failed/ended; golden not passed | Platform #520; API #383 / PR #384 | Eight planning turns, seven genuine estimates, and one independent Reviewer accepted proposal v13; acting graph permission check failed. Current repair is in development mode. |
+| Preflight | — | 3 | current retry-3 freeze recorded | Platform #520; manifest `sha256:6b812ab853af8c565b8e590281b5ace17346ae4bd3b04d3ccaa5e0795a0b0f2c` | Exact refs and external baseline recorded for the current SDK retry; later source changes require a new freeze before any fresh run. |
+| SDK | workday-cee24b4d-3122-4b5f-b067-672aa5491759 | 18 | retry-3 running; golden not passed | Platform #520; API #388/#390, PR #389 | Eight-role chat posted before voting; durable responses, governed estimates, accepted decision, acting/review cycle, settlement, and teardown remain unproven. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

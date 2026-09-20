@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The SDK diagnostic completed genuine estimation, independent proposal review, and an accepted exact decision, but failed before acting admission. The scoped retry preserves the original accepted proposal and all six fixed work items; no golden lifecycle has passed. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
+- The prior SDK retry reached governed proposal v8, an independent Reviewer disposition, exact accepted decision, and twelve projected Actor/Reviewer nodes, but was stopped before acting acceptance. Retry-3 retains the six fixed work items and has posted the required eight-role Discussion before voting. No complete golden lifecycle has passed (Platform #520). Allocation and provider evidence belong in `agent-architecture.md`.
 
 ### Current active blocker
 
-- The first retry workday stopped after an Engineer planning completion falsely reported chained source inspection as passing verification. Agent #144 / PR #145 constrain non-acting verification at generation and runtime; the patched sandbox is under a fresh local rerun. API #385 tracks the separate failed-create orphan-content defect (Platform #520).
+- No active content-authority blocker remains. Eight addressed chat invocations are running; their responses and the retry-3 governed estimates are not yet complete (Platform #520).
 
 ### Next acceptance milestone
 
-- Prove the unchanged SDK proposal, using real allocation and genuine estimates, through accepted decision → generated Actor → generated Reviewer → request-changes revision → re-review → approval; this same path is the allocation acceptance gate, not a subsequent campaign.
+- Verify eight durable chat responses and genuine estimates before decision, then prove generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in the same workday.
 
 ## Completion
 
