@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical team policy, recurring intent/preflight, graph-only admission, explicit workday mode, allocation explanations, terminal accounting and managed migration are integrated on staging. All eight SDK agents completed two planning cycles; each second-cycle result materially cites all eight prior contributions and passes both clock checks with nonzero native usage. Two genuine seven-agent estimating rounds and eight durable chat responses are proven; integrated golden and concurrent-sharing gates remain unproven (Platform #520).
+- One AgentKernel/handler path, capability accounting, workday admission, project-owned handler selection, exact Architect Book output, and fail-closed runtime boundaries have focused tests. SDK (340), API (1,100), and Agent (186) tests pass. This does not prove the full lifecycle (Platform #520).
 
 ### Current active blocker
 
-- No active environment blocker. The local provider, broker, and live API are healthy; the prior Stage 0 freeze is stale after the SDK library and API development changes. No golden lifecycle has passed (Platform #520).
+- No localized AgentKernel implementation blocker is active. Exhaustive structural schema verification and focused semantic tests pass; governed Architecture-book read-back belongs to the golden acceptance preflight.
 
 ### Next acceptance milestone
 
-- Complete the unchanged SDK lifecycle owned by `agent-assignments.md`, then API and concurrent simulation; verify allocation explanations, measured settlement and clean teardown throughout.
+- Verify provider execution, capacity accounting, and exact workspace enforcement in the unchanged SDK golden lifecycle.
 
 ## Completion
 

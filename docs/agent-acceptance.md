@@ -589,13 +589,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [ ] Refreeze the campaign manifest and exact proposal bytes against the **current** integrated runtime. The previous freeze is historical evidence; API development source and the SDK library staging ref changed after the failed SDK workday (Platform #520).
+- [x] Refreeze the campaign manifest and exact proposal bytes against the current integrated runtime. The SDK retry retains all six fixed work-item objectives, dependencies, criteria, and permissions; 17 proposals, 136 agent profiles, and 25 real CLI allocation inputs validate. Current manifest digest: `sha256:808592936f8f01d59c2380e0cb200781aa5e44aaed9b84922563f274acd7662d` (Platform #520).
 - [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
-- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. The accepted SDK proposal is immutable and no scoped retry/reset has been proven after a failed simulation workday.
-- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the **current** campaign. The prior baseline is historical evidence; refresh it after establishing a safe retry state (Platform #520).
+- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. The scoped retry preserved the accepted prior proposal, but the new SDK workday failed during planning; the complete reset/teardown and acceptance watch remain unproven.
+- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the current campaign. Baseline digest: `sha256:1fb914e10e49756a734dce8699ef6531665e528fa719dd582ba02673c2994b8c` across 35 repositories, 17 registry inventories, 30 Docker Hub repositories, and managed deployment state (Platform #520).
 
 ### Stage 1 — SDK alone
 
@@ -771,8 +771,12 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 2 | prior freeze invalidated; current freeze pending | Platform #520 | SDK library staging and API development source changed after the diagnostic run; recapture exact refs and external baseline before retry. |
-| SDK | workday-4e7d6e11-4fa9-4823-86de-09bfc14c3a6a | 15 | failed/ended; golden not passed | Platform #520; API #383 / PR #384 | Eight planning turns, seven genuine estimates, and one independent Reviewer accepted proposal v13; acting graph permission check failed. Current repair is in development mode. |
+| Preflight | — | 5 | retry-5 Stage 0 freeze recorded | Platform #520; manifest `sha256:94528ef8cf501317d9761c4258fae8e21138cc9d0e62bf17ccfc46e491cdc08d` | Exact refs, external state, allocation inputs, and managed guest image were recaptured after Agent #149 merged. |
+| SDK | workday-0a888dd7-aaec-4203-af58-7319d9bf9d06 | 20 | retry-5 stopped; golden not passed | Platform #520; API #391 / PR #392 | Eight durable chat replies and eight first-cycle planning assignments passed. The first genuine estimate was committed but not reconciled into the proposal because the workday discussion branch and proposal source had different heads. API branch custody is repaired; retry-6 is being refrozen. |
+| Preflight | — | 6 | retry-6 Stage 0 freeze recorded | Platform #520; manifest `sha256:ca1cbc5f2aceaf430e99826fe895d02ecf9c2549462d36f7b5086d950adbf3ad` | 17 proposals, 136 agents, 25 allocation inputs, exact refs, managed guest image, and external baseline were validated. |
+| SDK | workday-94762fad-18e5-4b02-93e0-96bc78533278 | 20 | retry-6 stopped; golden not passed | Platform #520; API PR #392 | Fresh estimate-free proposal and workday started from the frozen campaign; first planning Kata guest exited 137 after about 75 seconds. Classification is pending; no genuine estimate or decision was accepted. |
+| Preflight | — | 7 | retry-7 Stage 0 freeze recorded | Platform #520; manifest `sha256:38e724b352b02d94350cbadd6e73b9fe4b8e874ad4d4806558ef32caa75554a9` | Exact development host generation, refs, guest image, external state, 17 proposals, 136 agents, and 25 allocation inputs were validated. |
+| SDK | workday-5afbaf8d-43e9-452d-8291-04393cd7ae57 | 20 | retry-7 running; golden not passed | Platform #520; Deployment #774 / PR #775 | First Architect and Engineer planning assignments completed; the required eight-role pre-vote discussion is in progress. No estimate, decision, or acting/review acceptance yet. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

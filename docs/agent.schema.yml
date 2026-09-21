@@ -252,6 +252,20 @@ $defs:
           required: [url]
     additionalProperties: false
 
+  ExactWorkItemReference:
+    allOf:
+      - $ref: "#/$defs/ExactEntityReference"
+      - type: object
+        required: [store, model, id, revision, digest, repository, commit, path, anchor]
+        properties:
+          store:
+            const: treedx
+          model:
+            const: proposal
+          anchor:
+            type: string
+            pattern: "^work-item/[a-z0-9]+(?:-[a-z0-9]+)*$"
+
   GitReference:
     type: object
     required: [kind, repository, commit]
@@ -626,48 +640,172 @@ $defs:
 
   Book:
     # Architecture is represented by a conventional "<Project> Architecture" book.
+    # Pages pin its content revision and digest, avoiding a same-commit hash cycle.
+    # Pages are discovered by bookRef, not copied into a reverse page list.
     type: object
-    required: [schemaVersion, id, projectId, title, summary]
+    required: [schemaVersion, id, projectId, revision, slug, title, summary, status, visibility, order]
     properties:
       schemaVersion:
-        const: treeseed.book/v2
+        const: treeseed.book/v3
       id:
         $ref: "#/$defs/Identifier"
       projectId:
         $ref: "#/$defs/Identifier"
+      revision:
+        type: integer
+        minimum: 1
+      slug:
+        $ref: "#/$defs/Slug"
       title:
         $ref: "#/$defs/NonEmptyText"
       summary:
         $ref: "#/$defs/NonEmptyText"
-      pageRefs:
+      description:
+        $ref: "#/$defs/NonEmptyText"
+      status:
+        enum: [draft, review, published, archived]
+      visibility:
+        enum: [public, authenticated, team, project, admin]
+      order:
+        type: integer
+        minimum: 0
+      groupIds:
         type: array
-        uniqueItems: true
         items:
-          $ref: "#/$defs/ExactEntityReference"
+          $ref: "#/$defs/Identifier"
+      audience:
+        type: array
+        items:
+          $ref: "#/$defs/NonEmptyText"
+      relatedBookIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      packPolicy:
+        enum: [allowed, restricted, disabled]
+      editorialCoreNoteId:
+        $ref: "#/$defs/Identifier"
+      cover:
+        type: object
+        properties:
+          image:
+            $ref: "#/$defs/NonEmptyText"
+          alt:
+            $ref: "#/$defs/NonEmptyText"
+        additionalProperties: false
     additionalProperties: false
 
   Knowledge:
-    # Validated page content within a book, including architecture knowledge.
+    # Parsed Markdown document. `body` is its Markdown body, not a duplicated
+    # frontmatter field; `bookRef` pins the owning Book path, revision, and digest.
     type: object
-    required: [schemaVersion, id, projectId, bookRef, title, body]
+    required: [schemaVersion, id, projectId, bookRef, slug, title, body, status, visibility]
     properties:
       schemaVersion:
-        const: treeseed.knowledge-page/v1
+        const: treeseed.knowledge-page/v2
       id:
         $ref: "#/$defs/Identifier"
       projectId:
         $ref: "#/$defs/Identifier"
       bookRef:
         $ref: "#/$defs/ExactEntityReference"
+        # Semantic validation requires store=treedx, model=book, and a
+        # nonempty path, revision, and digest. The path is within this project.
+      slug:
+        $ref: "#/$defs/Slug"
       title:
+        $ref: "#/$defs/NonEmptyText"
+      description:
         $ref: "#/$defs/NonEmptyText"
       body:
         $ref: "#/$defs/NonEmptyText"
+      summary:
+        $ref: "#/$defs/NonEmptyText"
+      status:
+        enum: [draft, review, published, archived]
+      visibility:
+        enum: [public, authenticated, team, project, admin]
+      order:
+        type: integer
+        minimum: 0
       relatedRefs:
         type: array
         uniqueItems: true
         items:
           $ref: "#/$defs/ExactEntityReference"
+      parentId:
+        $ref: "#/$defs/Identifier"
+      groupIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      contributors:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedBookIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedKnowledgeIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedNoteIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedQuestionIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedObjectiveIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedProposalIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      relatedDecisionIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      guaranteeIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      audiences:
+        type: object
+        properties:
+          primary: { type: array, items: { $ref: "#/$defs/NonEmptyText" } }
+          secondary: { type: array, items: { $ref: "#/$defs/NonEmptyText" } }
+          excluded: { type: array, items: { $ref: "#/$defs/NonEmptyText" } }
+        additionalProperties: false
+      capabilityIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      routePatterns:
+        type: array
+        items:
+          $ref: "#/$defs/NonEmptyText"
+      resourceTypes:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      actionIds:
+        type: array
+        items:
+          $ref: "#/$defs/Identifier"
+      keywords:
+        type: array
+        items:
+          $ref: "#/$defs/NonEmptyText"
+      documentationUrls:
+        type: array
+        items:
+          $ref: "#/$defs/NonEmptyText"
     additionalProperties: false
 
   Objective:
@@ -697,7 +835,7 @@ $defs:
   Discussion:
     # Thread metadata only; messages are independently revisioned content.
     type: object
-    required: [schemaVersion, id, projectId, subjectRef, status, participantClasses]
+    required: [schemaVersion, id, projectId, subjectRef, status, participantClasses, title, teamId, createdAt]
     properties:
       schemaVersion:
         const: treeseed.discussion/v1
@@ -714,9 +852,20 @@ $defs:
         uniqueItems: true
         items:
           $ref: "#/$defs/AgentClass"
+      title: { $ref: "#/$defs/NonEmptyText" }
+      teamId: { $ref: "#/$defs/Identifier" }
+      createdAt: { $ref: "#/$defs/Timestamp" }
+      topic: { $ref: "#/$defs/NonEmptyText" }
+      visibility: { enum: [public, authenticated, team, project, admin] }
+      participantIds: { type: array, items: { $ref: "#/$defs/Identifier" } }
+      agentIds: { type: array, items: { $ref: "#/$defs/Identifier" } }
+      groupIds: { type: array, items: { $ref: "#/$defs/Identifier" } }
+      parentWorkdayId: { $ref: "#/$defs/Identifier" }
+      updatedAt: { $ref: "#/$defs/Timestamp" }
     additionalProperties: false
 
   DiscussionMessage:
+    # Parsed Markdown document: body is the Markdown body, not duplicated in frontmatter.
     type: object
     required: [schemaVersion, id, discussionRef, authorRef, body, createdAt]
     properties:
@@ -734,6 +883,21 @@ $defs:
         $ref: "#/$defs/ExactEntityReference"
       createdAt:
         $ref: "#/$defs/Timestamp"
+      title: { $ref: "#/$defs/NonEmptyText" }
+      discussionId: { $ref: "#/$defs/Identifier" }
+      authorId: { $ref: "#/$defs/Identifier" }
+      authorType: { enum: [user, agent, system] }
+      intent: { enum: [discuss, propose] }
+      mentionedAgents: { type: array, items: { $ref: "#/$defs/Identifier" } }
+      recipientIds: { type: array, items: { $ref: "#/$defs/Identifier" } }
+      fileRefs: { type: array, items: { type: object } }
+      contextRefs: { type: array, items: { type: object } }
+      inboxIntent: { enum: [comment, answer, reply] }
+      sourceMessageRefs: { type: array, uniqueItems: true, items: { $ref: "#/$defs/ExactEntityReference" } }
+      authorAgentId: { $ref: "#/$defs/Identifier" }
+      handoffId: { $ref: "#/$defs/Identifier" }
+      parentWorkdayId: { $ref: "#/$defs/Identifier" }
+      resultingOperationId: { $ref: "#/$defs/Identifier" }
     additionalProperties: false
 
   Proposal:
@@ -875,6 +1039,19 @@ $defs:
           $ref: "#/$defs/ExactEntityReference"
       body:
         $ref: "#/$defs/NonEmptyText"
+      links:
+        type: array
+        items:
+          type: object
+          required: [relation, from, to]
+          properties:
+            relation:
+              const: depends_on
+            from:
+              $ref: "#/$defs/ExactWorkItemReference"
+            to:
+              $ref: "#/$defs/ExactWorkItemReference"
+          additionalProperties: false
       createdAt:
         $ref: "#/$defs/Timestamp"
     allOf:
@@ -1400,6 +1577,22 @@ $defs:
         $ref: "#/$defs/NonNegativeSeconds"
     additionalProperties: false
 
+  AssignmentTimingAwarenessReceipt:
+    type: object
+    required: [schemaVersion, requiredChecks, completedChecks, firstTool,
+      firstToolSucceeded, lastTool, lastToolSucceeded, firstToolCompliant, finalToolCompliant]
+    properties:
+      schemaVersion: {const: treeseed.assignment-timing-awareness/v1}
+      requiredChecks: {const: 2}
+      completedChecks: {type: integer, minimum: 2}
+      firstTool: {const: 'treedx:treeseed_time_status'}
+      firstToolSucceeded: {const: true}
+      lastTool: {const: 'treedx:treeseed_time_status'}
+      lastToolSucceeded: {const: true}
+      firstToolCompliant: {const: true}
+      finalToolCompliant: {const: true}
+    additionalProperties: false
+
   Usage:
     # Attempt-local observed usage. Settlement is a separate exactly-once record.
     type: object
@@ -1738,8 +1931,6 @@ $defs:
         $ref: "#/$defs/Timestamp"
       endedAt:
         $ref: "#/$defs/Timestamp"
-      reportRef:
-        $ref: "#/$defs/ExactEntityReference"
     additionalProperties: false
 
   # ---------------------------------------------------------------------------
@@ -1944,7 +2135,7 @@ $defs:
       toNodeId:
         $ref: "#/$defs/Identifier"
       provenance:
-        enum: [profile-agent, profile-event, work-item, review-pair, governance]
+        enum: [profile-agent, profile-event, work-item, review-pair, governance, treedx-link]
       sourceRef:
         $ref: "#/$defs/ExactEntityReference"
       graphRevisionCreated:
@@ -2021,6 +2212,7 @@ $defs:
       - projectId
       - workdayId
       - nodeId
+      - agentClass
       - nodeRevision
       - graphRevision
       - sourceRef
@@ -2055,6 +2247,11 @@ $defs:
         $ref: "#/$defs/Identifier"
       nodeId:
         $ref: "#/$defs/Identifier"
+      workItemId:
+        $ref: "#/$defs/Identifier"
+      agentClass:
+        type: string
+        pattern: "^[a-z][a-z0-9-]*$"
       nodeRevision:
         type: integer
         minimum: 1
@@ -2090,6 +2287,11 @@ $defs:
         uniqueItems: true
         items:
           $ref: "#/$defs/Identifier"
+      acceptanceCriteria:
+        type: array
+        minItems: 1
+        items:
+          $ref: "#/$defs/NonEmptyText"
       workspace:
         $ref: "#/$defs/AssignmentWorkspace"
       estimate:
@@ -2256,6 +2458,8 @@ $defs:
         type: array
         items:
           $ref: "#/$defs/Diagnostic"
+      timingAwareness:
+        $ref: "#/$defs/AssignmentTimingAwarenessReceipt"
       completedAt:
         $ref: "#/$defs/Timestamp"
     additionalProperties: false

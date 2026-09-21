@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The unchanged SDK proposal retains fixed role requirements without operator-authored estimates. Normal simulation authoring now generates an independent proposal Reviewer with exact source provenance; review completion, accepted decision and the golden lifecycle remain unproven. Allocation and collaborative planning evidence are owned by `agent-architecture.md` (Platform #520).
+- Proposal, estimate, one-graph projection, exact TreeDX `depends_on` intake, endpoint-grant denial, and PostgreSQL admission/settlement have focused tests; TreeDX PR #65 merged to staging. The SDK golden has not passed (Platform #520).
 
 ### Current active blocker
 
-- No active environment blocker. The SDK diagnostic produced an accepted exact proposal revision, but the workday failed before acting admission; safe retry from the frozen draft and the Actor–Reviewer cycle remain unproven (Platform #520).
+- No localized living-graph implementation blocker is active: focused tests cover complete-draft review, exact question/authority/external/lifecycle conditions, deterministic dependency projection, transactional PostgreSQL admission, review-cycle recovery, and exactly-once settlement. Live lifecycle proof remains an acceptance task.
 
 ### Next acceptance milestone
 
-- Prove the unchanged SDK proposal, using real allocation and genuine estimates, through accepted decision → generated Actor → generated Reviewer → request-changes revision → re-review → approval; this same path is the allocation acceptance gate, not a subsequent campaign.
+- Run the unchanged SDK golden from discussion and genuine estimates through decision, Actor → Reviewer revision, approval, settlement, and cleanup.
 
 ## Completion
 
