@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Canonical policy, graph-only admission, explicit workday mode, allocation explanations, and terminal accounting remain active in development mode. Retry-5 proved eight first-cycle planning assignments with timing checks and TreeDX output. The managed Codex Kata guest reads back a 4 GiB limit without a repeated exit 137. This does not prove all profiles or the full lifecycle (Platform #520).
+- One AgentKernel/handler path, capability accounting, and workday admission have focused tests. Provider-global polling now uses persisted daily team usage and lease order; SDK (336), API (1,087), and Agent (185) tests and eight PostgreSQL suites pass. This does not prove the full lifecycle (Platform #520).
 
 ### Current active blocker
 
-- Retry-6 first planning guest exited 137 about 75 seconds into a 180-second turn. Host RAM was available; guest OOM versus broker authority kill remains unproven. Deployment #774 / PR #775 now reports the broker termination reason and is active in development mode. Retry-7 first Architect and Engineer planning assignments completed; this does not prove the full lifecycle (Platform #520).
+- The Architect's governed Architecture-book contract still needs TreeDX content verification; the local API currently returns HTTP 502, so library inspection is unavailable. Schema equivalence remains an implementation gap in `agent-gaps.md`.
 
 ### Next acceptance milestone
 
-- Verify retry-7 provider execution, capacity accounting, and exact workspace enforcement through the SDK golden lifecycle; classify any repeated guest kill before API and concurrent simulation.
+- Verify provider execution, capacity accounting, and exact workspace enforcement in the unchanged SDK golden lifecycle.
 
 ## Completion
 

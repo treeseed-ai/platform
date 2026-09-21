@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- The SDK golden has not passed. Retry-5 proved eight chat replies and eight first-cycle planning assignments but its first genuine estimate could not enter proposal governance; API #391 / PR #392 repaired proposal branch custody. Retry-6 stopped after its first planning guest exited 137. Retry-7 retains the six fixed work items and is running from a new Stage 0 freeze (Platform #520).
+- Proposal, estimate, one-graph projection, exact TreeDX `depends_on` intake, endpoint-grant denial, and PostgreSQL admission/settlement have focused tests; TreeDX PR #65 merged to staging. The SDK golden has not passed (Platform #520).
 
 ### Current active blocker
 
-- No assignment-path blocker is currently known; seven genuine estimates entering one governed proposal remain unproven. Retry-6 sandbox termination classification belongs in `agent-architecture.md` (Platform #520).
+- Planned graph conditions conflict with the current proposal lifecycle: drafts are excluded from the graph, while blockers must be cleared before readiness. Resolve that gate ownership before projecting question/authority conditions; see `agent-gaps.md`. Real TreeDX-to-API read-back remains unproven.
 
 ### Next acceptance milestone
 
-- Complete retry-7 pre-vote discussion and seven genuine estimates, then prove accepted decision, generated Actor → Reviewer → request-changes revision → re-review → approval, settlement, and cleanup in one SDK workday.
+- Run the unchanged SDK golden from discussion and genuine estimates through decision, Actor → Reviewer revision, approval, settlement, and cleanup.
 
 ## Completion
 
