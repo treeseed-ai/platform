@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Planned graph conditions conflict with the current proposal lifecycle: drafts are excluded from the graph, while blockers must be cleared before readiness. Resolve that gate ownership before projecting question/authority conditions; see `agent-gaps.md`. Real TreeDX-to-API read-back remains unproven.
+- Complete draft proposals now project a runnable Reviewer, exact-source feedback and decision conditions, and proposed work. Resolution read-back and draft-to-acting/reopening state transitions pass locally; remaining lifecycle/external conditions and PostgreSQL admission transition are in `agent-gaps.md`.
 
 ### Next acceptance milestone
 
