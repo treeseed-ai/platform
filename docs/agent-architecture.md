@@ -546,11 +546,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- One AgentKernel/handler path, capability accounting, and workday admission have focused tests. Provider-global polling now uses persisted daily team usage and lease order; SDK (336), API (1,087), and Agent (185) tests and eight PostgreSQL suites pass. This does not prove the full lifecycle (Platform #520).
+- One AgentKernel/handler path, capability accounting, workday admission, project-owned handler selection, exact Architect Book output, and fail-closed runtime boundaries have focused tests. SDK (340), API (1,100), and Agent (186) tests pass. This does not prove the full lifecycle (Platform #520).
 
 ### Current active blocker
 
-- The Architect's governed Architecture-book contract still needs TreeDX content verification; the local API currently returns HTTP 502, so library inspection is unavailable. Schema equivalence remains an implementation gap in `agent-gaps.md`.
+- No localized AgentKernel implementation blocker is active. Exhaustive structural schema verification and focused semantic tests pass; governed Architecture-book read-back belongs to the golden acceptance preflight.
 
 ### Next acceptance milestone
 

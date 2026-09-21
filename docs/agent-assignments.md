@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Complete draft proposals now project a runnable Reviewer, exact-source feedback and decision conditions, and proposed work. Resolution read-back and draft-to-acting/reopening state transitions pass locally; remaining lifecycle/external conditions and PostgreSQL admission transition are in `agent-gaps.md`.
+- No localized living-graph implementation blocker is active: focused tests cover complete-draft review, exact question/authority/external/lifecycle conditions, deterministic dependency projection, transactional PostgreSQL admission, review-cycle recovery, and exactly-once settlement. Live lifecycle proof remains an acceptance task.
 
 ### Next acceptance milestone
 

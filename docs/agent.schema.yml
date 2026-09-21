@@ -893,7 +893,7 @@ $defs:
       fileRefs: { type: array, items: { type: object } }
       contextRefs: { type: array, items: { type: object } }
       inboxIntent: { enum: [comment, answer, reply] }
-      sourceMessageRefs: { type: array, items: { $ref: "#/$defs/ExactEntityReference" } }
+      sourceMessageRefs: { type: array, uniqueItems: true, items: { $ref: "#/$defs/ExactEntityReference" } }
       authorAgentId: { $ref: "#/$defs/Identifier" }
       handoffId: { $ref: "#/$defs/Identifier" }
       parentWorkdayId: { $ref: "#/$defs/Identifier" }
