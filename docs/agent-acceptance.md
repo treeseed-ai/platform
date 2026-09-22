@@ -264,7 +264,7 @@ The source issue is evidence for choosing the work. The golden proposal below is
 
 ### 1. SDK — decision-governed workday intent
 
-- `id`: `golden-sdk-decision-governed-workday-intent`
+- `id`: `golden-sdk-decision-governed-workday-intent-v2` (the original ID was superseded before this freeze; objectives and topology are unchanged)
 - Source: `treeseed-ai/sdk#299`
 - Title: **Select accepted decisions in portable workday intent**
 - Request: Add normalized repeated accepted-decision identities to the public SDK workday intent and generated operation contract. Preserve them in normalization and preflight digests. They select authority but never contain or grant derived graph, assignment, source, role, estimate, or capacity state. Remove conflicting legacy workday-selection contracts without compatibility aliases.
@@ -771,12 +771,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 5 | retry-5 Stage 0 freeze recorded | Platform #520; manifest `sha256:94528ef8cf501317d9761c4258fae8e21138cc9d0e62bf17ccfc46e491cdc08d` | Exact refs, external state, allocation inputs, and managed guest image were recaptured after Agent #149 merged. |
-| SDK | workday-0a888dd7-aaec-4203-af58-7319d9bf9d06 | 20 | retry-5 stopped; golden not passed | Platform #520; API #391 / PR #392 | Eight durable chat replies and eight first-cycle planning assignments passed. The first genuine estimate was committed but not reconciled into the proposal because the workday discussion branch and proposal source had different heads. API branch custody is repaired; retry-6 is being refrozen. |
-| Preflight | — | 6 | retry-6 Stage 0 freeze recorded | Platform #520; manifest `sha256:ca1cbc5f2aceaf430e99826fe895d02ecf9c2549462d36f7b5086d950adbf3ad` | 17 proposals, 136 agents, 25 allocation inputs, exact refs, managed guest image, and external baseline were validated. |
-| SDK | workday-94762fad-18e5-4b02-93e0-96bc78533278 | 20 | retry-6 stopped; golden not passed | Platform #520; API PR #392 | Fresh estimate-free proposal and workday started from the frozen campaign; first planning Kata guest exited 137 after about 75 seconds. Classification is pending; no genuine estimate or decision was accepted. |
-| Preflight | — | 7 | retry-7 Stage 0 freeze recorded | Platform #520; manifest `sha256:38e724b352b02d94350cbadd6e73b9fe4b8e874ad4d4806558ef32caa75554a9` | Exact development host generation, refs, guest image, external state, 17 proposals, 136 agents, and 25 allocation inputs were validated. |
-| SDK | workday-5afbaf8d-43e9-452d-8291-04393cd7ae57 | 20 | retry-7 running; golden not passed | Platform #520; Deployment #774 / PR #775 | First Architect and Engineer planning assignments completed; the required eight-role pre-vote discussion is in progress. No estimate, decision, or acting/review acceptance yet. |
+| Preflight | — | 8 | Intermediate SDK gate passed; full Stage 0 freeze pending | Platform #520; local SDK freeze `sha256:d38055c31a2a690b0c90186875e1dc613a4d7adf7906ff590210bd891b572419` | SDK inputs and read-only CLI request validate; refresh the all-project campaign manifest and external-state inventory before creating a golden workday. |
+| SDK | — | 0 | canonical golden not started | Platform #520; proposal `golden-sdk-decision-governed-workday-intent-v2`; SDK library `65106c908bca127ea45d11b3f6b54905878d191c` | Intermediate fixture and role contracts pass, but real planning, estimates, review, acting, and settlement remain unproven. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |
