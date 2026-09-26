@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Proposal, estimate, one-graph projection, exact TreeDX dependency intake, admission/settlement, and decision-scoped predecessor custody have focused tests. SDK planning produced genuine estimates and an accepted exact decision; diagnostic acting paths reached Release, including bounded revision/re-review. No complete golden workday has passed (Platform #520).
+- Proposal, estimate, one-graph projection, exact dependency intake and settlement have focused tests. The SDK diagnostic completed six approved Actor/Reviewer pairs, including genuine Engineer and Writer revisions; Reporter closeout and clean full golden acceptance remain unproven (Platform #520).
 
 ### Current active blocker
 
-- No focused component execution blocker is known; see `agent-architecture.md`. Native Reporter exact publication/reference persistence passed focused live acceptance, but full failed-attempt coverage and the golden lifecycle remain unproven (Platform #520).
+- Historical chat attempts returned without canonical results, and an API reload interrupted one review. The corrected ordinary completion path is merged with unit, real PostgreSQL and scene coverage; coordinated activation and a fresh run must prove it. Do not backfill diagnostic failures (Platform #520).
 
 ### Next acceptance milestone
 
-- After the execution blocker is repaired, refreeze unchanged SDK objectives and complete genuine estimates, exact decision, six generated Actor/Reviewer pairs, revision/re-review, Reporter, settlement and teardown; prior diagnostics are not golden evidence.
+- Finish diagnostic Reporter/settlement, activate the checked repair at an idle boundary, then refreeze and prove the unchanged SDK golden with canonical chat results, exact authority, useful reviewed outputs, settlement, teardown and unchanged external state.
 
 ## Completion
 
