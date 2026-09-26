@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- AgentKernel, capability accounting, admission, handler selection, workspace enforcement, and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; six diagnostic Actor/Reviewer pairs passed with clock checks and teardown. Full lifecycle acceptance remains in `agent-assignments.md` (Platform #520).
+- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; the canonical chat Kernel completion repair and 30 exact component scene checks are integrated. Full graph lifecycle evidence belongs to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- The coded component scenes and current Agent binding audit pass. Historical live-outcome guarantees remain unproven and are explicitly rejected by the component runner; no current focused-estimating blocker is known. Exact evidence and remaining live-contract migration are in Platform #520.
+- No current focused-estimating blocker is known. Coordinated API/provider/guest activation and fresh runtime read-back remain required; historical live-outcome guarantees cannot be certified by component checks (Platform #520).
 
 ### Next acceptance milestone
 
-- Complete the active unchanged SDK golden through decision-bound execution; verify measured usage, settlement and teardown using live evidence, not component receipts.
+- Prove the rebuilt provider and guest use the checked contracts, preserve clock/credential/workspace boundaries, and pass the native live scene gate during the fresh SDK golden described in `agent-assignments.md`.
 
 ## Completion
 
