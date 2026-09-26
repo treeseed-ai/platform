@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Historical chat attempts returned without canonical results, and an API reload interrupted one review. The corrected ordinary completion path is merged with unit, real PostgreSQL and scene coverage; coordinated activation and a fresh run must prove it. Do not backfill diagnostic failures (Platform #520).
+- Clean acceptance remains unproven: canonical completion and truthful send receipts now have merged API regression coverage, but coordinated activation and a fresh run are required. Preserve diagnostic failed attempts rather than backfilling them (Platform #520).
 
 ### Next acceptance milestone
 

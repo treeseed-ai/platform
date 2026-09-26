@@ -41,6 +41,7 @@
 
 - [x] Restore a package-owned scene/guarantee runner that fails closed on missing implementations, skipped/empty evidence, absent prerequisites, and uncovered required cases; retain exact local receipts in Platform #520.
 - [x] Execute coded component scenes for SDK, API, Agent, Deployment isolation, and CLI operator boundaries; these are preflight evidence only, not a golden workday pass.
+- [x] Enforce the package-owned component scenes in SDK, API, Agent and CLI Actions using the exact tested Reviewer Action. Deployment's scene gate is in its checked integration PR; an unrelated Identity runtime gate still prevents that PR's merge. Component coverage never attests the full golden or broad live guarantees.
 - [ ] Reconcile every remaining stale catalog binding against current ownership and semantics; do not map a broad guarantee to an unrelated passing test or revive retired runtime paths.
 - [ ] Prove the unchanged full SDK golden through the real graph, then proceed to API/joint acceptance under `agent-acceptance.md`.
 
