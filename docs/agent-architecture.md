@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Storage recovery is accepted: expired analysis disks reclaimed with durable receipts, work disks preserved, and provider admission healthy. The current guest rejects GPT-6 Luna despite a successful same-version host probe and registered credential refresh; guest build/credential/network parity remains unproven. Preserve failed attempts and do not substitute models or claim full acceptance (Platform #520).
+- Storage recovery is accepted and rebuilding the development sandbox restored GPT-6 Luna execution, with first/final clock checks, measured usage and verified teardown. No current storage/model blocker remains; response delivery and full golden acceptance are tracked in `agent-assignments.md` (Platform #520).
 
 ### Next acceptance milestone
 

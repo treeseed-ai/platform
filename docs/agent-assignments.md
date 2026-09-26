@@ -440,11 +440,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Runtime's current guest-model boundary is described in `agent-architecture.md`; storage is no longer a blocker. The diagnostic terminalized degraded with cancelled Reporter and incomplete content evidence. Canonical live delivery and clean full acceptance remain unproven; preserve failures rather than backfilling them (Platform #520).
+- No active response-delivery blocker remains: API #403 supplies exact result-content read-back and its receipt, with 1,224 tests, 42 scene checks and live delivery passing. The terminal degraded SDK diagnostic remains a failure, not backfilled acceptance; a fresh pre-run freeze and complete SDK golden are still required (Platform #520).
 
 ### Next acceptance milestone
 
-- Restore canonical live delivery, then refreeze and prove the unchanged SDK golden with exact authority, useful reviewed outputs, Reporter, settlement, teardown and unchanged external state. The terminal degraded diagnostic cannot count as a pass.
+- Refreeze and prove the unchanged SDK golden with exact authority, useful reviewed outputs, Reporter, settlement, teardown and unchanged external state. The terminal degraded diagnostic cannot count as a pass.
 
 ## Completion
 
