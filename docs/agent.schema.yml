@@ -37,8 +37,10 @@ $comment: >-
   must additionally enforce ordered estimate bounds; unique work-item IDs;
   local, acyclic dependencies; requested permissions within profile and policy
   ceilings; exact current authority refs; deterministic node/edge identity;
-  one active assignment per node revision; repeated dependency-ordered planning cycles; bounded
-  review cycles; immutable assignment inputs; and exactly-once settlement.
+  one active assignment per node revision; repeated dependency-ordered planning cycles; the
+  parallel question-driven Researcher -> Reviewer and Architect -> Tester -> Engineer ->
+  Technical Writer -> Releaser branches; bounded review cycles; immutable assignment inputs;
+  and exactly-once settlement.
 
 # A document validated at the root must be exactly one stored record type.
 oneOf:

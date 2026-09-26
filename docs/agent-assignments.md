@@ -39,7 +39,7 @@ Checkboxes report implementation status only:
 
 ## Golden Development Acceptance
 
-[`docs/agent-acceptance.md`](./agent-acceptance.md) is the complete and exclusive testing guide. This plan records only implementation TODOs and fully proven completion. Earlier synthetic or reduced workdays are diagnostics and do not satisfy acceptance. The current frontier is Stage 0 followed by the unchanged SDK golden proposal; do not broaden scenarios or cut an RC before that path passes.
+[`docs/agent-acceptance.md`](./agent-acceptance.md) is the complete and exclusive testing guide. This plan records only implementation TODOs and fully proven completion. Earlier synthetic or reduced workdays are diagnostics and do not satisfy acceptance. The current frontier is the unchanged SDK proposal's generated Actor/Reviewer path; see Observations and Blockers. Do not broaden scenarios or cut an RC before the full path passes.
 
 ## Decisions
 
@@ -169,25 +169,25 @@ Proposal work items may add ordering needed only for that proposal:
 
 Profile dependencies are invariant minimums. Work-specific dependencies may add edges but cannot remove profile requirements.
 
-The initial SDK workflow resolves as follows:
+The initial first-party workflow has two parallel branches. Research exists to answer a question and is reviewed independently; it is never an implicit predecessor of architecture or execution work:
 
 ```text
-Architect planning → Reviewer proposal review → decision
+question → Researcher acting → Reviewer approval
+
 Architect acting → Reviewer approval
                          ↓
 Tester acting ───→ Reviewer approval
                          ↓
 Engineer acting ─→ Reviewer approval
-        │                │
-        └──────┬─────────┘
-               ↓
+                         ↓
 Technical Writer acting → Reviewer approval
-               ↓
-            Releaser
+                         ↓
+Releaser acting ─→ Reviewer approval
+
 workday-closing → Reporter
 ```
 
-Engineer planning and estimating depend on Architect, while Engineer acting depends on Tester. Tester planning, estimating, and acting depend on Architect. Releaser planning and estimating depend on Architect; acting depends on Engineer, Technical Writer, and all applicable required Reviewer nodes. Technical Writer planning and estimating depend on Architect; acting depends on Engineer and Tester.
+For planning, estimating, and acting, the engineering branch uses immediate predecessors only: Tester depends on Architect, Engineer on Tester, Technical Writer on Engineer, and Releaser on Technical Writer. Researcher has no standing dependency and runs only for an admitted research question or research work item. Reviewer has no standing agent dependency because reconciliation generates each exact Actor → Reviewer edge. Chat remains independent.
 
 Use one Reviewer class and its `reviewing` activity. Every acting work item with `review: required` expands into two stable internal nodes: the declared actor node and a Reviewer node. `review: required` is the default; `review: none` must be explicit and is reserved initially for deterministic release, integration, or closeout work whose accepted predecessors are already reviewed. Do not create Reviewer subclasses, enable reviewing on producer agents, or require users to author the generated review node.
 
@@ -338,7 +338,7 @@ Acceptance:
 
 Acceptance:
 
-- [ ] Architect → Tester → Engineer and Engineer/Tester → Technical Writer materialize without profile-authored graph IDs.
+- [ ] Researcher → Reviewer remains parallel to Architect → Tester → Engineer → Technical Writer → Releaser, and every required actor is independently reviewed, without profile-authored graph IDs.
 - [ ] Proposal review gates decision and every required Actor → Reviewer pair gates downstream work-item readiness.
 - [ ] Releaser waits for approved Engineer and Technical Writer work-item pairs and every other applicable required review.
 - [x] `workday-closing` → Reporter materializes as an ordinary condition dependency.
@@ -379,7 +379,7 @@ Acceptance:
 Acceptance:
 
 - [ ] Proposal review → decision and each required Actor → Reviewer pair → downstream readiness pass through the CLI. The earlier reduced proposal did not include the six fixed SDK work items required by the acceptance specification.
-- [ ] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews. This remains to be replayed inside the unchanged SDK golden campaign.
+- [ ] Request changes → same actor revision → same Reviewer revision → approval passes without changing prior candidates or reviews. This remains to be replayed inside the approved SDK v4 golden campaign.
 - [ ] Two projects progress in one team graph without copying project graphs or leaking context.
 
 ### Phase 5 — Clean cutover and managed CLI acceptance
@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Proposal, estimate, one-graph projection, exact TreeDX `depends_on` intake, endpoint-grant denial, and PostgreSQL admission/settlement have focused tests; TreeDX PR #65 merged to staging. The SDK golden has not passed (Platform #520).
+- Proposal, estimate, one-graph projection, exact TreeDX dependency intake, admission/settlement, and decision-scoped predecessor custody have focused tests. SDK planning produced genuine estimates and an accepted exact decision; diagnostic acting paths reached Release, including bounded revision/re-review. No complete golden workday has passed (Platform #520).
 
 ### Current active blocker
 
-- No localized living-graph implementation blocker is active: focused tests cover complete-draft review, exact question/authority/external/lifecycle conditions, deterministic dependency projection, transactional PostgreSQL admission, review-cycle recovery, and exactly-once settlement. Live lifecycle proof remains an acceptance task.
+- No focused component execution blocker is known; see `agent-architecture.md`. Native Reporter exact publication/reference persistence passed focused live acceptance, but full failed-attempt coverage and the golden lifecycle remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
-- Run the unchanged SDK golden from discussion and genuine estimates through decision, Actor → Reviewer revision, approval, settlement, and cleanup.
+- After the execution blocker is repaired, refreeze unchanged SDK objectives and complete genuine estimates, exact decision, six generated Actor/Reviewer pairs, revision/re-review, Reporter, settlement and teardown; prior diagnostics are not golden evidence.
 
 ## Completion
 

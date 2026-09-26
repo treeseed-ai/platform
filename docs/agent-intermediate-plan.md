@@ -21,7 +21,7 @@
 ### 2. Assignment and guest contract
 
 - [x] An Architect assignment with an exact Architecture Book receives it as a read grant and gets a valid `knowledge/<book-id>/<page-slug>.md` write target. Admission rejects a missing Book. API assignment-builder tests: 18 passing.
-- [x] The guest constrains Knowledge output to the granted ID/slug and exact Book reference. Agent guest tests: 39 passing; Agent typecheck passes.
+- [x] The guest constrains Knowledge output to the granted ID/slug and exact Book reference. The repaired schema passed a live Luna/low Kata assignment: Architect produced the granted SDK Architecture Knowledge page with the exact Book reference; focused Agent tests and type-check also pass. This is a guest-contract check, not golden acceptance.
 - [x] Exercise the proposal → generated graph → immutable assignment → guest-context transformation in one local integration fixture, asserting exact published Book bytes, write target, timing budget, and no external mutation. The fixture produced 14 nodes, a 180-second Architect allocation, one exact Architecture Book context item, and a constrained Knowledge output at `knowledge/sdk-architecture/knowledge-bb1ba00e45b117114756c0d6.md`.
 - [x] Confirm Researcher, Architect, and generated Reviewer output/grant contracts against the frozen proposal before a live workday. The cross-package fixture uses the actual published SDK role profiles, checks requested permissions against their activity ceilings, builds each role's grant, and verifies the Architect Knowledge output schema. This is local contract evidence, not an agent-execution result.
 
@@ -37,6 +37,13 @@
 - [x] Record a passing intermediate preflight receipt in Platform Issue #520 with focused test results, runtime digests, exact refs, and an unchanged external-state baseline. The local freeze SHA-256 is `d38055c31a2a690b0c90186875e1dc613a4d7adf7906ff590210bd891b572419`.
 - [x] Hand the frozen SDK proposal and a schema-valid, read-only `trsd workdays plan --plan` request back to Stage 0 of `agent-acceptance.md`. Starting and judging the SDK → API → joint workdays belongs exclusively to that acceptance plan, after its full campaign freeze; no golden checkbox is marked from this handoff.
 
+### 5. Mandatory executable regression gate
+
+- [x] Restore a package-owned scene/guarantee runner that fails closed on missing implementations, skipped/empty evidence, absent prerequisites, and uncovered required cases; retain exact local receipts in Platform #520.
+- [x] Execute coded component scenes for SDK, API, Agent, Deployment isolation, and CLI operator boundaries; these are preflight evidence only, not a golden workday pass.
+- [ ] Reconcile every remaining stale catalog binding against current ownership and semantics; do not map a broad guarantee to an unrelated passing test or revive retired runtime paths.
+- [ ] Prove the unchanged full SDK golden through the real graph, then proceed to API/joint acceptance under `agent-acceptance.md`.
+
 ## Current frontier
 
-Intermediate preflight passed. The SDK workday request with eight canonical class IDs, 20% planning, equal 12.5% class targets, simulation mode, and the one canonical proposal validated through `trsd workdays plan --plan` without creating a workday. Return to Stage 0 of `agent-acceptance.md`: refresh its full all-project campaign manifest and external-state inventory, then create one SDK preflight/workday. A passing fixture is not a passing golden workday; no golden workday has passed.
+The guest-contract prerequisite is proven, but the executable regression gate remains open. Full acceptance remains governed exclusively by `agent-acceptance.md`; no golden pass is claimed. Detailed defects, component receipts, and remaining catalog gaps belong in Platform Issue #520.
