@@ -70,7 +70,7 @@ The campaign manifest is test configuration, not a new control-plane resource. O
 
 ### High-level allocation inputs
 
-Freeze the resolved workday policy and actual provider offer/configuration alongside the campaign. The campaign manifest must contain one fully expanded, schema-validated workday input for **every** individual project, the SDK/API joint run, the portfolio run, and each controlled failure rerun. The table below is the authoring rule; submit canonical seeded project IDs and agent-class IDs, and retain the exact submitted input and resolved policy snapshot with each run. A table entry is not permission to omit fields from a submitted input.
+Freeze the resolved workday policy and actual provider offer/configuration alongside the campaign. The campaign manifest must contain one fully expanded, schema-validated workday input for **every** individual project, the SDK/API joint run, the portfolio run, and each controlled failure rerun. The table below is the authoring rule; submit canonical seeded project IDs and canonical `AgentDefinition.agentClass` values, and retain the exact submitted input and resolved policy snapshot with each run. Project-agent-class database row IDs are inventory references, not allocator class keys. A table entry is not permission to omit fields from a submitted input.
 
 | Run | Selected projects and `projectPercentages` | `agentClassPercentages` |
 |---|---|---|
@@ -119,7 +119,7 @@ allocation:
 
 Resolve project and class keys to their canonical seeded identities before submission. Project/class percentages are redistributable opportunity targets, not per-assignment durations. Each assignment read-back must identify its workday-policy snapshot, genuine estimate and rationale, allocator-selected active duration and deadline, limiting constraint, reservation, measured usage, and settlement. Provider-owned capability caps, shared execution-provider/model caps, assignment bounds, remaining usage and reservations must be read back and frozen; a simulation consumes the same real supply as other workdays. Duration and concurrency remain explicit workday inputs. Never insert reservations directly or supply hand-authored assignment allocations.
 
-For this local campaign, configure `codex-research` with Sol/Medium and a 7,200-active-second daily cap, and `codex-implementation` with Terra/Medium and a 28,800-active-second daily cap. These are installation inputs, not universal release defaults. Both reuse the Codex harness; capability identity remains independent of the execution-provider ID so other providers can supply the same capability. Freeze actual model and capability limits from provider read-back before running the campaign.
+For this local campaign, configure both `codex-research` and `codex-implementation` with Luna/Low to conserve quota, retaining separate 7,200- and 28,800-active-second daily caps respectively. These are installation inputs, not universal release defaults. Both reuse the Codex harness; capability identity remains independent of the execution-provider ID so other providers can supply the same capability. Freeze actual model and capability limits from provider read-back before running the campaign.
 
 For the all-project portfolio run only, calculate required planning, acting, bounded review, and Reporter supply from the individually accepted genuine estimates. If the normal caps cannot support that work inside the eight-hour window at actual safe concurrency, raise test capability/model caps through versioned provider configuration, preflight again, and freeze the exact temporary offer. Never lower a viable assignment minimum or exceed host/model limits to force admission. Restore and verify the ordinary caps after settlement. If the host cannot supply a viable plan, do not start the portfolio workday; report the exact shortfall.
 
@@ -153,6 +153,8 @@ A retry must begin from all of the following original inputs:
 - no surviving candidate branch, mutable TreeDX workspace, lease, reservation, assignment eligibility, provider session, or sandbox from the prior run.
 
 Failed historical records remain auditable, but they cannot satisfy dependencies in the retry. The new workday receives a new ID. Deterministic source projection must reproduce the same initial graph digest.
+
+Use the existing scoped `trsd workdays stop <exact-run-id>` path for an active failed simulation; do not reset the team, provider, or host. Before a retry, read back that run as terminal with zero unfinished/deferred assignments and settlement errors, no team lease belonging to it, and only stale/cancelled graph nodes. Verify its assignment workspaces and sandboxes are closed, and catalog or explicitly discard only that run's local candidate refs under their normal custody rules. If any of these checks cannot be proven, the reset gate remains open and the retry is not accepted. A new workday ID isolates attempts; it does not excuse leaked resources.
 
 ## The canonical proposal lifecycle
 
@@ -225,12 +227,14 @@ The shorthand in this document must be expanded into the actual schema before su
 |---|---|---|---|---:|
 | `research-context` | Researcher | `treedx` | none | 2 |
 | `architecture-contract` | Architect | `treedx` | none | 2 |
-| `tests-first` | Tester | `git` | `research-context`, `architecture-contract` | 2 |
-| `implement-change` | Engineer | `git` | `tests-first` | 2 |
-| `document-change` | Technical Writer | `git` | `tests-first`, `implement-change` | 2 |
-| `simulate-release` | Releaser | `git` | `implement-change`, `document-change` | 2 |
+| `tests-first` | Tester | `git` | none | 2 |
+| `implement-change` | Engineer | `git` | none | 2 |
+| `document-change` | Technical Writer | `git` | none | 2 |
+| `simulate-release` | Releaser | `git` | none | 2 |
 
 Every ready row has `activity: acting`, `review: required`, a non-empty project-specific objective, its owner's genuine estimate and the Reviewer's genuine review estimate, `maximumReviewCycles: 2`, exact `contextRefs`, requested permissions, required capabilities, and project-specific acceptance criteria. Draft intake must support estimating before those values exist; fabricating seed estimates does not satisfy acceptance.
+
+The proposal does not duplicate generic role ordering. The accepted activity profiles are its single authority: question-driven Researcher → generated Reviewer runs in parallel with Architect → Tester → Engineer → Technical Writer → Releaser, and reconciliation inserts a generated Reviewer after every required acting result. `dependsOn` is reserved for proposal-specific domain dependencies that are not already standing workflow rules.
 
 Reconciliation generates one Reviewer node for each row. Generated Reviewer nodes are not written into the proposal. A downstream work item becomes ready only after the predecessor's exact review decision is approved.
 
@@ -246,8 +250,8 @@ Reconciliation generates one Reviewer node for each row. Generated Reviewer node
 
 ### Fixed product chain
 
-1. Researcher returns an exact TreeDX note or knowledge reference containing source evidence and unresolved questions.
-2. Architect returns exact `<Project> Architecture` book/knowledge refs describing the smallest design and ownership boundaries.
+1. In response to its assigned question, Researcher returns an exact TreeDX note or knowledge reference containing source evidence and unresolved questions; its review proceeds independently and never blocks the engineering branch.
+2. Architect independently returns exact `<Project> Architecture` book/knowledge refs describing the smallest design and ownership boundaries.
 3. Tester returns a Git commit containing tests that fail against the frozen base for the intended reason and pass against the expected implementation. Existing unrelated failures are recorded separately.
 4. Engineer starts from the approved Tester candidate, makes the implementation pass those tests, and adds no self-authored substitute tests unless the Tester explicitly requested them in its result.
 5. Technical Writer starts from the approved implementation/test chain and updates the repository's actual user, operator, API, or contributor documentation.
@@ -264,20 +268,22 @@ The source issue is evidence for choosing the work. The golden proposal below is
 
 ### 1. SDK — decision-governed workday intent
 
-- `id`: `golden-sdk-decision-governed-workday-intent-v2` (the original ID was superseded before this freeze; objectives and topology are unchanged)
+- `id`: `golden-sdk-decision-governed-workday-intent-v4-golden-20260925-l` (fresh estimate-free draft copied from the exact TreeDX content at commit `ade82437cbe53c2a573c111758e781f11b23eeeb`; active workday `workday-b5240d15-fbca-4d60-9410-70067b1a5311`). Prior cancelled workdays, including J and K, provide defect evidence only; their estimates and assignment results are not reused. The six SDK work items retain their objectives, with the Tester checking stable normalized request serialization rather than an SDK-owned digest. CLI transport implementation is separate from this SDK-only workday. Researcher → Reviewer remains independent of Architect → Tester → Engineer → Technical Writer → Releaser.
 - Source: `treeseed-ai/sdk#299`
 - Title: **Select accepted decisions in portable workday intent**
-- Request: Add normalized repeated accepted-decision identities to the public SDK workday intent and generated operation contract. Preserve them in normalization and preflight digests. They select authority but never contain or grant derived graph, assignment, source, role, estimate, or capacity state. Remove conflicting legacy workday-selection contracts without compatibility aliases.
+- Request: Add normalized repeated accepted-decision identities to the public SDK workday intent and generated operation contract. The API incorporates the normalized selection in its intent and preflight digests; SDK does not compute those digests. Decision IDs select authority but never contain or grant derived graph, assignment, source, role, estimate, or capacity state. Remove conflicting legacy workday-selection contracts without compatibility aliases.
 - Summary: Prove the SDK can express high-level decision-governed execution while keeping all derived execution state API-owned.
 
 | Work item | Project-specific objective and expected output |
 |---|---|
 | Researcher | Trace every current SDK workday-selection, decision, graph, assignment, and legacy planning contract; return exact refs and a duplication/deletion note. |
 | Architect | Extend the SDK Architecture book with the single authority boundary and exact portable shape; identify all retired competing contracts. |
-| Tester | Add normalization, duplicate/empty rejection, stable digest, omission, and schema/CLI-descriptor contract tests that fail on the frozen base. |
+| Tester | Add normalization, duplicate/empty rejection, stable normalized request serialization, omission, and schema/CLI-descriptor contract tests that fail on the frozen base. |
 | Engineer | Implement the minimal strict TypeScript contract and delete superseded unions, aliases, and exported paths. |
 | Technical Writer | Update SDK API/reference examples to show repeated decision selection and explicitly forbid caller-authored derived state. |
 | Releaser | Build, run contract/release verification, pack locally, inspect exports/types, and produce an unpushed local candidate. |
+
+Each Actor is reviewed against its own deliverable: Researcher supplies exact source refs; Architect publishes the SDK Architecture Knowledge page; Tester commits failing-on-base tests; Engineer commits the implementation passing those tests; Technical Writer commits and verifies examples; Releaser integrates and verifies the local candidate. The proposal-wide contract gates below apply to the final integrated candidate, not to an earlier Actor's isolated workspace.
 
 Required acceptance: empty and duplicate IDs fail; omitted selection retains planning-only intent without a compatibility path; normalized order and digest are deterministic; generated descriptors expose the field once; no legacy execution-plan/capacity-plan input survives.
 
@@ -589,13 +595,13 @@ Required acceptance: all 17 engineering projects and their libraries are represe
 
 ### Stage 0 — preflight
 
-- [x] Refreeze the campaign manifest and exact proposal bytes against the current integrated runtime. The SDK retry retains all six fixed work-item objectives, dependencies, criteria, and permissions; 17 proposals, 136 agent profiles, and 25 real CLI allocation inputs validate. Current manifest digest: `sha256:808592936f8f01d59c2380e0cb200781aa5e44aaed9b84922563f274acd7662d` (Platform #520).
-- [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. Authorized correction limits each role to its required product and retains final project gates at release; all 34 draft/ready objects validate. Refrozen manifest digest: `sha256:5d7dfa931e1018fcf14171b20e42e3b429be5733ab4be5c2857a84b66999fa83` (Platform #520).
+- [ ] Refreeze the campaign manifest and exact proposal bytes against the current integrated runtime. The corrected 17-project manifest validated at `sha256:559db20ad4bb0b057d4cad2139012b8c50eda1a831436bd51e421cba3599d3e3`, but capture finished after the provisional SDK planning run began; the pre-run freeze boundary is not yet proven (Platform #520).
+- [x] Validate all 17 proposal objects against `docs/agent.schema.yml` and semantic rules. The corrected campaign validator accepted all 17 draft objects, 136 project agents, and provider offer revision 1; exact TreeDX read-back of SDK v4 commit `34664812cb8303f61eb93d3d31d1c325f3ac3303` confirms six role-scoped criteria and no inherited estimates (Platform #520).
 - [x] Confirm all eight agent definitions exist for all 17 projects and every required activity resolves one handler from the pinned runtime build.
 - [x] Confirm the simulation provider offers every required capability/tool group and is allowed to serve all 17 projects, including Identity.
 - [x] Confirm upstream write credentials and all external mutation tools are absent.
-- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. The scoped retry preserved the accepted prior proposal, but the new SDK workday failed during planning; the complete reset/teardown and acceptance watch remain unproven.
-- [x] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the current campaign. Baseline digest: `sha256:1fb914e10e49756a734dce8699ef6531665e528fa719dd582ba02673c2994b8c` across 35 repositories, 17 registry inventories, 30 Docker Hub repositories, and managed deployment state (Platform #520).
+- [ ] Confirm local simulation Git and TreeDX custody, retention, reset, watch, and teardown work. Prior simulation assignments were terminalized with zero unfinished/deferred work and no settlement errors; sandbox and candidate-ref teardown remain unproven.
+- [ ] Capture pre-run upstream branch/tag/release/issue/registry/deployment state for the current campaign. The previous baseline `sha256:be62f1c8c1109fa06b8348541956ab77989f68ede93761b7de6e5765b8e740da` predates the SDK v4 correction and Issue #520 update; recapture before judging the active run.
 
 ### Stage 1 — SDK alone
 
@@ -704,6 +710,7 @@ A project passes only when all checks below are evidenced from authoritative rec
 - [ ] The initial graph is deterministic; identical reconciliation is noop.
 - [ ] Exactly six authored Actor nodes and six generated Reviewer nodes represent the proposal work.
 - [ ] Every edge has source provenance and downstream readiness waits for approved review, not merely Actor completion.
+- [ ] Researcher → Reviewer has no edge into the engineering branch; Architect → Tester → Engineer → Technical Writer → Releaser uses only immediate reviewed predecessors.
 - [ ] Mid-workday content changes affect only the connected component.
 
 ### Profiles and collaboration
@@ -771,8 +778,8 @@ The agent running this campaign must update only this section's checkboxes and t
 
 | Stage/project | Latest workday | Attempts | Result | Evidence/report ref | Observation or blocker |
 |---|---|---:|---|---|---|
-| Preflight | — | 8 | Intermediate SDK gate passed; full Stage 0 freeze pending | Platform #520; local SDK freeze `sha256:d38055c31a2a690b0c90186875e1dc613a4d7adf7906ff590210bd891b572419` | SDK inputs and read-only CLI request validate; refresh the all-project campaign manifest and external-state inventory before creating a golden workday. |
-| SDK | — | 0 | canonical golden not started | Platform #520; proposal `golden-sdk-decision-governed-workday-intent-v2`; SDK library `65106c908bca127ea45d11b3f6b54905878d191c` | Intermediate fixture and role contracts pass, but real planning, estimates, review, acting, and settlement remain unproven. |
+| Preflight | — | 10 | prior Stage 0 freeze invalidated by guest repair | Platform #520; prior campaign `sha256:64941f7bc58bf83328c5d42a7192decb89d8ecbf7acd4e19ffb9b6b1971e4b7f`; external baseline `sha256:be62f1c8c1109fa06b8348541956ab77989f68ede93761b7de6e5765b8e740da` | Seventeen proposals, 136 profiles, 25 CLI allocation inputs, and Luna/low supply were validated. Refreeze the rebuilt guest and prove real Codex schema acceptance before the next golden run. |
+| SDK | `workday-38e96044-e9d7-4448-9985-2897b14db703` | 15 | no golden pass; O cancelled | Platform #520; estimate-free proposal O from exact TreeDX source `ade82437cbe53c2a573c111758e781f11b23eeeb` | O completed eight chat replies, seven estimates, and two eight-role planning cycles without failed assignments. Proposal review became graph-ready but could not fit the remaining 20% planning entitlement after earlier runs consumed most of today's 28,800-second implementation-model cap. Refreeze a fresh attempt only when read-back proves sufficient daily supply. |
 | API | — | 0 | not started | — | — |
 | SDK + API | — | 0 | not started | — | — |
 | Agent | — | 0 | not started | — | — |

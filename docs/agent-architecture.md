@@ -112,7 +112,7 @@ activityProfiles:
   planning:
     handler: writer
     dependsOn:
-      agents: [architect]
+      agents: [tester]
     permissions:
       content:
         read: [book, knowledge, objective, proposal, decision, note, question]
@@ -124,7 +124,7 @@ activityProfiles:
   estimating:
     handler: estimate
     dependsOn:
-      agents: [architect]
+      agents: [tester]
     permissions:
       content:
         read: [book, knowledge, objective, proposal, decision, note, question]
@@ -216,17 +216,17 @@ Initial first-party defaults:
 | Agent | Default handlers by activity | Standing dependency |
 |---|---|---|
 | Architect | planning/chat: `writer`; estimating: `estimate`; acting: `writer` | none |
-| Engineer | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning and estimating require Architect; acting requires Tester |
+| Engineer | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning, estimating, and acting require Tester |
 | Tester | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning, estimating, and acting require Architect |
-| Releaser | planning/chat: `writer`; estimating: `estimate`; acting: `releaser` | planning and estimating require Architect; acting requires Engineer, Technical Writer, and approved required reviews |
+| Releaser | planning/chat: `writer`; estimating: `estimate`; acting: `releaser` | planning, estimating, and acting require Technical Writer |
 | Reporter | planning/chat: `writer`; reporting: `reporter` | reporting requires `workday-closing` |
-| Researcher | planning/chat/acting: `writer`; estimating: `estimate` | none |
-| Reviewer | planning/reviewing/chat: `writer`; estimating: `estimate` | planning and estimating require Architect; reviewing depends on the exact work being reviewed |
-| Technical Writer | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning and estimating require Architect; acting requires Engineer and Tester |
+| Researcher | planning/chat/acting: `writer`; estimating: `estimate` | none; admitted research answers a question in parallel with engineering |
+| Reviewer | planning/reviewing/chat: `writer`; estimating: `estimate` | no standing agent dependency; reviewing depends on the exact work being reviewed |
+| Technical Writer | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning, estimating, and acting require Engineer |
 
 Standing dependencies apply to scheduled planning, estimating, and acting work. They do not apply automatically to chat, because an addressed message must not wait for an unrelated workflow node. Reviewing is subject-bound: reconciliation creates an edge from each exact reviewed node to its Reviewer node rather than placing every possible review target in the profile.
 
-The SDK default is test-first: Architect → Tester → Engineer. The Tester returns an exact test commit; the Engineer receives that commit as its base and normally receives no grant to modify test paths. Incorrect tests return to the Tester as revision work instead of being silently rewritten by the Engineer.
+The first-party default is two parallel branches: question-driven Researcher → Reviewer, and Architect → Tester → Engineer → Technical Writer → Releaser, with each acting result independently reviewed. The Tester returns an exact test commit; the Engineer receives that approved commit as its base and normally receives no grant to modify test paths. Incorrect tests return to the Tester as revision work instead of being silently rewritten by the Engineer.
 
 Use one Reviewer class. A required acting work item automatically gets a paired reviewing node; no profile attaches itself to another agent and no user authors the generated node. The pair shares one work-item objective. The actor produces an immutable candidate, the Reviewer evaluates it, and rejection advances both stable nodes to another bounded revision with the exact findings. The work item becomes complete only after approval.
 
@@ -447,7 +447,7 @@ Acceptance:
 
 - [x] Implement `WriterHandler`, `ActorHandler`, `EstimateHandler`, `ReleaserHandler`, and `ReporterHandler` against the shared interface.
 - [x] Migrate Architect, Engineer, Tester, Releaser, Reporter, Researcher, Reviewer, and Technical Writer to the default matrix above with complete prompts.
-- [ ] Prove Architect → Tester → Engineer ordering, activity-specific planning/estimating dependencies, and the Releaser/Technical Writer dependencies above.
+- [ ] Prove parallel Researcher → Reviewer and Architect → Tester → Engineer → Technical Writer → Releaser ordering for planning, estimating, and acting, with generated review pairs and no cross-branch edge.
 - [ ] Make the Architect maintain a conventional `<Project> Architecture` book of validated knowledge pages.
 - [x] Route Reviewer findings through notes/questions and formal dispositions through decisions, all bound to exact candidate references.
 - [x] Remove Reviewer acting behavior; route proposal review and every required acting-work review through the same Reviewer `reviewing` profile.
@@ -487,7 +487,7 @@ Acceptance:
 - [ ] Later planning cycles load prior published contributions through TreeDX; earlier second-round evidence does not prove repeating cycles.
 - [ ] Mid-workday content changes add eligible work without restarting the workday.
 - [ ] Multi-project, multi-class, multi-team, retries, failures, idle share, and stable ties pass deterministic tests.
-- [x] Reporter runs during closing and the workday ends only after report completion and settlement.
+- [ ] Reporter runs during closing and the workday ends only after report completion and settlement. Focused lifecycle tests pass; complete report evidence and stored exact reference still require live acceptance (see `agent-assignments.md`).
 
 ### Phase 5 — Integration, clean cutover, and managed acceptance
 
@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- One AgentKernel/handler path, capability accounting, workday admission, project-owned handler selection, exact Architect Book output, and fail-closed runtime boundaries have focused tests. SDK (340), API (1,100), and Agent (186) tests pass. This does not prove the full lifecycle (Platform #520).
+- AgentKernel, capability accounting, admission, handler selection, workspace enforcement, and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; six diagnostic Actor/Reviewer pairs passed with clock checks and teardown. Full lifecycle acceptance remains in `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No localized AgentKernel implementation blocker is active. Exhaustive structural schema verification and focused semantic tests pass; governed Architecture-book read-back belongs to the golden acceptance preflight.
+- The coded component scenes and current Agent binding audit pass. Historical live-outcome guarantees remain unproven and are explicitly rejected by the component runner; no current focused-estimating blocker is known. Exact evidence and remaining live-contract migration are in Platform #520.
 
 ### Next acceptance milestone
 
-- Verify provider execution, capacity accounting, and exact workspace enforcement in the unchanged SDK golden lifecycle.
+- Complete the active unchanged SDK golden through decision-bound execution; verify measured usage, settlement and teardown using live evidence, not component receipts.
 
 ## Completion
 
