@@ -440,11 +440,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Runtime admission is blocked by the provider storage gate described in `agent-architecture.md`. The PostgreSQL publication/completion/integration regression is checked, but queued live delivery and clean full acceptance remain unproven. Preserve diagnostic failures rather than backfilling them (Platform #520).
+- Runtime's current guest-model boundary is described in `agent-architecture.md`; storage is no longer a blocker. The diagnostic terminalized degraded with cancelled Reporter and incomplete content evidence. Canonical live delivery and clean full acceptance remain unproven; preserve failures rather than backfilling them (Platform #520).
 
 ### Next acceptance milestone
 
-- Finish diagnostic Reporter/settlement, activate the checked repair at an idle boundary, then refreeze and prove the unchanged SDK golden with canonical chat results, exact authority, useful reviewed outputs, settlement, teardown and unchanged external state.
+- Restore canonical live delivery, then refreeze and prove the unchanged SDK golden with exact authority, useful reviewed outputs, Reporter, settlement, teardown and unchanged external state. The terminal degraded diagnostic cannot count as a pass.
 
 ## Completion
 

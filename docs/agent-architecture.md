@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Provider admission is blocked by encrypted-volume reserve/headroom. Inventory identifies unreleased stopped work and expired analysis disks; the tested fixed recovery path preserves work and reclaims only analysis after fenced teardown and durable interruption receipts. Root application and health read-back remain required; do not lower the threshold or count local tests as live cleanup (Platform #520).
+- Storage recovery is accepted: expired analysis disks reclaimed with durable receipts, work disks preserved, and provider admission healthy. The current guest rejects GPT-6 Luna despite a successful same-version host probe and registered credential refresh; guest build/credential/network parity remains unproven. Preserve failed attempts and do not substitute models or claim full acceptance (Platform #520).
 
 ### Next acceptance milestone
 
