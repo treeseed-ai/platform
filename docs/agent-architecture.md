@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Provider admission is blocked by insufficient encrypted-volume reserve/headroom despite stale ready selections. Preserve the safety threshold and current candidate evidence; an exact storage inventory is required before cleanup. Native usage paging and production-dependency regression gates are implemented (Platform #520).
+- Provider admission is blocked by encrypted-volume reserve/headroom. Inventory identifies unreleased stopped work and expired analysis disks; the tested fixed recovery path preserves work and reclaims only analysis after fenced teardown and durable interruption receipts. Root application and health read-back remain required; do not lower the threshold or count local tests as live cleanup (Platform #520).
 
 ### Next acceptance milestone
 
