@@ -546,7 +546,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; the canonical chat Kernel completion repair and 30 exact component scene checks are integrated. Full graph lifecycle evidence belongs to `agent-assignments.md` (Platform #520).
+- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; Agent and API now consume one SDK workspace-path authority, with 31 Agent scene checks enforced in Actions. Full graph lifecycle evidence belongs to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
