@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Clean acceptance remains unproven. API scene coverage now includes durable response publication, canonical completion, asynchronous integration and exactly-once delivery against PostgreSQL; the fresh live send must prove that handoff (Platform #520). Preserve diagnostic failures rather than backfilling them.
+- Runtime admission is blocked by the provider storage gate described in `agent-architecture.md`. The PostgreSQL publication/completion/integration regression is checked, but queued live delivery and clean full acceptance remain unproven. Preserve diagnostic failures rather than backfilling them (Platform #520).
 
 ### Next acceptance milestone
 

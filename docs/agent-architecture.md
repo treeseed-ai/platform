@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No current focused-estimating blocker is known. Provider and guest consume the checked SDK path contract; native usage read-back now exhausts pagination. An SDK dependency rebuild returned an unhealthy-operation error despite ready targets; verify coordinated runtime read-back before the fresh golden (Platform #520).
+- Provider admission is blocked by insufficient encrypted-volume reserve/headroom despite stale ready selections. Preserve the safety threshold and current candidate evidence; an exact storage inventory is required before cleanup. Native usage paging and production-dependency regression gates are implemented (Platform #520).
 
 ### Next acceptance milestone
 
