@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No current focused-estimating blocker is known. Coordinated API/provider/guest activation and fresh runtime read-back remain required; historical live-outcome guarantees cannot be certified by component checks (Platform #520).
+- No current focused-estimating blocker is known. Provider and guest consume the checked SDK path contract; native usage read-back now exhausts pagination. An SDK dependency rebuild returned an unhealthy-operation error despite ready targets; verify coordinated runtime read-back before the fresh golden (Platform #520).
 
 ### Next acceptance milestone
 

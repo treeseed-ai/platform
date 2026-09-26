@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Clean acceptance remains unproven: canonical completion and truthful send receipts now have merged API regression coverage, but coordinated activation and a fresh run are required. Preserve diagnostic failed attempts rather than backfilling them (Platform #520).
+- Clean acceptance remains unproven. API scene coverage now includes durable response publication, canonical completion, asynchronous integration and exactly-once delivery against PostgreSQL; the fresh live send must prove that handoff (Platform #520). Preserve diagnostic failures rather than backfilling them.
 
 ### Next acceptance milestone
 
