@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- Proposal, estimate, one-graph projection, exact dependency intake and settlement have focused tests. The SDK diagnostic completed six approved Actor/Reviewer pairs, including genuine Engineer and Writer revisions; Reporter closeout and clean full golden acceptance remain unproven (Platform #520).
+- SDK W produced genuine estimates, an exact accepted decision and five approved Actor/Reviewer pairs. It was cancelled after release request-changes exhausted its bounded allowance without a successful correction; this is failure evidence, not a golden pass (Platform #520).
 
 ### Current active blocker
 
-- No active response-delivery blocker remains: API #403 supplies exact result-content read-back and its receipt, with 1,224 tests, 42 scene checks and live delivery passing. The terminal degraded SDK diagnostic remains a failure, not backfilled acceptance; a fresh pre-run freeze and complete SDK golden are still required (Platform #520).
+- The second planning cycle did not materialize, and successful bounded release correction/re-review remains unproven. API #406/#407 covers maintenance failure isolation; it does not yet establish the cause of the live planning stall. Runtime repair status belongs to `agent-architecture.md`.
 
 ### Next acceptance milestone
 
-- Refreeze and prove the unchanged SDK golden with exact authority, useful reviewed outputs, Reporter, settlement, teardown and unchanged external state. The terminal degraded diagnostic cannot count as a pass.
+- Prove repeated planning and bounded correction/re-review through the existing path, then refreeze the unchanged SDK golden with current artifact digests and complete Reporter, settlement, teardown and external-state checks; never reuse W as passing evidence.
 
 ## Completion
 

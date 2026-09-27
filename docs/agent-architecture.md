@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; Agent and API now consume one SDK workspace-path authority, with 31 Agent scene checks enforced in Actions. Full graph lifecycle evidence belongs to `agent-assignments.md` (Platform #520).
+- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; the concrete-path and canonical Reviewer-instruction repairs are activated. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- Storage recovery is accepted and rebuilding the development sandbox restored GPT-6 Luna execution, with first/final clock checks, measured usage and verified teardown. No current storage/model blocker remains; response delivery and full golden acceptance are tracked in `agent-assignments.md` (Platform #520).
+- Automatic released-analysis cleanup is activated, but interrupted-unreleased recovery and bounded retention remain unproven (Deployment #779). The corrected Releaser instruction has coded regression coverage but still requires successful live revision evidence.
 
 ### Next acceptance milestone
 
-- Prove the rebuilt provider and guest use the checked contracts, preserve clock/credential/workspace boundaries, and pass the native live scene gate during the fresh SDK golden described in `agent-assignments.md`.
+- Verify the activated handler through a bounded revision and prove automatic workspace recovery/retention without operator cleanup; then support the fresh SDK golden described in `agent-assignments.md`.
 
 ## Completion
 
