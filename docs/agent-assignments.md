@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. The fresh automated campaign stopped on a concrete execution failure before decision/acting; unchanged authority and failed evidence are retained. Detailed evidence belongs in Platform #520; provider execution and cancellation teardown gaps are owned by `agent-architecture.md`.
+- No SDK golden pass. SDK AF proved two complete planning cycles, seven genuine estimates, eight-role discussion, exact decision and approved Researcher/Engineer correction/re-review cycles; Writer revision completed, but its re-review, release and final closeout did not. Detailed evidence: Platform #520; provider policy and teardown gaps belong to `agent-architecture.md`.
 
 ### Current active blocker
 
-- No graph authority or authentication blocker is established. Repeated full-role planning, genuine estimates, and successful bounded correction/re-review in the fixed hour remain unproven; use the repaired provider in the next fresh, five-concurrency automated campaign.
+- No graph-authority or authentication blocker is established. Resume only after the production-policy parity repair in `agent-architecture.md`; do not reuse AF estimates, review allowances or failed-run authority.
 
 ### Next acceptance milestone
 

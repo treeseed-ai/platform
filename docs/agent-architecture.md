@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Agent #185 provides bounded parallel workers and verified five-slot supply. Deployment #788 removes subscription execution serialization while preserving atomic credential custody; 1090 tests and 25 component scene checks pass, and the broker is active in development mode. Five-way live execution remains unproven. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- Five overlapping real executions, early completion, measured usage and clock compliance are proven in SDK AF. Agent #189 removes all development-only manifest policy rewrites; 286 tests and 47 component scene checks pass. Normal host configuration generation 38 explicitly preserves resources/accounting identity; activation/read-back remain pending. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- Configuration/enrollment parity is repaired. A cancelled attempt can lose durable teardown evidence when terminal-state updates race (API #410). Separate remaining gates are managed TreeDX development-writer backup (Deployment #784) and retention plateau (#779); neither permits weakening golden acceptance.
+- Activate and verify production-policy parity before rerunning: an injected 360-second review floor stranded AF re-review. Cancelled Reporter teardown remains unproven (API #410); managed backup (Deployment #784) and retention plateau (#779) remain separate gates.
 
 ### Next acceptance milestone
 
-- Verify five overlapping real executions under the one-hour SDK campaign, including unchanged daily accounting and clean teardown, through package-owned scenes; graph and correction/re-review acceptance remain owned by `agent-assignments.md`.
+- Verify identical production/simulation execution policy and unchanged explicit caps/resources, then run one fresh one-hour SDK campaign with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
