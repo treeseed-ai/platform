@@ -118,13 +118,14 @@ Freeze the resolved workday policy and actual provider offer/configuration along
 | All-project portfolio | All 17 seeded projects, each with equal positive weight `1`; the allocator normalizes to `100/17` percent per project | Every project: eight classes at `12.5` each |
 | Controlled failure | Reuse the exact accepted run's selection and allocation snapshot | Reuse the exact accepted run's class targets; only the specified injected fault changes |
 
-The eight classes are `architect`, `researcher`, `tester`, `engineer`, `technical-writer`, `releaser`, `reviewer`, and `reporter`. Every submitted input must also record `executionMode: simulation`, `profileId: default`, the profile revision, `durationSeconds`, `maximumConcurrency`, `communicationConcurrency`, `planningPercent: 20`, `allocationWeight: 1`, `planningTurnMaximumSeconds: 180`, the selected proposal/decision IDs, the provider offer revision, capability/model daily caps, reservations, and remaining supply read-back. Start individual and joint runs from the current `durationSeconds: 28800`, `maximumConcurrency: 1`, `communicationConcurrency: 1` default unless a read-only preflight proves the run cannot fit. Version-check any required policy update and freeze the resulting revision before starting. Expand all class and project mappings into the manifest; do not infer missing mappings from this Markdown table at execution time.
+The eight classes are `architect`, `researcher`, `tester`, `engineer`, `technical-writer`, `releaser`, `reviewer`, and `reporter`. Every submitted input must also record `executionMode: simulation`, `profileId: default`, the profile revision, `durationSeconds`, `maximumConcurrency`, `communicationConcurrency`, `planningPercent`, `allocationWeight: 1`, `planningTurnMaximumSeconds: 180`, the selected proposal/decision IDs, the provider offer revision, capability/model daily caps, reservations, and remaining supply read-back. Initial debugging runs use `durationSeconds: 3600`, `planningPercent: 33.333333333333336` (`100/3`: exactly 1,200 seconds), `maximumConcurrency: 1`, and `communicationConcurrency: 1`. This explicit workday override does not change the team's ordinary 20% planning default. Do not automatically extend the hour, truncate viable assignments, or waive acceptance criteria: report a measured shortfall or failed boundary. Version-check any required policy update and freeze the resulting revision before starting. Expand all class and project mappings into the manifest; do not infer missing mappings from this Markdown table at execution time.
 
 Use the team's canonical `default` policy (`--profile default`). Freeze its revision and the resolved workday snapshot. Update team defaults through version-checked `workdays profiles update default --input <policy-file>`; explicit workday allocation overrides do not change that policy or existing assignments. Repository allocation profiles, tiers, borrowing, and fixed assignment budgets are not campaign inputs.
 
 ```yaml
+durationSeconds: 3600
 allocation:
-  planningPercent: 20
+  planningPercent: 33.333333333333336 # 20 minutes planning; 40 minutes execution/closeout
   allocationWeight: 1
   planningTurnMaximumSeconds: 180
   projectPercentages: {sdk: 100}
