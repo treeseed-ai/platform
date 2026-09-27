@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK W reached five approved pairs but failed bounded release correction; SDK X stopped at the coded planning boundary and passed terminal teardown/settlement checks. Neither is a golden pass; detailed evidence belongs in Platform #520.
+- No SDK golden pass. The one-hour SDK AC campaign stopped at its twenty-minute planning boundary with first-cycle contributions but incomplete estimation/collaboration; its coded terminal settlement/teardown gate passed. Detailed evidence belongs in Platform #520; provider concurrency repair is owned by `agent-architecture.md`.
 
 ### Current active blocker
 
-- No current host or authentication blocker is established. X's short planning window did not fit collaboration and estimates; repeated full-role planning and successful bounded correction/re-review remain unproven. Use the automated campaign feasibility gate, not another blind rerun.
+- No graph authority or authentication blocker is established. Repeated full-role planning, genuine estimates, and successful bounded correction/re-review in the fixed hour remain unproven; confirm the provider repair through coded preflight before a fresh campaign.
 
 ### Next acceptance milestone
 
