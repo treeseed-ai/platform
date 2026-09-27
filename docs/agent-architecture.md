@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Five overlapping real executions, early completion, measured usage and clock compliance are proven in SDK AF. Agent #189 removes development-only manifest policy rewrites; 286 tests and 47 component scene checks pass. Dev2 generation 38 now runs with explicit resources, separate Luna/low accounting caps, five workers and no assignment minimum; API and provider roles are healthy after Deployment #790/#791. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- SDK AF proved five overlapping real executions, early completion, measured usage and clock compliance. Agent #189 removed development-only policy rewrites; Agent #191 and Deployment #793 repaired guest-image ordering/readiness. Agent #193 upgraded sandbox Codex to 0.157.1; a subsequent local assignment completed with `gpt-6-luna:low` on the ChatGPT subscription. Agent #194 adds a current-stable preflight and guest binary parity gate. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No active provider-policy blocker remains. Cancelled Reporter teardown remains unproven (API #410); managed backup (Deployment #784) and retention plateau (#779) remain separate gates.
+- No active model-auth blocker remains. The fresh SDK golden campaign still has not passed; cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate gates.
 
 ### Next acceptance milestone
 
-- Run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
+- Merge checked Agent #194, then run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
