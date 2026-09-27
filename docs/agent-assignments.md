@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- SDK W produced genuine estimates, an exact accepted decision and five approved Actor/Reviewer pairs. It was cancelled after release request-changes exhausted its bounded allowance without a successful correction; this is failure evidence, not a golden pass (Platform #520).
+- SDK W reached five approved pairs but failed bounded release correction; SDK X stopped at the coded planning boundary and passed terminal teardown/settlement checks. Neither is a golden pass; detailed evidence belongs in Platform #520.
 
 ### Current active blocker
 
-- The second planning cycle did not materialize, and successful bounded release correction/re-review remains unproven. API #406/#407 covers maintenance failure isolation; it does not yet establish the cause of the live planning stall. Runtime repair status belongs to `agent-architecture.md`.
+- No current host or authentication blocker is established. X's short planning window did not fit collaboration and estimates; repeated full-role planning and successful bounded correction/re-review remain unproven. Use the automated campaign feasibility gate, not another blind rerun.
 
 ### Next acceptance milestone
 
-- Prove repeated planning and bounded correction/re-review through the existing path, then refreeze the unchanged SDK golden with current artifact digests and complete Reporter, settlement, teardown and external-state checks; never reuse W as passing evidence.
+- Execute one fresh frozen SDK campaign through package-owned scenes, including genuine estimates, decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, SDK product gates and unchanged upstream inventory; do not reuse failed-run authority.
 
 ## Completion
 
