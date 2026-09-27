@@ -33,6 +33,29 @@ The first two proposals are SDK and API because they exercise the portable contr
 
 ## Non-negotiable rules
 
+### Automated execution authority
+
+Every criterion in this specification must be bound to executable package-owned
+guarantees and scenes. Manual observation, ad-hoc CLI sequences, fixture-only
+passes, and terminal status do not satisfy acceptance. Unit/integration scenes
+protect components; live campaign scenes drive and monitor the genuine proposal
+and workday lifecycle and verify its authoritative evidence.
+
+Packages ship their own guarantee definitions and executable verifier assets.
+Reviewer provides the unified discovery, selection, execution and receipt
+interface; it must not copy owner guarantees into a central catalog. Small
+scenes cover individual boundaries and compose into project, joint, portfolio
+and controlled-failure suites using the same assertions. Installed-package
+execution, not just source-checkout execution, is required.
+
+Whole-specification coverage must fail closed when a criterion is new, changed,
+unbound, backed by a missing verifier, or supported only by partial evidence.
+Coverage bindings identify the exact authoritative requirement and its coded
+assertions; they do not duplicate its prose or change the fixed golden request.
+A partial suite pass is never a full campaign pass. Current implementation and
+coverage gaps are tracked in Platform #520, Agent #168 and Reviewer #65; this
+requirement does not claim that complete automation already exists.
+
 - Every acceptance workday has the one authoritative `executionMode: simulation`. Assignments execute under that workday mode; graph, result, settlement, and CLI views derive it rather than owning independent mode values. A contradictory derived label is a failed run.
 - Simulation may read and modify any file in a disposable repository workspace, run builds and tests, combine candidates, create local commits and tags, and exercise release logic.
 - Simulation must not push to an upstream source or library repository, create or update a remote pull request or issue, publish a package or release, deploy, rotate credentials, mutate live data, or call another externally mutating service.
@@ -683,7 +706,9 @@ Run these only after the normal golden portfolio passes. Faults belong to the ac
 
 ## Mandatory live monitoring
 
-The implementation agent must watch every workday while it runs. Starting a workday and checking the terminal status later is not acceptance.
+The automated campaign scene must watch every workday while it runs and retain
+the transitions below. Starting a workday and checking terminal status later,
+or substituting manual spot-checks for the coded monitor, is not acceptance.
 
 At minimum, inspect and retain a snapshot on:
 
@@ -697,7 +722,13 @@ At minimum, inspect and retain a snapshot on:
 
 For each new assignment, compare its exact source/authority/context refs, predecessor result IDs, effective profile, handler and origin, grant, workspace/base/branch/writable paths, estimate, deadline, provider/runtime build, execution mode, and node revision with the expected graph before allowing the run to continue.
 
-The monitor must immediately stop new admissions and report when an assignment has the wrong project, class, activity, handler, dependency, context, grant, base, workspace, mode, estimate, or deadline; when an agent mutates outside its workspace; when a Reviewer mutates a candidate; when an expected node is skipped; or when a result cannot support its summary.
+The coded monitor must immediately stop new admissions through the supported
+scoped workday operation and retain a failed guarantee receipt when an
+assignment has the wrong project, class, activity, handler, dependency, context,
+grant, base, workspace, mode, estimate, or deadline; when an agent mutates outside
+its workspace; when a Reviewer mutates a candidate; when an expected node is
+skipped; or when a result cannot support its summary. Missing observation or
+incomplete pagination is an evidence failure, never permission to infer a pass.
 
 ## Pass criteria for one project
 
