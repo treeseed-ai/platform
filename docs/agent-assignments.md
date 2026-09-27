@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- No graph-authority blocker is established; SDK AG and AH ended before usable planning evidence because of the provider execution blockers recorded in `agent-architecture.md`. Do not reuse failed-run estimates, review allowances or authority.
+- No graph-authority blocker is established. SDK AG and AH ended before usable planning evidence; the provider model-auth fault has since been repaired as recorded in `agent-architecture.md`. Do not reuse failed-run estimates, review allowances or authority.
 
 ### Next acceptance milestone
 
