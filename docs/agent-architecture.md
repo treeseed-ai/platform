@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. GPT-6 Luna executes in local development mode; the concrete-path and canonical Reviewer-instruction repairs are activated. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. Agent #185 adds bounded parallel workers, exact dispatch, refill, adapter/lane ceilings and retained admission-failure leases; 285 tests and 44 component scene checks pass. Five-way live execution remains unproven. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- Automatic released-analysis cleanup is activated, but interrupted-unreleased recovery and bounded retention remain unproven (Deployment #779). The corrected Releaser instruction has coded regression coverage but still requires successful live revision evidence.
+- No authentication blocker is established. Development configuration/enrollment parity is under repair (Deployment #782); a separate managed-backup defect rejects registered TreeDX development writers (#784). Automatic simulation recovery is activated, but retention plateau remains unproven (#779).
 
 ### Next acceptance milestone
 
-- Verify the activated handler through a bounded revision and prove automatic workspace recovery/retention without operator cleanup; then support the fresh SDK golden described in `agent-assignments.md`.
+- Verify five overlapping real executions under the one-hour SDK campaign, including unchanged daily accounting and clean teardown, through package-owned scenes; graph and correction/re-review acceptance remain owned by `agent-assignments.md`.
 
 ## Completion
 
