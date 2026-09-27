@@ -440,7 +440,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- No graph-authority or authentication blocker is established. Resume only after the production-policy parity repair in `agent-architecture.md`; do not reuse AF estimates, review allowances or failed-run authority.
+- No graph-authority or authentication blocker is established. Production-policy parity now reads back on dev2; start a fresh simulation, without reusing AF estimates, review allowances or failed-run authority.
 
 ### Next acceptance milestone
 

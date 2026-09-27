@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Five overlapping real executions, early completion, measured usage and clock compliance are proven in SDK AF. Agent #189 removes all development-only manifest policy rewrites; 286 tests and 47 component scene checks pass. Normal host configuration generation 38 explicitly preserves resources/accounting identity; activation/read-back remain pending. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- Five overlapping real executions, early completion, measured usage and clock compliance are proven in SDK AF. Agent #189 removes development-only manifest policy rewrites; 286 tests and 47 component scene checks pass. Dev2 generation 38 now runs with explicit resources, separate Luna/low accounting caps, five workers and no assignment minimum; API and provider roles are healthy after Deployment #790/#791. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- Activate and verify production-policy parity before rerunning: an injected 360-second review floor stranded AF re-review. Cancelled Reporter teardown remains unproven (API #410); managed backup (Deployment #784) and retention plateau (#779) remain separate gates.
+- No active provider-policy blocker remains. Cancelled Reporter teardown remains unproven (API #410); managed backup (Deployment #784) and retention plateau (#779) remain separate gates.
 
 ### Next acceptance milestone
 
-- Verify identical production/simulation execution policy and unchanged explicit caps/resources, then run one fresh one-hour SDK campaign with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
+- Run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
