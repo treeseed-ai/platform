@@ -546,11 +546,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- AgentKernel, capability accounting, handlers, workspace enforcement and Kata isolation have focused tests. Agent #185 adds bounded parallel workers, exact dispatch, refill, adapter/lane ceilings and retained admission-failure leases; 285 tests and 44 component scene checks pass. Five-way live execution remains unproven. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- Agent #185 provides bounded parallel workers and verified five-slot supply. Deployment #788 removes subscription execution serialization while preserving atomic credential custody; 1090 tests and 25 component scene checks pass, and the broker is active in development mode. Five-way live execution remains unproven. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No authentication blocker is established. Development configuration/enrollment parity is under repair (Deployment #782); a separate managed-backup defect rejects registered TreeDX development writers (#784). Automatic simulation recovery is activated, but retention plateau remains unproven (#779).
+- Configuration/enrollment parity is repaired. A cancelled attempt can lose durable teardown evidence when terminal-state updates race (API #410). Separate remaining gates are managed TreeDX development-writer backup (Deployment #784) and retention plateau (#779); neither permits weakening golden acceptance.
 
 ### Next acceptance milestone
 
