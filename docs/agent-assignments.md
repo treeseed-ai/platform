@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. BN completed eight-role discussion, two planning cycles, seven genuine estimates, and an independent proposal review, but the Reviewer raised a blocking concern before decision and acting. Earlier runs proved partial Actor/Reviewer execution, not final closeout. Detailed receipts are in Platform #520; provider execution belongs to `agent-architecture.md`.
+- No SDK golden pass. Prior runs proved complete planning and partial Actor/Reviewer work, but not the full decision-to-settlement path. BQ stopped after a failed Releaser discussion turn, before decision; its terminal settlement and teardown guarantee passed. Detailed receipts are in Platform #520.
 
 ### Current active blocker
 
-- BN exposed acceptance-builder truncation of role criteria at semicolons. The clarified canonical contract is merged; Agent #235/#236 must pass required checks and merge before a fresh proposal can be trusted. BN remains failed evidence, not accepted authority.
+- The clarified proposal contract is merged. SDK library binding drift currently prevents governed publication of the corrected agent profiles; see `agent-architecture.md` for the execution-side prompt defect. API #433 and Agent #201 track the repairs.
 
 ### Next acceptance milestone
 
-- Refreeze one fresh SDK proposal after the complete role criteria pass read-back, then verify accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through the package-owned scenes. Planning alone is not a golden pass.
+- After exact published SDK library and active-definition read-back agree, refreeze one fresh SDK proposal and verify the accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
 
 ## Completion
 
