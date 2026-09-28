@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. SDK AF proved two complete planning cycles, seven genuine estimates, eight-role discussion, exact decision and approved Researcher/Engineer correction/re-review cycles; Writer revision completed, but its re-review, release and final closeout did not. Detailed evidence: Platform #520; provider policy and teardown gaps belong to `agent-architecture.md`.
+- No SDK golden pass. SDK AI completed two eight-role planning cycles, seven genuine estimates, eight chat replies, and an independent proposal review; that review requested changes, so no decision or acting graph followed. Earlier SDK AF proved several Actor/Reviewer cycles but not final closeout. Detailed evidence: Platform #520; provider execution belongs to `agent-architecture.md`.
 
 ### Current active blocker
 
-- No graph-authority blocker is established. SDK AG and AH ended before usable planning evidence; the provider model-auth fault has since been repaired as recorded in `agent-architecture.md`. Do not reuse failed-run estimates, review allowances or authority.
+- `PLAN_REVIEW_REQUIRED`: the frozen SDK acceptance text ambiguously assigns digest testing and legacy-contract removal across SDK/API boundaries. The independent Reviewer opened a blocking concern on the exact proposal revision. Clarification must preserve the fixed objective and six work items; do not fabricate approval or reuse failed-run estimates, review allowances or authority.
 
 ### Next acceptance milestone
 
-- Execute one fresh frozen SDK campaign through package-owned scenes, including genuine estimates, decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, SDK product gates and unchanged upstream inventory; do not reuse failed-run authority.
+- Resolve the canonical wording with the user, then refreeze and run one fresh SDK campaign through the existing package-owned scenes: genuine estimates, accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates and unchanged upstream inventory.
 
 ## Completion
 
