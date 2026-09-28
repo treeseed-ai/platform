@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. Prior runs proved complete planning and partial Actor/Reviewer work, but not the full decision-to-settlement path. BQ stopped after a failed Releaser discussion turn, before decision; its terminal settlement and teardown guarantee passed. Detailed receipts are in Platform #520.
+- No SDK golden pass. BR stopped in planning after a Tester estimate timed out; its automated cancellation, lease teardown, and exactly-once settlement guarantee passed. Earlier runs proved partial Actor/Reviewer work, not the complete decision-to-settlement path. Detailed receipts are in Platform #520.
 
 ### Current active blocker
 
-- The clarified proposal contract is merged. SDK library binding drift currently prevents governed publication of the corrected agent profiles; see `agent-architecture.md` for the execution-side prompt defect. API #433 and Agent #201 track the repairs.
+- The corrected eight-role SDK profiles are published and match the active definitions. The current frontier is the fresh SDK golden run after the estimating closeout repair is activated; see `agent-architecture.md` for that execution boundary.
 
 ### Next acceptance milestone
 
-- After exact published SDK library and active-definition read-back agree, refreeze one fresh SDK proposal and verify the accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
+- Refreeze one fresh SDK proposal and verify the accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
 
 ## Completion
 
