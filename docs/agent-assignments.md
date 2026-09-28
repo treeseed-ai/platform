@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. SDK AO completed eight-role discussion, two planning cycles, seven estimates, and an independent proposal review; that review requested changes before decision or acting. Earlier SDK AF proved partial Actor/Reviewer execution, not final closeout. Detailed evidence: Platform #520; provider execution belongs to `agent-architecture.md`.
+- No SDK golden pass. BN completed eight-role discussion, two planning cycles, seven genuine estimates, and an independent proposal review, but the Reviewer raised a blocking concern before decision and acting. Earlier runs proved partial Actor/Reviewer execution, not final closeout. Detailed receipts are in Platform #520; provider execution belongs to `agent-architecture.md`.
 
 ### Current active blocker
 
-- AO's Reviewer identified three real proposal-contract gaps: work-item criteria did not require normalized serialized intent, API-only digest ownership, or exact retirement scope. The canonical acceptance contract is being corrected without changing the objective or six work items; AO remains failed evidence, not accepted authority.
+- BN exposed acceptance-builder truncation of role criteria at semicolons. The clarified canonical contract is merged; Agent #235/#236 must pass required checks and merge before a fresh proposal can be trusted. BN remains failed evidence, not accepted authority.
 
 ### Next acceptance milestone
 
-- After the corrected proposal and historical assignment read-back are integrated, verify one fresh SDK campaign through the existing package-owned scenes: accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory. Do not mark the golden gate complete from planning alone.
+- Refreeze one fresh SDK proposal after the complete role criteria pass read-back, then verify accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through the package-owned scenes. Planning alone is not a golden pass.
 
 ## Completion
 
