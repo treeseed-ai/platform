@@ -436,11 +436,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. BR stopped in planning after a Tester estimate timed out; its automated cancellation, lease teardown, and exactly-once settlement guarantee passed. Earlier runs proved partial Actor/Reviewer work, not the complete decision-to-settlement path. Detailed receipts are in Platform #520.
+- No SDK golden pass. BT completed eight chat turns, seven fresh estimates, and a first eight-role planning cycle, but only five second-cycle turns; the package-owned Reviewer scene stopped at its planning criterion before independent proposal review or an accepted decision. Earlier partial Actor/Reviewer runs do not satisfy the complete path. Detailed receipts are in Platform #520.
 
 ### Current active blocker
 
-- The corrected eight-role SDK profiles are published and match the active definitions. The current frontier is the fresh SDK golden run after the estimating closeout repair is activated; see `agent-architecture.md` for that execution boundary.
+- The next exact proposal cannot begin until provider supply is genuinely sufficient; see the capacity preflight boundary in `agent-architecture.md`. No graph, decision, or review-cycle shortcut is authorized.
 
 ### Next acceptance milestone
 

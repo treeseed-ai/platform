@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Five concurrent Kata assignments have been observed under the ordinary provider policy in simulation with `gpt-6-luna:low` on the ChatGPT subscription. All eight corrected SDK chat profiles were governed, published, and read back at one exact library ref. BR exposed an estimating closeout that exhausted its unchanged 180-second active deadline; Agent #238 / PR #239 added a bounded production closeout guard and coded scene regression. Graph outcomes belong to `agent-assignments.md` (Platform #520).
+- Five concurrent Kata assignments and the repaired 180-second estimating closeout have been observed under the ordinary provider policy in simulation with `gpt-6-luna:low` on the ChatGPT subscription. The eight SDK chat profiles are published at one exact library ref. BT exposed insufficient remaining shared-model supply at campaign admission; graph outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- The estimating closeout repair passed component and Actions checks but still needs local guest activation and a real SDK golden read-back. API #432 separately tracks premature agent-definition activation before publication; current published and active SDK revisions agree.
+- Agent #242 / PR #243 adds a package-owned pre-creation supply gate against the existing provider observation; component tests pass, but staging checks and a fresh daily-supply read-back remain. No cap or test-only policy override is permitted.
 
 ### Next acceptance milestone
 
-- Activate the checked guest repair, then run one fresh one-hour SDK simulation with five slots through final accounting and teardown. Graph outcomes remain owned by `agent-assignments.md`.
+- After checked integration and UTC-day supply replenishment, run one fresh one-hour SDK simulation with five slots through final accounting and teardown. Graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
