@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Five concurrent Kata assignments run under the ordinary provider policy in simulation with Codex 0.157.1 and `gpt-6-luna:low` on the ChatGPT subscription. Deployment #797 keeps a denied TreeDX relay local to its request; Agent #204 prevents live ready claims from being mistaken for restart recovery; Agent #206 bounds estimating predecessor prompts while preserving exact references. SDK AO completed its estimate turns. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- Five concurrent Kata assignments have been observed under the ordinary provider policy in simulation with `gpt-6-luna:low` on the ChatGPT subscription. The local provider, broker, API, and runner supported BN's complete planning phase. Graph and review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No active provider-execution blocker is established. The campaign scene still needs fail-closed stopping on any failed simulation read-back (Agent #207); the historical assignment projection repair belongs to API #413. Cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate gates.
+- No active provider-execution blocker is established. The SDK decision and acting path is blocked by the incomplete proposal criteria described in `agent-assignments.md`; cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate acceptance gates.
 
 ### Next acceptance milestone
 
-- Integrate Agent #207 and API #413, then run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown. Graph outcomes remain owned by `agent-assignments.md`.
+- After the proposal-criteria repair, run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown. Graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
