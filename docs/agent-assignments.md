@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. SDK AI completed two eight-role planning cycles, seven genuine estimates, eight chat replies, and an independent proposal review; that review requested changes, so no decision or acting graph followed. Earlier SDK AF proved several Actor/Reviewer cycles but not final closeout. Detailed evidence: Platform #520; provider execution belongs to `agent-architecture.md`.
+- No SDK golden pass. SDK AO completed eight-role discussion, two planning cycles, seven estimates, and an independent proposal review; that review requested changes before decision or acting. Earlier SDK AF proved partial Actor/Reviewer execution, not final closeout. Detailed evidence: Platform #520; provider execution belongs to `agent-architecture.md`.
 
 ### Current active blocker
 
-- The acceptance wording and canonical proposal preflight are merged on staging. SDK AK was stopped before proposal governance by a timed-out discussion turn; the execution-path repair belongs to `agent-architecture.md`. The prior review-blocked workday remains failed evidence, not accepted authority.
+- AO's Reviewer identified three real proposal-contract gaps: work-item criteria did not require normalized serialized intent, API-only digest ownership, or exact retirement scope. The canonical acceptance contract is being corrected without changing the objective or six work items; AO remains failed evidence, not accepted authority.
 
 ### Next acceptance milestone
 
-- After the execution-path repair, verify a fresh SDK campaign through the existing package-owned scenes: genuine estimates, accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates and unchanged upstream inventory. Do not mark the golden gate complete from preflight or planning alone.
+- After the corrected proposal and historical assignment read-back are integrated, verify one fresh SDK campaign through the existing package-owned scenes: accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory. Do not mark the golden gate complete from planning alone.
 
 ## Completion
 

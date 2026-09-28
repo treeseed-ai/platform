@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- SDK AK admitted five overlapping Kata assignments with the same production provider policy in simulation. Agent #200 and Deployment #795 removed the premature broker-create timeout; the first remaining failure was a Releaser discussion turn exhausting its 90-second active allocation after repeated source inspection. Codex 0.157.1 runs `gpt-6-luna:low` on the ChatGPT subscription. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- Five concurrent Kata assignments run under the ordinary provider policy in simulation with Codex 0.157.1 and `gpt-6-luna:low` on the ChatGPT subscription. Deployment #797 keeps a denied TreeDX relay local to its request; Agent #204 prevents live ready claims from being mistaken for restart recovery; Agent #206 bounds estimating predecessor prompts while preserving exact references. SDK AO completed its estimate turns. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- Agent #201 is repairing short-turn chat instructions without changing the model, workday policy, or assignment duration. SDK AK was stopped by the automated scene; no golden pass. Cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate gates.
+- No active provider-execution blocker is established. The campaign scene still needs fail-closed stopping on any failed simulation read-back (Agent #207); the historical assignment projection repair belongs to API #413. Cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate gates.
 
 ### Next acceptance milestone
 
-- Merge checked Agent #202, activate it in development mode, then run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
+- Integrate Agent #207 and API #413, then run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown. Graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
