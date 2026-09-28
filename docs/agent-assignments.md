@@ -440,11 +440,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- No active blocker. The clarified acceptance contract and package-owned preflight are merged on staging; a fresh, estimate-free SDK simulation is running under the automated golden scene. The prior review-blocked workday remains failed evidence, not accepted authority.
+- The acceptance wording and canonical proposal preflight are merged on staging. SDK AK was stopped before proposal governance by a timed-out discussion turn; the execution-path repair belongs to `agent-architecture.md`. The prior review-blocked workday remains failed evidence, not accepted authority.
 
 ### Next acceptance milestone
 
-- Verify the fresh SDK campaign through the existing package-owned scenes: genuine estimates, accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates and unchanged upstream inventory. Do not mark the golden gate complete from preflight or planning alone.
+- After the execution-path repair, verify a fresh SDK campaign through the existing package-owned scenes: genuine estimates, accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates and unchanged upstream inventory. Do not mark the golden gate complete from preflight or planning alone.
 
 ## Completion
 
