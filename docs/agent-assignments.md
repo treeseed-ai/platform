@@ -440,11 +440,11 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- `PLAN_REVIEW_REQUIRED`: the frozen SDK acceptance text ambiguously assigns digest testing and legacy-contract removal across SDK/API boundaries. The independent Reviewer opened a blocking concern on the exact proposal revision. Clarification must preserve the fixed objective and six work items; do not fabricate approval or reuse failed-run estimates, review allowances or authority.
+- No active blocker. The clarified acceptance contract and package-owned preflight are merged on staging; a fresh, estimate-free SDK simulation is running under the automated golden scene. The prior review-blocked workday remains failed evidence, not accepted authority.
 
 ### Next acceptance milestone
 
-- Resolve the canonical wording with the user, then refreeze and run one fresh SDK campaign through the existing package-owned scenes: genuine estimates, accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates and unchanged upstream inventory.
+- Verify the fresh SDK campaign through the existing package-owned scenes: genuine estimates, accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates and unchanged upstream inventory. Do not mark the golden gate complete from preflight or planning alone.
 
 ## Completion
 
