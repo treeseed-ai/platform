@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- SDK AF proved five overlapping real executions, early completion, measured usage and clock compliance. Agent #189 removed development-only policy rewrites; Agent #191 and Deployment #793 repaired guest-image ordering/readiness. Agent #193 upgraded sandbox Codex to 0.157.1; a subsequent local assignment completed with `gpt-6-luna:low` on the ChatGPT subscription. Agent #194 adds a current-stable preflight and guest binary parity gate. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
+- SDK AK admitted five overlapping Kata assignments with the same production provider policy in simulation. Agent #200 and Deployment #795 removed the premature broker-create timeout; the first remaining failure was a Releaser discussion turn exhausting its 90-second active allocation after repeated source inspection. Codex 0.157.1 runs `gpt-6-luna:low` on the ChatGPT subscription. Graph/review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No active model-auth blocker remains. The fresh SDK golden campaign still has not passed; cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate gates.
+- Agent #201 is repairing short-turn chat instructions without changing the model, workday policy, or assignment duration. SDK AK was stopped by the automated scene; no golden pass. Cancelled Reporter teardown (API #410), managed backup (#784), and retention plateau (#779) remain separate gates.
 
 ### Next acceptance milestone
 
-- Merge checked Agent #194, then run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
+- Merge checked Agent #202, activate it in development mode, then run one fresh one-hour SDK simulation with five slots through the packaged guarantees, including final accounting and teardown; graph outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
