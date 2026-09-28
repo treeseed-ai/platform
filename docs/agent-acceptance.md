@@ -309,7 +309,7 @@ The source issue is evidence for choosing the work. The golden proposal below is
 
 Each Actor is reviewed against its own deliverable: Researcher supplies exact source refs; Architect publishes the SDK Architecture Knowledge page; Tester commits failing-on-base tests; Engineer commits the implementation passing those tests; Technical Writer commits and verifies examples; Releaser integrates and verifies the local candidate. The proposal-wide contract gates below apply to the final integrated candidate, not to an earlier Actor's isolated workspace.
 
-Required acceptance: empty and duplicate IDs fail; omitted selection retains planning-only intent without a compatibility path; normalized order and digest are deterministic; generated descriptors expose the field once; no legacy execution-plan/capacity-plan input survives.
+Required acceptance for the final integrated SDK candidate: empty and duplicate decision IDs fail; selected IDs normalize in deterministic order and serialize deterministically; omission leaves the separate `planningOnly` setting unchanged (including when it is true) without a compatibility path; generated descriptors expose the selection field once. SDK proves normalized request serialization, not intent or preflight digests, which the API computes. Retire caller-authored legacy workday execution-plan and capacity-plan selection inputs; preserve the proposal's governed `executionPlan` and API-derived capacity provenance. Researcher's question-driven work and generated Reviewer remain independent of the standing Architect → Tester → Engineer → Technical Writer → Releaser chain. Each earlier Actor is reviewed only against its own work-item objective and output.
 
 ### 2. API — content-derived acting promotion
 
