@@ -77,11 +77,9 @@ executionPlan:
       review: required
       objective: Define the required behavior and boundaries.
       estimate:
-        minimumSeconds: 600
         expectedSeconds: 900
         maximumSeconds: 1200
       reviewEstimate:
-        minimumSeconds: 180
         expectedSeconds: 300
         maximumSeconds: 600
       maximumReviewCycles: 2
@@ -228,7 +226,6 @@ nodeRevision: 2
 agentClass: engineer
 status: proposed | blocked | ready | assigned | running | completed | failed | cancelled | stale
 estimate:
-  minimumSeconds: 900
   expectedSeconds: 1800
   maximumSeconds: 3600
 requiredCapabilities: []
@@ -436,15 +433,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. DI completed two eight-role planning cycles, seven genuine estimates, and eight-role discussion. Its ready proposal review was not admitted: its 2,700-second minimum exceeded the remaining acting window of the one-hour simulation. The package-owned scene failed and terminal teardown/settlement passed; no decision or Actor/Reviewer path was proven (Platform #520).
+- No SDK golden pass. DI completed two eight-role planning cycles, seven genuine estimates, and eight-role discussion; its separate proposal-review minimum blocked acting. That gate is being removed while retaining external approval and exact estimate authority (Platform #520).
 
 ### Current active blocker
 
-- Full golden acceptance cannot fit the one-hour diagnostic window with DI's genuine review and dependent Actor/Reviewer minima. The next full-run duration requires an explicit viable workday choice; do not shorten estimates, truncate reservations, or bypass the graph.
+- The revised approval, fluid planning, and carry-forward path has not yet passed a package-owned integrated scene; no acting or complete golden result can be claimed.
 
 ### Next acceptance milestone
 
-- After selecting a viable workday duration, refreeze one fresh SDK proposal and verify the accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
+- Refreeze one fresh one-hour SDK simulation and verify external approval plus estimates, acting admission, Actor/Reviewer pairs, carry-forward if needed, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
 
 ## Completion
 

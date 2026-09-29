@@ -327,12 +327,10 @@ $defs:
       - $ref: "#/$defs/UrlReference"
 
   Estimate:
-    # minimum <= expected <= maximum is also enforced by semantic validation.
+    # expected <= maximum is enforced by semantic validation; neither is a minimum runtime.
     type: object
-    required: [minimumSeconds, expectedSeconds, maximumSeconds]
+    required: [expectedSeconds, maximumSeconds]
     properties:
-      minimumSeconds:
-        $ref: "#/$defs/PositiveSeconds"
       expectedSeconds:
         $ref: "#/$defs/PositiveSeconds"
       maximumSeconds:
