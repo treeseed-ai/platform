@@ -357,7 +357,7 @@ Manual and recurring workdays use one high-level intent and the same preflight/s
 
 ### Planning phase
 
-Planning uses the first `planningPercent` of wall-clock duration and allocated capacity. Repeated short turns follow activity dependencies, give eligible agents equal turn ceilings, and load previous contributions through TreeDX. Class/project percentages govern opportunity frequency. Planning requires no existing proposal and admits no implementation, deployment, or release. Estimates are authored during planning; proposals may originate in any authorized activity. At the phase boundary, stop unfinished planning turns and release unused capacity to acting/review.
+Planning has a minimum initial window of `planningPercent` of wall-clock duration. Repeated short turns follow activity dependencies, give eligible agents equal turn ceilings, and load previous contributions through TreeDX. Class/project percentages govern opportunity frequency. Planning requires no existing proposal and admits no implementation, deployment, or release. Estimates are authored during planning; proposals may originate in any authorized activity. After the initial window, act only when approved, estimated graph work is ready; otherwise continue or return to planning. Agents may finish before their maximum allocation.
 
 Provider-owned capability caps and a shared execution-provider/model cap bound every workday. Normalize active workday weights (default 1), preserve existing reservations, and redistribute idle project/class target shares only to admissible graph-ready work. Both production and simulation consume real supply. Charge active harness/model/tool time, including model-backed preparation and closeout; record infrastructure setup, queueing, and teardown separately.
 
@@ -450,7 +450,7 @@ Acceptance:
 - [ ] Prove parallel Researcher → Reviewer and Architect → Tester → Engineer → Technical Writer → Releaser ordering for planning, estimating, and acting, with generated review pairs and no cross-branch edge.
 - [ ] Make the Architect maintain a conventional `<Project> Architecture` book of validated knowledge pages.
 - [x] Route Reviewer findings through notes/questions and formal dispositions through decisions, all bound to exact candidate references.
-- [x] Remove Reviewer acting behavior; route proposal review and every required acting-work review through the same Reviewer `reviewing` profile.
+- [ ] Remove Reviewer acting behavior and separate proposal-feasibility review; route each required acting-work review through the Reviewer `reviewing` profile. The external approval and agent estimates jointly gate acting.
 - [ ] Add one project-owned handler that reuses or implements the shared interface and prove selection without changing Agent-package code.
 - [ ] Keep books, knowledge, proposals, notes, questions, classed decisions, proposal-embedded estimates, and note-based workday reports on ordinary TreeDX operations.
 - [ ] Remove TreeDX assignment-plan, assignment-status, and assignment-summary content; consume PostgreSQL assignment state and general results instead.
@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Five concurrent Kata assignments and repeated complete planning cycles have been observed in simulation with `gpt-6-luna:low` on the ChatGPT subscription. The package-owned provider-supply preflight and exact ready-review time-fit gate are checked on staging; DI's graph outcome belongs to `agent-assignments.md` (Platform #520).
+- Five concurrent Kata assignments and repeated complete planning cycles have been observed in simulation with `gpt-6-luna:low` on the ChatGPT subscription. The fluid planning and approval migration is in progress; DI's graph outcome belongs to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No active provider-runtime blocker is established. The current full-run timing decision and unproven acting path are recorded in `agent-assignments.md`; a one-hour diagnostic result does not prove complete AgentKernel acceptance.
+- No active provider-runtime blocker is established. The revised one-hour acting and carry-forward path is not yet integrated or proven; a diagnostic result does not prove complete AgentKernel acceptance.
 
 ### Next acceptance milestone
 
-- Run one fresh, estimate-viable SDK simulation with five slots through AgentKernel execution, measured accounting, and teardown after the workday-duration decision. Graph and review outcomes remain owned by `agent-assignments.md`.
+- Run a fresh one-hour SDK simulation with five slots through AgentKernel execution, measured accounting, and teardown. Graph and review outcomes remain owned by `agent-assignments.md`.
 
 ## Completion
 
