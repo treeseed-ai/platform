@@ -436,15 +436,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. BT completed eight chat turns, seven fresh estimates, and a first eight-role planning cycle, but only five second-cycle turns; the package-owned Reviewer scene stopped at its planning criterion before independent proposal review or an accepted decision. Earlier partial Actor/Reviewer runs do not satisfy the complete path. Detailed receipts are in Platform #520.
+- No SDK golden pass. DI completed two eight-role planning cycles, seven genuine estimates, and eight-role discussion. Its ready proposal review was not admitted: its 2,700-second minimum exceeded the remaining acting window of the one-hour simulation. The package-owned scene failed and terminal teardown/settlement passed; no decision or Actor/Reviewer path was proven (Platform #520).
 
 ### Current active blocker
 
-- The next exact proposal cannot begin until provider supply is genuinely sufficient; see the capacity preflight boundary in `agent-architecture.md`. No graph, decision, or review-cycle shortcut is authorized.
+- Full golden acceptance cannot fit the one-hour diagnostic window with DI's genuine review and dependent Actor/Reviewer minima. The next full-run duration requires an explicit viable workday choice; do not shorten estimates, truncate reservations, or bypass the graph.
 
 ### Next acceptance milestone
 
-- Refreeze one fresh SDK proposal and verify the accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
+- After selecting a viable workday duration, refreeze one fresh SDK proposal and verify the accepted decision, six Actor/Reviewer pairs, correction/re-review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
 
 ## Completion
 
