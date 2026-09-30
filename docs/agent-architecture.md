@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Planning synthesis remains an active execution blocker: a bounded same-session correction still omitted an exact predecessor citation (Agent #267); coded recovery gates pass, but post-fix live acceptance is unproven. Normal physical reboot passed automatically (Deployment #802/#805).
+- Moving-ref source authorization exhausted anonymous GitHub quota during planning (API #459); API-only managed-custody and immutable-pin regression scenes pass, but runtime activation and live acceptance remain unproven. Agent #267's actual synthesis correction remains unproven; normal physical reboot passed automatically (Deployment #802/#805).
 
 ### Next acceptance milestone
 
