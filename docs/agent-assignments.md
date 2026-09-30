@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Explicit continuation contracts and API lineage admission are integrated through SDK #346 and API #454 with focused, scene and real PostgreSQL CI gates; live carry-forward, Releaser review and Reporter remain unproven.
+- Explicit continuation contracts and API lineage admission are integrated through SDK #346 and API #454. Agent #264 adds the focused automated exact-candidate continuation scene; live carry-forward, Releaser review and Reporter remain unproven.
 
 ### Next acceptance milestone
 
