@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Admission precharged the full infrastructure watchdog against active phase/day windows (API #461/#462); captured production/simulation regression scenes pass, but checked integration and live execution remain unproven. API #459 is activated with no source-quota returns in the next segment; Agent #267's actual synthesis correction remains unproven.
+- Phase-end planning cancellation races the provider report and is stored as a timeout failure (API #463/#464); package-owned race and negative scenes pass, but the live phase handoff remains unproven. Detailed execution evidence belongs to Platform #520.
 
 ### Next acceptance milestone
 
