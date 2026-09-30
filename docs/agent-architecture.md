@@ -550,11 +550,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Native Reporter completes without an isolation transport but omits resource-closure evidence; Agent #275/#276 repairs the canonical completion output with owner scene regressions, while fresh live settlement/teardown proof remains required (Platform #520).
+- Native Reporter resource closure is repaired through Agent #275/#276 and proven by the passing package-owned continuation, including settlement/teardown and unchanged upstream. Fresh full SDK acceptance remains outstanding; historical failures are not backfilled (Platform #520).
 
 ### Next acceptance milestone
 
-- Prove one-hour continuation through AgentKernel execution, measured accounting and teardown using package-owned scenes; see `agent-assignments.md` for the exact accepted-graph frontier.
+- Prove the fresh one-hour full SDK golden through AgentKernel, measured accounting and teardown using package-owned scenes; see `agent-assignments.md` for the graph and product gates.
 
 ## Completion
 
