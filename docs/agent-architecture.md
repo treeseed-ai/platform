@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Moving-ref source authorization exhausted anonymous GitHub quota during planning (API #459); API-only managed-custody and immutable-pin regression scenes pass, but runtime activation and live acceptance remain unproven. Agent #267's actual synthesis correction remains unproven; normal physical reboot passed automatically (Deployment #802/#805).
+- Admission precharged the full infrastructure watchdog against active phase/day windows (API #461/#462); captured production/simulation regression scenes pass, but checked integration and live execution remain unproven. API #459 is activated with no source-quota returns in the next segment; Agent #267's actual synthesis correction remains unproven.
 
 ### Next acceptance milestone
 
