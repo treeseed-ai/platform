@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Provider acceptance awaits the graph-completion repair in `agent-assignments.md`. Agent #273/#274 portable packaging is integrated and active with owner component checks; live fresh-workspace Reviewer confirmation remains unproven (Platform #520).
+- Native Reporter completes without an isolation transport but omits resource-closure evidence; Agent #275/#276 repairs the canonical completion output with owner scene regressions, while fresh live settlement/teardown proof remains required (Platform #520).
 
 ### Next acceptance milestone
 
