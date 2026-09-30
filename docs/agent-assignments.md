@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Exact-decision continuation retains five approved Actor/Reviewer pairs and verified release gates on the approved Writer candidate, but paired release review and Reporter acceptance remain unproven. The fresh-workspace verification blocker belongs to `agent-architecture.md` (Platform #520).
+- Concurrent assignment completion collided with graph reconciliation on revision allocation; API #465/#466 has a real PostgreSQL regression and owner scene, but checked integration and live completion remain required. Exact-decision continuation retains five approved pairs; release review and Reporter remain unproven (Platform #520).
 
 ### Next acceptance milestone
 

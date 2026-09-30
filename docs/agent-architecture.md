@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Runner-observed release verification depended on an Actor-created scratch packaging destination absent from a fresh Reviewer workspace. Agent #273/#274 replaces that dependency with ordinary current-directory packaging; owner component checks pass, but live Reviewer confirmation remains unproven (Platform #520).
+- Provider acceptance awaits the graph-completion repair in `agent-assignments.md`. Agent #273/#274 portable packaging is integrated and active with owner component checks; live fresh-workspace Reviewer confirmation remains unproven (Platform #520).
 
 ### Next acceptance milestone
 
