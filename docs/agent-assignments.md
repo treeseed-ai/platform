@@ -433,15 +433,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. DI completed two eight-role planning cycles, seven genuine estimates, and eight-role discussion; its separate proposal-review minimum blocked acting. That gate is being removed while retaining external approval and exact estimate authority (Platform #520).
+- No SDK golden pass. Automated DO completed two eight-role planning cycles, seven genuine estimates, external approval, and five approved Actor/Reviewer pairs. The Writer passed a genuine request-changes → revision → re-review cycle; Releaser then timed out with only 317 active seconds remaining in the one-hour workday (Platform #520).
 
 ### Current active blocker
 
-- The revised approval, fluid planning, and carry-forward path has not yet passed a package-owned integrated scene; no acting or complete golden result can be claimed.
+- The one-hour campaign still treats a late assignment timeout as a failed boundary and stops before release review or Reporter. Carry-forward of the unfinished accepted graph into a later workday has not passed a package-owned scene.
 
 ### Next acceptance milestone
 
-- Refreeze one fresh one-hour SDK simulation and verify external approval plus estimates, acting admission, Actor/Reviewer pairs, carry-forward if needed, Reporter, settlement, teardown, product gates, and unchanged upstream inventory through package-owned scenes.
+- Prove deadline closeout and exact-decision graph carry-forward with coded scenes, then continue the existing accepted SDK work through Releaser review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory without weakening the one-hour simulation boundary.
 
 ## Completion
 
