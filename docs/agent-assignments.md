@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Exact-decision continuation retains five approved Actor/Reviewer pairs; post-fix planning stays decision-scoped, but release/review/Reporter acceptance remains unproven. The current execution blocker belongs to `agent-architecture.md`; stopped-run lease release, teardown and exactly-once settlement passed (Platform #520).
+- Exact-decision continuation retains five approved Actor/Reviewer pairs; release/review/Reporter acceptance remains unproven. The current execution blocker belongs to `agent-architecture.md`; automated stopped acceptance again proves lease release, teardown and exactly-once settlement (Platform #520).
 
 ### Next acceptance milestone
 
