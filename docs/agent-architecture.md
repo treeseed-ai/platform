@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Deployment #803/#804 restores ephemeral bind custody and the development-held API database client; managed API, runner, provider and TreeDX read-back passes. Repeat physical-reboot acceptance remains unproven (Deployment #802); the next execution frontier is in `agent-assignments.md`.
+- Managed reboot recovery is restored by Deployment #803/#804, but repeat physical-reboot acceptance remains unproven (#802). API #457 isolates malformed historical recovery so newer stopped attempts can settle; three prior teardown receipts remain missing and are not accepted as successful cleanup (Platform #520).
 
 ### Next acceptance milestone
 
