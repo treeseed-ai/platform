@@ -433,15 +433,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No full SDK golden pass. Exact-decision continuation completed release, paired approval, and Reporter with a stored exact report reference; result and Reporter guarantees pass, but the complete settlement/teardown boundary remains failed (Platform #520).
+- No full SDK golden pass. The package-owned exact-decision continuation passed release, paired approval, exact Reporter read-back, all-attempt settlement/teardown and unchanged-upstream gates; historical failed runs remain failed (Platform #520).
 
 ### Current active blocker
 
-- Native Reporter closure evidence is missing; `agent-architecture.md` owns the repair. Concurrent graph completion is integrated through API #466 and no collision occurred in the completed continuation; unchanged upstream inventory and complete acceptance remain unproven (Platform #520).
+- A fresh full SDK golden must still prove new planning/estimates, external approval, all six reviewed work items, a genuine revision cycle and the SDK product gate in one run. The passing continuation is not full acceptance (Platform #520).
 
 ### Next acceptance milestone
 
-- Pass the focused settlement/teardown and unchanged-upstream gates after native closure repair, then run a fresh full SDK golden from proposal through six reviewed work items and closeout within the one-hour simulation boundary.
+- Run the fresh full SDK golden from proposal through six reviewed work items and closeout within the one-hour simulation boundary, then API and joint acceptance only after SDK passes.
 
 ## Completion
 
