@@ -361,7 +361,7 @@ Planning has a minimum initial window of `planningPercent` of wall-clock duratio
 
 Provider-owned capability caps and a shared execution-provider/model cap bound every workday. Normalize active workday weights (default 1), preserve existing reservations, and redistribute idle project/class target shares only to admissible graph-ready work. Both production and simulation consume real supply. Charge active harness/model/tool time, including model-backed preparation and closeout; record infrastructure setup, queueing, and teardown separately.
 
-Cold-start acting uses the task's maximum estimate, bounded by provider limits and available allocations. Replay the latest 20 eligible measurements within the same provider/model, capability, class, and activity, normalized by expected task duration. Successful completion targets 1.25 times observed duration with at most 10% downward adjustment per sample; expiration increases allocation by at least 25%. Other failure classes do not calibrate task duration. Insufficient viable capacity defers work without changing the graph.
+Cold-start acting uses the task's maximum estimate, bounded by provider limits and available allocations. Replay the latest 20 eligible measurements within the same provider/model, capability, class, and activity, normalized by expected task duration. Successful completion targets 1.25 times observed duration with at most 10% downward adjustment per sample, weighted by the smaller expected task duration divided by the larger one; very different task sizes supply weaker evidence for reducing the current ceiling. Expiration increases allocation by at least 25%. Other failure classes do not calibrate task duration. Insufficient viable capacity defers work without changing the graph.
 
 The read-only `workday plan` operation and mutating `workday start` use the same compiler. The workday stores the applied plan rather than creating another scheduling authority.
 
@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Native Reporter resource closure is repaired through Agent #275/#276 and proven by the passing package-owned continuation, including settlement/teardown and unchanged upstream. Fresh full SDK acceptance remains outstanding; historical failures are not backfilled (Platform #520).
+- Native Reporter closure is proven by the passing continuation. Fresh SDK acting reviews then expired after dissimilar-task calibration shortened genuine maximum estimates to 18/22 seconds; SDK #347/#348 repairs reduction confidence with coded owner scenes, without a duration floor. Fresh live proof remains required (Platform #520).
 
 ### Next acceptance milestone
 
