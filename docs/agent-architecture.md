@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Managed reboot recovery is restored by Deployment #803/#804, but repeat physical-reboot acceptance remains unproven (#802). API #457 isolates malformed historical recovery so newer stopped attempts can settle; three prior teardown receipts remain missing and are not accepted as successful cleanup (Platform #520).
+- Repeat reboot exposed release pauses skipping runtime recovery; Deployment #805 now recovers pinned dependencies and development selections without manual custody repair, but a physical reboot with that fix installed remains unproven (#802). API #457 isolates malformed historical recovery; three prior teardown receipts remain missing (Platform #520).
 
 ### Next acceptance milestone
 
