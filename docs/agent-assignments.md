@@ -433,15 +433,15 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current integrated state
 
-- No SDK golden pass. Automated DO completed two eight-role planning cycles, seven genuine estimates, external approval, and five approved Actor/Reviewer pairs. The Writer passed a genuine request-changes → revision → re-review cycle; Releaser then timed out with only 317 active seconds remaining in the one-hour workday (Platform #520).
+- No full SDK golden pass. Exact-decision continuation completed release, paired approval, and Reporter with a stored exact report reference; result and Reporter guarantees pass, but the complete settlement/teardown boundary remains failed (Platform #520).
 
 ### Current active blocker
 
-- Concurrent assignment completion collided with graph reconciliation on revision allocation; API #465/#466 has a real PostgreSQL regression and owner scene, but checked integration and live completion remain required. Exact-decision continuation retains five approved pairs; release review and Reporter remain unproven (Platform #520).
+- Native Reporter closure evidence is missing; `agent-architecture.md` owns the repair. Concurrent graph completion is integrated through API #466 and no collision occurred in the completed continuation; unchanged upstream inventory and complete acceptance remain unproven (Platform #520).
 
 ### Next acceptance milestone
 
-- Prove deadline closeout and exact-decision graph carry-forward with coded scenes, then continue the existing accepted SDK work through Releaser review, Reporter, settlement, teardown, product gates, and unchanged upstream inventory without weakening the one-hour simulation boundary.
+- Pass the focused settlement/teardown and unchanged-upstream gates after native closure repair, then run a fresh full SDK golden from proposal through six reviewed work items and closeout within the one-hour simulation boundary.
 
 ## Completion
 
