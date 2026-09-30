@@ -1707,6 +1707,15 @@ $defs:
     # Manual and recurring workdays use this one high-level input; resolved Workday owns mode and policy.
     type: object
     required: [schemaVersion, teamId, profileId, projects, startsAt]
+    allOf:
+      - if: {required: [continueFromWorkdayId]}
+        then:
+          required: [decisionIds]
+          not:
+            anyOf:
+              - required: [proposalIds]
+              - required: [planningOnly]
+                properties: {planningOnly: {const: true}}
     properties:
       schemaVersion: {const: treeseed.workday-intent/v1}
       teamId: {$ref: "#/$defs/Identifier"}
@@ -1723,6 +1732,12 @@ $defs:
       objectiveFilters: {type: array, items: {$ref: "#/$defs/Identifier"}}
       proposalIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
       decisionIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
+      continueFromWorkdayId:
+        type: string
+        minLength: 1
+        maxLength: 128
+        pattern: '\S'
+        description: Explicit settled workday lineage; same team, mode, provider and selected decisions. Fresh simulations omit this field and reset attempts.
       allocation:
         type: object
         properties:

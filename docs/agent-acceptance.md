@@ -195,6 +195,8 @@ Every project follows the same lifecycle. The project sections below supply the 
 9. The first planning percentage is a minimum initial window. After it, the API admits graph-ready acting work when available; otherwise it continues planning and may return to planning whenever no accepted work is ready. Acting never occurs inside the initial planning window.
 10. Continue through generated Reviewer pairs, simulated release, Reporter closeout, and exactly-once settlement. Agents may finish early. An unfinished graph at the end of the one-hour diagnostic workday is reported honestly and remains eligible for a later workday; it does not by itself fail that workday or constitute a golden pass.
 
+An explicit continuation uses `trsd workdays plan --continue-from <settled-workday-id> --decision <exact-accepted-decision-id>` with the same project/mode/provider custody and high-level allocation inputs. The API rejects outstanding leases or reservations and retains exact completed predecessor results and consumed review allowances from existing workday records. It creates fresh assignments only for unfinished nodes; no result, estimate, review, usage or candidate is copied or fabricated. This is not a fresh golden reset: ordinary new simulations omit `--continue-from` and retain the reset boundary above. Package-owned scenes must distinguish complete campaign proof from an incomplete one-hour segment; a continued result alone cannot retroactively pass a failed segment.
+
 If the current implementation cannot represent this lifecycle without an alternate assignment path or duplicate plan authority, stop. Do not simplify the acceptance case to match the implementation.
 
 ## Common activity-profile expectations
