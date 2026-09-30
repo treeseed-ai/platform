@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No active reboot blocker: normal physical reboot recovered pinned services and development selections automatically (Deployment #802/#805). Historical teardown evidence and the exact accepted-graph frontier remain owned by `agent-assignments.md` and Platform #520; no golden acceptance is implied.
+- Planning synthesis remains an active execution blocker: a bounded same-session correction still omitted an exact predecessor citation (Agent #267); coded recovery gates pass, but post-fix live acceptance is unproven. Normal physical reboot passed automatically (Deployment #802/#805).
 
 ### Next acceptance milestone
 

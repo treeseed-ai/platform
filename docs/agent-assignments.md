@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- The focused continuation carried forward five approved Actor/Reviewer pairs, then failed after decision-only planning discovered unrelated proposals. API #456 scopes later turns to selected decisions; automated post-fix release/review/Reporter acceptance remains unproven. Provider recovery gates belong to `agent-architecture.md` (Platform #520).
+- Exact-decision continuation retains five approved Actor/Reviewer pairs; post-fix planning stays decision-scoped, but release/review/Reporter acceptance remains unproven. The current execution blocker belongs to `agent-architecture.md`; stopped-run lease release, teardown and exactly-once settlement passed (Platform #520).
 
 ### Next acceptance milestone
 
