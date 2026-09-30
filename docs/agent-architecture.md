@@ -546,15 +546,15 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current integrated state
 
-- Five concurrent Kata assignments and repeated complete planning cycles have been observed in simulation with `gpt-6-luna:low` on the ChatGPT subscription. The fluid planning and approval migration is in progress; DI's graph outcome belongs to `agent-assignments.md` (Platform #520).
+- Five concurrent Kata assignments and complete planning cycles are proven in simulation with `gpt-6-luna:low` on the ChatGPT subscription; graph and review outcomes belong to `agent-assignments.md` (Platform #520).
 
 ### Current active blocker
 
-- No active provider-runtime blocker is established. The revised one-hour acting and carry-forward path is not yet integrated or proven; a diagnostic result does not prove complete AgentKernel acceptance.
+- Reboot recovery exposed Docker-created runtime bind placeholders and permissions; Deployment #802/#803 repairs their safe rematerialization, with managed API/provider read-back still pending.
 
 ### Next acceptance milestone
 
-- Run a fresh one-hour SDK simulation with five slots through AgentKernel execution, measured accounting, and teardown. Graph and review outcomes remain owned by `agent-assignments.md`.
+- Restore the development runtime and prove one-hour continuation through AgentKernel execution, measured accounting and teardown; see `agent-assignments.md` for the exact accepted-graph frontier.
 
 ## Completion
 

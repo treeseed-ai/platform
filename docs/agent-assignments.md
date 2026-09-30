@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- The one-hour campaign still treats a late assignment timeout as a failed boundary and stops before release review or Reporter. Carry-forward of the unfinished accepted graph into a later workday has not passed a package-owned scene.
+- Explicit continuation contracts and API lineage admission are integrated through SDK #346 and API #454 with focused, scene and real PostgreSQL CI gates; live carry-forward, Releaser review and Reporter remain unproven.
 
 ### Next acceptance milestone
 
