@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Explicit continuation contracts and API lineage admission are integrated through SDK #346 and API #454. Agent #264 adds the focused automated exact-candidate continuation scene; live carry-forward, Releaser review and Reporter remain unproven.
+- The focused continuation carried forward five approved Actor/Reviewer pairs, then failed after decision-only planning discovered unrelated proposals. API #456 scopes later turns to selected decisions; automated post-fix release/review/Reporter acceptance remains unproven. Provider recovery gates belong to `agent-architecture.md` (Platform #520).
 
 ### Next acceptance milestone
 
