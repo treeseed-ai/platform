@@ -759,7 +759,7 @@ A project passes only when all checks below are evidenced from authoritative rec
 ### Assignments and outputs
 
 - [ ] Every ready node creates exactly one assignment, lease, and reservation transactionally.
-- [ ] Normal golden runs have no failed, returned, cancelled, duplicated, or unexplained extra node revisions.
+- [ ] Normal golden runs have no failed, returned, unexpectedly cancelled, duplicated, or unexplained extra node revisions. An unfinished planning/estimating turn may be cancelled only at its authoritative phase handoff, with verified teardown and exactly-once measured settlement; it does not count as a completed contribution.
 - [ ] Every assignment belongs to the authoritative simulation workday, receives a simulation-compiled immutable grant, and has at most one mutable workspace; no record owns a contradictory mode.
 - [ ] Every completed assignment has exactly one valid general result with a truthful summary and resolvable exact refs.
 - [ ] Every model result retains two correctly ordered clock checks and real elapsed/token/native usage.
