@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Repeat reboot exposed release pauses skipping runtime recovery; Deployment #805 now recovers pinned dependencies and development selections without manual custody repair, but a physical reboot with that fix installed remains unproven (#802). API #457 isolates malformed historical recovery; three prior teardown receipts remain missing (Platform #520).
+- No active reboot blocker: normal physical reboot recovered pinned services and development selections automatically (Deployment #802/#805). Historical teardown evidence and the exact accepted-graph frontier remain owned by `agent-assignments.md` and Platform #520; no golden acceptance is implied.
 
 ### Next acceptance milestone
 
