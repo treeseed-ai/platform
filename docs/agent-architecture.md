@@ -550,11 +550,11 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Reboot recovery exposed Docker-created runtime bind placeholders and permissions; Deployment #802/#803 repairs their safe rematerialization, with managed API/provider read-back still pending.
+- Deployment #803/#804 restores ephemeral bind custody and the development-held API database client; managed API, runner, provider and TreeDX read-back passes. Repeat physical-reboot acceptance remains unproven (Deployment #802); the next execution frontier is in `agent-assignments.md`.
 
 ### Next acceptance milestone
 
-- Restore the development runtime and prove one-hour continuation through AgentKernel execution, measured accounting and teardown; see `agent-assignments.md` for the exact accepted-graph frontier.
+- Prove one-hour continuation through AgentKernel execution, measured accounting and teardown using package-owned scenes; see `agent-assignments.md` for the exact accepted-graph frontier.
 
 ## Completion
 
