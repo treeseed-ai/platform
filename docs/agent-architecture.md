@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- No active implementation blocker is currently observed. API #464 passed package-owned race/negative scenes and the live planning handoff; the unfinished turn retained measured usage and verified teardown. Complete execution acceptance remains unproven (Platform #520).
+- Runner-observed release verification depended on an Actor-created scratch packaging destination absent from a fresh Reviewer workspace. Agent #273/#274 replaces that dependency with ordinary current-directory packaging; owner component checks pass, but live Reviewer confirmation remains unproven (Platform #520).
 
 ### Next acceptance milestone
 

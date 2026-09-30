@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- No active implementation blocker is currently observed. Exact-decision continuation retains five approved Actor/Reviewer pairs and has admitted Releaser on the approved Writer candidate; release/review/Reporter acceptance remains unproven. Execution handoff evidence belongs to `agent-architecture.md` (Platform #520).
+- Exact-decision continuation retains five approved Actor/Reviewer pairs and verified release gates on the approved Writer candidate, but paired release review and Reporter acceptance remain unproven. The fresh-workspace verification blocker belongs to `agent-architecture.md` (Platform #520).
 
 ### Next acceptance milestone
 
