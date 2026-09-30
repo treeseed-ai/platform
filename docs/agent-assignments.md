@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- A fresh full SDK golden must still prove new planning/estimates, external approval, all six reviewed work items, a genuine revision cycle and the SDK product gate in one run. The passing continuation is not full acceptance (Platform #520).
+- Fresh full SDK planning and external approval passed, then two acting reviews expired on over-reduced allocations; `agent-architecture.md` owns calibration repair. All six pairs, a genuine revision cycle and the product gate still require one passing fresh run; the continuation is not full acceptance (Platform #520).
 
 ### Next acceptance milestone
 
