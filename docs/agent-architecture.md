@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Native Reporter closure is proven by the passing continuation. Fresh SDK acting reviews then expired after dissimilar-task calibration shortened genuine maximum estimates to 18/22 seconds; SDK #347/#348 repairs reduction confidence with coded owner scenes, without a duration floor. Fresh live proof remains required (Platform #520).
+- Native Reporter closure is proven by the passing continuation. SDK #347/#348 repaired dissimilar-task calibration without a duration floor; fresh DQ Researcher/Architect reviews finished early, then Tester re-review failed because observed intentional red tests were mislabeled passing and replayed as a fatal check. Agent #277 owns the canonical paired-review evidence correction and coded regression. One fresh full SDK pass remains required (Platform #520).
 
 ### Next acceptance milestone
 
