@@ -12,7 +12,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 ## Current checkpoint
 
-- Acceptance frontier (2026-10-01): DU reached five approved pairs and genuine Tester correction/re-review; Release Actor actual build/contracts/release/pack/archive checks passed, but independent Reviewer contract replay failed, not timed out. Native stopped-state leases/exactly-once settlement/teardown passed all 58 attempts. Agent #284 repairs discarded bounded redacted replay diagnostics; the individual SDK failure remains unidentified. Checked staging and serial activation precede fresh managed evidence with unchanged one-hour/twenty-minute-planning/concurrency-five simulation policy. No full SDK pass or API/joint promotion; preserve immutable failure history and unchecked broad gates. Detailed receipts belong in Platform #520.
+- Acceptance frontier (2026-10-01): SDK #353 repairs duplicate verification receipts without removing aggregate strict build/contracts or actual independent archive approval. DX exposed real PostgreSQL publication/completion/admission deadlocks; API #472 repairs existing unchanged-key serialization locks, and Agent #288 preserves exact executor closure through failed completion/restart on its existing lease claim. Checked staging and serial activation precede one fresh package-owned full SDK campaign with unchanged one-hour/twenty-minute-planning/concurrency-five simulation policy. No full SDK pass or API/joint promotion; preserve immutable failure history and unchecked broad gates. Detailed receipts belong in Platform #520.
 - Updated: 2026-08-23
 - Active gate: Gate 2 prerequisite — Unified seed and capacity-provider battery cutover
 - State: `in_progress`
