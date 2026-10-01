@@ -48,3 +48,5 @@
 ## Current frontier
 
 The guest-contract prerequisite is proven, but the executable regression gate remains open. Full acceptance remains governed exclusively by `agent-acceptance.md`; no golden pass is claimed. Detailed defects, component receipts, and remaining catalog gaps belong in Platform Issue #520.
+
+SDK DS completed its one-hour workday with six approved pairs, a genuine release correction/re-review and native Reporter. Full acceptance still failed on pre-model cancellation closeout and unproven packed archive inspection. Agent #281/#283, API #471 and SDK #350 are integrated into checked staging; serial managed activation and one fresh full campaign are next. Historical failures remain immutable, and no broad gate is checked from these component repairs.
