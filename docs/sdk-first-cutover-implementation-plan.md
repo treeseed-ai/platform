@@ -12,7 +12,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 ## Current checkpoint
 
-- Acceptance frontier (2026-10-01): SDK DS completed all six pairs and native Reporter, including genuine release correction/re-review, but is not a golden pass. Checked staging now integrates Agent #281/#283 pre-transport closure and archive guidance, API #471 returned phase closeout, and SDK #350 freeze-bound product/archive verification. Finish serial activation, then run one fresh one-hour SDK campaign (twenty minutes initial planning, concurrency five, simulation only). API/joint remains gated on full SDK acceptance; historical evidence and unchecked broad gates are preserved. Detailed receipts belong in Platform #520.
+- Acceptance frontier (2026-10-01): SDK DT stopped after five approved pairs and genuine Tester correction/re-review; final release Reviewer contract replay failed, not timed out. Native stopped-state leases/settlement/teardown passed. SDK #351 repairs a separately confirmed packed per-export-types checker defect and redundant generator receipt; checked staging and serial activation precede another fresh one-hour/twenty-minute-planning/concurrency-five simulation campaign. No full SDK pass or API/joint promotion; preserve historical failures and unchecked broad gates. Detailed receipts belong in Platform #520.
 - Updated: 2026-08-23
 - Active gate: Gate 2 prerequisite — Unified seed and capacity-provider battery cutover
 - State: `in_progress`
