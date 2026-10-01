@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Fresh full SDK planning and external approval passed, then two acting reviews expired on over-reduced allocations; `agent-architecture.md` owns calibration repair. All six pairs, a genuine revision cycle and the product gate still require one passing fresh run; the continuation is not full acceptance (Platform #520).
+- Fresh full SDK planning and external approval passed; DQ completed Researcher/Architect review and a genuine Tester correction, then failed Tester re-review on intentional red verification evidence. `agent-architecture.md` owns the Agent #277 repair. All six pairs, completed re-review and the product gate still require one passing fresh run; the continuation is not full acceptance (Platform #520).
 
 ### Next acceptance milestone
 
