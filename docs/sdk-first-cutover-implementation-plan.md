@@ -12,7 +12,7 @@ Hosted deployment, unscoped `trsd release`, and production promotion remain fail
 
 ## Current checkpoint
 
-- Acceptance frontier (2026-10-01): SDK #353 repairs duplicate verification receipts without removing aggregate strict build/contracts or actual independent archive approval. DX exposed real PostgreSQL publication/completion/admission deadlocks; API #472 repairs existing unchanged-key serialization locks, and Agent #288 preserves exact executor closure through failed completion/restart on its existing lease claim. Checked staging and serial activation precede one fresh package-owned full SDK campaign with unchanged one-hour/twenty-minute-planning/concurrency-five simulation policy. No full SDK pass or API/joint promotion; preserve immutable failure history and unchecked broad gates. Detailed receipts belong in Platform #520.
+- Acceptance frontier (2026-10-01): SDK #353 retains aggregate strict verification and independent archive approval; API #472 and Agent #288 are checked, merged and active. DY failed credential-output quarantine, not timeout; stopped closure passed all 17 attempts. Agent #290 repairs raw diagnostic-event credential disclosure while preserving substantive-result quarantine; Deployment #808 adds safe static quarantine diagnosis without changing matching coverage. Both owner repairs are checked and merged, with serial activation before one fresh full SDK campaign under unchanged one-hour/twenty-minute-planning/concurrency-five simulation policy. No full SDK pass or API/joint promotion; preserve immutable failures and unchecked broad gates. Detailed evidence belongs in Platform #520.
 - Updated: 2026-08-23
 - Active gate: Gate 2 prerequisite — Unified seed and capacity-provider battery cutover
 - State: `in_progress`
