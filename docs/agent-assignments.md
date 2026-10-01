@@ -437,7 +437,7 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 
 ### Current active blocker
 
-- Fresh full SDK planning and external approval passed; DQ completed Researcher/Architect review and a genuine Tester correction, then failed Tester re-review on intentional red verification evidence. `agent-architecture.md` owns the Agent #277 repair. All six pairs, completed re-review and the product gate still require one passing fresh run; the continuation is not full acceptance (Platform #520).
+- DQ proved planning, external approval and genuine Tester correction but failed re-review; that evidence repair is integrated. DR then failed chat invocation binding before acting. API #468/#469 guards binding with the exact admitted assignment; `agent-architecture.md` records delivery and receipt limitations. All six pairs, completed re-review, closeout and the product gate still require one passing fresh run; the continuation is not full acceptance (Platform #520).
 
 ### Next acceptance milestone
 

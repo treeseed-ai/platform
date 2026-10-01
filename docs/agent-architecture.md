@@ -550,7 +550,7 @@ Stop and record a blocker if exact authority, isolation, project access, provide
 
 ### Current active blocker
 
-- Native Reporter closure is proven by the passing continuation. SDK #347/#348 repaired dissimilar-task calibration without a duration floor; fresh DQ Researcher/Architect reviews finished early, then Tester re-review failed because observed intentional red tests were mislabeled passing and replayed as a fatal check. Agent #277 owns the canonical paired-review evidence correction and coded regression. One fresh full SDK pass remains required (Platform #520).
+- Native Reporter closure is proven by the passing continuation; SDK #347/#348 calibration and Agent #277/#278 observed-red evidence repairs are integrated. Fresh DR stopped before acting when a chat response lacked its exact invocation binding. API #468/#469 repairs a reproduced denied-admission binding defect with package-owned SQL scenes; checked staging delivery and live proof remain required. DR's missing teardown receipt remains failed evidence, not proof of a physical leak. No full SDK pass (Platform #520).
 
 ### Next acceptance milestone
 
