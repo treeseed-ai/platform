@@ -1946,6 +1946,16 @@ $defs:
         $ref: "#/$defs/Timestamp"
       endedAt:
         $ref: "#/$defs/Timestamp"
+      reportRef:
+        # One exact committed closeout note, never a per-project report map.
+        $ref: "#/$defs/TreeDxReference"
+    allOf:
+      - if:
+          required: [state]
+          properties:
+            state: {const: ended}
+        then:
+          required: [reportRef]
     additionalProperties: false
 
   # ---------------------------------------------------------------------------

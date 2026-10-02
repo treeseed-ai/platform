@@ -102,7 +102,7 @@ A decision accepts one exact proposal revision and digest. There is no separate 
 
 A proposal may be decided only when:
 
-- every executable work item has an activity, agent class, workspace mode, review policy, objective, valid minimum/expected/maximum estimate, and acceptance criteria;
+- every executable work item has an activity, agent class, workspace mode, review policy, objective, a valid expected/maximum estimate (`expectedSeconds <= maximumSeconds`), and acceptance criteria;
 - every required review has its own valid estimate and bounded maximum cycle count;
 - the selected workspace and required authority fit the activity profile's permission ceiling and team/project policy;
 - every work-specific dependency references another work item in the same plan and the plan is acyclic;
