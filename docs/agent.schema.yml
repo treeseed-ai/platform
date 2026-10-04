@@ -500,6 +500,16 @@ $defs:
         enum: [required, none]
       objective:
         $ref: "#/$defs/NonEmptyText"
+      priority: &canonicalWorkPriority
+        type: integer
+        minimum: -9007199254740991
+        maximum: 9007199254740991
+        description: >-
+          Governed work-item priority projected unchanged onto its Actor and
+          Reviewer nodes. Higher integers rank first only within the eligible
+          project and agent class selected by weighted fair admission. Omission
+          means zero; priority never bypasses readiness, permission, provider,
+          concurrency, or productive-window gates.
       estimate:
         $ref: "#/$defs/Estimate"
       reviewEstimate:
@@ -2090,6 +2100,7 @@ $defs:
       graphRevisionUpdated:
         type: integer
         minimum: 1
+      priority: *canonicalWorkPriority
     allOf:
       - if:
           type: object
