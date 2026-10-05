@@ -6,7 +6,7 @@ The local control plane and TreeDX service are live. The canonical `treeseed` se
 
 The owner memberships are:
 
-- Adrian Webb, bound to `adrian.webb@knowledge.coop` as an interactive human owner.
+- An installation-supplied interactive human owner.
 - `service-principal:treeseed/automation`, bound as a non-login service owner. Provider workers do not inherit this owner's authority.
 
 The unified local capacity provider is enrolled and owner-approved as `provider_LtqmnSGecDlhDPb2-7WgyLkKwxI8VDAO`. Its manager is renewing availability session `5e033c5a-c8c2-439d-8a0c-96dff8da1e24`, and its runner is live and polling without claiming work. `codex-local` is available only on the `communication` lane with one reserved worker and two-worker maximum. Exactly fifteen active project grants are narrowed to that adapter and lane. `platform-local` remains unavailable and the `workday` lane is paused, so global seed closure truthfully retains `lane_execution_unavailable:platform` and `lane_execution_unavailable:workday` without blocking communication.

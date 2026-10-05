@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "treeseed.host-initialization-profile/v1",
+  "id": "capacity-provider",
+  "role": "capacity-provider",
+  "runtime": { "management": "managed", "environment": "track-default" },
+  "components": ["agent"],
+  "security": { "requirement": "required" },
+  "inputs": [
+    { "name": "controlPlaneUrl", "required": true, "sensitive": false, "description": "Control-plane API HTTPS URL" },
+    { "name": "teamRegistrationCode", "required": true, "sensitive": true, "description": "Team capacity-provider registration code" }
+  ]
+}

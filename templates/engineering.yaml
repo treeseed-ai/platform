@@ -1,0 +1,11 @@
+schemaVersion: treeseed.platform-template-lock/v1
+id: engineering
+version: 1.0.0-rc.5
+repository: treeseed-ai/template-engineering
+commit: 1ea645d4825aa6bb9bb6b371696fbab70b611ae3
+tag: template/1.0.0-rc.5
+artifact:
+  url: https://github.com/treeseed-ai/template-engineering/releases/download/template%2F1.0.0-rc.5/engineering-template.tgz
+  digest: sha256:bd0307d90291cb5bc4e6c63c2344cf18dd62173b5a9ba265a20ca117d61fa37b
+contract:
+  digest: sha256:230ea6a6e0412f29530f1d980d4bd101662bde20bdd3f47dc51edb56622602e7

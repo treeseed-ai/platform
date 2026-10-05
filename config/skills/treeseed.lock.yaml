@@ -1,0 +1,11 @@
+schemaVersion: treeseed.skill-lock/v1
+id: treeseed
+source: https://github.com/treeseed-ai/skill
+release: 0.1.0-rc.1
+sourceCommit: 9b17b2f35570f6fce998891e901e2e8f4b527ac3
+skillsCliVersion: 1.5.23
+computedHash: 9f7ee249da009916505cf5d4ca9ad1091080221ae5f17577f17d824a1ec710f6
+installedPath: .agents/skills/treeseed
+install: { command: 'npx skills@1.5.23 add https://github.com/treeseed-ai/skill/tree/0.1.0-rc.1 --skill treeseed --agent codex --yes' }
+update: { command: 'npx skills@1.5.23 update treeseed --project --yes' }
+state: accepted-release-candidate

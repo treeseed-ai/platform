@@ -1,0 +1,9 @@
+schemaVersion: treeseed.capacity-provider-fleet/v1
+id: treeseed-production-capacity
+environment: production
+count: 3
+host: { operatingSystem: { distribution: ubuntu, release: "26.04" }, architecture: amd64 }
+installer: { package: treeseed, profile: capacity-provider }
+enrollment: { controlPlaneUrl: installation-input, teamRegistrationCode: prompted, approval: required, identity: generated-locally }
+sessions: { authentication: short-lived, renewal: automatic }
+placement: { hostIdentities: runtime-only, addresses: runtime-only }

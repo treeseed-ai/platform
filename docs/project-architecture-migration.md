@@ -41,10 +41,10 @@ npx trsd platform workset --apply --yes --branch feature/assignment-change --ass
 The clone itself is initialized from one canonical Platform template. A Platform "profile" is not a second schema or runtime selector: it is the exact immutable template revision recorded in machine-local template state. The default TreeSeed development installation is created with:
 
 ```bash
-npx trsd platform init /home/adrian/Projects/treeseed/platform \
+npx trsd platform init ./platform \
   --repository treeseed-ai/platform --ref staging \
   --template platform-local-managed-codex --team treeseed --plan --json
-npx trsd platform init /home/adrian/Projects/treeseed/platform \
+npx trsd platform init ./platform \
   --repository treeseed-ai/platform --ref staging \
   --template platform-local-managed-codex --team treeseed --apply --yes --json
 ```

@@ -13,7 +13,11 @@ trsd seeds apply seeds/treeseed.yaml
 trsd seeds verify treeseed
 ```
 
-The seed declares one local `treeseed.capacity-provider/v3` battery with
-communication, platform, and workday lanes. Enrollment and owner approval are
-runtime operations; no token, key, membership credential, or interactive
-service-principal credential belongs in either YAML file.
+The authenticated user applying a local seed becomes an owner of every team
+created by that seed. The bundle therefore contains no personal membership or
+email bootstrap.
+
+Capacity-provider identity, capacity, enrollment, environment grants, and
+owner approval are runtime operations. No token, key, host capacity, provider
+identity, membership credential, or interactive service-principal credential
+belongs in the portable seed.
