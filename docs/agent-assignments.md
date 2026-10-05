@@ -98,11 +98,13 @@ Agents may estimate several work items in one planning contribution, and several
 
 A decision accepts one exact proposal revision and digest. There is no separate execution-plan record, structured-estimate database authority, or decision-time plan reconstruction.
 
+An optional safe integer `priority` on the governed work item is the sole priority authority. Projection carries that value unchanged onto its Actor and Reviewer nodes; omission means zero for selection. Higher priority ranks first only after provider eligibility and project/class fairness. Profiles, providers, and operational node edits do not define another priority.
+
 ### Proposal readiness
 
 A proposal may be decided only when:
 
-- every executable work item has an activity, agent class, workspace mode, review policy, objective, valid minimum/expected/maximum estimate, and acceptance criteria;
+- every executable work item has an activity, agent class, workspace mode, review policy, objective, a valid expected/maximum estimate (`expectedSeconds <= maximumSeconds`), and acceptance criteria;
 - every required review has its own valid estimate and bounded maximum cycle count;
 - the selected workspace and required authority fit the activity profile's permission ceiling and team/project policy;
 - every work-specific dependency references another work item in the same plan and the plan is acyclic;
@@ -436,6 +438,12 @@ This plan adds only assignment-specific responsibilities to the ownership table 
 - No full SDK golden pass. The package-owned exact-decision continuation passed release, paired approval, exact Reporter read-back, all-attempt settlement/teardown and unchanged-upstream gates; historical failed runs remain failed (Platform #520).
 
 ### Current active blocker
+
+- Architecture-first test correction (October 2): [Agent312](https://github.com/treeseed-ai/agent/issues/312) reproduces handler-side grant/path widening and deadline mutation through real isolated Git publications, implicit integration guidance outside an explicit integration assignment, and name-dependent handling of native failed verification. The original assignment input remains unchanged, which does not prove immutable authority inside the Kernel. The architecture plan records the reopened enforcement gate. These focused failures block further unrelated testing; proposal/graph/review/settlement and full CLI acceptance remain separately unproven. Preserve the historical DQ/DR evidence below; it is not the current frontier.
+
+- API lifecycle unit and real SQL tests now require YAML-owned activity dependencies and identity-neutral reporting, with exactly one selected workday closeout Reporter. Six focused cases fail. Existing graph guarantees now require the living team graph, exact content/decision/review authority and ordinary weighted admission, not retired group/signal graphs, deliverable manifests or capacity tiers. Their full executable acceptance coverage remains open. Pure test-first development is required after all three layers are aligned; no expectation may be changed merely to fit implementation.
+
+- Exact canonical-schema tests now derive stored/runtime definitions and mutation cases from the tracked target itself. Public SDK verification accepts real committed assignment/operational definition drift despite changed Git and file digests. Unit and native Git counterexamples are preserved in [Agent312](https://github.com/treeseed-ai/agent/issues/312); generated CLI, API/Agent semantic equivalence and full managed scene coverage remain open. Component bindings do not satisfy those missing layers.
 
 - DQ proved planning, external approval and genuine Tester correction but failed re-review; that evidence repair is integrated. DR then failed chat invocation binding before acting. API #468/#469 guards binding with the exact admitted assignment; `agent-architecture.md` records delivery and receipt limitations. All six pairs, completed re-review, closeout and the product gate still require one passing fresh run; the continuation is not full acceptance (Platform #520).
 
