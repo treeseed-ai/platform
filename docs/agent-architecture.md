@@ -405,6 +405,8 @@ Charge actual attempt seconds, including failures and retries, and settle each a
 
 When terminal execution evidence exists but the original active measurement is irrecoverably unavailable, a team-management-authorized operator may recover the held assignment reservation using its exact state version, a reason, and an idempotency key. Verify native workspace closure first. Retain the expired assignment, result, failure and provider evidence unchanged; record usage explicitly as unresolved in the existing audit. Release only terminal concurrency claims and retain period-budget claims until actual consumption is known. This is not a zero charge, successful UsageSettlement, passing result, or permission to declare the workday accepted. Never reconstruct usage from elapsed time or refresh the original lease.
 
+If the original deadline terminalizer already fabricated a zero settlement for that unknown execution, the same authorized recovery must explicitly dispute it rather than delete or rewrite it. Preserve the original ledger, usage, reservation and released-claim facts in the existing audit; restore only the original unmeasured period-budget holds exactly once, leaving terminal concurrency released. Measured usage, foreign or inconsistent settlement authority, and unrelated settlements are not eligible. The existing unresolved-usage read-back remains the provider's authority; a disputed historical zero is never accepted as actual consumption or a passing workday.
+
 ## Implementation Checklist
 
 ### Phase 1 — Profiles and contracts

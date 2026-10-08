@@ -268,6 +268,8 @@ The actor and reviewer assignments reserve and settle their own accepted estimat
 
 An explicitly authorized operator recovery may release a terminal assignment's held reservation when its active usage cannot be reconstructed. The existing audit must retain an unresolved-usage disposition with exact version, actor, reason and idempotency identity; no measurement or successful settlement may be invented. Native workspace closure is required before release, terminal concurrency is released once, and period-budget claims remain held. The original assignment, report and failure history remain unchanged and unaccepted; this recovery does not make a failed workday pass.
 
+An original automatic deadline zero settlement for execution with unavailable active usage must instead be explicitly disputed through that recovery. Retain the old accounting and released-claim evidence, restore only its original unmeasured period-budget holds once, and keep terminal concurrency released. Do not dispute measured or unrelated settlements, infer usage, create a replacement successful settlement, or reopen the original execution window.
+
 ### Assignment result
 
 Use one result contract:
