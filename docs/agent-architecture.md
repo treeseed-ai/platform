@@ -403,6 +403,8 @@ Provider arbitration compares eligible teams globally so one busy team cannot mo
 
 Charge actual attempt seconds, including failures and retries, and settle each attempt exactly once. Provider-native usage remains separate from fairness seconds.
 
+When terminal execution evidence exists but the original active measurement is irrecoverably unavailable, a team-management-authorized operator may recover the held assignment reservation using its exact state version, a reason, and an idempotency key. Verify native workspace closure first. Retain the expired assignment, result, failure and provider evidence unchanged; record usage explicitly as unresolved in the existing audit. Release only terminal concurrency claims and retain period-budget claims until actual consumption is known. This is not a zero charge, successful UsageSettlement, passing result, or permission to declare the workday accepted. Never reconstruct usage from elapsed time or refresh the original lease.
+
 ## Implementation Checklist
 
 ### Phase 1 — Profiles and contracts

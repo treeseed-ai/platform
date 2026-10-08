@@ -266,6 +266,8 @@ An assignment is an immutable attempt to execute one node revision. It freezes:
 
 The actor and reviewer assignments reserve and settle their own accepted estimates and actual usage. Work-item usage is the derived sum of those attempts. Failure, return, retry, or review rejection creates another attempt against an advanced node revision. Existing assignments are never rewritten.
 
+An explicitly authorized operator recovery may release a terminal assignment's held reservation when its active usage cannot be reconstructed. The existing audit must retain an unresolved-usage disposition with exact version, actor, reason and idempotency identity; no measurement or successful settlement may be invented. Native workspace closure is required before release, terminal concurrency is released once, and period-budget claims remain held. The original assignment, report and failure history remain unchanged and unaccepted; this recovery does not make a failed workday pass.
+
 ### Assignment result
 
 Use one result contract:
