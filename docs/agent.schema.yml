@@ -1730,6 +1730,7 @@ $defs:
       schemaVersion: {const: treeseed.workday-intent/v1}
       teamId: {$ref: "#/$defs/Identifier"}
       profileId: {$ref: "#/$defs/Identifier"}
+      reportingAgentId: {$ref: "#/$defs/Identifier"}
       projects:
         oneOf:
           - {const: all}
@@ -1925,6 +1926,8 @@ $defs:
         $ref: "#/$defs/Identifier"
       executionMode:
         enum: [simulation, production]
+      reportingAgentId:
+        $ref: "#/$defs/Identifier"
       policyId:
         $ref: "#/$defs/Identifier"
       policyRevision:
