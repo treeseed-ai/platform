@@ -8,7 +8,7 @@ Our immediate objective is a usable Atlas: observe real assignments and their st
 
 ## 1. What is operating, and what remains unproved
 
-The status authority is [SDK #428](https://github.com/treeseed-ai/sdk/issues/428), with detailed changes in the owning project Issues and verification in Actions. This guide explains the process; it is not another task database or a passing acceptance receipt.
+The current continuation is [SDK #429](https://github.com/treeseed-ai/sdk/issues/429), linked from [SDK #428](https://github.com/treeseed-ai/sdk/issues/428) after that retained body approached GitHub's limit. Detailed changes remain in the owning project Issues and verification in Actions. This guide explains the process; it is not another task database or a passing acceptance receipt.
 
 | Capability | Observed evidence and present limitation |
 | --- | --- |
@@ -97,6 +97,8 @@ Every assignment or addressed task should state:
 - Original time constraints, authoritative clock requirements, verification and closeout expectations.
 
 Prefer small source excerpts and exact symbols. Avoid dumping minified stylesheets or entire files: output truncation causes rereads, wastes the assignment window, and has accompanied missed clock checks. Check authoritative time before each protected command as required, reserve verification/closeout time, and use supported continuation for eligible unfinished work before the original deadline.
+
+Before every run, explicitly ask: **What change to the prompt, selected context, or governed definition is most likely to improve this result?** Choose a concrete improvement from the last observed failure or uncertainty, state the expected effect in the owning Issue, and check the actual result afterward. Prefer removing irrelevant history and supplying exact bounded source/product refs over adding more instructions. If the problem recurs across tasks, review the owning definition or context selection; do not leave the fix permanently as an operator reminder. Keep the original deadline, permissions, and truthful failure conditions.
 
 These examples show supported command shapes, not a ready-to-run authorization. Replace every placeholder with a read-back value; inspect current `--help` and the planned request before mutation. Use the same idempotency key to recover an uncertain request; use a new key only for a genuinely new authorized request.
 
@@ -198,6 +200,8 @@ This is explicit context and configuration improvement, not automatic model-weig
 - **Pin authority before dispatch.** The first concurrent UI discussion inherited an old proposal Git ref even though the task named the current source. The normal proposal update preserved the original revision and corrected source custody. Future preflight must compare the actual proposal's Git/TreeDX refs, not just task text.
 - **Clock instructions alone are not proof of compliance.** On the corrected source, Architect and Researcher omitted fresh clock checks before later commands; the timing guard correctly rejected them. Architect already had an explicit per-command clock instruction. Bound inspection and verify the actual clock/command sequence; do not weaken the guard or claim a new runtime defect without a regression.
 - **Keep long reads bounded.** A minified stylesheet dump truncated useful source and prompted extra commands. Select exact symbols/line ranges, avoid generated/minified output, and preserve verification/closeout time.
+- **Measure whether the refinement helped.** A later Researcher run used one 38-line file and one bounded read, returned 99 words with valid clock evidence, settled once for 18 measured seconds, and closed its workspace/resources. Its independent review remains a separate gate. That is one observed improvement, not proof that the capability is generally reliable.
+- **Clock checks must support completion.** The subsequent Reviewer inspected the source, then repeatedly polled the clock instead of returning its findings and timed out. The normal governed workspace/review/publication path now changed only UI Reviewer's `chat.prompt.system` to terminate inspection and answer immediately after the final clock. Catalog read-back verifies revision `d3c130f9b8999a095962d15de630799ddedb4073`; grants, handler, dependencies, model and deadlines are unchanged. Verify a subsequent assignment's exact revision and behavior before claiming the change effective. The failed review remains unapproved and timing enforcement stays strict.
 - **Test team consumption, not only simultaneous work.** Three isolated replies demonstrate concurrency. A team milestone additionally requires material predecessor consumption, configured dependency/review advancement, and an integrated product. The corrected Writer's product alone does not complete the missing Architect/Researcher work.
 - **Reserve time for honest closeout.** Short assignments have exposed deadline/closeout defects. Candidate repairs and native checks must be adopted and exercised before calling that execution capability reliable. Never extend the original deadline or reinterpret an unapproved timeout as success.
 
