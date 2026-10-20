@@ -603,6 +603,13 @@ $defs:
         $ref: "#/$defs/NonEmptyText"
       agentClass:
         $ref: "#/$defs/AgentClass"
+      # Proposal-group subscriptions; independent of class and discussion topics.
+      # Omission retains historical records without inventing membership.
+      groupIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
       purpose:
         $ref: "#/$defs/NonEmptyText"
       responsibilities:
@@ -927,6 +934,12 @@ $defs:
         $ref: "#/$defs/Identifier"
       projectId:
         $ref: "#/$defs/Identifier"
+      # Shared proposal groups select subscribed project agents.
+      groupIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
       title:
         $ref: "#/$defs/NonEmptyText"
       request:
