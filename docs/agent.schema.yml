@@ -603,6 +603,13 @@ $defs:
         $ref: "#/$defs/NonEmptyText"
       agentClass:
         $ref: "#/$defs/AgentClass"
+      # Proposal-group subscriptions; independent of class and discussion topics.
+      # Omission retains historical records without inventing membership.
+      groupIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
       purpose:
         $ref: "#/$defs/NonEmptyText"
       responsibilities:
@@ -927,6 +934,12 @@ $defs:
         $ref: "#/$defs/Identifier"
       projectId:
         $ref: "#/$defs/Identifier"
+      # Shared proposal groups select subscribed project agents.
+      groupIds:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: "#/$defs/Identifier"
       title:
         $ref: "#/$defs/NonEmptyText"
       request:
@@ -1743,6 +1756,7 @@ $defs:
       objectiveFilters: {type: array, items: {$ref: "#/$defs/Identifier"}}
       proposalIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
       decisionIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
+      groupIds: {type: array, minItems: 1, maxItems: 64, uniqueItems: true, items: {$ref: "#/$defs/Identifier"}}
       continueFromWorkdayId:
         type: string
         minLength: 1
@@ -1760,12 +1774,9 @@ $defs:
         additionalProperties: false
       agentSelection:
         type: object
-        anyOf: [{required: [agentSlugs]}, {required: [activityTypes]}, {required: [classIds]}, {required: [classSlugs]}]
+        anyOf: [{required: [activityTypes]}]
         properties:
-          agentSlugs: {type: array, minItems: 1, items: {$ref: "#/$defs/Identifier"}}
           activityTypes: {type: array, minItems: 1, items: {enum: [planning, estimating, reviewing, reporting, chat]}}
-          classIds: {type: array, minItems: 1, items: {$ref: "#/$defs/Identifier"}}
-          classSlugs: {type: array, minItems: 1, items: {$ref: "#/$defs/Identifier"}}
           mode: {const: intersection}
         additionalProperties: false
       operatorConstraints:
