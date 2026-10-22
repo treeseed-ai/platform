@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-22 13:12 EDT. Issues own plans; Actions own verification;
+Updated: 2026-10-22 13:24 EDT. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -49,6 +49,14 @@ Actual correction model: native `gpt-6-luna`; host selects high reasoning for bo
 implementation/research. Daily implementation57,600seconds; research14,400; workers5.
 
 ## Team evolution
+
+### 2026-10-22 — checked MCP delivery and canonical source retrieval
+
+- **Merged checked source:** API595b637 required39803268795/job119909607589 passed2h0m34s, including complete verify:direct, native PostgreSQL boundaries and coded golden component step; authorization6s/validation3s passed. Merged0d4d8c71602b7a920169337ecd974284e7dbe9bd; source tree matches already selected b637, native MCP statusok. SDK441bf478992 required39818937407/job119964680465 passed17m48s, validation4s; mergede9cf313477c47f728523cbc909d5ad5fb193cfed. No unrelated service/claim change or sealed production release claimed.
+- **Real export/integration:** canonical built CLI source-export called existing protected local manager/supervisor, no private socket client or sudo Git command. API Engineer original c10cd7bbf5e1a7f84ddfc7dbb15eaf90882a8edb returned12001368bytes/digestbd5789f75b16f2f534a67bb0c7e20df3d3620e6ec103da3c7a9a027bbc1ad7e3. Independently verified size/hash, Git bundle, advertised ref and exact base ancestry. Three original commits preserved in [API596](https://github.com/treeseed-ai/api/pull/596); six focused admission checks passed. Integrator4a61b61f1abf1ce4d70417fc64ca79f2eb3b91c8 composes checked API595 without conflict. New required39821876272 pending; old c10-only39821323597 canceled only after replacement started. Authorization/validation3s passed. Draft: real native invalid-rework semantics and independent agent review remain missing; original failed Reviewer retained.
+- **CLI adoption boundary:** source export succeeded using local SDKbf archive dcfdc49d2c69488ae1ca570b8565b66aa2269a357272db0acc4ea9cf075fc925 through actual built CLI entry point. Installed trsd host launcher deliberately pins installed CLI, so default installed command is not adopted. [CLI305](https://github.com/treeseed-ai/cli/pull/305)80e6f59c256d0f5ec7bea30c59de5df141fde7df pins the actual passing SDK441 Actions archive: run39818937407/name sdk-44d888b79cc82af4404c8b0e2aba025f8781d7d3/tgzSHA256dab831077654737065bbf50c190c43e0188b34db5b09d372958fdeb4c049ac0a. Existing exact hydrator succeeded; three generated projections committed; supported CLI-only rebuild succeeded. Required39822007412 pending, validation2s passed. SDK source and integration provenance remain explicit.
+- **Failed local consumer prerequisites retained:** initial npm9 release verification lacked sbom; npm11 found incomplete nested dev inventory. Full CLI test attempt369passed/9failed/0skipped: held SDK fixture/canonical authority missing, actual manager socket correctly preserved, and uncommitted generated files rejected. Do not claim full local verification or alter occupied socket. First dev rebuild refused source changed during generation; stable retry succeeded after generation, without changing timeout/guard. No agent assignment used only for verification.
+- **Provider blockage/evaluation:** affected activation workday4bf50309 ended17:06:57UTC, Engineerfailed+Reportercompleted,0unfinished/settlement errors. Agent Architect discussion639822c8 completed durable responsec95ac92c7e8815550f8e02f0: complete supported original-assignment teardown caller and recover original audit/clock/teardown evidence; no guard weakening, fabricated finish time or claim clearing. Source-free reasoning, denied library read retained. API activation Decision04d2be36 remains accepted but no implementation product/review; SDK operator pair still published/inactive. Independent native-MCP code approvals/simulated releases remain0. [Platform660](https://github.com/treeseed-ai/platform/pull/660)merged6fcb1e3 after19second docs check, preserving preceding checkpoints.
 
 ### 2026-10-22 — real operator team exposed activation gap
 
