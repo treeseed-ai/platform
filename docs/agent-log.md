@@ -1,91 +1,103 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-22 03:20 EDT. This is the requested concise operating scoreboard;
-Issues own plans and decisions, Actions own verification, Git/TreeDX own products.
-Counts below cover the named batches, not the whole portfolio. Unknown is not zero.
+Updated: 2026-10-22 05:08 EDT. Issues own plans; Actions own verification;
+Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
+Unknown usage, price, closure or delivery is never counted as zero or success.
 
-## Objective and operating rules
+## Purpose and direction
 
-Grow existing project teams into effective groups that discuss real objectives,
-estimate their own contributions, obtain Decisions, implement, review independently,
-and deliver usable portfolio changes. The integrator coordinates and repairs blocked
-boundaries; an integrator patch never becomes an attributed agent product.
-
-- Use class for allocation/memory, groups for proposal participation, topics for chat.
-- Admit real work through proposals/Decisions; no verification-only assignments.
-- Prefer small useful changes and affordable models; record the actual selected
-  model and measured usage before claiming cost savings.
-- Preserve retained products and original failed observations. Close temporary
-  resources through their owning public operations.
-- Keep useful work moving without another human prompt. Change team configuration
-  only through governed profiles; respect issued authority and original deadlines.
+Grow existing teams that discuss meaningful objectives, estimate their own work,
+obtain Decisions, implement in dependency order, review independently and deliver
+portfolio changes. Classes allocate work/memory; groups subscribe to proposals;
+topics sequence discussion. No individual proposal targeting, dummy work or
+verification-only assignments. Use governed profiles and normal public operations.
+An integrator bootstrap remains attributed to the integrator. Preserve products,
+failed observations, original authority/deadlines and unknown accounting.
 
 ## Scoreboard
 
-| Observed batch | Actual outcomes | Measured usage | Delivery/evaluation |
+| Batch / workday | Actual result | Measured usage | Useful delivery / evaluation |
 | --- | --- | --- | --- |
-| Oct 21 UI/Admin planning, workday `8bfa2294…` | 7/7 completed; all 7 TreeDX workspaces independently read back closed | 172 charged seconds; token totals not consolidated | Real planning/estimates and Reporter; implementation/release still pending |
-| Oct 21 source-recovery planning, workday `cae71164…` | 6/6 completed: 4 planning contributions + 2 own estimates; released leases and verified teardown | 130 summed reported elapsed seconds; 623,828 input / 10,165 output tokens, including repeated/cached input | Proposal v3 approved; Engineer 900/1,300 and Reviewer 330/520 expected/maximum active seconds; acting not yet admitted |
-| Oct 21 UI acting, workday `144f701f…` | 1 admitted, 0 completed; source preparation failed before model execution; lease released, teardown verified | Model work did not start; do not infer settlement/cost from that alone | No candidate/review/release; blocked by encrypted source capacity |
-| Oct 21 protected source cleanup | 23 disposable Git caches reclaimed: 1,894,977,536 allocated bytes; 51 retained overlays and 48 work leases preserved | No model assignment; integrator operation | Scoped reclamation succeeded; broader workspace deletion correctly refused |
+| Oct21 UI/Admin planning `8bfa2294…` | 7/7 completed; all seven TreeDX workspaces independently read back closed | 172 charged seconds; tokens not consolidated | Real estimates; implementation/release pending |
+| Source planning `cae71164…` | 6/6 completed/released/verified: four planning, two own estimates | 130 summed reported elapsed seconds; 623,828 input /10,165 output tokens | Approved `ab4b7978…` v3; own E900/1300, R330/520 active seconds |
+| UI acting `144f701f…` | 1 admitted, 0 completed; source full before model start; released/verified teardown | No model execution; settlement not inferred | Real failure, no new product |
+| Deployment acting `21efb1fc…` | E completed; R completed REQUEST_CHANGES; both released/verified teardown | E726.918 active /727 reported seconds, 4,722,296 input (4,600,064 cached) /16,068 output; R147.244 active /148 reported, 745,223 input (690,816 cached) /4,408 output | Real Git `9ab606a…`; own E actual/expected0.808. R found missed bounded-count EEXIST branch. Export2,825,974bytes/SHA256`cf3a14f7…`; not approved |
+| Correction planning `fb527d1d…` | 6/6 completed/released/verified | 173 reported seconds; 663,537 input /10,450 output | `ed4dc52c…` v3 approved; own E270/390, R600/900; Decision `249af9fa…` |
+| Correction acting `7f10a24b…` | E expired/operator-action; no canonical result; guest teardown unverified/source lease retained | Unknown; no output/finish timestamp | Local state lock timeout, cancellation, then destructive session recovery; not a completion |
+| Inventory planning `fd4948e8…` | 5/5 completed/released/verified; TreeDX only | 143 reported seconds; 582,473 input /8,978 output | Readiness correctly required API's three subscribers |
+| Shared inventory planning `93512c4d…` | 6/6 unique TreeDX/API A/E/R completed/released/verified; workday cancelled/ended normally | 162 reported seconds; 598,825 input /7,143 output | `716ce527…` v5 approved; own E1080/1680, R1200/2100; Decision `3e3e3a08…`. Three repeated TreeDX planning turns are overhead |
+| Native metadata cleanup | 23 disposable Git caches reclaimed; 1,894,977,536 allocated bytes | Integrator operation, no model assignment | 51 overlays/48 work leases preserved. Latest call:0B,52 retained overlay entries; no all-clean claim |
 
-Measures to update after every real batch: admission failures, completed/failed/expired
-assignments, useful products, independent review dispositions, integrated changes,
-lead time, own estimate versus actual active time, tokens/cached tokens, known price,
-operator interventions, released claims, closed workspaces and retained custody.
-Cost per delivered change remains unknown until pricing and complete usage are read
-back. Planning completion is not implementation throughput. No broad acceptance or
-whole-portfolio cleanliness is claimed.
+Update per batch: admitted/completed/failed/expired, useful products, review findings,
+integrated changes, lead time, own estimate/actual active time, tokens/cache/known
+price, interventions, claim release, workspace closure and retained custody.
+Dollar cost per delivered change remains unknown. Planning success is not code throughput.
+Actual correction model: native `gpt-6-luna`; host selects high reasoning for both
+implementation/research. Daily implementation57,600seconds; research14,400; workers5.
 
-## Current teams and configuration changes
+## Team evolution
 
-| When | Team change | Evidence and expected effect |
-| --- | --- | --- |
-| Oct 21 | Deployment Architect/Engineer/Reviewer and Portfolio Architect planning/estimating use supplied exact source and TreeDX context, without `source.read` | Avoid unnecessary Git preparation for discussion/estimates. Deployment profile revision `950355c1…` published; six subsequent real planning/estimate assignments completed with `sourceRead: []` |
-| Oct 21 | Existing `source-recovery` group coordinates Deployment + Portfolio Architect; `work-visibility` coordinates UI/Admin | Proposals select shared groups, never individual agents. Acting remains Engineer → independent Reviewer; Architects coordinate where needed |
-| Oct 21 | Portfolio Architect resolves revision `65acb698…` after a partially advanced publication | Publication failed on a legacy Platform book; do not call publication successful. Original approved workspace and product retained; empty repair draft normally abandoned |
-| Oct 22 | No model, class, acting-permission, allocation or concurrency change yet | Current model/pricing inventory must be measured before optimization; no claimed savings |
+| Change | Exact governed evidence / observed effect |
+| --- | --- |
+| Deployment A/E/R + Portfolio A use source-free planning/estimation; `source-recovery` joins them | Deployment `950355c1…`; six real planning/estimate assignments completed without Git preparation. UI/Admin use `work-visibility` |
+| Portfolio A revision `65acb698…` resolves after partial publication | Legacy Platform book blocked publication; do not count as successful. Original approved product retained; empty repair draft normally abandoned |
+| TreeDX/API A/E/R named for their actual projects, joined `storage-lifecycle`, source-free discussion/planning/estimation | Initial commits `52799379…` /`5c8febc6…`; final dependency repairs `31ddddb8…` /`9a6d1a4a…`, all six read back. Removed absent Tester/unowned Architect-estimate edges; no fake assignments |
+| Agent A/E/R joined `source-recovery`, names corrected, same source-free planning; absent estimator/Tester edges removed | Published/read back `dae7cd21e85c870c45bf0dd6699bef827f60e9c5`; classes, identities, acting/reviewing grants preserved. Discussion `send-71baf2da…` recommends separate local-store then linked API/session repairs |
+| Encrypted provider allocation32→48GiB through existing host config generation46 | Receipt `receipt-1792654783022`; native total50,592,583,680/free30,371,893,248bytes at growth. Existing8GiB assignment quota and TreeDX4GiB default unchanged; not a permanent capacity solution |
 
-## Products and integration custody
+## Products → TreeSeed source
 
-| Work | Actual product → source integration | Present gate |
-| --- | --- | --- |
-| UI picker | Engineer `26caecfbc654a098ccc81fe344346035a2e378f9` → [UI PR78](https://github.com/treeseed-ai/ui/pull/78) | Draft; accessibility changes requested. Approved correction proposal `d1e7c1b2…` v5 / Decision `f775653d…` awaits successful Engineer → Reviewer chain |
-| Linked Admin picker | Proposal `a309d6bf…` v9 / Decision `694f53b0…`; existing UI→Admin dependency | Not admitted before reviewed UI product/release; own E 2,400/4,200, R 1,050/1,800 seconds |
-| Source recovery | Actual retained Engineer `38b3d1c…`; canonical assignment expired, never relabeled completed. Integrator composition/bootstrap → [Deployment PR892](https://github.com/treeseed-ai/deployment/pull/892), head `857a885a…` | Required Actions passed; canonical new acting/review remains pending. Native cleanup above is separately attributed |
-| Shared backend discovery/claim recovery | [API588](https://github.com/treeseed-ai/api/pull/588), [589](https://github.com/treeseed-ai/api/pull/589), [590](https://github.com/treeseed-ai/api/pull/590) merged; 590 merge `41e51cdd…` | Locally adopted functionality; full linked product flow remains unproven |
-| Measured return recovery | [Agent507](https://github.com/treeseed-ai/agent/pull/507) merged `dddd0974…`, provider rebuilt and compiled bytes checked | Original four claims released concurrency; two unknown accounting holds remain unresolved |
+| Product | Source integration and present gate |
+| --- | --- |
+| UI picker Engineer `26caecfbc654a098ccc81fe344346035a2e378f9` | [UI78](https://github.com/treeseed-ai/ui/pull/78) draft; accessible-name correction and full independent review pending under `d1e7c1b2…` v5 /Decision`f775653d…` |
+| Linked Admin picker | `a309d6bf…` v9 /Decision`694f53b0…`; E2400/4200,R1050/1800. Update existing UI→Admin link to final reviewed endpoint, then admit implementation/review |
+| Source-cache repair | Earlier `38b3d1c…` is retained expired output, not completion. Integrator bootstrap `857a885a…` active. Actual completed E`9ab606a87fde9e96e42addcc1c37cc9dba239b9c`, result`e42bd62d…`, merged with ancestry into draft [Deployment892](https://github.com/treeseed-ai/deployment/pull/892) head`7407ef81…`. R`a8e65819…` requests change. New correction Decision`249af9fa…` published at`2ea69e0d…`; failed first acting attempt preserved |
+| Shared discovery/claim recovery | [API588](https://github.com/treeseed-ai/api/pull/588), [589](https://github.com/treeseed-ai/api/pull/589), [590](https://github.com/treeseed-ai/api/pull/590) merged;590=`41e51cdd…`, required Verify39679946541 and authorization/validation passed; locally adopted |
+| Measured return recovery | [Agent507](https://github.com/treeseed-ai/agent/pull/507) merged/adopted `dddd0974…`; required Actions passed,37 focused cases/4files passed. Four original claims released concurrency; unknown accounting holds remain |
+| Native TreeDX inventory | Approved Decision`3e3e3a08…`, exact read-back`c3ec24e3…`; source`75987802…`. No code yet. Native record/lease/materialization inventory first, dependent API SDK/CLI/MCP mapping second, automated lifecycle cleanup third |
+| Operating log | [Platform651](https://github.com/treeseed-ai/platform/pull/651) merged `46dc515f…`; documentation check39741117051 passed. This update awaits follow-up delivery |
 
-## Active small slices and blockers
+## Failures and interventions that shape the next slices
 
-1. **Source admission:** encrypted volume 33,686,405,120 total / 14,152,187,904
-   available bytes at Oct 22 03:20 EDT. Cold maximum-bundle admission needs
-   26,105,348,096. Retained work cannot be deleted to manufacture capacity.
-   Approved proposal `ab4b7978…` v3 / Decision `f07cc63e…` covers disposable-cache
-   progress and uncertainty-fence repair. [Deployment834](https://github.com/treeseed-ai/deployment/issues/834).
-2. **TreeDX inventory:** API currently returns up to 100 creation-audit records,
-   not owning workspace inventory. Expose one truthful bounded native operation
-   through SDK/API/CLI/MCP; unknown inventory stays unknown.
-3. **Automatic cleanup:** use existing close/expiry/restart reconciliation,
-   preserve commits/products, repair failed-publication recovery; do not add a
-   second janitor database or delete retained branches. Legacy book read422 /
-   write500 remains a separate owning blocker after three stopped retries.
-   Both TreeDX slices: [TreeDX86](https://github.com/treeseed-ai/treedx/issues/86).
-4. Resume approved UI implementation/review, update the existing cross-project
-   dependency to the final reviewed endpoint, then admit Admin implementation/review.
-   [UI70](https://github.com/treeseed-ai/ui/issues/70),
-   [Admin127](https://github.com/treeseed-ai/admin/issues/127).
+- **Provider lock/session:** correction assignment`HeD5wTUe…` began08:23:04UTC,
+  cancelled08:23:19; local lock timeout recorded, no measured closeout. API refresh
+  session`75b4d251…` committed19→20 at08:23:20; local save timed out08:23:25.
+  Generic409 fallback opened`193acde4…` at08:23:53 and expired active work.
+  Cancellation predates replacement: exact initial starvation cause is unproven.
+  Manager/runner never restarted. Native SDK `protectedPayload` exposes diagnostics.
+  State751,056bytes/revision23,017,172; historical claims preserved. Latest protected
+  inventory sees no task/NBD/mount; that does not retroactively prove guest closure.
+  [Agent496](https://github.com/treeseed-ai/agent/issues/496) owns the repair.
+- **Review correction:** original maximumReviewCycles1 exhausted on real change
+  request. New proposal budgets2 before approval; issued authority never widened.
+  Actual9ab focused checks/build passed; composition7407's36focused checks passed,
+  but CI39745554407/39745554472 failed TS2345 because the integrator kept an
+  incomplete mock. Local fixture correction`2e00ed2e…` builds; batch with reviewed
+  product before rerunning CI. No new exact-head Actions pass claimed.
+- **Inventory:** API's list uses100 creation-audit rows, not canonical inventory.
+  Seven individual closed-workspace reads do not prove portfolio hygiene. TreeDX A
+  product`1e9349af…` completed; API A published useful discussion then returned after
+  TreeDX15s completion timeout (partial). Missing implementation-type configuration
+  reconciled normally at`b64f2159…`. Initial run`14224470…` failed on legacy dependency;
+  its underlying workspace cleanup remains unproven. Canonical proposal state is
+  `discussing`, not transport`open`.
+- **Capacity:** owning encrypted-volume capacity differs from root free space.
+  A/R96/64GiB suggestions revised to48GiB after backing supply observation.
+  Host apply reconciled foundations, causing transient401/TreeDX500; automatic
+  recovery restored existing selections. Scoped rebuild attempts refused custody
+  busy. No unrelated service reset or retained product deletion.
+- **Automation:** batch-before-eligibility starved later disposable caches; actual
+  repair scans once with bounded deletions/details. Whole workspace cleanup stays
+  separate. Docker exact owned-cache prune reclaimed0B; no broad prune or potential
+  bytes counted. Legacy Platform book read422/write500 remains paused after three
+  unexplained failures; no persistence bypass.
+- **Operator overhead:** planning/acting overlap correctly refused409; now read back
+  ended before activation. Imported bundle has no HEAD; use advertised exact ref.
+  Package imports can be misparsed as mentions; remove module sigils from discussion
+  excerpts. GitHub Issue cap262,144UTF8bytes rejected earlier updates; Platform634/
+  Deployment834 now link this log with returned-content verification.
 
-## Observations driving the next team improvement
-
-- Six planning/estimate outputs consumed substantial repeated input. Reduce
-  irrelevant supplied history and measure cached/uncached usage before expanding.
-- Root-disk free space did not describe the encrypted source volume. Use the
-  owning native storage observation before any new source-dependent admission.
-- Released provider claims, source-work leases, TreeDX workspaces and published
-  products have different lifecycles; verify each, never infer one from another.
-- Batch slicing before eligibility can starve later disposable caches. Keep
-  bounded deletion and diagnostics while making useful progress.
-
-Next entries must identify team changes, actual assignment/result/review refs,
-what changed for the user, exact integration commit/PR, interventions and failures.
+Next: finish Agent recovery through real proposals, resume cache Engineer→Reviewer,
+compose/release/read back, then UI→Reviewer→linked Admin. Inventory implementation
+runs when safe supply permits. Preserve broad acceptance gaps; no all-clean or
+flawless-workflow claim until the real end-to-end outcomes exist.
