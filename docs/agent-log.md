@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-22 11:00 EDT. Issues own plans; Actions own verification;
+Updated: 2026-10-22 11:57 EDT. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -29,16 +29,33 @@ failed observations, original authority/deadlines and unknown accounting.
 | Shared inventory planning `93512c4d…` | 6/6 unique TreeDX/API A/E/R completed/released/verified; workday cancelled/ended normally | 162 reported seconds; 598,825 input /7,143 output | `716ce527…` v5 approved; own E1080/1680, R1200/2100; Decision `3e3e3a08…`. Three repeated TreeDX planning turns are overhead |
 | Native metadata cleanup | 23 disposable Git caches reclaimed; 1,894,977,536 allocated bytes | Integrator operation, no model assignment | 51 overlays/48 work leases preserved. Latest call:0B,52 retained overlay entries; no all-clean claim |
 | Native MCP timer repair `0972f9ef…` | Engineer completed; Reviewer failed lease renewal on capacity-state lock; Reporter completed | E233.117active seconds;2,184,819input/2,124,416cached/6,612output; Reviewer measured model usage unavailable | Real Git`ffab1b67…` retrieved; independent approval0, teardownfalse, no release |
-| Retained Agent source integration | Original capacity`7d6a015b…` + timer`ffab1b67…` preserved in [Agent508](https://github.com/treeseed-ai/agent/pull/508), head`93cd557d…` | Integrator source integration, no duplicate Engineer assignment | 38focused tests/build passed; directory-policy defect corrected,3relocated tests/policies passed; draft/Actions and independent review pending |
+| Retained Agent source integration | Original capacity`7d6a015b…` + timer`ffab1b67…` preserved in [Agent508](https://github.com/treeseed-ai/agent/pull/508), head`5bb23aa6…` | Integrator source integration, no duplicate Engineer assignment | Required39798176887 passed35m23s; installed-owner-custody119910999539 passed3m28s; validate39798278037 passed4s. Draft; independent review/adoption/physical closure still pending |
 
 Update per batch: admitted/completed/failed/expired, useful products, review findings,
 integrated changes, lead time, own estimate/actual active time, tokens/cache/known
 price, interventions, claim release, workspace closure and retained custody.
 Dollar cost per delivered change remains unknown. Planning success is not code throughput.
+Reviewer effect is observed across two cache products: Engineer9ab606a→Reviewer
+REQUEST_CHANGES (missed bounded-count EEXIST)→Engineer268d9d4a correction→Reviewer
+REQUEST_CHANGES (job-zero reporting and order-dependent regression). Further
+rework admission/approval remains pending; this is not a completed approved loop.
+Git independently confirms268d9d4a's direct parent is9ab606a and its EEXIST branch
+replaces direct retained.push with retain(), addressing the first review's
+count/truncation finding. The second review's rework admission failed
+assignment_predecessor_authority_mismatch: the proposal omitted predecessor
+note-read permission. New proposal95a82b68 repairs that grant before estimates
+and approval; original issued authority was preserved. Evidence: Deployment892.
 Actual correction model: native `gpt-6-luna`; host selects high reasoning for both
 implementation/research. Daily implementation57,600seconds; research14,400; workers5.
 
 ## Team evolution
+
+### 2026-10-22 — native structured revision available; read-path recovery
+
+- Refreshed native MCP exposes77tools, including governance.proposals.update. API595b637 supported API-only development rebuild completed; provider remains unrestarted. New required39803268795 still running; authorization/validate pass. No new model activation on this candidate yet.
+- Workday18e8cece ended normally after four group contributions plus Reporter; terminal cancelled/operator-stopped,0failed/unfinished/settlement errors. No team/grant/capacity change. Previous-scope canonical estimates remain history; planning-note numbers are not formal estimates.
+- Two native exact-version updates intended to bind only live-owned sandbox recovery and clear estimate/reviewEstimate returned TreeDX15000ms request_cancelled. Proposal3385d505 remainsv4; supported CLI private-source read failed likewise, protected README read passed. No approval, duplicate assignment or timeout increase. Public metrics show native log cache93927415/93952409bytes; live root cause still unconfirmed.
+- Minimum owning recovery under TreeDX86: [TreeDX97](https://github.com/treeseed-ai/treedx/pull/97), integratord69ccd43 on protected75987802. Cache-pressure regression firstfailed (whole sequence index lost); discard largest payloads before bounded metadata eviction. All39store unit/filesystem integration cases,format,diff passed.4GiB/default total cache budget unchanged. Firstb110 native arm64 tests passed, then original lockfile audit failed RUSTSEC-2026-0382/0383; patch-only rustls-webpki0.103.16/webpki-root-certs1.0.10 fixed the named dependencies without waivers,39store cases passed again. Replacement39808819469 focused service and all8SDK jobs passed; full native gates pending. Redundant push runs canceled. Host/compiler/offline setup failures retained; isolated toolchain container removed normally. Delivery-owned cache retained for candidate checks. Checked adoption/same real proposal retry pending; no live performance/scene/full-MCP-release success claimed.
 
 | Change | Exact governed evidence / observed effect |
 | --- | --- |
