@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-22 19:10 EDT. Issues own plans; Actions own verification;
+Updated: 2026-10-22 19:54 EDT. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -18,6 +18,8 @@ failed observations, original authority/deadlines and unknown accounting.
 
 | Batch / workday | Actual result | Measured usage | Useful delivery / evaluation |
 | --- | --- | --- | --- |
+| Guest adoption planning `9ee72e19…` | 4 required subscribers +2 own estimators completed/released/verified; Reporter timed out on8second authority, closure/usage unknown | 142.008active;461,212input/327,040cached/11,484output for six planners only | v3 approved natively; Decision`69d80f81…`; E900/1400, R420/720. Not7clean completions |
+| Guest adoption acting `7e1ec801…` | E completed; independent R REQUEST_CHANGES; both released/verified; rework ready but admission blocked | E265.459active/900expected (0.295),3,356,089input/3,277,952cached/12,940output; R132.250active,644,032input/599,296cached/6,894output | Real Git`03871b4b…`; R requires exact recovery identity, continuous guest-selection fence and operation rollback cases. API598 repairs rework admission; no approval/release yet |
 | Oct21 UI/Admin planning `8bfa2294…` | 7/7 completed; all seven TreeDX workspaces independently read back closed | 172 charged seconds; tokens not consolidated | Real estimates; implementation/release pending |
 | Source planning `cae71164…` | 6/6 completed/released/verified: four planning, two own estimates | 130 summed reported elapsed seconds; 623,828 input /10,165 output tokens | Approved `ab4b7978…` v3; own E900/1300, R330/520 active seconds |
 | UI acting `144f701f…` | 1 admitted, 0 completed; source full before model start; released/verified teardown | No model execution; settlement not inferred | Real failure, no new product |
@@ -49,6 +51,13 @@ Actual correction model: native `gpt-6-luna`; host selects high reasoning for bo
 implementation/research. Daily implementation57,600seconds; research14,400; workers5.
 
 ## Team evolution
+
+### 2026-10-22 — real guest review changes; narrow rework-admission repair
+
+- **Restored operation:** supported original-guest activation restored0539 with unchanged bootstrap62c1cd29/manifest37a0ecb4, host generationdev-1792711027066-8698dfa4. Provider071ca84/Agent9eaf healthy. Original He claim, missing finish/closeout, accounting-through22:07:30.975UTC, retained source/disk and unknown usage/holds unchanged. Implementation86400/day generation47; no concurrency/profile/group/handler change or usage reset.
+- **Actual MCP chain:** source-recovery proposal482f9c2d v3 commit5e08d3fc/digest8b80fb7e approved through exact native Inbox etag; Decision69d80f81 read back accepted. Six planning/estimating completions total142.008active; ReporterggjM0 timed out on issued8seconds (own5/30), no canonical report/usage/verified TreeDX closure. Preserve failed observation; no blind retry or zero-usage claim. Acting7e1ec801 automatically admitted EngineerGrni then ReviewerGDRx,33/10valid clock checks respectively. Exact product03871b4b exported2,723,925bytes/SHA256441b297d0fbb485bb3a89aa2d7594aad7c07fa7bbc25c092f90e140bae576c73; bundle/ref/base independently verified. R result02d7000d requested substantive changes after13test independent replay. Both released/verified teardown.
+- **Reviewer effect/blocker:** Actor revision4 ready, Reviewer revision4 blocked; admission wrongly requires previous rework context nodes still current/completed and review approved. Native execution_assignment_authority_mismatch retained. No direct assignment or replacement code. API/Deployment Architects both responded in native discussionf6f434d2 with explicitly source-free narrow-exception advice. [API598](https://github.com/treeseed-ai/api/pull/598) acd1d755 on checked0d4d8c71 reproduces exact refusal RED, then41focused checks/4files +strict build/policies pass. Only exact latest paired reviewed product and REQUEST_CHANGES review, matching source/Decision/workitem/lineage, become rework context; downstream approval and cycle fences retained. Required Actions/adoption/real rework pending.
+- **Adoption/evidence:** Agent9eaf inert guest built0ad66f78; compiled extractSHA2566c1e8acbdab4d32ea120eaa5451579e4be06a3a2b7a790c064b28674e1062603 proves fresh remaining timers. Inspection container removed. Image NOT imported/bound/running. CLI305 merged/adopted development; installed host launcher still pins installed CLI, so canonical built entrypoint used. Deployment89264e required39870332445 passed22m2s plus secret/uninstall/qualify/backup; not adopted/merged while cache review findings remain. API597 strict declaration failure remains genuine agent rework; no review/release claimed. Agent496 and API553 updated. Native-MCP independently approved code/simulated release still0; no verification-only work.
 
 ### 2026-10-22 — real MCP implementation delivered; guest adoption still blocked
 
