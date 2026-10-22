@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-22 11:49 EDT. Issues own plans; Actions own verification;
+Updated: 2026-10-22 11:57 EDT. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -39,6 +39,12 @@ Reviewer effect is observed across two cache products: Engineer9ab606a→Reviewe
 REQUEST_CHANGES (missed bounded-count EEXIST)→Engineer268d9d4a correction→Reviewer
 REQUEST_CHANGES (job-zero reporting and order-dependent regression). Further
 rework admission/approval remains pending; this is not a completed approved loop.
+Git independently confirms268d9d4a's direct parent is9ab606a and its EEXIST branch
+replaces direct retained.push with retain(), addressing the first review's
+count/truncation finding. The second review's rework admission failed
+assignment_predecessor_authority_mismatch: the proposal omitted predecessor
+note-read permission. New proposal95a82b68 repairs that grant before estimates
+and approval; original issued authority was preserved. Evidence: Deployment892.
 Actual correction model: native `gpt-6-luna`; host selects high reasoning for both
 implementation/research. Daily implementation57,600seconds; research14,400; workers5.
 
@@ -49,7 +55,7 @@ implementation/research. Daily implementation57,600seconds; research14,400; work
 - Refreshed native MCP exposes77tools, including governance.proposals.update. API595b637 supported API-only development rebuild completed; provider remains unrestarted. New required39803268795 still running; authorization/validate pass. No new model activation on this candidate yet.
 - Workday18e8cece ended normally after four group contributions plus Reporter; terminal cancelled/operator-stopped,0failed/unfinished/settlement errors. No team/grant/capacity change. Previous-scope canonical estimates remain history; planning-note numbers are not formal estimates.
 - Two native exact-version updates intended to bind only live-owned sandbox recovery and clear estimate/reviewEstimate returned TreeDX15000ms request_cancelled. Proposal3385d505 remainsv4; supported CLI private-source read failed likewise, protected README read passed. No approval, duplicate assignment or timeout increase. Public metrics show native log cache93927415/93952409bytes; live root cause still unconfirmed.
-- Minimum owning recovery under TreeDX86: [TreeDX97](https://github.com/treeseed-ai/treedx/pull/97), integratorb1108678 on protected75987802. Cache-pressure regression firstfailed (whole sequence index lost); discard largest payloads before bounded metadata eviction. All39store unit/filesystem integration cases,format,diff passed.4GiB/default total cache budget unchanged. Host/compiler/offline setup failures retained; isolated integration-toolchain container removed normally. Delivery-owned cache retained for candidate checks. Required Actions/checked adoption and same real proposal retry pending; no performance/scene/full-MCP-release success claimed.
+- Minimum owning recovery under TreeDX86: [TreeDX97](https://github.com/treeseed-ai/treedx/pull/97), integratord69ccd43 on protected75987802. Cache-pressure regression firstfailed (whole sequence index lost); discard largest payloads before bounded metadata eviction. All39store unit/filesystem integration cases,format,diff passed.4GiB/default total cache budget unchanged. Firstb110 native arm64 tests passed, then original lockfile audit failed RUSTSEC-2026-0382/0383; patch-only rustls-webpki0.103.16/webpki-root-certs1.0.10 fixed the named dependencies without waivers,39store cases passed again. Replacement39808819469 focused service and all8SDK jobs passed; full native gates pending. Redundant push runs canceled. Host/compiler/offline setup failures retained; isolated toolchain container removed normally. Delivery-owned cache retained for candidate checks. Checked adoption/same real proposal retry pending; no live performance/scene/full-MCP-release success claimed.
 
 | Change | Exact governed evidence / observed effect |
 | --- | --- |
