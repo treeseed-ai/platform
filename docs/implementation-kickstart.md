@@ -14,7 +14,7 @@ The original system remains active in /home/adrian/Projects/platform and its
 included repositories. Preserve their files, services, branches and credentials.
 
 First check the documentation handoff: plan PR #673 (issue #672) and the
-workflow-policy PR linked from issue #674 must be integrated into cordis through
+workflow-policy PR #675 (issue #674) must be integrated into cordis through
 the required PR/check/review workflow before coding. Do not confuse their feature
 branches with origin/cordis or assume missing CI passed. If a required integration
 gate is unavailable, report the exact blocker; do not bypass it or start code.
@@ -58,10 +58,12 @@ version, doctor, machine-readable output, documented exit codes and actionable
 errors. Keep installation diagnostics non-mutating. Define the bounded SDK
 contracts for the seven initial remote platform operations from the contract;
 unsupported installation/execution commands must report unsupported behavior.
-The CLI implementation belongs in packages/cli and contracts in packages/sdk.
+The CLI implementation belongs in packages/cli, contracts in packages/sdk, and
+read-only host diagnostics in packages/deployment, shared through its public
+package interface rather than reimplemented in CLI.
 Before coding, prepare only the required replacement repos, each as its own
 cleared cordis worktree, then STOP for my skills/AGENTS.md setup and resumption.
-The existing Platform setup does not satisfy either project's gate. Do not
+The existing Platform setup does not satisfy any owner project's gate. Do not
 implement plan/apply, start containers, scaffold the entire plan, add
 feature plugins or introduce the AI project in this slice.
 

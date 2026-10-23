@@ -62,7 +62,7 @@ this policy has been replaced through the authorized cutover.
 4. **Commit incrementally.** After each logical segment of work (a fix, a sub-feature, a test suite), commit and push to the feature branch. Do not accumulate uncommitted changes across sessions.
 5. **Open a PR when complete**, targeting `cordis`, with `Part of #<issue>` in the body — **not** `Closes #<issue>`. Closing happens at release; see [Closing Issues at Release](#-mandatory-closing-issues-at-release). Wait for CI green before merging.
 6. **After a feature/fix merge, clean up only that verified merged task branch** — remote and local, then prune stale tracking refs. Preserve long-lived refs and unrelated work. See [Post-Merge Branch Cleanup](#-mandatory-post-merge-branch-cleanup).
-7. **Reload this skill before completion.** Re-read it before opening the PR to verify branch naming, commit messages, PR template, cross-linking, and that every branch you merged has been deleted, are correct.
+7. **Reload this skill before completion.** Re-read it before opening the PR to verify branch naming, commit messages, PR template, cross-linking, and that eligible task-owned merged branches were cleaned up (with retention exceptions recorded), are correct.
 
 **Agents may merge PRs to `cordis` after all required gates pass. Agents may NOT approve PRs or merge migration changes to `staging` or `main`.** Production promotion remains blocked until the explicit cutover above; an RC is not the next step after a green migration PR.
 
@@ -721,7 +721,7 @@ These mean you have left the workflow; fix it before continuing:
 - A documented capability with no failing test written before its implementation
 - Writing "X cannot do Y" without searching, or from one spike whose configuration you did not record
 - Accepting a search snippet as fact and shipping it without re-testing
-- A PR merged whose branch still exists — locally or on the remote (see Post-Merge Branch Cleanup)
+- A task-owned merged branch left behind without a documented retention/unlanded-work/checkout reason (see Post-Merge Branch Cleanup)
 - A `Closes #N` in a `cordis` PR body, which cannot fire and reads as done when it is not
 - A release candidate whose closing list was written from memory instead of derived from the merged PRs
 - An issue closed by a release while it still has an unchecked acceptance criterion
