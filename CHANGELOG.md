@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- platform: align GitHub skills with Cordis migration and issue-retention rules (#678).
+
 ### Added
 
 - platform: add Cordis project initialization and class-based TypeScript architecture rules (#676).

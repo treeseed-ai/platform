@@ -267,7 +267,7 @@ Read these once per project — from its manifest, CI workflows, and existing ta
 |--------|---------------|-----------------|---------------|----------|
 | Create issue | `gh issue create` | `glab issue create` | `tea issues create` | web UI / `git push -o` options |
 | Comment on issue | `gh issue comment N` | `glab issue note N` | `tea issues comment N` | web UI |
-| Open PR/MR | `gh pr create --base B` | `glab mr create --target-branch B` | `tea pulls create --base B` | web UI |
+| Open PR/MR | `gh pr create --base cordis` | `glab mr create --target-branch cordis` | `tea pulls create --base cordis` | web UI |
 | Watch CI | `gh pr checks N --watch` | `glab ci status --branch <mr-source>` (repeat until green/red) | `tea pulls checks N` | forge CI page |
 | Merge (squash) | `gh pr merge N --squash` | `glab mr merge N --squash` | `tea pulls merge --squash N` | web UI |
 | Merge (no squash) | `gh pr merge N --merge` | `glab mr merge N` | `tea pulls merge N` | web UI |
@@ -586,7 +586,9 @@ When a change is too large for one PR (huge refactor, major feature):
    PR 2: refactor(core): update callers of X        (depends on PR 1)
    PR 3: feat: new capability using refactored X    (depends on PR 2)
    ```
-2. **Each PR targets `cordis`.** Merge sequentially as each goes green.
+2. **Each PR targets `cordis`.** Merge sequentially only after each PR satisfies all four
+   integration gates above: green CI, verified acceptance criteria, testing boxes supported
+   by actual CI evidence, and addressed review under the repository's reviewer policy.
 3. **Reference the parent issue in all PRs** (task lists or links in the body).
 4. **Never hold a long-lived branch that diverges from `cordis`.** Merge `cordis` in at least daily for multi-day work.
 5. **If one PR would take >15 minutes of CI, split it.** Rapid feedback beats batching.

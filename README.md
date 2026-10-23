@@ -33,3 +33,20 @@ TreeDX is excluded and remains its existing Elixir/Rust service.
 All handwritten Cordis implementation uses strict **TypeScript classes**, typed capability
 contracts and replaceable class plugins through Cordis injection/configuration. This lifetime
 architecture rule is mandatory in AGENTS.md; TreeDX remains the Elixir/Rust exception.
+
+## Development skill consistency
+
+Project-local skill examples must preserve the migration and architecture rules above.
+[Issue #678](https://github.com/treeseed-ai/platform/issues/678) tracks conflicting GitHub,
+planning, writing and skill-installation instructions and their correction.
+
+GitHub helpers use `cordis` PR targets, preserve integrated issues until release, prohibit PR
+approval and production publication, and prefer connected tools with CLI fallback. The
+unrelated ECC release checklist is removed. Planning/writing helpers use available skills,
+class-based TypeScript examples, required research and the configured `.agents/skills/`
+destination; spikes retain the project workflow and child setup gates.
+
+Run policy regressions with `node --test tests/skills/*.test.mts` using Node.js 24 (verified
+with 24.19.0). These checks inspect executable examples and local skill dependencies;
+read-only scenario review complements them. Neither check proves universal agent compliance,
+GitHub protections, CI or the proposed product runtime. The product itself remains unimplemented.
