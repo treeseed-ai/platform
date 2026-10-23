@@ -220,7 +220,7 @@ Use a controlled restart for initial plugin activation. Removing a required core
 
 ### Proposed SDK signatures
 
-These are proposed class static/instance method contracts, not implemented declarations. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
+OperationDefinition.define and DeploymentHost.diagnose are implemented in the Task 1 candidates. The remaining class static/instance method contracts are proposed for later tasks. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
 
 | API | Contract |
 | --- | --- |

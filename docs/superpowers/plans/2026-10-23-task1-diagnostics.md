@@ -75,7 +75,7 @@ binary portability evidence, not managed-host qualification beyond native Ubuntu
 Readiness tests were observed failing against a compiled NOT_IMPLEMENTED executable.
 Strict-schema, remote-context-blocker and wrong-archive-pin mutations each produced their
 intended assertion failure, then passed after restoration/correction. No missing prerequisite
-was mislabeled as behavioral red. Shared source checking also rejects .mts/.cts function paths,
+was mislabeled as behavioral red. Verification also rejects .mts/.cts function paths,
 permissive operation definitions and contradictory success/problem envelopes.
 
 Review PRs: [Platform#682](https://github.com/treeseed-ai/platform/pull/682),

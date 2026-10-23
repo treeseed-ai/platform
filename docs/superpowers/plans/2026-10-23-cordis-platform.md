@@ -1,6 +1,6 @@
 # CLI-first Cordis Platform Implementation Plan
 
-> **For implementing agents:** Load the actual configured workflow/testing skills and deliver one bounded task at a time. Each eligible Cordis repository uses the parent initializer and pauses for user review before code. TreeDX remains its existing Elixir/Rust service. Checkboxes below record future work, not passing evidence.
+> **For implementing agents:** Load the actual configured workflow/testing skills and deliver one bounded task at a time. Each eligible Cordis repository uses the parent initializer and pauses for user review before code. TreeDX remains its existing Elixir/Rust service. Checked Task 1 boxes record verified candidate evidence; later unchecked tasks remain future work.
 
 **Goal:** Deliver a standalone CLI that installs and recovers one integrated Cordis platform, then expose its bounded plugin lifecycle through REST, SDK, CLI, MCP and browser actions before adding feature domains.
 
@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Planning only. Every checkbox below is unexecuted future work. The user's current instruction is **do not implement anything yet**. Use the installed skills when implementation is explicitly requested; saving this plan authorizes no execution, delegation or skill installation. The later kickoff prompt may authorize a bounded task, but cannot bypass a participating repository's setup pause.
+**Execution status:** The maintainer reviewed the initialized CLI/SDK/Deployment worktrees and explicitly authorized publication and Task 1 diagnostic/contracts implementation. Task 1 candidate checks are recorded below and in the bounded delivery plan. Review/merge remains pending; Tasks 2 onward remain unexecuted and require a new bounded instruction. Other owners retain their setup review pause.
 
 ## Global constraints
 
@@ -39,7 +39,7 @@
 
 ## Proposed file ownership
 
-All paths below are **future files**, not present implementation. `packages/{project}` is an
+This table maps the full plan. Task 1 current files and exact candidates are identified in the bounded diagnostic delivery plan; remaining paths are future files. `packages/{project}` is an
 independent Git repository, excluded by Platform's `/packages/` rule. Before writing anything
 inside an eligible new owner, use the parent initializer to prepare its cleared `cordis`
 worktree and copied setup, then stop for user review/resumption. TreeDX is excluded.
@@ -75,7 +75,7 @@ is consumed by CLI and API as the same resolved package/artifact, not copied ada
 
 ## Verification vocabulary to establish
 
-Task 1 must define meaningful owner script names where needed, not a root monorepo toolchain. Run owner commands in `packages/{project}` and retain exact candidate results. Platform orchestration consumes those results/artifacts and runs assembled checks. These command names describe the proposed verification vocabulary, not existing evidence:
+Task 1 must define meaningful owner script names where needed, not a root monorepo toolchain. Run owner commands in `packages/{project}` and retain exact candidate results. Platform orchestration consumes those results/artifacts and runs assembled checks. Task 1 owner READMEs define the implemented check/build/unit/integration/smoke/verify scripts and record evidence. Other commands below remain future verification vocabulary:
 
 | Command | Required meaning |
 | --- | --- |
@@ -232,4 +232,4 @@ This documentation delivery creates no files from the proposed implementation tr
 
 Future tasks load the configured release-workflow at start and before completion, create/adopt an issue, use a feature branch off the authorized integration baseline, update docs/changelog first, commit outside-in test and implementation layers, verify actual artifacts, and retain CI evidence. Do not run example commands copied from a generic skill when this project has no corresponding toolchain/script. PR testing boxes describe actual observed results; unrun gates stay unproven. Keep issues open until the applicable release policy closes them.
 
-The current maintainer asked for instructions only. Deliver the reviewed plan and stop; do not begin Task 1, install execution skills or ask for immediate implementation approval as part of this documentation task.
+The original documentation handoff requested instructions only. The maintainer subsequently approved the three setup worktrees, publication and bounded Task 1 implementation. That authority is now exercised in the linked candidate PRs. Hand off those verified candidates for review; do not begin Task 2 without a new bounded instruction.
