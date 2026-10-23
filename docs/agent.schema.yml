@@ -352,12 +352,12 @@ $defs:
     additionalProperties: false
 
   EstimateAssignmentRef:
-    # Provenance of an actual estimating assignment, never a target agent.
+    # Existing estimating attempt ID and attempt ordinal, never a target agent.
     type: object
     required: [store, model, id, revision]
     properties:
       store: { const: postgresql }
-      model: { const: assignment }
+      model: { const: assignment-attempt }
       id: { $ref: "#/$defs/Identifier" }
       revision: { type: integer, minimum: 1 }
     additionalProperties: false
