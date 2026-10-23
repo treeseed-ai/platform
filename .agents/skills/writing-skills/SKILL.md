@@ -9,13 +9,19 @@ description: Use when creating new skills, editing existing skills, or verifying
 
 **Writing skills IS Test-Driven Development applied to process documentation.**
 
-**Personal skills live in your runtime's skills directory** (`~/.claude/skills/` on Claude Code) — see [codex-tools.md](../using-superpowers/references/codex-tools.md) or [gemini-tools.md](../using-superpowers/references/gemini-tools.md) for the path on those runtimes. Codex, Copilot CLI, and Gemini CLI all also recognize `~/.agents/skills/` as a cross-runtime alias.
+**Use the actual configured skill catalog and destination.** This project's skills live in
+`.agents/skills/`; personal skills follow the current runtime's configured installer. Do not
+require a missing runtime guide or infer a destination from another agent's conventions.
+Follow AGENTS.md and [release-workflow](../release-workflow/SKILL.md), including issue branches,
+documentation-first commits, preserved work and migration publication/approval boundaries.
 
 You write test cases (pressure scenarios with subagents), watch them fail (baseline behavior), write the skill (documentation), watch tests pass (agents comply), and refactor (close loopholes).
 
 **Core principle:** If you didn't watch an agent fail without the skill, you don't know if the skill teaches the right thing.
 
-**REQUIRED BACKGROUND:** You MUST understand superpowers:test-driven-development before using this skill. That skill defines the fundamental RED-GREEN-REFACTOR cycle. This skill adapts TDD to documentation.
+**Required method:** establish the failing baseline, make the minimal correction, rerun the
+same scenario, then refactor and recheck. This section defines the red/green/refactor method;
+no additional skill package is required. Use available verification tools and report limits.
 
 **Official guidance:** For Anthropic's official skill authoring best practices, see anthropic-best-practices.md. This document provides additional patterns and guidelines that complement the TDD-focused approach in this skill.
 
@@ -237,7 +243,7 @@ When searching, dispatch subagent with template...
 [20 lines of repeated instructions]
 
 # ✅ GOOD: Reference other skill
-Always use subagents (50-100x context savings). REQUIRED: Use [other-skill-name] for workflow.
+REQUIRED: Follow release-workflow for issue branches, commits and migration PR gates.
 ```
 
 **Compress examples:**
@@ -280,8 +286,8 @@ wc -w skills/path/SKILL.md
 **When writing documentation that references other skills:**
 
 Use skill name only, with explicit requirement markers:
-- ✅ Good: `**REQUIRED SUB-SKILL:** Use superpowers:test-driven-development`
-- ✅ Good: `**REQUIRED BACKGROUND:** You MUST understand superpowers:systematic-debugging`
+- ✅ Good: `**REQUIRED:** Follow the installed release-workflow skill before repository changes.`
+- ✅ Good: `Use verification-before-completion before claiming a gate passed.`
 - ❌ Bad: `See skills/testing/test-driven-development` (unclear if required)
 - ❌ Bad: `@skills/testing/test-driven-development/SKILL.md` (force-loads, burns context)
 
@@ -325,10 +331,9 @@ node ./render-graphs.js ../some-skill --combine # All diagrams in one SVG
 
 **One excellent example beats many mediocre ones**
 
-Choose most relevant language:
-- Testing techniques → TypeScript/JavaScript
-- System debugging → Shell/Python
-- Data processing → Python
+For Cordis implementation/tooling/test examples use strict TypeScript classes, with behavior
+in named instance/static methods and bound callbacks. Shell commands may demonstrate tools.
+TreeDX retains its own Elixir/Rust workflow; unchanged upstream resources remain references.
 
 **Good example:**
 - Complete and runnable
@@ -381,8 +386,8 @@ NO SKILL WITHOUT A FAILING TEST FIRST
 
 This applies to NEW skills AND EDITS to existing skills.
 
-Write skill before testing? Delete it. Start over.
-Edit skill without testing? Same violation.
+Write/edit a skill before testing? Preserve the user's work, set aside only your own
+unverified draft, and establish the baseline before accepting that draft.
 
 **No exceptions:**
 - Not for "simple additions"
@@ -390,9 +395,10 @@ Edit skill without testing? Same violation.
 - Not for "documentation updates"
 - Don't keep untested changes as "reference"
 - Don't "adapt" while running tests
-- Delete means delete
+- Never delete unrelated or pre-existing work to manufacture a red/green history
 
-**REQUIRED BACKGROUND:** The superpowers:test-driven-development skill explains why this matters. Same principles apply to documentation.
+The baseline/changed/rechecked method above applies to documentation too; unavailable
+upstream skill names are not dependencies or a reason to install more skills.
 
 ## Testing All Skill Types
 
@@ -664,7 +670,7 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 - [ ] Supporting files only for tools or heavy reference
 
 **Deployment:**
-- [ ] Commit skill to git and push to your fork (if configured)
+- [ ] Commit/push the issue branch and open the `cordis` PR through release-workflow
 - [ ] Consider contributing back via PR (if broadly useful)
 
 ## Discovery Workflow
