@@ -1,4 +1,6 @@
 # Project specific
+# Independent project repositories; never track their source or Git metadata here.
+/packages/
 /examples/
 /context/
 .dsh-*

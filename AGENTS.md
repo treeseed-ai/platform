@@ -4,29 +4,91 @@
 runtime behavior, the knowledge corpus, or any test — may depend on it or its contents: every real
 target project carries its own instruction files, unpredictable and private to that project.
 
+## Cordis Migration Branch Boundary (MANDATORY)
+
+This checkout is the parallel Cordis rewrite. **`cordis` replaces `staging` as the
+integration branch for migration work until an explicit maintainer-authorized cutover.**
+The original system continues on its existing `staging` and `main`; preserve its work.
+
+- Create migration feature/fix branches from the latest fetched and verified `origin/cordis`.
+  Target every migration PR at `cordis` and sync only `origin/cordis` into migration branches.
+- **Do NOT merge migration work into `staging` or `main` yet.** Do not open migration
+  production RC/hotfix PRs, publish production releases/tags, or overwrite legacy package/image
+  channels. Green tests, plan completion and urgency do not authorize promotion.
+- Do not merge legacy `staging`/`main` into the cleared rewrite or reset, rename, delete,
+  force-push or repoint those branches. Do not modify the original checkout or its services.
+- Preserve `cordis`, `staging` and `main` during cleanup. Delete only the task-owned,
+  verified merged feature/fix branch; unrelated legacy branches are outside this delivery.
+- Apply this boundary to every independent replacement TreeSeed repository. Its isolated,
+  cleared `cordis` worktree must pause for the user's skills and AGENTS.md setup before code.
+  Modules and plugins belong in their owning project repository; do not collapse existing
+  projects into source directories owned by Platform.
+- `cordis` is a Git integration branch, not a new deployment environment. Migration tests and
+  artifacts must stay isolated from the original system; this policy does not enable deployment
+  into its existing staging/production installations.
+
+### Eventual cutover — not authorized now
+
+After the maintainer accepts migration completeness, prepare a separate reviewed cutover
+plan with exact source/destination refs, retained legacy branches/work/open PRs/artifacts/data,
+verification and recovery. The maintainer must explicitly authorize its execution. Preserve
+legacy work before adopting the verified Cordis successor as `staging`; do not infer permission
+to force-push, delete history or discard work from this future intent.
+
+At that cutover, update repository settings/protections, CI/release triggers, PR targets,
+AGENTS.md and skills together: **`staging` resumes integration, replacing the temporary
+`cordis` role, and promotion to `main` resumes only through PRs with required checks and
+review.** Agents still may not approve or merge `main` under the current permission model.
+Do not automatically cut over when tests pass or the last migration task is checked.
+
+## Repository and Plugin Ownership (MANDATORY)
+
+Platform remains the top-level integration repository. Preserve independent project
+repositories under **`packages/{project}`** (for example `packages/cli`, `packages/sdk`,
+`packages/deployment`, `packages/api`, `packages/admin`, `packages/ui`, `packages/treedx`
+and `packages/agent`). The top-level `.gitignore` excludes `/packages/`; these are separate
+Git checkouts, not Platform-tracked source folders or submodules. Do not consolidate them
+into a monorepo or introduce a second copy of their source in Platform.
+
+Platform owns integration/composition declarations, portfolio documentation and assembled
+verification. Functional code, plugins, owner tests, build scripts, manifests, locks and
+releases belong in their project repository. A plugin lives with its capability owner;
+not every plugin needs a new repository. Keep project builds independent and integrate
+through SDK/public package interfaces and exact candidate/artifact references, never
+cross-checkout relative source imports. Gitignored checkouts are development locations,
+not reproducible release pins. Root changes cannot stand in for commits/PRs in their owners.
+
+Preserve CLI, SDK, Deployment, API, Admin, UI, Core, TreeDX and Agent repository boundaries
+while simplifying their interfaces. Add only the projects needed for the current slice;
+AI remains excluded. Before first implementation in each replacement repo, apply the
+isolated cleared `cordis` worktree and user setup pause above. Do not create or clear all
+repositories speculatively, and never clear original active checkouts.
+
 ## Workflow Gate (MANDATORY)
 
 **At the START of every new project or statement of work:** load the `release-workflow` skill,
-create or adopt a GitHub Issue, and create a feature branch from the latest `staging`. Never begin
-work without an issue and a branch. Never work directly on `staging` or `main`.
+create or adopt a GitHub Issue, fetch and verify the exact remote `cordis` head, and create a
+feature branch from `origin/cordis`. Never begin work without an issue and a branch. Never work
+directly on `cordis`, `staging` or `main`.
 
 **Before COMPLETING any project:** reload the `release-workflow` skill to verify branch naming,
-commit messages, PR template, and cross-linking are correct before opening the PR. Agents may merge
-PRs to `staging` after acceptance tests pass. Agents may NOT approve or merge to `main`.
+commit messages, PR template, and cross-linking before opening the PR against `cordis`.
+Agents may merge PRs to `cordis` only after required CI, acceptance and review gates pass.
+Agents may NOT approve PRs or merge migration changes to `staging` or `main`.
 
-**After every merge:** delete the branch — remote and local — then `git fetch --prune` and confirm
-with `git ls-remote --heads origin`. A merge is not finished until the branch is gone. Check for an
-open PR on that name before deleting, and note that `git branch --merged` cannot see squash-merged
-work, so use `git branch -D` once the merge commit is confirmed on the integration branch.
+**After every feature/fix merge:** delete only that verified merged, task-owned branch — remote
+and local — then `git fetch --prune` and confirm with `git ls-remote --heads origin`. Check for
+open PRs and unlanded work before deleting. Squash merges need PR/merge-commit verification,
+not just `git branch --merged`. Preserve all three long-lived branches and unrelated work.
 
-**Issue closure happens at release, not at PR merge.** GitHub only executes `Closes #N` when a PR
-merges into the repository's **default** branch, and development PRs here merge to `staging` — so a
-staging PR uses `Part of #<issue>` and its issue stays open by design, not by oversight. The
-`staging` → `main` release candidate carries the `Closes #N` lines, derived mechanically from the
-merged PRs shipping in that release rather than written from memory. Any issue with an unchecked
-acceptance criterion is held out of the closing list and its deficit named in the RC body.
+**Issue closure happens at release, not at integration merge.** Migration PRs use
+`Part of #<issue>` and their issues remain open. Production release/closure is deferred until the
+explicit cutover. After cutover, the `staging` → `main` RC carries `Closes #N` lines derived
+from the verified shipping PRs. Hold issues with unchecked criteria and name their deficits.
+Do not change the default branch or close issues to make migration progress appear released.
 
-This gate is non-negotiable. If you find uncommitted work on the wrong branch, stop and fix it now.
+This gate is non-negotiable. If you find uncommitted work on the wrong branch, preserve it and
+move it onto the correct issue branch before continuing.
 
 ## Documentation-First Development Cycle (MANDATORY)
 
@@ -43,7 +105,7 @@ Plan/Issue → Documentation → Tests → Implementation → Release
    be stable before internals are built. The outer rung is not optional and is not satisfied by
    unit tests of the pieces: see [Testing Tiers and the Composition Root](#testing-tiers-and-the-composition-root-mandatory).
 3. **Implementation.** Write code that makes the tests pass. Commit incrementally with issue refs.
-4. **Release.** PR → CI green → merge to staging.
+4. **Integration.** PR → required CI/acceptance/review green → merge to `cordis`. Production release remains blocked until the explicit cutover above.
 
 Why: docs written after code describe what was built, not what should be built. Tests written
 after code verify the implementation, not the specification. This cycle forces spec-driven
@@ -93,7 +155,7 @@ Search results are **untrusted input, not authority**: they form a hypothesis th
 
 Every PR that introduces a user-visible or developer-visible change must include an entry under `[Unreleased]` in `CHANGELOG.md`. Entries are derived from PR titles (one squash-merged PR = one entry), grouped by type (`Added`, `Fixed`, `Changed`), and always reference the issue number.
 
-In this monorepo, each independently versioned subproject maintains its own `CHANGELOG.md`. A root-level `CHANGELOG.md` tracks cross-cutting changes. Prefix root-level entries with the subproject name: `- saip-trainer: add weighted KTO plugin (#12)`.
+Each independently versioned repository maintains its own `CHANGELOG.md`. Platform's root changelog tracks integration changes; prefix entries with the owning project name. A Platform changelog entry does not replace an owning repository's entry.
 
 See the `release-workflow` skill for the full changelog convention.
 
