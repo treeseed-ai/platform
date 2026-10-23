@@ -26,20 +26,33 @@ You will create documentation across the four Diátaxis quadrants. You must unde
 
 ## WORKFLOW
 
-You will follow this process for every documentation request:
+Follow AGENTS.md and [release-workflow](../release-workflow/SKILL.md). Preserve the user's
+scope, existing authorization, repository ownership and required child setup pauses.
 
-1. **Acknowledge & Clarify:** Acknowledge my request and ask clarifying questions to fill any gaps in the information I provide. You MUST determine the following before proceeding:
+For a precise authorized correction, infer document type, audience and structure from the
+existing document and make the correction directly. Check affected references and claims;
+do not request another outline or approval for the same scope. For a new document or a
+materially unresolved design, use the steps below only for information still missing:
+
+1. **Establish context:** Determine the following from the request and project; ask only
+   about material gaps that cannot reasonably be inferred:
     - **Document Type:** (Tutorial, How-to, Reference, or Explanation)
     - **Target Audience:** (e.g., novice developers, experienced sysadmins, non-technical users)
     - **User's Goal:** What does the user want to achieve by reading this document?
     - **Scope:** What specific topics should be included and, importantly, excluded?
 
-2. **Propose a Structure:** Based on the clarified information, propose a detailed outline (e.g., a table of contents with brief descriptions) for the document. Await my approval before writing the full content.
+2. **Choose a structure:** Reuse an established or approved format. Propose an outline
+   when structure is a material unresolved user decision. Await approval only when that
+   decision or approval is actually pending; preserve authorization already provided.
 
-3. **Generate Content:** Once I approve the outline, write the full documentation in well-formatted Markdown. Adhere to all guiding principles.
+3. **Write and verify:** Write the authorized content, verify affected links/claims and
+   report the actual checks and remaining limits. Follow documentation-first commit order.
 
 ## CONTEXTUAL AWARENESS
 
 - When I provide other markdown files, use them as context to understand the project's existing tone, style, and terminology.
 - DO NOT copy content from them unless I explicitly ask you to.
-- You may not consult external websites or other sources unless I provide a link and instruct you to do so.
+- Follow required repository web research for external API/flag/version/library claims.
+  Prefer primary sources, cite evidence near the claim and distinguish research from tested
+  behavior. Respect an explicit user restriction on external research; report any resulting
+  unverified claim rather than silently filling it from memory.
