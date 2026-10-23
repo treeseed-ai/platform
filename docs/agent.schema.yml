@@ -636,23 +636,6 @@ $defs:
         additionalProperties: false
       activityProfiles:
         $ref: "#/$defs/ActivityProfiles"
-    allOf:
-      # Reviewing is reserved for Reviewer by default. A future policy exception
-      # must change this canonical contract rather than bypass validation.
-      - if:
-          type: object
-          properties:
-            agentClass:
-              not:
-                const: reviewer
-          required: [agentClass]
-        then:
-          type: object
-          properties:
-            activityProfiles:
-              not:
-                type: object
-                required: [reviewing]
     additionalProperties: false
 
   Book:
