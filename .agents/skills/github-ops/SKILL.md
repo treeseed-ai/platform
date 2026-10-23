@@ -57,7 +57,8 @@ Classify each issue by type and priority:
    workflow explicitly requires that issue/PR progress update.
 5. For bugs needing more info: identify missing reproduction evidence; request it when authorized.
 6. For good first issues: add `good-first-issue` label
-7. For duplicates: comment with link to original, add `duplicate` label
+7. For duplicates: record the original and apply labels in the authorized triage scope;
+   post a linking comment only when communication is authorized as in step 4.
 
 ```bash
 # Search for potential duplicates
@@ -145,7 +146,7 @@ gh pr list --label "dependencies" --json number,title
 
 ## Quality Gate
 
-Before completing any GitHub operations task:
+For the items inspected in the authorized task, report the relevant evidence:
 - all issues triaged have appropriate labels
 - report actual review deficits within the requested scope
 - CI failures have been investigated (not just re-run)

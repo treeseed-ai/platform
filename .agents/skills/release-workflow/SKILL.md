@@ -586,7 +586,9 @@ When a change is too large for one PR (huge refactor, major feature):
    PR 2: refactor(core): update callers of X        (depends on PR 1)
    PR 3: feat: new capability using refactored X    (depends on PR 2)
    ```
-2. **Each PR targets `cordis`.** Merge sequentially as each goes green.
+2. **Each PR targets `cordis`.** Merge sequentially only after each PR satisfies all four
+   integration gates above: green CI, verified acceptance criteria, testing boxes supported
+   by actual CI evidence, and addressed review under the repository's reviewer policy.
 3. **Reference the parent issue in all PRs** (task lists or links in the body).
 4. **Never hold a long-lived branch that diverges from `cordis`.** Merge `cordis` in at least daily for multi-day work.
 5. **If one PR would take >15 minutes of CI, split it.** Rapid feedback beats batching.
