@@ -52,8 +52,9 @@ create another container/registry or speculative inheritance hierarchy to accomp
 method for schema-backed bindings. `DeploymentHost` is the lifecycle capability contract;
 `ComposeDeploymentHost` supplies the first implementation. Required plugin entrypoints such
 as Identity/Deployment/Transport/Web are classes using Cordis's own lifecycle. Browser views
-and UI components also use class-based implementations. These are proposed design names,
-not implemented exports or additional remote operations.
+and UI components also use class-based implementations. Task 1 exports CliApplication, CliOutput, OperationDefinition and ComposeDeploymentHost
+with the diagnostic-only DeploymentHost interface. Other names remain proposed design contracts;
+none adds an extra remote operation.
 
 One shared contract suite runs against every advertised implementation. Default-construction
 and installed replacement tests prove selection, authorization, disposal/drain, unchanged
