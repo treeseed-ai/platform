@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- platform: align planning, writing and discovery skills with project instructions (#678).
+- platform: align authoring and discovery skills with Cordis (#678).
 
 ### Added
 
