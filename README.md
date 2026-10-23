@@ -46,7 +46,7 @@ unrelated ECC release checklist is removed. Planning/writing helpers use availab
 class-based TypeScript examples, required research and the configured `.agents/skills/`
 destination; spikes retain the project workflow and child setup gates.
 
-Run policy regressions with `node --test tests/skills/*.test.ts` using Node.js 24 (verified
+Run policy regressions with `node --test tests/skills/*.test.mts` using Node.js 24 (verified
 with 24.19.0). These checks inspect executable examples and local skill dependencies;
 read-only scenario review complements them. Neither check proves universal agent compliance,
 GitHub protections, CI or the proposed product runtime. The product itself remains unimplemented.
