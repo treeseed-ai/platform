@@ -10,7 +10,8 @@ import { createServer, type Server } from 'node:net';
 
 interface Candidate {repository:string;commit:string;baseline:string;archiveSha256?:string;artifactSha256?:string;}
 interface Composition {schemaVersion:number;owners:{sdk:Candidate;deployment:Candidate;cli:Candidate};}
-interface Manifest {cordisCandidate:{sdk:Candidate;deployment?:Candidate};}
+interface ArchiveDeclaration {repository:string;commit:string;sha256:string;}
+interface Manifest {cordisCandidate:{sdk:ArchiveDeclaration;deployment?:ArchiveDeclaration};}
 interface PolicyModule {SourcePolicy:new()=>{inspect(file:string,source:string,root:string):string[]};}
 class Task1Composition {
   readonly root=resolve(process.cwd());

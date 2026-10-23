@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "scope": "Task 1 diagnostic executable and seven SDK contracts only",
+  "parentSetup": "b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e",
+  "owners": {
+    "sdk": {
+      "repository": "https://github.com/treeseed-ai/sdk.git",
+      "commit": "456c52d47c608f40aefdd54dac125c6ceba5c54d",
+      "baseline": "395286a3268a1d9990046011d1145702df052ddf",
+      "archiveSha256": "6664f812fdb0797fd7bf142a5962cc25b314c17a87c2d7eda8664cc4217af907"
+    },
+    "deployment": {
+      "repository": "https://github.com/treeseed-ai/deployment.git",
+      "commit": "5bfd77344f61bd11980e86053a61bde88fe605ca",
+      "baseline": "1b904ade5fd5f3ec0945db7bef59274185d92dde",
+      "archiveSha256": "f556b474cb1a8bf3588bcb85af010603c83f3602657fcf2ddae7533add42a473"
+    },
+    "cli": {
+      "repository": "https://github.com/treeseed-ai/cli.git",
+      "commit": "6a8bc26da319ecc1377917b5ad535c68532ec89c",
+      "baseline": "612c2871b43e7b0868532f1705c4e4dd5c9b6f75",
+      "artifactSha256": "ad809c4a057df4af497a23796ecb5feb360078d4733c28508dd1f7630a738ac9"
+    }
+  },
+  "toolchain": {
+    "bun": "1.4.4+38afee6c8",
+    "typescript": "5.9.3",
+    "zod": "4.6.7",
+    "node": "24.19.0",
+    "cordisCandidate": "35fdc969e4b6c48c48ed44717c7a018324e4dd88"
+  },
+  "nativeQualification": {
+    "os": "Ubuntu 26.04.1 LTS",
+    "architecture": "x64",
+    "docker": "29.9.1",
+    "compose": "5.6.0",
+    "context": "default",
+    "endpoint": "unix:///var/run/docker.sock",
+    "commands": [
+      "bun run verify (SDK, Deployment, CLI)",
+      "node --test tests/skills/*.test.mts tests/task1-composition.test.mts"
+    ],
+    "unqualified": [
+      "macOS",
+      "WSL2",
+      "ARM64",
+      "installation/apply",
+      "remote transports",
+      "Cordis host"
+    ]
+  },
+  "pullRequests": {
+    "sdk": "https://github.com/treeseed-ai/sdk/pull/451",
+    "deployment": "https://github.com/treeseed-ai/deployment/pull/901",
+    "cli": "https://github.com/treeseed-ai/cli/pull/310"
+  }
+}
