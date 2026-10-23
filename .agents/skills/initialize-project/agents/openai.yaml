@@ -1,0 +1,4 @@
+interface:
+  display_name: "Initialize TreeSeed Project"
+  short_description: "Prepare a fresh Cordis project with shared setup"
+  default_prompt: "Use $initialize-project to prepare the selected existing TreeSeed repository on its own Cordis worktree, then stop before implementation."

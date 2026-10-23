@@ -16,16 +16,31 @@ The original analysis lives at `/home/adrian/Projects/platform/docs/platform-sea
 
 ## Dependent-repository setup gate
 
-**Do not introduce a dependent TreeSeed repository during this documentation task.** Platform stays at the top; preserve separate existing project repositories under `/home/adrian/Projects/treeseed-cordis/packages/{project}`, excluded by Platform's `/packages/` gitignore rule. Do not consolidate project code into Platform, track nested source/Git metadata or register these checkouts as submodules. Every participating first-party replacement repository goes through this gate; a plugin stays in its owning project rather than becoming a new repository automatically.
+**Do not initialize a dependent project merely by reading this plan.** When the user selects
+an eligible existing project, use Platform's [initialize-project skill](../.agents/skills/initialize-project/SKILL.md).
+The skill is the procedure authority: same canonical repository and history, new isolated
+`cordis` worktree at gitignored `packages/{project}`, inherited source cleared there only,
+then exact shared setup from one fetched/verified parent Platform `cordis` commit.
 
-1. Identify the existing project owner needed by the current slice; preserve its separate repository. Use that same existing canonical repository, with its own `cordis` branch/history; do not create a replacement remote or transfer functionality to another owner. Record its HTTPS remote, `packages/{project}` destination, exact reference and legacy-capability → same-repository Cordis interface/test mapping in its issue. Do not pull down all projects speculatively or invent another repo for a small plugin. Task 1 needs CLI, SDK and Deployment diagnostics; each has its own setup pause.
-2. Read the applicable original instructions, inspect dirty/untracked state and worktree inventory, fetch and verify exact protected heads. Record the reference used for history. Never switch or clear the original active checkout.
-3. Create a separate worktree at `packages/{project}` with the repository's own branch named `cordis`. If that branch/path exists, inspect and preserve it; do not reset, force, reuse blindly or overwrite user work. No broad automated deletion loop.
-4. Verify the destination is the intended worktree and its Git common directory belongs to the intended repository. Clear every inherited tracked file in **that new checkout only**, retaining Git metadata/history. Include no legacy source, workflow, instruction, skill or generated output by accident. Commit the empty baseline through its authorized workflow. Existing retained files or unexplained untracked content require investigation, not `git clean -fdx`.
-5. **Stop before scaffolding, dependency installation, tests, builds or source changes in that repository.** Tell the user its path/branch and wait for them to install skills and create AGENTS.md. Elapsed time is not permission. Do not install skills or copy another project's AGENTS.md for them.
-6. On explicit resumption, read those actual instructions and skills, establish its issue/feature-branch workflow, and write its own bounded contract/test plan before code. Incorporate any changed permissions and ownership into the portfolio plan.
+Copy `AGENTS.md`, `.gitignore`, `LICENSE` and the complete tracked skills tree with all support
+resources **except `initialize-project` itself**. Preserve differing project license files
+and required notices from its verified original baseline; API and Market API keep AGPL.
+The parent working tree, untracked files and moving branches are not copy sources. Existing
+branches/directories or partial/dirty setups are preserved, not automatically wiped again.
 
-This is a user-required pause, not an agent-created approval gate. It applies to SDK, CLI, Deployment, Identity, TreeDX, Agent, UI or any other TreeSeed repository when brought into the migration. Third-party packages such as Cordis/Bun remain ordinary pinned dependencies; do not clear their upstream sources. Reading original TreeSeed sources for reference does not introduce a replacement checkout or authorize modifying them.
+This replaces the earlier manual skill/AGENTS installation step. After the single setup-only
+local bootstrap commit, report refs/paths, copy verification and license exceptions, then
+**stop for user review, project-specific adjustments and explicit resumption before any
+scaffolding, dependency installation, tests/builds or implementation**. Do not publish the
+local baseline without user direction. After approved publication, ordinary issue branches
+and PRs use the child's verified `origin/cordis`. Platform setup does not waive each child's
+review pause. Task 1 needs CLI, SDK and Deployment only, each initialized separately.
+
+**TreeDX is excluded from initialization.** It remains the existing Elixir/Rust platform:
+no Cordis branch creation, wipe, shared setup copy or TypeScript rewrite through this workflow.
+Integrate its existing public service from the owning SDK/API adapters; adapters do not acquire
+TreeDX's persistence capability. Any later TreeDX development uses its own instructions and
+normal language/toolchain workflow. Third-party packages are not first-party rewrite targets.
 
 ## Verified local source snapshots
 

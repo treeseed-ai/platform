@@ -29,6 +29,37 @@ Installation success is not proof of any deferred domain feature. A diagnostic p
 
 The user's separate AI project may later supply a capability through a reviewed interface. Do not add placeholder model/training/GPU services or schemas to reserve its place.
 
+### Required implementation architecture
+
+The Cordis rewrite is a **pluggable object-oriented TypeScript system**, governed for its
+lifetime by [AGENTS.md](../AGENTS.md#architecture-typescript-classes-and-swappable-plugins-mandatory).
+All handwritten SDK, CLI, service/plugin, deployment/tooling, browser/UI and owner test code
+uses classes with instance/static methods, not JavaScript, standalone function modules,
+function factories or functional UI components. Declarative schemas and interface/data types
+remain appropriate; framework callbacks bind class methods. Generated output and unchanged
+upstream dependencies/resources are not a second handwritten source implementation. TreeDX
+retains its existing Elixir/Rust service and its own workflow.
+
+A capability has one typed interface or abstract-class contract and a selected implementing
+class in the same owning repository. Consumers use the contract; constructors and Cordis
+service bindings provide the implementation. Required selections must be present, unique and
+compatible. A different plugin class can supply the same capability through existing config,
+without changing consumer code, operation schemas, ownership or authorization policy. Do not
+create another container/registry or speculative inheritance hierarchy to accomplish this.
+
+`PlatformApplication` is the API production composition class. `CliApplication` and
+`CliOutput` own the executable interface; `OperationDefinition.define(...)` is a static class
+method for schema-backed bindings. `DeploymentHost` is the lifecycle capability contract;
+`ComposeDeploymentHost` supplies the first implementation. Required plugin entrypoints such
+as Identity/Deployment/Transport/Web are classes using Cordis's own lifecycle. Browser views
+and UI components also use class-based implementations. These are proposed design names,
+not implemented exports or additional remote operations.
+
+One shared contract suite runs against every advertised implementation. Default-construction
+and installed replacement tests prove selection, authorization, disposal/drain, unchanged
+caller semantics and read-back across a controlled restart. An alternative diagnostic class
+may prove this mechanism in a fixture; it does not justify shipping extra providers early.
+
 ## 2. Distribution and operating-system boundaries
 
 The CLI source is strict TypeScript. Bun compilation is the intended standalone distribution mechanism; source tools remain explicitly pinned and tested. Bun documents Linux/macOS x64/ARM64 compilation and embedding its runtime in the executable. This establishes feasibility, not a passing TreeSeed build. [Bun executable reference](https://bun.sh/docs/bundler/executables).
@@ -130,12 +161,12 @@ Preserve one integrated platform composition assembled from independently built 
 | [Admin](https://github.com/treeseed-ai/admin) / `packages/admin` | Browser shell, server actions/session facade and page/plugin integration. | Task 3. |
 | [UI](https://github.com/treeseed-ai/ui) / `packages/ui` | Shared browser components; no duplicate domain/auth/backend policy. | When the first browser slice needs them. |
 | [Core](https://github.com/treeseed-ai/core) / `packages/core` | Optional public-reader/site plugin, retaining its separate repository. | Deferred; not the Cordis runtime host. |
-| [TreeDX](https://github.com/treeseed-ai/treedx) / `packages/treedx` | Generic repository/knowledge persistence and its trusted integration boundary. | Knowledge slice later. |
+| [TreeDX](https://github.com/treeseed-ai/treedx) / `packages/treedx` | Existing Elixir/Rust repository/knowledge service; no Cordis rewrite or initialization. Integrate its public boundary from owning adapters. | Knowledge integration later; service remains intact. |
 | [Agent](https://github.com/treeseed-ai/agent) / `packages/agent` | Scoped execution provider and handlers; durable project/work authority stays at its owning API capability. | Work/Agent slice later. |
 | Reviewer, templates and other retained projects / `packages/{project}` | Their existing independent capability/test/template ownership. | Only when needed; same setup pause. |
 
 The repository links above name the **existing canonical repositories**, not new repos to
-create. A capability's replacement stays in its current repository's own `cordis` branch.
+create. An eligible capability's replacement stays in its current repository's own `cordis` branch. TreeDX is retained as its existing Elixir/Rust service, excluded from Cordis initialization.
 For example, `treeseed-ai/deployment` lifecycle becomes the Deployment Cordis plugin in that
 same repo, not a new Platform/API implementation; `treeseed-ai/agent` execution remains in
 Agent even when API exposes its operations. A consumer adapter does not acquire ownership.
@@ -150,7 +181,7 @@ change requires a separate explicit maintainer decision; none is authorized here
 Combine duplicated **interfaces and execution paths**, not these repositories. A capability
 plugin is a module/export in its owner repository; do not create a repository per small plugin.
 Do not introduce AI. Add only participating repositories for the current slice, each through
-its own [cleared Cordis worktree and user setup pause](migration-reference.md#dependent-repository-setup-gate).
+its own [initializer and user review pause](migration-reference.md#dependent-repository-setup-gate); TreeDX is excluded from this process.
 
 Each repository owns its manifests/lock/build/unit/integration tests, Git commits/PRs and
 release artifacts. Platform's composition selects exact reviewed source/candidate and artifact
@@ -162,12 +193,12 @@ There is no blanket root workspace link that makes unbuilt sibling source the pr
 
 ### Four plugin-author contracts
 
-1. **Package/composition:** package identity, version, supported platform contract, server/optional browser entrypoint and configuration schema. Keep plugin metadata in standard package metadata when sufficient; resolve code through the normal package manager. One deployment configuration enables plugins/settings; secret values are credential references.
+1. **Package/composition:** exported TypeScript plugin class, package identity, version, supported platform contract, server/optional browser entrypoint and configuration schema. Keep plugin metadata in standard package metadata when sufficient; resolve code through the normal package manager. One deployment configuration enables plugins/settings; secret values are credential references.
 2. **Service composition:** use Cordis services, `inject`, `plugin` and effects. Do not implement a second start/stop/dependency lifecycle. Missing dependencies, duplicate public names and cycles are candidate blockers. Dependency metadata needed for planning is derived from the same author declaration, not handwritten twice.
 3. **Operation binding:** one executable source schema for exact input/output and inferred TypeScript types; capability/scope, effect, exposure and concurrency/idempotency policy. Generate OpenAPI/MCP/client projections from that binding. Avoid a permissive `Record<string, unknown>` public result.
 4. **Browser contribution:** a page/route, optional navigation and actions naming registered operation IDs. Browser bundles contain no server entrypoints, credentials or deployment internals. Build contributions into the tested composition; initially do not fetch executable browser modules from arbitrary runtime URLs.
 
-Cordis supplies function/object/class plugins, declared injection and configuration validation hooks. Its service/fiber behavior is a dependency to pin and qualify, not a reason to copy its internals. [Inspected registry](https://github.com/cordiverse/cordis/blob/35fdc969e4b6c48c48ed44717c7a018324e4dd88/packages/core/src/registry.ts), [lifecycle](https://github.com/cordiverse/cordis/blob/35fdc969e4b6c48c48ed44717c7a018324e4dd88/packages/core/src/fiber.ts). No claim is made that the current TreeSeed SDK implements this model.
+Use Cordis's native constructor/class plugin form, declared injection and configuration validation hooks; its acceptance of other plugin forms is not permission for function-based TreeSeed implementations. Its service/fiber behavior is a dependency to pin and qualify, not a reason to copy its internals. [Inspected registry](https://github.com/cordiverse/cordis/blob/35fdc969e4b6c48c48ed44717c7a018324e4dd88/packages/core/src/registry.ts), [lifecycle](https://github.com/cordiverse/cordis/blob/35fdc969e4b6c48c48ed44717c7a018324e4dd88/packages/core/src/fiber.ts). No claim is made that the current TreeSeed SDK implements this model.
 
 ### Required modules/plugins
 
@@ -189,11 +220,11 @@ Use a controlled restart for initial plugin activation. Removing a required core
 
 ### Proposed SDK signatures
 
-These are named interface requirements for future TypeScript, not implemented declarations. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
+These are proposed class static/instance method contracts, not implemented declarations. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
 
 | API | Contract |
 | --- | --- |
-| `defineOperation(definition)` | Return typed binding; validate stable unique ID, input/output schema, capability/scope, effect, surface bindings and mutation rules. |
+| `OperationDefinition.define(definition)` | Return typed binding; validate stable unique ID, input/output schema, capability/scope, effect, surface bindings and mutation rules. |
 | `OperationService.register(binding, handler)` | Return disposer; reject duplicate IDs and route/tool collisions. |
 | `OperationService.invoke(binding, input, request)` | Validate, authorize and call handler once; validate result; preserve request/trace identity and cancellation signal. |
 | `PlatformClient.invoke(binding, input, options?)` | Typed output or structured problem; options include cancellation, idempotency key and expected version as applicable. No caller-created remote paths. |
@@ -221,7 +252,7 @@ These seven operations are the entire initial remote platform domain. Identity d
 
 Read scopes require `platform.read`; lifecycle mutations require `platform.manage` and installation ownership. `plan` requires management authority because it resolves potentially private artifact/credential metadata and persists a plan. Catalog metadata is permission-filtered. Do not auto-expose install/apply as an unauthenticated MCP tool.
 
-`recover` remains a protected local bootstrap/recovery adapter method initially; it does not add an eighth remote API. The seven operations have local bindings so installation can occur before HTTP exists. Client-side doctor/open/help are presentation/environment functions, not hidden domain operations.
+`recover` remains a protected local bootstrap/recovery adapter method initially; it does not add an eighth remote API. The seven operations have local bindings so installation can occur before HTTP exists. Client-side doctor/open/help are CLI presentation/environment class methods, not hidden domain operations.
 
 Each operation binding defines a stable MCP tool name derived by a collision-checked mapping from the operation ID. Discovery includes only explicit exposed bindings supported by the authenticated connection. Pin and negotiate the MCP protocol versions supported by the chosen maintained adapter; validate actual initialize/list/call and denied-access flows. Do not hardcode a remembered protocol version into prose or duplicate protocol handling.
 

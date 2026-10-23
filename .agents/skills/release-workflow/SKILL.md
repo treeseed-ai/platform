@@ -24,8 +24,13 @@ legacy `staging` and `main` continue independently and must not receive migratio
   branches. Cleanup concerns only the verified merged branch belonging to the current task.
 - This branch policy does not rename a deployment environment or authorize use of the legacy
   staging/production installation. Build/test artifacts remain isolated and traceable.
-- A new independent TreeSeed replacement repo needs its own isolated cleared `cordis` worktree
-  under `packages/{project}` and a pause for the user's skills/AGENTS.md setup before implementation.
+- Eligible child repos use the parent Platform `initialize-project` skill: same-repository
+  cleared `cordis` worktree, setup copied from a pinned parent `cordis` commit minus that skill,
+  then stop for user review/adjustments and explicit resumption before implementation. Preserve
+  differing project licenses. TreeDX is excluded; keep its Elixir/Rust service unchanged.
+- The initializer may create one local setup-only bootstrap commit on a new child `cordis`
+  before issue-feature branching is possible, without a bootstrap changelog. This exception
+  grants no implementation, ref publication, existing-branch rewrite or production authority.
 - Preserve separate project repositories: Platform owns integration, while functionality and
   plugins stay in their owning CLI/SDK/Deployment/API/Admin/UI/Core/TreeDX/Agent repositories.
   `/packages/` is gitignored by Platform, not committed or registered as submodules. Keep owner
@@ -219,9 +224,9 @@ unilaterally expand.
 | `main` | Original production | Preserve; no migration PRs, merges, tags or releases. |
 | `feature/*`, `fix/*` | Bounded migration issue | Create from verified `origin/cordis`, PR to `cordis`. |
 
-Use `fix/<issue>-desc` for a bug and `feature/<issue>-desc` for other work. Independent
-replacement repositories use the same migration boundary after their setup pause. Do not
-apply a generic staging/main default over this project's explicit mapping.
+Use `fix/<issue>-desc` for a bug and `feature/<issue>-desc` for other work. Eligible independent
+replacement repositories use the same migration boundary after their review pause. TreeDX is
+not a Cordis rewrite. Do not apply a generic staging/main default over this project's mapping.
 
 ## The Golden Rules
 

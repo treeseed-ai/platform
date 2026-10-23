@@ -1,8 +1,12 @@
-# treeseed — Treeseed platform
+# TreeSeed Cordis development guidance
 
 **Scope: development only.** This file guides agents developing THIS repository. Nothing shipped —
 runtime behavior, the knowledge corpus, or any test — may depend on it or its contents: every real
 target project carries its own instruction files, unpredictable and private to that project.
+
+This shared development baseline may be copied into child repositories. Determine the current
+project from its canonical Git remote, not this file's title. Platform remains the parent
+integration repository; a child owns only its existing capabilities.
 
 ## Cordis Migration Branch Boundary (MANDATORY)
 
@@ -19,8 +23,11 @@ The original system continues on its existing `staging` and `main`; preserve its
   force-push or repoint those branches. Do not modify the original checkout or its services.
 - Preserve `cordis`, `staging` and `main` during cleanup. Delete only the task-owned,
   verified merged feature/fix branch; unrelated legacy branches are outside this delivery.
-- Apply this boundary to every independent replacement TreeSeed repository. Its isolated,
-  cleared `cordis` worktree must pause for the user's skills and AGENTS.md setup before code.
+- Apply this boundary to every eligible independent replacement TreeSeed repository. Use
+  Platform's `initialize-project` skill to create its isolated cleared `cordis` worktree, copy
+  shared setup from an exact parent `cordis` commit (excluding that skill), then stop for user
+  review/adjustments and explicit resumption before code. Preserve differing project licenses.
+  TreeDX is excluded: retain its existing Elixir/Rust implementation and instructions unchanged.
   Modules and plugins belong in their owning project repository; do not collapse existing
   projects into source directories owned by Platform.
 - `cordis` is a Git integration branch, not a new deployment environment. Migration tests and
@@ -53,10 +60,12 @@ into a monorepo or introduce a second copy of their source in Platform.
 Platform owns integration/composition declarations, portfolio documentation and assembled
 verification. Functional code, plugins, owner tests, build scripts, manifests, locks and
 releases belong in their project repository. A plugin lives with its capability owner;
-not every plugin needs a new repository. Each existing capability stays in the same canonical
+not every plugin needs a new repository. Each eligible Cordis capability stays in the same canonical
 repository and is rewritten on that repository's own `cordis` branch; no replacement remote or
 cross-repository functionality transfer is authorized. Before code, map the legacy public
 capability/source to its same-repository plugin/export/interface and test in the owning issue.
+TreeDX retains its existing repository/implementation and is integrated over its public service
+boundary; do not create or clear a TreeDX Cordis rewrite.
 Consumer adapters do not acquire ownership. Keep project builds independent and integrate
 through SDK/public package interfaces and exact candidate/artifact references, never
 cross-checkout relative source imports. Gitignored checkouts are development locations,
@@ -64,9 +73,43 @@ not reproducible release pins. Root changes cannot stand in for commits/PRs in t
 
 Preserve CLI, SDK, Deployment, API, Admin, UI, Core, TreeDX and Agent repository boundaries
 while simplifying their interfaces. Add only the projects needed for the current slice;
-AI remains excluded. Before first implementation in each replacement repo, apply the
-isolated cleared `cordis` worktree and user setup pause above. Do not create or clear all
-repositories speculatively, and never clear original active checkouts.
+AI remains excluded. Before first implementation in each eligible replacement repo, use the
+parent initializer and review pause above. TreeDX does not receive this Cordis setup.
+Do not create or clear all repositories speculatively, and never clear original active checkouts.
+
+## Architecture: TypeScript Classes and Swappable Plugins (MANDATORY)
+
+All handwritten Cordis implementation is **strict TypeScript organized as classes**:
+SDK/client, CLI, API, plugins, identity, deployment/worker, browser/UI, build tooling and
+owner tests/fixtures. Use TSX where needed for class-based browser components. JavaScript
+is generated output or an upstream dependency/resource, never a parallel handwritten
+implementation. TreeDX remains the explicit Elixir/Rust exception and is not rewritten.
+
+- Put behavior in instance or static class methods. Do not build application logic from
+  standalone/exported functions, function factories, functional components/hooks or bags of
+  function exports. Bind class methods for framework callbacks; do not hide behavior in
+  anonymous functions. Types/interfaces, declarative schemas and plain data remain valid
+  contracts; do not add wrapper classes to data solely for appearances.
+- Give each capability one typed public contract (interface or abstract class) and a class
+  implementation in its existing owning repository. Consumers depend on that contract;
+  constructor injection and Cordis service bindings supply the configured implementation.
+- Implement plugins as Cordis-compatible TypeScript classes. Select/swap implementations
+  through the existing plugin configuration and typed service binding, without changing
+  callers or transferring capability ownership. Required capabilities have one unambiguous
+  selected implementation per composition scope; missing/duplicate/incompatible selections
+  fail validation. Keep initial activation/replacement under the plan/apply restart policy.
+- Use Cordis's native injection/effects/lifecycle. Do not add a second plugin framework,
+  service locator, dependency container or speculative provider hierarchy. Begin with one
+  real implementation; add alternatives only for a concrete requirement or contract test.
+- Verify substitutability with the same contract suite for each advertised implementation,
+  real production construction and an assembled replacement/read-back/cleanup scenario.
+  A class name or interface declaration alone does not prove a capability is swappable.
+
+This directive is copied unchanged by project initialization and remains binding throughout
+the project lifetime. Preserve it during owner-specific instruction edits and code review.
+The first implementation slice must make the existing compiler/lint checks reject handwritten
+JavaScript and function-based implementation paths, using semantic source checks rather than
+claiming that prose alone enforces architecture. Missing enforcement remains an explicit gap.
 
 ## Workflow Gate (MANDATORY)
 
@@ -90,6 +133,12 @@ not just `git branch --merged`. Preserve all three long-lived branches and unrel
 explicit cutover. After cutover, the `staging` → `main` RC carries `Closes #N` lines derived
 from the verified shipping PRs. Hold issues with unchecked criteria and name their deficits.
 Do not change the default branch or close issues to make migration progress appear released.
+
+The initializer's single setup-only local bootstrap commit on a newly created child `cordis` is
+the bounded exception to issue-feature branching before that integration baseline exists. It
+does not authorize implementation, publication or rewriting an existing branch. The same
+exception omits a bootstrap changelog so the child contains only the declared copied setup.
+All subsequent development follows the normal gate.
 
 This gate is non-negotiable. If you find uncommitted work on the wrong branch, preserve it and
 move it onto the correct issue branch before continuing.
@@ -119,8 +168,8 @@ development. See the `release-workflow` skill for full details.
 
 For **every injectable seam**:
 
-- At least one test must exercise the **default construction path** — the function that wires production collaborators. No fakes injected.
-- Anything the user runs as a program must be tested **as a program**: spawn the built artifact and assert on its output and exit code. Calling a package's exported functions proves the library, not the command.
+- At least one test must exercise the **default construction path** — the production composition class/constructor that wires real collaborators. No fakes injected.
+- Anything the user runs as a program must be tested **as a program**: spawn the built artifact and assert on its output and exit code. Calling a package's class methods proves the library, not the command.
 - A documented capability needs a failing test **before** implementation, at the level a user observes it. Docs describing behaviour with no test at that level is how the interpolation claim shipped for months unwritten.
 
 **A green test suite is not the gate.** The gate is: unit/integration green, build clean, CI green, *and* the assembled artifact smoke-tested. If any is missing, say so rather than reporting "tests pass".
