@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-23 10:34 UTC. Issues own plans; Actions own verification;
+Updated: 2026-10-23 12:04 UTC. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -9,6 +9,8 @@ Unknown usage, price, closure or delivery is never counted as zero or success.
 
 
 - **10:43UTC—whole-team architecture correction:** Live Agent/API/SDK/UI/Admin/Deployment rosters retain8ready roles each; recent configured groups predominantly admit only A/E/R, with Tester/TechnicalWriter/Releaser groupIds[] and accepted plans containing onlyEngineer work. This is coordinator scope drift, not full-team success. SDK schema restricts reviewing to reviewer class; API graph hardcodes that class. Writer commonly depends on Engineer. Human requires Architect→TechnicalWriter→Tester→Engineer with independent review per stage, plus schedule-driven Releaser discovery; all remain unproven and require governed configuration/shared SDK/API repairs through existing Issues. eecc capability classifier is containment, not removal of task policy from shared runner. Reserved SDK chain untouched; no issued work authority changed.
+
+- **11:57UTC—architecture first:** No new live workdays admitted. SDK443 merged6996a18c; exact feature39943426525 and protected staging39946674697 passed. SDK444 prepares rc126 atd6fdd64b; Actions39950122741 pending. Agent c697f61 makes all5model handlers activity-complete; e5d59bb0 preserves the prepared handler request and makes the guest launcher opaque, moving model/review policy into the workload and removing role-specific prompt injection. Native launcher/clock6pass; latest boundary28checks/6files pass, build/file policies pass. Agent508 e5d59bb0 Actions39949743650 FAILED private-Zod declaration portability;3ab546d5 keeps the internal helper private, fresh39950045211 pending. Earlier broad321checks had316pass/5fail: three owned fixture/credential-order failures fixed and covered by the28; local missingtini/npm9archive remain unproven, as do installedDeployment typecheck and full owner/scene delivery. API603 exact9ec0aa49 has realPostgreSQL16checks/4files pass, disposable DB removed; Actions39949502262 pending. Class-keyed proposal estimates, graph projection and workday selection still open; no runtime adoption or full group-driven proof claimed. Team configuration unchanged, original10retained claims and products preserved.
 
 ## Purpose and direction
 

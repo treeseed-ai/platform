@@ -2,10 +2,34 @@
 
 **Status:** in progress
 **Plan created:** 2026-09-12
-**Last architecture review:** 2026-09-15
+**Last architecture review:** 2026-10-23
 **Scope:** proposal planning, decisions, living execution graph, assignments, results, review, and graph reconciliation
 **Related plan:** [`docs/agent-architecture.md`](./agent-architecture.md) owns profiles, handlers, AgentKernel, workspaces, workday allocation, and provider selection
 **Explicit non-goal:** UI implementation
+
+## Architecture correction in progress
+
+The required participation authority is group membership or a discussion-topic
+mention of a group/name. A shared unqualified name reaches matching project
+agents across projects. One class attaches allocation and memory; it does not
+select proposal recipients. Groups subscribe to proposals; topics sequence
+discussion. No proposal may target a specific agent or hide recipients through
+work-item class, handler or named-reviewer rules.
+
+The class-targeted work-item examples and class-keyed graph identities below
+describe the existing implementation and must be replaced; they are not the
+approved target architecture. In particular, the single actor/reviewer estimate
+fields cannot retain every participating agent's own contribution and estimate.
+The shared SDK/API/handler contract must preserve those attributable facts and
+dependency order without using an estimate's author as proposal targeting.
+Authority and capacity denials remain explicit; independent review remains
+required. No new live portfolio run should be admitted through the old selectors.
+
+SDK #443 removes the class-specific reviewing prohibition. API #603 repairs
+discussion group/name audiences. Agent #508 separates the opaque guest from
+model work and removes role-specific prompt injection. These slices do not yet
+prove group-driven proposal estimation, acting or simulated release. Exact
+status and retained failures are in Agent #496 and `docs/agent-log.md`.
 
 ## Objective
 
