@@ -53,7 +53,11 @@ into a monorepo or introduce a second copy of their source in Platform.
 Platform owns integration/composition declarations, portfolio documentation and assembled
 verification. Functional code, plugins, owner tests, build scripts, manifests, locks and
 releases belong in their project repository. A plugin lives with its capability owner;
-not every plugin needs a new repository. Keep project builds independent and integrate
+not every plugin needs a new repository. Each existing capability stays in the same canonical
+repository and is rewritten on that repository's own `cordis` branch; no replacement remote or
+cross-repository functionality transfer is authorized. Before code, map the legacy public
+capability/source to its same-repository plugin/export/interface and test in the owning issue.
+Consumer adapters do not acquire ownership. Keep project builds independent and integrate
 through SDK/public package interfaces and exact candidate/artifact references, never
 cross-checkout relative source imports. Gitignored checkouts are development locations,
 not reproducible release pins. Root changes cannot stand in for commits/PRs in their owners.

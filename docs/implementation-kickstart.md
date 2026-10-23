@@ -45,7 +45,12 @@ reviewed cutover plan and explicit maintainer authorization.
 
 Preserve the repository topology: Platform is the top-level integration repo;
 CLI, SDK, Deployment, API, Admin, UI, Core, TreeDX and Agent remain independent
-repositories under packages/{project}. Platform must gitignore /packages/; do
+repositories under packages/{project}, using each existing canonical remote and
+its own cordis branch/history. Do not create replacement repositories or move
+capabilities between owners. Map each legacy capability/source to its same-repo
+Cordis plugin/export/interface and outside-in test in the owning issue before
+code; consumer adapters do not acquire implementation ownership.
+Platform must gitignore /packages/; do
 not commit nested source/Git metadata or introduce submodules. Functionality,
 plugins, owner tests, build scripts and releases belong in their owner repo.
 Platform owns composition declarations, integration docs and assembled checks.
