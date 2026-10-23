@@ -53,3 +53,36 @@ Verification in every owner: bun run check, bun run build, bun run test:unit,
 bun run test:integration, bun run test:smoke (or bun run verify). Source/build failures are
 prerequisite failures, never reported as intended behavioral red. CI must run the same gates.
 Native qualification records OS/CPU, Docker/Compose/tool identities and exact artifact hashes.
+
+## Verified candidate evidence
+
+The three reviewed cordis bootstraps were published unchanged. Owner docs/tests/implementation
+are committed on their issue branches, with all later tasks deferred. Local verification:
+SDK5tests, Deployment6tests, CLI6tests; Platform11checks (8existing skill regressions and
+3assembled checks), zero failures/skips/todos. Root assembled verification also receives
+strict TypeScript compilation and semantic class-source inspection. The compiled binary runs
+with no Node/Bun PATH; native doctor reports ready true, exit0, without creating its destination.
+
+Final owner candidate CI:
+[SDK](https://github.com/treeseed-ai/sdk/actions/runs/40035129927),
+[Deployment](https://github.com/treeseed-ai/deployment/actions/runs/40035162607),
+[CLI](https://github.com/treeseed-ai/cli/actions/runs/40035221488).
+[Platform assembled CI](https://github.com/treeseed-ai/platform/actions/runs/40035441474)
+rebuilt the exact declared CLI source and matched the native artifact SHA256, then passed
+all assembled/policy checks on Ubuntu24.04. Doctor reports that host as unsupported; this is
+binary portability evidence, not managed-host qualification beyond native Ubuntu26.04x64.
+
+Readiness tests were observed failing against a compiled NOT_IMPLEMENTED executable.
+Strict-schema, remote-context-blocker and wrong-archive-pin mutations each produced their
+intended assertion failure, then passed after restoration/correction. No missing prerequisite
+was mislabeled as behavioral red. Shared source checking also rejects .mts/.cts function paths,
+permissive operation definitions and contradictory success/problem envelopes.
+
+Review PRs: [Platform#682](https://github.com/treeseed-ai/platform/pull/682),
+[SDK#451](https://github.com/treeseed-ai/sdk/pull/451),
+[Deployment#901](https://github.com/treeseed-ai/deployment/pull/901),
+[CLI#310](https://github.com/treeseed-ai/cli/pull/310). Review/merge remains pending;
+all task branches are retained and all issues remain open until release. Deployment NOTICE
+matches its original blob4beb3b94c1448461e0c5630405628e9c132b9568. Canonical remotes and
+published bootstrap heads were read back; all worktrees are clean and Platform tracks no
+child source. Original repositories and their ongoing legacy development were preserved.

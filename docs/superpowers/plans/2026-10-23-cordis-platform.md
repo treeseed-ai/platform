@@ -108,8 +108,8 @@ authorized. Remaining unchecked gates track candidate/CI completion, not setup a
 - [x] Write `cli_reports_identity_and_checks_without_mutation`: spawn the compiled binary from another working directory and a path containing spaces; assert exit 0 for help/version, documented JSON envelope for doctor, zero created configuration/credentials/containers and stderr free of secrets. Test a symlinked executable and closed stdin.
 - [x] Add `doctor_rejects_wrong_engine_and_foreign_installation`: actual configuration points to an unexpected remote engine/foreign directory; assert blocker and exit 3 before changes. Test missing engine/Compose, unsupported architecture, occupied port and permission denial. Test unknown command/flag → exit 2 and actionable help.
 - [x] Add strict schema/unit cases for all seven IDs, exact fields, invalid/missing/unknown values and effect/exposure policy. Add a real default CLI construction test with no collaborator injection.
-- [ ] Build the binary, run smoke to classify intended red, implement only CLI parser/output, Deployment read-only diagnostics and SDK contracts, then run complete current unit/integration, check/build and smoke. Record actual commands/hashes; no Docker/application lifecycle claim.
-- [ ] Commit docs → tests → implementation separately with the task issue reference. Verify/push/PR under the current workflow; do not merge main. This gate proves a distributable front door, not an installed platform.
+- [x] Build the binary, run smoke to classify intended red, implement only CLI parser/output, Deployment read-only diagnostics and SDK contracts, then run complete current unit/integration, check/build and smoke. Record actual commands/hashes; no Docker/application lifecycle claim.
+- [x] Commit docs → tests → implementation separately with the task issue reference. Verify/push/PR under the current workflow; do not merge main. This gate proves a distributable front door, not an installed platform.
 
 ## Task 2: Resolve exact composition and produce non-activating plans
 
