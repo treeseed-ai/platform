@@ -104,6 +104,9 @@ to install one; use an available compliant method or report a genuine required l
 
 Project destination: [.agents/skills/](../). Use a personal destination only when the user's
 request or actual runtime configuration selects it. Honor an explicitly requested destination.
+Source retrieval must respect this repository's HTTPS-only Git policy. If a configured
+installer can fall back to SSH, select a download/HTTPS-only method or another compliant
+approach; never accept the SSH fallback to recover authentication failure.
 Do not invent an installer directory flag, silently overwrite existing skills or install into
 another runtime's directory. After installation verify discovery and the approved files.
 

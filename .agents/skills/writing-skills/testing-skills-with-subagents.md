@@ -42,7 +42,7 @@ need the pressure tests below. Classify the actual changed guidance, not just th
 
 Same cycle as code TDD, different test format.
 
-## RED Phase: Baseline Testing (Watch It Fail)
+## Discipline RED Phase: Baseline Testing (Watch It Fail)
 
 **Goal:** Run test WITHOUT the skill - watch agent fail, document exact failures.
 
@@ -307,7 +307,7 @@ Meta-test: "Skill was clear, I should follow it"
 
 **Bulletproof achieved.**
 
-## Testing Checklist (TDD for Skills)
+## Discipline Testing Checklist
 
 Before deploying skill, verify you followed RED-GREEN-REFACTOR:
 

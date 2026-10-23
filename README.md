@@ -2,7 +2,7 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → integrated deployment → SDK and Cordis plugin lifecycle → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: design and development instructions only.** There is no new CLI, SDK, application, container deployment, test suite, or release here yet. Commands and file layouts in the documentation are proposed implementation contracts, not runnable installation instructions. Implementation requires a subsequent instruction from the maintainer.
+**Status: design and development instructions only.** There is no new CLI, SDK, application, container deployment, product test suite, or release here yet. Commands and file layouts in the product documentation are proposed implementation contracts, not runnable installation instructions. Implementation requires a subsequent instruction from the maintainer. Development-skill regression tests are separate from product implementation.
 
 Start with these documents in order:
 

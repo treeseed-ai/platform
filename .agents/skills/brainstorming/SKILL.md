@@ -86,9 +86,10 @@ time...", "If it could only do one of these well, which?", "What would
 make you wince if I got it wrong?" A guess they can correct ("I'm
 guessing this is because X keeps biting you?") often beats a question.
 
-**Offer recon.** Once you have a bit of grounding and looking would help,
-offer to go look: their codebase or project, their own files and data,
-or the web. Say what you'd look for. They decide whether you go.
+**Gather evidence.** Read authorized project context and perform required web research
+directly. State what you are checking. Ask only when new access, a material scope change
+or an explicit user restriction requires it; ordinary reading and required research do not
+need another permission request.
 
 **Think wide privately.** Before you propose anything, come up with
 several ideas and drop the weak ones, including any that fight what

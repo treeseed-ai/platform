@@ -15,7 +15,9 @@ require a missing runtime guide or infer a destination from another agent's conv
 Follow AGENTS.md and [release-workflow](../release-workflow/SKILL.md), including issue branches,
 documentation-first commits, preserved work and migration publication/approval boundaries.
 
-You write test cases (pressure scenarios with subagents), watch them fail (baseline behavior), write the skill (documentation), watch tests pass (agents comply), and refactor (close loopholes).
+Choose validation for the changed guidance: retrieval/application checks for reference
+corrections, pressure scenarios for discipline rules, and output-shape checks for recipes.
+Observe the failing baseline, correct it, rerun the same scenario and retain evidence.
 
 **Core principle:** If you didn't watch an agent fail without the skill, you don't know if the skill teaches the right thing.
 
@@ -37,9 +39,9 @@ A **skill** is a reference guide for proven techniques, patterns, or tools. Skil
 
 | TDD Concept | Skill Creation |
 |-------------|----------------|
-| **Test case** | Pressure scenario with subagent |
+| **Test case** | Retrieval/application check, output-shape check or discipline pressure scenario |
 | **Production code** | Skill document (SKILL.md) |
-| **Test fails (RED)** | Agent violates rule without skill (baseline) |
+| **Test fails (RED)** | Baseline fails the appropriate observable check |
 | **Test passes (GREEN)** | Agent complies with skill present |
 | **Refactor** | Close loopholes while maintaining compliance |
 | **Write test first** | Run baseline scenario BEFORE writing skill |
@@ -495,19 +497,15 @@ Don't just state the rule - forbid specific workarounds:
 
 <Bad>
 ```markdown
-Write code before test? Delete it.
+Accept an unverified draft without checking its baseline.
 ```
 </Bad>
 
 <Good>
 ```markdown
-Write code before test? Delete it. Start over.
-
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
+Preserve user work and set aside only your own unverified draft. Establish the failing
+baseline, make the correction and recheck before accepting it. Do not claim a red/green
+history that was never observed.
 ```
 </Good>
 
@@ -546,7 +544,7 @@ Make it easy for agents to self-check when rationalizing:
 - "It's about spirit not ritual"
 - "This is different because..."
 
-**All of these mean: Delete code. Start over with TDD.**
+**All of these mean: preserve existing work, establish the baseline and verify your change.**
 ```
 
 ### Update SDO for Violation Symptoms
@@ -563,12 +561,11 @@ Follow the TDD cycle:
 
 ### RED: Write Failing Test (Baseline)
 
-Run pressure scenario with subagent WITHOUT the skill. Document exact behavior:
-- What choices did they make?
-- What rationalizations did they use (verbatim)?
-- Which pressures triggered violations?
-
-This is "watch the test fail" - you must see what agents naturally do before writing the skill.
+For a reference correction, run retrieval/application/gap checks against the current skill;
+record its wrong command, unresolved dependency or incorrect answer. For a discipline rule,
+run the pressure scenario without the proposed guidance and record actual choices and
+rationalizations. For an output recipe, compare the produced shape with its contract.
+Use isolated read-only/disposable scenarios; no test grants authority to affect live services.
 
 ### GREEN: Write Minimal Skill
 
@@ -582,7 +579,9 @@ Agent found new rationalization? Add explicit counter. Re-test until bulletproof
 
 ### Micro-Test Wording Before Full Scenarios
 
-Full pressure-scenario runs are the final gate, but they are slow and expensive per iteration. Verify the wording itself first with micro-tests:
+For new behavior-shaping recipes, verify wording with the micro-tests below before full
+scenarios. Pure reference, link, command and dependency corrections use retrieval/application
+checks instead. Discipline rules use the pressure scenarios relevant to their actual change.
 
 1. **One fresh-context sample per call** — a raw API call, or a single-shot subagent if you don't have API access. System prompt = the realistic context the guidance will live in (the full skill or prompt template, not the guidance in isolation); user message = a task that tempts the failure.
 2. **Always include a no-guidance control.** If the control doesn't exhibit the failure, there is nothing to fix — stop, don't author the guidance.
@@ -634,11 +633,13 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 
 ## Skill Creation Checklist (TDD Adapted)
 
-**IMPORTANT: Create a todo for EACH checklist item below.**
+Track the applicable checklist items. Reference-only corrections use retrieval/application
+checks; rationalization tables and pressure red flags apply to discipline guidance. Mark
+inapplicable categories explicitly rather than inventing tests or a new approval ceremony.
 
 **RED Phase - Write Failing Test:**
 - [ ] Create pressure scenarios (3+ combined pressures for discipline skills)
-- [ ] Run scenarios WITHOUT skill - document baseline behavior verbatim
+- [ ] Run the appropriate baseline check: current reference/output or discipline control without proposed guidance
 - [ ] Identify patterns in rationalizations/failures
 
 **GREEN Phase - Write Minimal Skill:**
@@ -658,8 +659,8 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 **REFACTOR Phase - Close Loopholes:**
 - [ ] Identify NEW rationalizations from testing
 - [ ] Add explicit counters (if discipline skill)
-- [ ] Build rationalization table from all test iterations
-- [ ] Create red flags list
+- [ ] For discipline guidance, capture demonstrated rationalizations and pressure red flags
+- [ ] For reference/recipe guidance, record failed retrieval or output-shape cases and recheck them
 - [ ] Re-test until bulletproof
 
 **Quality Checks:**
