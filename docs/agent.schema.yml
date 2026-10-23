@@ -1723,6 +1723,12 @@ $defs:
     type: object
     required: [schemaVersion, teamId, profileId, projects, startsAt]
     allOf:
+      - if: {required: [projects]}
+        then:
+          anyOf:
+            - required: [groupIds]
+            - required: [proposalIds]
+            - required: [decisionIds]
       - if: {required: [continueFromWorkdayId]}
         then:
           required: [decisionIds]
