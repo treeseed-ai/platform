@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-22 21:15 EDT. Issues own plans; Actions own verification;
+Updated: 2026-10-22 22:35 EDT. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -18,6 +18,8 @@ failed observations, original authority/deadlines and unknown accounting.
 
 | Batch / workday | Actual result | Measured usage | Useful delivery / evaluation |
 | --- | --- | --- | --- |
+| Guest rework `97fde9cb…` | E executed and committed; completion refused, lease expired; original measured output retained by API, local claim subsequently cleared; canonical result null | 593.490 active;11,279,618input/11,147,520cached/35,467output;74clock checks;teardown verified | Retained Git`84669ccb9`→`0d370a811`; published CLIrc88 export/hash/ancestry verified; draft Deployment895. No independent approval/adoption |
+| Shared-class build-repair planning `d8711a8b…` | Three required project-api subscribers +two own estimators +Reporter completed/released/verified | 142.730active total | Proposal`c23f0c29…`v3 approved; Decision`7080a80d…`; own E210/330,R180/300. Real acting run`9e2b923f…` started; E working, R dependent |
 | Guest adoption planning `9ee72e19…` | 4 required subscribers +2 own estimators completed/released/verified; Reporter timed out on8second authority, closure/usage unknown | 142.008active;461,212input/327,040cached/11,484output for six planners only | v3 approved natively; Decision`69d80f81…`; E900/1400, R420/720. Not7clean completions |
 | Guest adoption acting `7e1ec801…` | E, independent R and Reporter completed/released/verified; normal stop ended cancelled,0unfinished/settlement errors | E265.459active/900expected (0.295),3,356,089input/3,277,952cached/12,940output; R132.250active,644,032input/599,296cached/6,894output; native Reporter6.367active | Real Git`03871b4b…`; R REQUEST_CHANGES requires exact recovery identity, continuous fence and operation rollback cases. API598 gate/continuation pending; no code approval/release |
 | Diagnostic planning `b95df7a1…` | 3 required group planners +2 own estimators +Reporter completed/released/verified;0unfinished/settlement errors | Model141.287active,502,459input/394,880cached/10,927output; native Reporter5.919active; total147.206 | Proposal`c231468b…` readyv3 approved; Decision`d8be7053…`; canonical own E1500/2700, R420/720. Source-free limits explicit; implementation waits for repaired guest |
@@ -52,6 +54,12 @@ Actual correction model: native `gpt-6-luna`; host selects high reasoning for bo
 implementation/research. Daily implementation57,600seconds; research14,400; workers5.
 
 ## Team evolution
+
+- **22:35EDT—owning recovery repair:** API598 merged/adopted`ff6992c3…`; native MCP admitted exact prior E+REQUEST_CHANGES context. Real rework then exposed graph reconciliation restoring old Actor3 ready over running Actor5, which exact closeout refuses. Scoped normal stop preserved expired history and retained measured output. Integrator [API599](https://github.com/treeseed-ai/api/pull/599)`3ff5d137…` reproduces state+SQL failure, preserves newer active revisions, retains same-revision failures;51focused/3files with disposable PostgreSQL, strict build/policies GREEN; required39888538588 pending. No original failure promoted to success.
+- **Supported product custody:** CLI306 merged`b5cecc51…`, protected39884057642 and Promote39887790818 passed; published CLI0.13.0-rc.88 uses actual SDK125. Ordinary published CLI exported real`0d370a811`—2,721,779bytes/SHA256`533ffeb22001d25191d813572885ee5b059402a15958de2b52ef963345c35cd7`; bundle/ref/base verified. First export supplied repository UUID rather than source key and was denied; corrected authoritative`treeseed-ai/deployment` succeeded. [Deployment895](https://github.com/treeseed-ai/deployment/pull/895)`9e473493…` preserves both original rework commits and protected ancestry; independent focused36tests replay passed, required39889097227 pending. No private Git read, sudo or launch wrapper.
+- **Measured closure remains distinct:** new484claim cleared only after API retained original measured failed output. Seven prior recovery claims remain; HeD5 original start08:23:04.104/accountedThrough22:07:30.975 has no finish/output/teardown and remains held. Public broker readiness and provider roles healthy. Guest0539 remains active, repaired0ad66 inert. Agent508 not merged/fully adopted.
+- **Existing teams retained:** project-api A/E/R planned genuine API597 strict-build repair of retained seven-commit product; own estimates published/approved through MCP, actual E now uses pinned279b079c source, R must review whole product. Source-recovery Deployment A/E/R discussed a concrete remaining snapshot-copy failure that can delete prior provider settings before selection changes; new proposal`334fb722…`pins retained895. Five initial Deployment planners closed cleanly; Platform Architect required by shared group was excluded by my project selection. A replacement planning scope includes Deployment+Platform; no individual proposal targeting or silent contribution substitution. Original estimates/Notes preserved. No profiles, groups, model or concurrency changes; no verification-only work.
+- **Communication failure retained:** API Architect PFKS reply failed publication because human mention was resolved as an agent (`communication_agent_not_found`);23.355measured active seconds,lease released/teardown verified, no durable draft. Engineer advice explicitly source-free; no repair claimed. New group discussions f37beb6f(4responses) and3db5fb01(3responses) informed scope without claiming independent code approval.
 
 ### 2026-10-22 — real guest review changes; narrow rework-admission repair
 
