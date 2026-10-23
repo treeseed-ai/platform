@@ -121,18 +121,31 @@ Preserve one integrated platform composition assembled from independently built 
 
 | Repository / local checkout | Ownership | Initial participation |
 | --- | --- | --- |
-| Platform / workspace root | Composition/source-artifact selections, integration documentation, assembled verification and portfolio CI. No application/plugin runtime copied here. | From the start. |
-| CLI / `packages/cli` | Standalone `trsd`, arguments/output, local/remote adapters, CLI builds/program tests. | Task 1. |
-| SDK / `packages/sdk` | Executable schemas, typed bindings/client, portable plugin declarations and server-only operation helpers. | Task 1. |
-| Deployment / `packages/deployment` | Read-only host diagnostics, lifecycle/worker/journal/Compose, development selection, packaging. Same exported implementation serves CLI and server plugin. | Diagnostics in Task 1; plan/apply in Tasks 2–3. |
-| API / `packages/api` | Cordis application host, default composition/loader and REST/MCP adapters. Domain operations stay with their capability owner. | Task 3. |
-| Identity / `packages/identity` | Maintained identity/session/principal integration exposed as a required plugin. | Task 3. |
-| Admin / `packages/admin` | Browser shell, server actions/session facade and page/plugin integration. | Task 3. |
-| UI / `packages/ui` | Shared browser components; no duplicate domain/auth/backend policy. | When the first browser slice needs them. |
-| Core / `packages/core` | Optional public-reader/site plugin, retaining its separate repository. | Deferred; not the Cordis runtime host. |
-| TreeDX / `packages/treedx` | Generic repository/knowledge persistence and its trusted integration boundary. | Knowledge slice later. |
-| Agent / `packages/agent` | Scoped execution provider and handlers; durable project/work authority stays at its owning API capability. | Work/Agent slice later. |
+| [Platform](https://github.com/treeseed-ai/platform) / workspace root | Composition/source-artifact selections, integration documentation, assembled verification and portfolio CI. No application/plugin runtime copied here. | From the start. |
+| [CLI](https://github.com/treeseed-ai/cli) / `packages/cli` | Standalone `trsd`, arguments/output, local/remote adapters, CLI builds/program tests. | Task 1. |
+| [SDK](https://github.com/treeseed-ai/sdk) / `packages/sdk` | Executable schemas, typed bindings/client, portable plugin declarations and server-only operation helpers. | Task 1. |
+| [Deployment](https://github.com/treeseed-ai/deployment) / `packages/deployment` | Read-only host diagnostics, lifecycle/worker/journal/Compose, development selection, packaging. Same exported implementation serves CLI and server plugin. | Diagnostics in Task 1; plan/apply in Tasks 2–3. |
+| [API](https://github.com/treeseed-ai/api) / `packages/api` | Cordis application host, default composition/loader and REST/MCP adapters. Domain operations stay with their capability owner. | Task 3. |
+| [Identity](https://github.com/treeseed-ai/identity) / `packages/identity` | Maintained identity/session/principal integration exposed as a required plugin. | Task 3. |
+| [Admin](https://github.com/treeseed-ai/admin) / `packages/admin` | Browser shell, server actions/session facade and page/plugin integration. | Task 3. |
+| [UI](https://github.com/treeseed-ai/ui) / `packages/ui` | Shared browser components; no duplicate domain/auth/backend policy. | When the first browser slice needs them. |
+| [Core](https://github.com/treeseed-ai/core) / `packages/core` | Optional public-reader/site plugin, retaining its separate repository. | Deferred; not the Cordis runtime host. |
+| [TreeDX](https://github.com/treeseed-ai/treedx) / `packages/treedx` | Generic repository/knowledge persistence and its trusted integration boundary. | Knowledge slice later. |
+| [Agent](https://github.com/treeseed-ai/agent) / `packages/agent` | Scoped execution provider and handlers; durable project/work authority stays at its owning API capability. | Work/Agent slice later. |
 | Reviewer, templates and other retained projects / `packages/{project}` | Their existing independent capability/test/template ownership. | Only when needed; same setup pause. |
+
+The repository links above name the **existing canonical repositories**, not new repos to
+create. A capability's replacement stays in its current repository's own `cordis` branch.
+For example, `treeseed-ai/deployment` lifecycle becomes the Deployment Cordis plugin in that
+same repo, not a new Platform/API implementation; `treeseed-ai/agent` execution remains in
+Agent even when API exposes its operations. A consumer adapter does not acquire ownership.
+Retain repository history, license, capability identity and independent delivery lineage.
+
+Before implementing a slice, its owning issue maps each in-scope legacy public capability
+and source location to the same repository's proposed plugin/export/interface and its
+outside-in test, marking kept/replaced/deferred explicitly. Do not infer transfers from the
+coarse host table or move capabilities between repositories for convenience. An ownership
+change requires a separate explicit maintainer decision; none is authorized here.
 
 Combine duplicated **interfaces and execution paths**, not these repositories. A capability
 plugin is a module/export in its owner repository; do not create a repository per small plugin.
