@@ -1,14 +1,50 @@
 ---
 name: release-workflow
-description: "Use when working on any code change in a Git/GitHub project - creating branches, opening or merging PRs, tagging releases, creating or updating issues, posting progress comments, or when asked to follow the workflow or AGENTS.md gates. Project-agnostic coverage of branch model, documentation-first cycle, CI gates, commit conventions, issue/PR templates, cross-linking, and agent-vs-maintainer permissions."
-whenToUse: "At the START of every new project or statement of work, and again BEFORE completing one. Also whenever branching, issuing, PR-ing, merging, releasing, or hotfixing."
+description: "Use when working on any code change in a Git/GitHub project - creating branches, opening or merging PRs, tagging releases, creating or updating issues, posting progress comments, or when asked to follow the workflow or AGENTS.md gates. TreeSeed Cordis migration branch isolation, documentation-first cycle, CI gates, issue/PR templates, cleanup, and explicit cutover authority."
+metadata:
+  whenToUse: "At the START of every new project or statement of work, and again BEFORE completing one. Also whenever branching, issuing, PR-ing, merging, releasing, or hotfixing."
 ---
 
-# Release Workflow (General Purpose)
+# Release Workflow — TreeSeed Cordis Migration
 
-The mandatory Git/GitHub development and release workflow for any software project. Non-negotiable unless explicitly overridden by the project maintainer.
+This project-local skill governs the parallel rewrite, including its independent replacement
+repositories. Read AGENTS.md first. **During migration, `cordis` is the integration branch;
+legacy `staging` and `main` continue independently and must not receive migration changes.**
 
-**Project-specific values are placeholders.** Wherever this skill shows `<...>` or says *configure*, read the project's own configuration first (see [Per-Project Configuration](#per-project-configuration)) and substitute it. Never invent commands the project does not have.
+## Migration boundary and future cutover
+
+- Branch from the latest fetched/verified `origin/cordis`; feature/fix PRs target `cordis`.
+  Never sync legacy `staging` or `main` into the cleared migration tree.
+- Do not open migration PRs to `staging` or `main`, prepare production RC/hotfix PRs, push
+  production tags/releases or overwrite the old system's published channels. Passing tests,
+  completion of the plan, a deadline or an urgent bug does not lift this boundary.
+- Legacy production incidents belong to the original project's separately authorized workflow.
+  Record/report that need; do not perform legacy hotfixes from this migration checkout.
+- Preserve `cordis`, `staging`, `main`, the original checkout/services and unrelated feature
+  branches. Cleanup concerns only the verified merged branch belonging to the current task.
+- This branch policy does not rename a deployment environment or authorize use of the legacy
+  staging/production installation. Build/test artifacts remain isolated and traceable.
+- A new independent TreeSeed replacement repo needs its own isolated cleared `cordis` worktree
+  under `packages/{project}` and a pause for the user's skills/AGENTS.md setup before implementation.
+- Preserve separate project repositories: Platform owns integration, while functionality and
+  plugins stay in their owning CLI/SDK/Deployment/API/Admin/UI/Core/TreeDX/Agent repositories.
+  `/packages/` is gitignored by Platform, not committed or registered as submodules. Keep owner
+  commits/PRs/builds/tests independent; integrate exact artifacts/public interfaces rather than
+  relative imports across checkouts. Do not collapse these projects into a monorepo.
+
+**Cutover is a separate future delivery, not authorized now.** After maintainer acceptance of
+migration completeness, prepare a reviewed plan that records exact old/new refs, retained legacy
+work/open PRs/artifacts/data, verification and recovery. Explicit maintainer authorization is
+required before execution. Preserve legacy work; adopt the verified Cordis successor as
+`staging`, replacing the temporary `cordis` integration role. Do not assume force-push, deletion
+or a literal branch rename is safe or authorized. Update branch protections/settings,
+CI/release triggers, PR bases, AGENTS.md and this skill together. Only then restore the
+`staging` → `main` release PR path with required checks/review. Agents still may not approve or
+merge `main`. Never trigger cutover automatically from test success or task completion.
+
+Other `<...>` values are placeholders: discover actual project scripts/configuration rather
+than inventing commands. The production procedures below are deliberately unavailable until
+this policy has been replaced through the authorized cutover.
 
 ## ⚠️ MANDATORY: Starting Any New Work
 
@@ -16,68 +52,58 @@ The mandatory Git/GitHub development and release workflow for any software proje
 
 1. **Load this skill** at the start of every new project or statement of work.
 2. **Create or adopt an Issue** describing the work. Every piece of work — feature, fix, refactor, docs — requires an issue. If none exists, create one NOW from the templates below.
-3. **Create a feature branch from the latest integration branch.** Never work directly on `main` or `staging`.
+3. **Create a feature branch from the latest integration branch.** Never work directly on `cordis`, `staging` or `main`.
    ```bash
-   git checkout staging && git pull origin staging
-   git checkout -b feature/<issue-number>-short-description
+   git fetch origin cordis
+   git rev-parse origin/cordis
+   git ls-remote --heads origin cordis   # verify the fetched SHA matches; refetch if moved
+   git switch -c feature/<issue-number>-short-description origin/cordis
    ```
 4. **Commit incrementally.** After each logical segment of work (a fix, a sub-feature, a test suite), commit and push to the feature branch. Do not accumulate uncommitted changes across sessions.
-5. **Open a PR when complete**, targeting `staging`, with `Part of #<issue>` in the body — **not** `Closes #<issue>`. Closing happens at release; see [Closing Issues at Release](#-mandatory-closing-issues-at-release). Wait for CI green before merging.
-6. **Delete the branch immediately after the merge** — remote and local, then prune stale remote-tracking refs. A merged branch is dead weight: it cannot receive more work, it clutters every future `git branch -a`, and left-over branches accumulate into a state nobody dares delete. See [Post-Merge Branch Cleanup](#-mandatory-post-merge-branch-cleanup).
-7. **Reload this skill before completion.** Re-read it before opening the PR to verify branch naming, commit messages, PR template, cross-linking, and that every branch you merged has been deleted, are correct.
+5. **Open a PR when complete**, targeting `cordis`, with `Part of #<issue>` in the body — **not** `Closes #<issue>`. Closing happens at release; see [Closing Issues at Release](#-mandatory-closing-issues-at-release). Wait for CI green before merging.
+6. **After a feature/fix merge, clean up only that verified merged task branch** — remote and local, then prune stale tracking refs. Preserve long-lived refs and unrelated work. See [Post-Merge Branch Cleanup](#-mandatory-post-merge-branch-cleanup).
+7. **Reload this skill before completion.** Re-read it before opening the PR to verify branch naming, commit messages, PR template, cross-linking, and that eligible task-owned merged branches were cleaned up (with retention exceptions recorded), are correct.
 
-**Agents may merge PRs to `staging` after all acceptance tests pass. Agents may NOT approve or merge PRs to `main`.** Only the project maintainer approves releases to production. This permission boundary is part of the workflow and is never relaxed by convenience, deadline, or green CI.
+**Agents may merge PRs to `cordis` after all required gates pass. Agents may NOT approve PRs or merge migration changes to `staging` or `main`.** Production promotion remains blocked until the explicit cutover above; an RC is not the next step after a green migration PR.
 
-**What "may merge to staging" requires.** Merging your own PR to `staging` needs all four: green CI, every acceptance criterion checked against reality, the PR's testing boxes checked from an actual CI run, and review addressed. An agent cannot supply a human approval, so where the project requires a reviewer other than the author, the agent opens the PR and stops; where the project gates only on the four conditions above, the agent merges. If you cannot tell which the project wants, open the PR and ask the maintainer — never assume the merge is yours to take. You may NEVER approve a PR at all, on any branch.
+**What "may merge to cordis" requires.** Merging your own PR to `cordis` needs all four: green CI, every acceptance criterion checked against reality, the PR's testing boxes checked from an actual CI run, and review addressed. An agent cannot supply a human approval, so where the project requires a reviewer other than the author, the agent opens the PR and stops; where the project gates only on the four conditions above, the agent merges. If you cannot tell which the project wants, open the PR and ask the maintainer — never assume the merge is yours to take. You may NEVER approve a PR at all, on any branch.
 
-If you find uncommitted work on `staging` or `main`, stop: create the issue and branch NOW, then move the changes onto the proper branch.
+If you find uncommitted work on `cordis`, `staging` or `main`, stop: create the issue and branch NOW, then move the changes onto the proper branch.
 
 ## ⚠️ MANDATORY: Post-Merge Branch Cleanup
 
-**The merge is not finished when the PR says MERGED. It is finished when the branch is gone.**
-Delete the branch as the last action of every merge — remote, local, and stale
-remote-tracking refs. Do not batch this up later: later is never, and a pile of
-half-remembered branches is how a repository ends up with 20 refs nobody will touch.
+Delete only the current task's feature/fix branch after its PR is confirmed merged into
+`cordis`. Preserve `cordis`, `staging`, `main` and all unrelated legacy/migration work.
+Never bulk-delete branches based on age, names or a repository-wide merged-PR inventory.
 
-**Never delete a branch that has an open PR, an unmerged PR, or work that is not on the
-integration branch.** Check first; do not infer from branch names.
+Before deletion, verify the exact repository, branch name, merged PR base/head and merge
+commit on fetched `origin/cordis`, no open PR sharing the name, no new commits/unlanded
+work, and no retained work or another checkout using that branch. A squash merge rewrites
+ancestry: `git branch --merged` alone cannot prove delivery. Do not use `-D` to discard
+unverified work. If any condition fails, retain the branch and report why.
 
 ```bash
-# 1. Which merged PRs still have a live branch? (merged ∩ remote, minus open)
-gh pr list --state merged --limit 100 --json headRefName --jq '.[].headRefName' | LC_ALL=C sort -u > /tmp/merged
-gh pr list --state open   --limit 100 --json headRefName --jq '.[].headRefName' | LC_ALL=C sort -u > /tmp/open
-git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||' | grep -vxE 'main|staging' | LC_ALL=C sort -u > /tmp/live
-LC_ALL=C comm -12 /tmp/live /tmp/merged | LC_ALL=C comm -23 - /tmp/open    # deletable list
-
-# 2. Delete remote + local, then prune the tracking refs
-git push origin --delete <branch> [<branch> ...]
-git branch -D <branch> [<branch> ...]      # -D, not -d: see the squash caveat below
+# Read back the one task-owned PR and its branch; inspect all returned state.
+gh pr view <pr> --json state,baseRefName,headRefName,headRefOid,mergeCommit
+gh pr list --state open --head <task-branch> --json number,baseRefName,headRefName
+git fetch origin cordis
+git worktree list
+git ls-remote --heads origin <task-branch>
+# Confirm recorded merge commit is on origin/cordis and the head has no later work.
+# Switch this checkout off the task branch without taking another checkout's branch.
+git switch --detach origin/cordis
+# Only after the above checks, using the exact verified task branch:
+git push origin --delete <task-branch>
+git branch -D <task-branch>
 git fetch origin --prune
-
-# 3. Prove it: both lists should show only the long-lived branches
-git ls-remote --heads origin && git branch
+git ls-remote --heads origin <task-branch>
+git branch --list <task-branch>
+# Last two outputs must be empty. Unrelated branches are expected to remain.
 ```
 
-Four traps that make this go wrong:
-
-1. **`git branch --merged` does not work after a squash merge.** Squashing rewrites history, so
-   the branch tip is not an ancestor of `staging` and `--merged` will not list it — and
-   `git branch -d` will *refuse* to delete a branch whose work is fully landed. Trust the PR
-   state (`gh pr list --state merged --head <branch>`), not ancestry, and use `-D` once you
-   have confirmed the merge commit exists on the integration branch.
-2. **Your local view of the remote lies until you prune.** `git branch -r` keeps showing
-   branches GitHub already deleted (auto-delete-on-merge, or someone else's cleanup), so
-   `git push --delete` fails with `remote ref does not exist` for refs you swore were there.
-   Confirm with `git ls-remote --heads origin` before believing any inventory.
-3. **Deleting in bulk can silently skip some.** A single `git push --delete a b c` that errors
-   on one ref reports the rest as deleted; verify with `ls-remote` afterwards rather than
-   reading the success lines.
-4. **Check for open PRs on the same branch name.** If a branch is reused across stacked PRs,
-   deleting it strands the open one. `comm -23` against the open-PR list is not optional.
-
-**Do not delete the integration branches** (`staging`, `main`, or the project's equivalents),
-and do not delete a branch the maintainer asked to keep. If a branch has no merged PR at all,
-it is not yours to remove — report it and ask.
+Check live remote state rather than trusting stale tracking refs. Never delete a branch
+with an open/unmerged PR, unlanded work or a maintainer retention instruction. Cleanup is
+not authorization to rewrite integration refs or alter other worktrees.
 
 ## ⚠️ MANDATORY: Documentation-First Development Cycle
 
@@ -106,7 +132,7 @@ Outside-in testing ensures the interface is stable before internals are built. A
 Write the code that makes the tests pass. Commit incrementally — each logical unit gets its own commit referencing the issue number.
 
 ### 5. Release
-Open PR, wait for CI green, merge to `staging`. For production, follow the Release Candidate workflow.
+Open PR to `cordis`, verify required CI/acceptance/review, then merge if authorized. Production RCs/releases remain blocked until the explicit cutover.
 
 **Why this order:** documentation written after code describes what *was* built, not what *should* be — it captures implementation detail instead of intent and is perpetually behind. Tests written after code verify the implementation, not the specification. The docs ARE the spec, the tests validate the spec, the code satisfies the tests.
 
@@ -186,26 +212,30 @@ unilaterally expand.
 
 ## Branch Model
 
-| Branch | Purpose | Protection |
-|--------|---------|------------|
-| `main` | Production. Tags and releases are cut ONLY from main. | Merge only via PR from `staging` with green CI. |
-| `staging` | Integration branch. All feature work lands here first. | Never behind `main` except during a hotfix window. |
-| `feature/*`, `fix/*` | Feature or bugfix branches, created FROM `staging`. | Merged back to `staging` via PR. |
-| `hotfix/*` | Emergency fixes, created FROM `main`. | Bypasses `staging` when speed is critical. |
+| Branch | Purpose during migration | Allowed action here |
+| --- | --- | --- |
+| `cordis` | Rewrite integration | Feature/fix PRs with required checks/review. No direct commits. |
+| `staging` | Original system integration | Preserve; no migration PRs, sync, reset or replacement yet. |
+| `main` | Original production | Preserve; no migration PRs, merges, tags or releases. |
+| `feature/*`, `fix/*` | Bounded migration issue | Create from verified `origin/cordis`, PR to `cordis`. |
 
-Some projects name these differently (`master`/`develop`, `release/*`). Map the roles, not the names, and record the mapping in the project config.
-
-**Which prefix for a bug?** Use `fix/<issue>-desc` for a bug fix and `feature/<issue>-desc` for new capability. Both follow the identical workflow — branch off `staging`, PR to `staging`, squash-merge; only the word in the name differs. Choose it from the issue type and never mix them for the same work.
+Use `fix/<issue>-desc` for a bug and `feature/<issue>-desc` for other work. Independent
+replacement repositories use the same migration boundary after their setup pause. Do not
+apply a generic staging/main default over this project's explicit mapping.
 
 ## The Golden Rules
 
-1. **All merges to `main` go through `staging`.** No direct commits, no feature-branch merges to `main`.
-2. **Tags and releases are cut from `main` only.** Never tag `staging` or a feature branch.
-3. **All CI must be green before merging to `main`.** If the project publishes on tag-push, don't tag red CI.
-4. **`staging` is never behind `main`** except during a hotfix window. After a hotfix merges to `main`, the next release candidate PR must merge `main` back into `staging` to catch up.
-5. **Every feature/fix branch tracks an Issue.** Adopt or create one before starting work; reference it in the branch name, commits, and PR.
-6. **Merge `staging` INTO your feature branch before merging TO `staging`.** Resolve conflicts on the feature branch, never on `staging`.
-7. **A merge is not complete until the branch is deleted** — remote and local, on the same day it merged. Check open PRs first, and remember `git branch --merged` cannot see squash-merged work. See [Post-Merge Branch Cleanup](#-mandatory-post-merge-branch-cleanup).
+1. **All migration PRs target `cordis`.** No migration promotion to legacy `staging`/`main`.
+2. **No production RC/hotfix/tag/release during migration.** Completion is not cutover authority.
+3. **Green required CI, verified criteria and addressed review precede any integration merge.**
+4. **Preserve legacy work.** Never merge old `staging`/`main` into the cleared rewrite.
+5. **Every feature/fix branch tracks an Issue.** Link branch, commits, PR and changelog.
+6. **Sync `origin/cordis` into your feature branch before merging to `cordis`.** Resolve conflicts
+   there. Verify the latest remote integration ref; a moved head needs renewed applicable checks.
+7. **Clean up only the verified merged task branch.** Protect `cordis`, `staging`, `main` and
+   unrelated branches/worktrees; no broad repository cleanup.
+8. **Cutover needs a separate reviewed plan and explicit maintainer authorization.** Only then
+   adopt the verified successor as `staging` and restore PR-only promotion to `main`.
 
 ## Per-Project Configuration
 
@@ -218,13 +248,13 @@ Read these once per project — from its manifest, CI workflows, and existing ta
 | Test command | CI workflow, `Makefile`, README | `npm test` / `pytest` / `make test` |
 | Static-check / typecheck command | CI workflow | `npm run typecheck` / `mypy` / `cargo clippy` |
 | Build command | CI workflow | `npm run build` / `go build ./...` |
-| Release trigger | CI workflow `on:` block | tag push on `main` |
+| Release trigger | CI workflow `on:` block | production blocked; inspect migration-only artifact workflow |
 | Docs locations | repo tree | `docs/`, `README.md`, site content dir |
 | Changelog file + how it is generated | repo root, release tooling | `CHANGELOG.md` (hand-written) / auto from PR list |
 | Merge style for feature PRs | branch protection settings, maintainer | squash (changelog from PR titles) |
 | Required labels / issue templates | `.github/ISSUE_TEMPLATE`, `gh label list` | `bug`, `enhancement` |
-| Integration + production branch names | `git branch -r` | `staging` + `main` |
-| Git remote protocol | `git remote -v` | HTTPS (preferred) or SSH |
+| Integration + production branch names | `git branch -r` | `cordis` now; `staging` + `main` after authorized cutover |
+| Git remote protocol | `git remote -v` | HTTPS required by AGENTS.md |
 
 **No GitHub / no `gh`?** The flow is identical; only the tool layer changes. Substitute per forge:
 
@@ -239,9 +269,13 @@ Read these once per project — from its manifest, CI workflows, and existing ta
 
 `N` is the issue/PR/MR number. On GitLab, confirm the auto-close keyword actually fires for your project (`Closes #<issue>` closes same-project issues only); if it does not, link the issue manually rather than assuming closure.
 
-Where no CLI exists, do the same actions in the forge's web UI and keep every discipline rule intact. **The permission boundary does not change with the forge:** agents still may merge to `staging` under the four conditions above and may never approve or merge to `main`. If your work predates any issue tracker at all, create one before starting — the workflow requires an issue, not specifically a GitHub issue.
+Where no CLI exists, do the same actions in the forge's web UI and keep every discipline rule intact. **The permission boundary does not change with the forge:** agents still may merge to `cordis` under the four conditions above and may never approve or merge to `main`. If your work predates any issue tracker at all, create one before starting — the workflow requires an issue, not specifically a GitHub issue.
 
 ## Version & Tag Format
+
+Production tags/releases are blocked during migration. These naming conventions do not grant
+publication authority; do not compare a fresh rewrite manifest to legacy tags as if they were
+a single release stream. Document any isolated migration artifact scheme before using it.
 
 Follow strict semantic versioning in **whatever prefix convention the project's existing tags already use** — do not introduce or remove a `v` prefix mid-stream.
 
@@ -256,10 +290,7 @@ Prerelease:   <major>.<minor>.<patch>-<pre>.<N>  e.g. v2.0.0-dev.3
 - The version in the manifest matches the tag exactly.
 - **If `<manifest>` and the newest tag disagree** (e.g. manifest says `0.8.0`, latest tag is `v0.7.3`), do not pick one yourself. Ask the maintainer which is authoritative, then record the answer in the project config so it never recurs.
 - Bump rules: breaking change → major, new feature → minor, fix/chore/docs → patch.
-- **Never reuse a tag.** If one was pushed wrong, delete it before creating the correct one:
-  ```bash
-  git tag -d <tag> && git push origin :refs/tags/<tag>
-  ```
+- **Never reuse, delete or move published tags in migration work.** Production tag creation is blocked; an isolated migration artifact scheme needs its own documented, verified delivery first.
 - Verify format BEFORE pushing: `git tag -l | tail -5`.
 
 ## Issue Guidelines
@@ -347,14 +378,14 @@ Use `gh issue edit <number> --body '...'` or the web UI. A PR closing an issue w
 - **Title format:** `<type>: <imperative description>` — mirrors commit convention (`feat:`, `fix:`, `refactor:`, `docs:`, `chore:`)
 - **Labels:** apply at creation, using the labels the project actually defines. At minimum one of `bug` / `enhancement` / `refactor` / `docs` / `chore`; add priority labels for urgent work.
 - **Related links:** always link related issues, PRs, or external references with `#<number>` or full URLs.
-- **Close keywords:** a `staging` PR uses `Part of #<issue>`; `Closes #<issue>` belongs in the **release candidate** (and in hotfixes, which target `main`). GitHub only executes closing keywords on the default branch — see [Closing Issues at Release](#-mandatory-closing-issues-at-release).
+- **Close keywords:** migration PRs use `Part of #<issue>`. Release closure is deferred until the authorized cutover; see [Closing Issues at Release](#-mandatory-closing-issues-at-release).
 - **Update, don't duplicate:** if an issue evolves, edit or comment. Don't open a second issue for the same concern.
 
 ## Pull Request Guidelines
 
-**Feature/Fix PR (targeting `staging`):**
+**Feature/Fix PR (targeting `cordis`):**
 ```bash
-gh pr create --base staging \
+gh pr create --base cordis \
   --title "feat: <description> (#<issue>)" \
   --body '
 ## Summary
@@ -377,82 +408,21 @@ gh pr create --base staging \
 
 ## Related
 Part of #<issue>
-<!-- `Part of`, NOT `Closes`: this PR merges to `staging`, where a closing keyword cannot fire.
+<!-- `Part of`, NOT `Closes`: this PR merges to `cordis`, where a closing keyword cannot fire.
      The issue is closed by the release candidate that ships it — see "Closing Issues at Release". -->
 <Links to related PRs, issues, docs, external references>
 '
 ```
 
-**Release Candidate PR (`staging` → `main`):**
-```bash
-gh pr create --base main --head staging \
-  --title "Release candidate: <version>" \
-  --body '
-## Release <version>
-
-### Changes since <previous version>
-- <bullet list from merged PRs/issues since last tag>
-
-### Verification
-- [ ] All CI checks green
-- [ ] Deterministic suite passes (<test command>)
-- [ ] Static analysis clean (<typecheck command>)
-- [ ] Version bumped in <manifest> (committed on staging, part of this diff)
-- [ ] Changelog updated for this version (if the project keeps one)
-- [ ] <main-back-merge-into-staging done, if a hotfix landed since the last release>
-- [ ] Closing list derived by script (RC step 4), not written from memory
-- [ ] Every issue below has ALL acceptance criteria checked; half-done issues are held, not closed
-
-### Closes (derived from the PRs shipping in this release)
-<!-- One line per issue, produced by the derivation — nothing typed from recollection. -->
-Closes #<N>
-Closes #<N>
-Closes #<N>
-
-### Held back (unchecked criteria — do not close yet)
-- #<N> — <which criterion remains open, and what it needs>
-
-### Tag after merge
-`<version>`
-'
-```
-
-**Hotfix PR (targeting `main`):**
-```bash
-gh pr create --base main \
-  --title "HOTFIX: <description> (#<issue>)" \
-  --body '
-## ⚠️ Emergency Hotfix
-
-Bypassing staging due to urgency.
-
-## Problem
-<What is broken in production?>
-
-## Fix
-<What changed and why it is safe>
-
-## Testing
-- [ ] Deterministic suite passes (`<test command>`)
-- [ ] Static analysis clean (`<typecheck command>`)
-- [ ] Manual verification: <describe>
-
-## Related
-Closes #<issue>
-<!-- Correct here and nowhere else on a routine PR: a hotfix merges into `main`, the default
-     branch, so the closing keyword DOES fire. This is also why hotfix issues close earlier
-     than ordinary ones — they ship immediately. -->
-
-## Post-merge
-- [ ] Merge main back into staging
-'
-```
+**Production RC and hotfix PR templates are disabled during migration.** Do not create a
+PR to `main` or `staging` from this checkout. The cutover delivery must first restore and verify
+the `staging` → `main` release procedure; do not repurpose a `cordis` feature PR as a release.
 
 ### PR Hygiene
 
 - **Title format:** `<type>: <description> (#<issue>)` — issue number in parentheses
-- **Base branch:** features/fixes target `staging`; hotfixes and release candidates target `main`.
-- **Body must include:** summary, testing checklist, and the issue reference — `Part of #<issue>` on a staging PR, `Closes #<issue>` on an RC or hotfix
+- **Base branch:** every migration PR targets `cordis`; production RC/hotfix PRs are blocked.
+- **Body must include:** summary, testing checklist, and the issue reference — `Part of #<issue>` on a migration PR; no production closing keywords during migration
 - **Link everything:** related issues (`#<number>`), prior PRs, docs, external resources
 - **Keep PRs small:** touching >10 files or >15 min of CI → split into stacked PRs
 - **Self-review before requesting review:** read your own diff; catch typos, leftover debug code, missing tests.
@@ -483,7 +453,7 @@ Closes #<issue>
 - **Scope change:** comment explaining what changed and why BEFORE modifying acceptance criteria.
 - **Decisions:** record architectural/scope decisions as comments so future readers get the "why."
 - **Cross-references:** "Addressed in #<pr>", "See also #<issue>".
-- **Closing:** a `staging` PR does **not** close its issue — the keyword cannot fire off the default branch. The release candidate closes it (see Closing Issues at Release). Close manually only for invalid / won't-fix issues, with explanation.
+- **Closing:** a `cordis` PR does **not** close its issue — the keyword cannot fire off the default branch. Production closure is deferred until the authorized cutover (see Closing Issues at Release). Close manually only for invalid / won't-fix issues, with explanation.
 
 ### On PRs
 
@@ -506,14 +476,10 @@ Traceability. These are REQUIRED, not optional:
 
 | From | To | How | Required? |
 |------|----|-----|-----------|
-| Staging PR | Issue | `Part of #<N>` in PR body — **never `Closes #<N>`, which cannot fire on a `staging` merge** | **Yes** |
-| RC PR | Every issue shipping | `Closes #<N>` lines assembled mechanically from the merged PRs since the previous tag | **Yes** |
-| Hotfix PR | Issue | `Closes #<N>` (hotfixes target `main`, so the keyword does fire) | **Yes** |
+| Cordis PR | Issue | `Part of #<N>` in PR body — **never `Closes #<N>`, which cannot fire on a `cordis` merge** | **Yes** |
 | Feature branch | Issue | Issue number in branch name: `feature/42-desc` | **Yes** |
 | Commit | Issue | `(#<N>)` in commit message | **Yes** |
 | Issue | Related issue/PR | `#<N>` or full URL in body/comment | **Yes** |
-| RC PR | Previous tag | `Changes since <version>` in RC body | **Yes** |
-| Hotfix PR | Staging sync | Checklist item in hotfix PR body | **Yes** |
 | Comment | Code/file | Permalink or `file:line` reference | Encouraged |
 | Comment | External resource | Full URL with description | Encouraged |
 
@@ -524,9 +490,11 @@ Traceability. These are REQUIRED, not optional:
    gh issue create --title "feat: ..." --label "enhancement" --body '...'
    # or: gh issue list --state open
 
-2. Branch from staging
-   git checkout staging && git pull origin staging
-   git checkout -b feature/<issue-number>-short-description
+2. Branch from cordis
+   git fetch origin cordis
+   git rev-parse origin/cordis
+   git ls-remote --heads origin cordis   # verify the fetched SHA matches; refetch if moved
+   git switch -c feature/<issue-number>-short-description origin/cordis
 
 3. Docs first, then tests outside-in, then implementation — commit each layer,
    update issue checkboxes after each segment
@@ -534,31 +502,33 @@ Traceability. These are REQUIRED, not optional:
    git push origin feature/<issue-number>-short-description
    # Edit issue body: check off completed criteria; post a progress comment
 
-4. Before opening PR: sync staging in, verify ALL acceptance criteria checked
-   git fetch origin staging && git merge origin/staging
+4. Before opening PR: sync cordis in, verify ALL acceptance criteria checked
+   git fetch origin cordis
+   git rev-parse origin/cordis
+   git ls-remote --heads origin cordis   # compare; refetch/reverify if moved
+   git merge origin/cordis
    # resolve conflicts on the feature branch, then push
 
-5. Open PR targeting staging (copy acceptance criteria into the PR body)
-   gh pr create --base staging --title "feat: description (#<issue>)" --body "..."
+5. Open PR targeting cordis (copy acceptance criteria into the PR body)
+   gh pr create --base cordis --title "feat: description (#<issue>)" --body "..."
 
 6. After CI completes: edit PR body to check off testing boxes from real results
    gh pr edit <number> --body '...'
 
-7. Address review, then merge to staging (or stop for the maintainer if a non-author approval is required)
+7. Address review, then merge to cordis (or stop for the maintainer if a non-author approval is required)
    gh pr merge <number> --squash   # only after: green CI + all boxes checked from real results + review addressed
 
 8. Delete the branch you just merged — remote, local, and stale tracking refs
-   git push origin --delete feature/<issue-number>-short-description
-   git branch -D feature/<issue-number>-short-description   # -D: squash merges break -d's ancestry check
-   git fetch origin --prune
-   git ls-remote --heads origin    # verify it is actually gone; trust this, not `git branch -r`
+   # Follow Post-Merge Branch Cleanup: verify exact PR/head/merge and retained work,
+   # switch this checkout off the branch, delete only that task branch, then read back.
+   # Never delete cordis, staging, main or unrelated branches.
 ```
 
 ### Pre-PR Verification Checklist
 
 Run this every time, immediately before opening the PR (this is the artifact the "reload this skill before completion" step asks for). Every line must be true against something you actually observed this session — not intended, not assumed.
 
-- [ ] On a `feature/*` or `fix/*` branch off `staging`, never on `main`/`staging` directly
+- [ ] On a `feature/*` or `fix/*` branch off verified `origin/cordis`, never on `cordis`/`staging`/`main` directly
 - [ ] Issue exists and is linked; branch name carries its number
 - [ ] Documentation updated **and committed** before code (diff shows the doc files changed)
 - [ ] Tests written outside-in and committed per layer; `<test command>` run now → 0 failures
@@ -566,171 +536,66 @@ Run this every time, immediately before opening the PR (this is the artifact the
 - [ ] Seams and user-runnable surfaces have ≥1 test on the **default construction path**, nothing injected (see Testing Tiers and the Composition Root)
 - [ ] Where the change ships a CLI/binary/container, the **built artifact was executed this session** and its output plus exit code are pasted in the PR — library-level tests alone do not clear this gate
 - [ ] All acceptance criteria checked in the **issue body**, plus a progress comment posted
-- [ ] `origin/staging` merged into this branch; conflicts resolved here, pushed
-- [ ] Cross-links present: `(#<issue>)` in commits and in the PR title, `Part of #<issue>` in a staging PR body (`Closes #<issue>` only on an RC or hotfix)
+- [ ] `origin/cordis` merged into this branch; conflicts resolved here, pushed
+- [ ] Cross-links present: `(#<issue>)` in commits and in the PR title, `Part of #<issue>` in a cordis PR body (release closure deferred until cutover)
 - [ ] PR small (< ~10 files, < ~15 min CI) or split into stacked PRs
 - [ ] Self-reviewed own diff: no debug leftovers, no stray files
 - [ ] Changelog entry added under `[Unreleased]` in `CHANGELOG.md` (see Changelog Convention)
-- [ ] If docs changed: context packs regenerate cleanly (`pnpm --filter @saip/docs pack-context`) — packs are build artifacts deployed with the site, never committed
+- [ ] Documentation checks use actual installed project scripts; do not copy foreign toolchain/context-pack commands. Docs-only changes report structural/link checks and any missing CI honestly.
 
-## Release Candidate Workflow (`staging` → `main`)
+## Production Release and Hotfix Workflows — disabled during migration
 
-When `staging` is ready for release. **Agent role ends at "RC PR opened": an agent may do steps 1–5 and watch CI in step 6, but never merges or tags — steps 7–9 are maintainer actions.**
+There is no production RC, hotfix, tag or publication path from the migration checkout.
+Do not open a migration RC because `cordis` is green, merge it into `main`, synchronize legacy
+`main` back into `cordis`, or treat an urgent issue as authority to bypass the freeze.
+Legacy incidents must use their separately authorized original-project workflow.
 
-```
-1. Determine the next version
-   # current: grep the version field in <manifest>; git tag -l | tail -5
-   # bump: patch for fixes, minor for features, major for breaking changes
-   # If <manifest> and the newest tag disagree, do NOT guess — ask the maintainer which is authoritative.
-
-2. If a hotfix landed since the last release, merge main into staging first
-   git checkout staging && git pull origin staging
-   git merge origin/main && git push origin staging
-
-3. Bump the version in <manifest> on staging, and update the changelog if the project keeps one.
-   Commit on staging (or a short-lived release/<version> branch merged to staging), then push.
-   # The bump belongs to the RC so that "Version bumped in <manifest>" is verifiable BEFORE merge.
-   git add <manifest> CHANGELOG.md && git commit -m "<version>"
-
-4. Assemble the closing list — mechanically, never from memory (see below)
-    python3 - <<'PY'
-    import subprocess, json, re
-    def sh(*a): return subprocess.run(a, capture_output=True, text=True).stdout
-    prs  = json.loads(sh('gh','pr','list','--state','merged','--base','staging','--limit','300','--json','number,title'))
-    open_ = {int(i['number']): i for i in json.loads(sh('gh','issue','list','--state','open','--limit','300','--json','number,body'))}
-    # Narrow to this release: PRs merged after the previous tag, e.g.
-    # since = sh('git','log','--no-merges','--format=%s','<prev-tag>..origin/staging')
-    issues = {int(n) for p in prs for n in re.findall(r'\(#(\d+)\)', p['title'])}
-    for i in sorted(issues & set(open_)):
-        unchecked = len(re.findall(r'^- \[ \]', open_[i]['body'] or '', re.M))
-        print(f"#{i}  unchecked={unchecked}  {'HOLD — do not close' if unchecked else 'CLOSING'}")
-    PY
-
-5. Open the release candidate PR from staging to main, its body carrying one `Closes #<N>` line
-   per issue the script marked CLOSING (RC template above). Issues marked HOLD are omitted and
-   their deficit is named in the body.
-   gh pr create --base main --head staging --title "Release candidate: <version>" --body-file rc.md
-
-6. ALL CI must pass on this PR. No exceptions for normal releases.
-   gh pr checks <number> --watch
-
-7. [MAINTAINER] Approve and merge to main
-   gh pr merge <number> --merge   # merge commit, not squash, for RCs
-
-8. [MAINTAINER] Tag and push — this triggers the release pipeline
-   # VERIFY FORMAT against the project's convention (prefix included)
-   # The tag MUST equal the version already committed in <manifest> on main.
-   git tag -a <version> -m "<version> — summary"
-   git push origin main --tags
-
-9. [MAINTAINER] Verify the release succeeded, AND that every listed issue actually closed
-   gh run list --limit 1 ; gh release view <version>
-   gh issue view <N> --json state --jq .state      # for each N in the closing list
-   # Any that are still OPEN were mis-listed or blocked by a permission: close or reopen with an
-   # explanatory comment. Do not leave the board silently wrong — that drift is what this step fixes.
-```
-
-**One open release at a time.** Only one RC may be pending (`staging` → `main`) at any moment. Work that lands on `staging` after an RC is opened joins the *next* release unless the maintainer updates the existing RC to include it — never open a second RC over the same window, and never decide silently which release your change ships in. If an RC is already open when you finish, ask the maintainer whether to fold your change into it or hold it for the next one.
+The future cutover delivery must restore the normal **`staging` → `main` PR** process only
+after the explicit authorization and preservation/verification steps at the top of this skill.
+That future process must include exact candidate/version/changelog custody, required complete
+checks and artifact smoke, reviewed PR promotion, protected production publication and actual
+release read-back. Agents may not approve or merge `main` under current permissions. No direct
+production commit, automatic promotion or cleanup-driven branch replacement is permitted.
 
 ## ⚠️ MANDATORY: Closing Issues at Release
 
-**GitHub executes `Closes #N` only when a PR merges into the repository's default branch.** A PR
-merged into `staging` (or any non-default branch) closes nothing — no comment, no error, no hint.
-Projects that gate development on `staging` and write `Closes #N` in every feature PR therefore run
-a board that silently drifts from reality, and nobody notices until 19 finished issues are still
-open.
+Migration feature/fix PRs use `Part of #N`; integration into `cordis` is not a production
+release. Keep issues open with verified criteria/progress in their bodies. Do not change the
+default branch, add closing keywords or manually close a delivered issue to bypass that rule.
+Invalid/won't-fix issues may be closed with an explanation.
 
-So the division is deliberate:
-
-| PR type | Base | Keyword | Why |
-|---------|------|---------|-----|
-| Feature / fix | `staging` | `Part of #N` | Auto-close cannot fire here; the reference is traceability only |
-| Release candidate | `main` | `Closes #N` for **every** shipping issue | This is where closure actually happens |
-| Hotfix | `main` | `Closes #N` | Targets the default branch directly, so it fires |
-
-Development PRs stay cheap to merge — fast, agent-merged, gated on tests alone. Deferring closure
-concentrates the bookkeeping on releases, which are far less frequent than staging merges. That is
-the trade: the RC carries the burden on purpose.
-
-**Assemble the closing list by running the derivation in RC step 4, never from memory.** A
-hand-written list is how a release closes the wrong issues or quietly forgets eight. The derivation
-walks merged PR titles since the previous tag, intersects them with currently-open issues, and
-reports each one's unchecked acceptance-criteria count.
-
-**Hard guard — an issue with any unchecked acceptance criterion is NOT closed by the release.**
-Hold it, omit its `Closes` line, and name the deficit in the RC body. Acceptance criteria are
-living checkboxes; closing an issue mid-flight destroys the only record of what remained. Checking
-the list therefore means checking that no half-finished work slipped in, not merely that a command
-ran.
-
-Also true, and easy to trip over:
-
-- A squash merge rewrites history, so a branch's own commits never appear on `main`. The link
-  survives in the PR *title* convention `(#N)` — which is what the derivation parses. Keep that
-  convention intact or the closing list silently comes back empty.
-- `Closes #N` only reaches issues in the **same repository**. Cross-repo work is closed manually
-  with a link.
-- `Fixes` / `Resolves` are equivalent keywords. Pick one and stay consistent so grep and
-  derivation remain simple.
-- One PR may close many issues: separate `Closes #12` / `Closes #13` lines, all landing on the
-  default branch.
-- If the RC merge leaves a listed issue open, that is a defect to correct immediately — close it
-  with a comment, or reopen it. RC step 9 is a verification, not a formality.
-
-## Hotfix Workflow (Emergency Only)
-
-For production-breaking fixes where waiting on the full staging cycle causes unacceptable delay. Everything else goes through `staging`.
-
-**Is this a hotfix?** Only if production is broken *now* and the fix cannot wait for the next scheduled release. A crash, data loss, security hole, or outage qualifies; a bug that only affects unreleased code does not — that is a normal `feature/*` or `fix/*` branch off `staging`. **The maintainer declares hotfix status.** If you are an agent and no one has declared it, default to the staging path and ask; do not self-authorize bypassing `staging`.
-
-```
-1. Branch from main
-   git checkout main && git pull origin main
-   git checkout -b hotfix/<issue-number>-short-description
-
-2. Fix, commit, push
-   git commit -m "fix: urgent description (#<issue>)"
-   git push origin hotfix/<issue-number>-short-description
-
-3. Open PR targeting main (NOT staging; hotfix template above)
-   gh pr create --base main --title "HOTFIX: description (#<issue>)" --body "..."
-
-4. Run ONLY the deterministic fast gate, not the full suite
-   # CI runs it automatically on PRs to main. Locally: <test command> && <typecheck command>
-
-5. [MAINTAINER] Merge to main after fast-gate green + approval
-   gh pr merge <number> --merge
-
-6. [MAINTAINER] Bump version + tag as in RC steps 3 and 7–8 (project tag format).
-   # The hotfix patch bump goes on main here, then main is merged back to staging (step 7).
-
-7. Sync staging IMMEDIATELY after the hotfix is on main
-   git checkout staging && git pull origin staging
-   git merge origin/main && git push origin staging
-   # Otherwise the next RC silently reverts the fix.
-```
+After authorized cutover, restore release closure through the `staging` → `main` PR. Derive
+its issue list mechanically from the exact shipping PR range, verify repository/default-branch
+closing semantics, hold every issue with unchecked criteria and name its deficit. Retain
+migration PR/issue links across cutover. A squash merge preserves the issue reference in the
+PR title `(#N)`; do not assume branch ancestry or memory identifies the released changes.
+Read back both actual released artifacts and issue states before claiming closure.
 
 ## Large Changes: Avoiding CI Bottlenecks
 
 When a change is too large for one PR (huge refactor, major feature):
 
-1. **Decompose into stacked PRs.** Each is independently mergeable to `staging` and passes CI alone; later PRs build on earlier ones.
+1. **Decompose into stacked PRs.** Each is independently mergeable to `cordis` and passes CI alone; later PRs build on earlier ones.
    ```
    PR 1: refactor(core): extract module X (no behavior change)
    PR 2: refactor(core): update callers of X        (depends on PR 1)
    PR 3: feat: new capability using refactored X    (depends on PR 2)
    ```
-2. **Each PR targets `staging`.** Merge sequentially as each goes green.
+2. **Each PR targets `cordis`.** Merge sequentially as each goes green.
 3. **Reference the parent issue in all PRs** (task lists or links in the body).
-4. **Never hold a long-lived branch that diverges from `staging`.** Merge `staging` in at least daily for multi-day work.
+4. **Never hold a long-lived branch that diverges from `cordis`.** Merge `cordis` in at least daily for multi-day work.
 5. **If one PR would take >15 minutes of CI, split it.** Rapid feedback beats batching.
 
-## Staging Hygiene
+## Migration Integration Hygiene
 
-- **`staging` must always be deployable.** If it breaks, fixing it is the top priority.
-- **After every hotfix to `main`, merge `main` into `staging` immediately.** Don't let it drift.
-- **Pull `staging` before starting any feature work.** `git checkout staging && git pull origin staging` is step zero.
-- **Never force-push to `staging` or `main`.** History rewriting needs the maintainer first.
+- `cordis` must satisfy the currently implemented contract; fixing a broken required gate is
+  the first integration priority. Never claim unfinished future tasks are already deployable.
+- Fetch/verify `origin/cordis` before branching and before merging; sync only that integration
+  ref into migration features. Legacy branches may continue moving without migration syncing them.
+- Never force-push, rename or delete `cordis`, `staging` or `main` as routine migration work.
+- Do not run original checkout deployment/reconciliation commands or interfere with its services.
+- Configure future migration CI to validate allowed PR base/source and isolated artifact
+  destinations before enabling deployment; prose is not evidence of an enforced repository gate.
 
 ## Commit Message Conventions
 
@@ -748,7 +613,7 @@ chore: bump build toolchain dependency (#46)
 
 The type prefix (`feat`, `fix`, `refactor`, `test`, `docs`, `chore`) drives release-notes grouping. Always reference the issue number in parentheses. Keep the subject imperative and ≤ ~72 chars; put detail in the body.
 
-**Squash-merge vs. per-layer commits — how both survive.** Feature branches keep incremental conventional commits (docs, test, fix) for reviewability *during* development. On squash-merge to `staging`, those collapse into one commit, so the changelog is written from **the PR title and merged PR list, not from individual branch commits** — which is why the PR title must itself be a valid conventional-commit subject (`fix: ... (#91)`). If a project extracts its changelog from raw `git log` on `main` instead of the PR list, use a merge commit rather than squash for that PR and confirm with the maintainer before choosing. Never let the two mechanisms disagree silently: pick one, record it in the project config.
+**Squash-merge vs. per-layer commits — how both survive.** Feature branches keep incremental conventional commits (docs, test, fix) for reviewability *during* development. On squash-merge to `cordis`, those collapse into one commit, so the changelog is written from **the PR title and merged PR list, not from individual branch commits** — which is why the PR title must itself be a valid conventional-commit subject (`fix: ... (#91)`). If a project extracts its changelog from raw `git log` on `main` instead of the PR list, use a merge commit rather than squash for that PR and confirm with the maintainer before choosing. Never let the two mechanisms disagree silently: pick one, record it in the project config.
 
 ## Changelog Convention
 
@@ -788,9 +653,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
    - `docs:` → **Documentation** (optional section; include if docs changes are user-visible)
    - `chore:`, `test:` → omit unless user-facing
 3. **Always include the issue number.** Every changelog entry ends with `(#<issue>)`.
-4. **Update during the RC, not after.** The changelog entry for a version is committed on `staging` as part of the release candidate PR. It ships with the code.
+4. **Keep migration changes under `[Unreleased]`.** Versioned release sections resume only through the authorized post-cutover release process; no production RC is created now.
 5. **[Unreleased] is always present.** New entries land under `[Unreleased]` during normal feature work. At release time, `[Unreleased]` is renamed to the new version and date, and a fresh empty `[Unreleased]` section is added above it.
-6. **Monorepo projects:** each subproject with independent versioning maintains its own `CHANGELOG.md`. A root-level `CHANGELOG.md` tracks cross-cutting changes (CI, shared infrastructure, top-level documentation). Prefix entries with the subproject name when they appear in the root changelog: `- saip-trainer: add weighted KTO plugin (#12)`.
+6. **Separate project repositories:** each owner maintains its own `CHANGELOG.md`. Platform records integration changes with the owning project prefix; its entry cannot replace owner entries/commits/releases.
 7. **Write for humans, not parsers.** Each entry is one readable sentence describing what changed and why it matters. Not a commit hash dump.
 
 ### When to Add Entries
@@ -843,52 +708,40 @@ than silently continuing. Silence during a loop is the failure mode this rule pr
 
 These mean you have left the workflow; fix it before continuing:
 
-- Writing code with no issue, or on `staging`/`main`
+- Writing code with no issue, or directly on `cordis`/`staging`/`main`
 - Code committed before its docs or tests
 - Uncommitted work carried across a session
 - About to merge while CI is red, or with unchecked acceptance criteria
 - About to check a testing box you have not verified against a real run
 - Approving or merging a PR to `main` as an agent
-- Tagging anything other than `main`, or reusing an existing tag
-- Long-lived branch that has not synced `staging` recently
+- Creating migration production RC/hotfix PRs or production tags/releases before cutover
+- Long-lived branch that has not synced `cordis` recently
 - Reporting "tests pass" when the assembled artifact was never executed
 - A seam or CLI whose only tests inject fakes, leaving production wiring untested
 - A documented capability with no failing test written before its implementation
 - Writing "X cannot do Y" without searching, or from one spike whose configuration you did not record
 - Accepting a search snippet as fact and shipping it without re-testing
-- A PR merged whose branch still exists — locally or on the remote (see Post-Merge Branch Cleanup)
-- A `Closes #N` in a `staging` PR body, which cannot fire and reads as done when it is not
+- A task-owned merged branch left behind without a documented retention/unlanded-work/checkout reason (see Post-Merge Branch Cleanup)
+- A `Closes #N` in a `cordis` PR body, which cannot fire and reads as done when it is not
 - A release candidate whose closing list was written from memory instead of derived from the merged PRs
 - An issue closed by a release while it still has an unchecked acceptance criterion
 - Deleting a branch because its name looks stale, without confirming a merged PR and no open PR
-- Hotfix that skipped the `main` → `staging` sync
+- Syncing legacy `staging`/`main` into migration work, or treating completion as cutover approval
 - Same tool call or command repeated 3+ times without progress (see Agent Loop Guard)
 
 ## Quick Reference
 
-| Action | Command |
-|--------|---------|
-| Start a feature | `git checkout staging && git pull && git checkout -b feature/N-desc` |
-| Sync staging into feature | `git fetch origin staging && git merge origin/staging` |
-| Open PR to staging | `gh pr create --base staging --title "..." --body "Part of #N"` |
-| Derive the RC closing list | merged PR titles `(#N)` ∩ open issues, reporting unchecked-criteria counts |
-| Confirm a keyword will actually fire | it fires only when the PR's base is the **default** branch |
-| Check CI status | `gh pr checks <N> --watch` |
-| View failed CI logs | `gh run view <id> --log-failed` |
-| Merge PR (squash) | `gh pr merge <N> --squash` |
-| Delete merged branch (remote + local) | `git push origin --delete <branch> && git branch -D <branch> && git fetch --prune` |
-| List branches that are safe to delete | merged ∩ remote − open, via `gh pr list --state merged/open` + `git ls-remote --heads` |
-| Confirm what actually exists remotely | `git ls-remote --heads origin` *(not `git branch -r`, which is stale until pruned)* |
-| Prove the artifact runs, not just the library | build, then execute the binary and assert output + exit code |
-| Find the composition root of a seam | grep the factory/default-provider call sites, then test those |
-| About to call something impossible | search for the library + toolchain + error text first, and record your versions/flags |
-| Open release candidate | `gh pr create --base main --head staging --title "RC: <version>"` |
-| Merge RC to main | `gh pr merge <N> --merge` *(maintainer)* |
-| Tag a release | `git tag -a <version> -m "msg" && git push origin main --tags` *(maintainer)* |
-| Delete a bad tag | `git tag -d <version> && git push origin :refs/tags/<version>` |
-| Emergency hotfix | branch from main → PR to main → fast gate → merge → tag → sync staging |
-| List open issues | `gh issue list --state open` |
-| Create an issue | `gh issue create --title "..." --body "..." --label "..."` |
-| Comment on issue/PR | `gh issue comment <N> --body "..."` / `gh pr comment <N> --body "..."` |
-| Update issue body | `gh issue edit <N> --body "..."` |
-| Update PR body | `gh pr edit <N> --body "..."` |
+| Action | Command or rule |
+| --- | --- |
+| Start feature | Fetch/verify exact `origin/cordis`, then `git switch -c feature/N-desc origin/cordis` |
+| Sync integration into feature | `git fetch origin cordis` then verify remote SHA and `git merge origin/cordis` |
+| Open migration PR | `gh pr create --base cordis --title "feat: description (#N)" --body-file <body.md>`; body includes `Part of #N` |
+| Check CI | `gh pr checks <N> --watch`; missing required CI is unproven, not green |
+| Inspect failed CI | `gh run view <id> --log-failed` |
+| Merge eligible migration PR | Verify base `cordis`, exact head, green required gates and addressed review, then `gh pr merge <N> --squash` |
+| Cleanup | Follow task-scoped Post-Merge Branch Cleanup; protect `cordis`, `staging`, `main` and unrelated work |
+| Read live refs | `git ls-remote --heads origin` |
+| Prove program runs | Build, execute actual artifact, assert effects/output/exit status |
+| Update issue/PR | Edit body with actual evidence; no assumed checkboxes |
+| Production RC/hotfix/tag/release | Blocked during migration; no executable production command here |
+| Restore staging/main release path | Separate reviewed cutover plan + explicit maintainer execution authorization; update policy/settings/CI together |
