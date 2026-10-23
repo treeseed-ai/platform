@@ -339,6 +339,29 @@ $defs:
         type: string
     additionalProperties: false
 
+  ContributionEstimate:
+    type: object
+    required: [expectedSeconds, maximumSeconds, rationale]
+    properties:
+      expectedSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      maximumSeconds:
+        $ref: "#/$defs/PositiveSeconds"
+      rationale:
+        $ref: "#/$defs/NonEmptyText"
+    additionalProperties: false
+
+  EstimateAssignmentRef:
+    # Existing estimating attempt ID and attempt ordinal, never a target agent.
+    type: object
+    required: [store, model, id, revision]
+    properties:
+      store: { const: postgresql }
+      model: { const: assignment-attempt }
+      id: { $ref: "#/$defs/Identifier" }
+      revision: { type: integer, minimum: 1 }
+    additionalProperties: false
+
   DependencySelectors:
     # Human-authored standing dependencies never contain generated IDs.
     type: object
@@ -475,12 +498,13 @@ $defs:
     additionalProperties: false
 
   WorkItem:
-    # Stable proposal-owned unit. Generated Reviewer nodes are not authored here.
+    # One subscriber's own estimated contribution. No named-agent targeting.
     type: object
     required:
       - id
       - activity
-      - agentClass
+      - estimateRef
+      - estimate
       - workspace
       - review
       - objective
@@ -492,8 +516,8 @@ $defs:
         $ref: "#/$defs/Slug"
       activity:
         enum: [acting]
-      agentClass:
-        $ref: "#/$defs/AgentClass"
+      estimateRef:
+        $ref: "#/$defs/EstimateAssignmentRef"
       workspace:
         $ref: "#/$defs/WorkspaceMode"
       review:
@@ -511,9 +535,9 @@ $defs:
           means zero; priority never bypasses readiness, permission, provider,
           concurrency, or productive-window gates.
       estimate:
-        $ref: "#/$defs/Estimate"
+        $ref: "#/$defs/ContributionEstimate"
       reviewEstimate:
-        $ref: "#/$defs/Estimate"
+        $ref: "#/$defs/ContributionEstimate"
       maximumReviewCycles:
         type: integer
         minimum: 1
@@ -548,7 +572,7 @@ $defs:
           required: [review]
         then:
           type: object
-          required: [maximumReviewCycles]
+          required: [maximumReviewCycles, reviewEstimate]
       - if:
           type: object
           properties:
@@ -636,23 +660,6 @@ $defs:
         additionalProperties: false
       activityProfiles:
         $ref: "#/$defs/ActivityProfiles"
-    allOf:
-      # Reviewing is reserved for Reviewer by default. A future policy exception
-      # must change this canonical contract rather than bypass validation.
-      - if:
-          type: object
-          properties:
-            agentClass:
-              not:
-                const: reviewer
-          required: [agentClass]
-        then:
-          type: object
-          properties:
-            activityProfiles:
-              not:
-                type: object
-                required: [reviewing]
     additionalProperties: false
 
   Book:
@@ -918,7 +925,7 @@ $defs:
     additionalProperties: false
 
   Proposal:
-    # The executable plan and accepted estimates live directly on this content.
+    # Current writes use v2. SDK retains explicit v1 history validation/readback.
     type: object
     required:
       - schemaVersion
@@ -927,9 +934,10 @@ $defs:
       - title
       - request
       - status
+      - groupIds
     properties:
       schemaVersion:
-        const: treeseed.proposal/v1
+        const: treeseed.proposal/v2
       id:
         $ref: "#/$defs/Identifier"
       projectId:
@@ -937,6 +945,7 @@ $defs:
       # Shared proposal groups select subscribed project agents.
       groupIds:
         type: array
+        minItems: 1
         uniqueItems: true
         items:
           $ref: "#/$defs/Identifier"
@@ -972,23 +981,6 @@ $defs:
         then:
           type: object
           required: [summary, executionPlan]
-          properties:
-            executionPlan:
-              type: object
-              properties:
-                workItems:
-                  type: array
-                  items:
-                    type: object
-                    required: [estimate]
-                    allOf:
-                      - if:
-                          properties:
-                            review:
-                              const: required
-                          required: [review]
-                        then:
-                          required: [reviewEstimate]
     additionalProperties: false
 
   Question:
@@ -1731,6 +1723,12 @@ $defs:
     type: object
     required: [schemaVersion, teamId, profileId, projects, startsAt]
     allOf:
+      - if: {required: [projects]}
+        then:
+          anyOf:
+            - required: [groupIds]
+            - required: [proposalIds]
+            - required: [decisionIds]
       - if: {required: [continueFromWorkdayId]}
         then:
           required: [decisionIds]
@@ -1743,7 +1741,6 @@ $defs:
       schemaVersion: {const: treeseed.workday-intent/v1}
       teamId: {$ref: "#/$defs/Identifier"}
       profileId: {$ref: "#/$defs/Identifier"}
-      reportingAgentId: {$ref: "#/$defs/Identifier"}
       projects:
         oneOf:
           - {const: all}

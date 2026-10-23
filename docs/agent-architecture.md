@@ -2,7 +2,7 @@
 
 **Status:** in progress
 **Plan created:** 2026-09-12
-**Last architecture review:** 2026-09-15
+**Last architecture review:** 2026-10-23
 **Scope:** agent profiles, handlers, AgentKernel, assignment workspaces, workday planning, capacity allocation, and provider selection
 **Related plan:** [`docs/agent-assignments.md`](./agent-assignments.md) owns proposal planning, decisions, living-graph projection, assignments, results, review, and reconciliation
 **Explicit non-goal:** UI implementation
@@ -24,6 +24,30 @@ general assignment result
 ```
 
 Profiles explain who an agent is and how each activity behaves. Reusable handlers provide executable behavior. AgentKernel enforces every assignment through one path. The API owns scheduling and capacity. Providers supply execution environments but never define agent behavior.
+
+The runner accepts an already-prepared opaque workload and an execution
+environment. It owns process lifecycle, generic resource limits, isolation,
+observations, measured usage, and physical cleanup. It must not inspect agents,
+classes, activity profiles, proposals, estimates, review criteria, releases, or
+task policy. Application handlers prepare the workload and interpret its result;
+moving role logic to another runner helper does not satisfy this boundary.
+
+Group membership and discussion-topic mentions are the sole sources of agent
+participation. An unqualified name addresses every matching project agent;
+qualified names preserve the exact project, and group mentions address every
+member. Classes attach allocation and memory only. Class, handler, capability,
+or work-item-role checks must not silently reduce this audience. Capacity and
+dependencies may queue work; denied authority must be an explicit outcome.
+
+Every nondeterministic handler supports all six activity profiles. Deterministic
+handlers such as Reporter may remain specialized. An agent's class cannot
+forbid a reviewing profile. The reviewed artifact and separate review attempt,
+not a dedicated class name, establish the review cycle.
+
+These are required corrections, not statements that the existing runtime
+implements them. New live portfolio trials remain suspended while the owning
+SDK/API/Agent contracts are repaired. Existing products, failed observations,
+unknown usage, and issued authority remain intact.
 
 Reviewed acting work remains one objective while execution alternates between independently assigned profiles:
 
@@ -60,7 +84,7 @@ Once that receipt exists, use the SDK agent team on real bounded development and
 - There are no separate default/override fields, handler versions, handler digests, downloads, marketplaces, or runtime source loading.
 - Activity profiles may declare standing dependencies by agent class or lifecycle event. The API resolves them into the graph defined by `docs/agent-assignments.md`.
 - An accepted acting work item deterministically expands into an Actor → Reviewer pair when review is required. Rejection repeats that pair against the same work-item objective through bounded node revisions.
-- Only the Reviewer agent normally enables `reviewing`; the generated reviewing node selects that profile and receives the exact acting result.
+- Every nondeterministic handler supports planning, estimating, acting, reviewing, reporting, and chat through governed profiles. A review receives the exact predecessor artifact in a separate attempt; class names never select or prohibit the reviewing activity.
 - Every activity profile declares a simple deny-by-default content and tool permission ceiling. The profile is not a runtime grant.
 - The API creates exact assignment grants within the profile ceiling and team/project policy. AgentKernel enforces that immutable grant at every runtime service.
 - Handlers share one assignment context and one result contract. Do not create schemas for every handler or work product.
@@ -184,7 +208,8 @@ Add a new content model only when existing core models cannot express a required
 
 [`docs/agent.schema.yml`](./agent.schema.yml) is the machine-readable target object model. The SDK remains the runtime contract owner: implementation must generate SDK types and validators from the schema or prove exact structural equivalence in CI. API storage, Agent context/results, CLI schemas, and fixtures must use that same generated contract rather than restating it.
 
-The Reviewer is the only first-party agent that normally enables `reviewing`:
+Any agent class may configure a reviewing activity; this is an example profile,
+not a special privilege attached to a Reviewer class:
 
 ```yaml
 activityProfiles:
@@ -217,18 +242,30 @@ Initial first-party defaults:
 |---|---|---|
 | Architect | planning/chat: `writer`; estimating: `estimate`; acting: `writer` | none |
 | Engineer | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning, estimating, and acting require Tester |
-| Tester | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning, estimating, and acting require Architect |
-| Releaser | planning/chat: `writer`; estimating: `estimate`; acting: `releaser` | planning, estimating, and acting require Technical Writer |
+| Tester | all nondeterministic activities supported through configured handlers | consumes reviewed interface/behavior documentation |
+| Releaser | all nondeterministic activities supported through configured handlers | scheduled group/topic admission discovers reviewed, tested, eligible work |
 | Reporter | planning/chat: `writer`; reporting: `reporter` | reporting requires `workday-closing` |
 | Researcher | planning/chat/acting: `writer`; estimating: `estimate` | none; admitted research answers a question in parallel with engineering |
 | Reviewer | planning/reviewing/chat: `writer`; estimating: `estimate` | no standing agent dependency; reviewing depends on the exact work being reviewed |
-| Technical Writer | planning/chat: `writer`; estimating: `estimate`; acting: `actor` | planning, estimating, and acting require Engineer |
+| Technical Writer | all nondeterministic activities supported through configured handlers | consumes reviewed architecture before Tester and Engineer |
 
 Standing dependencies apply to scheduled planning, estimating, and acting work. They do not apply automatically to chat, because an addressed message must not wait for an unrelated workflow node. Reviewing is subject-bound: reconciliation creates an edge from each exact reviewed node to its Reviewer node rather than placing every possible review target in the profile.
 
-The first-party default is two parallel branches: question-driven Researcher → Reviewer, and Architect → Tester → Engineer → Technical Writer → Releaser, with each acting result independently reviewed. The Tester returns an exact test commit; the Engineer receives that approved commit as its base and normally receives no grant to modify test paths. Incorrect tests return to the Tester as revision work instead of being silently rewritten by the Engineer.
+The first-party delivery sequence is Architect → Technical Writer → Tester →
+Engineer, with a separate review cycle for each product. Documentation specifies
+real interfaces, integrations, behavior and failures; Tester makes those
+contracts executable, and Engineer implements against the reviewed test commit
+and may add unit tests. Incorrect contracts/tests return to their owning stage.
+Research may run in parallel. Releaser discovers eligible reviewed and passing
+work on a governed schedule; it does not need a fresh proposal merely to look
+for work. Scheduled execution still enters through its group/topic audience and
+the same backend authority and admission path.
 
-Use one Reviewer class. A required acting work item automatically gets a paired reviewing node; no profile attaches itself to another agent and no user authors the generated node. The pair shares one work-item objective. The actor produces an immutable candidate, the Reviewer evaluates it, and rejection advances both stable nodes to another bounded revision with the exact findings. The work item becomes complete only after approval.
+Every applicable product gets a separate reviewing assignment with exact
+candidate provenance and the group's governed reviewing profiles. Do not select
+that assignment by a hardcoded Reviewer class. The actor/review cycle shares
+one accepted objective; request changes preserves the findings and advances the
+bounded cycle, and approval completes that product.
 
 Proposal review is also performed by the Reviewer `reviewing` profile, but it is generated from proposal governance rather than an acting work item. A different review subject does not require another Reviewer class.
 
@@ -251,7 +288,12 @@ The Agent package provides:
 - `ReleaserHandler`
 - `ReporterHandler`
 
-These handlers are reusable across agent classes. The activity profile supplies identity, prompt, context, and standing dependencies. The assignment supplies concrete work, authority, predecessor results, limits, and workspace.
+Every nondeterministic handler is reusable across all agent classes and all
+activities. The activity profile supplies identity, prompt, context, parameters,
+permissions and dependencies. The assignment supplies concrete work, authority,
+predecessor results, limits and workspace. Handler names must not act as hidden
+activity or audience selectors. Reporter is exempt only when its handler is
+purely deterministic; this does not exempt model-backed profiles on that agent.
 
 `EstimateHandler` uses the one proposal work-item estimate contract. This is a domain contract shared by all estimators, not a handler-specific artifact schema.
 
