@@ -24,3 +24,12 @@ repositories under `packages/{project}`**, excluded by Platform's `/packages/` g
 Functional code/plugins, owner tests, manifests, locks, builds and releases stay in their owner
 repository; Platform owns integration declarations/docs and assembled verification. There is no
 `packages/platform` runtime or new combined monorepo. See the [ownership map](docs/platform-contract.md#repository-and-plugin-ownership).
+
+For an explicitly selected child project, use the [initialize-project skill](.agents/skills/initialize-project/SKILL.md)
+to prepare its own local Cordis worktree and copy Platform's pinned shared setup, excluding
+that skill and preserving project license exceptions. Stop for user review before code.
+TreeDX is excluded and remains its existing Elixir/Rust service.
+
+All handwritten Cordis implementation uses strict **TypeScript classes**, typed capability
+contracts and replaceable class plugins through Cordis injection/configuration. This lifetime
+architecture rule is mandatory in AGENTS.md; TreeDX remains the Elixir/Rust exception.

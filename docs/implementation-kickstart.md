@@ -44,14 +44,16 @@ replacement of staging and PR-only promotion to main requires a separate
 reviewed cutover plan and explicit maintainer authorization.
 
 Preserve the repository topology: Platform is the top-level integration repo;
-CLI, SDK, Deployment, API, Admin, UI, Core, TreeDX and Agent remain independent
+CLI, SDK, Deployment, API, Admin, UI, Core and Agent remain independent
 repositories under packages/{project}, using each existing canonical remote and
-its own cordis branch/history. Do not create replacement repositories or move
+its own cordis branch/history. TreeDX remains its existing independent Elixir/Rust
+service and is excluded from Cordis branch creation, clearing and shared setup.
+Do not create replacement repositories or move
 capabilities between owners. Map each legacy capability/source to its same-repo
 Cordis plugin/export/interface and outside-in test in the owning issue before
 code; consumer adapters do not acquire implementation ownership.
-Platform must gitignore /packages/; do
-not commit nested source/Git metadata or introduce submodules. Functionality,
+Platform must gitignore /packages/; do not commit nested source/Git metadata
+or introduce submodules. Functionality,
 plugins, owner tests, build scripts and releases belong in their owner repo.
 Platform owns composition declarations, integration docs and assembled checks.
 Use SDK/public package interfaces and exact artifact/source references; never
@@ -66,13 +68,25 @@ unsupported installation/execution commands must report unsupported behavior.
 The CLI implementation belongs in packages/cli, contracts in packages/sdk, and
 read-only host diagnostics in packages/deployment, shared through its public
 package interface rather than reimplemented in CLI.
-Before coding, prepare only the required replacement repos, each as its own
-cleared cordis worktree, then STOP for my skills/AGENTS.md setup and resumption.
+Before coding, use Platform's initialize-project skill only for CLI, SDK and
+Deployment, each in its own cleared cordis worktree with copied shared setup
+excluding that skill. STOP for my review/adjustments and explicit resumption.
+Keep this bootstrap local; do not publish its new branch without my direction.
 The existing Platform setup does not satisfy any owner project's gate. Do not
 implement plan/apply, start containers, scaffold the entire plan, add
 feature plugins or introduce the AI project in this slice.
 
-Use strict TypeScript and one executable schema authority. Pin tools after
+Use strict TypeScript classes and one executable schema authority. This is a
+pluggable OOP implementation, not function-based TypeScript or handwritten
+JavaScript: logic belongs in class methods, callbacks bind those methods, and
+browser components, tooling and test fixtures are classes too. Give each
+capability one typed interface/abstract-class contract, constructor injection and
+a selected class implementation through Cordis service bindings/configuration.
+Consumers must remain unchanged when a compatible implementation is swapped.
+Reuse Cordis lifecycle, no second container/framework or speculative hierarchy.
+Use OperationDefinition.define as a static class method and CliApplication as
+the CLI composition class; later PlatformApplication owns API composition.
+TreeDX remains its existing Elixir/Rust exception. Pin tools after
 checking official sources and the actual host; qualify native Linux first.
 macOS and WSL2/Linux support remain unproven until tested on the actual targets.
 The eventual design has one integrated Compose deployment lifecycle, a Cordis
@@ -97,11 +111,16 @@ unit/integration prerequisites on that exact candidate for that invocation.
 Record exact commands, candidate/artifact identities and actual results.
 
 Keep each plugin/module in its existing owning repository; not every plugin
-needs a new repo. Introduce only projects needed for the current slice. Every
-first-party replacement repo needs its own isolated cleared cordis worktree
-at packages/{project} and a STOP before scaffolding, dependency installation,
-tests or code so I can configure its skills and AGENTS.md. Do not wipe the
-original checkout or treat its old instructions as satisfying that setup pause.
+needs a new repo. Introduce only projects needed for the current slice. For each
+eligible first-party replacement repo, invoke Platform's initialize-project skill: its
+own cleared cordis worktree at packages/{project}, with setup from one exact
+parent cordis commit: copy AGENTS.md, .gitignore and LICENSE, plus the complete
+tracked skills tree excluding only initialize-project. Preserve differing
+project licenses and required notices.
+Then STOP for my review/adjustments and explicit resumption before scaffolding,
+dependency installation, tests/builds or code. TreeDX is excluded: no branch,
+wipe or setup-copy there; integrate its existing Elixir/Rust public service.
+Do not wipe the original checkout or treat its old instructions as satisfying that setup pause.
 Report the path, branch and baseline. Never pull legacy implementation into
 the new repository as a shortcut. Standard third-party dependencies are not
 first-party replacement repositories and must not have their sources wiped.
