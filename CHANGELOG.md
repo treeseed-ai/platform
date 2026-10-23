@@ -4,6 +4,7 @@
 
 ### Fixed
 
+- platform: align authoring and discovery skills with Cordis (#678).
 - platform: align GitHub skills with Cordis migration and issue-retention rules (#678).
 
 ### Added

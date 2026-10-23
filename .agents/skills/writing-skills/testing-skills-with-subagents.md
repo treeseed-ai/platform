@@ -10,7 +10,9 @@ You run scenarios without the skill (RED - watch agent fail), write skill addres
 
 **Core principle:** If you didn't watch an agent fail without the skill, you don't know if the skill prevents the right failures.
 
-**REQUIRED BACKGROUND:** You MUST understand superpowers:test-driven-development before using this skill. That skill defines the fundamental RED-GREEN-REFACTOR cycle. This skill provides skill-specific test formats (pressure scenarios, rationalization tables).
+Use the baseline → minimal correction → same-scenario recheck method defined in
+[writing-skills](SKILL.md). No additional skill package is required. Follow the project's
+authorization and repository workflow; isolate test outputs and preserve existing work.
 
 **Complete worked example:** See examples/CLAUDE_MD_TESTING.md for a full test campaign testing CLAUDE.md documentation variants.
 
@@ -22,10 +24,10 @@ Test skills that:
 - Could be rationalized away ("just this once")
 - Contradict immediate goals (speed over quality)
 
-Don't test:
-- Pure reference skills (API docs, syntax guides)
-- Skills without rules to violate
-- Skills agents have no incentive to bypass
+Pure reference skills (API docs, syntax guides) still need retrieval/application/gap checks,
+as required by writing-skills. They do not need discipline pressure scenarios or wording
+micro-tests merely because they are references. Skills with rules or incentives to bypass
+need the pressure tests below. Classify the actual changed guidance, not just the skill name.
 
 ## TDD Mapping for Skill Testing
 
@@ -40,7 +42,7 @@ Don't test:
 
 Same cycle as code TDD, different test format.
 
-## RED Phase: Baseline Testing (Watch It Fail)
+## Discipline RED Phase: Baseline Testing (Watch It Fail)
 
 **Goal:** Run test WITHOUT the skill - watch agent fail, document exact failures.
 
@@ -305,7 +307,7 @@ Meta-test: "Skill was clear, I should follow it"
 
 **Bulletproof achieved.**
 
-## Testing Checklist (TDD for Skills)
+## Discipline Testing Checklist
 
 Before deploying skill, verify you followed RED-GREEN-REFACTOR:
 

@@ -11,7 +11,12 @@ Write implementation plans for an engineer who has not seen this codebase or thi
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-**Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
+**Context:** Follow AGENTS.md and [release-workflow](../release-workflow/SKILL.md): issue,
+verified `origin/cordis` branch, documentation first and outside-in tests. Use available
+Git/worktree tools; do not require an absent skill package. Eligible child repositories use
+the parent's initializer and explicit review pause; TreeDX retains its own workflow.
+All Cordis implementation, tooling and test fixtures use TypeScript classes in their owner
+repositories. Plans must preserve that architecture and exact-artifact integration.
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
@@ -56,7 +61,7 @@ independently testable deliverable.
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -95,30 +100,39 @@ owns the code, in that task's own step style.]
 ### Task N: [Component Name]
 
 **Files:**
-- Create: `exact/path/to/file.py`
-- Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
+- Create: `packages/cli/src/commands.ts` (inside the independent CLI repo)
+- Modify: that owner's documented composition class and command contract
+- Test: `packages/cli/tests/smoke/cli-program.test.ts`
 
 **Interfaces:**
 - Consumes: [what this task uses from earlier tasks — exact signatures]
-- Produces: [what later tasks rely on — exact function names, parameter
+- Produces: [what later tasks rely on — exact class/method names, parameter
   and return types. A task's implementer sees only their own task; this
   block is how they learn the names and types neighboring tasks use.]
 
 - [ ] **Step 1: Write the failing test**
 
-```python
-def test_specific_behavior():
-    result = function(input)
-    assert result == expected
+```typescript
+class CliProgramTests {
+  async reportsVersion(): Promise<void> {
+    const result = await CliProgramFixture.run(['--version']);
+    assert.equal(result.exitCode, 0);
+    assert.match(result.stdout, /^trsd /);
+  }
+}
 ```
+
+The plan defines the fixture contract/imports and binds the class method to the owner's
+actual test runner. This example uses the proposed built-program fixture; it is not an
+existing runnable test or permission to scaffold a child before its setup review.
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
+Run: the owner's documented built-program smoke command, with exact arguments in the plan.
+Expected: the specified user-visible assertion fails. Missing binary, invalid syntax or a
+broken fixture is a prerequisite failure, not the intended behavioral red.
 
-- [ ] **Step 3: Implement `function(input: InputType) -> ResultType` in `exact/path/to/file.py`**
+- [ ] **Step 3: Implement the specified `CliApplication` class method in the CLI owner**
 
 One line on the approach when the signature and the test leave a choice
 (which library call, which data structure); a code block only for an
@@ -126,14 +140,14 @@ algorithm they do not determine.
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
+Run: the exact current owner check/build/unit/integration/smoke commands named in the plan.
+Expected: all applicable gates pass; record unavailable environments separately.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
+git add tests/smoke/cli-program.test.ts src/commands.ts
+git commit -m "feat: add specific feature (#N)"
 ```
 ````
 
@@ -157,7 +171,7 @@ of step carries what makes it unambiguous and nothing more:
 A plan is the set of decisions the implementer cannot make alone. A plan
 longer than the code it describes has written the code instead. Lines that
 decide nothing ("TBD", "handle edge cases", "add appropriate validation",
-"write tests for the above", a type or function no task defines) are the
+"write tests for the above", a type or class method no task defines) are the
 opposite failure, and the self-review catches both.
 
 ## Self-Review
@@ -166,9 +180,9 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
 
-**2. Step scan:** Every step must let the implementer write exactly one reasonable thing, and no step may carry more than that: a line that decides nothing is a gap, a function body the signature and tests already determine is a transcript. Fix both.
+**2. Step scan:** Every step must let the implementer write exactly one reasonable thing, and no step may carry more than that: a line that decides nothing is a gap, a method body the signature and tests already determine is a transcript. Fix both.
 
-**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+**3. Type consistency:** Do types, class/method signatures and property names match across tasks? Changing a public method's name between tasks is a contract bug.
 
 **4. Review Focus:** For each input class or failure mode the spec implies, is there a task whose tests exercise it? The five uncovered ones most likely to bite a person go in the Review Focus section, and each line there gets its test added to the owning task. An empty section means you checked and found none, not that you skipped the check.
 
@@ -178,27 +192,13 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 ## Execution Handoff
 
-After saving and self-reviewing the plan, link it for your human partner
-to read. If they have already explicitly supplied an execution method, ask
-them to review the plan and confirm it captures what they want; wait for that
-review before implementation, then use the preserved method. Otherwise, ask
-them to review the plan and choose an execution method before implementation.
+Link the self-reviewed plan and state the bounded next task and outstanding gates.
+Preserve the user's chosen execution method. When execution of the described scope is
+already authorized, proceed through release-workflow without requesting the same approval
+again. An explicitly pending plan approval or child setup review remains a real stop.
+When only planning was requested, deliver the plan and stop without implementation.
 
-**When no execution method has already been supplied:**
-
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Which execution approach would you prefer?**
-
-- **Subagent-driven** - A fresh subagent implements each task and a fresh reviewer checks it before the next one starts, then a whole-branch review at the end. Most thorough; costs a fresh context per task and per review.
-- **Native** - I implement every task myself in this session, the way this harness runs work, then one fresh reviewer on the most capable model checks the whole branch. Cheapest and fastest; no independent review until the end. Runs well with a mid-tier session model, since the plan carries the design.
-
-**For this plan I recommend <one of the two>, because <one sentence from the plan: how much the tasks depend on each other's interfaces, how many there are, what a shipped mistake would cost>. Does the plan capture what you want, and which approach should we use?"**
-
-**When an execution method has already been supplied:**
-
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
-
-**If Subagent-driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-
-**If Native chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
+Use the available tools in this session. An authorized delegation method may use fresh
+implementer/reviewer agents; otherwise implement directly. Do not select a different model,
+require nonexistent execution skills or install packages just to satisfy an upstream template.
+Ask about execution preferences only if the missing choice materially changes the delivery.

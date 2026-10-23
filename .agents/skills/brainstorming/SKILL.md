@@ -5,6 +5,12 @@ description: "You MUST use this before any creative work - creating features, bu
 
 # Brainstorming
 
+Apply this skill within AGENTS.md and [release-workflow](../release-workflow/SKILL.md).
+Existing user authorization and approved designs remain valid. Ask only for material missing
+decisions; do not repeat an approval already supplied for the described work. Cordis designs
+use strict TypeScript classes and native plugin lifecycle, preserve repository ownership,
+and retain every eligible child initialization/review pause.
+
 You are very good at building. You build what you believe your human
 partner wants, and that belief is usually thinner than it feels. This
 skill is for finding out what they actually want, and why, before
@@ -80,9 +86,10 @@ time...", "If it could only do one of these well, which?", "What would
 make you wince if I got it wrong?" A guess they can correct ("I'm
 guessing this is because X keeps biting you?") often beats a question.
 
-**Offer recon.** Once you have a bit of grounding and looking would help,
-offer to go look: their codebase or project, their own files and data,
-or the web. Say what you'd look for. They decide whether you go.
+**Gather evidence.** Read authorized project context and perform required web research
+directly. State what you are checking. Ask only when new access, a material scope change
+or an explicit user restriction requires it; ordinary reading and required research do not
+need another permission request.
 
 **Think wide privately.** Before you propose anything, come up with
 several ideas and drop the weak ones, including any that fight what
@@ -104,10 +111,11 @@ options, and throwaway prototypes they can click.
 **Spike to feel things out.** Agentic work is waterfall, but very, very
 fast. A quick throwaway build is often the cheapest way to learn what
 they want or whether something works. Offer one when it would help.
-When they just want to spike, get out of the way. Spikes get no tests
-or minimal ones, aren't bulletproof, and skip the plan, implementation,
-and review process. Bring what the spike taught you back into the
-conversation.
+When they authorize a spike, keep its question and deliverable small. Repository changes
+still require an issue and verified `origin/cordis` issue branch, documentation first,
+outside-in tests and review under release-workflow. A disposable experiment can establish
+feasibility, but cannot establish an accepted implementation without the applicable gates.
+Report its exact configuration and findings; preserve original work and required setup pauses.
 
 ## Play It Back
 
@@ -135,7 +143,7 @@ words. They can override it.
 |------|----------------------|------|
 | A quick, clear task | the request itself | do it |
 | A small change | in chat | build it through the normal workflow |
-| A project with a written design | a written design document | a full plan (for software: superpowers:writing-plans) |
+| A project with a written design | a written design document | a full plan using the installed writing-plans skill |
 
 If it grows mid-task, stop, say so, and step up a size.
 
@@ -183,13 +191,15 @@ Building includes writing product code, scaffolding, installing
 dependencies, creating projects, and invoking an implementation skill.
 Reading and exploring are fine.
 
-Two exceptions. If they opted out of the questions, the skill is done
-and the gate goes with it. A spike they said yes to may be built; it
-stays labeled throwaway, and keeping what it produced is a new request
-that comes back through this gate.
+An explicit instruction to proceed with a complete description satisfies this design
+approval; do not ask again. Opting out of brainstorming questions ends only this skill's
+question loop. An authorized spike stays within its stated scope and the repository gates
+above. Keeping its output as product implementation needs the corresponding user scope
+and verified delivery. None of these paths bypasses a child repository's setup review pause.
 
-After a project's document is approved, the next step is the plan. For
-software, invoke superpowers:writing-plans and no other skill.
+After a project's document is approved, use the available
+[writing-plans](../writing-plans/SKILL.md) skill with release-workflow and required verification.
+Do not require an unavailable namespaced skill or install one merely to continue.
 </HARD-GATE>
 
 ## Red Flags

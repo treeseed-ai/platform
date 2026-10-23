@@ -97,14 +97,22 @@ Learn more: https://skills.sh/vercel-labs/agent-skills/react-best-practices
 **NEVER install a skill without explicit user approval.** Present the skill details (name, source,
 install count, what it does) and ask the user to confirm before running the install command.
 
-After approval, install into the project's `.dsh/skills/` directory:
+Approval already supplied for the exact skill and destination remains valid; do not ask again.
+Use the configured skill-installer workflow when available, and inspect its actual supported
+destination/options before installation. A missing execution skill is not by itself a request
+to install one; use an available compliant method or report a genuine required limitation.
 
-```bash
-npx skills add <owner/repo@skill> --dir .dsh/skills
-```
+Project destination: [.agents/skills/](../). Use a personal destination only when the user's
+request or actual runtime configuration selects it. Honor an explicitly requested destination.
+Source retrieval must respect this repository's HTTPS-only Git policy. If a configured
+installer can fall back to SSH, select a download/HTTPS-only method or another compliant
+approach; never accept the SSH fallback to recover authentication failure.
+Do not invent an installer directory flag, silently overwrite existing skills or install into
+another runtime's directory. After installation verify discovery and the approved files.
 
-Do NOT use `-y` or `--yes` — always let the user see and approve what is being installed.
-Skills run with full agent permissions; installing one is a trust decision that belongs to the user.
+Skills run with agent permissions; approval covers the selected source and requested install,
+not unrelated skills, updates or repository changes. Inspect source content and compatibility;
+install counts and repository stars are discovery signals, not authorization or safety proof.
 
 ## Common Skill Categories
 
