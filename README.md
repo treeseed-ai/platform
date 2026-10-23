@@ -13,6 +13,14 @@ Start with these documents in order:
 
 Read [AGENTS.md](AGENTS.md) and the configured skills before starting a statement of work. [Issue #672](https://github.com/treeseed-ai/platform/issues/672) tracks this documentation delivery. [CHANGELOG.md](CHANGELOG.md) records developer-visible changes.
 
+Development skills follow the project's issue/documentation/test workflow, strict TypeScript
+class architecture, required research and child-repository review pauses. Already authorized
+edits and execution methods retain their authority; missing skill packages are not mandatory
+installation dependencies. Project skill installation uses `.agents/skills/` through the
+configured installer. [#678](https://github.com/treeseed-ai/platform/issues/678) records the
+alignment audit. Run reference/template regressions with `node --test tests/skills/*.test.mts`
+on Node.js 24; read-only scenario review checks decisions beyond those static guards.
+
 The migration integration branch is `cordis`: issue branches start from verified `origin/cordis` and PRs target `cordis`. Migration work must not merge into legacy `staging` or `main`. A separate reviewed, explicitly authorized cutover will preserve legacy work, adopt the verified successor as `staging`, update workflow/settings/CI, then restore PR-only promotion to `main`. The instruction/skill policy is tracked in [#674 / #675](https://github.com/treeseed-ai/platform/pull/675); completing the plan does not authorize cutover.
 
 Initial target environments are Linux, macOS and Windows through WSL2. Linux is the initial managed-host qualification target; desktop hosts use an explicitly selected Docker Desktop environment. Native Windows, the AI project, commerce, fleets and advanced autonomous portfolio execution are outside the initial release.

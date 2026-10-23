@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- platform: align planning, writing and discovery skills with project instructions (#678).
+
 ### Added
 
 - platform: add Cordis project initialization and class-based TypeScript architecture rules (#676).
