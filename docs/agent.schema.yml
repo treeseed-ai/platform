@@ -1735,7 +1735,6 @@ $defs:
       schemaVersion: {const: treeseed.workday-intent/v1}
       teamId: {$ref: "#/$defs/Identifier"}
       profileId: {$ref: "#/$defs/Identifier"}
-      reportingAgentId: {$ref: "#/$defs/Identifier"}
       projects:
         oneOf:
           - {const: all}
