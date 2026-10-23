@@ -115,7 +115,37 @@ The host journal is needed before PostgreSQL/API startup and through their repla
 
 ## 5. Plugin model and SDK boundary
 
-Use one source workspace and aligned platform release initially. Suggested source modules appear in the [plan](superpowers/plans/2026-10-23-cordis-platform.md#proposed-file-ownership). A module is not automatically an independent repository or distribution. Public npm names/version policy are not allocated by this document; do not overwrite legacy packages, tags or latest channels during migration.
+Preserve one integrated platform composition assembled from independently built project repositories. Platform remains at the top; each project lives in a separate Git checkout under `packages/{project}`, excluded by the top-level `/packages/` gitignore rule. These are not Platform-tracked source directories or submodules. Suggested owning paths appear in the [plan](superpowers/plans/2026-10-23-cordis-platform.md#proposed-file-ownership). Public npm names/version policy are not allocated here; do not overwrite legacy packages, tags or latest channels.
+
+### Repository and plugin ownership
+
+| Repository / local checkout | Ownership | Initial participation |
+| --- | --- | --- |
+| Platform / workspace root | Composition/source-artifact selections, integration documentation, assembled verification and portfolio CI. No application/plugin runtime copied here. | From the start. |
+| CLI / `packages/cli` | Standalone `trsd`, arguments/output, local/remote adapters, CLI builds/program tests. | Task 1. |
+| SDK / `packages/sdk` | Executable schemas, typed bindings/client, portable plugin declarations and server-only operation helpers. | Task 1. |
+| Deployment / `packages/deployment` | Read-only host diagnostics, lifecycle/worker/journal/Compose, development selection, packaging. Same exported implementation serves CLI and server plugin. | Diagnostics in Task 1; plan/apply in Tasks 2–3. |
+| API / `packages/api` | Cordis application host, default composition/loader and REST/MCP adapters. Domain operations stay with their capability owner. | Task 3. |
+| Identity / `packages/identity` | Maintained identity/session/principal integration exposed as a required plugin. | Task 3. |
+| Admin / `packages/admin` | Browser shell, server actions/session facade and page/plugin integration. | Task 3. |
+| UI / `packages/ui` | Shared browser components; no duplicate domain/auth/backend policy. | When the first browser slice needs them. |
+| Core / `packages/core` | Optional public-reader/site plugin, retaining its separate repository. | Deferred; not the Cordis runtime host. |
+| TreeDX / `packages/treedx` | Generic repository/knowledge persistence and its trusted integration boundary. | Knowledge slice later. |
+| Agent / `packages/agent` | Scoped execution provider and handlers; durable project/work authority stays at its owning API capability. | Work/Agent slice later. |
+| Reviewer, templates and other retained projects / `packages/{project}` | Their existing independent capability/test/template ownership. | Only when needed; same setup pause. |
+
+Combine duplicated **interfaces and execution paths**, not these repositories. A capability
+plugin is a module/export in its owner repository; do not create a repository per small plugin.
+Do not introduce AI. Add only participating repositories for the current slice, each through
+its own [cleared Cordis worktree and user setup pause](migration-reference.md#dependent-repository-setup-gate).
+
+Each repository owns its manifests/lock/build/unit/integration tests, Git commits/PRs and
+release artifacts. Platform's composition selects exact reviewed source/candidate and artifact
+identities; its integration checks consume that actual closure. An ignored local checkout is
+not a release pin. Independent builds consume SDK/public package interfaces and resolved
+artifacts, never relative source imports into a sibling checkout or a second root-owned copy.
+Local source substitution is explicit and must produce independently verifiable artifacts.
+There is no blanket root workspace link that makes unbuilt sibling source the production path.
 
 ### Four plugin-author contracts
 
@@ -131,11 +161,11 @@ Cordis supplies function/object/class plugins, declared injection and configurat
 | Part | Interface ownership |
 | --- | --- |
 | SDK contracts/client | Portable schemas, operation/plugin declarations, typed caller and generated transport contracts. |
-| SDK runtime helpers + platform host | Node/server-only registration, Cordis root and default production wiring. |
-| Identity plugin | Resolve sessions/principals and authorize capabilities/resources. Token scopes cannot be enlarged by roles. |
-| Deployment plugin + local adapter | Shared host lifecycle, status and development selection. |
-| HTTP/MCP transport plugin | Explicit REST and selected MCP bindings of registered operations, discovery and errors. |
-| Web plugin + UI kit | Server-side session boundary, shared forms, navigation/status/application views. |
+| SDK runtime helpers + API host | SDK owns Node/server-only registration helpers; API owns Cordis root and default production wiring. |
+| Identity plugin (`identity`) | Resolve sessions/principals and authorize capabilities/resources. Token scopes cannot be enlarged by roles. |
+| Deployment plugin + local adapter (`deployment`) | Shared host lifecycle, status and development selection. |
+| HTTP/MCP transport plugin (`api`) | Explicit REST and selected MCP bindings of registered operations, discovery and errors. |
+| Web plugin (`admin`) + UI kit (`ui`) | Server-side session boundary, shared forms, navigation/status/application views. |
 | CLI | Arguments, help, local/remote selection, SDK calls and output. No independent domain lifecycle. |
 
 Same-process plugins are trusted code. Context isolation is service composition, not a sandbox. Untrusted task execution and provider credentials remain separate boundaries when Agent arrives. Credentials never appear in package metadata, browser assets, plans, telemetry or user-visible error bodies.
@@ -154,6 +184,7 @@ These are named interface requirements for future TypeScript, not implemented de
 | `OperationService.register(binding, handler)` | Return disposer; reject duplicate IDs and route/tool collisions. |
 | `OperationService.invoke(binding, input, request)` | Validate, authorize and call handler once; validate result; preserve request/trace identity and cancellation signal. |
 | `PlatformClient.invoke(binding, input, options?)` | Typed output or structured problem; options include cancellation, idempotency key and expected version as applicable. No caller-created remote paths. |
+| `DeploymentHost.diagnose(configuration?)` | Read-only local engine/installation diagnostics; never activate, create state or grant authority. Not an extra remote operation. |
 | `DeploymentHost.plan(configuration)` | Read/resolve and persist a non-activating plan with blockers. |
 | `DeploymentHost.apply(planId, digest, options)` | Return one durable application reference; options bind idempotency and expected state. |
 | `DeploymentHost.status()` / `application(id)` / `events(id, cursor)` | Read authoritative host state; unavailable/unknown is distinct from healthy/empty. |
@@ -201,7 +232,7 @@ Declare only relevant consumer reactions and rebuild the affected closure. A Git
 
 Promote accepted bytes without rebuilding. The candidate identity, artifacts and actual installed files/images must match. Keep prior known-good recovery inputs and data compatibility evidence. Do not invent another catalog/status/evidence service to coordinate these facts.
 
-Use separate migration release identities so existing SDK/CLI/npm channels and deployed services continue unchanged. No migration-to-`staging` or production publication is authorized by this document. `staging` and `production` remain the only future GitHub deployment environments; `cordis` is an isolated source branch, not a new environment. Agents may not approve or merge `main` under the new AGENTS.md.
+Use separate migration release identities so existing SDK/CLI/npm channels and deployed services continue unchanged. `cordis` is the migration integration branch. No migration-to-`staging`/`main` or production publication is authorized by this document. A separate reviewed cutover, explicitly authorized by the maintainer, must preserve legacy work and adopt the verified successor as `staging` before `staging` → `main` PR promotion resumes. `staging` and `production` remain the only future GitHub deployment environments; `cordis` is an isolated source branch, not a new environment. Agents may not approve or merge `main` under the new AGENTS.md.
 
 ## 8. Completion and expansion
 

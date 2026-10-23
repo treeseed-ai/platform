@@ -12,8 +12,14 @@ Start with these documents in order:
 
 Read [AGENTS.md](AGENTS.md) and the configured skills before starting a statement of work. [Issue #672](https://github.com/treeseed-ai/platform/issues/672) tracks this documentation delivery. [CHANGELOG.md](CHANGELOG.md) records developer-visible changes.
 
-The user-established `cordis` branch is the isolated migration baseline. This documentation uses an issue feature branch targeting `cordis`, preserving the original repository's `staging` and `main`. This is a scoped exception arising from the explicit clean-rewrite instruction, not a change to production branch or environment policy. Ordinary development/release workflow remains governed by AGENTS.md; agree the final integration path before promoting migration work into the existing release branches.
+The migration integration branch is `cordis`: issue branches start from verified `origin/cordis` and PRs target `cordis`. Migration work must not merge into legacy `staging` or `main`. A separate reviewed, explicitly authorized cutover will preserve legacy work, adopt the verified successor as `staging`, update workflow/settings/CI, then restore PR-only promotion to `main`. The instruction/skill policy is tracked in [#674 / #675](https://github.com/treeseed-ai/platform/pull/675); completing the plan does not authorize cutover.
 
 Initial target environments are Linux, macOS and Windows through WSL2. Linux is the initial managed-host qualification target; desktop hosts use an explicitly selected Docker Desktop environment. Native Windows, the AI project, commerce, fleets and advanced autonomous portfolio execution are outside the initial release.
 
 The original `/home/adrian/Projects/platform` and its repositories continue to develop until deliberately replaced. They are reference sources, not writable implementation directories for this migration. Do not clone, clear, activate or change a dependent TreeSeed repository without following the [repository setup gate](docs/migration-reference.md#dependent-repository-setup-gate).
+
+Platform remains the top-level integration repository. Existing projects remain **independent
+repositories under `packages/{project}`**, excluded by Platform's `/packages/` gitignore rule.
+Functional code/plugins, owner tests, manifests, locks, builds and releases stay in their owner
+repository; Platform owns integration declarations/docs and assembled verification. There is no
+`packages/platform` runtime or new combined monorepo. See the [ownership map](docs/platform-contract.md#repository-and-plugin-ownership).
