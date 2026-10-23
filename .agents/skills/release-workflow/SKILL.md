@@ -267,7 +267,7 @@ Read these once per project — from its manifest, CI workflows, and existing ta
 |--------|---------------|-----------------|---------------|----------|
 | Create issue | `gh issue create` | `glab issue create` | `tea issues create` | web UI / `git push -o` options |
 | Comment on issue | `gh issue comment N` | `glab issue note N` | `tea issues comment N` | web UI |
-| Open PR/MR | `gh pr create --base B` | `glab mr create --target-branch B` | `tea pulls create --base B` | web UI |
+| Open PR/MR | `gh pr create --base cordis` | `glab mr create --target-branch cordis` | `tea pulls create --base cordis` | web UI |
 | Watch CI | `gh pr checks N --watch` | `glab ci status --branch <mr-source>` (repeat until green/red) | `tea pulls checks N` | forge CI page |
 | Merge (squash) | `gh pr merge N --squash` | `glab mr merge N --squash` | `tea pulls merge --squash N` | web UI |
 | Merge (no squash) | `gh pr merge N --merge` | `glab mr merge N` | `tea pulls merge N` | web UI |

@@ -89,11 +89,9 @@ won't-fix closure needs a recorded reason under release-workflow. Do not auto-cl
 issues or create a stale-item automation unless the maintainer explicitly requests one.
 
 ```bash
-# Find stale issues (no activity in 14+ days)
-gh issue list --label "stale" --state open
-
-# Find PRs with no recent activity
-gh pr list --json number,title,updatedAt --jq '.[] | select(.updatedAt < "2026-03-01")'
+# Inspect timestamps; evaluate them against the actual task date and release state.
+gh issue list --state open --json number,title,updatedAt
+gh pr list --json number,title,updatedAt
 ```
 
 ## CI/CD Operations
