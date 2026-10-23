@@ -1,5 +1,10 @@
 # Cordis implementation kickoff prompt
 
+Historical kickoff: Task 1 setup review and explicit implementation resumption have now occurred.
+Continue the [Task 1 delivery record](superpowers/plans/2026-10-23-task1-diagnostics.md) and
+[Platform#681](https://github.com/treeseed-ai/platform/issues/681); do not reinitialize or clear
+existing CLI/SDK/Deployment worktrees. The prompt below remains the original handoff context.
+
 Paste the following into a new chat in the **TreeSeed Cordis Migration** project, using
 `/home/adrian/Projects/treeseed-cordis` as its workspace. This prompt authorizes the first
 implementation slice in that future chat; saving it here does not start implementation.

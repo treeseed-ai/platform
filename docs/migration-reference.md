@@ -110,3 +110,15 @@ The migration policy permits qualified PR integration to `cordis`, prohibits mig
 - [Docker WSL filesystem guidance](https://docs.docker.com/desktop/features/wsl/best-practices/): sources/file watches on Linux-hosted files; verify actual selected engine and host configuration.
 
 Research does not substitute for a target spike. Record exact tool versions, flags, architecture, optional/native dependencies, artifact hashes and command with every negative result. A failed bundling experiment is not a general claim that Bun or Cordis cannot support a feature.
+
+## Task 1 reviewed initialization and publication
+
+The maintainer reviewed CLI, SDK and Deployment setup and explicitly authorized publishing
+all three local baselines, then bounded diagnostic/contracts implementation. The published
+cordis bootstraps are CLI612c2871b43e7b0868532f1705c4e4dd5c9b6f75,
+SDK395286a3268a1d9990046011d1145702df052ddf and
+Deployment1b904ade5fd5f3ec0945db7bef59274185d92dde, copied from Platform
+b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e. Initialization issues are CLI#307,
+SDK#448 and Deployment#899; implementation issues are CLI#309, SDK#450 and Deployment#900,
+coordinated by Platform#681. Issues stay open until release. No other project was initialized.
+Legacy development continued independently; its moving refs/configuration were preserved.
