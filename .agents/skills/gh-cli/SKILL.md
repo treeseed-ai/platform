@@ -1,12 +1,22 @@
 ---
 name: gh-cli
-description: Complete GitHub CLI (gh) reference for repos, issues, PRs, Actions, releases, projects, and API operations.
-whenToUse: When the user asks about GitHub operations — creating issues, opening PRs, checking CI, managing releases, or any gh command.
+description: Use when a GitHub operation requires CLI fallback or the user asks about gh commands.
+metadata:
+  whenToUse: When a connected GitHub tool lacks the required operation or an existing repository script requires gh.
 ---
 
 # GitHub CLI (gh)
 
-Complete GitHub CLI reference for repositories, issues, pull requests, Actions, projects, releases, and all command-line GitHub operations. Use `gh` via the `bash` tool for any GitHub interaction.
+Use connected GitHub tools first; use these CLI examples when the required operation is
+unavailable there or an existing repository script requires `gh`. Read AGENTS.md and
+[release-workflow](../release-workflow/SKILL.md) before mutations. Command availability
+does not grant authority. Never print authentication tokens.
+
+Migration PRs target `cordis` from issue branches off verified `origin/cordis`. Never approve
+a PR, promote migration changes to `staging`/`main`, or publish production releases/tags.
+Check CI, acceptance evidence and addressed review before any eligible `cordis` merge;
+green CI alone is insufficient. Preserve integrated issues until the authorized release;
+invalid/won't-fix closure requires a recorded reason. Do not close issues because of age.
 
 **Prerequisites:** `gh` must be installed and authenticated (`gh auth status` to verify).
 
@@ -16,7 +26,6 @@ Complete GitHub CLI reference for repositories, issues, pull requests, Actions, 
 gh auth status                    # Check current auth
 gh auth login                     # Interactive login
 gh auth switch                    # Switch between accounts
-gh auth token                     # Print current token
 ```
 
 ## Repositories
@@ -42,7 +51,6 @@ gh issue create                   # Create new issue (interactive)
 gh issue create --title "..." --body "..." --label "bug"  # Non-interactive
 gh issue edit <number>            # Edit issue metadata
 gh issue comment <number> --body "..."  # Add comment
-gh issue close <number>           # Close an issue
 gh issue reopen <number>          # Reopen an issue
 gh issue pin <number>             # Pin an issue
 gh issue transfer <number> <dest-repo>  # Transfer to another repo
@@ -55,11 +63,10 @@ gh issue status                   # Issues assigned to you or mentioning you
 ```bash
 gh pr list                        # List open PRs
 gh pr view <number>               # View PR details + diff summary
-gh pr create                      # Create PR (interactive)
-gh pr create --title "..." --body "..." --base main  # Non-interactive
+gh pr create --base cordis --title "fix: description (#N)" --body-file <body.md>
 gh pr checkout <number>           # Check out a PR branch locally
 gh pr merge <number>              # Merge a PR (--merge, --squash, --rebase)
-gh pr review <number>             # Submit review (--approve, --request-changes, --comment)
+gh pr review <number> --comment --body-file <review.md> # Only if review posting is authorized
 gh pr diff <number>               # Full diff of a PR
 gh pr checks <number>             # View CI status for a PR
 gh pr ready <number>              # Mark as ready for review
@@ -88,10 +95,7 @@ gh workflow enable/disable <wf>   # Enable or disable a workflow
 ```bash
 gh release list                   # List releases
 gh release view <tag>             # View release details
-gh release create <tag>           # Create release (--title, --notes, --draft)
-gh release upload <tag> <files>   # Upload assets to a release
 gh release download <tag>         # Download release assets
-gh release delete <tag>           # Delete a release
 ```
 
 ## Projects (v2)
@@ -125,20 +129,23 @@ gh <command> --limit N            # Limit result count
 ## Common Patterns
 
 ### Check CI before merging
+
+These commands inspect readiness. Merge only under release-workflow's full gates; never
+approve. PR bodies use `Part of #N`, with actual testing evidence and acceptance criteria.
+
 ```bash
 gh pr checks <number> --watch     # Wait for CI to finish
-gh pr merge <number> --squash     # Merge after green
+gh pr view <number> --json baseRefName,headRefOid,reviewDecision,statusCheckRollup
 ```
 
 ### Bulk operations
 ```bash
 gh issue list --json number,title --jq '.[] | "\(.number): \(.title)"'
-gh pr list --state open --json number --jq '.[].number' | xargs -I{} gh pr review {} --approve
 ```
 
 ### Create issue from context
 ```bash
-gh issue create --title "Bug: ..." --body "$(cat description.md)" --label "bug,priority"
+gh issue create --title "fix: description" --body-file <description.md> --label bug
 ```
 
 ### Sync fork
@@ -150,7 +157,9 @@ gh repo sync <fork>               # Sync fork with upstream
 
 - Use `--json` + `--jq` for scriptable output instead of parsing text.
 - Most commands accept `<owner>/<repo>` or use the default repo (`gh repo set-default`).
-- `gh pr create` auto-detects the base branch and fills title/body from commits.
+- Always pass `--base cordis`; do not rely on the repository's legacy default branch.
+- Supply multiline issue/PR/comment text with `--body-file`; preserve issue references.
+- Release commands here are read-only; future cutover/publication uses a separately reviewed workflow.
 - `gh run view --log-failed` is the fastest way to diagnose CI failures.
 - For paginated results, add `--paginate` to `gh api` calls.
 - `gh search issues/prs/repos/code` searches across all of GitHub, not just one repo.
