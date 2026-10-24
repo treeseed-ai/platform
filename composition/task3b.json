@@ -52,7 +52,7 @@
       "docker": "29.9.1",
       "compose": "5.6.0",
       "installedScene": {
-        "assertions": 257,
+        "assertions": 289,
         "result": "pass"
       },
       "owners": {
@@ -74,6 +74,13 @@
       "api": 40139665696,
       "identity": 40139455073,
       "admin": 40139455244
+    },
+    "platformInitialPushCI": 40139784766,
+    "qualification": {
+      "runtimeClosure": "Registry identities and SRI must match committed Platform bun.lock; fresh resolution drift fails visibly",
+      "ociCache": "Key includes current image identity; only selected native manifest/config/layers are copied",
+      "hostMounts": "Private descriptor ownership/identity checked before and after the Docker mount operation; daemon bind sources use verified installation paths",
+      "negativeMountQualification": "Docker 29.9.1 / Compose 5.6.0 / local Unix context / Ubuntu 26.04 x64: proc descriptor bind source rejected by runc; fixed installation paths qualify successfully"
     }
   }
 }
