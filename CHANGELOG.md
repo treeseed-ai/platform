@@ -8,6 +8,8 @@
 
 ### Added
 
+- Platform: prepare Task 3B owner initialization and require API/Agent setup review gates (#713).
+
 - Platform: verify Task 3A native CLI and Deployment composition (#708).
 
 - Platform: verify assembled non-activating deployment plans (#697).
