@@ -11,7 +11,7 @@ interface PreparedFixture {
   prepare(port?:number):Promise<PreparedFixture>;close():void;
 }
 interface FixtureModule {PreparedReleaseFixture:new()=>PreparedFixture;}
-interface PlanProjection {id:string;digest:string;expectedComposition:null;blockers:unknown[];artifacts:{kind:string}[];configuration:Record<string,unknown>;}
+interface PlanProjection {id:string;digest:string;expectedComposition:null;blockers:unknown[];artifacts:{kind:string}[];configuration:Record<string,unknown>;recipe:object;pluginBindings:{id:string;provide:string[];inject:string[]}[];}
 interface Envelope {command:string;success:boolean;result:PlanProjection|null;blockers:unknown[];references:string[];}
 class Task2Planning {
   readonly cli=resolve('packages/cli');
@@ -32,7 +32,7 @@ class Task2Planning {
       const qualified=/^VERSION_ID="?26\.04/m.test(readFileSync('/etc/os-release','utf8'))&&process.arch==='x64';
       if(!qualified&&process.env.CORDIS_REQUIRE_PLAN!=='1'){assert.equal(result.status,3);assert.equal(envelope.result,null);assert.equal(existsSync(fixture.installation),false);assert.equal(this.snapshot(),before);return;}
       assert.equal(result.status,0,result.stdout);assert.equal(envelope.success,true);assert.ok(envelope.result);const plan=envelope.result;
-      assert.equal(plan.expectedComposition,null);assert.deepEqual(plan.blockers,[]);assert.deepEqual(plan.configuration,fixture.configuration);assert.deepEqual(plan.artifacts.map(Task2Planning.kind),['package','image']);
+      assert.equal(plan.expectedComposition,null);assert.deepEqual(plan.blockers,[]);assert.deepEqual(plan.configuration,fixture.configuration);assert.ok(plan.recipe);assert.equal(plan.pluginBindings[0]!.id,'fixture');assert.deepEqual(plan.pluginBindings[0]!.provide,['fixture']);assert.deepEqual(plan.artifacts.map(Task2Planning.kind),['package','image']);
       const reference=join(fixture.installation,'.cordis/plans',plan.id+'.json');assert.deepEqual(envelope.references,[reference]);assert.deepEqual(JSON.parse(readFileSync(reference,'utf8')),plan);assert.equal(statSync(reference).mode&0o777,0o600);assert.equal(statSync(join(fixture.installation,'.cordis')).mode&0o777,0o700);
       const repeat=spawnSync(this.binary,['platform','plan','--file',configuration,'--json'],{cwd,encoding:'utf8',stdio:['ignore','pipe','pipe']});assert.equal(repeat.status,0);assert.equal(repeat.stdout,result.stdout);
       assert.equal(this.snapshot(),before);assert.deepEqual(readdirSync(fixture.installation),['.cordis']);assert.equal(existsSync(join(fixture.installation,'.cordis/credentials')),false);assert.equal(existsSync(join(fixture.root,'SCRIPT_CANARY')),false);
