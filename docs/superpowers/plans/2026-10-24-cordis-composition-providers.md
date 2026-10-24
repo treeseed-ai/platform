@@ -1,6 +1,6 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **The maintainer approved this architecture and explicitly resumed Task 3A only on 2026-10-24. This does not authorize later slices or new-owner initialization.**
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Task 3A is integrated. The maintainer resumed Task 3B on 2026-10-24, including its required new-owner initialization/review pause. Task 3C/3D implementation remains unstarted.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -77,7 +77,7 @@ Local implementation and verification are recorded in the [Task 3A delivery](202
 
 **Interfaces:** produces `DeploymentHost.apply(planId, digest, options)`, status/application read-back and the fixed worker protocol. Every runtime mounts required services through Task 3A contracts. No owner implementation moves into API.
 
-- [ ] Initialize only the new owners selected for this slice, using pinned parent setup; stop for review before scaffolding or dependency installation. After explicit resumption, create owner issues/branches, record legacy mappings and commit owner docs and protocol/format schemas.
+- [ ] Initialize API, Identity and Admin in their own canonical repositories through the parent initializer, using pinned setup; API must receive a fresh cleared cordis worktree just like CLI/SDK/Deployment. See the [Task 3B setup gate](2026-10-24-task3b-initialization.md). Stop for review before scaffolding or dependency installation. After explicit resumption, create owner issues/branches, record legacy mappings and commit owner docs and protocol/format schemas.
 - [ ] Write `installed_composition_has_real_contexts`: compiled CLI plan/apply → durable application → actual worker/API Cordis roots → actual configured identity flow → HTTPS browser status with required database/identity/edge/server readiness. The worker survives client/server exit. No injected engine/auth/provider satisfies the scene.
 - [ ] Add intended-red tests for duplicate/missing core provider, wrong scope/engine, concurrent ownership and idempotency conflict. Define/verify installation format migration before writing new registry/active state; preserve Task 2 format-1 plans and reject incompatible old readers truthfully.
 - [ ] Implement the bounded real composition and fixed worker boundary. The worker mounts approved capabilities; it never accepts arbitrary package-specified privileged commands. Test the worker as a program and the default API constructor with real collaborators.
@@ -108,7 +108,7 @@ Local implementation and verification are recorded in the [Task 3A delivery](202
 
 **Interfaces:** produces `AgentApplication` and execution child contexts consuming `ServiceLocator`/leases; a harmless capability fixture supplies two interchangeable providers. This is composition infrastructure, not an implemented Work/Agent product or model provider.
 
-- [ ] Select/initialize Agent through its own setup review pause. After resumption, map the legacy HandlerRegistry/provider-kernel boundary and commit owner docs for root/child lifetimes, provider pins, isolation and authority.
+- [ ] Select/initialize Agent through the parent initializer in its same canonical repository: a fresh cleared cordis worktree with pinned shared setup, preserved legacy history/license and its own explicit review pause. Do not reuse/clear its legacy checkout, skip this gate because other projects were initialized, or initialize it speculatively in Task 3B. After resumption, map the legacy HandlerRegistry/provider-kernel boundary and commit owner docs for root/child lifetimes, provider pins, isolation and authority.
 - [ ] Write `agent_program_uses_selected_registered_provider` and `execution_scope_pins_generation`: start the actual default Agent program; install/select a harmless approved provider through the common manager; execute a bounded fixture task; assert generation identity and child-scope cleanup.
 - [ ] Test missing/duplicate handler, revoked resource grant, cross-execution scope leakage, in-flight switch drain, cancellation boundary, stale leases and failing cleanup. A pending execution must never jump to a new provider or credential.
 - [ ] Implement the minimum real Cordis Agent root/provider contracts. Keep durable Work authority and all real model/task product capabilities deferred to Task 10.
@@ -149,4 +149,4 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required. Task 3A native composition now has owner implementation and local verification; subsequent task behaviors remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. The maintainer has approved the architecture, defaults and sequence and explicitly resumed Task 3A only; perform each new child owner's initialization/review gate when its slice needs it.
+This plan makes Cordis composition and provider hot replacement required. Task 3A native composition now has owner implementation and local verification; subsequent task behaviors remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. The maintainer has approved the architecture, defaults and sequence and subsequently resumed Task 3B, retaining its new-owner setup review pause; perform each new child owner's initialization/review gate when its slice needs it. Agent remains gated at Task 3D.
