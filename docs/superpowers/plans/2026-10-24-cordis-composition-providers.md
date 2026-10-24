@@ -58,16 +58,18 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 
 **Interfaces:** consumes current `DeploymentHost.diagnose/plan` and seven SDK bindings. Produces the spec's `CapabilityToken<T>`, `ProviderRegistration<T>`, `ProviderSelection`, `ServiceLocator.acquire/describe`, `ProviderLease<T>` and `CordisComposition.start` contracts. `CliApplication` remains the public CLI construction class and mounts a real Deployment provider through Cordis.
 
-- [ ] Create/adopt owner issues, pin a new contract version in SDK, define exact export/descriptor shapes and map legacy capability sources. Update/commit owner docs and inherited architecture guidance before tests. Do not rewrite Task 2 historical pins.
-- [ ] Write `compiled_cli_uses_cordis_and_selected_deployment_provider`: invoke the actual built binary with an approved fixture provider whose diagnostic result identifies its exact implementation/generation; verify unchanged CLI envelope and no API dependency. Missing Cordis activation rather than a broken fixture is the expected initial failure.
-- [ ] Write `installed_cli_provider_works_without_node_bun_or_cwd_modules`: import a separately installed generated ESM archive and dependencies from immutable paths; prove the CLI and plugin share the qualified Cordis service identity. Verify help/version remain engine-free, foreign cwd/config isolation, spaces/Unicode, dependency removal and awaited cleanup.
-- [ ] Add same-contract two-provider tests, explicit scope selection, missing/duplicate/incompatible blockers, stale lease/post-release calls and consumer source checks prohibiting concrete-default instantiation at public seams. Use native isolation and dependent fibers; no provider instance map.
-- [ ] Run the new built-program test to establish intended red; record the exact Bun/Cordis/runtime versions and command. Qualify actual external-module loading before choosing its build flags; a failed configuration is not permission to drop dynamic providers.
-- [ ] Implement minimal native roots/facade/class plugins in each owner, preserving help/doctor/plan behavior and non-activation. No installer, containers or domain catalog expansion in this slice.
+- [x] Create/adopt owner issues, pin a new contract version in SDK, define exact export/descriptor shapes and map legacy capability sources. Update/commit owner docs and inherited architecture guidance before tests. Do not rewrite Task 2 historical pins.
+- [x] Write `compiled_cli_uses_cordis_and_selected_deployment_provider`: invoke the actual built binary with an approved fixture provider whose diagnostic result identifies its exact implementation/generation; verify unchanged CLI envelope and no API dependency. Missing Cordis activation rather than a broken fixture is the expected initial failure.
+- [x] Write `installed_cli_provider_works_without_node_bun_or_cwd_modules`: import a separately installed generated ESM archive and dependencies from immutable paths; prove the CLI and plugin share the qualified Cordis service identity. Verify help/version remain engine-free, foreign cwd/config isolation, spaces/Unicode, dependency removal and awaited cleanup.
+- [x] Add same-contract two-provider tests, explicit scope selection, missing/duplicate/incompatible blockers, stale lease/post-release calls and consumer source checks prohibiting concrete-default instantiation at public seams. Use native isolation and dependent fibers; no provider instance map.
+- [x] Run the new built-program test to establish intended red; record the exact Bun/Cordis/runtime versions and command. Qualify actual external-module loading before choosing its build flags; a failed configuration is not permission to drop dynamic providers.
+- [x] Implement minimal native roots/facade/class plugins in each owner, preserving help/doctor/plan behavior and non-activation. No installer, containers or domain catalog expansion in this slice.
 - [ ] Run all participating owner `bun run verify`, default construction and exact assembled old/new program scenes. Publish reviewed package artifacts and update composition only from verified bytes; obtain native CI evidence.
 - [ ] Commit review layers with owner issue refs and open bounded PRs targeting cordis. Report actual composition/cleanup evidence and hand back before Task 3B.
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
+
+Local implementation and verification are recorded in the [Task 3A delivery](2026-10-24-task3a-native-composition.md); exact CI and review read-back are linked from Platform #708. Later task checkboxes remain unstarted.
 
 ## Task 3B: First installed composition and durable host root
 
@@ -147,4 +149,4 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required, while recording that none of these new behaviors has been implemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. The maintainer has approved the architecture, defaults and sequence and explicitly resumed Task 3A only; perform each new child owner's initialization/review gate when its slice needs it.
+This plan makes Cordis composition and provider hot replacement required. Task 3A native composition now has owner implementation and local verification; subsequent task behaviors remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. The maintainer has approved the architecture, defaults and sequence and explicitly resumed Task 3A only; perform each new child owner's initialization/review gate when its slice needs it.

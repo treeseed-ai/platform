@@ -13,8 +13,8 @@ class Task3AComposition {
     assert.equal(record.framework.version,'4.0.0-rc.12');assert.equal(metadata.version,record.framework.version);
     assert.equal(record.framework.gitHead,'01b396240ce47cf2779c40af9bc445bb748fe112');
     assert.ok(readFileSync(join(this.cli,'bun.lock'),'utf8').includes(record.framework.integrity));
-    const projection=JSON.parse(readFileSync(join(this.cli,'node_modules/@treeseed-cordis/sdk/dist/contract.json'),'utf8')) as {version:string};
-    assert.equal(projection.version,'0.3.0-cordis.1');
+    const projection=JSON.parse(readFileSync(join(this.cli,'node_modules/@treeseed-cordis/sdk/dist/contract.json'),'utf8')) as {contractVersion:string};
+    assert.equal(projection.contractVersion,'0.3.0-cordis.1');
   }
   executable():void {
     // Execute the exact owner's committed public verification program; never import checkout source.
