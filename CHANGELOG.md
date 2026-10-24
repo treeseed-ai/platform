@@ -1,15 +1,14 @@
 # Changelog
 
 ## [Unreleased]
-### Added
-- Platform: verify assembled non-activating deployment plans (#697).
-
 ### Fixed
 
 - platform: align authoring and discovery skills with Cordis (#678).
 - platform: align GitHub skills with Cordis migration and issue-retention rules (#678).
 
 ### Added
+
+- Platform: verify assembled non-activating deployment plans (#697).
 
 - platform: qualify Task 1 diagnostic composition (#681).
 
