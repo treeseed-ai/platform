@@ -10,9 +10,8 @@ and `trsd plugin install <NPM package|Git repo>` with activation when safe. Read
 [refined plan](superpowers/plans/2026-10-24-cordis-composition-providers.md), tracked by
 [Platform #704](https://github.com/treeseed-ai/platform/issues/704).
 
-**Stop for design review and explicit resumption.** This checkpoint does not authorize Task 3,
-child initialization, dependency installation, scaffolding or runtime code. After approval,
-begin only Task 3A: executable native composition/provider proof in existing owners. New
+**Current authority: architecture approved; Task 3A only explicitly resumed.** Later Task 3
+slices, new-owner initialization and container activation remain unauthorized. Begin only Task 3A: executable native composition/provider proof in existing owners. New
 owners later retain their own initialization/review pauses. Never revive the historical
 Task 1 prompt below as fresh authority or let its restart-first wording override the new
 reviewed architecture.

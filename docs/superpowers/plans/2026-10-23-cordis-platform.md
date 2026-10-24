@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Tasks 1–2 are merged into their owning cordis branches. They implement diagnostics, exact non-activating plans and contracts, without executing Cordis. The maintainer requested the [required composition/provider design](../specs/2026-10-24-cordis-composition-providers-design.md) and [Task 3A–3D delivery refinement](2026-10-24-cordis-composition-providers.md), tracked by [#704](https://github.com/treeseed-ai/platform/issues/704). These require review and explicit resumption before implementation. Task 3 onward remains unexecuted; new owners retain their setup pause.
+**Execution status:** Tasks 1–2 are merged into their owning cordis branches. They implement diagnostics, exact non-activating plans and contracts, without executing Cordis. The maintainer requested the [required composition/provider design](../specs/2026-10-24-cordis-composition-providers-design.md) and [Task 3A–3D delivery refinement](2026-10-24-cordis-composition-providers.md), tracked by [#704](https://github.com/treeseed-ai/platform/issues/704). The maintainer has approved the architecture and explicitly resumed Task 3A only. No Task 3 implementation evidence exists yet; new owners retain their setup pause.
 
 ## Global constraints
 
@@ -44,7 +44,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Milestone | Required observable result | Status |
 | --- | --- | --- |
 | Tasks 1–2 | Standalone diagnostics and exact saved local plans; seven SDK bindings | Merged, bounded evidence only |
-| Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Proposed; design review first |
+| Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Authorized; implementation evidence pending |
 | Task 3B | First installed API/Identity/Admin composition and durable Deployment worker root | Proposed; new-owner setup review |
 | Task 3C | NPM/Git plugin registration and safe activation through exact plan/apply | Proposed |
 | Task 3D | Agent root/execution-child composition with harmless real provider harness | Proposed; Agent setup review; no domain migration |
@@ -57,7 +57,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Task 10 | Projects → Knowledge/TreeDX → Work/Agent, with typed provider seams | Separately specified domain slices |
 | Cutover | Reviewed preservation/data/settings/recovery plan and explicit authority | Separate; never automatic |
 
-Task 3A is the only next implementation slice after this design is approved and execution explicitly resumed. Runtime acceptance remains unproven until actual default roots/programs and assembled artifacts pass. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
+Task 3A is the only implementation slice explicitly authorized after architecture approval. Runtime acceptance remains unproven until actual default roots/programs and assembled artifacts pass. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
 
 ## Proposed file ownership
 
@@ -265,4 +265,4 @@ Tasks 1–2 are merged and their exact source/artifact evidence remains in the b
 
 Future tasks load the configured release-workflow, create/adopt owner issues and verified origin/cordis feature branches, and follow documentation → outside-in tests → implementation → owner/build/program/assembled/CI verification. Keep all issues, including #678, open until authorized release. No migration cutover or production publication is authorized by milestone completion.
 
-Stop for maintainer review of the required contexts, provider facade, install-and-activate-when-safe defaults and migration sequence. After explicit resumption begin only Task 3A. New owners retain setup review pauses; original services and TreeDX remain unchanged.
+The maintainer approved the required contexts, provider facade, install-and-activate-when-safe defaults and migration sequence, and explicitly resumed Task 3A only. New owners retain setup review pauses; original services and TreeDX remain unchanged.

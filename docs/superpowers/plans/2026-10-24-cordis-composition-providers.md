@@ -1,6 +1,6 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **This document is for review only; no implementation or initialization is authorized by this delivery.**
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **The maintainer approved this architecture and explicitly resumed Task 3A only on 2026-10-24. This does not authorize later slices or new-owner initialization.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -147,4 +147,4 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required, while recording that none of these new behaviors has been implemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. Stop for maintainer review of the architecture, defaults and sequence. After approval and explicit resumption, begin only Task 3A; perform each new child owner's initialization/review gate when its slice needs it.
+This plan makes Cordis composition and provider hot replacement required, while recording that none of these new behaviors has been implemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. The maintainer has approved the architecture, defaults and sequence and explicitly resumed Task 3A only; perform each new child owner's initialization/review gate when its slice needs it.

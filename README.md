@@ -2,7 +2,7 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → native Cordis composition in every runtime → integrated deployment and provider/plugin installation → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: Tasks 1–2 merged; expanded composition architecture awaiting review before Task 3.** The standalone CLI implements help,
+**Status: Tasks 1–2 merged; composition architecture approved; Task 3A only authorized.** The standalone CLI implements help,
 version, doctor and `platform plan --file CONFIG [--json]`. Planning validates prepared local
 package/OCI inputs and persists only private unblocked plans. It starts no containers and
 creates no credentials. Apply, remote transports, the Cordis application host and production
@@ -20,7 +20,7 @@ installs and activates when safe; unresolved restart/migration/trust/build requi
 visible. These are design requirements, not existing commands. Review the
 [context/plugin/package maps](docs/superpowers/specs/2026-10-24-cordis-composition-providers-design.md)
 and [Task 3A–3D delivery plan](docs/superpowers/plans/2026-10-24-cordis-composition-providers.md)
-before authorizing implementation. [Issue #704](https://github.com/treeseed-ai/platform/issues/704)
+for the approved architecture and the explicitly resumed Task 3A scope. [Issue #704](https://github.com/treeseed-ai/platform/issues/704)
 tracks this documentation-only change.
 
 Start with these documents in order:

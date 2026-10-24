@@ -116,7 +116,7 @@ implementation. TreeDX remains the explicit Elixir/Rust exception and is not rew
   exact account/grant identity, capability authorization and installation ownership across swaps.
   See the [composition/provider design](docs/superpowers/specs/2026-10-24-cordis-composition-providers-design.md)
   and [delivery plan](docs/superpowers/plans/2026-10-24-cordis-composition-providers.md). These
-  specifications remain subject to maintainer review before implementation.
+  architecture is maintainer-approved; only Task 3A has explicit implementation resumption.
 - Verify substitutability with the same contract suite for each advertised implementation,
   real production construction and an assembled replacement/read-back/cleanup scenario.
   A class name or interface declaration alone does not prove a capability is swappable.
