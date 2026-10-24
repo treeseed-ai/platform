@@ -498,13 +498,11 @@ $defs:
     additionalProperties: false
 
   WorkItem:
-    # One subscriber's own estimated contribution. No named-agent targeting.
+    # A planned contribution; its author estimates it before readiness.
     type: object
     required:
       - id
       - activity
-      - estimateRef
-      - estimate
       - workspace
       - review
       - objective
@@ -572,7 +570,7 @@ $defs:
           required: [review]
         then:
           type: object
-          required: [maximumReviewCycles, reviewEstimate]
+          required: [maximumReviewCycles]
       - if:
           type: object
           properties:
@@ -981,6 +979,25 @@ $defs:
         then:
           type: object
           required: [summary, executionPlan]
+          properties:
+            executionPlan:
+              type: object
+              properties:
+                workItems:
+                  type: array
+                  items:
+                    type: object
+                    required: [estimate, estimateRef]
+                    allOf:
+                      - if:
+                          type: object
+                          properties:
+                            review:
+                              const: required
+                          required: [review]
+                        then:
+                          type: object
+                          required: [reviewEstimate]
     additionalProperties: false
 
   Question:
