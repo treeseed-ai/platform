@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: treeseed-ai/cli
-          ref: 36d9bd017284d4c8f34dec9da6656304f8e97c5c
+          ref: 6e5ecae5698d8cec1c016977dc16004f614737a7
           path: packages/cli
           persist-credentials: false
       - run: bun install --frozen-lockfile

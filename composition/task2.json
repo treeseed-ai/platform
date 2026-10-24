@@ -5,24 +5,24 @@
   "owners": {
     "sdk": {
       "repository": "https://github.com/treeseed-ai/sdk.git",
-      "commit": "74e81bed406c3ee7d7c866d647cdc49a8a0d95f5",
+      "commit": "39fac9eaf924a48abe4bc00f6af3a9f2929a36aa",
       "baseline": "ce6ab80fd759e7ac97489e02a6534badf292bc57",
       "archiveSha256": "f6b892a0a27fac37d5c1742bbbf7d58b7a8f6d320019d3d244c03173042f73dd",
-      "tree": "9cd46be13cb879bf540f0b1aace9b7e2970bd7b7"
+      "tree": "a68c69c11abb2ab07a08444beee7021ce875021d"
     },
     "deployment": {
       "repository": "https://github.com/treeseed-ai/deployment.git",
-      "commit": "8e90de4491d607b51b9571f43b481c53da077294",
+      "commit": "88fb64ac82ea4eedacba4f9a1e5f8a6bfb354796",
       "baseline": "b25635233bb2c61a344cf6717ce4ff1d2e0c21c0",
-      "archiveSha256": "fb8072d62f18bad3fb683ba3a0ec5954024bcb3a032e91184cb68b8aba6ea09d",
-      "tree": "10530c6b3863a74bfd4bad6f0a0aed22222986d5"
+      "archiveSha256": "96e0b9cadf93c02d538b83f1835b63bef9ca4ec6a1218483ff0abf09367d9239",
+      "tree": "0f748af88ce06dd3a185347dcb82e59b19ca42fa"
     },
     "cli": {
       "repository": "https://github.com/treeseed-ai/cli.git",
-      "commit": "36d9bd017284d4c8f34dec9da6656304f8e97c5c",
+      "commit": "6e5ecae5698d8cec1c016977dc16004f614737a7",
       "baseline": "f28c5d8fcd08fb3adabaa6ca4688b193e9f98c01",
-      "artifactSha256": "42f25ee627c9433d90e34297d0dc36d607c67cbf8044987cbe915e41ccae69c1",
-      "tree": "8b5a7f14db4e8dc972c3f2c37ffc99e42468e9c5"
+      "artifactSha256": "dd85f1477e160c03ebbd21ba9e6178506a4801b83ea41d6da06edcefe5d9c02e",
+      "tree": "a22e5e26a7a3f2be46df8961cfca8004bc0fc9f5"
     }
   },
   "toolchain": {
