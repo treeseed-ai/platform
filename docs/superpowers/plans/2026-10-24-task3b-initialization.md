@@ -35,7 +35,7 @@
 | Identity [#43](https://github.com/treeseed-ai/identity/issues/43) | treeseed-ai/identity | `9d8794f93fdacd6593290e2c90e239cdbd6eb1a7` | `/home/adrian/Projects/treeseed-cordis/packages/identity` | Apache-2.0 |
 | Admin [#134](https://github.com/treeseed-ai/admin/issues/134) | treeseed-ai/admin | `4e9307fed7226c4a33004ea5a159a70e993423fd` | `/home/adrian/Projects/treeseed-cordis/packages/admin` | Apache-2.0 |
 
-Each source tree has one root LICENSE and no additional root notices. Export inventory is 26 files / 10 skills per child, with API's LICENSE replacing the parent blob.
+Each source tree has one root LICENSE and no additional root notices. Export inventory is 26 files / 10 skills per child, with API's LICENSE replacing the parent blob. The copied skills are brainstorming, doc-coauthoring, documentation-writer, find-skills, gh-cli, github-ops, release-workflow, verification-before-completion, writing-plans and writing-skills, including all their tracked support resources and executable modes. The initializer itself is absent.
 
 ## Setup steps
 
