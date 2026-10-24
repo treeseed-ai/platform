@@ -1,7 +1,8 @@
 # Task 3A native composition delivery
 
 Status: Task 3A implemented and locally verified; exact CI/review evidence belongs to the
-linked owner and Platform review candidates in #708. Integration is pending maintainer review. Parent architecture
+linked owner and Platform review candidates in #708. The maintainer has since authorized review, fixes, cordis integration and task-branch cleanup;
+final integration evidence is recorded in #708. Parent architecture
 8974d196318d542eb795f15eaa54150fbd9e08fd; Platform #708, SDK #455, Deployment #906, CLI #313.
 
 This bounded slice consumes the approved [3A plan](2026-10-24-cordis-composition-providers.md#task-3a-prove-native-composition-in-cli-and-local-deployment).
@@ -26,10 +27,11 @@ active installation, live swap or container startup belongs to this slice.
 - [x] Pin new exact owner artifacts in composition/task3a.json without rewriting historical pins.
 - [x] Run strict assembled/native positive CI and hand back review candidates targeting cordis.
 
-Task 3A ends at review handoff. No later slice is authorized by its tests or completion.
+The original Task 3A delivery ended at review handoff; the maintainer subsequently authorized
+review, fixes and cordis integration. No later slice is authorized by its tests or completion.
 
 
-Local evidence: SDK 17, Deployment 24 and CLI 13 tests pass with strict checks/builds;
+Local evidence: SDK 18, Deployment 24 and CLI 13 tests pass with strict checks/builds;
 Platform strict type-check and all 15 policy/assembled tests pass on Ubuntu 26.04 x64,
 Docker 29.9.1 / Compose 5.6.0, using Bun 1.4.4 and Node 24.19.0. Exact source/tree/archive
 and compiled-binary SHA-256 identities are in [task3a.json](../../../composition/task3a.json).
@@ -57,3 +59,17 @@ passed at the pinned SDK/Deployment heads; both Platform runner jobs passed befo
 CLI regression refresh. The PR/issue record carries the final refreshed-head CI evidence.
 The dependency pre-import regression was verified red by temporarily bypassing the dependency
 validator (exit 0 where 3 was required), then green after restoring the verified SDK bytes.
+
+
+## Maintainer-requested integration review
+
+Review reproduced two defects before integration: a pass-through provider schema retained a
+caller-owned configuration object, and a mismatched package capability was rejected only after
+entry module evaluation. Failing native and standalone regressions preceded the fixes. The
+SDK now copies accepted JSON configuration before validation/mounting and checks package
+capability/contract metadata against the requested token before import. The CLI fixture's
+module-evaluation canary proves rejection occurs before entry code runs. These changes retain
+native Cordis resolution/lifecycles and all Task 1–2 behavior. Exact reviewed source and rebuilt
+artifact identities replace the prior Task 3A candidates in task3a.json; old task records stay
+unchanged. Process proposal [#712](https://github.com/treeseed-ai/platform/issues/712) records
+the missing effect/alias oracles separately; no process-file changes belong to this delivery.
