@@ -1,5 +1,24 @@
 # Cordis implementation kickoff prompt
 
+## Current checkpoint before Task 3
+
+Tasks 1–2 are merged; their runtime behavior remains limited to diagnostics and non-activating
+planning. The maintainer requested a documentation-only revision requiring native Cordis
+composition across CLI, API, Deployment and Agent, registered selectable provider adapters,
+and `trsd plugin install <NPM package|Git repo>` with activation when safe. Read the
+[design](superpowers/specs/2026-10-24-cordis-composition-providers-design.md) and
+[refined plan](superpowers/plans/2026-10-24-cordis-composition-providers.md), tracked by
+[Platform #704](https://github.com/treeseed-ai/platform/issues/704).
+
+**Stop for design review and explicit resumption.** This checkpoint does not authorize Task 3,
+child initialization, dependency installation, scaffolding or runtime code. After approval,
+begin only Task 3A: executable native composition/provider proof in existing owners. New
+owners later retain their own initialization/review pauses. Never revive the historical
+Task 1 prompt below as fresh authority or let its restart-first wording override the new
+reviewed architecture.
+
+## Historical Task 1 prompt
+
 Historical kickoff: Task 1 setup review and explicit implementation resumption have now occurred.
 Continue the [Task 1 delivery record](superpowers/plans/2026-10-23-task1-diagnostics.md) and
 [Platform#681](https://github.com/treeseed-ai/platform/issues/681); do not reinitialize or clear

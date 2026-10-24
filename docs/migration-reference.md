@@ -14,6 +14,27 @@ Date: 2026-10-23. Read with the [platform contract](platform-contract.md), [deve
 
 The original analysis lives at `/home/adrian/Projects/platform/docs/platform-seams.md`, SHA-256 `16aefa8a165213263b2dad3d1bb9e4b824467d10a6d76fdba6de8c9d7aa17f6f` when this statement began. It was an untracked local document, not a published Git revision. This hash records the consulted bytes. Do not pretend a GitHub permalink exists for them. The self-contained contract in this migration is the maintained specification; the original audit remains historical explanation.
 
+## Composition/provider migration checkpoint
+
+[Issue #704](https://github.com/treeseed-ai/platform/issues/704) introduces the
+[required native composition/provider architecture](superpowers/specs/2026-10-24-cordis-composition-providers-design.md)
+and [Task 3 refinements](superpowers/plans/2026-10-24-cordis-composition-providers.md).
+Tasks 1–2 are merged in their owners; their direct constructor wiring is not proof of native
+Cordis execution. Before further implementation, review the explicit CLI/API/Deployment/Agent
+context map, typed provider facade, install-and-activate-when-safe behavior and durable
+transition rules. Same-repository ownership, licenses and exact resource/grant identity remain
+binding. The earlier restart-first and no-package-installer scope is superseded only where
+the new design specifies qualified live activation and bounded NPM/Git acquisition.
+
+Do not propagate changes into child worktrees on integration branches during this documentation
+delivery. At each approved owner slice, update that owner’s inherited architecture guidance on
+its own issue branch before code; adopt the reviewed shared baseline without reinitializing an
+existing child or discarding its owner-specific instructions. References to Platform design
+documents must use the exact reviewed parent revision when guidance is adopted into a child,
+not broken child-relative paths. New owners still use the setup
+review pause below. Existing format-1 plan-only state must be versioned/migrated explicitly
+before registry/active-state records are introduced.
+
 ## Dependent-repository setup gate
 
 **Do not initialize a dependent project merely by reading this plan.** When the user selects

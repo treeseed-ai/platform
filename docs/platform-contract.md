@@ -1,6 +1,6 @@
 # CLI-first platform contract
 
-Date: 2026-10-23. Audience: developers and integrating agents. Status: replacement contract with bounded Task 1 diagnostics and Task 2 non-activating planning. Help/version/doctor, local platform plan and SDK contracts are implemented and qualified; installation/apply, remote transports and activated plugin/browser behavior below remain future specification. Tracked by [#672](https://github.com/treeseed-ai/platform/issues/672).
+Date: 2026-10-23. Audience: developers and integrating agents. Status: replacement contract with bounded Task 1 diagnostics and Task 2 non-activating planning. Help/version/doctor, local platform plan and SDK contracts are implemented and qualified; installation/apply, remote transports and activated plugin/browser behavior below remain future specification. Tracked by [#672](https://github.com/treeseed-ai/platform/issues/672). The [required composition/provider design](superpowers/specs/2026-10-24-cordis-composition-providers-design.md) and [refined migration plan](superpowers/plans/2026-10-24-cordis-composition-providers.md), tracked by [#704](https://github.com/treeseed-ai/platform/issues/704), supersede earlier restart-only/API-centric restrictions; they await maintainer review before implementation.
 
 This is the specification for the [development plan](superpowers/plans/2026-10-23-cordis-platform.md). The [migration reference](migration-reference.md) records the original sources and setup gates. Development instructions and skills govern development only; deployed behavior and tests must not depend on the contents of any project's AGENTS.md.
 
@@ -25,7 +25,7 @@ Installation success is not proof of any deferred domain feature. A diagnostic p
 
 | Initial platform | Later, separately authorized slices | Excluded from this migration's initial product |
 | --- | --- | --- |
-| CLI/bootstrap/recovery, one Compose deployment, SDK contracts/client, Cordis host, identity integration, operation transports, small browser shell, plugin configuration, controlled updates and persistent development selection. | Projects; Knowledge and a TreeDX adapter; Work and scoped Agent execution; independent product review and Git delivery; optional public reader. | AI appliance/training/GPU management; Market/commerce; plugin marketplace; multi-cloud provisioning; fleets; arbitrary hot replacement; general workflow designer; advanced Atlas and autonomous portfolios; native Windows. |
+| CLI/bootstrap/recovery, one Compose deployment, SDK contracts/client, Cordis host, identity integration, operation transports, small browser shell, plugin/provider registration from NPM or Git, qualified hot replacement, controlled updates and persistent development selection. | Projects; Knowledge and a TreeDX adapter; Work and scoped Agent execution; independent product review and Git delivery; optional public reader. | AI appliance/training/GPU management; Market/commerce; plugin marketplace; multi-cloud provisioning; fleets; arbitrary hot replacement; general workflow designer; advanced Atlas and autonomous portfolios; native Windows. |
 
 The user's separate AI project may later supply a capability through a reviewed interface. Do not add placeholder model/training/GPU services or schemas to reserve its place.
 
@@ -40,6 +40,13 @@ remain appropriate; framework callbacks bind class methods. Generated output and
 upstream dependencies/resources are not a second handwritten source implementation. TreeDX
 retains its existing Elixir/Rust service and its own workflow.
 
+Native Cordis roots are required in CLI, API, Deployment worker and Agent. Each process
+composes native class plugins through typed service contracts; the ServiceLocator facade
+adds explicit provider selection/inspection while Cordis remains the sole resolver and
+lifecycle. Portable schemas and data objects need no context. The detailed
+[context and package map](superpowers/specs/2026-10-24-cordis-composition-providers-design.md#context-and-process-map)
+defines ownership, scope lifetimes, adapter seams and invariant exceptions.
+
 A capability has one typed interface or abstract-class contract and a selected implementing
 class in the same owning repository. Consumers use the contract; constructors and Cordis
 service bindings provide the implementation. Required selections must be present, unique and
@@ -47,18 +54,20 @@ compatible. A different plugin class can supply the same capability through exis
 without changing consumer code, operation schemas, ownership or authorization policy. Do not
 create another container/registry or speculative inheritance hierarchy to accomplish this.
 
-`PlatformApplication` is the API production composition class. `CliApplication` and
+`PlatformApplication` is the proposed API production composition class; `DeploymentApplication`
+and `AgentApplication` own the other long-lived runtime roots. `CliApplication` is required
+to become a real native Cordis root rather than a manual concrete-provider graph. `CliApplication` and
 `CliOutput` own the executable interface; `OperationDefinition.define(...)` is a static class
 method for schema-backed bindings. `DeploymentHost` is the lifecycle capability contract;
 `ComposeDeploymentHost` supplies the first implementation. Required plugin entrypoints such
 as Identity/Deployment/Transport/Web are classes using Cordis's own lifecycle. Browser views
 and UI components also use class-based implementations. Task 1 exports CliApplication, CliOutput, OperationDefinition and ComposeDeploymentHost
-with DeploymentHost diagnostics and persisted non-activating planning. Other names remain proposed design contracts;
+with diagnostics in Task 1 and persisted non-activating planning in Task 2. Other names remain proposed design contracts;
 none adds an extra remote operation.
 
 One shared contract suite runs against every advertised implementation. Default-construction
 and installed replacement tests prove selection, authorization, disposal/drain, unchanged
-caller semantics and read-back across a controlled restart. An alternative diagnostic class
+caller semantics and read-back across a qualified live swap, with explicit restart where required. An alternative diagnostic class
 may prove this mechanism in a fixture; it does not justify shipping extra providers early.
 
 ## 2. Distribution and operating-system boundaries
@@ -215,13 +224,25 @@ Use Cordis's native constructor/class plugin form, declared injection and config
 
 Same-process plugins are trusted code. Context isolation is service composition, not a sandbox. Untrusted task execution and provider credentials remain separate boundaries when Agent arrives. Credentials never appear in package metadata, browser assets, plans, telemetry or user-visible error bodies.
 
+NPM/Git acquisition is a Deployment-owned provider capability, exposed locally through
+proposed `trsd plugin install <source>`. It resolves immutable artifacts, validates descriptors
+and attempts safe activation through the shared exact plan/apply authority. Per the
+maintainer decision, prepare-only is not the default successful install: safe changes activate;
+restart/migration/build/trust/selection requirements retain a candidate and return a truthful
+non-successful activation outcome. Targets and providers are explicit. No new remote installer
+endpoint or anonymous MCP package-execution tool is implied; the seven operation IDs remain.
+
 The loader only mounts previously installed approved bytes. It does not run package install scripts in the live server or dynamically resolve unpinned code. Candidate build/installation is separate from loading. Each registration returns a disposer; disposal failure remains visible. Durable work/resources need their own drain/fence/recovery proof beyond calling a disposer.
 
-Use a controlled restart for initial plugin activation. Removing a required core plugin or a dependency of another enabled plugin is rejected. Optional failure must be visible and prevent its dependent operations from being advertised as ready. Do not silently fall back to another identity/provider or older implementation.
+Qualified live activation/replacement is required, with admission gating, pinned in-flight
+leases, bounded drain, native Cordis dependency/effect teardown and verified generation
+read-back. Restart/migration is an explicit planned alternative when safety is unproven,
+not an automatic side effect of install. Cordis alone is not a transactional cross-process
+switch or a durable recovery journal. Removing a required core plugin or a dependency of another enabled plugin is rejected. Optional failure must be visible and prevent its dependent operations from being advertised as ready. Do not silently fall back to another identity/provider or older implementation.
 
 ### Proposed SDK signatures
 
-OperationDefinition.define and DeploymentHost.diagnose are implemented in the Task 1 candidates. The remaining class static/instance method contracts are proposed for later tasks. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
+OperationDefinition.define, DeploymentHost.diagnose and persisted non-activating DeploymentHost.plan are implemented in merged Tasks 1–2. Native runtime composition, provider management and the remaining methods are proposed for later tasks. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
 
 | API | Contract |
 | --- | --- |
@@ -306,6 +327,6 @@ Lifecycle commands explicitly fail as unsupported. SDK seven-operation schemas d
 an executing transport. All subsequent plan/apply, installation, identity and plugin work
 requires a new bounded statement of work.
 
-## Task 2 bounded planning candidate
+## Task 2 merged planning boundary
 
-The approved implementation specification is [non-activating plans](superpowers/plans/2026-10-24-non-activating-plans.md). Task 2 adds local planning only; the lifecycle, remote transports and installed composition remain future work.
+The approved implementation specification is [non-activating plans](superpowers/plans/2026-10-24-non-activating-plans.md). Task 2 adds local planning only; the lifecycle, remote transports and installed composition remain future work. Task 3 is now decomposed into [3A native CLI/Deployment composition, 3B installation/API root, 3C package installation and 3D Agent composition baseline](superpowers/plans/2026-10-24-cordis-composition-providers.md). This specification update grants no implementation authority.
