@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { readFileSync, mkdtempSync, rmSync, readdirSync } from 'node:fs';
+import { readFileSync, mkdtempSync, rmSync, readdirSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
@@ -37,9 +37,24 @@ class Task1Composition {
     }
     const deployment=JSON.parse(this.readArchive(join(this.cli,'vendor/deployment.tgz'),'package.json').toString()) as Manifest;
     assert.equal(deployment.cordisCandidate.sdk.commit,pins.sdk.commit);assert.equal(deployment.cordisCandidate.sdk.sha256,pins.sdk.archiveSha256);
-    const head=spawnSync('git',['-C',this.cli,'rev-parse','HEAD'],{encoding:'utf8'});
-    assert.equal(head.status,0);assert.equal(head.stdout.trim(),pins.cli.commit);
+    this.assertSource(this.cli,pins.cli.commit);
     assert.match(readFileSync(join(this.root,'.github/workflows/verify.yml'),'utf8'),new RegExp(pins.cli.commit));
+  }
+  git(directory:string,args:string[]):string {
+    const result=spawnSync('git',['-C',directory,'-c','user.name=Cordis review fixture','-c','user.email=cordis-fixture@example.invalid','-c','core.hooksPath=/dev/null','-c','commit.gpgsign=false',...args],{encoding:'utf8'});
+    assert.equal(result.status,0,result.stderr);return result.stdout.trim();
+  }
+  assertSource(directory:string,commit:string):void {assert.equal(this.git(directory,['rev-parse','HEAD']),commit);}
+  mergeIdentity():void {
+    const directory=mkdtempSync(join(tmpdir(),'cordis-merge-'));
+    try {
+      this.git(directory,['init','--quiet']);writeFileSync(join(directory,'candidate.txt'),'accepted');
+      this.git(directory,['add','candidate.txt']);this.git(directory,['commit','--quiet','-m','candidate']);
+      const candidate=this.git(directory,['rev-parse','HEAD']);this.git(directory,['commit','--quiet','--allow-empty','-m','same tree at different commit']);
+      this.assertSource(directory,candidate);
+      writeFileSync(join(directory,'candidate.txt'),'changed');this.git(directory,['add','candidate.txt']);this.git(directory,['commit','--quiet','-m','changed tree']);
+      assert.throws(this.assertSource.bind(this,directory,candidate));
+    }finally {rmSync(directory,{recursive:true,force:true});}
   }
   async sourcePolicy():Promise<void> {
     const require=createRequire(join(this.cli,'package.json'));
@@ -68,3 +83,5 @@ const suite=new Task1Composition();
 test('assembled: exact owner archives, installed exports and source identity',suite.closure.bind(suite));
 test('assembled: semantic class policy for composition test',suite.sourcePolicy.bind(suite));
 test('assembled: exact standalone artifact from foreign cwd without writes',suite.artifact.bind(suite));
+
+test('assembled: accepted source survives commit rewrite but rejects changed trees',suite.mergeIdentity.bind(suite));
