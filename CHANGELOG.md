@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- Platform: verify assembled non-activating deployment plans (#697).
 
 ### Fixed
 

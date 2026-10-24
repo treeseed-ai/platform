@@ -305,3 +305,7 @@ JSON has command/success/result/problem/blockers/references; exits0/1/2/3 follow
 Lifecycle commands explicitly fail as unsupported. SDK seven-operation schemas do not imply
 an executing transport. All subsequent plan/apply, installation, identity and plugin work
 requires a new bounded statement of work.
+
+## Task 2 bounded planning candidate
+
+The approved implementation specification is [non-activating plans](superpowers/plans/2026-10-24-non-activating-plans.md). Task 2 adds local planning only; the lifecycle, remote transports and installed composition remain future work.
