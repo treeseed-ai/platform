@@ -84,3 +84,23 @@ facade uses Cordis injection and effects for scoped service leases. External-pro
 executes the exact CLI owner verification program against its built artifact, with genuine
 prepared immutable ESM packages, ordinary dependencies, alternatives and failure cleanup.
 Historical Task 1–2 records remain intact. [Delivery record](docs/superpowers/plans/2026-10-24-task3a-native-composition.md).
+
+
+## Task 3B review candidate
+
+[Exact owner sources, package archives and fixture image selections](composition/task3b.json)
+compose the first installed profile. The standalone CLI plans and applies a local verified bundle;
+a detached native Cordis worker owns the installation journal and Docker service lifecycle.
+PostgreSQL and Caddy are Deployment plugins, Keycloak is an Identity plugin, and the API container
+is an API plugin. The API root mounts Identity sessions/OIDC, Admin routes and browser status,
+HTTP routing and the private worker adapter through native Cordis.
+
+Run `bun install --frozen-lockfile --ignore-scripts` and `bun run test:installed` after checking out
+and building the exact CLI candidate in the composition record. This is an activating acceptance
+fixture requiring Ubuntu 26.04 x64, local Docker/Compose, certutil, Playwright Firefox and the pinned
+prepared images. It creates only isolated fixture resources and removes them after verification.
+TLS trust stays in its private browser profile. `platform apply`, `status` and `application` are
+local CLI bindings; authenticated API status/application and the Admin browser use the same host
+worker. API transport parity, plugin acquisition/activation, Agent and generalized recovery remain
+in their separately gated tasks. Agent still requires clean same-repository initialization and a
+maintainer setup review before its first implementation.

@@ -1,0 +1,20 @@
+{
+  "name": "@treeseed-cordis/platform-verification",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:installed": "tsc --strict --noEmit --module nodenext --target es2022 --skipLibCheck --types node,bun tests/task3b-installed.test.ts",
+    "test:installed": "bun run check:installed && bun test tests/task3b-installed.test.ts --timeout 900000"
+  },
+  "devDependencies": {
+    "@treeseed-cordis/sdk": "file:packages/cli/vendor/sdk.tgz",
+    "@treeseed-cordis/deployment": "file:packages/cli/vendor/deployment.tgz",
+    "@treeseed-cordis/api": "file:vendor/task3b/api.tgz",
+    "@treeseed-cordis/identity": "file:vendor/task3b/identity.tgz",
+    "@treeseed-cordis/admin": "file:vendor/task3b/admin.tgz",
+    "playwright": "1.64.1",
+    "typescript": "5.9.3",
+    "@types/bun": "1.4.4",
+    "@types/node": "24.10.1"
+  }
+}

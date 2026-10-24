@@ -39,3 +39,39 @@ jobs:
         run: bun node_modules/typescript/bin/tsc --strict --noEmit --module nodenext --target es2022 --skipLibCheck --typeRoots node_modules/@types --types node ../../tests/task1-composition.test.mts ../../tests/task2-planning.test.mts ../../tests/task3a-composition.test.mts
         working-directory: packages/cli
       - run: node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts tests/task3a-composition.test.mts
+
+  installed-composition:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Check out exact Task 3B CLI candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/cli
+          ref: 4345614be9af4ac6a727fe3b7e122fc6c537177c
+          path: packages/cli
+          persist-credentials: false
+      - run: bun install --frozen-lockfile --ignore-scripts && bun run verify
+        working-directory: packages/cli
+      - run: bun install --frozen-lockfile --ignore-scripts
+      - name: Require real host and browser prerequisites
+        run: |
+          docker info
+          docker compose version
+          sudo apt-get update
+          sudo apt-get install -y libnss3-tools
+          bun x playwright install --with-deps firefox
+      - name: Prepare pinned fixture images; apply never pulls
+        run: |
+          docker pull postgres@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb
+          docker pull quay.io/keycloak/keycloak@sha256:ff4257d0d64efbe99ed1ddfaf07765cc3c36dc7518bf8324d41961327f441c54
+          docker pull caddy@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
+          docker pull node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553
+      - run: bun run test:installed

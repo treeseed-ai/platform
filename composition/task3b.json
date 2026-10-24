@@ -1,0 +1,79 @@
+{
+  "formatVersion": 1,
+  "task": "3B",
+  "fixturesOnly": true,
+  "cli": {
+    "repository": "https://github.com/treeseed-ai/cli.git",
+    "commit": "4345614be9af4ac6a727fe3b7e122fc6c537177c"
+  },
+  "owners": {
+    "sdk": {
+      "repository": "https://github.com/treeseed-ai/sdk.git",
+      "commit": "c03a2b0eab89786439eddea3cff8161e85676b3e",
+      "archive": "packages/cli/vendor/sdk.tgz",
+      "sha256": "d6d0f2f4379d2d95403a226d20899ad22a78a11ccdbb4106116ef0a925295d1b"
+    },
+    "deployment": {
+      "repository": "https://github.com/treeseed-ai/deployment.git",
+      "commit": "ae3185362374a05dff07eaa1951e2c81d132609a",
+      "archive": "packages/cli/vendor/deployment.tgz",
+      "sha256": "b4ae6d339931ea72afdaee2104ff76da20f96e8cd6a76dace194624569dbd409"
+    },
+    "api": {
+      "repository": "https://github.com/treeseed-ai/api.git",
+      "commit": "d1e3b24aed450b8a7a22f415c75d9ff9f1fd2809",
+      "archive": "vendor/task3b/api.tgz",
+      "sha256": "3734b2eafe1a9b073e62b05687ce4c6b2421b6178ee85b49e3566b64a4b50116"
+    },
+    "identity": {
+      "repository": "https://github.com/treeseed-ai/identity.git",
+      "commit": "5085c1887d56daab4440c8c2b47ea712388a4393",
+      "archive": "vendor/task3b/identity.tgz",
+      "sha256": "ef75add5b4a563b1a37794c6b79fdd40cdb7d0561895f320e4e09c2556e05283"
+    },
+    "admin": {
+      "repository": "https://github.com/treeseed-ai/admin.git",
+      "commit": "6416f3741a8dbbf294e2edb757d0c57fcb182a3b",
+      "archive": "vendor/task3b/admin.tgz",
+      "sha256": "acbad5fe017601fba175e68ecab35c7d52224e9d0779bd8aeb869ca0d9d3067d"
+    }
+  },
+  "images": {
+    "database": "postgres@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+    "identity": "quay.io/keycloak/keycloak@sha256:ff4257d0d64efbe99ed1ddfaf07765cc3c36dc7518bf8324d41961327f441c54",
+    "edge": "caddy@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d",
+    "node": "node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553"
+  },
+  "verification": {
+    "local": {
+      "host": "Ubuntu 26.04.1 x64",
+      "bun": "1.4.4",
+      "node": "24.19.0",
+      "docker": "29.9.1",
+      "compose": "5.6.0",
+      "installedScene": {
+        "assertions": 257,
+        "result": "pass"
+      },
+      "owners": {
+        "sdk": 20,
+        "deployment": 32,
+        "cli": 14,
+        "api": 6,
+        "identity": 3,
+        "admin": 3
+      },
+      "historicalAssembledAndSkills": 15
+    },
+    "runtimeEffectBoundary": "Only accepted fixture-owned resources; no legacy service or production publication",
+    "historicalFormats": "Format 1 preserved; format 2 explicit; generalized recovery deferred",
+    "ownerPushCI": {
+      "sdk": 40131731557,
+      "deployment": 40139666606,
+      "cli": 40139666414,
+      "api": 40139665696,
+      "identity": 40139455073,
+      "admin": 40139455244
+    }
+  }
+}

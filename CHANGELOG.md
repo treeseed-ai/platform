@@ -8,6 +8,8 @@
 
 ### Added
 
+- Platform: verify the first installed Cordis composition and durable worker (#713).
+
 - Platform: specify Task 3B installed composition and durable host verification (#713).
 
 - Platform: prepare Task 3B owner initialization and require API/Agent setup review gates (#713).
