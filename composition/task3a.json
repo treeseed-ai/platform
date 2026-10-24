@@ -19,10 +19,10 @@
     },
     "cli": {
       "repository": "https://github.com/treeseed-ai/cli.git",
-      "commit": "b37407f5db08ab091d3fea1fca99fe173fa53c83",
+      "commit": "55f10379a0a24b4e17c15a5a65ae95bb1893aa40",
       "baseline": "81a5017f41af03b0012f28b3160783d9d96d78c9",
       "artifactSha256": "e01306a336065bedcf0f13b231ea405dc42732e173b86706584161d2dfd939f4",
-      "tree": "ad841a7c0426e0125402907c4ff01cb6c97ead90"
+      "tree": "a6df309cc47af58bf4f1cd8f9e31fcc941a909c8"
     }
   },
   "toolchain": {

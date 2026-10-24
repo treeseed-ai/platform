@@ -24,7 +24,7 @@ active installation, live swap or container startup belongs to this slice.
   generation/lifetime fencing, captured lifecycle failures and no secret output.
 - [x] Run complete owner checks/build/unit/integration/smoke; preserve Task 1–2 program checks.
 - [x] Pin new exact owner artifacts in composition/task3a.json without rewriting historical pins.
-- [ ] Run strict assembled/native positive CI and hand back review candidates targeting cordis.
+- [x] Run strict assembled/native positive CI and hand back review candidates targeting cordis.
 
 Task 3A ends at review handoff. No later slice is authorized by its tests or completion.
 
@@ -51,3 +51,9 @@ metadata, immutable path identity, symlinks/extra files, invalid configuration a
 disposal failures. Native error capture prevents failed disposal from emitting success.
 Prepared providers are trusted code; this is integrity/ownership verification, not a sandbox
 against a malicious owner/root or plugin. No package acquisition/installer is delivered.
+
+Review handoff: Platform [#710](https://github.com/treeseed-ai/platform/pull/710). Owner CI
+passed at the pinned SDK/Deployment heads; both Platform runner jobs passed before the final
+CLI regression refresh. The PR/issue record carries the final refreshed-head CI evidence.
+The dependency pre-import regression was verified red by temporarily bypassing the dependency
+validator (exit 0 where 3 was required), then green after restoring the verified SDK bytes.

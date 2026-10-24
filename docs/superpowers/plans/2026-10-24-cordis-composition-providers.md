@@ -64,8 +64,8 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 - [x] Add same-contract two-provider tests, explicit scope selection, missing/duplicate/incompatible blockers, stale lease/post-release calls and consumer source checks prohibiting concrete-default instantiation at public seams. Use native isolation and dependent fibers; no provider instance map.
 - [x] Run the new built-program test to establish intended red; record the exact Bun/Cordis/runtime versions and command. Qualify actual external-module loading before choosing its build flags; a failed configuration is not permission to drop dynamic providers.
 - [x] Implement minimal native roots/facade/class plugins in each owner, preserving help/doctor/plan behavior and non-activation. No installer, containers or domain catalog expansion in this slice.
-- [ ] Run all participating owner `bun run verify`, default construction and exact assembled old/new program scenes. Publish reviewed package artifacts and update composition only from verified bytes; obtain native CI evidence.
-- [ ] Commit review layers with owner issue refs and open bounded PRs targeting cordis. Report actual composition/cleanup evidence and hand back before Task 3B.
+- [x] Run all participating owner `bun run verify`, default construction and exact assembled old/new program scenes. Publish reviewed package artifacts and update composition only from verified bytes; obtain native CI evidence.
+- [x] Commit review layers with owner issue refs and open bounded PRs targeting cordis. Report actual composition/cleanup evidence and hand back before Task 3B.
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
 
