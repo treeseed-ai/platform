@@ -75,8 +75,8 @@ after deleting inherited .gitmodules in the new worktree only. Its index still m
 baseline; original snapshots were rechecked before finishing index-only removal and removing
 confirmed empty fixture directories. Final setup verification passed. This bounded recovery
 changed no original submodule storage and did not reinitialize a user-owned partial checkout.
-[Git's documented cached removal](https://git-scm.com/docs/git-rm#Documentation/git-rm.txt---cached)
-removes only index entries; the separate process proposal records the regression needed before
+[Git's documented cached removal](https://git-scm.com/docs/git-rm)
+removes only index entries; [process proposal #714](https://github.com/treeseed-ai/platform/issues/714) records the regression needed before
 changing initializer instructions.
 
 No copied helpers, owner tests/builds, dependencies, application scaffold, containers, baseline
