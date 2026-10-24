@@ -8,7 +8,7 @@ import { resolve, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createServer, type Server } from 'node:net';
 
-interface Candidate {repository:string;commit:string;baseline:string;archiveSha256?:string;artifactSha256?:string;}
+interface Candidate {repository:string;commit:string;tree:string;baseline:string;archiveSha256?:string;artifactSha256?:string;}
 interface Composition {schemaVersion:number;owners:{sdk:Candidate;deployment:Candidate;cli:Candidate};}
 interface ArchiveDeclaration {repository:string;commit:string;sha256:string;}
 interface Manifest {cordisCandidate:{sdk:ArchiveDeclaration;deployment?:ArchiveDeclaration};}
@@ -37,28 +37,31 @@ class Task1Composition {
     }
     const deployment=JSON.parse(this.readArchive(join(this.cli,'vendor/deployment.tgz'),'package.json').toString()) as Manifest;
     assert.equal(deployment.cordisCandidate.sdk.commit,pins.sdk.commit);assert.equal(deployment.cordisCandidate.sdk.sha256,pins.sdk.archiveSha256);
-    this.assertSource(this.cli,pins.cli.commit);
+    this.assertSource(this.cli,pins.cli.tree);
     assert.match(readFileSync(join(this.root,'.github/workflows/verify.yml'),'utf8'),new RegExp(pins.cli.commit));
   }
   git(directory:string,args:string[]):string {
     const result=spawnSync('git',['-C',directory,'-c','user.name=Cordis review fixture','-c','user.email=cordis-fixture@example.invalid','-c','core.hooksPath=/dev/null','-c','commit.gpgsign=false',...args],{encoding:'utf8'});
     assert.equal(result.status,0,result.stderr);return result.stdout.trim();
   }
-  assertSource(directory:string,commit:string):void {assert.equal(this.git(directory,['rev-parse','HEAD']),commit);}
+  assertSource(directory:string,tree:string):void {
+    assert.equal(this.git(directory,['rev-parse','HEAD^{tree}']),tree,'Checkout source tree differs from the accepted candidate');
+    assert.equal(this.git(directory,['status','--porcelain=v1','--untracked-files=normal']),'','Candidate checkout must be clean');
+  }
   mergeIdentity():void {
     const directory=mkdtempSync(join(tmpdir(),'cordis-merge-'));
     try {
       this.git(directory,['init','--quiet']);writeFileSync(join(directory,'candidate.txt'),'accepted');
       this.git(directory,['add','candidate.txt']);this.git(directory,['commit','--quiet','-m','candidate']);
-      const candidate=this.git(directory,['rev-parse','HEAD']);this.git(directory,['commit','--quiet','--allow-empty','-m','same tree at different commit']);
+      const candidate=this.git(directory,['rev-parse','HEAD^{tree}']);this.git(directory,['commit','--quiet','--allow-empty','-m','same tree at different commit']);
       this.assertSource(directory,candidate);
-      writeFileSync(join(directory,'candidate.txt'),'changed');this.git(directory,['add','candidate.txt']);this.git(directory,['commit','--quiet','-m','changed tree']);
+      writeFileSync(join(directory,'candidate.txt'),'changed');assert.throws(this.assertSource.bind(this,directory,candidate));this.git(directory,['add','candidate.txt']);this.git(directory,['commit','--quiet','-m','changed tree']);
       assert.throws(this.assertSource.bind(this,directory,candidate));
     }finally {rmSync(directory,{recursive:true,force:true});}
   }
   async sourcePolicy():Promise<void> {
     const require=createRequire(join(this.cli,'package.json'));
-    const module=await import(require.resolve('@treeseed-cordis/sdk/source-policy')) as PolicyModule;
+    const module=require('@treeseed-cordis/sdk/source-policy') as PolicyModule;
     const policy=new module.SourcePolicy();
     assert.deepEqual(policy.inspect('tests/task1-composition.test.mts',readFileSync(join(this.root,'tests/task1-composition.test.mts'),'utf8'),this.root),[]);
   }

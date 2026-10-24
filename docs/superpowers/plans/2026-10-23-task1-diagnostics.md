@@ -63,7 +63,7 @@ SDK5tests, Deployment6tests, CLI6tests; Platform11checks (8existing skill regres
 strict TypeScript compilation and semantic class-source inspection. The compiled binary runs
 with no Node/Bun PATH; native doctor reports ready true, exit0, without creating its destination.
 
-Final owner candidate CI:
+Initial candidate CI (superseded by the pre-merge review candidates below):
 [SDK](https://github.com/treeseed-ai/sdk/actions/runs/40035129927),
 [Deployment](https://github.com/treeseed-ai/deployment/actions/runs/40035162607),
 [CLI](https://github.com/treeseed-ai/cli/actions/runs/40035221488).
@@ -81,8 +81,8 @@ permissive operation definitions and contradictory success/problem envelopes.
 Review PRs: [Platform#682](https://github.com/treeseed-ai/platform/pull/682),
 [SDK#451](https://github.com/treeseed-ai/sdk/pull/451),
 [Deployment#901](https://github.com/treeseed-ai/deployment/pull/901),
-[CLI#310](https://github.com/treeseed-ai/cli/pull/310). Review/merge remains pending;
-all task branches are retained and all issues remain open until release. Deployment NOTICE
+[CLI#310](https://github.com/treeseed-ai/cli/pull/310). At the initial handoff, review/merge remained pending and task branches were retained.
+All issues remain open until release. Deployment NOTICE
 matches its original blob4beb3b94c1448461e0c5630405628e9c132b9568. Canonical remotes and
 published bootstrap heads were read back; all worktrees are clean and Platform tracks no
 child source. Original repositories and their ongoing legacy development were preserved.
@@ -96,3 +96,10 @@ A disposable Git fixture checks equal trees at different commits and changed-tre
 SDK import-boundary checks also cover dynamic/require imports and nested excluded directory
 names; fresh builds must remove stale generated modules before packaging. All affected owner
 archives and the assembled binary are requalified and repinned before merge. Issues remain open.
+
+The maintainer explicitly authorized review, cordis integration and task-branch cleanup on
+2026-10-24. Review fixes passed intended red/green regressions and complete local verification:
+SDK 6 tests, Deployment 6 tests, CLI 6 tests and Platform 12 checks. Source-tree pins preserve
+candidate identity across squash commits without depending on a deleted branch or locally
+retained candidate commit. The unchanged binary SHA256 remains recorded in the composition.
+Final-head CI and merge/cleanup read-back are recorded on the four linked PRs and issues.

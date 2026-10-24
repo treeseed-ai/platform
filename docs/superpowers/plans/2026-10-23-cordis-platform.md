@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** The maintainer reviewed the initialized CLI/SDK/Deployment worktrees and explicitly authorized publication and Task 1 diagnostic/contracts implementation. Task 1 candidate checks are recorded below and in the bounded delivery plan. Review/merge remains pending; Tasks 2 onward remain unexecuted and require a new bounded instruction. Other owners retain their setup review pause.
+**Execution status:** The maintainer reviewed the initialized CLI/SDK/Deployment worktrees and explicitly authorized publication and Task 1 diagnostic/contracts implementation. Task 1 candidate checks are recorded below and in the bounded delivery plan. Task 1 is prepared for cordis integration; consult the linked PR states for merge completion. Tasks 2 onward remain unexecuted and require a new bounded instruction. Other owners retain their setup review pause.
 
 ## Global constraints
 
