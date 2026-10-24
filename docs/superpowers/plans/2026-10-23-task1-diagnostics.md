@@ -86,3 +86,13 @@ all task branches are retained and all issues remain open until release. Deploym
 matches its original blob4beb3b94c1448461e0c5630405628e9c132b9568. Canonical remotes and
 published bootstrap heads were read back; all worktrees are clean and Platform tracks no
 child source. Original repositories and their ongoing legacy development were preserved.
+
+## Pre-merge review follow-up (2026-10-24)
+
+Review found that commit-identity equality would reject an unchanged CLI tree after a squash
+merge. Assembled read-back must accept the exact candidate source tree at a different commit,
+require a clean checkout, and continue rejecting any source-tree or artifact-byte difference.
+A disposable Git fixture checks equal trees at different commits and changed-tree rejection.
+SDK import-boundary checks also cover dynamic/require imports and nested excluded directory
+names; fresh builds must remove stale generated modules before packaging. All affected owner
+archives and the assembled binary are requalified and repinned before merge. Issues remain open.
