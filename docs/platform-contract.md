@@ -1,6 +1,6 @@
 # CLI-first platform contract
 
-Date: 2026-10-23. Audience: developers and integrating agents. Status: proposed replacement contract; **nothing in this document is implemented or runtime-verified**. Tracked by [#672](https://github.com/treeseed-ai/platform/issues/672).
+Date: 2026-10-23. Audience: developers and integrating agents. Status: replacement contract with a bounded Task 1 diagnostic candidate. Help/version/doctor and SDK contracts are implemented and locally qualified; lifecycle/remote/plugin/browser behavior below remains future specification. Tracked by [#672](https://github.com/treeseed-ai/platform/issues/672).
 
 This is the specification for the [development plan](superpowers/plans/2026-10-23-cordis-platform.md). The [migration reference](migration-reference.md) records the original sources and setup gates. Development instructions and skills govern development only; deployed behavior and tests must not depend on the contents of any project's AGENTS.md.
 
@@ -52,8 +52,9 @@ create another container/registry or speculative inheritance hierarchy to accomp
 method for schema-backed bindings. `DeploymentHost` is the lifecycle capability contract;
 `ComposeDeploymentHost` supplies the first implementation. Required plugin entrypoints such
 as Identity/Deployment/Transport/Web are classes using Cordis's own lifecycle. Browser views
-and UI components also use class-based implementations. These are proposed design names,
-not implemented exports or additional remote operations.
+and UI components also use class-based implementations. Task 1 exports CliApplication, CliOutput, OperationDefinition and ComposeDeploymentHost
+with the diagnostic-only DeploymentHost interface. Other names remain proposed design contracts;
+none adds an extra remote operation.
 
 One shared contract suite runs against every advertised implementation. Default-construction
 and installed replacement tests prove selection, authorization, disposal/drain, unchanged
@@ -220,7 +221,7 @@ Use a controlled restart for initial plugin activation. Removing a required core
 
 ### Proposed SDK signatures
 
-These are proposed class static/instance method contracts, not implemented declarations. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
+OperationDefinition.define and DeploymentHost.diagnose are implemented in the Task 1 candidates. The remaining class static/instance method contracts are proposed for later tasks. Capability interfaces describe class implementations, never function bags. Exact wire shapes are listed below; infer caller types from the executable schema rather than maintaining parallel interfaces.
 
 | API | Contract |
 | --- | --- |
@@ -283,3 +284,24 @@ Use separate migration release identities so existing SDK/CLI/npm channels and d
 A milestone is complete only with documentation, an initially failing test at the user-observable boundary, regression/integration/unit coverage, production default wiring, a clean build/CI and execution of the assembled artifact. Missing environments or target machines remain unproven. Before each coded acceptance invocation, run complete participating-owner unit/integration suites on that exact candidate; focused tests do not replace them.
 
 After the foundation passes, add Projects → Knowledge → one authorized Work/Agent/independent-review/product-retrieval journey. Keep external execution and durable authority distinct. Defer advanced scheduling, broad service catalogs and public content frameworks until the relevant journey needs them. No repository or module can be considered migrated solely because it has a plugin declaration.
+
+## Task 1 implementation boundary
+
+The maintainer reviewed the three initialized owner worktrees and authorized publication and
+Task 1 resumption. [Delivery plan](superpowers/plans/2026-10-23-task1-diagnostics.md) and
+[composition record](../composition/task1.json) identify exact owner candidates and native
+qualification. CLI `CliApplication`/`CliOutput`, SDK `OperationDefinition`/`PlatformOperations`
+and Deployment `ComposeDeploymentHost` implement only the diagnostic executable and contracts.
+Owner READMEs in the linked PRs define exact current fields and flags:
+[CLI#310](https://github.com/treeseed-ai/cli/pull/310),
+[SDK#451](https://github.com/treeseed-ai/sdk/pull/451),
+[Deployment#901](https://github.com/treeseed-ai/deployment/pull/901).
+
+Current executable syntax: `trsd --help`, `trsd --version`,
+`trsd doctor [--json] [--context NAME] [--installation ABSOLUTE_PATH] [--port INTEGER]`.
+Doctor checks Ubuntu26.04x64, local Unix engine authority, Linux/amd64 server, Compose,
+2CPUs/2GiB engine memory, owned writable storage with1GiB free and temporary loopback bind.
+JSON has command/success/result/problem/blockers/references; exits0/1/2/3 follow the catalog.
+Lifecycle commands explicitly fail as unsupported. SDK seven-operation schemas do not imply
+an executing transport. All subsequent plan/apply, installation, identity and plugin work
+requires a new bounded statement of work.

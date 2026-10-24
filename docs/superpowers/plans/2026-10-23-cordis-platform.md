@@ -1,6 +1,6 @@
 # CLI-first Cordis Platform Implementation Plan
 
-> **For implementing agents:** Load the actual configured workflow/testing skills and deliver one bounded task at a time. Each eligible Cordis repository uses the parent initializer and pauses for user review before code. TreeDX remains its existing Elixir/Rust service. Checkboxes below record future work, not passing evidence.
+> **For implementing agents:** Load the actual configured workflow/testing skills and deliver one bounded task at a time. Each eligible Cordis repository uses the parent initializer and pauses for user review before code. TreeDX remains its existing Elixir/Rust service. Checked Task 1 boxes record verified candidate evidence; later unchecked tasks remain future work.
 
 **Goal:** Deliver a standalone CLI that installs and recovers one integrated Cordis platform, then expose its bounded plugin lifecycle through REST, SDK, CLI, MCP and browser actions before adding feature domains.
 
@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Planning only. Every checkbox below is unexecuted future work. The user's current instruction is **do not implement anything yet**. Use the installed skills when implementation is explicitly requested; saving this plan authorizes no execution, delegation or skill installation. The later kickoff prompt may authorize a bounded task, but cannot bypass a participating repository's setup pause.
+**Execution status:** The maintainer reviewed the initialized CLI/SDK/Deployment worktrees and explicitly authorized publication and Task 1 diagnostic/contracts implementation. Task 1 candidate checks are recorded below and in the bounded delivery plan. Task 1 is prepared for cordis integration; consult the linked PR states for merge completion. Tasks 2 onward remain unexecuted and require a new bounded instruction. Other owners retain their setup review pause.
 
 ## Global constraints
 
@@ -39,7 +39,7 @@
 
 ## Proposed file ownership
 
-All paths below are **future files**, not present implementation. `packages/{project}` is an
+This table maps the full plan. Task 1 current files and exact candidates are identified in the bounded diagnostic delivery plan; remaining paths are future files. `packages/{project}` is an
 independent Git repository, excluded by Platform's `/packages/` rule. Before writing anything
 inside an eligible new owner, use the parent initializer to prepare its cleared `cordis`
 worktree and copied setup, then stop for user review/resumption. TreeDX is excluded.
@@ -75,7 +75,7 @@ is consumed by CLI and API as the same resolved package/artifact, not copied ada
 
 ## Verification vocabulary to establish
 
-Task 1 must define meaningful owner script names where needed, not a root monorepo toolchain. Run owner commands in `packages/{project}` and retain exact candidate results. Platform orchestration consumes those results/artifacts and runs assembled checks. These command names describe the proposed verification vocabulary, not existing evidence:
+Task 1 must define meaningful owner script names where needed, not a root monorepo toolchain. Run owner commands in `packages/{project}` and retain exact candidate results. Platform orchestration consumes those results/artifacts and runs assembled checks. Task 1 owner READMEs define the implemented check/build/unit/integration/smoke/verify scripts and record evidence. Other commands below remain future verification vocabulary:
 
 | Command | Required meaning |
 | --- | --- |
@@ -93,19 +93,23 @@ The outside-in order concerns **test authoring**. First write the user-observabl
 
 ## Task 1: Lock the public vocabulary and standalone diagnostic binary
 
+Current delivery: [bounded diagnostic plan](2026-10-23-task1-diagnostics.md);
+[exact candidates](../../../composition/task1.json). Setup review and publication were explicitly
+authorized. Remaining unchecked gates track candidate/CI completion, not setup approval.
+
 **Files:** Platform contract/composition instructions; SDK `src/contracts/{platform,operations}.ts` and owner tests; CLI `src/{main,commands,output}.ts`, `scripts/build-cli.ts`, `tests/smoke/cli-program.test.ts`, `tests/integration/default-cli.test.ts`; Deployment `src/diagnose.ts` and real diagnostic tests. Each owner gets its own tool pins, manifest/lock and strict configuration after setup. Update owner docs with actual commands before code.
 
 **Interfaces:** consumes the contract's command/exit-code catalog. Class composition produces `OperationDefinition.define(definition)`, portable seven-operation bindings, `CliProgramFixture.run(args)` test fixture and a compiled `trsd` with version/help/doctor only. Deployment owns `DeploymentHost.diagnose(configuration?)`; CLI invokes that same packaged implementation. No successful install/apply path exists yet and unsupported commands must say so.
 
-- [ ] Invoke Platform's initialize-project skill only for `packages/cli`, `packages/sdk` and `packages/deployment`: independent cleared `cordis` worktrees with exact shared setup excluding the initializer. Report paths/refs/license exceptions and STOP for each user review/adjustments and explicit resumption. Do not scaffold code or dependencies while waiting.
-- [ ] Make owner compiler/lint checks enforce the TypeScript/class source policy, with positive class/method cases and rejected handwritten JS, standalone functions/factories and functional UI. Use semantic AST checks in the actual installed toolchain; do not introduce an empty/regex-only architecture gate.
-- [ ] Specify typed class contracts and owner classes before code: CLI `CliApplication`/`CliOutput`, SDK `OperationDefinition` static binding methods, Deployment `DeploymentHost` contract/`ComposeDeploymentHost` diagnostics. Tests/fixtures/build tooling are classes too; no function-based scaffold.
-- [ ] Document one exact toolchain and first native Linux target, after checking official sources and the current host. Preserve dependency pins/lock and record Cordis candidate revision; no speculative broad platform support claim.
-- [ ] Write `cli_reports_identity_and_checks_without_mutation`: spawn the compiled binary from another working directory and a path containing spaces; assert exit 0 for help/version, documented JSON envelope for doctor, zero created configuration/credentials/containers and stderr free of secrets. Test a symlinked executable and closed stdin.
-- [ ] Add `doctor_rejects_wrong_engine_and_foreign_installation`: actual configuration points to an unexpected remote engine/foreign directory; assert blocker and exit 3 before changes. Test missing engine/Compose, unsupported architecture, occupied port and permission denial. Test unknown command/flag → exit 2 and actionable help.
-- [ ] Add strict schema/unit cases for all seven IDs, exact fields, invalid/missing/unknown values and effect/exposure policy. Add a real default CLI construction test with no collaborator injection.
-- [ ] Build the binary, run smoke to classify intended red, implement only CLI parser/output, Deployment read-only diagnostics and SDK contracts, then run complete current unit/integration, check/build and smoke. Record actual commands/hashes; no Docker/application lifecycle claim.
-- [ ] Commit docs → tests → implementation separately with the task issue reference. Verify/push/PR under the current workflow; do not merge main. This gate proves a distributable front door, not an installed platform.
+- [x] Invoke Platform's initialize-project skill only for `packages/cli`, `packages/sdk` and `packages/deployment`: independent cleared `cordis` worktrees with exact shared setup excluding the initializer. Report paths/refs/license exceptions and STOP for each user review/adjustments and explicit resumption. Do not scaffold code or dependencies while waiting.
+- [x] Make owner compiler/lint checks enforce the TypeScript/class source policy, with positive class/method cases and rejected handwritten JS, standalone functions/factories and functional UI. Use semantic AST checks in the actual installed toolchain; do not introduce an empty/regex-only architecture gate.
+- [x] Specify typed class contracts and owner classes before code: CLI `CliApplication`/`CliOutput`, SDK `OperationDefinition` static binding methods, Deployment `DeploymentHost` contract/`ComposeDeploymentHost` diagnostics. Tests/fixtures/build tooling are classes too; no function-based scaffold.
+- [x] Document one exact toolchain and first native Linux target, after checking official sources and the current host. Preserve dependency pins/lock and record Cordis candidate revision; no speculative broad platform support claim.
+- [x] Write `cli_reports_identity_and_checks_without_mutation`: spawn the compiled binary from another working directory and a path containing spaces; assert exit 0 for help/version, documented JSON envelope for doctor, zero created configuration/credentials/containers and stderr free of secrets. Test a symlinked executable and closed stdin.
+- [x] Add `doctor_rejects_wrong_engine_and_foreign_installation`: actual configuration points to an unexpected remote engine/foreign directory; assert blocker and exit 3 before changes. Test missing engine/Compose, unsupported architecture, occupied port and permission denial. Test unknown command/flag → exit 2 and actionable help.
+- [x] Add strict schema/unit cases for all seven IDs, exact fields, invalid/missing/unknown values and effect/exposure policy. Add a real default CLI construction test with no collaborator injection.
+- [x] Build the binary, run smoke to classify intended red, implement only CLI parser/output, Deployment read-only diagnostics and SDK contracts, then run complete current unit/integration, check/build and smoke. Record actual commands/hashes; no Docker/application lifecycle claim.
+- [x] Commit docs → tests → implementation separately with the task issue reference. Verify/push/PR under the current workflow; do not merge main. This gate proves a distributable front door, not an installed platform.
 
 ## Task 2: Resolve exact composition and produce non-activating plans
 
@@ -224,8 +228,8 @@ The outside-in order concerns **test authoring**. First write the user-observabl
 
 ## Delivery handoff and current verification limits
 
-This documentation delivery creates no files from the proposed implementation tree, test harness, workflow or release bundle. Its validation concerns documentation links/anchors, cross-document naming, required coverage, whitespace and preservation of user setup. There are no new unit/integration/build/smoke/acceptance results to report.
+The original documentation delivery created no implementation or product verification. The subsequent authorized Task 1 delivery now includes owner code, tests, build scripts and isolated migration workflows. Its current unit/integration/build/smoke and exact assembled verification results are recorded in the bounded diagnostic delivery plan and composition declaration. Later tasks and production release remain unverified.
 
 Future tasks load the configured release-workflow at start and before completion, create/adopt an issue, use a feature branch off the authorized integration baseline, update docs/changelog first, commit outside-in test and implementation layers, verify actual artifacts, and retain CI evidence. Do not run example commands copied from a generic skill when this project has no corresponding toolchain/script. PR testing boxes describe actual observed results; unrun gates stay unproven. Keep issues open until the applicable release policy closes them.
 
-The current maintainer asked for instructions only. Deliver the reviewed plan and stop; do not begin Task 1, install execution skills or ask for immediate implementation approval as part of this documentation task.
+The original documentation handoff requested instructions only. The maintainer subsequently approved the three setup worktrees, publication and bounded Task 1 implementation. That authority is now exercised in the linked candidate PRs. Hand off those verified candidates for review; do not begin Task 2 without a new bounded instruction.

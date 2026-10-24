@@ -9,6 +9,8 @@
 
 ### Added
 
+- platform: qualify Task 1 diagnostic composition (#681).
+
 - platform: add Cordis project initialization and class-based TypeScript architecture rules (#676).
 
 - platform: document CLI-first Cordis development and independent project ownership (#672).

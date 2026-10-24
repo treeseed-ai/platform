@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "scope": "Task 1 diagnostic executable and seven SDK contracts only",
+  "parentSetup": "b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e",
+  "owners": {
+    "sdk": {
+      "repository": "https://github.com/treeseed-ai/sdk.git",
+      "commit": "d7503cb5ff5d62b331c3ba9386e46706bcaee3ec",
+      "baseline": "395286a3268a1d9990046011d1145702df052ddf",
+      "archiveSha256": "18950f68895cf5bf229240760cbc49cda7427384dbdcc4a4b5411f808f926c00",
+      "tree": "bbc923a5e128bb9a88abaa3740d9f8ef30dfaa49"
+    },
+    "deployment": {
+      "repository": "https://github.com/treeseed-ai/deployment.git",
+      "commit": "997ca86f516169cb3a0a0c2bd40527b3b453928d",
+      "baseline": "1b904ade5fd5f3ec0945db7bef59274185d92dde",
+      "archiveSha256": "bc042a167b3d9ca7ab2a58d4536caf84fecf88cdb650c759ba9ea92712fcb5b7",
+      "tree": "4771e45d98be41de9a6b7b26c9faff4e304ce160"
+    },
+    "cli": {
+      "repository": "https://github.com/treeseed-ai/cli.git",
+      "commit": "66f69587a68df35ad6c5259a583a622b866cfa75",
+      "baseline": "612c2871b43e7b0868532f1705c4e4dd5c9b6f75",
+      "artifactSha256": "ad809c4a057df4af497a23796ecb5feb360078d4733c28508dd1f7630a738ac9",
+      "tree": "b708817f3e997568391296f73b11ee992ed2db87"
+    }
+  },
+  "toolchain": {
+    "bun": "1.4.4+38afee6c8",
+    "typescript": "5.9.3",
+    "zod": "4.6.7",
+    "node": "24.19.0",
+    "cordisCandidate": "35fdc969e4b6c48c48ed44717c7a018324e4dd88"
+  },
+  "nativeQualification": {
+    "os": "Ubuntu 26.04.1 LTS",
+    "architecture": "x64",
+    "docker": "29.9.1",
+    "compose": "5.6.0",
+    "context": "default",
+    "endpoint": "unix:///var/run/docker.sock",
+    "commands": [
+      "bun run verify (SDK, Deployment, CLI)",
+      "node --test tests/skills/*.test.mts tests/task1-composition.test.mts"
+    ],
+    "unqualified": [
+      "macOS",
+      "WSL2",
+      "ARM64",
+      "installation/apply",
+      "remote transports",
+      "Cordis host"
+    ]
+  },
+  "pullRequests": {
+    "sdk": "https://github.com/treeseed-ai/sdk/pull/451",
+    "deployment": "https://github.com/treeseed-ai/deployment/pull/901",
+    "cli": "https://github.com/treeseed-ai/cli/pull/310"
+  }
+}

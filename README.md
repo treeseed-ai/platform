@@ -2,7 +2,20 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → integrated deployment → SDK and Cordis plugin lifecycle → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: design and development instructions only.** There is no new CLI, SDK, application, container deployment, product test suite, or release here yet. Commands and file layouts in the product documentation are proposed implementation contracts, not runnable installation instructions. Implementation requires a subsequent instruction from the maintainer. Development-skill regression tests are separate from product implementation.
+**Status: Task 1 diagnostic candidate.** The reviewed CLI/SDK/Deployment baselines are published
+and the maintainer authorized this bounded implementation. The standalone binary implements
+help, version and read-only doctor; the SDK defines seven portable operation contracts.
+There is no installation/apply, remote transport, Cordis host or production release yet.
+The remaining platform contract describes future behavior. See the
+[Task 1 delivery record](docs/superpowers/plans/2026-10-23-task1-diagnostics.md) and
+[exact composition](composition/task1.json).
+
+Build and qualify each owner using its README and pinned Bun1.4.4 toolchain. After the CLI
+build, run `packages/cli/dist/trsd-linux-x64 --help`, `--version` or `doctor --json`.
+Doctor's qualified host is Ubuntu26.04 x64 with a local Linux/amd64 Docker engine. It reports
+blocked prerequisites on other hosts. It creates no installation or containers. Platform's
+`node --test tests/task1-composition.test.mts` verifies exact candidate archives and runs the
+assembled executable; owner code is consumed through packages, never sibling source imports.
 
 Start with these documents in order:
 
@@ -57,4 +70,4 @@ destination; spikes retain the project workflow and child setup gates.
 Run policy regressions with `node --test tests/skills/*.test.mts` using Node.js 24 (verified
 with 24.19.0). These checks inspect executable examples and local skill dependencies;
 read-only scenario review complements them. Neither check proves universal agent compliance,
-GitHub protections, CI or the proposed product runtime. The product itself remains unimplemented.
+GitHub protections, CI or the proposed product runtime. Task 1 product checks are recorded separately in the exact composition and owner CI.
