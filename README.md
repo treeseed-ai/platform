@@ -11,7 +11,7 @@ publication remain future work. See the [Task 2 plan](docs/superpowers/plans/202
 Build each independent owner using its README and pinned Bun 1.4.4 toolchain. The qualified
 planning host is Ubuntu 26.04 x64 with a local Linux/amd64 Docker engine. Other hosts report
 explicit blockers. Platform's exact composition and assembled Node tests bind source trees,
-archives and the built CLI; owner code is consumed through public packages.
+archives and the built CLI; see [Task 2 composition](composition/task2.json). Owner code is consumed through public packages.
 
 Start with these documents in order:
 
@@ -67,3 +67,5 @@ Run policy regressions with `node --test tests/skills/*.test.mts` using Node.js 
 with 24.19.0). These checks inspect executable examples and local skill dependencies;
 read-only scenario review complements them. Neither check proves universal agent compliance,
 GitHub protections, CI or the proposed product runtime. Task 1 product checks are recorded separately in the exact composition and owner CI.
+
+Run assembled verification with Node 24.19.0: `node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts`. Snapshot tests run serially to avoid other tests’ temporary doctor port probes. CI runs Ubuntu 24.04 prerequisite rejection and a mandatory successful-plan gate on Ubuntu 26.04; no skipped positive gate counts as qualification.

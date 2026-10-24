@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "scope": "Task 2 non-activating local deployment planning plus Task 1 diagnostics and seven SDK contracts",
+  "parentSetup": "b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e",
+  "owners": {
+    "sdk": {
+      "repository": "https://github.com/treeseed-ai/sdk.git",
+      "commit": "a7075fc8c1362b0121c9fd88dbdf115fefcd40d4",
+      "baseline": "ce6ab80fd759e7ac97489e02a6534badf292bc57",
+      "archiveSha256": "f5d5831fec2a727e6ec21abd0b5a9ae12b3a0d278f15139c8b94f93778693ba4",
+      "tree": "ffde5b5ba5f007e7c39111bd2054d47d3fcb0cd3"
+    },
+    "deployment": {
+      "repository": "https://github.com/treeseed-ai/deployment.git",
+      "commit": "fad496b270ebf4905ff6d61f5a8488556b80075d",
+      "baseline": "b25635233bb2c61a344cf6717ce4ff1d2e0c21c0",
+      "archiveSha256": "186bbe302f965c41e5b3e028766040a0af5ae0e058bc4e92258ae3ebd53f843f",
+      "tree": "d5e4dac9310cf9fe54456db1209e9d1bcfa2e460"
+    },
+    "cli": {
+      "repository": "https://github.com/treeseed-ai/cli.git",
+      "commit": "80aa5573f448ea1e55829c6bb8f4eda678efec2a",
+      "baseline": "f28c5d8fcd08fb3adabaa6ca4688b193e9f98c01",
+      "artifactSha256": "1af102184480f020ed4e0e244ae326fc71872347d4f30fe52302ff19274ff80f",
+      "tree": "aaf3081eb42a61e90437bc53179de39992a100db"
+    }
+  },
+  "toolchain": {
+    "bun": "1.4.4+38afee6c8",
+    "typescript": "5.9.3",
+    "zod": "4.6.7",
+    "node": "24.19.0",
+    "cordisCandidate": "35fdc969e4b6c48c48ed44717c7a018324e4dd88"
+  },
+  "nativeQualification": {
+    "os": "Ubuntu 26.04.1 LTS",
+    "architecture": "x64",
+    "docker": "29.9.1",
+    "compose": "5.6.0",
+    "context": "default",
+    "endpoint": "unix:///var/run/docker.sock",
+    "commands": [
+      "bun run verify (SDK, Deployment, CLI)",
+      "node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts"
+    ],
+    "unqualified": [
+      "macOS",
+      "WSL2",
+      "ARM64",
+      "installation/apply",
+      "remote transports",
+      "Cordis host",
+      "production application composition"
+    ]
+  }
+}
