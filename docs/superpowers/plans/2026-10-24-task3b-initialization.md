@@ -82,3 +82,7 @@ changing initializer instructions.
 No copied helpers, owner tests/builds, dependencies, application scaffold, containers, baseline
 publication or product implementation ran. Stop here for maintainer review, adjustments and
 explicit resumption/publication direction. This is setup completion, not Task 3B runtime completion.
+
+## Maintainer review passed and implementation resumed (2026-10-24)
+
+The maintainer approved all three setups and explicitly authorized publication and Task 3B. The three bootstrap SHAs above were published unchanged to each canonical HTTPS remote's cordis ref, fetched and read back. Runtime issues/branches were then created from fresh verified heads: API #617, Identity #44, Admin #135; SDK #457, Deployment #908, CLI #315. The historical setup-only restrictions and unpublished status above describe the completed setup pass, not the current authorization. See the [installed composition implementation plan](2026-10-24-task3b-installed-composition.md). No Agent initialization is authorized yet.
