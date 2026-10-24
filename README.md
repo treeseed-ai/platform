@@ -2,20 +2,16 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → integrated deployment → SDK and Cordis plugin lifecycle → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: Task 1 diagnostic candidate.** The reviewed CLI/SDK/Deployment baselines are published
-and the maintainer authorized this bounded implementation. The standalone binary implements
-help, version and read-only doctor; the SDK defines seven portable operation contracts.
-There is no installation/apply, remote transport, Cordis host or production release yet.
-The remaining platform contract describes future behavior. See the
-[Task 1 delivery record](docs/superpowers/plans/2026-10-23-task1-diagnostics.md) and
-[exact composition](composition/task1.json).
+**Status: Task 2 non-activating planning candidate.** The standalone CLI implements help,
+version, doctor and `platform plan --file CONFIG [--json]`. Planning validates prepared local
+package/OCI inputs and persists only private unblocked plans. It starts no containers and
+creates no credentials. Apply, remote transports, the Cordis application host and production
+publication remain future work. See the [Task 2 plan](docs/superpowers/plans/2026-10-24-non-activating-plans.md).
 
-Build and qualify each owner using its README and pinned Bun1.4.4 toolchain. After the CLI
-build, run `packages/cli/dist/trsd-linux-x64 --help`, `--version` or `doctor --json`.
-Doctor's qualified host is Ubuntu26.04 x64 with a local Linux/amd64 Docker engine. It reports
-blocked prerequisites on other hosts. It creates no installation or containers. Platform's
-`node --test tests/task1-composition.test.mts` verifies exact candidate archives and runs the
-assembled executable; owner code is consumed through packages, never sibling source imports.
+Build each independent owner using its README and pinned Bun 1.4.4 toolchain. The qualified
+planning host is Ubuntu 26.04 x64 with a local Linux/amd64 Docker engine. Other hosts report
+explicit blockers. Platform's exact composition and assembled Node tests bind source trees,
+archives and the built CLI; see [Task 2 composition](composition/task2.json). Owner code is consumed through public packages.
 
 Start with these documents in order:
 
@@ -71,3 +67,5 @@ Run policy regressions with `node --test tests/skills/*.test.mts` using Node.js 
 with 24.19.0). These checks inspect executable examples and local skill dependencies;
 read-only scenario review complements them. Neither check proves universal agent compliance,
 GitHub protections, CI or the proposed product runtime. Task 1 product checks are recorded separately in the exact composition and owner CI.
+
+Run assembled verification with Node 24.19.0: `node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts`. Snapshot tests run serially to avoid other tests’ temporary doctor port probes. CI runs Ubuntu 24.04 prerequisite rejection and a mandatory successful-plan gate on Ubuntu 26.04; no skipped positive gate counts as qualification.

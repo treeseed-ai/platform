@@ -16,7 +16,7 @@ interface PolicyModule {SourcePolicy:new()=>{inspect(file:string,source:string,r
 class Task1Composition {
   readonly root=resolve(process.cwd());
   readonly cli=join(this.root,'packages/cli');
-  readonly composition=JSON.parse(readFileSync(join(this.root,'composition/task1.json'),'utf8')) as Composition;
+  readonly composition=JSON.parse(readFileSync(join(this.root,'composition/task2.json'),'utf8')) as Composition;
   server:Server|null=null;
   completion:((port:number)=>void)|null=null;
   sha(bytes:Uint8Array):string {return createHash('sha256').update(bytes).digest('hex');}
@@ -63,7 +63,7 @@ class Task1Composition {
     const require=createRequire(join(this.cli,'package.json'));
     const module=require('@treeseed-cordis/sdk/source-policy') as PolicyModule;
     const policy=new module.SourcePolicy();
-    assert.deepEqual(policy.inspect('tests/task1-composition.test.mts',readFileSync(join(this.root,'tests/task1-composition.test.mts'),'utf8'),this.root),[]);
+    for(const path of ['tests/task1-composition.test.mts','tests/task2-planning.test.mts'])assert.deepEqual(policy.inspect(path,readFileSync(join(this.root,path),'utf8'),this.root),[]);
   }
   listen(completion:(port:number)=>void):void {this.completion=completion;this.server=createServer();this.server.listen(0,'127.0.0.1',this.listening.bind(this));}
   listening():void {const address=this.server!.address();assert.equal(typeof address,'object');this.completion!((address as {port:number}).port);this.server!.close();}
@@ -73,7 +73,7 @@ class Task1Composition {
     const cwd=mkdtempSync(join(tmpdir(),'cordis-assembled-'));
     try {
       const version=spawnSync(binary,['--version'],{cwd,encoding:'utf8',env:{...process.env,PATH:''},stdio:['ignore','pipe','pipe']});
-      assert.equal(version.status,0);assert.equal(version.stdout,'trsd 0.0.0-cordis.1\n');assert.equal(version.stderr,'');
+      assert.equal(version.status,0);assert.equal(version.stdout,'trsd 0.0.0-cordis.2\n');assert.equal(version.stderr,'');
       const port=await new Promise<number>(this.listen.bind(this));
       const result=spawnSync(binary,['doctor','--json','--installation',join(cwd,'uncreated'),'--port',String(port)],{cwd,encoding:'utf8',stdio:['ignore','pipe','pipe'],timeout:15000});
       const envelope=JSON.parse(result.stdout) as {command:string;success:boolean;result:{ready:boolean};problem:object|null};

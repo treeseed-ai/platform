@@ -113,15 +113,17 @@ authorized. Remaining unchecked gates track candidate/CI completion, not setup a
 
 ## Task 2: Resolve exact composition and produce non-activating plans
 
-**Files:** Deployment `src/{host,plan,journal}.ts`, owner plan validation/integration tests; SDK platform contracts; CLI command binding and built plan smoke; Platform exact-composition declarations. Paths are relative to each independent owner repository.
+**Files:** Deployment `src/{diagnose,artifacts,filesystem}.ts`, owner plan validation/integration tests; SDK platform contracts; CLI command binding and built plan smoke; Platform exact-composition declarations. Paths are relative to each independent owner repository.
 
 **Interfaces:** consumes Task 1 bindings/diagnostics. Produces `DeploymentHost.plan(configuration) → Plan`, where Plan binds ID/digest, installation/expected active composition, resolved immutable artifacts, effects and blockers. Returns no active/healthy state. `platform.plan` local binding calls this implementation.
 
-- [ ] Specify the smallest deployment configuration: installation identity, selected local engine, owned storage, loopback origin, required plugins and artifact sources. Generate types/reference from executable schemas. Use standard locks/metadata; no parallel dependency solver.
-- [ ] Write `plan_changes_no_runtime`: run the compiled CLI against a real owned fixture and immutable prepared release inputs; assert plan contents/read-back, exact image/package/configuration identities and no containers/ports/credential activation. Persisting private plan state is the only declared write.
-- [ ] Test mutable/digest-mismatched artifacts, malformed/foreign journals, duplicate/missing/cyclic plugin services, unsupported image architecture and invalid secret references. Reject secret plaintext in the plan output/logs. No arbitrary package lifecycle scripts execute during inspection.
-- [ ] Test default resolver/host wiring using actual package/artifact/configuration files. Unit tests pin deterministic normalization/digests; same logical inputs give the same resolved content; non-equivalent inputs cannot share a plan digest.
-- [ ] Demonstrate red, implement exact resolution/private plan persistence, then run complete participating owner suites/checks/build plus assembled built plan smoke. Commit layers in their owning repositories and publish linked bounded PRs; Platform records the exact integrated closure.
+- [x] Specify the smallest deployment configuration: installation identity, selected local engine, owned storage, loopback origin, required plugins and artifact sources. Generate types/reference from executable schemas. Use standard locks/metadata; no parallel dependency solver.
+- [x] Write `plan_changes_no_runtime`: run the compiled CLI against a real owned fixture and immutable prepared release inputs; assert plan contents/read-back, exact image/package/configuration identities and no containers/ports/credential activation. Persisting private plan state is the only declared write.
+- [x] Test mutable/digest-mismatched artifacts, malformed/foreign journals, duplicate/missing/cyclic plugin services, unsupported image architecture and invalid secret references. Reject secret plaintext in the plan output/logs. No arbitrary package lifecycle scripts execute during inspection.
+- [x] Test default resolver/host wiring using actual package/artifact/configuration files. Unit tests pin deterministic normalization/digests; same logical inputs give the same resolved content; non-equivalent inputs cannot share a plan digest.
+- [x] Demonstrate red, implement exact resolution/private plan persistence, then run complete participating owner suites/checks/build plus assembled built plan smoke. Commit layers in their owning repositories and publish linked bounded PRs; Platform records the exact integrated closure.
+
+Verified Task 2 review candidates: [SDK #454](https://github.com/treeseed-ai/sdk/pull/454), [Deployment #905](https://github.com/treeseed-ai/deployment/pull/905), [CLI #312](https://github.com/treeseed-ai/cli/pull/312), [Platform #700](https://github.com/treeseed-ai/platform/pull/700). The exact closure is recorded in `composition/task2.json`; native positive Ubuntu 26.04 planning and Ubuntu 24.04 prerequisite rejection passed. Review added real host-path/archive-name regressions for spaces and Unicode. Issues remain open until release. Task 3 is not authorized by completing these checks.
 
 ## Task 3: Install and start the first integrated composition
 

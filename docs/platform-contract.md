@@ -1,6 +1,6 @@
 # CLI-first platform contract
 
-Date: 2026-10-23. Audience: developers and integrating agents. Status: replacement contract with a bounded Task 1 diagnostic candidate. Help/version/doctor and SDK contracts are implemented and locally qualified; lifecycle/remote/plugin/browser behavior below remains future specification. Tracked by [#672](https://github.com/treeseed-ai/platform/issues/672).
+Date: 2026-10-23. Audience: developers and integrating agents. Status: replacement contract with bounded Task 1 diagnostics and Task 2 non-activating planning. Help/version/doctor, local platform plan and SDK contracts are implemented and qualified; installation/apply, remote transports and activated plugin/browser behavior below remain future specification. Tracked by [#672](https://github.com/treeseed-ai/platform/issues/672).
 
 This is the specification for the [development plan](superpowers/plans/2026-10-23-cordis-platform.md). The [migration reference](migration-reference.md) records the original sources and setup gates. Development instructions and skills govern development only; deployed behavior and tests must not depend on the contents of any project's AGENTS.md.
 
@@ -53,7 +53,7 @@ method for schema-backed bindings. `DeploymentHost` is the lifecycle capability 
 `ComposeDeploymentHost` supplies the first implementation. Required plugin entrypoints such
 as Identity/Deployment/Transport/Web are classes using Cordis's own lifecycle. Browser views
 and UI components also use class-based implementations. Task 1 exports CliApplication, CliOutput, OperationDefinition and ComposeDeploymentHost
-with the diagnostic-only DeploymentHost interface. Other names remain proposed design contracts;
+with DeploymentHost diagnostics and persisted non-activating planning. Other names remain proposed design contracts;
 none adds an extra remote operation.
 
 One shared contract suite runs against every advertised implementation. Default-construction
@@ -305,3 +305,7 @@ JSON has command/success/result/problem/blockers/references; exits0/1/2/3 follow
 Lifecycle commands explicitly fail as unsupported. SDK seven-operation schemas do not imply
 an executing transport. All subsequent plan/apply, installation, identity and plugin work
 requires a new bounded statement of work.
+
+## Task 2 bounded planning candidate
+
+The approved implementation specification is [non-activating plans](superpowers/plans/2026-10-24-non-activating-plans.md). Task 2 adds local planning only; the lifecycle, remote transports and installed composition remain future work.
