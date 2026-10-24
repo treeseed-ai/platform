@@ -2,11 +2,9 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → native Cordis composition in every runtime → integrated deployment and provider/plugin installation → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: Tasks 1–2 merged; composition architecture approved; Task 3A only authorized.** The standalone CLI implements help,
-version, doctor and `platform plan --file CONFIG [--json]`. Planning validates prepared local
-package/OCI inputs and persists only private unblocked plans. It starts no containers and
-creates no credentials. Apply, remote transports, the Cordis application host and production
-publication remain future work. No runtime mounts Cordis yet. See the [Task 2 plan](docs/superpowers/plans/2026-10-24-non-activating-plans.md).
+**Status: Tasks 1–3A are integrated on cordis. Task 3B is explicitly resumed.** API, Identity and Admin now have reviewed, published same-repository Cordis baselines; their implementation continues alongside CLI, SDK and Deployment. The installed composition and durable worker are in development and are not accepted as complete until the real database/identity/API/HTTPS/browser scene and CI pass. See the [Task 3B implementation plan](docs/superpowers/plans/2026-10-24-task3b-installed-composition.md).
+
+CLI and local Deployment already use native Cordis roots and exact prepared-provider loading from Task 3A. The current Task 3B slice adds installed apply/status/application read-back, a durable worker, native service plugins (including containers), configured identity and a protected Admin status contribution. Task 3C acquisition/installation, Task 3D Agent initialization and implementation, broader transport parity and full recovery remain later work. No production publication or cutover is authorized.
 
 Build each independent owner using its README and pinned Bun 1.4.4 toolchain. The qualified
 planning host is Ubuntu 26.04 x64 with a local Linux/amd64 Docker engine. Other hosts report
@@ -20,8 +18,8 @@ installs and activates when safe; unresolved restart/migration/trust/build requi
 visible. These are design requirements, not existing commands. Review the
 [context/plugin/package maps](docs/superpowers/specs/2026-10-24-cordis-composition-providers-design.md)
 and [Task 3A–3D delivery plan](docs/superpowers/plans/2026-10-24-cordis-composition-providers.md)
-for the approved architecture and the explicitly resumed Task 3A scope. [Issue #704](https://github.com/treeseed-ai/platform/issues/704)
-tracks this documentation-only change.
+for the approved architecture and the explicitly resumed Task 3B scope. [Issue #704](https://github.com/treeseed-ai/platform/issues/704)
+tracks the accepted architecture.
 
 Start with these documents in order:
 
