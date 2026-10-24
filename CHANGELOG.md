@@ -8,6 +8,8 @@
 
 ### Added
 
+- Platform: verify Task 3A native CLI and Deployment composition (#708).
+
 - Platform: verify assembled non-activating deployment plans (#697).
 
 - platform: qualify Task 1 diagnostic composition (#681).
