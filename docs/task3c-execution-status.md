@@ -187,3 +187,14 @@ production channels or original services were changed.
 The [approved implementation plan](superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md)
 remains the acceptance authority. Task 3C implementation and isolated acceptance are authorized;
 none of these candidate results authorize production cutover or changes to legacy installations.
+
+## Verified credential and OCI preparation continuation
+
+- [Deployment #921](https://github.com/treeseed-ai/deployment/pull/921), scoped private credentials/configuration: `670bfdb98d2de65509ea70acecc813bc16cabab1`, 72 owner checks and both exact-head Ubuntu 26.04 CI runs green. `.12` SHA-256 `a610e170e32a5fd6e84835b3acc6b1351c5ba692429f39bc4afeb768573f774e`. Real archived declarations qualify separate instance secrets, explicit dependency/probe grants, stable existing bytes/paths/creator receipts and bounded template expansion before publication. This is private preparation evidence, not installed readiness.
+- [Deployment #922](https://github.com/treeseed-ai/deployment/pull/922), exact native OCI image preparation: `322dfdf8f2782ac0c925e41b8620b9f8dcbe37aa`, 74 owner checks and both exact-head Ubuntu 26.04 CI runs green. `.13` SHA-256 `b7d0fa5a8f1b385dcbaa3ec165323a65d306844fd2abaa3ced7d181b637e5b1c`. Built Node program loads a genuine uniquely identified zero-layer OCI inspection fixture, verifies private persistence/reuse and unchanged runtime-resource inventories. It creates no credentials/containers and makes no runnable application or readiness claim. Incomplete cache entries, unsafe private modes and changed input bytes are rejected.
+
+The bounded generic container actuator is now in progress in Deployment. The durable worker,
+owner protocol probes, retained active transitions, explicit historical-format migration,
+source management/CLI commands, API adoption and complete assembled Task 3C acceptance remain
+unverified. Drafts remain open for the eventual integrated review; no Task 3C merge is authorized
+by this progress record. All release-policy issues, including #678, remain open.
