@@ -53,10 +53,11 @@
       "docker": "29.9.1",
       "compose": "5.6.0",
       "installedScene": {
-        "assertions": 292,
+        "assertions": 311,
         "result": "pass",
         "priorReviewedCandidateAssertions": 293,
-        "qualification": "Polling changes the total assertion count; the same behavioral assertions and authenticated missing-application regression pass."
+        "qualification": "Polling changes the total assertion count; the same behavioral assertions and authenticated missing-application regression pass.",
+        "mergedCliBeforeAuthorityRegressions": 292
       },
       "owners": {
         "sdk": 20,
@@ -88,7 +89,8 @@
     "review": {
       "missingApplication": "Authenticated missing application regression reproduced HTTP 503 before fix; real installed scene now returns safe 404.",
       "policy": "API #621 restored exact approved policy blob b1a687db754ee2fac141919e6c63052d12bf2812; both runtime PRs pass normal base-owned authorization.",
-      "documentation": "Owner links target cordis and survive task-branch deletion."
+      "documentation": "Owner links target cordis and survive task-branch deletion.",
+      "hostAuthority": "Built CLI apply rejects changed daemon identity and stale composition before activation; a separate built worker cannot take an existing writer lock. No new containers, networks, volumes or credentials."
     },
     "ownerIntegration": {
       "sdk": {

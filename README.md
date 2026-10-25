@@ -98,7 +98,7 @@ HTTP routing and the private worker adapter through native Cordis.
 Run `bun install --frozen-lockfile --ignore-scripts` and `bun run test:installed` after checking out
 and building the exact CLI candidate in the composition record. This is an activating acceptance
 fixture requiring Ubuntu 26.04 x64, local Docker/Compose, certutil, Playwright Firefox and the pinned
-prepared images. It creates only isolated fixture resources and removes them after verification.
+prepared images. It removes its isolated containers, networks, volumes and private installation after verification; prepared image/cache bytes may remain.
 TLS trust stays in its private browser profile. `platform apply`, `status` and `application` are
 local CLI bindings; authenticated API status/application and the Admin browser use the same host
 worker. API transport parity, plugin acquisition/activation, Agent and generalized recovery remain
