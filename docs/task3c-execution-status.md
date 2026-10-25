@@ -534,7 +534,7 @@ permissiveness was added for conflicting ranges or unsupported lock forms.
 Node's nested module-mode manifests. The genuine API image failed because Postgres's Node
 entry resolved beneath a type-only CommonJS manifest. A built Node default-construction smoke
 reproduced that failure before the owner fix. Full Admin check/build and eight tests pass,
-including Firefox with explicit fixture-CA trust; exact-head CI is pending. `.7` archive:
+including Firefox with explicit fixture-CA trust; both exact-head CI runs passed. `.7` archive:
 `2041d42294bcd5814dc0a481bcc5a95b583ca4ba2a201b46d72a8f0c57979132`.
 Platform #732 records the missing Node production-construction check.
 
@@ -545,3 +545,25 @@ passing owner fixtures do not establish that assembled gate. Generated diagnosti
 was removed by a fresh build before the current run. Retained transitions, explicit migration,
 source/plugin management, CLI adoption and final Platform acceptance remain outstanding.
 All candidates remain unmerged drafts and every issue, including #678, remains open.
+
+## Direct and routed target evidence
+
+[Deployment #945](https://github.com/treeseed-ai/deployment/pull/945), source
+`24ec538241217a9aec3075b94d299aa21c8061dc`, coalesces identical validated observations of
+one target/scope while rejecting conflicting runtime generations/digests, stale compositions
+and unready evidence. Snapshot and fresh status share admission; every service remains probed.
+Full serial local check/build plus 118 tests (34 unit, 44 integration, 40 smoke) passed.
+Exact-head CI is pending. `.35` archive SHA-256:
+`2e648ca3dd8f67de107692975efbd62cd1227667d386faf0120d39e9ac4fdc58`.
+The original genuine API test reached all four running containers but failed snapshot with
+`INVALID_TARGET_ACKNOWLEDGEMENT`; the corrected candidate commits and reports ready through
+the real native worker with both direct and verified HTTPS API evidence.
+
+API's current source `d424a72695` is not a final artifact pin. A genuine Keycloak login now
+returns to Admin through the isolated trusted HTTPS origin. Both actual shipped assets
+(Admin JavaScript and UI stylesheet) pass exact-byte verification. Browser status refresh
+is still under diagnosis, so authenticated machine/browser/logout and complete API owner
+qualification are not claimed. An incorrect test minimum of three assets was replaced with
+verification of all declared assets and required contributions from both actual owners.
+Generated diagnostic hooks remain absent from implementation artifacts. All remaining
+retention/migration/acquisition/CLI/Platform gates and every issue stay open.
