@@ -585,8 +585,8 @@ API review is split into dependent drafts [#626](https://github.com/treeseed-ai/
 `4c20e6bc00f0d9284a0e0d4fe429acb094afb058`). The first is not independently merge-ready:
 its historical owner checks precede the required real-root corrections in the second.
 Final API `.3` SHA-256: `bffe3e36a873eecda23600df27f2c11ba58f2a2287bc28e2a4f1689a67cb3de8`.
-Full final owner check/build and 13 tests pass (5 unit, 3 integration, 5 smoke); exact-head
-CI is pending. Forced installed-owner read-back and a separate clean rebuild/repack produce
+Full final owner check/build and 13 tests pass (5 unit, 3 integration, 5 smoke); both exact-head
+Ubuntu 26.04 verification runs and committer authorization/validation gates passed. Forced installed-owner read-back and a separate clean rebuild/repack produce
 byte-identical archive contents. API #620 policy remains blob
 `b1a687db754ee2fac141919e6c63052d12bf2812`.
 
@@ -601,3 +601,39 @@ Retained live planning begins in Deployment on `feature/910-task3c-retained-plan
 are committed and its built-program outside-in test is being established. Activation of
 transitions, explicit migration, source/helper management, final CLI adoption and Platform
 assembly remain required. All candidates and all issues, including #678, remain open.
+
+## Retained planning and explicit restart contract
+
+[Deployment #946](https://github.com/treeseed-ai/deployment/pull/946) initially passed 120 local
+checks at `95ba6361635731371cc5ad8667ea14445c8ed672`, `.36` archive
+`1e1744da37dbc72cfad4a58eaf17f78cc0f859b5d8bc480a94ca854465b81bd0`. Both CI runs
+failed on a cold module import cycle. That archive is historical and must not be newly adopted.
+Fresh Bun import of `service-application.ts` reproduced the failure independently of test order.
+The correction extracts the existing DockerCommands class into one leaf module, retaining its
+public export, and adds ten fresh Bun/built-Node entry probes. The focused regression is green;
+full requalification is running at `a6d777c09` (short in-progress ref). The corrected artifact
+advances to `.37`; the frozen `.36` bytes are unchanged. Platform #732 records the gap.
+
+The retained-planning programme applies five real fixture services and CA-bearing volumes,
+saves/repeats a sixth private-service plan through the existing owner writer, and verifies
+unchanged generations/resources/credentials/CA/current application. Observer-side planning,
+foreign identity, artifact tampering, runtime-state changes and absent-owner requests create
+no extra plans. Replacement/migration/removal/host-binary changes remain gated.
+
+[SDK #472](https://github.com/treeseed-ai/sdk/pull/472), source
+`752b6fd5909eae15a30f1d7519d16e1f4a40a75b`, adds optional exact `restartServices` intent
+to format-3 apply/submit/records and the existing public apply operation. Nonempty unique bounds
+and ID patterns are enforced at runtime and in actual generated JSON Schema. Absent fields and
+format-1/2 readers remain unchanged; seven operation IDs remain. Full owner gate: 74 checks
+(38 unit, 23 integration, 13 smoke), with both exact-head CI verify runs and validation green.
+`.13` archive: `dca6c416b8cdf977f021efb632e82e8b1b2f2d1b4a61108fe27a5b59e5848e2c`.
+The contract alone grants no restart permission.
+
+Deployment's additive-apply work is preserved on `feature/910-task3c-retained-apply`, local
+source `394bb3239` (short work-in-progress ref, no frozen artifact). Its built programme uses
+the default compiled durable worker with Docker-only PATH, applies five then six services,
+checks retained resource IDs/credential/CA bytes and worker identity, and replays old/new
+requests after source removal. That focused programme passes; the branch still needs the
+cold-import correction, a new artifact version and full qualification. Restart/migration/removal
+are deliberately unqualified in this slice. SDK explicit instance/binding intent is also under
+contract test before source management. All Task 3C candidates and every issue remain open.
