@@ -374,7 +374,7 @@ The genuine named-volume program compares stable resource IDs rather than elapse
 [Deployment #937](https://github.com/treeseed-ai/deployment/pull/937), head
 `8b19bd21d30bfecbbe4a8f3ff292455c47fc3781`, adds grant-scoped authority references to actual native
 probe contexts and private immutable CA/volume-identity receipts. Its 98 local checks pass
-(check/build, 27 unit, 41 integration, 30 smoke); exact-head CI is pending at this update.
+(check/build, 27 unit, 41 integration, 30 smoke); both exact-head Ubuntu 26.04 CI checks passed.
 `.27` SHA-256: `3d2a7b22f0f4b629000a0a0db054d4c5b7964ebac4b9148481a2f60cfed767f9`.
 Qualification includes genuine own/cross-service authority grants, ordinary-credential and foreign
 reference denial, cancellation after Docker copy before publication, concurrent first exports,
@@ -385,7 +385,7 @@ These remain fixture CAs; default Caddy/API/Keycloak and active-generation reten
 [CLI #321](https://github.com/treeseed-ai/cli/pull/321), head
 `672f76b4b3cdde41d0e45390d81c6918617f99bb`, qualifies existing format-3 runtime behavior through
 actual compiled `trsd`. All 17 serial local checks pass (check/build, 1 unit, 1 integration, 15 smoke);
-exact-head CI is pending. The unchanged `.6` executable SHA-256 remains
+both exact-head Ubuntu 26.04 verify checks and description validation passed. The unchanged `.6` executable SHA-256 remains
 `a5274a7dc871116e6a9b92433110fe0c33580336be3ec7fd4a944ae406507efa`.
 The scene runs symlinked from foreign cwd with closed stdin and Docker-only PATH, recovers accepted
 work after the caller exits, observes five services through JSON and UI human output, removes the
