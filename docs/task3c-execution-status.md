@@ -477,3 +477,43 @@ and 4 smoke checks. The original committer-policy blob remains
 claimed yet: the genuine default database/Keycloak/root/container gate is pending the scoped
 observer-directory mount. Retained transitions/migration, plugin source management, CLI and
 complete Platform acceptance remain required. Every issue, including #678, stays open.
+
+## Observer boundary and selected identity endpoints
+
+[Deployment #942](https://github.com/treeseed-ai/deployment/pull/942), source
+`35216c52e35368e1458d6c181bd3b04d1be3de4c`, qualifies the profile-granted observer-directory
+mount through a genuine container and native host. Local full gate: 110 checks (28 unit,
+43 integration, 39 smoke); final focused 3-check gate after a fixture-path correction and both
+exact-head CI runs passed. `.32` archive SHA-256:
+`bf1dae20fa02d2911e26110886dc94eff9cff8f111500c6d1c7706e7dd8d6155`.
+The real container proves observer metadata access, denied owner submission, read-only writes,
+measured entry content, source-free reads and retained runtime. Replacing and restoring a socket
+between Docker create/start fails before start with explicit repair; removing change-time checks
+makes the regression fail. Docker 29.9.1/runc rejects `/proc/<pid>/fd` mount sources at start;
+canonical-path mounts retain descriptor/identity verification. Qualification details live in
+Deployment's README. No broader host directory is exposed.
+
+[Deployment #943](https://github.com/treeseed-ai/deployment/pull/943) adds public data-only recipe
+projection. Local full gate at `67e0188e88c07fb5a45776d2339f58df7598ca0c`: 111 checks.
+One CI run passed; another hit a 5-second real-host observation-test timeout. Corrected source
+`4e5f19cf55cdd9c7d7ee679b5d3f451334b1d4ee` classifies that test as integration with an explicit
+60-second bound. Fresh check/build plus all 11 projection/observation checks passed; final CI
+is pending. Repacked `.33` bytes remain exactly
+`34b9f1080fc5a86a3c193daf5039537b91f4947514b84c9603268183b2bf42b1`.
+
+[Identity #49](https://github.com/treeseed-ai/identity/pull/49), source
+`d837d23d99bc49eb1954bdd865397d34186d41a1`, removes the inherited `identity:8080` protocol
+constraint while preserving issuer/redirect/session authority and rejecting URL credentials,
+query/fragment and unbound public endpoints. Eight owner checks and both exact-head CI runs
+passed. `.4` archive: `0e377e4a0ad79ee649b20e41779c862e431f20979b19cae638b658925686d9f1`.
+
+[Admin #141](https://github.com/treeseed-ai/admin/pull/141), final source
+`e3155dc389080d1c48370a3057660ad97e4a7404`, consumes Identity `.4`, SDK `.12` and UI `.14`.
+A new installed-owner regression caught a stale local Identity installation despite changed
+vendor pins; a forced fresh install and rebuilt `.6` candidate pass seven checks including real
+Firefox HTTPS through explicit authority fixtures. `.6` archive:
+`98e709ade2c8cda1913f5c65c995334a97056fd5b9d60e78a6261e110576dd1c`. Final CI pending.
+The earlier `.5` local gate is superseded. Platform #734 records the adoption defect; no process
+policy was changed. API now explicitly forces installs and reads installed public identities
+before genuine-root acceptance. Its current genuine database/Keycloak/edge/API test is in progress.
+All these PRs remain unmerged drafts. All issues, including #678, remain open.
