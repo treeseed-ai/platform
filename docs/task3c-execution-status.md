@@ -610,9 +610,10 @@ checks at `95ba6361635731371cc5ad8667ea14445c8ed672`, `.36` archive
 failed on a cold module import cycle. That archive is historical and must not be newly adopted.
 Fresh Bun import of `service-application.ts` reproduced the failure independently of test order.
 The correction extracts the existing DockerCommands class into one leaf module, retaining its
-public export, and adds ten fresh Bun/built-Node entry probes. The focused regression is green;
-full requalification is running at `a6d777c09` (short in-progress ref). The corrected artifact
-advances to `.37`; the frozen `.36` bytes are unchanged. Platform #732 records the gap.
+public export, and adds ten fresh Bun/built-Node entry probes. The focused regression and full 121-check owner gate passed at
+`a6d777c0998173c94dbbc912a36aff6660f88f52`; both exact-head Ubuntu 26.04 CI verify
+runs passed. The corrected `.37` archive is
+`d13fb54582b8a22bb5fc9cedaf119813a01d84f2972346f729c47d22af2f5392`; the frozen `.36` bytes are unchanged. Platform #732 records the gap.
 
 The retained-planning programme applies five real fixture services and CA-bearing volumes,
 saves/repeats a sixth private-service plan through the existing owner writer, and verifies
@@ -637,3 +638,38 @@ requests after source removal. That focused programme passes; the branch still n
 cold-import correction, a new artifact version and full qualification. Restart/migration/removal
 are deliberately unqualified in this slice. SDK explicit instance/binding intent is also under
 contract test before source management. All Task 3C candidates and every issue remain open.
+
+
+## Shared candidate alignment and additive apply qualification
+
+[SDK #473](https://github.com/treeseed-ai/sdk/pull/473) source
+`597a9abd79b76fb292a80cd86e4ea83042fbec62` adds bounded optional installation service
+identity/binding intent; `.14` archive
+`c92fb068064a6db4823b29c31602b47e01c21200af759a770480a1a0cc4240a2`.
+All 77 owner checks and exact-head CI passed; schema intent alone activates nothing.
+
+[UI #95](https://github.com/treeseed-ai/ui/pull/95), source
+`25856122398e44e2f8fd973a396ce46b3a585400`, selects that SDK archive. `.15` archive
+`f3ecbafc1382ee9a406c93db7ab682b3786ccf554248e070e45c6cc70a128d45`;
+28 owner checks and both Ubuntu 26.04 CI verify runs passed. Mobile-first web layouts
+remain qualified at 320/375/768/1024/1440/1920/2560 pixels, including enlarged text,
+keyboard/focus and table overflow; native mobile and Electron host qualification is future work.
+[Identity #50](https://github.com/treeseed-ai/identity/pull/50), source
+`65bfe5256e92da15372a8a174e5e47f974a3ef45`, `.5` archive
+`101afc46d1864e99355b334c7836167258a078223a37d55d7370b133f7a30256`,
+passed all 8 owner checks and both exact-head CI runs. Keycloak ownership is unchanged.
+Admin's `.9` adoption is undergoing browser requalification; final API/CLI alignment remains.
+
+Deployment additive apply source `2301987ecb942d5b60b7526d883c18802579a5ef`
+includes the cold-import correction and exact SDK `.13`. Its focused compiled-worker
+programme applies five then six services, checks the new service's actual protocol response,
+polls status during application, and preserves prior physical resources, credentials, CA and
+worker identity. Historical/new idempotency replay works after bundle removal. Explicit restart
+and transition-action refusals plus sorted durable scope records pass focused checks. The full
+`.38` owner gate is running; no archive or CI qualification is claimed yet.
+
+The app attachment limit was reached while attaching Identity #50. After live verification that
+26 earlier-task candidates were already merged into `cordis`, only those historical attachments
+were unlinked from this chat. No GitHub PR or branch was changed; every current Task 3C draft
+remains attached. The local receipt is
+`/home/adrian/.codex/artifacts/task3c-previous-merged-prs.json`.
