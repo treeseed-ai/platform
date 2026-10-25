@@ -209,3 +209,16 @@ proves receipt reuse, namespace-conflict refusal and no implicit restart. Engine
 remains deliberately unqualified. The next native-scope candidate connects actual archived
 container and protocol-probe classes through Cordis; durable worker/application acceptance is
 still outstanding. The engine candidate's incremental diff touches ten files.
+
+[Deployment #924](https://github.com/treeseed-ai/deployment/pull/924) qualifies native per-instance
+container/probe roots at `a923da7d0a255ed09377b9650ae856c4aebf2eb1`: 77 owner checks and both
+exact-head Ubuntu 26.04 CI runs green. `.15` SHA-256:
+`8b5747633494c3d55f2fb948b6e3aaab1d958e5e1c4bc8477bbd85bfe520f8fd`.
+The built program loads genuine archived classes, uses two real HTTP probes and a separately
+identified boundary fixture, verifies distinct native generations and refuses undrained disposal.
+Wrong-instance, secret-like, false and late observations are rejected. The executable regression
+caught a late success racing a delayed timer after event-loop blockage; settlement/publication
+now check the deadline directly. Probe contexts are immutable and credential callbacks expire.
+Provider disposal preserves installed fixture services; only the explicit fixture cleanup removes
+them. This is no claim of a committed application, standalone host worker or assembled API readiness.
+The durable native application coordinator is now being implemented in its owning Deployment repo.
