@@ -263,3 +263,21 @@ establishes red/green cleanup of the known first listener while preserving the c
 Socket replacement is refused and unfamiliar files remain intact. Historical runtime directories
 are not silently adopted. Standalone executable bootstrap is in progress, followed by remaining
 Task 3C owner adoption, active transitions/migration and exact source acquisition/assembly.
+
+[Deployment #929](https://github.com/treeseed-ai/deployment/pull/929) rejects socket aliases at
+`5a75168099985240ac17ba5f6c278f6235235fa0`, with 86 owner checks and both exact-head CI runs green.
+The built default host regression proves hard links and symlinks cannot route owner mutation
+through the observer path. `.19` SHA-256:
+`6a96bb512547efff55133c992c8ced2d8bcd25bd93bbdc35ed900c6535e80fa9`.
+Issue #928 remains open. The temporary fix worktree was removed after inheritance verification;
+its unmerged review branch remains intact.
+
+[Deployment #930](https://github.com/treeseed-ai/deployment/pull/930) binds private worker bootstrap
+to the selected executable inode, child PID and nonce at `2141458a72cc722b59e75b73d048941eca191e43`.
+All 87 owner checks and both exact-head CI runs passed. `.20` SHA-256:
+`4e973db05b23afb58953bcc2e1b8cc8f2d5a238df4264d8a23c808ba189b2b63`.
+Immutable launch records fence interrupted, malformed or mismatched handoffs; only the selected
+child can acquire the existing writer after parent release. This fixture deliberately uses a
+copied Node interpreter and does not qualify the production compiled worker. That next program
+test has already caught a bundled initialization cycle before argument parsing; its fix and
+genuine Docker-only standalone qualification remain in progress. No Task 3C completion is claimed.
