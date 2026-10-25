@@ -118,10 +118,25 @@ This supersedes the earlier unconsumed `.7` archive listed above. SDK remains th
 source/archive already recorded. CLI human presentation adoption is underway through these
 three public archives; no owner source imports or legacy checkout changes were introduced.
 
+## CLI and Identity consumer continuation
+
+- [CLI #318](https://github.com/treeseed-ai/cli/pull/318), head `20a813fb68e9520f6758ca2259673e63acaeb161`: human diagnostics/plans/status/errors now map to UI models through the public terminal renderer; machine JSON/exit/streams stay CLI-owned. Exact SDK `.9`, Deployment `.7` and UI `.11` archives are vendored. Strict owner/UI-boundary check, standalone compile and 15 tests passed; exact-head CI/description validation green. Built binary SHA-256 `682a968e259c3389ad3c218a234ab8e126d12da5a5b09697331f5465a1f38217` at that source.
+- [CLI #319](https://github.com/treeseed-ai/cli/pull/319), head `a79e4bc57a5c4bd62eeb38bf19503e0fbf6a83ca`: qualified Ubuntu 26.04 positive gate, with prerequisites required. All 16 checks passed locally and in exact-head CI. The actual standalone CLI saves/repeats/reads a genuine five-instance format-3 bundle, produces UI service tables, operates with Docker-only PATH and leaves resources/listeners/credentials/import canary unchanged; tampered archives block without saved references. This is planning, not installed activation.
+- [SDK #468](https://github.com/treeseed-ai/sdk/pull/468), head `32aea4a7be9ccde3a06dd8552020ab1042cc694d`: accepted probe context/runtime evidence, private writer-owned plan requests and exact prepared external images. All 66 local tests and exact-head CI/description gates passed. SDK `.10` SHA-256 `a94dfd38f1d4bae09b211f1517cddb620bb5bbbb3a6afa46cfa9c8e857242393`. Durable enforcement still needs the worker implementation.
+- [Identity #47](https://github.com/treeseed-ai/identity/pull/47), head `63565e5b7f6f0eb7c720d9d5e035812b3a5894f4`: named instance-neutral Keycloak container and bounded OIDC discovery probe, exported persistence/OIDC/session provider classes and five format-4 projections. All six checks and exact-head Ubuntu 26.04 CI passed. Identity `.2` SHA-256 `d9ac6c80345ae976efa2d27f0809e617656cb57ae3260835794d2a0ff9c28753`. Real Keycloak login/session/default-worker/resource retention remain required assembled gates.
+- [UI #92](https://github.com/treeseed-ai/ui/pull/92), head `2f0fbbf65b68606a9ad62d851035cad8f3fdcc6f`: adopt exact SDK `.10`; 28 local checks pass, final CI still to read. UI `.12` SHA-256 `e1c20d1702854ffd49b05d7db5874eea5f5665ca8c22a5f424e0525b1c921bf2`.
+
+Admin's exact-archive predecessor is in progress on `feature/137-task3c-artifacts`; its existing
+three checks pass but no presentation migration is claimed yet. The following UI model-update
+slice is implementing the concrete Admin consumer need to refresh typed views in the same root
+without losing draft input/focus, while closing action admission and awaiting drain on disposal.
+No new source/acquisition or installed activation success is claimed by these UI/consumer checks.
+
 ## Remaining authorized Task 3C work
 
-API #624, Identity #46 and Admin #137 still have documentation-first branches with
-runtime changes outstanding. CLI #317 now has its reusable human presentation implementation
+API #624 still has a documentation-first branch with runtime changes outstanding.
+Identity #46 has the named provider/probe slice above; Admin #137 has exact artifact adoption
+in progress and presentation changes outstanding. CLI #317 now has its reusable human presentation implementation
 in progress; final installed/source integration and assembled verification remain outstanding. Platform #726 still needs exact final artifact/composition pins
 and assembled acceptance. Continue reusable UI host
 presentation, the generic container/probe worker and durable resource/credential/TLS retention,
