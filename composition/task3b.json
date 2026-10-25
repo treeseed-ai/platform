@@ -4,38 +4,38 @@
   "fixturesOnly": true,
   "cli": {
     "repository": "https://github.com/treeseed-ai/cli.git",
-    "commit": "4345614be9af4ac6a727fe3b7e122fc6c537177c"
+    "commit": "5dd94c174bce3905f5fe873fbe892da80d971c99"
   },
   "owners": {
     "sdk": {
       "repository": "https://github.com/treeseed-ai/sdk.git",
-      "commit": "c03a2b0eab89786439eddea3cff8161e85676b3e",
+      "commit": "f44ede394a58814b5d6e73146ba9ed7246b4f2ca",
       "archive": "packages/cli/vendor/sdk.tgz",
-      "sha256": "d6d0f2f4379d2d95403a226d20899ad22a78a11ccdbb4106116ef0a925295d1b"
+      "sha256": "16d3d7f699c55795b97972ca538bfeedeafdc6bfc4c32ed01708871ea02fe75c"
     },
     "deployment": {
       "repository": "https://github.com/treeseed-ai/deployment.git",
-      "commit": "ae3185362374a05dff07eaa1951e2c81d132609a",
+      "commit": "6a861aa81f3786b74752191b461d1bcddf99fce5",
       "archive": "packages/cli/vendor/deployment.tgz",
-      "sha256": "b4ae6d339931ea72afdaee2104ff76da20f96e8cd6a76dace194624569dbd409"
+      "sha256": "7015e2447eb4d98f9979e8f10a3b33480c8ca80818384e2cbf939eba550ab65d"
     },
     "api": {
       "repository": "https://github.com/treeseed-ai/api.git",
-      "commit": "d1e3b24aed450b8a7a22f415c75d9ff9f1fd2809",
+      "commit": "0d8037475ccecea8bfe7462c803799d4a4a445bf",
       "archive": "vendor/task3b/api.tgz",
-      "sha256": "3734b2eafe1a9b073e62b05687ce4c6b2421b6178ee85b49e3566b64a4b50116"
+      "sha256": "35d3ea37325edbe8538090132f5931aaa0e782a32f9c384699f8be2060effebc"
     },
     "identity": {
       "repository": "https://github.com/treeseed-ai/identity.git",
-      "commit": "5085c1887d56daab4440c8c2b47ea712388a4393",
+      "commit": "906d64e1dc9219786444f5f793968592bb8abd96",
       "archive": "vendor/task3b/identity.tgz",
-      "sha256": "ef75add5b4a563b1a37794c6b79fdd40cdb7d0561895f320e4e09c2556e05283"
+      "sha256": "dd3131499b01b8ad8d4c8aa78d0cb99de69da86c4fbad1da0670439c3d8bdddc"
     },
     "admin": {
       "repository": "https://github.com/treeseed-ai/admin.git",
-      "commit": "6416f3741a8dbbf294e2edb757d0c57fcb182a3b",
+      "commit": "5b30c2af69c5d273936cfddd480e7f5891c75db9",
       "archive": "vendor/task3b/admin.tgz",
-      "sha256": "acbad5fe017601fba175e68ecab35c7d52224e9d0779bd8aeb869ca0d9d3067d"
+      "sha256": "a7750c6f38187e44b2823eb778f66b73c4596983226dd80c2204208f96848e28"
     }
   },
   "images": {
@@ -52,7 +52,7 @@
       "docker": "29.9.1",
       "compose": "5.6.0",
       "installedScene": {
-        "assertions": 289,
+        "assertions": 293,
         "result": "pass"
       },
       "owners": {
@@ -68,12 +68,12 @@
     "runtimeEffectBoundary": "Only accepted fixture-owned resources; no legacy service or production publication",
     "historicalFormats": "Format 1 preserved; format 2 explicit; generalized recovery deferred",
     "ownerPushCI": {
-      "sdk": 40131731557,
-      "deployment": 40139666606,
-      "cli": 40139666414,
-      "api": 40139665696,
-      "identity": 40139455073,
-      "admin": 40139455244
+      "sdk": 40145937270,
+      "deployment": 40145938719,
+      "cli": 40145937906,
+      "api": 40145938326,
+      "identity": 40145937927,
+      "admin": 40145937419
     },
     "platformInitialPushCI": 40139784766,
     "qualification": {
@@ -81,6 +81,11 @@
       "ociCache": "Key includes current image identity; only selected native manifest/config/layers are copied",
       "hostMounts": "Private descriptor ownership/identity checked before and after the Docker mount operation; daemon bind sources use verified installation paths",
       "negativeMountQualification": "Docker 29.9.1 / Compose 5.6.0 / local Unix context / Ubuntu 26.04 x64: proc descriptor bind source rejected by runc; fixed installation paths qualify successfully"
+    },
+    "review": {
+      "missingApplication": "Authenticated missing application regression reproduced HTTP 503 before fix; real installed scene now returns safe 404.",
+      "policy": "API #621 restored exact approved policy blob b1a687db754ee2fac141919e6c63052d12bf2812; both runtime PRs pass normal base-owned authorization.",
+      "documentation": "Owner links target cordis and survive task-branch deletion."
     }
   }
 }
