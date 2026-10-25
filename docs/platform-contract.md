@@ -336,3 +336,7 @@ requires a new bounded statement of work.
 ## Task 2 merged planning boundary
 
 The approved implementation specification is [non-activating plans](superpowers/plans/2026-10-24-non-activating-plans.md). That historical Task 2 candidate adds local planning only. Task 3A/3B subsequently added native roots and the first installed composition; broad remote parity remains future work. Task 3 is now decomposed into [3A native CLI/Deployment composition, 3B installation/API root, 3C package installation and 3D Agent composition baseline](superpowers/plans/2026-10-24-cordis-composition-providers.md). Tasks 3A/3B are integrated. The proposed #722 Task 3C revision requires generic container plugins and reusable UI; only UI initialization is resumed, retaining the setup pause before implementation.
+
+## Task 3C resumed: mobile-first UI
+
+The maintainer accepted UI setup and authorized exact baseline publication and Task 3C implementation. Every visual component must be mobile-first from 320 CSS pixels to widescreen monitors; test 320/375/768/1024/1440/1920/2560 widths, long content, keyboard/touch and 200% text resizing. Keep authored controls at least 44×44 CSS pixels, required actions visible, logical/fluid dimensions and no page overflow (labeled local semantic-table overflow is permitted). UI owns components/styles/renderers; consumers retain domain behavior and Identity retains Keycloak authority. All issues, including #678, remain open.

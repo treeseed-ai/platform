@@ -108,3 +108,7 @@ local CLI bindings; authenticated API status/application and the Admin browser u
 worker. API transport parity, plugin acquisition/activation, Agent and generalized recovery remain
 in their separately gated tasks. Agent still requires clean same-repository initialization and a
 maintainer setup review before its first implementation.
+
+## Task 3C resumed: mobile-first UI
+
+The maintainer accepted UI setup and authorized exact baseline publication and Task 3C implementation. Every visual component must be mobile-first from 320 CSS pixels to widescreen monitors; test 320/375/768/1024/1440/1920/2560 widths, long content, keyboard/touch and 200% text resizing. Keep authored controls at least 44×44 CSS pixels, required actions visible, logical/fluid dimensions and no page overflow (labeled local semantic-table overflow is permitted). UI owns components/styles/renderers; consumers retain domain behavior and Identity retains Keycloak authority. All issues, including #678, remain open.

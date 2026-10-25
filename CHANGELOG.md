@@ -8,6 +8,8 @@
 
 ### Added
 
+- Platform: assemble extensible plugins and mobile-first reusable UI (#726).
+
 - Platform: verify first installed Cordis composition and durable worker (#713).
 
 - Platform: specify Task 3B setup and installed composition (#713).
