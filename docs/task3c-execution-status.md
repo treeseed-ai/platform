@@ -250,3 +250,16 @@ work finishes, and final disposal releases the writer. Removing that lease estab
 red. The host-private authority is not registered in installed container/probe scopes.
 Private observer/owner socket providers are the next in-progress owner slice; no standalone worker,
 API/Keycloak assembled composition, active transition/migration or source acquisition claim is made.
+
+[Deployment #927](https://github.com/treeseed-ai/deployment/pull/927) verifies separate private host
+endpoints at `7819002e94b26c6aef826f8b76abb3ba0238eafa`, with 85 owner checks and both exact-head
+Ubuntu 26.04 CI runs green. `.18` SHA-256:
+`e5d8634a92068ea083b93fc2c155a2470b521ba831f11141449c9dd3e761e580`.
+The default native root serves observer-only `.cordis/run/host.sock` and owner-local
+`.cordis/control/worker.sock`, initially for submit/status/application. Built programs verify
+server-side write refusal, bounded strict frames/safe output, a discarded accepted response with
+same-key recovery, five real native fixture services and verified close. A partial-start fault
+establishes red/green cleanup of the known first listener while preserving the conflicting entry.
+Socket replacement is refused and unfamiliar files remain intact. Historical runtime directories
+are not silently adopted. Standalone executable bootstrap is in progress, followed by remaining
+Task 3C owner adoption, active transitions/migration and exact source acquisition/assembly.
