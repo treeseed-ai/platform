@@ -124,19 +124,20 @@ three public archives; no owner source imports or legacy checkout changes were i
 - [CLI #319](https://github.com/treeseed-ai/cli/pull/319), head `a79e4bc57a5c4bd62eeb38bf19503e0fbf6a83ca`: qualified Ubuntu 26.04 positive gate, with prerequisites required. All 16 checks passed locally and in exact-head CI. The actual standalone CLI saves/repeats/reads a genuine five-instance format-3 bundle, produces UI service tables, operates with Docker-only PATH and leaves resources/listeners/credentials/import canary unchanged; tampered archives block without saved references. This is planning, not installed activation.
 - [SDK #468](https://github.com/treeseed-ai/sdk/pull/468), head `32aea4a7be9ccde3a06dd8552020ab1042cc694d`: accepted probe context/runtime evidence, private writer-owned plan requests and exact prepared external images. All 66 local tests and exact-head CI/description gates passed. SDK `.10` SHA-256 `a94dfd38f1d4bae09b211f1517cddb620bb5bbbb3a6afa46cfa9c8e857242393`. Durable enforcement still needs the worker implementation.
 - [Identity #47](https://github.com/treeseed-ai/identity/pull/47), head `63565e5b7f6f0eb7c720d9d5e035812b3a5894f4`: named instance-neutral Keycloak container and bounded OIDC discovery probe, exported persistence/OIDC/session provider classes and five format-4 projections. All six checks and exact-head Ubuntu 26.04 CI passed. Identity `.2` SHA-256 `d9ac6c80345ae976efa2d27f0809e617656cb57ae3260835794d2a0ff9c28753`. Real Keycloak login/session/default-worker/resource retention remain required assembled gates.
-- [UI #92](https://github.com/treeseed-ai/ui/pull/92), head `2f0fbbf65b68606a9ad62d851035cad8f3fdcc6f`: adopt exact SDK `.10`; 28 local checks pass, final CI still to read. UI `.12` SHA-256 `e1c20d1702854ffd49b05d7db5874eea5f5665ca8c22a5f424e0525b1c921bf2`.
+- [UI #92](https://github.com/treeseed-ai/ui/pull/92), head `2f0fbbf65b68606a9ad62d851035cad8f3fdcc6f`: adopt exact SDK `.10`; 28 local checks and exact-head CI passed. UI `.12` SHA-256 `e1c20d1702854ffd49b05d7db5874eea5f5665ca8c22a5f424e0525b1c921bf2`.
 
-Admin's exact-archive predecessor is in progress on `feature/137-task3c-artifacts`; its existing
-three checks pass but no presentation migration is claimed yet. The following UI model-update
-slice is implementing the concrete Admin consumer need to refresh typed views in the same root
-without losing draft input/focus, while closing action admission and awaiting drain on disposal.
-No new source/acquisition or installed activation success is claimed by these UI/consumer checks.
+## Verified reusable model updates and Admin presentation
+
+- [UI #93](https://github.com/treeseed-ai/ui/pull/93), exact head `f1de1270bc6ac131a3f259c6d98aea3fa24e7bc9`: `.13` model updates preserve draft/focus, reject invalid/concurrent updates and drain admitted actions before cleanup. All 28 owner checks and both exact-head Ubuntu 26.04 CI runs passed. React development passive-effect inspection exposed a retained render-prop reference to a released Cordis proxy; prepared nodes now contain validated models/stable class data while borrowed provider leases stay private. Twenty repeated updates guard this race. Archive SHA-256 `7077c9a81d32cbc6e158267b57244ca4fe2937bb74d3a7a9c6b4d0f48c012cf7`.
+- [Admin #138](https://github.com/treeseed-ai/admin/pull/138), exact head `5ba0cf826edcf1b05d78b9be34563958a91fe725`: exact SDK `.10`, Identity `.2` and qualified UI `.13` adoption. Fresh-cache frozen install, all three historical owner checks and both exact-head Ubuntu 26.04 CI runs passed. CI caught a stale Bun file-tarball SRI hidden by the warm local cache; the refreshed lock is verified. Platform #734 tracks mechanical source/archive/lock receipts separately.
+- [Admin #139](https://github.com/treeseed-ai/admin/pull/139), exact head `0c5e0a1a5b7e7a3230ddb6ebdf0298d3f966cb86`: native asset/presentation/data/action/navigation providers consume UI's complete React document/hydration/models. Admin retains sessions, Origin/CSRF/cookies/routes/navigation; Identity retains Keycloak. All six local owner checks pass, including a real Firefox/private-CA browser flow and negative asset/presentation-source tests. `.3` archive SHA-256 `1e1ac2e9b90c5b27f26f756621544a2329942b141bf4e26d07feca1cfef1233c`. Exact-head CI pending. Authority fixtures are explicit: genuine installed Keycloak/API/worker and asset/image replacement remain assembled acceptance.
+
+No source/acquisition or installed activation success is claimed by these UI/consumer checks.
 
 ## Remaining authorized Task 3C work
 
 API #624 still has a documentation-first branch with runtime changes outstanding.
-Identity #46 has the named provider/probe slice above; Admin #137 has exact artifact adoption
-in progress and presentation changes outstanding. CLI #317 now has its reusable human presentation implementation
+Identity #46 has the named provider/probe slice above; Admin #137 has exact artifact adoption and reusable presentation candidates above. CLI #317 now has its reusable human presentation implementation
 in progress; final installed/source integration and assembled verification remain outstanding. Platform #726 still needs exact final artifact/composition pins
 and assembled acceptance. Continue reusable UI host
 presentation, the generic container/probe worker and durable resource/credential/TLS retention,
@@ -151,7 +152,7 @@ Mandatory genuine fifth-service/two-instance/new-probe activation, NPM/HTTPS-Git
 and trust gates, old-format migration/refusal, resource/credential/TLS preservation and Ubuntu
 26.04 assembled gates remain unchecked. Agent initialization/Task 3D remain outside this task.
 
-Process gaps remain tracked separately in Platform #724 (copied authorization text), #729
+Process gaps remain tracked separately in Platform #734 (mechanical owner/lock receipts), #724 (copied authorization text), #729
 (normalized native defaults/configuration projection) and #732 (assembled self-hosted image/consumer boundaries). No opportunistic process-policy edits accompany these features.
 API's restored committer policy per #620 remains untouched. On this checkpoint the owning
 issues, UI setup #79 and Platform #678 were read back as open. No integration merges, tags,
