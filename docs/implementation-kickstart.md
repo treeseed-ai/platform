@@ -1,20 +1,12 @@
 # Cordis implementation kickoff prompt
 
-## Current checkpoint before Task 3
+## Current checkpoint before Task 3C
 
-Tasks 1–2 are merged; their runtime behavior remains limited to diagnostics and non-activating
-planning. The maintainer requested a documentation-only revision requiring native Cordis
-composition across CLI, API, Deployment and Agent, registered selectable provider adapters,
-and `trsd plugin install <NPM package|Git repo>` with activation when safe. Read the
-[design](superpowers/specs/2026-10-24-cordis-composition-providers-design.md) and
-[refined plan](superpowers/plans/2026-10-24-cordis-composition-providers.md), tracked by
-[Platform #704](https://github.com/treeseed-ai/platform/issues/704).
+Tasks 1–2 and 3A/3B are integrated with exact owner artifact and assembled evidence. CLI/local Deployment/worker/API native roots and the first installed four-service profile exist. Plugin acquisition, generic service instances, UI-owned presentation and Agent remain future work.
 
-**Current authority: architecture approved; Task 3A only explicitly resumed.** Later Task 3
-slices, new-owner initialization and container activation remain unauthorized. Begin only Task 3A: executable native composition/provider proof in existing owners. New
-owners later retain their own initialization/review pauses. Never revive the historical
-Task 1 prompt below as fresh authority or let its restart-first wording override the new
-reviewed architecture.
+**Current authority: integrate the reviewed Task 3C plan, initialize UI only, then stop for setup review.** Read the [extensible-container/UI amendment](superpowers/specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722). They remove the fixed four-role limit and require UI-owned reusable browser/server/terminal providers, stable retained resources and qualified safe activation.
+
+No UI checkout or Task 3C implementation is created by planning. After approval and explicit execution resumption, initialize only the existing canonical UI repository in its own Cordis worktree, then stop again for setup review before scaffolding/dependencies/tests/builds/code. Baseline publication requires explicit direction. Agent retains the same separate gate at Task 3D. Do not revive historical kickoff text below as new authority or treat earlier optional UI wording as current policy.
 
 ## Historical Task 1 prompt
 

@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Tasks 1–2 are merged into their owning cordis branches. They implement diagnostics, exact non-activating plans and contracts, without executing Cordis. The maintainer requested the [required composition/provider design](../specs/2026-10-24-cordis-composition-providers-design.md) and [Task 3A–3D delivery refinement](2026-10-24-cordis-composition-providers.md), tracked by [#704](https://github.com/treeseed-ai/platform/issues/704). The maintainer has approved the architecture and explicitly resumed Task 3A only. No Task 3 implementation evidence exists yet; new owners retain their setup pause.
+**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. Before Task 3C, the [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), are reviewed for integration. Only UI initialization resumes next, followed by setup review; Task 3C/3D product implementation remains unstarted.
 
 ## Global constraints
 
@@ -24,6 +24,7 @@
 - Consumers depend on typed capability contracts; constructor injection and Cordis service bindings select class implementations through existing plugin configuration. Missing/duplicate/incompatible required implementations block planning. Reuse native Cordis lifecycle; no second container or speculative provider hierarchy.
 - Documentation → tests outside-in → implementation → verified delivery. Browser source may use TSX for class components. Generated output/upstream dependencies/resources are not handwritten parallel implementation.
 - One executable schema is authority for types and transport projections. One owner per durable fact. No second plugin loader, package manager, reconciliation engine, job model or status database.
+- Every human-facing browser/server/terminal surface consumes reusable UI-owned class providers; domain view models/auth/actions remain with consumers. UI setup and its review pause are the first future Task 3C step. Generic service instances replace a permanent four-role limit; see the #722 amendment.
 - Native composition and registered provider selection are required across CLI/API/Deployment/Agent. Qualified safe live replacement is a core gate; explicit restart/migration handles unproven live safety. `trsd plugin install <NPM package|Git repo>` installs and activates when safe. Persistent development selections have no expiry/fallback; removal preserves data. See the reviewed-design checkpoint, not legacy restart-only wording.
 - Run complete participating-owner unit/integration suites before each real scene/guarantee invocation on the exact candidate. Do not run a live campaign to discover prerequisite failures.
 - Unit/integration, build, CI and smoke execution of actual assembled artifacts are separate gates. A cross-compiled file is not native target proof. Never claim missing gates passed.
@@ -44,9 +45,9 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Milestone | Required observable result | Status |
 | --- | --- | --- |
 | Tasks 1–2 | Standalone diagnostics and exact saved local plans; seven SDK bindings | Merged, bounded evidence only |
-| Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Authorized; implementation evidence pending |
-| Task 3B | First installed API/Identity/Admin composition and durable Deployment worker root | Proposed; new-owner setup review |
-| Task 3C | NPM/Git plugin registration and safe activation through exact plan/apply | Proposed |
+| Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Integrated; exact Task 3A evidence |
+| Task 3B | First installed API/Identity/Admin composition and durable Deployment worker root | Integrated; exact Task 3B evidence |
+| Task 3C | Extensible typed container plugins, required reusable UI and NPM/Git safe activation | Revised proposal; UI setup review first |
 | Task 3D | Agent root/execution-child composition with harmless real provider harness | Proposed; Agent setup review; no domain migration |
 | Task 4 | Hot-swap proof in all four runtimes plus operation/CLI/browser contributions | Proposed |
 | Task 5 | REST/SDK/CLI/MCP/browser parity with equivalent provider/authority semantics | Proposed |
@@ -57,7 +58,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Task 10 | Projects → Knowledge/TreeDX → Work/Agent, with typed provider seams | Separately specified domain slices |
 | Cutover | Reviewed preservation/data/settings/recovery plan and explicit authority | Separate; never automatic |
 
-Task 3A is the only implementation slice explicitly authorized after architecture approval. Runtime acceptance remains unproven until actual default roots/programs and assembled artifacts pass. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
+Tasks 3A/3B have actual owner/program/assembled evidence. The next Task 3C step is authorized UI initialization followed by setup review; it is not new runtime evidence. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
 
 ## Proposed file ownership
 
@@ -81,8 +82,8 @@ Create only current-task files after resumption. Plugins remain modules/exports 
 | `packages/api/src/{platform-application,main}.ts` and transport/loader modules | Cordis production composition root, executable server, REST/MCP integration and default loader. |
 | `packages/identity/src/` | Required identity/principal/session plugin and selected protocol adapters; invariant authorization remains mandatory. |
 | `packages/agent/src/application.ts`, provider/plugin modules | Required Agent native root and execution scopes; selectable handler/executor/tool/context providers. |
-| `packages/admin/src/` | Browser shell, status/application pages, server actions and browser contribution integration. |
-| `packages/ui/src/` | Shared browser components, no duplicated auth/domain policy. |
+| `packages/admin/src/` | Authorized feature view models, status/application data/session/action adapters and UI contributions. |
+| `packages/ui/src/` | Required reusable browser/server/terminal class components, renderers and presentation contracts; no auth/domain authority. |
 | `packages/api/fixtures/plugins/diagnostic/` | Test-only server/page contribution; built through public SDK/UI dependencies, not sibling source imports. |
 | `packages/{project}/tests/{smoke,integration,unit}/` | That owner's program, public/default-construction boundary and contract/logic tests. |
 | Platform `tests/acceptance/`, `tests/integration/`, `tests/support/installation.ts` | Assembled artifact/Compose/browser qualification and disposable installation fixtures, not another runtime. Use existing Reviewer format if introduced through its setup gate. |
@@ -150,9 +151,9 @@ Merged Task 2 PRs: [SDK #454](https://github.com/treeseed-ai/sdk/pull/454), [Dep
 
 ## Task 3: Native composition, first installation and provider package management
 
-**Required decomposition:** execute [Task 3A–3D](2026-10-24-cordis-composition-providers.md#task-3a-prove-native-composition-in-cli-and-local-deployment) as independently reviewed slices. The installed scene below belongs to 3B, not permission to skip 3A composition/provider proof. Package install-and-activate is 3C; the Agent composition baseline is 3D. Task 3D precedes real domain execution in Task 10.
+**Required decomposition:** execute [Task 3A–3D](2026-10-24-cordis-composition-providers.md#task-3a-prove-native-composition-in-cli-and-local-deployment) as independently reviewed slices. The installed scene below belongs to 3B, not permission to skip 3A composition/provider proof. Extensible container instances, mandatory UI foundation and package install-and-activate are 3C; the Agent composition baseline is 3D. Task 3D precedes real domain execution in Task 10.
 
-**Files:** API `src/{platform-application,main}.ts` and real-wiring tests; Deployment apply/worker/Compose modules, resources and lifecycle tests; Identity plugin and owner tests; Admin minimal browser/status integration and server actions; UI components if needed. Platform owns assembled installation fixtures/scene and exact candidate selection. Each eligible new owner uses the initializer and pauses for user review first; TreeDX is excluded.
+**Files:** API `src/{platform-application,main}.ts` and real-wiring tests; Deployment apply/worker/Compose modules, resources and lifecycle tests; Identity plugin and owner tests; Admin minimal browser/status integration and server actions; UI components were deferred in that historical 3B slice; required reusable browser/server/terminal UI is now Task 3C work. Platform owns assembled installation fixtures/scene and exact candidate selection. Each eligible new owner uses the initializer and pauses for user review first; TreeDX is excluded.
 
 **Interfaces:** consumes Task 3A native roots, typed provider/locator contracts, Plan and the local CLI adapter. Produces `DeploymentHost.apply(planId, digest, options) → ApplicationRef`, `status()`, `application(id)` and the first production Cordis host/status endpoint. The fixed host worker owns lifecycle through app restart. Initial readiness requires the actual identity integration, database, server, edge and browser assets.
 
@@ -261,8 +262,8 @@ Merged Task 2 PRs: [SDK #454](https://github.com/treeseed-ai/sdk/pull/454), [Dep
 
 ## Delivery handoff and current verification limits
 
-Tasks 1–2 are merged and their exact source/artifact evidence remains in the bounded delivery records and composition declarations. They do not execute Cordis, install packages, activate a production composition or implement remote transport. The #704 composition/provider specification and delivery refinement are documentation for review, not new runtime evidence.
+Tasks 1–2 are merged and their exact source/artifact evidence remains in the bounded delivery records and composition declarations. They do not execute Cordis, install packages, activate a production composition or implement remote transport. Tasks 3A/3B subsequently delivered native composition and the first installed profile. Their exact evidence does not prove generic role-free installation or reusable UI; #722 specifies those next gates.
 
 Future tasks load the configured release-workflow, create/adopt owner issues and verified origin/cordis feature branches, and follow documentation → outside-in tests → implementation → owner/build/program/assembled/CI verification. Keep all issues, including #678, open until authorized release. No migration cutover or production publication is authorized by milestone completion.
 
-The maintainer approved the required contexts, provider facade, install-and-activate-when-safe defaults and migration sequence, and explicitly resumed Task 3A only. New owners retain setup review pauses; original services and TreeDX remain unchanged.
+The maintainer approved the required contexts, provider facade, install-and-activate-when-safe defaults and migration sequence, and accepted Task 3A/3B delivery. The Task 3C revision is reviewed for integration; only UI initialization is resumed. UI and Agent each retain separate setup review pauses; original services and TreeDX remain unchanged.
