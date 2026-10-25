@@ -87,10 +87,42 @@ The runtime-image regression assembles genuine compiled archives and explicit ze
 
 SDK `.9` now includes its own actual Firefox lease-drain/replacement/read-back/effect-cleanup program. The earlier SDK CI description above applies to the prior candidates only. UI's next slice adopts `.9` and centralizes default package identity; reusable host document/layout and owner application adoption remain in progress.
 
+## Reusable document/composition continuation
+
+UI's current implementation adds a seventh `stack` component/provider, a bounded lease-retained
+tree with per-child provider/schema/style identity, complete server documents and validated
+standalone/Astro hydration. All visible components still qualify at seven widths and actual
+100%/200% text sizing. Public action context stays in validated model data; no credentials,
+authentication implementation or domain endpoints moved into UI.
+
+| Candidate | Exact current head | Verification / private archive SHA-256 |
+| --- | --- | --- |
+| [UI #86](https://github.com/treeseed-ai/ui/pull/86), SDK .9 adoption | `f1c31017a8ceb10f6a4a501ba4175c96f8eaaac4` | 20 tests, CI green; `.6` `a9ea2ddcfec950ee099c6b314b71273ad65b89a8f7d13b7a141a4b7aa48b4c3c` |
+| [UI #87](https://github.com/treeseed-ai/ui/pull/87), checked default identity | `96b241672a136d8a0aaed2ba4c9208bfbf08e933` | 20 tests, CI green; `.7` `caf4f61a58a453e0fb70cf121d6fb5a8dd17d1d36fae5b42ae89f8927d5cec44` |
+| [UI #88](https://github.com/treeseed-ai/ui/pull/88), composite server/terminal | `6a2dc472a85807519dbb863cc7a44f3e2c10a7db` | 24 tests, CI green; `.8` `ce03cfe9c43d23ecac6b87ae862916456b0cb6e331b8249f9061998a340de3d9` |
+| [UI #89](https://github.com/treeseed-ai/ui/pull/89), composite browser/Astro | `12c78351a2ede4c2eae28f2fbdc72a0c69e9590b` | 25 tests, CI green; `.9` `1c0eb6b6c3e1dfae230b43e8d820a961678accafee59d2699a02710c003b9d3d` |
+| [UI #90](https://github.com/treeseed-ai/ui/pull/90), complete documents | `012172bb804cab2356d16e84538c040de7418de6` | 27 tests, CI green; `.10` `ff901f38c80cdd4ed59e13ca48e4be5fe712e542c005427ff974706237456d75` |
+| [UI #91](https://github.com/treeseed-ai/ui/pull/91), stream boundary fix | `624519a2f9d6a4ba1376979b4bdaf5497d75bf64` | 28 tests, CI green; `.11` `5be30ea9d91ca99f6fcbfd6445f347bea05f0a652b2d268dd7cb5a63f4a8205e` |
+
+UI #87's initial compiler-pair regression exceeded Bun's default five-second test budget on
+CI; the outer limit now accommodates two separately bounded 30-second compiler invocations,
+and both exact-head CI runs are green. UI #91 corrects a consumer-gate false positive on native
+stdout/stderr/class writes, retaining direct/aliased/computed document-write refusals. CLI
+adopts `.11`; earlier intermediate UI archives above are historical candidate evidence.
+
+Deployment #915 now has exact head `c43b66d6609dc6b7815c22b081c3b1fa6605280f`, 55 local
+checks and exact-head CI green. Its public compiled fixture constructs from an unrelated CWD,
+resolving its module within its own package. Updated `.7` archive SHA-256:
+`4d247d7cfa8528b3cb5efa8fcb113a34340d87c392199fffb557ebf285032a4b`.
+This supersedes the earlier unconsumed `.7` archive listed above. SDK remains the exact `.9`
+source/archive already recorded. CLI human presentation adoption is underway through these
+three public archives; no owner source imports or legacy checkout changes were introduced.
+
 ## Remaining authorized Task 3C work
 
-CLI #317, API #624, Identity #46 and Admin #137 still have documentation-first branches with
-runtime changes outstanding. Platform #726 still needs exact final artifact/composition pins
+API #624, Identity #46 and Admin #137 still have documentation-first branches with
+runtime changes outstanding. CLI #317 now has its reusable human presentation implementation
+in progress; final installed/source integration and assembled verification remain outstanding. Platform #726 still needs exact final artifact/composition pins
 and assembled acceptance. Continue reusable UI host
 presentation, the generic container/probe worker and durable resource/credential/TLS retention,
 Identity/API owner metadata and actual target read-back, Admin/CLI UI adoption, pinned standard
@@ -104,8 +136,8 @@ Mandatory genuine fifth-service/two-instance/new-probe activation, NPM/HTTPS-Git
 and trust gates, old-format migration/refusal, resource/credential/TLS preservation and Ubuntu
 26.04 assembled gates remain unchecked. Agent initialization/Task 3D remain outside this task.
 
-Process gaps remain tracked separately in Platform #724 (copied authorization text) and #729
-(normalized native defaults). No opportunistic process-policy edits accompany these features.
+Process gaps remain tracked separately in Platform #724 (copied authorization text), #729
+(normalized native defaults/configuration projection) and #732 (assembled self-hosted image/consumer boundaries). No opportunistic process-policy edits accompany these features.
 API's restored committer policy per #620 remains untouched. On this checkpoint the owning
 issues, UI setup #79 and Platform #678 were read back as open. No integration merges, tags,
 production channels or original services were changed.
