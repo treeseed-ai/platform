@@ -222,3 +222,20 @@ now check the deadline directly. Probe contexts are immutable and credential cal
 Provider disposal preserves installed fixture services; only the explicit fixture cleanup removes
 them. This is no claim of a committed application, standalone host worker or assembled API readiness.
 The durable native application coordinator is now being implemented in its owning Deployment repo.
+
+[Deployment #925](https://github.com/treeseed-ai/deployment/pull/925) verifies durable native
+application coordination at `f1827c1bec6f9402c8ad7807f421856e3087de42`: 82 owner checks and both
+exact-head Ubuntu 26.04 CI runs green. `.16` SHA-256:
+`007ace8e3122a5126528891cd8ef53f7b5f4408032c89dd3d1bf14376846a633`.
+Built default-root programs commit actual receipted resources and selected-probe acknowledgements,
+recover a same-key response without repeating activation, refuse concurrent work, read back
+without the original bundle, and report a stopped-after-commit container as unready. A stopped
+composition stays non-serving. Partial unready effects require repair; occupied-port validation
+fails before staging. Deferred close cannot claim writer cleanup until accepted leases settle.
+This remains coordinator evidence, not standalone worker/socket or API/Keycloak assembly proof.
+
+Platform [#737](https://github.com/treeseed-ai/platform/issues/737) records a separate process
+proposal after unchecked scripted edits missed formatted source and one wrong-mode fixture left
+an empty test network. The exact fixture ID/labels/time/empty attachments were verified before
+cleanup. The behavior regression and fixture-owned cleanup were corrected in the owning feature;
+no AGENTS.md/skill changes were included. The proposal remains open for separate acceptance.
