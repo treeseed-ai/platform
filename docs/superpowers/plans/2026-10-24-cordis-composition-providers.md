@@ -69,7 +69,7 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
 
-Local implementation and verification are recorded in the [Task 3A delivery](2026-10-24-task3a-native-composition.md); exact CI and review read-back are linked from Platform #708. Later task checkboxes remain unstarted.
+Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C/3D remain unstarted.
 
 ## Task 3B: First installed composition and durable host root
 
@@ -78,11 +78,11 @@ Local implementation and verification are recorded in the [Task 3A delivery](202
 **Interfaces:** produces `DeploymentHost.apply(planId, digest, options)`, status/application read-back and the fixed worker protocol. Every runtime mounts required services through Task 3A contracts. No owner implementation moves into API.
 
 - [x] Initialize API, Identity and Admin in their own canonical repositories through the parent initializer, using pinned setup; API must receive a fresh cleared cordis worktree just like CLI/SDK/Deployment. See the [Task 3B setup gate](2026-10-24-task3b-initialization.md). Stop for review before scaffolding or dependency installation. After explicit resumption, create owner issues/branches, record legacy mappings and commit owner docs and protocol/format schemas.
-- [ ] Write `installed_composition_has_real_contexts`: compiled CLI plan/apply → durable application → actual worker/API Cordis roots → actual configured identity flow → HTTPS browser status with required database/identity/edge/server readiness. The worker survives client/server exit. No injected engine/auth/provider satisfies the scene.
-- [ ] Add intended-red tests for duplicate/missing core provider, wrong scope/engine, concurrent ownership and idempotency conflict. Define/verify installation format migration before writing new registry/active state; preserve Task 2 format-1 plans and reject incompatible old readers truthfully.
-- [ ] Implement the bounded real composition and fixed worker boundary. The worker mounts approved capabilities; it never accepts arbitrary package-specified privileged commands. Test the worker as a program and the default API constructor with real collaborators.
-- [ ] Run complete owner gates plus the installed scene, direct/routed resource and asset read-back, and bounded interruption after submission. Revalidate exact artifacts and clean only fixture-owned resources.
-- [ ] Commit/open owner PRs and Platform pins with explicit review gates. Preserve future transport parity and full recovery work for their own slices.
+- [x] Write `installed_composition_has_real_contexts`: compiled CLI plan/apply → durable application → actual worker/API Cordis roots → actual configured identity flow → HTTPS browser status with required database/identity/edge/server readiness. The worker survives client/server exit. No injected engine/auth/provider satisfies the scene.
+- [x] Add intended-red tests for duplicate/missing core provider, wrong scope/engine, concurrent ownership and idempotency conflict. Define/verify installation format migration before writing new registry/active state; preserve Task 2 format-1 plans and reject incompatible old readers truthfully.
+- [x] Implement the bounded real composition and fixed worker boundary. The worker mounts approved capabilities; it never accepts arbitrary package-specified privileged commands. Test the worker as a program and the default API constructor with real collaborators.
+- [x] Run complete owner gates plus the installed scene, direct/routed resource and asset read-back, and bounded interruption after submission. Revalidate exact artifacts and clean only fixture-owned resources.
+- [x] Commit/open owner PRs and Platform pins with explicit review gates. Preserve future transport parity and full recovery work for their own slices.
 
 **Deliverable:** one working installed composition with real Cordis roots and durable host authority. This milestone does not prove all hot replacements or all remote surfaces.
 
@@ -149,4 +149,4 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required. Task 3A native composition now has owner implementation and local verification; subsequent task behaviors remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; runtime acceptance checkboxes above remain unchecked. The maintainer has approved the architecture, defaults and sequence and subsequently resumed Task 3B, retaining its new-owner setup review pause; perform each new child owner's initialization/review gate when its slice needs it. Agent remains gated at Task 3D.
+This plan makes Cordis composition and provider hot replacement required. Task 3A native composition and Task 3B installed composition now have verified owner implementations. Task 3C/3D remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; completed Task 3A/3B checkboxes above record observed owner, program and assembled verification. The maintainer has approved the architecture, defaults and sequence and subsequently resumed Task 3B, retaining its new-owner setup review pause; perform each new child owner's initialization/review gate when its slice needs it. Agent remains gated at Task 3D.

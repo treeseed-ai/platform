@@ -2,7 +2,7 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → native Cordis composition in every runtime → integrated deployment and provider/plugin installation → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: Tasks 1–3A are integrated on cordis. Task 3B is explicitly resumed.** API, Identity and Admin now have reviewed, published same-repository Cordis baselines; their implementation continues alongside CLI, SDK and Deployment. The installed composition and durable worker are in development and are not accepted as complete until the real database/identity/API/HTTPS/browser scene and CI pass. See the [Task 3B implementation plan](docs/superpowers/plans/2026-10-24-task3b-installed-composition.md).
+**Status: Task 3B owner implementations are integrated on cordis.** The installed composition and durable worker passed the real database/identity/API/HTTPS/browser scene and Ubuntu 26.04 CI. The integration record binds accepted owner archives to their reviewed source and merged trees. See the [Task 3B implementation plan](docs/superpowers/plans/2026-10-24-task3b-installed-composition.md).
 
 CLI and local Deployment already use native Cordis roots and exact prepared-provider loading from Task 3A. The current Task 3B slice adds installed apply/status/application read-back, a durable worker, native service plugins (including containers), configured identity and a protected Admin status contribution. Task 3C acquisition/installation, Task 3D Agent initialization and implementation, broader transport parity and full recovery remain later work. No production publication or cutover is authorized.
 
@@ -86,7 +86,7 @@ prepared immutable ESM packages, ordinary dependencies, alternatives and failure
 Historical Task 1–2 records remain intact. [Delivery record](docs/superpowers/plans/2026-10-24-task3a-native-composition.md).
 
 
-## Task 3B review candidate
+## Task 3B installed composition
 
 [Exact owner sources, package archives and fixture image selections](composition/task3b.json)
 compose the first installed profile. The standalone CLI plans and applies a local verified bundle;

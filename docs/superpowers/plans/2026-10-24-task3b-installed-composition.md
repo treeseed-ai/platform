@@ -69,9 +69,9 @@ Caddy owns stable installation-local TLS authority in an owned volume. Export on
 
 Files: existing contracts/source-policy/tests/tooling, README, CHANGELOG, package/lock. Add strict installed-plan, service declaration, application/journal/protocol schemas and inferred types; preserve format-1 and native provider contracts. Add public development tooling entry so new owner builds remain independent.
 
-- [ ] Commit owner documentation and exact interfaces first.
-- [ ] Add outer projection/strict protocol tests, then migration/idempotency/schema regressions; run intended behavioral red.
-- [ ] Implement contracts and generated projections. Keep seven IDs. Run `bun run verify`; pack without scripts and record exact candidate commit/hash.
+- [x] Commit owner documentation and exact interfaces first.
+- [x] Add outer projection/strict protocol tests, then migration/idempotency/schema regressions; run intended behavioral red.
+- [x] Implement contracts and generated projections. Keep seven IDs. Run `bun run verify`; pack without scripts and record exact candidate commit/hash.
 
 ### 2. Identity, Admin and API owners (#44, #135, #617)
 
@@ -79,36 +79,36 @@ Files per owner: README, CHANGELOG, package.json, bun.lock, exact vendor archive
 
 Public interfaces: Identity exports its container provider and OIDC/session/principal contracts/plugins; Admin exports session/action/page contributions and a browser-only class entry; API exports container provider and `ApiApplication` default root. API consumes public Identity/Admin packages; Admin consumes Identity/SDK, never API source. Shared invocation contract is SDK-owned.
 
-- [ ] Commit each owner's legacy mapping, interfaces, route and container/plugin declarations before tests.
-- [ ] Write built-program rejection/default-construction and actual identity/session/browser tests before implementation; run intended reds.
-- [ ] Implement actual native roots, scoped authority, owner-generated image context/assets and service declarations. Run each owner's nonempty check/build/unit/integration/smoke commands.
+- [x] Commit each owner's legacy mapping, interfaces, route and container/plugin declarations before tests.
+- [x] Write built-program rejection/default-construction and actual identity/session/browser tests before implementation; run intended reds.
+- [x] Implement actual native roots, scoped authority, owner-generated image context/assets and service declarations. Run each owner's nonempty check/build/unit/integration/smoke commands.
 
 ### 3. Deployment durable composition (#908)
 
 Files: existing resolver/filesystem/diagnose/composition and focused worker/controller modules, owner tests/docs/package metadata. Public methods extend `DeploymentHost` with apply/status/application. `DeploymentWorker.run` implements only the fixed private protocol. Service classes consume engine/journal tokens using native injection.
 
-- [ ] Document migration, apply authority and exact fixed service policy; commit.
-- [ ] Write accepted/read-back/idempotency/concurrency/engine/stale-generation/worker-program reds, including default real construction.
-- [ ] Reuse artifact verification for format 2 without weakening format 1. Implement descriptor-anchored private state, explicit migration, atomic records, one writer and detached acknowledgement.
-- [ ] Mount actual container plugins, load only verified images, await actual database/OIDC/API/HTTPS/asset readiness. Test safe failure and interruption after submission. Run full owner verification.
+- [x] Document migration, apply authority and exact fixed service policy; commit.
+- [x] Write accepted/read-back/idempotency/concurrency/engine/stale-generation/worker-program reds, including default real construction.
+- [x] Reuse artifact verification for format 2 without weakening format 1. Implement descriptor-anchored private state, explicit migration, atomic records, one writer and detached acknowledgement.
+- [x] Mount actual container plugins, load only verified images, await actual database/OIDC/API/HTTPS/asset readiness. Test safe failure and interruption after submission. Run full owner verification.
 
 ### 4. CLI integration (#315)
 
 Files: arguments/root, public host invocation, built-program tests, docs and exact owner pins.
 
-- [ ] Commit documented commands/envelopes first, then write program reds for valid invocation and sanitized failure paths.
-- [ ] Implement apply/status/application and internal worker dispatch using public Deployment interfaces. Render and await native cleanup before emission. No concrete host construction in CLI.
-- [ ] Run Task 1–3A regressions and new program/default worker checks; build standalone artifact and record SHA-256.
+- [x] Commit documented commands/envelopes first, then write program reds for valid invocation and sanitized failure paths.
+- [x] Implement apply/status/application and internal worker dispatch using public Deployment interfaces. Render and await native cleanup before emission. No concrete host construction in CLI.
+- [x] Run Task 1–3A regressions and new program/default worker checks; build standalone artifact and record SHA-256.
 
 ### 5. Platform installed scene (#713)
 
 Files: exact composition evidence, class-based assembly/acceptance program, CI and integration documentation. Runtime construction remains in owners.
 
-- [ ] Prepare genuine owner archives and selected OCI bundles from exact built artifacts, with public build commands and complete lock closure.
-- [ ] Run `installed_composition_has_real_contexts`: compiled CLI plan/apply, durable application read-back, native worker/API identity, actual Keycloak login, PostgreSQL principal persistence and HTTPS Admin browser status/assets.
-- [ ] Terminate submitting client/API after acceptance; verify worker survives and read-back remains truthful. Exercise wrong scope, missing/duplicate providers, stale generation, idempotency conflict and artifact tampering before effects.
-- [ ] Compare direct/routed resources/assets and clean only fixture-owned resources. Run all owner verification and assembled regressions, then native CI including mandatory ubuntu-26.04 positive gate.
-- [ ] Open bounded reviewed PR candidates targeting cordis with Part of issue references, exact pins and actual evidence. Keep all issues open and hand back for maintainer review.
+- [x] Prepare genuine owner archives and selected OCI bundles from exact built artifacts, with public build commands and complete lock closure.
+- [x] Run `installed_composition_has_real_contexts`: compiled CLI plan/apply, durable application read-back, native worker/API identity, actual Keycloak login, PostgreSQL principal persistence and HTTPS Admin browser status/assets.
+- [x] Terminate submitting client/API after acceptance; verify worker survives and read-back remains truthful. Exercise wrong scope, missing/duplicate providers, stale generation, idempotency conflict and artifact tampering before effects.
+- [x] Compare direct/routed resources/assets and clean only fixture-owned resources. Run all owner verification and assembled regressions, then native CI including mandatory ubuntu-26.04 positive gate.
+- [x] Open bounded reviewed PR candidates targeting cordis with Part of issue references, exact pins and actual evidence. Keep all issues open and hand back for maintainer review.
 
 ## Container ownership implementation detail
 
@@ -123,3 +123,10 @@ Private slot kinds are random, UUID, JSON, properties and text. Declarative JSON
 ## Assembled verification interface
 
 Platform consumes five exact public owner archives through private development dependencies and builds only the exact selected CLI source. New verification uses strict TypeScript classes in tests/task3b-installed.test.ts, checked against the SDK semantic source policy and strict compiler. `bun run test:installed` requires Ubuntu 26.04, local Docker/Compose, certutil and the qualified Playwright Firefox binary; missing prerequisites fail. An isolated Firefox profile imports only the fixture authority, with ignoreHTTPSErrors false. The fixture producer standard-locks the complete flat runtime closure with scripts disabled, prepares genuine native OCI selections and invokes API's public image-context program. It never imports checkout source. The root archive pins and source/tree evidence live in composition/task3b.json; all older composition evidence remains historical and unchanged. Owner checks retain Task 1–3A behavior; historical assembled jobs continue checking their exact historical candidates.
+
+
+## Reviewed delivery evidence
+
+All six owner strict checks/builds and 78 owner tests passed. The final merged-CLI scene passed 292 assertions (the earlier review candidate passed 293; polling affects the count), including authenticated unknown-application HTTP 404 after an intended-red HTTP 503 reproduction. Historical assembled/skill checks passed all 15 tests. [Platform review CI](https://github.com/treeseed-ai/platform/actions/runs/40146085024) passed both historical jobs and the real Ubuntu 26.04 installed gate. API policy restoration #621 preserved the already-approved policy exactly; both API runtime PRs then passed normal base-owned authorization.
+
+The [composition record](../../../composition/task3b.json) retains accepted source/archive identities and separately records all owner cordis merge commits with identical verified Git trees. CLI selection follows its integrated commit. Platform #717 delivered setup/design; #718 delivers installed acceptance and these completion records. All task branches are removed only after verified integration. All issues, including #678 and API #620, remain open; the initializer-policy prevention proposal remains separate. Task 3C/3D and production cutover are not started.
