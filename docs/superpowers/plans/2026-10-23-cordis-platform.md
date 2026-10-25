@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. Before Task 3C, the [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), are proposed for review. Task 3C/3D implementation and UI initialization remain unstarted.
+**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. Before Task 3C, the [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), are reviewed for integration. Only UI initialization resumes next, followed by setup review; Task 3C/3D product implementation remains unstarted.
 
 ## Global constraints
 
@@ -58,7 +58,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Task 10 | Projects → Knowledge/TreeDX → Work/Agent, with typed provider seams | Separately specified domain slices |
 | Cutover | Reviewed preservation/data/settings/recovery plan and explicit authority | Separate; never automatic |
 
-Tasks 3A/3B have actual owner/program/assembled evidence. The next Task 3C revision awaits review and explicit execution resumption, then UI setup review; it is not new runtime evidence. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
+Tasks 3A/3B have actual owner/program/assembled evidence. The next Task 3C step is authorized UI initialization followed by setup review; it is not new runtime evidence. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
 
 ## Proposed file ownership
 
@@ -266,4 +266,4 @@ Tasks 1–2 are merged and their exact source/artifact evidence remains in the b
 
 Future tasks load the configured release-workflow, create/adopt owner issues and verified origin/cordis feature branches, and follow documentation → outside-in tests → implementation → owner/build/program/assembled/CI verification. Keep all issues, including #678, open until authorized release. No migration cutover or production publication is authorized by milestone completion.
 
-The maintainer approved the required contexts, provider facade, install-and-activate-when-safe defaults and migration sequence, and accepted Task 3A/3B delivery. The Task 3C revision now awaits review. UI and Agent each retain separate setup review pauses; original services and TreeDX remain unchanged.
+The maintainer approved the required contexts, provider facade, install-and-activate-when-safe defaults and migration sequence, and accepted Task 3A/3B delivery. The Task 3C revision is reviewed for integration; only UI initialization is resumed. UI and Agent each retain separate setup review pauses; original services and TreeDX remain unchanged.

@@ -1,6 +1,6 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is proposed for review under #722; Task 3C/3D implementation remains unstarted.**
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722; only UI setup is resumed, with Task 3C/3D product implementation unstarted.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -10,7 +10,9 @@
 
 **Spec:** [Required composition and provider design](../specs/2026-10-24-cordis-composition-providers-design.md). Tracking: [Platform #704](https://github.com/treeseed-ai/platform/issues/704). This refines [Tasks 3–10](2026-10-23-cordis-platform.md); Tasks 1–2 remain completed historical evidence.
 
-The [Task 3C amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md) propose required reusable UI and generic service instances. They supersede optional UI wording and any interpretation of the Task 3B four-service profile as a permanent limit. Approval and execution remain pending.
+The [Task 3C amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md) propose required reusable UI and generic service instances. They supersede optional UI wording and any interpretation of the Task 3B four-service profile as a permanent limit. The maintainer authorizes integration and UI setup only, followed by setup review.
+
+The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. Only UI setup is resumed now, followed by its setup review; see the detailed Task 3C amendment/plan.
 
 ## Global constraints
 
@@ -92,7 +94,7 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 
 ## Task 3C: Extensible container plugins, reusable UI and safe installation
 
-**Detailed execution authority:** the [Task 3C owner plan](2026-10-24-task3c-extensible-plugins-ui.md) implements the [proposed amendment](../specs/2026-10-24-extensible-deployment-ui-design.md). It replaces this milestone's earlier acquisition-only task list; all implementation remains pending review/resumption.
+**Detailed execution authority:** the [Task 3C owner plan](2026-10-24-task3c-extensible-plugins-ui.md) implements the [proposed amendment](../specs/2026-10-24-extensible-deployment-ui-design.md). It replaces this milestone's earlier acquisition-only task list; product implementation remains pending UI setup review/resumption.
 
 **Files/interfaces:** SDK format-3 service/binding/profile/transition contracts and portable native composition; Deployment generic graph/engine, resource receipts and `PluginManager.install/select`; UI reusable `./contracts`, `./browser`, `./server`, `./terminal`; Identity/API typed declarations; Admin/CLI UI consumers; Platform exact assembly. Existing seven operations remain unchanged.
 
@@ -152,4 +154,4 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required. Task 3A native composition and Task 3B installed composition now have verified owner implementations. Task 3C/3D remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; completed Task 3A/3B checkboxes above record observed owner, program and assembled verification. The earlier architecture and Tasks 3A/3B have been accepted and delivered. The #722 Task 3C amendment remains proposed; stop for plan review now and retain UI setup review as the first subsequent execution gate. Agent remains separately gated at Task 3D.
+This plan makes Cordis composition and provider hot replacement required. Task 3A native composition and Task 3B installed composition now have verified owner implementations. Task 3C/3D remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; completed Task 3A/3B checkboxes above record observed owner, program and assembled verification. The earlier architecture and Tasks 3A/3B have been accepted and delivered. The maintainer has requested integration of the #722 amendment and UI initialization only; stop after that setup for review. Agent remains separately gated at Task 3D.

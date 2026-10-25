@@ -1,6 +1,8 @@
 # Required Cordis composition and provider plugins
 
-Date: 2026-10-24. Status: **maintainer-approved foundation; Tasks 3A/3B integrated; Task 3C revision pending review**. Later slices and new-owner setup retain their own authority/review gates. Tracking: [Platform #704](https://github.com/treeseed-ai/platform/issues/704). Read with the [platform contract](../../platform-contract.md) and [delivery plan](../plans/2026-10-24-cordis-composition-providers.md).
+Date: 2026-10-24. Status: **maintainer-approved foundation; Tasks 3A/3B integrated; Task 3C revision reviewed; UI setup only resumed**. Later slices and new-owner setup retain their own authority/review gates. Tracking: [Platform #704](https://github.com/treeseed-ai/platform/issues/704). Read with the [platform contract](../../platform-contract.md) and [delivery plan](../plans/2026-10-24-cordis-composition-providers.md).
+
+The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. Only UI setup is resumed now, followed by its setup review; see the detailed Task 3C amendment/plan.
 
 ## Intent and current evidence
 
@@ -12,7 +14,7 @@ Tasks 1–2 are merged and retain their evidence: help/version/doctor, exact loc
 
 This design supersedes the earlier API-only composition emphasis, prepare-only plugin acquisition, blanket restart-first activation policy and exclusion of the bounded plugin installer. It does not authorize implementation, a marketplace, arbitrary execution hooks, production publication or changes to legacy installations.
 
-The [extensible-container and required-UI amendment](2026-10-24-extensible-deployment-ui-design.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), proposes format-3 typed service instances, stable retained resources and UI-owned browser/server/terminal providers. Read its [owner plan](../plans/2026-10-24-task3c-extensible-plugins-ui.md) before Task 3C. Four services are a default profile, not a permanent role limit. UI is required, not optional; initialization and implementation await review.
+The [extensible-container and required-UI amendment](2026-10-24-extensible-deployment-ui-design.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), proposes format-3 typed service instances, stable retained resources and UI-owned browser/server/terminal providers. Read its [owner plan](../plans/2026-10-24-task3c-extensible-plugins-ui.md) before Task 3C. Four services are a default profile, not a permanent role limit. UI is required, not optional; only initialization is resumed; product implementation awaits UI setup review.
 
 ## Composition rules
 
@@ -235,7 +237,7 @@ Every row needs docs → user-observable failing test → integration/unit tests
 - NPM documents [Git sources and preparation](https://docs.npmjs.com/cli/v11/commands/npm-install/) and [Git build triggers](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/). This motivates source/build separation and disabled ambient scripts; it does not select npm over the existing Bun package manager. Qualify the selected pinned adapter in Task 3C.
 - [Bun standalone distribution](https://bun.sh/docs/bundler/executables) documents an embedded runtime. Loading separately installed ESM provider packages from that binary, shared Cordis identity across package boundaries, dependency resolution and repeated generation imports need actual compiled-program qualification in Task 3A. Do not silently drop dynamic CLI providers if the first configuration fails; record the exact failure and resolve it before delivery.
 
-Maintainer choices recorded: mandatory composition across runtimes, provider adapters at virtually all meaningful seams, package/Git registration, and install-and-activate-when-safe. Builder decisions proposed for review: per-target explicit selection, same native resolver with a typed facade, private versioned registry owned by Deployment, source/build separation, caller-visible idempotency receipts, privately managed acquisition helpers, bounded drain with availability gaps, and explicit restart/migration when live safety is unproven. None of the new runtime requirements is implemented by this documentation PR. Tasks 3A/3B subsequently delivered the foundation. The #722 amendment and Task 3C plan await review; no UI setup, Task 3C/3D code or activation is authorized by this documentation revision.
+Maintainer choices recorded: mandatory composition across runtimes, provider adapters at virtually all meaningful seams, package/Git registration, and install-and-activate-when-safe. Builder decisions proposed for review: per-target explicit selection, same native resolver with a typed facade, private versioned registry owned by Deployment, source/build separation, caller-visible idempotency receipts, privately managed acquisition helpers, bounded drain with availability gaps, and explicit restart/migration when live safety is unproven. None of the new runtime requirements is implemented by this documentation PR. Tasks 3A/3B subsequently delivered the foundation. The maintainer requests integration of #723 followed by UI setup only; Task 3C/3D product code and activation remain gated by UI setup review.
 
 ## Builder-check disposition
 

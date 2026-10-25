@@ -21,7 +21,7 @@ and [Task 3A–3D delivery plan](docs/superpowers/plans/2026-10-24-cordis-compos
 for the approved foundation and delivered Task 3B scope. [Issue #704](https://github.com/treeseed-ai/platform/issues/704)
 tracks the accepted architecture.
 
-**Before Task 3C — proposed for review:** [extensible container providers and required reusable UI](docs/superpowers/specs/2026-10-24-extensible-deployment-ui-design.md) and the [detailed owner implementation plan](docs/superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722). The next contract replaces fixed roles with typed named instances, retains unaffected resources and makes UI-owned browser/server/terminal presentation mandatory. These are future requirements: the current format-2 implementation still has four fixed services and inline consumer presentation. `packages/ui` is absent; future execution first initializes its existing canonical repository and stops for setup review. This documentation pass performs no initialization or product implementation.
+**Task 3C plan reviewed; UI setup resumes next:** [extensible container providers and required reusable UI](docs/superpowers/specs/2026-10-24-extensible-deployment-ui-design.md) and the [detailed owner implementation plan](docs/superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722). The next contract replaces fixed roles with typed named instances, retains unaffected resources and makes UI-owned browser/server/terminal presentation mandatory. These are future requirements: the current format-2 implementation still has four fixed services and inline consumer presentation. `packages/ui` is absent at this plan revision; the authorized next step initializes its existing canonical repository and stops for setup review. This documentation pass performs no initialization or product implementation.
 
 Start with these documents in order:
 
@@ -60,6 +60,8 @@ TreeDX is excluded and remains its existing Elixir/Rust service.
 All handwritten Cordis implementation uses strict **TypeScript classes**, typed capability
 contracts and replaceable class plugins through Cordis injection/configuration. This lifetime
 architecture rule is mandatory in AGENTS.md; TreeDX remains the Elixir/Rust exception.
+
+The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. Only UI setup is resumed now, followed by its setup review; see the detailed Task 3C amendment/plan.
 
 ## Development skill consistency
 
