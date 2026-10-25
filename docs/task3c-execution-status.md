@@ -74,11 +74,24 @@ Local full check/build/44 tests passed; final candidate source and CI are record
 This slice deliberately accepts plan-only state; active resource retention and migration still
 require the subsequent durable worker implementation and qualification.
 
+## Additional exact candidates
+
+- [UI #85](https://github.com/treeseed-ai/ui/pull/85): native package metadata/assets, head `b81f02d16c87bbcb6f534eed449d487415cdea09`; 20 local tests and exact-head Ubuntu 26.04 CI green. UI `.5` archive SHA-256 `de3b897dc0b821cfffc038ce32469b1ab84b456ded706921c6e65aca8dd085c0`.
+- [SDK #466](https://github.com/treeseed-ai/sdk/pull/466): instance-neutral projection/helper contracts, head `a8c2c3532482b3f68dc75f3abdf90dbd40b904b2`; 59 tests and exact-head CI/description gates green. SDK `.8` SHA-256 `5d58eef491456c4db22fcca914daf30bcac447cd5ebcff3bc1933574b8a82624`.
+- [SDK #467](https://github.com/treeseed-ai/sdk/pull/467): acyclic runtime image associations and actual owner Firefox composition gate, head `85a7b6036c9a390a5c56b9db419fc5b6f8f8cd77`; 62 tests and exact-head Ubuntu 26.04 CI/description gates green. SDK `.9` SHA-256 `80337c6ad9cb4f493fa06ed9a22e3863ae41610cc1027817bd54c1eece3954d3`. New owner adoption uses this candidate.
+- [Deployment #912](https://github.com/treeseed-ai/deployment/pull/912): plan-only persistence, head `aef0988c424eae7426b6475d1652a69507a979fc`; 44 tests and Ubuntu 26.04 CI green.
+- [Deployment #914](https://github.com/treeseed-ai/deployment/pull/914): materialize owner projections, validate standard formats, bind asset sizes and prepared helper inventories, head `92dd54cf1ebfdd8329402e7478e939294e029d9e`; 51 tests and exact-head CI green. Deployment `.6` SHA-256 `956dcc611cfbb1a1e646db35b284a6cc6a05719cd4dd6ddb6bd50009abda0bdc`.
+- [Deployment #915](https://github.com/treeseed-ai/deployment/pull/915): acyclic exact runtime image/entry/closure bindings, head `93c5b885d96b9eb28be595911a661793e4d53cd5`; 54 local tests, exact-head CI pending at this ledger update. Deployment `.7` SHA-256 `41413b5f195f0f8c518b8c86a972692c5c6c3a4d45e22a72ea327a21860329c0`.
+
+The runtime-image regression assembles genuine compiled archives and explicit zero-layer OCI inspection fixtures in dependency order, verifies a new unrelated package leaves the runtime image identity unchanged, and rejects changed/missing packaged entries. It does not claim real installed API activation. Platform #732 tracks the missing self-hosted assembled build check; no placeholder hashes or process-policy edits were introduced. Prepared helper inspection uses a bounded tar/gzip tree with exact 0400/0500 file modes; genuine standard Bun/Git acquisition/execution remains later acceptance.
+
+SDK `.9` now includes its own actual Firefox lease-drain/replacement/read-back/effect-cleanup program. The earlier SDK CI description above applies to the prior candidates only. UI's next slice adopts `.9` and centralizes default package identity; reusable host document/layout and owner application adoption remain in progress.
+
 ## Remaining authorized Task 3C work
 
 CLI #317, API #624, Identity #46 and Admin #137 still have documentation-first branches with
 runtime changes outstanding. Platform #726 still needs exact final artifact/composition pins
-and assembled acceptance. Continue UI installable native package metadata and reusable host
+and assembled acceptance. Continue reusable UI host
 presentation, the generic container/probe worker and durable resource/credential/TLS retention,
 Identity/API owner metadata and actual target read-back, Admin/CLI UI adoption, pinned standard
 source/helper acquisition and registry, then exact Platform assembly.
