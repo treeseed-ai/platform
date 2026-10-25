@@ -553,7 +553,7 @@ All candidates remain unmerged drafts and every issue, including #678, remains o
 one target/scope while rejecting conflicting runtime generations/digests, stale compositions
 and unready evidence. Snapshot and fresh status share admission; every service remains probed.
 Full serial local check/build plus 118 tests (34 unit, 44 integration, 40 smoke) passed.
-Exact-head CI is pending. `.35` archive SHA-256:
+Both exact-head Ubuntu 26.04 CI runs passed. `.35` archive SHA-256:
 `2e648ca3dd8f67de107692975efbd62cd1227667d386faf0120d39e9ac4fdc58`.
 The original genuine API test reached all four running containers but failed snapshot with
 `INVALID_TARGET_ACKNOWLEDGEMENT`; the corrected candidate commits and reports ready through
@@ -567,3 +567,37 @@ qualification are not claimed. An incorrect test minimum of three assets was rep
 verification of all declared assets and required contributions from both actual owners.
 Generated diagnostic hooks remain absent from implementation artifacts. All remaining
 retention/migration/acquisition/CLI/Platform gates and every issue stay open.
+
+## Genuine installed API and SDK-valid Admin read-back
+
+[Admin #143](https://github.com/treeseed-ai/admin/pull/143), source
+`83b9bd399666bcaa0d806b807804f4a8b7b3514e`, corrects an invented envelope assumption in
+the view adapter and authority fixture. Both now use SDK-validated raw `platform.status`
+output. A contract-valid default-browser regression failed before the fix; all nine owner
+tests (3 unit, 2 integration, 4 smoke) and both exact-head Ubuntu 26.04 CI checks pass.
+`.8` archive: `6ed661574bbe10f00dfa09fafc84c60785e987152cd997ecb31395334077c4a2`.
+The browser escaping fixture uses valid installation text instead of an invalid service ID.
+Platform #732 records the fixture/production contract gap; no process-policy edits were made.
+
+API review is split into dependent drafts [#626](https://github.com/treeseed-ai/api/pull/626)
+(native service/runtime contracts, source `6d43046ce2c53d2053af58e2d92b4c147a0d1202`) and
+[#627](https://github.com/treeseed-ai/api/pull/627) (installed qualification, source
+`4c20e6bc00f0d9284a0e0d4fe429acb094afb058`). The first is not independently merge-ready:
+its historical owner checks precede the required real-root corrections in the second.
+Final API `.3` SHA-256: `bffe3e36a873eecda23600df27f2c11ba58f2a2287bc28e2a4f1689a67cb3de8`.
+Full final owner check/build and 13 tests pass (5 unit, 3 integration, 5 smoke); exact-head
+CI is pending. Forced installed-owner read-back and a separate clean rebuild/repack produce
+byte-identical archive contents. API #620 policy remains blob
+`b1a687db754ee2fac141919e6c63052d12bf2812`.
+
+The genuine programme uses renamed Postgres/Keycloak/API/Caddy services and verifies measured
+content/direct+routed generation, trusted private-CA HTTPS, actual Keycloak login, authenticated
+raw SDK status/application responses, responsive reusable Admin controls, CSRF refusal and exact
+prior-cookie revocation. Every declared JS/CSS asset is verified, credentials and CA bytes remain
+unchanged, status works after bundle removal, and containers remain after root closure. This
+is isolated fixture acceptance, not deployment/publication into an original installation.
+
+Retained live planning begins in Deployment on `feature/910-task3c-retained-planning`; docs
+are committed and its built-program outside-in test is being established. Activation of
+transitions, explicit migration, source/helper management, final CLI adoption and Platform
+assembly remain required. All candidates and all issues, including #678, remain open.
