@@ -49,6 +49,8 @@ and required notices from its verified original baseline; API and Market API kee
 The parent working tree, untracked files and moving branches are not copy sources. Existing
 branches/directories or partial/dirty setups are preserved, not automatically wiped again.
 
+Task 3B selects API, Identity and Admin for this treatment; [its setup record](superpowers/plans/2026-10-24-task3b-initialization.md) pins exact sources. API is not exempt. Agent must receive the same clean same-repository cordis setup and explicit review/publication gate when Task 3D selects it; it remains uninitialized here. Never treat an existing legacy API or Agent checkout as an already-reviewed Cordis replacement.
+
 This replaces the earlier manual skill/AGENTS installation step. After the single setup-only
 local bootstrap commit, report refs/paths, copy verification and license exceptions, then
 **stop for user review, project-specific adjustments and explicit resumption before any
