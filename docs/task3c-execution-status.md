@@ -434,3 +434,26 @@ restored #620 policy remains exact blob `b1a687db754ee2fac141919e6c63052d12bf281
 Deployment's Caddy slice has committed documentation and failing public-export/selected-image-catalog
 tests. An unselected package catalog image must not require an unused release inventory image.
 No new Caddy implementation or assembled API/Keycloak success is claimed at this checkpoint.
+
+## Native Caddy and selected image catalogs
+
+[Deployment #940](https://github.com/treeseed-ai/deployment/pull/940), head
+`ce3fd6e054dd7bdff4b9491b605571c6c9d29dbf`, adds the native typed Caddy class and active image
+selection from package catalogs. Full serial local check/build plus 27 unit, 42 integration and
+36 smoke checks passed (105 total), followed by final check/build and the expanded unselected
+runtime-image regression. Both exact-head Ubuntu 26.04 CI runs passed.
+`.30` archive SHA-256: `2b8063c34b93af6855532a440fb28c7b304762e722c0b7159ecf8c1ae78f76b5`.
+
+Actual archived Caddy 2.10.2 routes two explicitly identified HTTP protocol fixtures at renamed
+instance IDs. Real TLS, accepted-origin certificate verification, private Identity-path denial,
+public-CA custody/private modes, source-free read-back and retained CA/container state pass. These
+fixtures do not implement genuine API/Keycloak semantics. The default Node fixture bundle initially
+selected jsonc-parser 3.3.1 UMD main with an unresolved `./impl/format`; its explicit pinned ESM
+resolution passes the same programme. Temporary diagnostic sources were removed. A command-style
+cleanup rejection was resolved by checking/removing only the exact task-created regular files.
+
+Unselected external/runtime-image catalog declarations no longer demand unused artifacts; selected
+identity and unused inventory guards remain. Public archive inspection for API runtime audit is now
+in progress on `feature/910-task3c-archive-inspection`. Its outside-in checks include a reproduced
+same-byte archive-path replacement race; descriptor pinning through parse closes that gap. No
+archive-inspection candidate or complete Task 3C success is claimed yet.
