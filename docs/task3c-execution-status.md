@@ -497,8 +497,8 @@ Deployment's README. No broader host directory is exposed.
 projection. Local full gate at `67e0188e88c07fb5a45776d2339f58df7598ca0c`: 111 checks.
 One CI run passed; another hit a 5-second real-host observation-test timeout. Corrected source
 `4e5f19cf55cdd9c7d7ee679b5d3f451334b1d4ee` classifies that test as integration with an explicit
-60-second bound. Fresh check/build plus all 11 projection/observation checks passed; final CI
-is pending. Repacked `.33` bytes remain exactly
+60-second bound. Fresh check/build plus all 11 projection/observation checks and both final exact-head CI
+runs passed. Repacked `.33` bytes remain exactly
 `34b9f1080fc5a86a3c193daf5039537b91f4947514b84c9603268183b2bf42b1`.
 
 [Identity #49](https://github.com/treeseed-ai/identity/pull/49), source
@@ -512,8 +512,36 @@ passed. `.4` archive: `0e377e4a0ad79ee649b20e41779c862e431f20979b19cae638b658925
 A new installed-owner regression caught a stale local Identity installation despite changed
 vendor pins; a forced fresh install and rebuilt `.6` candidate pass seven checks including real
 Firefox HTTPS through explicit authority fixtures. `.6` archive:
-`98e709ade2c8cda1913f5c65c995334a97056fd5b9d60e78a6261e110576dd1c`. Final CI pending.
+`98e709ade2c8cda1913f5c65c995334a97056fd5b9d60e78a6261e110576dd1c`. Both final exact-head CI runs passed.
 The earlier `.5` local gate is superseded. Platform #734 records the adoption defect; no process
 policy was changed. API now explicitly forces installs and reads installed public identities
 before genuine-root acceptance. Its current genuine database/Keycloak/edge/API test is in progress.
 All these PRs remain unmerged drafts. All issues, including #678, remain open.
+
+## Genuine Node-root qualification continuation
+
+[Deployment #944](https://github.com/treeseed-ai/deployment/pull/944), source
+`59ada8bb3bb50d6d86eeff03f35e218a363369e7`, qualifies Bun's omission of a peer
+range identical to the same regular dependency. It retains every original dependency constraint,
+closure and integrity check. Full local gate: 114 tests (30 unit, 44 integration, 40 smoke);
+both exact-head Ubuntu 26.04 CI checks passed. `.34` archive SHA-256:
+`9627fa88157926f55985579fc783ff0b2c6a2e95aca674dff5076c31b1a6e7fb`.
+The real API bundle's `ajv-formats@3.0.1` established the original blocker; no resolver
+permissiveness was added for conflicting ranges or unsupported lock forms.
+
+[Admin #142](https://github.com/treeseed-ai/admin/pull/142), source
+`45abbeeb5e99f368128418168d913a30721fefba`, resolves matching named package roots across
+Node's nested module-mode manifests. The genuine API image failed because Postgres's Node
+entry resolved beneath a type-only CommonJS manifest. A built Node default-construction smoke
+reproduced that failure before the owner fix. Full Admin check/build and eight tests pass,
+including Firefox with explicit fixture-CA trust; exact-head CI is pending. `.7` archive:
+`2041d42294bcd5814dc0a481bcc5a95b583ca4ba2a201b46d72a8f0c57979132`.
+Platform #732 records the missing Node production-construction check.
+
+API consumes Deployment `.34` and Admin `.7` through exact vendored archives with forced
+fresh installation and installed identity read-back. Its standalone actual-image file audit
+passes. The genuine database/Keycloak/API/edge composition is still being qualified; the
+passing owner fixtures do not establish that assembled gate. Generated diagnostic tracing
+was removed by a fresh build before the current run. Retained transitions, explicit migration,
+source/plugin management, CLI adoption and final Platform acceptance remain outstanding.
+All candidates remain unmerged drafts and every issue, including #678, remains open.
