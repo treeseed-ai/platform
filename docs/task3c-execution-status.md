@@ -239,3 +239,14 @@ proposal after unchecked scripted edits missed formatted source and one wrong-mo
 an empty test network. The exact fixture ID/labels/time/empty attachments were verified before
 cleanup. The behavior regression and fixture-owned cleanup were corrected in the owning feature;
 no AGENTS.md/skill changes were included. The proposal remains open for separate acceptance.
+
+[Deployment #926](https://github.com/treeseed-ai/deployment/pull/926) shares the existing store/writer
+through one native host-private authority at `76e14bdf99c1916428468b8141ad78872cd2d576`, with 83
+owner checks and both exact-head Ubuntu 26.04 CI runs green. `.17` SHA-256:
+`990058b3aac003c584ff18f1aee85f47ca74bc2ab84199f7f6bd12e9cb5f9e0b`.
+The actual native default root reports its selected installation/application providers. A background
+application holds an authority lease after submit returns; immediate close reports pending, admitted
+work finishes, and final disposal releases the writer. Removing that lease establishes an executable
+red. The host-private authority is not registered in installed container/probe scopes.
+Private observer/owner socket providers are the next in-progress owner slice; no standalone worker,
+API/Keycloak assembled composition, active transition/migration or source acquisition claim is made.
