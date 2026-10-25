@@ -422,7 +422,7 @@ assembled API/Keycloak, retained active transitions, explicit migration or sourc
 [Deployment #939](https://github.com/treeseed-ai/deployment/pull/939), head
 `acf4c109dbe2a8ab7d42e21b136ed4ebc597b0d4`, adds the public typed HTTP/TLS byte-transport helper
 beneath native owner probes. All 102 local checks passed (check/build, 27 unit, 41 integration,
-34 smoke); exact-head CI is pending at this update. `.29` archive SHA-256:
+34 smoke); both exact-head Ubuntu 26.04 verify checks passed. `.29` archive SHA-256:
 `0ea092352087eb8996de7dcf2385046766c0bdafe8045f838084e82db23aa5c6`.
 Built Node fixtures verify private-CA chain/accepted-origin hostname checks while dialing an IP,
 wrong CA/hostname, redirects, header/body/truncation/encoding/path limits, cancellation/socket drain
