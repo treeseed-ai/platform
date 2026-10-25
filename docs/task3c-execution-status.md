@@ -361,3 +361,37 @@ The first concurrent run observed another disposable suite's containers; an unch
 passed. [Platform #739](https://github.com/treeseed-ai/platform/issues/739) proposes checked shared
 Docker qualification coordination; no workflow policy was changed. Actual format-3 CLI activation
 program qualification and source-management commands remain subsequent work.
+
+## Public authority custody and compiled CLI installed operations
+
+[Deployment #936](https://github.com/treeseed-ai/deployment/pull/936), head
+`e7bcb22684740be59b32859856bf9f92f367fba0`, qualifies bounded raw Docker-copy tar transport and
+strict single-file public CA inspection without extraction. All 96 local checks and both exact-head
+Ubuntu 26.04 CI checks passed. `.26` SHA-256:
+`5e901f041cb998c441f7deca2af6a50183e61f99d93fcec06ef67dda2c73e7f1`.
+The genuine named-volume program compares stable resource IDs rather than elapsed-time strings.
+
+[Deployment #937](https://github.com/treeseed-ai/deployment/pull/937), head
+`8b19bd21d30bfecbbe4a8f3ff292455c47fc3781`, adds grant-scoped authority references to actual native
+probe contexts and private immutable CA/volume-identity receipts. Its 98 local checks pass
+(check/build, 27 unit, 41 integration, 30 smoke); exact-head CI is pending at this update.
+`.27` SHA-256: `3d2a7b22f0f4b629000a0a0db054d4c5b7964ebac4b9148481a2f60cfed767f9`.
+Qualification includes genuine own/cross-service authority grants, ordinary-credential and foreign
+reference denial, cancellation after Docker copy before publication, concurrent first exports,
+actual volume mount checks, private modes, unknown/missing files, symlinks and source-free cached
+read-back. A projection regression caught the missing declared-authority grant case before delivery.
+These remain fixture CAs; default Caddy/API/Keycloak and active-generation retention remain pending.
+
+[CLI #321](https://github.com/treeseed-ai/cli/pull/321), head
+`672f76b4b3cdde41d0e45390d81c6918617f99bb`, qualifies existing format-3 runtime behavior through
+actual compiled `trsd`. All 17 serial local checks pass (check/build, 1 unit, 1 integration, 15 smoke);
+exact-head CI is pending. The unchanged `.6` executable SHA-256 remains
+`a5274a7dc871116e6a9b92433110fe0c33580336be3ec7fd4a944ae406507efa`.
+The scene runs symlinked from foreign cwd with closed stdin and Docker-only PATH, recovers accepted
+work after the caller exits, observes five services through JSON and UI human output, removes the
+bundle then repeats read-back, and refuses implicit restart after exact-worker graceful disposal.
+No CLI coordinator, ambient compiler during apply, version or machine-envelope change was added.
+
+All candidates remain unmerged drafts. Every issue remains open; Task 3C continues and Task 3D
+remains gated. Default providers/API runtime evidence, retained transitions/migration, source/build/
+registry management and complete exact assembled acceptance are still required.
