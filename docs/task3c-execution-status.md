@@ -309,8 +309,22 @@ measured runtime content at `55d79a33f6513cddb787f6cfadaadb1afdfa4b2d`: 69 check
 CI green. `.11` SHA-256:
 `21f3a77d1e9364e1896f58642ae3b3e17c2bf80db1cefc3f71a6e94a4ac64fd7`.
 [SDK #471](https://github.com/treeseed-ai/sdk/pull/471) adds optional saved-plan runtime bindings at
-`4a0b12ca45478f58d92a02de4a7c144ed94c7417`: 71 local checks; final exact-head CI remains pending.
+`4a0b12ca45478f58d92a02de4a7c144ed94c7417`: 71 checks and all exact-head CI green. One prerequisite
+download hit the runner timeout; the targeted job retry passed without source/workflow changes.
 `.12` SHA-256: `9652a1e1f830eb85c41b2d9ea207782ffdf291db2ef97331e338775dadf62fd4`.
 Bindings must match selected service/recipe/image artifacts; earlier format-3 payloads retain field
 absence. The operation count stays seven. Deployment is now qualifying map derivation, persistence
 and fresh comparison before exposing readonly observation metadata to native probes and the API.
+
+[Deployment #933](https://github.com/treeseed-ai/deployment/pull/933) persists verified runtime
+bindings at `5946d7b8061ba29e7a831ac28ae060107c234a19`: 91 checks and both exact-head CI runs green.
+`.23` SHA-256: `2892dad2458e1506664e3aed0e98ac19007b188bbf1404eef972aaaaf2111516`.
+Its built non-activating planner verifies all five instance bindings, source-free read-back and
+unchanged resources/listeners. A forged content binding fails fresh validation before staging.
+Readonly observation IPC and native probe injection remain subsequent bounded slices.
+
+[UI #94](https://github.com/treeseed-ai/ui/pull/94) qualifies SDK .12 at
+`a0f28a2d4a3285cbb5203a97c2cdb620517871ae`: 28 checks and both exact-head CI runs green.
+`.14` SHA-256: `6c1032996990178f7a76d5cbde2e15a4b6467941159d6d6013a33526e799e7ad`.
+All required responsive widths, keyboard/forms/text resizing, native lifecycle and packed Astro
+hydration remain qualified. Current SDK adoption documentation now agrees with the exact archive.
