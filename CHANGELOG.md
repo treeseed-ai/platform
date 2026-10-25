@@ -8,6 +8,8 @@
 
 ### Added
 
+- Platform: verify first installed Cordis composition and durable worker (#713).
+
 - Platform: specify Task 3B setup and installed composition (#713).
 
 - Platform: verify Task 3A native CLI and Deployment composition (#708).

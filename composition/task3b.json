@@ -1,0 +1,147 @@
+{
+  "formatVersion": 1,
+  "task": "3B",
+  "fixturesOnly": true,
+  "cli": {
+    "repository": "https://github.com/treeseed-ai/cli.git",
+    "commit": "89fb78b6fd362a8de9dec9d238a310f65545175b",
+    "acceptedCandidate": "5dd94c174bce3905f5fe873fbe892da80d971c99"
+  },
+  "owners": {
+    "sdk": {
+      "repository": "https://github.com/treeseed-ai/sdk.git",
+      "commit": "f44ede394a58814b5d6e73146ba9ed7246b4f2ca",
+      "archive": "packages/cli/vendor/sdk.tgz",
+      "sha256": "16d3d7f699c55795b97972ca538bfeedeafdc6bfc4c32ed01708871ea02fe75c"
+    },
+    "deployment": {
+      "repository": "https://github.com/treeseed-ai/deployment.git",
+      "commit": "6a861aa81f3786b74752191b461d1bcddf99fce5",
+      "archive": "packages/cli/vendor/deployment.tgz",
+      "sha256": "7015e2447eb4d98f9979e8f10a3b33480c8ca80818384e2cbf939eba550ab65d"
+    },
+    "api": {
+      "repository": "https://github.com/treeseed-ai/api.git",
+      "commit": "0d8037475ccecea8bfe7462c803799d4a4a445bf",
+      "archive": "vendor/task3b/api.tgz",
+      "sha256": "35d3ea37325edbe8538090132f5931aaa0e782a32f9c384699f8be2060effebc"
+    },
+    "identity": {
+      "repository": "https://github.com/treeseed-ai/identity.git",
+      "commit": "906d64e1dc9219786444f5f793968592bb8abd96",
+      "archive": "vendor/task3b/identity.tgz",
+      "sha256": "dd3131499b01b8ad8d4c8aa78d0cb99de69da86c4fbad1da0670439c3d8bdddc"
+    },
+    "admin": {
+      "repository": "https://github.com/treeseed-ai/admin.git",
+      "commit": "5b30c2af69c5d273936cfddd480e7f5891c75db9",
+      "archive": "vendor/task3b/admin.tgz",
+      "sha256": "a7750c6f38187e44b2823eb778f66b73c4596983226dd80c2204208f96848e28"
+    }
+  },
+  "images": {
+    "database": "postgres@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+    "identity": "quay.io/keycloak/keycloak@sha256:ff4257d0d64efbe99ed1ddfaf07765cc3c36dc7518bf8324d41961327f441c54",
+    "edge": "caddy@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d",
+    "node": "node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553"
+  },
+  "verification": {
+    "local": {
+      "host": "Ubuntu 26.04.1 x64",
+      "bun": "1.4.4",
+      "node": "24.19.0",
+      "docker": "29.9.1",
+      "compose": "5.6.0",
+      "installedScene": {
+        "assertions": 311,
+        "result": "pass",
+        "priorReviewedCandidateAssertions": 293,
+        "qualification": "Polling changes the total assertion count; the same behavioral assertions and authenticated missing-application regression pass.",
+        "mergedCliBeforeAuthorityRegressions": 292
+      },
+      "owners": {
+        "sdk": 20,
+        "deployment": 32,
+        "cli": 14,
+        "api": 6,
+        "identity": 3,
+        "admin": 3
+      },
+      "historicalAssembledAndSkills": 15
+    },
+    "runtimeEffectBoundary": "Only accepted fixture-owned resources; no legacy service or production publication",
+    "historicalFormats": "Format 1 preserved; format 2 explicit; generalized recovery deferred",
+    "ownerPushCI": {
+      "sdk": 40145937270,
+      "deployment": 40145938719,
+      "cli": 40145937906,
+      "api": 40145938326,
+      "identity": 40145937927,
+      "admin": 40145937419
+    },
+    "platformInitialPushCI": 40139784766,
+    "qualification": {
+      "runtimeClosure": "Registry identities and SRI must match committed Platform bun.lock; fresh resolution drift fails visibly",
+      "ociCache": "Key includes current image identity; only selected native manifest/config/layers are copied",
+      "hostMounts": "Private descriptor ownership/identity checked before and after the Docker mount operation; daemon bind sources use verified installation paths",
+      "negativeMountQualification": "Docker 29.9.1 / Compose 5.6.0 / local Unix context / Ubuntu 26.04 x64: proc descriptor bind source rejected by runc; fixed installation paths qualify successfully"
+    },
+    "review": {
+      "missingApplication": "Authenticated missing application regression reproduced HTTP 503 before fix; real installed scene now returns safe 404.",
+      "policy": "API #621 restored exact approved policy blob b1a687db754ee2fac141919e6c63052d12bf2812; both runtime PRs pass normal base-owned authorization.",
+      "documentation": "Owner links target cordis and survive task-branch deletion.",
+      "hostAuthority": "Built CLI apply rejects changed daemon identity and stale composition before activation; a separate built worker cannot take an existing writer lock. No new containers, networks, volumes or credentials."
+    },
+    "ownerIntegration": {
+      "sdk": {
+        "num": 459,
+        "issue": 457,
+        "branch": "feature/457-task3b-installed-composition",
+        "head": "f44ede394a58814b5d6e73146ba9ed7246b4f2ca",
+        "merge": "285e95407fddb233abd198da8c80f74c077372f9",
+        "tree": "d787132bc96b837c1ad24e4c8b5482b8ff134a90"
+      },
+      "deployment": {
+        "num": 909,
+        "issue": 908,
+        "branch": "feature/908-task3b-installed-composition",
+        "head": "6a861aa81f3786b74752191b461d1bcddf99fce5",
+        "merge": "a34a62ed2445130547e15e2c90bb80c9e6fa4b07",
+        "tree": "b0d54b6200ee47bc5992074c00d3d72dc9fac9af"
+      },
+      "cli": {
+        "num": 316,
+        "issue": 315,
+        "branch": "feature/315-task3b-installed-composition",
+        "head": "5dd94c174bce3905f5fe873fbe892da80d971c99",
+        "merge": "89fb78b6fd362a8de9dec9d238a310f65545175b",
+        "tree": "8fa89ccbaf362ffbc91e25f97b00840f5e4ef9b9"
+      },
+      "identity": {
+        "num": 45,
+        "issue": 44,
+        "branch": "feature/44-task3b-installed-composition",
+        "head": "906d64e1dc9219786444f5f793968592bb8abd96",
+        "merge": "7a294b9e9f5e19f5b90a69d3d4adaa7eac0205a8",
+        "tree": "0f7a24017c33f08f222fd7d64172bc8efe12aa35"
+      },
+      "admin": {
+        "num": 136,
+        "issue": 135,
+        "branch": "feature/135-task3b-installed-composition",
+        "head": "5b30c2af69c5d273936cfddd480e7f5891c75db9",
+        "merge": "b12651bcc8a8c7efab48377b65d6174915cf5dbe",
+        "tree": "7dfc221f4d18768ede870d5b24870b59ce152e57"
+      },
+      "api": {
+        "num": 619,
+        "issue": 617,
+        "branch": "feature/617-task3b-api-server",
+        "head": "0d8037475ccecea8bfe7462c803799d4a4a445bf",
+        "merge": "942a2c441b09cd61ba8e5b2a5946c272752e626d",
+        "tree": "f049f1a3c4acaaf9babb1fdc23b2138cb24a4273"
+      }
+    },
+    "platformReviewCI": 40146085024
+  }
+}
