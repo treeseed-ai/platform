@@ -294,3 +294,23 @@ An independent consumer installs the exact SDK/Deployment archives and invokes t
 producer from an unrelated directory, then executes the result without Node/Bun on PATH.
 The default public host launcher is now in progress. API/Keycloak assembly, retained active
 transitions/migration and plugin source acquisition/registration remain required before Task 3C handoff.
+
+[Deployment #932](https://github.com/treeseed-ai/deployment/pull/932) wires format-3 apply/status/
+application into the default public host at `5bf4afab4fa89eda35ceb1854924c7a1f3c22c97`. All 89 owner
+checks and both exact-head CI runs passed. `.22` SHA-256:
+`c82f0c81691dc1d09fdfa062ad1943c4d6122b4b029d4d07b6ab3e5eba02c658`.
+A compiled Docker-only caller launches the pinned native worker and exits; a later caller recovers
+the same application and source-free observations. A stopped worker requires repair, and a script
+worker canary is refused before launch publication. The initial host is qualified, with no claim
+that active composition transitions, implicit restarts or recovery have been implemented.
+
+[SDK #470](https://github.com/treeseed-ai/sdk/pull/470) defines accepted observation metadata and
+measured runtime content at `55d79a33f6513cddb787f6cfadaadb1afdfa4b2d`: 69 checks and all exact-head
+CI green. `.11` SHA-256:
+`21f3a77d1e9364e1896f58642ae3b3e17c2bf80db1cefc3f71a6e94a4ac64fd7`.
+[SDK #471](https://github.com/treeseed-ai/sdk/pull/471) adds optional saved-plan runtime bindings at
+`4a0b12ca45478f58d92a02de4a7c144ed94c7417`: 71 local checks; final exact-head CI remains pending.
+`.12` SHA-256: `9652a1e1f830eb85c41b2d9ea207782ffdf291db2ef97331e338775dadf62fd4`.
+Bindings must match selected service/recipe/image artifacts; earlier format-3 payloads retain field
+absence. The operation count stays seven. Deployment is now qualifying map derivation, persistence
+and fresh comparison before exposing readonly observation metadata to native probes and the API.
