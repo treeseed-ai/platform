@@ -24,6 +24,8 @@
 
 ### Changed
 
+- Platform: plan extensible container providers and required reusable UI (#722).
+
 - Platform: require Cordis composition and selectable provider plugins across runtimes (#704).
 
 - platform: isolate Cordis migration integration and preserve project repositories (#674).

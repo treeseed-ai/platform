@@ -49,7 +49,9 @@ and required notices from its verified original baseline; API and Market API kee
 The parent working tree, untracked files and moving branches are not copy sources. Existing
 branches/directories or partial/dirty setups are preserved, not automatically wiped again.
 
-Task 3B selects API, Identity and Admin for this treatment; [its setup record](superpowers/plans/2026-10-24-task3b-initialization.md) pins exact sources. API is not exempt. Agent must receive the same clean same-repository cordis setup and explicit review/publication gate when Task 3D selects it; it remains uninitialized here. Never treat an existing legacy API or Agent checkout as an already-reviewed Cordis replacement.
+Task 3B initialized API, Identity and Admin through this gate; [its setup record](superpowers/plans/2026-10-24-task3b-initialization.md) pins exact sources. The proposed [Task 3C plan](superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md) requires UI next, in the existing `treeseed-ai/ui` canonical repository. `packages/ui` is absent. UI setup is not authorized by the planning pass: after plan approval and explicit execution resumption, initialize it locally, stop for setup review, and publish only with explicit instruction. Browser/server/terminal reusable presentation belongs there; consumers retain domain/auth authority. The observed legacy UI source below is a reference, not a future baseline pin.
+
+Agent must receive the same clean same-repository Cordis setup and explicit review/publication gate when Task 3D selects it; it remains uninitialized here. UI approval does not approve Agent. Never treat an existing legacy UI/API/Agent checkout as an already-reviewed Cordis replacement.
 
 This replaces the earlier manual skill/AGENTS installation step. After the single setup-only
 local bootstrap commit, report refs/paths, copy verification and license exceptions, then
@@ -77,7 +79,7 @@ These refs were read from local repositories during this documentation task. The
 | SDK | `121d959bfe06ecf5a5c1178754a413c5e254533f` | Operation/client/schema and compatibility mechanisms. |
 | API | `8452cb2d60d1f0b0cd10eafb8722d31065176f06` | Domain/transport separation, authentication and durable authority. |
 | Identity | `9d8794f93fdacd6593290e2c90e239cdbd6eb1a7` | Maintained identity/session/workload protocol primitives. |
-| UI | `034b8811e42d7bededb8e2444ca4c099d79de4a3` | Reusable forms, feedback, timestamps and bounded browser surfaces. |
+| UI | `034b8811e42d7bededb8e2444ca4c099d79de4a3` | Reusable presentation contracts, tables/forms/navigation/feedback; migrate into UI-owned class providers for browser/server/terminal without copying functional legacy implementations. |
 | Admin | `4e9307fed7226c4a33004ea5a159a70e993423fd` | Server-side session/facade and same-origin mutation boundary. |
 | Core | `c476ce515eae46d7eb560e374bae6c277077237d` | Optional public reader/site mechanisms; avoid importing the complete layering framework. |
 | TreeDX | `13d9f9047025d709ccbb7f8ffff9d2f67e2ec15a` | Generic repository/workspace/query/artifact service boundary. |

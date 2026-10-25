@@ -1,6 +1,6 @@
 # Required Cordis composition and provider plugins
 
-Date: 2026-10-24. Status: **maintainer-approved architecture; Task 3A only explicitly resumed on 2026-10-24**. Later slices and new-owner setup retain their own authority/review gates. Tracking: [Platform #704](https://github.com/treeseed-ai/platform/issues/704). Read with the [platform contract](../../platform-contract.md) and [delivery plan](../plans/2026-10-24-cordis-composition-providers.md).
+Date: 2026-10-24. Status: **maintainer-approved foundation; Tasks 3A/3B integrated; Task 3C revision pending review**. Later slices and new-owner setup retain their own authority/review gates. Tracking: [Platform #704](https://github.com/treeseed-ai/platform/issues/704). Read with the [platform contract](../../platform-contract.md) and [delivery plan](../plans/2026-10-24-cordis-composition-providers.md).
 
 ## Intent and current evidence
 
@@ -8,9 +8,11 @@ Cordis is the required composition foundation across CLI, API, Deployment and Ag
 
 The maintainer chose **install and activate when safe**, rather than prepare-only by default. Live replacement is a core acceptance requirement. A verified live transition is preferred; restart, process replacement or migration remains an explicit alternative when live replacement cannot preserve the capability's invariants. Unknown safety must never be called hot-swappable.
 
-Tasks 1–2 are merged and retain their evidence: help/version/doctor, exact local bundle planning, private plan publication/read-back and seven executable operation contracts. Their classes use direct constructor injection; they do not execute a Cordis context. Plugin fixtures validate declarations without loading them. No claim in this design converts that work into implemented Cordis composition, installation, provider switching or remote APIs.
+Tasks 1–2 are merged and retain their evidence: help/version/doctor, exact local bundle planning, private plan publication/read-back and seven executable operation contracts. Those historical candidates use direct constructor injection; they do not execute a Cordis context. Tasks 3A/3B subsequently added actual CLI/local Deployment/worker/API roots, installed service plugins and protected Admin browser status; see the exact Task 3B record in `composition/task3b.json`. Their historical fixtures validate declarations without loading them. Broader package installation, provider switching and transport parity remain future work beyond the separate Task 3A/3B evidence.
 
 This design supersedes the earlier API-only composition emphasis, prepare-only plugin acquisition, blanket restart-first activation policy and exclusion of the bounded plugin installer. It does not authorize implementation, a marketplace, arbitrary execution hooks, production publication or changes to legacy installations.
+
+The [extensible-container and required-UI amendment](2026-10-24-extensible-deployment-ui-design.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), proposes format-3 typed service instances, stable retained resources and UI-owned browser/server/terminal providers. Read its [owner plan](../plans/2026-10-24-task3c-extensible-plugins-ui.md) before Task 3C. Four services are a default profile, not a permanent role limit. UI is required, not optional; initialization and implementation await review.
 
 ## Composition rules
 
@@ -19,12 +21,12 @@ This design supersedes the earlier API-only composition emphasis, prepare-only p
 3. A `ServiceLocator` adapter is required as the typed selection/inspection facade over Cordis. Cordis remains the sole in-process service resolver, dependency graph and plugin/effect lifecycle. Our facade adds exact provider identities, validated configuration, selection policy and observable generation receipts; it must not own a second instance cache, DI graph or custom start/stop scheduler.
 4. A plugin is a lifecycle-managed unit, including mandatory core capabilities. A provider is a plugin-supplied implementation of a capability. An adapter implements the typed boundary to a library, protocol or resource. These roles can occupy one class/package; do not manufacture three wrapper layers.
 5. Multiple providers may be installed and registered. Exactly one is selected for a required singleton capability in each scope. Alternatives inhabit native isolated scopes until selected; ordinary duplicate publication in one scope is an error. Multi-provider aggregation is allowed only by an explicit collection contract, never by registration order.
-6. SDK schemas/data records and pure utility classes need not create contexts. UI composition participates where components/actions are registered; no context per button or data record. Third-party internals are not rewritten. TreeDX retains Elixir/Rust and is consumed through a typed public adapter.
+6. SDK schemas/data records and pure utility classes need not create contexts. All human-facing UI composes reusable UI-owned browser/server/terminal providers; domain owners supply authorized data/actions. UI composition participates where components/actions are registered; no context per button or data record. Third-party internals are not rewritten. TreeDX retains Elixir/Rust and is consumed through a typed public adapter.
 7. All handwritten implementation, tooling and tests remain strict TypeScript classes. Native Cordis effects own listeners, timers, registrations and child lifetimes. Durable work and external resources also require explicit owner drain/fence/recovery evidence.
 
 ## Context and process map
 
-Every box below is proposed. Contexts do not cross a process boundary or provide a security sandbox.
+This is the target context map. CLI, worker and API roots exist after Task 3B; Agent, broad transport parity and the UI-owned presentation root remain future work. Current owner class names are `DeploymentWorker` and `ApiApplication`; older proposed names below describe their responsibilities. Contexts do not cross a process boundary or provide a security sandbox.
 
 ```mermaid
 flowchart TB
@@ -70,24 +72,24 @@ flowchart TB
 | API root | API `PlatformApplication` | Identity, operation invocation, REST/MCP transports, Deployment adapter and feature plugins; process lifetime | API owns hosting, not other repositories' capabilities |
 | API authorized request scope | API, with Identity-owned principal integration | Trusted principal/resource context and leases for selected services; request lifetime | Cancellation does not erase accepted durable work |
 | Agent root / execution child | Agent `AgentApplication` | Registered handlers, execution provider, tools/context/reporting; root and accepted-execution lifetimes | Work authority stays API-owned; isolation and credential boundaries are separate from Cordis |
-| Admin server / browser composition | Admin, UI support | Server-side session/actions; separately built browser page/navigation/component contributions | No server plugins or credentials in browser bytes; no arbitrary runtime remote browser modules |
+| Admin server / browser composition | Admin domain adapters + required UI providers | Server-side session/actions; UI-owned browser/server components and native browser root | No server plugins or credentials in browser bytes; no arbitrary runtime remote browser modules |
 
 CLI-local Deployment and worker roots consume the same owner package and contracts. They do not run competing lifecycle writers: the accepted host application is owned by the worker; local calls submit or inspect it through its fixed protocol. Short-lived diagnostic/planning contexts remain non-activating.
 
 ## Packages, plugins and authority
 
-Only the first three package names below exist today. Proposed subpath exports are design contracts; other owners' public NPM names remain unallocated. A row is a module/export inside its existing repository, not a request for a new repository.
+SDK/CLI/Deployment/API/Identity/Admin now have exact private candidate archives under `@treeseed-cordis/*` in Task 3B. UI and Agent remain uninitialized; their new exports are proposed. This table mixes existing foundations and future capabilities; it is not a claim that every command/plugin exists. A row is a module/export inside its existing repository, not a request for a new repository.
 
 | Repository / package | Proposed entrypoints or plugins | Owns | Does not own |
 | --- | --- | --- | --- |
 | Platform root | Composition manifests, exact artifact pins, assembled tests | Cross-project contract, integration and verification | Any application runtime, plugin implementation or provider database |
 | SDK / `@treeseed-cordis/sdk` | Portable declarations; `./runtime` with `CordisComposition`, `CordisServiceLocator`, provider-binding helpers; `./source-policy` stays development-only | Shared registration/selection contracts and generic native-Cordis adapter mechanics | Domain adapters, installation authority, credentials or a second resolver |
-| CLI / `@treeseed-cordis/cli` | `CliApplication`; core help/doctor/plan commands, `PluginCommands`, output/configuration plugins | Arguments, target selection and presentation; CLI capability contracts | Package acquisition internals or copied Deployment lifecycle |
+| CLI / `@treeseed-cordis/cli` | `CliApplication`; core help/doctor/plan commands, `PluginCommands`, output/configuration plugins | Arguments, target selection and domain view models; human presentation consumes UI, machine envelopes remain CLI/SDK-owned | Package acquisition internals or copied Deployment lifecycle |
 | Deployment / `@treeseed-cordis/deployment` | `DeploymentPlugin`, `DeploymentApplication`, `PluginManager`, engine/source/build/private-store adapters | Acquisition, immutable package generations, durable plugin transactions, host lifecycle and recovery | User/session identity policy, Agent execution or API domain authority |
 | API / `packages/api` | `PlatformApplication`, operation/REST/MCP/loader plugins; domain-owned providers | Server host and transport wiring; Projects/Work authority when introduced | Reimplementation of Deployment or Agent |
 | Identity / `packages/identity` | `IdentityPlugin`, selected issuer/session/principal adapters | Identity protocols, principal mapping and capability authorization | A new homegrown token issuer or generic execution authority |
-| Admin / `packages/admin` | Web/session/action/page plugins | Browser shell and server-side action/session facade | Domain authorization enforced only by UI |
-| UI / `packages/ui` | Typed component/form contribution providers | Reusable class-based browser components and contribution contracts | Backend persistence or deployment policy |
+| Admin / `packages/admin` | Web/session/action/page plugins | Authorized view models, feature contributions and server-side action/session facade; presentation consumes UI | Domain authorization enforced only by UI |
+| UI / `packages/ui` | Typed component/form contribution providers | Required reusable class-based browser/server/terminal components, renderers and contribution contracts | Backend persistence or deployment policy |
 | Agent / `packages/agent` | `AgentApplication`, handler/executor/tool/context/reporting plugins | Physical execution and its resource/usage/cleanup evidence | Durable work acceptance, authorization grants or settlement policy |
 | Core / `packages/core` | Optional reader/site plugins | Existing public reader capability | Cordis application hosting |
 | TreeDX / existing service | Existing protocols; consuming adapter stays with its capability owner | Existing repository/knowledge storage and service | A new Cordis rewrite or general API authority |
@@ -111,13 +113,15 @@ For each new capability ask: **can a caller retain its contract and invariants w
 | Operations/transports | Typed handlers, REST/MCP transport adapters, SDK transport | One executable operation binding; unregister collisions/effects; preserve schema and authorization |
 | Domain persistence / repositories | Owner-defined interfaces to database/TreeDX/external APIs | Select resource and authority explicitly; data migration is a planned lifecycle action |
 | Agent | Typed handler, executor, workspace/tool/context and reporting interfaces | Pin each accepted execution; active work drains or uses explicit cancellation/recovery; no mid-task provider substitution |
+| Container service instances/readiness | Typed service/endpoint/binding/profile and probe providers, with no fixed role catalog | Explicit instance selection, stable retained resources and qualified activation; see #722 amendment |
+| Reusable human UI | UI-owned component/rendering contracts for browser/server/terminal | Exact UI archive and matching assets; domain/auth authority stays with consumers |
 | Browser contributions | Typed page/navigation/component/action declarations | Build and activate matching asset generation; no server-side live swap can attest browser replacement without asset read-back |
 
 Integrity verification, scope/authorization enforcement, exactly-one selection, lease/generation checks and durable commit/recovery semantics are mandatory rules of the integrated system. Their implementation may be modular and tested, but installed providers cannot disable those rules. Cryptographic primitives, simple data objects and every private helper are not independent plugin seams.
 
 ### Proposed registration and locator contracts
 
-The following names/signatures are proposed, not current SDK exports. Concrete capability interfaces remain in their existing owner; SDK tokens refer to them through public types. Schema validation must check actual runtime shape/compatibility; a TypeScript generic alone is insufficient.
+This table describes the target API; Tasks 3A/3B implement the basic SDK tokens, composition and lease facade. `PluginManager` and broader transitions remain proposed. Check exact owner exports before importing a name. Concrete capability interfaces remain in their existing owner; SDK tokens refer to them through public types. Schema validation must check actual runtime shape/compatibility; a TypeScript generic alone is insufficient.
 
 | Owner | Proposed contract | Meaning |
 | --- | --- | --- |
@@ -231,7 +235,7 @@ Every row needs docs → user-observable failing test → integration/unit tests
 - NPM documents [Git sources and preparation](https://docs.npmjs.com/cli/v11/commands/npm-install/) and [Git build triggers](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/). This motivates source/build separation and disabled ambient scripts; it does not select npm over the existing Bun package manager. Qualify the selected pinned adapter in Task 3C.
 - [Bun standalone distribution](https://bun.sh/docs/bundler/executables) documents an embedded runtime. Loading separately installed ESM provider packages from that binary, shared Cordis identity across package boundaries, dependency resolution and repeated generation imports need actual compiled-program qualification in Task 3A. Do not silently drop dynamic CLI providers if the first configuration fails; record the exact failure and resolve it before delivery.
 
-Maintainer choices recorded: mandatory composition across runtimes, provider adapters at virtually all meaningful seams, package/Git registration, and install-and-activate-when-safe. Builder decisions proposed for review: per-target explicit selection, same native resolver with a typed facade, private versioned registry owned by Deployment, source/build separation, caller-visible idempotency receipts, privately managed acquisition helpers, bounded drain with availability gaps, and explicit restart/migration when live safety is unproven. None of the new runtime requirements is implemented by this documentation PR. The maintainer has approved the architecture and explicitly resumed Task 3A only; no new owner setup or later slice is authorized.
+Maintainer choices recorded: mandatory composition across runtimes, provider adapters at virtually all meaningful seams, package/Git registration, and install-and-activate-when-safe. Builder decisions proposed for review: per-target explicit selection, same native resolver with a typed facade, private versioned registry owned by Deployment, source/build separation, caller-visible idempotency receipts, privately managed acquisition helpers, bounded drain with availability gaps, and explicit restart/migration when live safety is unproven. None of the new runtime requirements is implemented by this documentation PR. Tasks 3A/3B subsequently delivered the foundation. The #722 amendment and Task 3C plan await review; no UI setup, Task 3C/3D code or activation is authorized by this documentation revision.
 
 ## Builder-check disposition
 
