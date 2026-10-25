@@ -673,3 +673,45 @@ The app attachment limit was reached while attaching Identity #50. After live ve
 were unlinked from this chat. No GitHub PR or branch was changed; every current Task 3C draft
 remains attached. The local receipt is
 `/home/adrian/.codex/artifacts/task3c-previous-merged-prs.json`.
+
+
+## Qualified additive candidate and scoped replacement work
+
+The `.38` additive implementation at `2301987ecb942d5b60b7526d883c18802579a5ef`
+passed the full 123-check owner gate (34 unit, 46 integration, 43 smoke). Frozen archive
+`bb8a77c88760ce4cf0714ef0f917f6da3385f8e0bd4e2491ab996b5b7f9786c2` remains tied
+to that original checkout. [Deployment #947](https://github.com/treeseed-ai/deployment/pull/947)
+separates exact SDK `.13`/CI-budget preparation from the ten-file additive increment in
+[Deployment #948](https://github.com/treeseed-ai/deployment/pull/948). The preparation's
+121-check gate passed locally. A separate-worktree repack of `.38` differed only in license/notice
+filesystem modes and generated declaration union ordering; no byte-identical reproduction claim
+is made and the frozen archive was not overwritten. Final source history includes documentation
+from the prerequisite; that does not replace the original artifact receipt.
+
+Both candidates exposed a CI classification error: the malformed-journal test invokes the real
+default host but inherited a five-second unit-test budget. CI reproduced 5.030/5.443 seconds.
+The owning correction moves the unchanged assertion to bounded integration and is being qualified.
+Platform #732 records the recurring classification pattern. Neither candidate is fully CI green
+or ready to merge yet. The revised preparation is reserved as `.38-preparation.2`, and the
+corrected additive source will advance its private candidate version rather than overwrite `.38`.
+
+[Admin #144](https://github.com/treeseed-ai/admin/pull/144), source
+`3c4d7af7a3422b5249083f8924b43a3b77e5a8aa`, aligns SDK `.14`, UI `.15` and Identity `.5`.
+`.9` archive SHA-256 `6fde714feeb1772cf412ff5cb3c74cae8618383719cdef02a33406fcb66b3fa3`.
+All 9 owner checks and both exact-head CI verify runs passed. One PR attempt timed out downloading
+Ubuntu system dependencies; a targeted rerun passed without code or prerequisite changes.
+Admin still owns domain models/actions, UI owns reusable React/mobile-first presentation,
+and Identity owns Keycloak sessions. Final API/CLI alignment and assembly remain pending.
+
+Scoped replacement work is on `feature/910-task3c-scoped-restart`. Documentation and its compiled
+worker programme are committed. The intended red refused an exact valid scope with
+`RESTART_SCOPE_NOT_QUALIFIED`. Implementation now enforces exact restart scope, retained state
+contracts and immutable historical receipts. The programme caught two implementation gaps before
+candidate publication: resource selection keys must include service identity for repeated slot
+names, and replacement validation must distinguish retained private state from the old container.
+Those corrections are under focused qualification; no passing replacement or completed Task 3C
+claim is made. Temporary safe-code diagnostics were removed before rebuilding.
+
+Explicit non-serving format migration, complete NPM/HTTPS-Git managed acquisition, durable plugin
+registration/selection, qualified live replacement, CLI command adoption and final assembled
+acceptance remain required. All candidates stay drafts and all issues, including #678, stay open.
