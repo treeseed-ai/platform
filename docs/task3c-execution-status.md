@@ -198,3 +198,14 @@ owner protocol probes, retained active transitions, explicit historical-format m
 source management/CLI commands, API adoption and complete assembled Task 3C acceptance remain
 unverified. Drafts remain open for the eventual integrated review; no Task 3C merge is authorized
 by this progress record. All release-policy issues, including #678, remain open.
+
+[Deployment #923](https://github.com/treeseed-ai/deployment/pull/923) now verifies the bounded
+actuator at `0e1703856f7ce1ae4aa718b43b3d9eaac1884c46`, with 76 owner checks and both
+exact-head Ubuntu 26.04 CI runs green. `.14` archive SHA-256:
+`edf7945b4f5c6bb3e712e18e4b416dcbf25333df7fde0427f6b1aba922e0ae9a`.
+Its built program starts five disposable compiled TypeScript services using genuine native OCI
+bytes, checks independent configuration/credential mounts and volume markers over HTTP, and
+proves receipt reuse, namespace-conflict refusal and no implicit restart. Engine-level readiness
+remains deliberately unqualified. The next native-scope candidate connects actual archived
+container and protocol-probe classes through Cordis; durable worker/application acceptance is
+still outstanding. The engine candidate's incremental diff touches ten files.
