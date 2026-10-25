@@ -457,3 +457,23 @@ identity and unused inventory guards remain. Public archive inspection for API r
 in progress on `feature/910-task3c-archive-inspection`. Its outside-in checks include a reproduced
 same-byte archive-path replacement race; descriptor pinning through parse closes that gap. No
 archive-inspection candidate or complete Task 3C success is claimed yet.
+
+## Pinned archive inspection and native API adoption
+
+[Deployment #941](https://github.com/treeseed-ai/deployment/pull/941), source
+`7bf5ef7e43b692f3ea35eaafcb6fae8943c840b1`, adds the public bounded, descriptor-pinned
+archive index. Final serial check/build and 107 checks (28 unit, 42 integration, 37 smoke)
+passed, as did both exact-head Ubuntu 26.04 CI checks. Private `.31` archive SHA-256:
+`c41ee0da38d7a78712b4b13827b689853f7cf0f73502127ee7b3a19065154723`.
+It rejects same-byte path replacement, unsafe/linked sources and archive limits without
+executing package scripts or creating installation state. This remains an unmerged draft.
+
+API issue #624 continues on `feature/624-task3c-native-root`, source `6d43046ce2`
+(short ref; not a final artifact selection). It adopts exact SDK `.12`, Deployment `.31`,
+Identity `.3`, Admin `.4` and UI `.14` archives. Initial native service/readiness, measured
+installed-runtime auditing and image-context production pass check/build, 3 unit, 3 integration
+and 4 smoke checks. The original committer-policy blob remains
+`b1a687db754ee2fac141919e6c63052d12bf2812`. No API candidate or complete runtime acceptance is
+claimed yet: the genuine default database/Keycloak/root/container gate is pending the scoped
+observer-directory mount. Retained transitions/migration, plugin source management, CLI and
+complete Platform acceptance remain required. Every issue, including #678, stays open.
