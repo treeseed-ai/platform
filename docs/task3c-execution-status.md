@@ -395,3 +395,24 @@ No CLI coordinator, ambient compiler during apply, version or machine-envelope c
 All candidates remain unmerged drafts. Every issue remains open; Task 3C continues and Task 3D
 remains gated. Default providers/API runtime evidence, retained transitions/migration, source/build/
 registry management and complete exact assembled acceptance are still required.
+
+## Native Postgres provider checkpoint
+
+[Deployment #938](https://github.com/treeseed-ai/deployment/pull/938), head
+`798b2a85b276be055572c8d52c2f20305f3bb53c`, adds Deployment-owned native Postgres container/probe
+classes and checked package metadata. All 100 local checks passed (check/build, 27 unit,
+41 integration, 32 smoke), and both exact-head Ubuntu 26.04 verify runs are green.
+`.28` archive SHA-256: `803b72071b947a0873d96b6c4dfc42c4582d6a808cbc1667aa7cd67b9ef0e7e8`.
+
+The default application root loads genuinely archived production classes under an explicit fixture
+package identity and runs two renamed Postgres 17.11 instances with independent passwords/volumes.
+Readiness uses pinned `postgres@3.4.9`, direct TCP and fixed read-only SQL, with no Docker exec.
+Wrong-password rejection, pre-cancel credential denial, in-flight cancellation/connection drain and
+source-free status pass. The stalled-handshake fixture must consume its readable side to observe
+peer closure; its corrected assertion remains strict. Prepared native manifest:
+`e4cb93687b062cd25a0e8f672d85a7708235009d70d31f8a7698d9370092a9c4`; normalized index SHA-256:
+`d538f74d92b3b72ecfd667bc56b81c48695a819ba0b74526a9580657cec26acd`.
+
+Bounded HTTP/TLS helper qualification is in progress before default Caddy and API adoption.
+API health/asset semantics remain API-owned. This checkpoint does not complete Task 3C or qualify
+assembled API/Keycloak, retained active transitions, explicit migration or source/plugin management.
