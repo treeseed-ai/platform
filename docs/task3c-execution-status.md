@@ -328,3 +328,36 @@ Readonly observation IPC and native probe injection remain subsequent bounded sl
 `.14` SHA-256: `6c1032996990178f7a76d5cbde2e15a4b6467941159d6d6013a33526e799e7ad`.
 All required responsive widths, keyboard/forms/text resizing, native lifecycle and packed Astro
 hydration remain qualified. Current SDK adoption documentation now agrees with the exact archive.
+
+## Current owner adoption and observation checkpoints
+
+[Deployment #934](https://github.com/treeseed-ai/deployment/pull/934), head
+`d8dfc56254012d515c33e5f17aec1d218b8f5eca`, exposes accepted service/dependency/runtime
+metadata through observer-only IPC without source access or health inference. The default installed
+worker verifies every service view and rejects unknown instances without journal changes. All 93
+local checks and both exact-head CI checks passed; `.24` archive SHA-256
+`40871fcefcfa7604e2e17279b9ba15c1da497ca985db463119ebe7c92190a98b`.
+[Deployment #935](https://github.com/treeseed-ai/deployment/pull/935), head
+`517fffafaf7f0ffcf9c60fab62f51a9b32110b55`, injects this same frozen view into actual native
+probe contexts. All 93 local checks and both exact-head CI checks passed; `.25` SHA-256
+`0bf04cd3ea86eb9e35a529edad5606a5799f6d4cc510d428bc9ff921b24c03ca`.
+Bounded public-CA archive transport and later grant/receipt custody remain in progress.
+
+[Identity #48](https://github.com/treeseed-ai/identity/pull/48), head
+`9ca694c38593184357cd8537ddca7912677efbf6`, consumes SDK .12 with six owner checks and exact-head
+CI green; `.3` SHA-256 `2931e0cd948299566ff5d8224545e287143df06de7ac7b25a568da52599f4dab`.
+[Admin #140](https://github.com/treeseed-ai/admin/pull/140), head
+`439d638a4c2f09424685073dc72bd2b6a9353254`, consumes SDK .12/UI .14/Identity .3 with six checks
+and exact-head CI green; `.4` SHA-256
+`5aee82cfeb00f18f8bed00a445fc59d1bfb02eb53e3961ced2cfe9559ff17c31`.
+The Admin browser qualification still uses explicit authority fixtures; genuine Keycloak assembly
+remains required.
+
+[CLI #320](https://github.com/treeseed-ai/cli/pull/320), head
+`9a273ebd60bf7b91f7da35e9395328efa8bec517`, consumes SDK .12/UI .14/Deployment .24. All 16 serial
+local checks and exact-head verify/description checks passed. Its private Linux x64 executable
+SHA-256 is `a5274a7dc871116e6a9b92433110fe0c33580336be3ec7fd4a944ae406507efa`.
+The first concurrent run observed another disposable suite's containers; an unchanged serial rerun
+passed. [Platform #739](https://github.com/treeseed-ai/platform/issues/739) proposes checked shared
+Docker qualification coordination; no workflow policy was changed. Actual format-3 CLI activation
+program qualification and source-management commands remain subsequent work.
