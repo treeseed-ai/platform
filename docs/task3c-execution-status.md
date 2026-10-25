@@ -416,3 +416,21 @@ peer closure; its corrected assertion remains strict. Prepared native manifest:
 Bounded HTTP/TLS helper qualification is in progress before default Caddy and API adoption.
 API health/asset semantics remain API-owned. This checkpoint does not complete Task 3C or qualify
 assembled API/Keycloak, retained active transitions, explicit migration or source/plugin management.
+
+## Bounded HTTP/TLS and API contract continuation
+
+[Deployment #939](https://github.com/treeseed-ai/deployment/pull/939), head
+`acf4c109dbe2a8ab7d42e21b136ed4ebc597b0d4`, adds the public typed HTTP/TLS byte-transport helper
+beneath native owner probes. All 102 local checks passed (check/build, 27 unit, 41 integration,
+34 smoke); exact-head CI is pending at this update. `.29` archive SHA-256:
+`0ea092352087eb8996de7dcf2385046766c0bdafe8045f838084e82db23aa5c6`.
+Built Node fixtures verify private-CA chain/accepted-origin hostname checks while dialing an IP,
+wrong CA/hostname, redirects, header/body/truncation/encoding/path limits, cancellation/socket drain
+and ignored ambient proxy settings. API health/asset semantics remain in the API owner.
+
+API #624 now has committed native-root/runtime-evidence documentation at
+`79b3bc0406` on `feature/624-task3c-native-root`; runtime implementation remains pending. The
+restored #620 policy remains exact blob `b1a687db754ee2fac141919e6c63052d12bf2812`.
+Deployment's Caddy slice has committed documentation and failing public-export/selected-image-catalog
+tests. An unselected package catalog image must not require an unused release inventory image.
+No new Caddy implementation or assembled API/Keycloak success is claimed at this checkpoint.
