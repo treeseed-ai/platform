@@ -281,3 +281,16 @@ child can acquire the existing writer after parent release. This fixture deliber
 copied Node interpreter and does not qualify the production compiled worker. That next program
 test has already caught a bundled initialization cycle before argument parsing; its fix and
 genuine Docker-only standalone qualification remain in progress. No Task 3C completion is claimed.
+
+[Deployment #931](https://github.com/treeseed-ai/deployment/pull/931) qualifies the genuine standalone
+worker at `d727c49ad45908378637ec4509bd85fac3bacd87`: 88 owner checks and both exact-head CI runs
+green. `.21` SHA-256:
+`4cbe0bc56e44b751d19267f1d3ea089871da3b37a4e2ee8874170b50c80f91f6`.
+The actual binary starts five disposable native services with Docker-only PATH, recovers same-key
+read-back without the original bundle, and drains the writer/listeners while preserving containers.
+Executable write/replacement canaries pass. Only the verified current executable inode can reuse
+its digest under Linux executable write protection; external readers retain full hashing.
+An independent consumer installs the exact SDK/Deployment archives and invokes the public build
+producer from an unrelated directory, then executes the result without Node/Bun on PATH.
+The default public host launcher is now in progress. API/Keycloak assembly, retained active
+transitions/migration and plugin source acquisition/registration remain required before Task 3C handoff.
