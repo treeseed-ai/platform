@@ -130,9 +130,35 @@ three public archives; no owner source imports or legacy checkout changes were i
 
 - [UI #93](https://github.com/treeseed-ai/ui/pull/93), exact head `f1de1270bc6ac131a3f259c6d98aea3fa24e7bc9`: `.13` model updates preserve draft/focus, reject invalid/concurrent updates and drain admitted actions before cleanup. All 28 owner checks and both exact-head Ubuntu 26.04 CI runs passed. React development passive-effect inspection exposed a retained render-prop reference to a released Cordis proxy; prepared nodes now contain validated models/stable class data while borrowed provider leases stay private. Twenty repeated updates guard this race. Archive SHA-256 `7077c9a81d32cbc6e158267b57244ca4fe2937bb74d3a7a9c6b4d0f48c012cf7`.
 - [Admin #138](https://github.com/treeseed-ai/admin/pull/138), exact head `5ba0cf826edcf1b05d78b9be34563958a91fe725`: exact SDK `.10`, Identity `.2` and qualified UI `.13` adoption. Fresh-cache frozen install, all three historical owner checks and both exact-head Ubuntu 26.04 CI runs passed. CI caught a stale Bun file-tarball SRI hidden by the warm local cache; the refreshed lock is verified. Platform #734 tracks mechanical source/archive/lock receipts separately.
-- [Admin #139](https://github.com/treeseed-ai/admin/pull/139), exact head `0c5e0a1a5b7e7a3230ddb6ebdf0298d3f966cb86`: native asset/presentation/data/action/navigation providers consume UI's complete React document/hydration/models. Admin retains sessions, Origin/CSRF/cookies/routes/navigation; Identity retains Keycloak. All six local owner checks pass, including a real Firefox/private-CA browser flow and negative asset/presentation-source tests. `.3` archive SHA-256 `1e1ac2e9b90c5b27f26f756621544a2329942b141bf4e26d07feca1cfef1233c`. Exact-head CI pending. Authority fixtures are explicit: genuine installed Keycloak/API/worker and asset/image replacement remain assembled acceptance.
+- [Admin #139](https://github.com/treeseed-ai/admin/pull/139), exact head `0c5e0a1a5b7e7a3230ddb6ebdf0298d3f966cb86`: native asset/presentation/data/action/navigation providers consume UI's complete React document/hydration/models. Admin retains sessions, Origin/CSRF/cookies/routes/navigation; Identity retains Keycloak. All six local owner checks pass, including a real Firefox/private-CA browser flow and negative asset/presentation-source tests. `.3` archive SHA-256 `1e1ac2e9b90c5b27f26f756621544a2329942b141bf4e26d07feca1cfef1233c`. Both exact-head Ubuntu 26.04 verify checks passed. Authority fixtures are explicit: genuine installed Keycloak/API/worker and asset/image replacement remain assembled acceptance.
 
 No source/acquisition or installed activation success is claimed by these UI/consumer checks.
+
+## Deployment observer, journal and native staging continuation
+
+| Candidate | Exact current head | Verification / private archive SHA-256 |
+| --- | --- | --- |
+| [Deployment #916](https://github.com/treeseed-ai/deployment/pull/916), observer client | `506b62e6f6734b496d5ab470f2bd6770ed5ebcef` | 59 owner checks and both exact-head Ubuntu 26.04 CI checks passed; `.8` `f548d60bb8fcf69b9ccfc739cb8d136c1d08c01beea8e6134dda5e619345c0f5` |
+| [Deployment #917](https://github.com/treeseed-ai/deployment/pull/917), ordered journal | `a6828e8eb34e4cc15db42878e22db223561ebc8a` | 62 owner checks and both exact-head Ubuntu 26.04 CI checks passed; `.9` `e8e3f2cb2ef26caddf77f80ec10de98cf4233690a52f3af842217d82eebe9225` |
+| [Deployment #919](https://github.com/treeseed-ai/deployment/pull/919), writer authority correction | `1dbf0c7e61f9394c42870f72e4ee7245003cc891` | 63 owner checks and both exact-head Ubuntu 26.04 CI checks passed; `.10` `a0832a1030c547c74928ad0eac489e388c23a4a6362f8fc0285a83a9ba605d37` |
+| [Deployment #920](https://github.com/treeseed-ai/deployment/pull/920), immutable native staging | `3efe30c24fe088644161ac16f8c15c585fd40eab` | 67 owner checks pass locally; exact-head CI pending; `.11` `5045d36dba4875e7c41e5585723b7cbe9a7be465d73245e902b359d774b0e880` |
+
+The observer uses a read-only `host.sock` contract; the forthcoming worker must enforce separate
+owner-control dispatch, not rely on client methods as permission boundaries. The same format-3
+store/publisher/writer now validates ordered application intent, retries, scope, immutable resource
+versions and committed snapshots. Ready journal completion requires a matching ready snapshot;
+its tests use explicit observations, not runtime evidence. Staging qualifies complete private
+archive closure, named native classes and two genuine Cordis scopes. Locked peers are copied;
+unrelated package changes leave the provider identity unchanged. No imports/scripts occur until
+explicit accepted activation in the program fixture, whose engine is labelled and starts no
+containers. The future real engine/probes must supply actual observations and retained identities.
+
+Review reproduced an existing writer gap: modifying `owner.json` after acquisition did not
+revoke authority and cleanup could remove a changed record. Open [Deployment #918](https://github.com/treeseed-ai/deployment/issues/918)
+records the missing check and correction in #919. The writer now pins bytes/inode identity,
+permanently fences detected changes and preserves uncertain locks while closing descriptors.
+Its red/green regression and existing writer tests passed. This is a bounded runtime correction;
+no process instruction files changed. All new and existing issues remain open.
 
 ## Remaining authorized Task 3C work
 
