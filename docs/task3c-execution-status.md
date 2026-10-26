@@ -13,7 +13,7 @@ record or assembled Task 3C acceptance is claimed.
 | --- | --- | --- | --- |
 | [#985](https://github.com/treeseed-ai/deployment/pull/985), corrected Git closure `.64` | `c48caa4518fceccc6ad1a1b12fa98a9b70e56f5f` | `dc2b577e4df713a4dea21bd4151fe3dfc6d435ed00ff209621ed331945eef5d9` | build/check, 36 unit, 49 integration, six compiled source/helper programmes; refreshed CI has multiple full green runs, with a historical five-second unit timeout retained |
 | [#987](https://github.com/treeseed-ai/deployment/pull/987), corrected native build `.65` | `b2e360116c7b92dafe2e361780e09cc12078d869` | `ea4f8c826a7854fe9b9b5fdde1b6edb47b3d19ca3eba2016516037e13e4992b8` | clean build/check, 36 unit, 49 integration, ten compiled programmes (178.88 s); full green CI plus a cancelled near-deadline job with zero test failures |
-| [#988](https://github.com/treeseed-ai/deployment/pull/988), cold-worker-corrected build adoption `.67` | `4fe695ec2a3e8ab1ea965567c7b3432e78472840` | `c50cdfb937e17f83e57a3ea915e0724610cd38d2f6849125e5660152d4aebdce` | build/check, 36 unit, 49 integration, fourteen real worker/default-owner/source/build programmes (308.54 s); new exact-head CI pending |
+| [#988](https://github.com/treeseed-ai/deployment/pull/988), cold-worker-corrected build adoption `.67` | `4fe695ec2a3e8ab1ea965567c7b3432e78472840` | `c50cdfb937e17f83e57a3ea915e0724610cd38d2f6849125e5660152d4aebdce` | build/check, 36 unit, 49 integration, fourteen real worker/default-owner/source/build programmes (308.54 s); CI-only exact head `848cc0fc9de98d0cb9041e29b45ba0207f4d5214` preserves these package bytes; exhaustive CI in progress |
 
 [Correction #990](https://github.com/treeseed-ai/deployment/pull/990) / open issue #989 records
 running Git work versus final single-link custody and is already included in #985. An actual
@@ -25,17 +25,34 @@ crashed before argument parsing; the corrected prelude exits 2 with no tools on 
 real five-service worker plus fresh independent owner pass. Historical `.61`–`.66` archives and
 source refs are preserved; none was overwritten.
 
-Open issue #992 separately proposes the required exhaustive CI rebalance: the old foundation
+[Draft #994](https://github.com/treeseed-ai/deployment/pull/994), open issue #992, separately reviews the required exhaustive CI rebalance: the old foundation
 smoke took 879.24 seconds with zero failures and effectively exhausted its 15-minute job. Four
 nonempty groups retain all tests and the same deadline/aggregate gate. Workflow/inventory red
-and green tests are established; no process policy or skill was changed. Full real CI remains
-required before review readiness.
+and green tests are established; the actual runtime partition passed nine programmes in 193.46 s.
+A fresh pack matches frozen `.67` byte-for-byte. No process policy or skill was changed. Full real
+CI remains required before review readiness. The CI-only head is also included in #988/#993.
 
 Installed Git work now shares the NPM outside-in installation contract across genuine HTTPS Git
 repositories and approved source-only builds. Its initial default-owner test exposed #991; after
 that correction, the intended red is `NPM_SOURCE_REQUIRED`. Native Git/build registration and
-source selection are implemented locally and the real fresh-owner test is running. No installed
-Git activation success is claimed yet.
+source selection are implemented locally. The real fresh-owner test passed in 91.64 s and again
+in 90.99 s, including independent owner identity and source-free exact replay. Retained/build
+scenes remain in qualification; no full installed-Git gate is claimed.
+
+Open [Deployment #995](https://github.com/treeseed-ai/deployment/issues/995) records a verification
+scope defect: two unrelated project development servers restarted during host-wide listener
+sampling, causing two genuine Git scenes and a diagnostic repeat to fail despite unchanged
+resource/credential/TLS identities. PID/cwd attribution established the unrelated owner; no such
+process was modified. Real parent/child TCP-inode canaries now qualify fixture process attribution;
+Docker port publications are separately checked against accepted definitions, with unexpected
+private/public binding negatives. No arbitrary port exclusions or bypass flags. Build/check,
+38 unit and 49 integration checks passed; three real installed-Git scenes are running serially.
+
+Registered selection has owner docs and outside-in programmes committed on
+`feature/910-task3c-registered-selection`. Its initial actual native-root request reached the
+existing unqualified-selection blocker. Exact accepted-artifact lookup, ambiguity refusal,
+durable select intent/provenance and current-generation read-back are implemented locally;
+runtime qualification is pending. Probe live replacement remains separately unqualified.
 
 Remaining: finish installed Git qualification; registered selection/qualified live transitions;
 explicit non-serving format migration; final CLI/API/owner adoption; genuine Keycloak/browser/
