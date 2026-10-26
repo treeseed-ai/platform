@@ -840,3 +840,49 @@ a fixture-prerequisite failure, not the intended missing-provider red. Correct a
 before implementing. Full source acquisition/closure, Git and approved builds, native management
 and activation, migration, CLI commands, coherent owner pins and Platform assembly remain required.
 No Task 3D work, issue closure, merge or production publication is authorized by these candidates.
+
+## Exact source resolution and coherent UI contract continuation
+
+[Deployment #959](https://github.com/treeseed-ai/deployment/pull/959) is frozen at
+`4a875437dd38fb16aeea8bcab47f059fbb57291c`, `.44` archive SHA-256
+`34bcc2b071b2fb419faf13eb254c9eb188108b383fe27afce42b0aa128d082d3`.
+The full local 136-check gate passed; a final receipt-owner guard then passed fresh build/check
+and cache/cold-entry programmes. Both complete exact-head CI runs passed all 136 checks through
+exhaustive isolated smoke partitions and the aggregate gate. Local full smoke took 963.63 seconds.
+
+[Deployment #960](https://github.com/treeseed-ai/deployment/pull/960) is `.45`, source
+`54e61b2f2970e41cd8022daa63d7c4c4dfd6691c`, archive
+`a9c0d4ba1cf9cbbbf6de9c9a093b7952ff1c7e2125d79944aba0f01497ecfc92`.
+Native `source.npm` uses the existing authority/writer, a real release-pinned Bun 1.4.4 and an
+approved disposable HTTPS registry with real CA/archives. It saves exact version/SRI/tarball,
+metadata and helper identity before acquisition. Programmes qualify moved-tag/new-key behavior,
+conflicting intents, source deletion and stopped-owner replay, interrupted lookup refusal,
+unapproved target refusal, and exact typed cross-origin/SRI/custom-CA-race blockers. The real
+CA race changed and restored trust bytes during TLS response; the original implementation
+accepted it, then a held CA descriptor and before/after identity/hash checks refused it. Native
+construction also caught missing composition-service injection before publication. Fresh local
+source/build, 36 unit, 48 integration and four focused programmes passed; both full exact-head
+CI runs passed 137 checks (36 unit, 48 integration, 53 smoke). This prefix resolves sources;
+it does not yet acquire the full package closure, register or activate them.
+
+[UI #97](https://github.com/treeseed-ai/ui/pull/97) adopts exact SDK `.16` and now has both full
+29-check CI runs green at `32f16876aa6f0eb1f99a4ab339296609c830df23`. Default UI `.16` archive
+`0251c6ff1f5c4b6a628d85113d1e10b9ab019f26d1dda38c7aad3c12f84ef571` was frozen at
+`4d20cc65af0a83dd47b3ac436dc44c438d24b250`; the subsequent CI-only fix leaves its packaging
+tree identical. The `.16.fixture.1` archive is
+`8952846090b0d2aacef43a478f5d4d47bfb7afe1d2ceca5b07c99e45832a737b`, recipe
+`d3cc07f8b0c9ef9b1a058492a76961a1280d6572a63a0ba7459957ed45a1e1da`, selected runtime source
+`4bc3511b661e832531c60ab37980fed6dcc8aba6`. Existing frozen `.15` archives are preserved.
+Local verify and genuine fresh fixture production passed, including Firefox seven-width/200%
+text, actual packed Astro hydration, SSR and terminal output. The first shallow CI run exposed
+an independently hardcoded old fixture fetch SHA; a minimal depth-one Git reproduction and
+required exact fetch correction fixed it. Separate open UI proposal #98 records a future
+checked single-source pin to prevent drift; no process policy/skill edits were folded into UI.
+
+Current `feature/910-task3c-npm-acquire` consumes exact SDK `.16` and is implementing bounded
+original-archive HTTPS custody. The built programme established the missing-fetch red; archive
+identity/metadata, offline custody, SRI tampering and safe malformed receipt behavior are being
+qualified. No `.46` archive or completed dependency closure is claimed yet. Git, approved isolated
+builds, complete closure, native PluginManager/activation, migration, CLI plugin commands, remaining
+owner alignment/rebuild and final Platform assembled acceptance remain required. All candidates
+stay drafts for review, every issue including #678 remains open, and Task 3D is not started.
