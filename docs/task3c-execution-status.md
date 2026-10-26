@@ -738,3 +738,65 @@ and requires a different actual container identity while preserving historical r
 It asserts the desired composition digest repeats, exposing the distinction between desired
 inputs and running physical incarnations. The test is establishing its red boundary; implementation
 and journal qualification for that edge case are not yet claimed. All candidates remain drafts.
+
+## Scoped replacement, UI replacement fixture and request custody
+
+The scoped restart candidate [Deployment #953](https://github.com/treeseed-ai/deployment/pull/953)
+is at `cee262bfa4410cd7c123f50eca98102955ac11ed`. The complete local gate passed source checks,
+build, 33 unit, 47 integration and 47 smoke checks. Its separate seven-test focused gate passed
+addition, exact scoped replacement, exact desired-generation reversion, current physical receipt
+reporting even through historical-plan inspection, source-free replay and failed-restart fencing.
+Unrelated containers and private credentials/TLS remain unchanged. `.40` archive SHA-256:
+`5c939946a847e63ce63b45196834bcff6663530bb42c470e7e3c6c13a1a74cb3`.
+
+The stronger current-ID assertion exposed two implementation bugs before publication: active plan
+lookup selected an earlier completed application with the same desired generation, and historical
+plan inspection could override the current physical snapshot with an old creating-plan receipt.
+Latest-completed selection and a pending-only candidate override address these. Container receipt
+identity includes the creating plan, so an exact desired-state reversion keeps immutable historical
+receipts and reports the new actual container. No general repair or state migration is implied.
+
+[Deployment #949](https://github.com/treeseed-ai/deployment/pull/949) and
+[#951](https://github.com/treeseed-ai/deployment/pull/951) now both have full exact-head CI green.
+The separate [#950 issue](https://github.com/treeseed-ai/deployment/issues/950) originally suspected
+historical-phase authorization but was corrected: `records()` returns latest state per application,
+and a single pending application already fences the real adapters. [#952](https://github.com/treeseed-ai/deployment/pull/952),
+`cdc1be851672cc3e218de4a267b2232df9c86afe`, adds genuine held-adapter failure/completed coverage,
+source-free admitted cache-read checks and a records() comment, not a runtime permission fix.
+Disabling the engine phase guard made the negative programme fail; restoring it passed. Both
+full exact-head CI runs passed (33 unit, 47 integration, 45 smoke).
+
+The full scoped smoke took 882.48 seconds locally, exceeding the single 15-minute job when checks,
+build and 23.16 seconds of unit/integration are included. Separate issue
+[Deployment #954](https://github.com/treeseed-ai/deployment/issues/954) and draft
+[#955](https://github.com/treeseed-ai/deployment/pull/955), `cf6bb1568def3c0cc893508adbca6846b31a342f`,
+keep every assertion but split exhaustive smoke file ownership between two isolated Ubuntu 26.04
+jobs, with static/unit/integration separately and an always-evaluated aggregate verify gate.
+New file inclusion, duplicate/missing/foreign membership and unknown group refusal are checked.
+Local source/build, 36 unit and 47 integration checks passed; one complete exact-head CI run is
+green, the second is still running at this checkpoint. Local `bun run verify` stays complete.
+
+[UI #96](https://github.com/treeseed-ai/ui/pull/96), `97e3db43e3608223bc370e26b433e42c5e8578e4`,
+produces a test-only `.15.fixture.1` archive from exact qualified `.15` Git blobs. Its UI-owned
+React status and terminal provider add an observable qualification marker; the distinct version
+binds scope identity. The producer verifies toolchain/peer identity, records the source/recipe,
+uses private fresh output, refuses overwrite and preserves original sources/default archive.
+Fresh complete owner verify passed all 29 checks (9 unit, 13 integration, 7 smoke), including
+actual Firefox responsive and packed Astro tests of the default UI. The fixture itself is installed
+into a new consumer and qualified through public SSR/terminal exports. Frozen fixture archive:
+`5f21d800b8633b2f570d961d3fbb49256bbc767b98bd86b5efde3eefaa60bddd`;
+recipe `f46527f800be63d74a41a2864d635cd415b0e6b22084cf8302447b3db1df0d93`.
+One exact-head CI run is green; the second and final assembled replacement browser flow remain
+pending. Rebuild matching Admin/API/CLI asset/image/binary closures; swapping a tarball alone
+cannot change an already bundled consumer. The default `.15` archive is unchanged.
+
+Current implementation continues on `feature/910-task3c-plugin-registry`: documentation and the
+built request-custody regression preceded implementation. The programme now verifies persisted
+intent before effects, exact key/conflict semantics, pinned expected generation/resolution,
+source-free read-back, owner-private modes, symlink/interrupted-state/byte/tail tamper refusal
+and closed-writer fencing. Request events use the existing installation writer, a digest chain
+and an atomic head; this is custody, not another dependency container or an activation grant.
+Final owner qualification/candidate publication is in progress. Managed source helpers/acquisition,
+approved isolated builds, registration/selection/activation integration, explicit format migration,
+CLI plugin commands, coherent final owner artifacts and full Platform acceptance remain required.
+Every Task 3C candidate stays a draft; all issues including #678 stay open. Task 3D is not started.
