@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-26 03:22 UTC. Issues own plans; Actions own verification;
+Updated: 2026-10-26 04:16 UTC. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
 
@@ -210,6 +210,15 @@ SDK Architect's two JSON discussion drafts remain unadmitted: first used groupId
 - **10:43UTC—whole-team architecture correction:** Live Agent/API/SDK/UI/Admin/Deployment rosters retain8ready roles each; recent configured groups predominantly admit only A/E/R, with Tester/TechnicalWriter/Releaser groupIds[] and accepted plans containing onlyEngineer work. This is coordinator scope drift, not full-team success. SDK schema restricts reviewing to reviewer class; API graph hardcodes that class. Writer commonly depends on Engineer. Human requires Architect→TechnicalWriter→Tester→Engineer with independent review per stage, plus schedule-driven Releaser discovery; all remain unproven and require governed configuration/shared SDK/API repairs through existing Issues. eecc capability classifier is containment, not removal of task policy from shared runner. Reserved SDK chain untouched; no issued work authority changed.
 
 - **11:57UTC—architecture first:** No new live workdays admitted. SDK443 merged6996a18c; exact feature39943426525 and protected staging39946674697 passed. SDK444 prepares rc126 atd6fdd64b; Actions39950122741 pending. Agent c697f61 makes all5model handlers activity-complete; e5d59bb0 preserves the prepared handler request and makes the guest launcher opaque, moving model/review policy into the workload and removing role-specific prompt injection. Native launcher/clock6pass; latest boundary28checks/6files pass, build/file policies pass. Agent508 e5d59bb0 Actions39949743650 FAILED private-Zod declaration portability;3ab546d5 keeps the internal helper private, fresh39950045211 passed build then FAILED broker-fixture/prepared-request, stale-binding and long-chat summary checks;955ab952 repairs these,53focused/5files pass, fresh39950774531 pending. Earlier broad321checks had316pass/5fail: three owned fixture/credential-order failures fixed and covered by the28; local missingtini/npm9archive remain unproven, as do installedDeployment typecheck and full owner/scene delivery. API603 exact9ec0aa49 has realPostgreSQL16checks/4files pass, disposable DB removed; Actions39949502262 pending. Class-keyed proposal estimates, graph projection and workday selection still open; no runtime adoption or full group-driven proof claimed. Team configuration unchanged, original10retained claims and products preserved.
+
+## 2026-10-26 04:16 UTC — authorized code-only bootstrap; two API slices
+
+- User explicitly approved the one-time backend/MCP bootstrap exception. Agent records, estimates, deadlines, retained products and unknown usage were not edited; no new agent execution or team reconfiguration.
+- [API #628](https://github.com/treeseed-ai/api/pull/628), `6ed115b477`: competing synthesis rebuilds against the issued clock and reuses its TreeDX handle; exact immutable admission/allocation guards remain. 67 focused local tests and build/architecture checks passed. [Native Actions](https://github.com/treeseed-ai/api/actions/runs/40266417195) pending.
+- [API #629](https://github.com/treeseed-ai/api/pull/629), `bbda2c2e04`: preserve full active-definition ref, team README and objective refs despite narrow task reads; name denied required models, retain bounded writes/tools. 106 focused tests across 13 files and build/architecture checks passed. Native integration asserts exact required refs. [Actions](https://github.com/treeseed-ai/api/actions/runs/40268008943) pending.
+- MCP read-back: all configured API activities already authorize agent/objective/knowledge; no profile changes needed for this slice. Orphan `etdts2` remains expired/state6, missing canonical result and verified teardown; unknown usage remains unknown.
+- Scoreboard unchanged: **47 canonical stages / 24 Git products / 23 reviews (7 approve, 16 request-changes)**; **0 complete native-MCP simulated releases**. Bootstrap code adds no agent-output credit. Neither candidate has release/adoption credit yet.
+- Critical remainder: global/activity query selectors, required related-objective query, durable TreeDX history search and proven Codex handoff; supported product delivery/adoption and original-claim recovery. See [API625](https://github.com/treeseed-ai/api/issues/625), [SDK411](https://github.com/treeseed-ai/sdk/issues/411), [Agent494](https://github.com/treeseed-ai/agent/issues/494).
 
 ## Purpose and direction
 
