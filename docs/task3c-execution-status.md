@@ -4,10 +4,51 @@ Work is authorized by the maintainer's acceptance of UI setup, request for mobil
 
 ## Latest checkpoint — 2026-10-26
 
-Current source/owner checkpoint supersedes the chronological prefixes below. SDK `.16`, UI `.16`,
-Identity `.7` and Admin `.10` retain their qualified candidates. CLI `.7` still consumes Deployment
-`.58` until final owner alignment; API still needs its coherent final rebuild. No final composition
-record or assembled Task 3C acceptance is claimed.
+Current qualified owner prefixes are SDK16, UI16, Identity7, Admin10 and CLI8. CLI8
+(head `4320a844b6c0e994a2c556736cc9f145dd5015f7`, executable SHA-256
+`48bf6adc7a47f2374932e1032418ac703edb3d71322387d18e7fcc9a0b2e9c90`) passed full
+check/build, one unit, one integration and twenty built-program smoke scenes (2,719 smoke
+assertions, 1,090.38 s). This includes NPM, packaged HTTPS Git, approved Git build and qualified
+live probe installation/source-free replay. Draft [CLI #323](https://github.com/treeseed-ai/cli/pull/323)
+remains open; both runtime CI runs pass. Its initial metadata checks used a contributor checkbox
+with a trailing period; the body is corrected and the next final source synchronization must
+qualify a fresh metadata event as well.
+
+API4 has been aligned to the final SDK/UI/Identity/Admin prefixes. Genuine default construction
+exposed a compiled worker configuration omission: Deployment73 could not resolve `cordis` in a
+sealed Postgres archive, although all thirteen Cordis files were present and development import
+passed. The earlier in-process Node host test also timed out; cleanup initially hid its primary
+error. API's qualification now exercises its actual independent compiled default worker and
+preserves primary plus cleanup failures. No passing in-process Node-host claim is made.
+
+Open [Deployment #1004](https://github.com/treeseed-ai/deployment/issues/1004) and draft
+[#1005](https://github.com/treeseed-ai/deployment/pull/1005) record the correction. Deployment75,
+source `f5b511999a9196759f22d827ee4ee8fb7b48c8ba`, archive SHA-256
+`fea365585ceaa9b813ba18c01fa78de2eca6335351fef86eeb9dcb37afbe4109`, enables package
+metadata loading and disables ambient dotenv/bunfig/tsconfig. Official compiler documentation:
+https://bun.sh/docs/bundler/executables . Actual compiled external Cordis/cwd canaries, check,
+build, forty unit, forty-nine integration and five targeted real worker/Postgres smoke scenes
+pass. The exact corrected prefix also passes the genuine API/Postgres/Keycloak/Caddy/private-CA
+browser/login/status/refresh/logout/assets/source-free scene (124.19 s). Full exact-head CI and
+final migration-combined adoption remain pending.
+
+Migration74 is an unfrozen implementation slice on `feature/910-task3c-format2-custody`,
+separate from the frozen public-live worktree. It requires explicit observed quiescence and
+single-writer admission, preserves format-2 bytes and maps eighteen real legacy resource/private
+receipts without inventing format-4 provider acknowledgements. A retained genuine Task3B fixture
+passes migration and read-back. The first fresh positive exposed the original worker's valid
+0500 mode; this is corrected. A strengthened fresh scene now covers retained provider/image
+integrity, tampering, concurrent admission, old-reader refusal and safe custody read-back.
+Migrated custody reports unverified current runtime and requires separately qualified runtime
+migration/restart; it cannot replay old plans or imply an active format-3 root. Final qualification
+and artifact freeze are pending.
+
+The exact UI16 fixture archive has been rebuilt through the same Admin10/API4/CLI8 owner sources
+using the integration-only `verification/task3c/ui-owner-closure.mts` producer. Its terminal
+provider visibly changes the compiled doctor output while deterministic machine error JSON bytes
+and exit behavior remain unchanged. Matching real browser/image restart qualification and final
+source alignment remain pending. No final composition record or completed Task3C acceptance is
+claimed. All candidates stay draft; no merge, issue closure, production publication or Task3D.
 
 | Current Deployment review candidate | Exact source | Archive SHA-256 | Evidence |
 | --- | --- | --- | --- |
@@ -20,7 +61,7 @@ record or assembled Task 3C acceptance is claimed.
 
 | [#1000](https://github.com/treeseed-ai/deployment/pull/1000), qualified live probes `.71` | `6dbab420773e32793cc94f498fa2833509a8a2f5` | `217b114ef7d207f6794e6a6735e0ab24237cf629186ea308f728ea334de697c2` | build/check, 39 unit, 49 integration, actual held-lease/live protocol (112.60 s), standalone default worker and metadata negatives; both complete exact-head CI runs green |
 | [#1002](https://github.com/treeseed-ai/deployment/pull/1002), current registered closures `.72` | `91ec3b1177e5df16137dde5dbce589cae0de99d1` | `04a79602c2ec96cf5b3177aa1c00216bd4a4289c61ce1f549e2a796d581c90e4` | build/check, 38 unit, 49 integration, actual cold prelude, source-stopped NPM seven-service (295.43 s), built Git (324.22 s) and committed Git (332.46 s); exact-head CI pending |
-| [#1003](https://github.com/treeseed-ai/deployment/pull/1003), explicit probe install/public live `.73` | `5cc3f3cc655ae318d195746ad3c85a2742bd3c6c` | `3fdcdcf0199aa82c2fc30cf5ff95c0b9dce49f138764366fb99638d10b087576` | combines .71/.72; check/build, 40 unit, 49 integration, seven further smoke cases (189.56 s), independent compiled worker/Docker-only PATH/source-and-original-bundle-free replay and unqualified reverse planning (163.10 s); exact-head CI pending |
+| [#1003](https://github.com/treeseed-ai/deployment/pull/1003), explicit probe install/public live `.73` | `5cc3f3cc655ae318d195746ad3c85a2742bd3c6c` | `3fdcdcf0199aa82c2fc30cf5ff95c0b9dce49f138764366fb99638d10b087576` | combines .71/.72; check/build, 40 unit, 49 integration, seven further smoke cases (189.56 s), independent compiled worker/Docker-only PATH/source-and-original-bundle-free replay and unqualified reverse planning (163.10 s); both complete exact-head CI runs green |
 
 [Correction #990](https://github.com/treeseed-ai/deployment/pull/990) / open issue #989 records
 running Git work versus final single-link custody and is already included in #985. An actual
