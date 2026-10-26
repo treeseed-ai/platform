@@ -15,6 +15,10 @@ record or assembled Task 3C acceptance is claimed.
 | [#987](https://github.com/treeseed-ai/deployment/pull/987), corrected native build `.65` | `b2e360116c7b92dafe2e361780e09cc12078d869` | `ea4f8c826a7854fe9b9b5fdde1b6edb47b3d19ca3eba2016516037e13e4992b8` | clean build/check, 36 unit, 49 integration, ten compiled programmes (178.88 s); full green CI plus a cancelled near-deadline job with zero test failures |
 | [#988](https://github.com/treeseed-ai/deployment/pull/988), cold-worker-corrected build adoption `.67` | `4fe695ec2a3e8ab1ea965567c7b3432e78472840` | `c50cdfb937e17f83e57a3ea915e0724610cd38d2f6849125e5660152d4aebdce` | build/check, 36 unit, 49 integration, fourteen real worker/default-owner/source/build programmes (308.54 s); CI-only exact head `848cc0fc9de98d0cb9041e29b45ba0207f4d5214` preserves these package bytes; exhaustive CI in progress |
 
+| [#996](https://github.com/treeseed-ai/deployment/pull/996), installed Git `.68` | `b5ab88755ad06b32d3df30c5516a7299f5abb673` | `c880114406dcb5cd5d81c744de573252ff0ee97f053c1a7fa81f9126aa650afb` | build/check, 38 unit, 49 integration, three actual installed-Git scenes (635.59 s); all five jobs and aggregate verify green in four exact-head CI runs; #997 is the included listener-correction alias |
+| [#999](https://github.com/treeseed-ai/deployment/pull/999), registered selection `.69` | `bbd3f542056290b97a9ff61f9ce85012995ab0af` | `ef42453a139527287da714eab976c0fb6e361b1cbe62f2f4a6b79844a3858079` | build/check, 38 unit, serial 49 integration, actual Git/build selection (568.47 s) and NPM/native-refusal programmes (265.97 s), cold worker prelude; fresh CI pending |
+| [#998](https://github.com/treeseed-ai/deployment/pull/998), public Git fixtures `.70` | `8e80eb5041d6a56f719cf940c337deda479f5ce3` | `5f0c718e4e3c2c0889fd781bff8d248315958d2326d4f17deb42b1aa2f40e8d6` | build/check, 38 unit, 49 integration, three independently installed public NPM/Git/approved-build fixture programmes (26.52 s); parallel to .69, merged only in current unfrozen live-probe work |
+
 [Correction #990](https://github.com/treeseed-ai/deployment/pull/990) / open issue #989 records
 running Git work versus final single-link custody and is already included in #985. An actual
 transient-link helper canary failed before the correction; transient links now pass, permanent
@@ -29,8 +33,7 @@ source refs are preserved; none was overwritten.
 smoke took 879.24 seconds with zero failures and effectively exhausted its 15-minute job. Four
 nonempty groups retain all tests and the same deadline/aggregate gate. Workflow/inventory red
 and green tests are established; the actual runtime partition passed nine programmes in 193.46 s.
-A fresh pack matches frozen `.67` byte-for-byte. No process policy or skill was changed. Full real
-CI remains required before review readiness. The CI-only head is also included in #988/#993.
+A fresh pack matches frozen `.67` byte-for-byte. No process policy or skill was changed. All four groups and aggregate verify passed in six complete exact-head CI runs at `848cc0fc9de98d0cb9041e29b45ba0207f4d5214`. The CI-only head is also included in #988/#993.
 
 Installed Git work now shares the NPM outside-in installation contract across genuine HTTPS Git
 repositories and approved source-only builds. Its initial default-owner test exposed #991; after
@@ -46,15 +49,29 @@ resource/credential/TLS identities. PID/cwd attribution established the unrelate
 process was modified. Real parent/child TCP-inode canaries now qualify fixture process attribution;
 Docker port publications are separately checked against accepted definitions, with unexpected
 private/public binding negatives. No arbitrary port exclusions or bypass flags. Build/check,
-38 unit and 49 integration checks passed; three real installed-Git scenes are running serially.
+38 unit and 49 integration checks passed; all three real installed-Git scenes passed in 635.59 s and full exact-head CI passed. The issue remains open with verified criteria checked.
 
 Registered selection has owner docs and outside-in programmes committed on
 `feature/910-task3c-registered-selection`. Its initial actual native-root request reached the
 existing unqualified-selection blocker. Exact accepted-artifact lookup, ambiguity refusal,
 durable select intent/provenance and current-generation read-back are implemented locally;
-runtime qualification is pending. Probe live replacement remains separately unqualified.
+actual NPM/Git/approved-build qualification passed, including ambiguity/stale refusal without acquisition or application. Probe live replacement remains separately unqualified.
 
-Remaining: finish installed Git qualification; registered selection/qualified live transitions;
+Current live-probe work combines .69/.70 on `feature/910-task3c-live-probes`. The actual compiled
+programme reached intended red `QUALIFIED_LIVE_SELECTION_NOT_ACTIVE:prepared:qualify-transition`.
+Exact policy/metadata classification and projection are implemented locally. A real held Cordis
+lease then exposed `DRAIN_ADMISSION_REMAINED_OPEN`; explicit observation of the actual close entry
+reproduced it. The existing native drain counted leases but the Deployment scope facade did not
+close admission. A closing gate now preserves admitted work while refusing new top-level leases;
+its real programme is running. No live success or frozen .71 artifact is claimed.
+
+`feature/910-task3c-selection-closure` has docs and outside-in tests for successive registered
+selections after the genuine source is stopped. Each selection needs a complete closure against
+the latest retained release, preserving exact accepted source identity without reacquisition.
+Implementation and qualification remain in progress; do not infer this capability from .69's
+already-active selection proof.
+
+Remaining: finish registered closure/live-transition qualification; registered selection/qualified live transitions;
 explicit non-serving format migration; final CLI/API/owner adoption; genuine Keycloak/browser/
 terminal replacement and complete Platform acceptance. Keep all PRs for maintainer review, all
 issues including #678 open, original services/legacy branches untouched and Task 3D gated.
