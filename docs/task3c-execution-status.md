@@ -15,8 +15,12 @@ record or assembled Task 3C acceptance is claimed.
 | [#987](https://github.com/treeseed-ai/deployment/pull/987), corrected native build `.65` | `b2e360116c7b92dafe2e361780e09cc12078d869` | `ea4f8c826a7854fe9b9b5fdde1b6edb47b3d19ca3eba2016516037e13e4992b8` | clean build/check, 36 unit, 49 integration, ten compiled programmes (178.88 s); full green CI plus a cancelled near-deadline job with zero test failures |
 | [#988](https://github.com/treeseed-ai/deployment/pull/988), cold-worker-corrected build adoption `.67` | `4fe695ec2a3e8ab1ea965567c7b3432e78472840` | `c50cdfb937e17f83e57a3ea915e0724610cd38d2f6849125e5660152d4aebdce` | build/check, 36 unit, 49 integration, fourteen real worker/default-owner/source/build programmes (308.54 s); CI-only exact head `848cc0fc9de98d0cb9041e29b45ba0207f4d5214` preserves these package bytes; all four jobs and aggregate verify green in six CI runs |
 | [#996](https://github.com/treeseed-ai/deployment/pull/996), installed Git `.68` | `b5ab88755ad06b32d3df30c5516a7299f5abb673` | `c880114406dcb5cd5d81c744de573252ff0ee97f053c1a7fa81f9126aa650afb` | build/check, 38 unit, 49 integration, three actual installed-Git scenes (635.59 s); all five jobs and aggregate verify green in four exact-head CI runs; #997 is the included listener-correction alias |
-| [#999](https://github.com/treeseed-ai/deployment/pull/999), registered selection `.69` | `bbd3f542056290b97a9ff61f9ce85012995ab0af` | `ef42453a139527287da714eab976c0fb6e361b1cbe62f2f4a6b79844a3858079` | build/check, 38 unit, serial 49 integration, actual Git/build selection (568.47 s) and NPM/native-refusal programmes (265.97 s), cold worker prelude; fresh CI pending |
-| [#998](https://github.com/treeseed-ai/deployment/pull/998), public Git fixtures `.70` | `8e80eb5041d6a56f719cf940c337deda479f5ce3` | `5f0c718e4e3c2c0889fd781bff8d248315958d2326d4f17deb42b1aa2f40e8d6` | build/check, 38 unit, 49 integration, three independently installed public NPM/Git/approved-build fixture programmes (26.52 s); parallel to .69, merged only in current unfrozen live-probe work |
+| [#999](https://github.com/treeseed-ai/deployment/pull/999), registered selection `.69` | `bbd3f542056290b97a9ff61f9ce85012995ab0af` | `ef42453a139527287da714eab976c0fb6e361b1cbe62f2f4a6b79844a3858079` | build/check, 38 unit, serial 49 integration, actual Git/build selection (568.47 s) and NPM/native-refusal programmes (265.97 s), cold worker prelude; both complete CI runs green |
+| [#998](https://github.com/treeseed-ai/deployment/pull/998), public Git fixtures `.70` | `8e80eb5041d6a56f719cf940c337deda479f5ce3` | `5f0c718e4e3c2c0889fd781bff8d248315958d2326d4f17deb42b1aa2f40e8d6` | build/check, 38 unit, 49 integration, three independently installed public NPM/Git/approved-build fixture programmes (26.52 s); parallel to .69, both full CI runs green; combined in .71/.73 |
+
+| [#1000](https://github.com/treeseed-ai/deployment/pull/1000), qualified live probes `.71` | `6dbab420773e32793cc94f498fa2833509a8a2f5` | `217b114ef7d207f6794e6a6735e0ab24237cf629186ea308f728ea334de697c2` | build/check, 39 unit, 49 integration, actual held-lease/live protocol (112.60 s), standalone default worker and metadata negatives; both complete exact-head CI runs green |
+| [#1002](https://github.com/treeseed-ai/deployment/pull/1002), current registered closures `.72` | `91ec3b1177e5df16137dde5dbce589cae0de99d1` | `04a79602c2ec96cf5b3177aa1c00216bd4a4289c61ce1f549e2a796d581c90e4` | build/check, 38 unit, 49 integration, actual cold prelude, source-stopped NPM seven-service (295.43 s), built Git (324.22 s) and committed Git (332.46 s); exact-head CI pending |
+| [#1003](https://github.com/treeseed-ai/deployment/pull/1003), explicit probe install/public live `.73` | `5cc3f3cc655ae318d195746ad3c85a2742bd3c6c` | `3fdcdcf0199aa82c2fc30cf5ff95c0b9dce49f138764366fb99638d10b087576` | combines .71/.72; check/build, 40 unit, 49 integration, seven further smoke cases (189.56 s), independent compiled worker/Docker-only PATH/source-and-original-bundle-free replay and unqualified reverse planning (163.10 s); exact-head CI pending |
 
 [Correction #990](https://github.com/treeseed-ai/deployment/pull/990) / open issue #989 records
 running Git work versus final single-link custody and is already included in #985. An actual
@@ -56,25 +60,28 @@ existing unqualified-selection blocker. Exact accepted-artifact lookup, ambiguit
 durable select intent/provenance and current-generation read-back are implemented locally;
 actual NPM/Git/approved-build qualification passed, including ambiguity/stale refusal without acquisition or application. Probe live replacement remains separately unqualified.
 
-Current live-probe work combines .69/.70 on `feature/910-task3c-live-probes`. The actual compiled
-programme reached intended red `QUALIFIED_LIVE_SELECTION_NOT_ACTIVE:prepared:qualify-transition`.
-Exact policy/metadata classification and projection are implemented locally. A real held Cordis
-lease then exposed `DRAIN_ADMISSION_REMAINED_OPEN`; explicit observation of the actual close entry
-reproduced it. The existing native drain counted leases but the Deployment scope facade did not
-close admission. A closing gate preserves admitted work while refusing new top-level leases. The actual compiled
-programme passed in 112.60 s, proving real held-lease delay, closed admission, awaited disposal,
-stale-lease refusal, unchanged physical receipts and fresh native/protocol acknowledgement.
-Genuine archive metadata mismatch negatives passed in 6.60 s with no imports or store state.
-Full owner verification is running; no frozen .71 or full Task 3C claim.
+The completed .71 native live-probe slice combines .69/.70. The actual compiled programme
+reached `QUALIFIED_LIVE_SELECTION_NOT_ACTIVE:prepared:qualify-transition`, then reproduced
+`DRAIN_ADMISSION_REMAINED_OPEN` after observing the actual close entry. Native drain counted
+leases but the Deployment facade did not close admission. The closing gate now preserves admitted
+work, refuses new acquisitions and awaits framework disposal; both full exact-head CI runs pass.
 
-`feature/910-task3c-selection-closure` has docs and outside-in tests for successive registered
-selections after the genuine source is stopped. Each selection needs a complete closure against
-the latest retained release, preserving exact accepted source identity without reacquisition.
-Implementation and qualification remain in progress; do not infer this capability from .69's
-already-active selection proof.
+The .72 source-stopped programme reproduced `STALE_SOURCE_CLOSURE` after deliberately avoiding
+an intervening NPM install that refreshed the closure. It now selects two successive instances
+without a source server using the current locked release. NPM, committed Git and approved-build
+Git all pass the same seven-service/direct-protocol/retention contract. Seven exhaustive required
+CI groups preserve the fifteen-minute budget; no case is omitted.
 
-Remaining: finish registered closure/live-transition qualification;
-explicit non-serving format migration; final CLI/API/owner adoption; genuine Keycloak/browser/
+The .73 packed public consumer proves independent default worker construction and public apply
+through Docker-only runtime PATH. Explicit probe install originally remained prepared despite
+an exact qualified selection; descriptor-based capability projection now activates it through
+the same path. A genuine probe-only package needs an explicit/unambiguous provider and existing
+service; container packages retain their defaults. Removing the original bundle and stopping
+source still permits exact replay and registered read-back. An unqualified reverse stays
+prepared/review-restart without a new application or current-generation change. All original
+physical receipts/private bytes and the worker PID remain unchanged.
+
+Remaining: explicit non-serving format migration; final CLI/API/owner adoption; genuine Keycloak/browser/
 terminal replacement and complete Platform acceptance. Keep all PRs for maintainer review, all
 issues including #678 open, original services/legacy branches untouched and Task 3D gated.
 
