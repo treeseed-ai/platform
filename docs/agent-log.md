@@ -1,8 +1,12 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-26 06:36 UTC. Issues own plans; Actions own verification;
+Updated: 2026-10-26 06:53 UTC. Issues own plans; Actions own verification;
 Git/TreeDX own products. This scoreboard covers named batches, not the portfolio.
 Unknown usage, price, closure or delivery is never counted as zero or success.
+
+
+- **Native group planning, 2026-10-26 06:53 UTC:** structured `@project-api` plus `@api/architect` admitted all five members in `send-608a071746f5e5ff3af9d2d8a09edbaf`. Architect `QJhFGs7T…` and Engineer `tNrINKI0…` returned canonical scope/dependency analysis. Releaser `bFtSUOFy…` failed oversized trace; Writer `44LwJLf8…` timed out after admission reduced calibrated180seconds to6seconds, execution began with2seconds left (lease released/teardown verified); Tester `invocation-1496609892ea41ae0dd8a02a78f9be46` degraded without any assignment. No formal estimates, approval or source delivery credited. No unchanged repeat campaign; deadlines and unknown usage preserved. Serial execution observed; retained-claim causality unproven.
+- **Code-only bootstrap, 2026-10-26:** API follow-up [2060cd8386](https://github.com/treeseed-ai/api/commit/2060cd8386) retains global/activity queries, resolves group audience before writes, prevalidates every Chat member, and exposes the existing unresolved recovery audit through coordinator/provider reads using one query. Red receipt regression `2588955e51`:1fail/5pass; repaired recovery set15checks/3files PASS, strict build/file/whitespace PASS. Existing native PostgreSQL/scene bindings strengthened but not yet checked on this follow-up. Earlier e515 group/query set92checks/15files PASS. API629 head9a full unit/integration/PostgreSQL passed; coded scenes still running at this observation. No live adoption or native release credited.
 
 | Named source batch | Canonical stages | Git products / accepted reviews | Native active seconds | Input / cached / output tokens |
 | --- | ---: | --- | ---: | --- |
