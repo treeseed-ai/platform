@@ -774,7 +774,7 @@ keep every assertion but split exhaustive smoke file ownership between two isola
 jobs, with static/unit/integration separately and an always-evaluated aggregate verify gate.
 New file inclusion, duplicate/missing/foreign membership and unknown group refusal are checked.
 Local source/build, 36 unit and 47 integration checks passed; one complete exact-head CI run is
-green, the second is still running at this checkpoint. Local `bun run verify` stays complete.
+green; the second subsequently passed unchanged. Local `bun run verify` stays complete.
 
 [UI #96](https://github.com/treeseed-ai/ui/pull/96), `97e3db43e3608223bc370e26b433e42c5e8578e4`,
 produces a test-only `.15.fixture.1` archive from exact qualified `.15` Git blobs. Its UI-owned
@@ -786,8 +786,9 @@ actual Firefox responsive and packed Astro tests of the default UI. The fixture 
 into a new consumer and qualified through public SSR/terminal exports. Frozen fixture archive:
 `5f21d800b8633b2f570d961d3fbb49256bbc767b98bd86b5efde3eefaa60bddd`;
 recipe `f46527f800be63d74a41a2864d635cd415b0e6b22084cf8302447b3db1df0d93`.
-One exact-head CI run is green; the second and final assembled replacement browser flow remain
-pending. Rebuild matching Admin/API/CLI asset/image/binary closures; swapping a tarball alone
+Both exact-head CI runs are green; the final assembled replacement browser flow remains
+pending. One UI runner was cancelled during Ubuntu codec package download before tests; the
+targeted unchanged rerun passed. Rebuild matching Admin/API/CLI asset/image/binary closures; swapping a tarball alone
 cannot change an already bundled consumer. The default `.15` archive is unchanged.
 
 Current implementation continues on `feature/910-task3c-plugin-registry`: documentation and the
@@ -800,3 +801,42 @@ Final owner qualification/candidate publication is in progress. Managed source h
 approved isolated builds, registration/selection/activation integration, explicit format migration,
 CLI plugin commands, coherent final owner artifacts and full Platform acceptance remain required.
 Every Task 3C candidate stays a draft; all issues including #678 stay open. Task 3D is not started.
+
+
+## Source policy, private artifact custody and pending-source correction
+
+Deployment #956 (.41 request journal), #957 (.42 managed prepared tools) and #958
+(.43 source policy) now have both complete exact-head CI runs green. Their owner totals are
+131, 132 and 135 checks respectively. The source policy uses exact SDK .15 (SDK #474,
+a0f1b1e33ece097db7d7cdd6a50fef302aa77faf), whose full 79-check gate and both CI runs passed.
+Policy grants, build definitions and live-transition attestations are portable accepted data;
+they do not themselves fetch, build, grant execution or activate providers. Planning's CA fixture
+is explicitly hash-only; no claim of real TLS qualification follows from that fixture.
+
+SDK #477 fixes the pending-source contract after its built Node regression showed that the
+schema demanded application identities before acquisition could produce them. Source-pending
+has neither plan/application reference nor acknowledgements/active claim; historical pending
+applications retain complete reference pairs. Runtime and generated projections agree. Source
+4c0ecd2a0fc28545dbf677cc988ce69f0cf2f15d, candidate .16 archive SHA-256
+4084aa8dbe9767984fac9fef7f5cea30a0bec93ed416138d32c804e6389fdba5; full 81-check gate,
+validate and both exact-head verify runs passed. SDK #475 remains open with its bounded criteria
+checked; Deployment adoption and final assembly remain pending.
+
+Deployment's .44 retained-release candidate is committed locally at
+40227b9e65dfb2763f3fb642aa70018db340ce45. It retains exact original allowlisted archives,
+worker/helper bytes, policy CA files and selected OCI blobs under immutable owner-private
+custody. It never reconstructs package archives from node_modules. The default compiled
+additive-apply programme passed after async copying; a 64 MiB worker-copy regression first
+failed because synchronous copying blocked the event loop, then passed with async descriptor
+I/O and chunked verification. Genuine managed Bun also passed on its first invocation after
+the original bundle was deleted. Final full owner verification is currently running; .44 is not
+yet a frozen published candidate at this checkpoint. Read-back verifies metadata/inventory,
+each consumed file verifies its hash, and verify()/verifyAsync() check all retained bytes.
+
+The next bounded branch, feature/910-task3c-npm-source, documents native managed-Bun exact
+NPM resolution before acquisition and adds a disposable HTTPS registry programme. Its initial
+attempt collided with another fixture's fixed port while the full Deployment gate ran; this is
+a fixture-prerequisite failure, not the intended missing-provider red. Correct and rerun serially
+before implementing. Full source acquisition/closure, Git and approved builds, native management
+and activation, migration, CLI commands, coherent owner pins and Platform assembly remain required.
+No Task 3D work, issue closure, merge or production publication is authorized by these candidates.
