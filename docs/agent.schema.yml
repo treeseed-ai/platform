@@ -443,6 +443,21 @@ $defs:
           $ref: "#/$defs/ToolGroup"
     additionalProperties: false
 
+  ExactRevisionReferences:
+    # Existing governed query/query-set selectors; definitions remain in TreeDX.
+    type: array
+    uniqueItems: true
+    items:
+      type: object
+      required: [id, revision]
+      properties:
+        id:
+          $ref: "#/$defs/NonEmptyText"
+        revision:
+          type: integer
+          minimum: 1
+      additionalProperties: false
+
   Prompt:
     type: object
     required: [system]
@@ -460,6 +475,10 @@ $defs:
     type: object
     required: [handler, permissions, prompt]
     properties:
+      contextQueryRefs:
+        $ref: "#/$defs/ExactRevisionReferences"
+      contextQuerySetRefs:
+        $ref: "#/$defs/ExactRevisionReferences"
       handler:
         $ref: "#/$defs/Identifier"
       dependsOn:
@@ -617,6 +636,10 @@ $defs:
       - context
       - activityProfiles
     properties:
+      contextQueryRefs:
+        $ref: "#/$defs/ExactRevisionReferences"
+      contextQuerySetRefs:
+        $ref: "#/$defs/ExactRevisionReferences"
       schemaVersion:
         const: treeseed.agent/v1
       id:
@@ -2242,6 +2265,10 @@ $defs:
       - prompt
       - permissionCeiling
     properties:
+      contextQueryRefs:
+        $ref: "#/$defs/ExactRevisionReferences"
+      contextQuerySetRefs:
+        $ref: "#/$defs/ExactRevisionReferences"
       profileRef:
         $ref: "#/$defs/ExactEntityReference"
       activity:
