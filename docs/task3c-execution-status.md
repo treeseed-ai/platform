@@ -4,51 +4,47 @@ Work is authorized by the maintainer's acceptance of UI setup, request for mobil
 
 ## Latest checkpoint — 2026-10-26
 
-Current qualified owner prefixes are SDK16, UI16, Identity7, Admin10 and CLI8. CLI8
-(head `4320a844b6c0e994a2c556736cc9f145dd5015f7`, executable SHA-256
-`48bf6adc7a47f2374932e1032418ac703edb3d71322387d18e7fcc9a0b2e9c90`) passed full
-check/build, one unit, one integration and twenty built-program smoke scenes (2,719 smoke
-assertions, 1,090.38 s). This includes NPM, packaged HTTPS Git, approved Git build and qualified
-live probe installation/source-free replay. Draft [CLI #323](https://github.com/treeseed-ai/cli/pull/323)
-remains open; both runtime CI runs pass. Its initial metadata checks used a contributor checkbox
-with a trailing period; the body is corrected and the next final source synchronization must
-qualify a fresh metadata event as well.
+Final sources/artifacts are recorded in `composition/task3c.json`: SDK16, Deployment76,
+Identity7, Admin10, UI16, API4 and CLI9. These are private candidate artifacts, not a production
+release. SDK/UI/Identity/Admin prefixes have complete green owner CI. Deployment75 compiler
+and Deployment74 explicit custody migration also have complete green CI; combined Deployment76
+is [#1007](https://github.com/treeseed-ai/deployment/pull/1007), final API4 is
+[#635](https://github.com/treeseed-ai/api/pull/635), and final CLI9 remains
+[#323](https://github.com/treeseed-ai/cli/pull/323). Their final CI/acceptance is running.
 
-API4 has been aligned to the final SDK/UI/Identity/Admin prefixes. Genuine default construction
-exposed a compiled worker configuration omission: Deployment73 could not resolve `cordis` in a
-sealed Postgres archive, although all thirteen Cordis files were present and development import
-passed. The earlier in-process Node host test also timed out; cleanup initially hid its primary
-error. API's qualification now exercises its actual independent compiled default worker and
-preserves primary plus cleanup failures. No passing in-process Node-host claim is made.
+Deployment76 passed check/build, 41 unit and 53 integration tests. Genuine same-installation
+UI-only replacement now passes: existing Keycloak session, stable private bytes/resource/TLS
+identities, explicit affected-service restart, changed browser and terminal providers, unchanged
+machine JSON/exit behavior and source-free read-back. Final artifact pins are being rerun through
+the reproducible Platform wrapper. The proper prior blocker was RESOURCE_MIGRATION_REQUIRED;
+the bounded correction admits only exact existing JSON assetDigest projections, with all other
+resource, credential, issuer/grant and authority definitions unchanged.
 
-Open [Deployment #1004](https://github.com/treeseed-ai/deployment/issues/1004) and draft
-[#1005](https://github.com/treeseed-ai/deployment/pull/1005) record the correction. Deployment75,
-source `f5b511999a9196759f22d827ee4ee8fb7b48c8ba`, archive SHA-256
-`fea365585ceaa9b813ba18c01fa78de2eca6335351fef86eeb9dcb37afbe4109`, enables package
-metadata loading and disables ambient dotenv/bunfig/tsconfig. Official compiler documentation:
-https://bun.sh/docs/bundler/executables . Actual compiled external Cordis/cwd canaries, check,
-build, forty unit, forty-nine integration and five targeted real worker/Postgres smoke scenes
-pass. The exact corrected prefix also passes the genuine API/Postgres/Keycloak/Caddy/private-CA
-browser/login/status/refresh/logout/assets/source-free scene (124.19 s). Full exact-head CI and
-final migration-combined adoption remain pending.
+The genuine independent API/Postgres/Keycloak/Caddy/private-CA programme passed on corrected
+Deployment75 (124.19 s). Final API4 check/build, five unit and four integration tests pass; the
+same full programme is queued with the frozen Deployment76 archive. API #620 committer policy
+remains exact blob b1a687db754ee2fac141919e6c63052d12bf2812. Earlier in-process Node-host RPC
+failures are retained as negative configuration evidence, not a claimed platform limit.
 
-Migration74 is an unfrozen implementation slice on `feature/910-task3c-format2-custody`,
-separate from the frozen public-live worktree. It requires explicit observed quiescence and
-single-writer admission, preserves format-2 bytes and maps eighteen real legacy resource/private
-receipts without inventing format-4 provider acknowledgements. A retained genuine Task3B fixture
-passes migration and read-back. The first fresh positive exposed the original worker's valid
-0500 mode; this is corrected. A strengthened fresh scene now covers retained provider/image
-integrity, tampering, concurrent admission, old-reader refusal and safe custody read-back.
-Migrated custody reports unverified current runtime and requires separately qualified runtime
-migration/restart; it cannot replay old plans or imply an active format-3 root. Final qualification
-and artifact freeze are pending.
+CLI8 passed twenty full built-program smoke scenes (2,719 assertions). CLI9 passed check/build,
+one unit and one integration; its full smoke run now includes source-free registered Git/build
+selection of two further instances. NPM's deliberately ambiguous registered archive remains
+blocked without an application. Final head metadata was updated before synchronize so CI reads
+the current canonical contributor declaration.
 
-The exact UI16 fixture archive has been rebuilt through the same Admin10/API4/CLI8 owner sources
-using the integration-only `verification/task3c/ui-owner-closure.mts` producer. Its terminal
-provider visibly changes the compiled doctor output while deterministic machine error JSON bytes
-and exit behavior remain unchanged. Matching real browser/image restart qualification and final
-source alignment remain pending. No final composition record or completed Task3C acceptance is
-claimed. All candidates stay draft; no merge, issue closure, production publication or Task3D.
+Explicit migration custody passed a fresh genuine historical Task3B scene (312 assertions,
+118.88 s), including active refusal, observed quiescence, retained provider tamper refusal before
+store mutation, concurrency, eighteen preserved receipts, private bytes/TLS/resource identities,
+repeat read-back, changed-history refusal and old-reader rejection. Custody remains non-serving:
+current runtime is unverified, activeComposition null, and a separately qualified runtime upgrade
+is required. It never fabricates active current-provider identities or replays old plans.
+
+Platform's isolated public-archive consumer and real UI/migration/plugin commands are now being
+qualified with mandatory Ubuntu26.04 CI. No final Task3C completion claim yet. All candidates
+remain draft and every issue stays open. No merge, cutover, production publication or Task3D.
+
+The tables and narrative below retain the investigation history; this checkpoint supersedes
+older pending/frozen statements as new evidence is recorded.
 
 | Current Deployment review candidate | Exact source | Archive SHA-256 | Evidence |
 | --- | --- | --- | --- |

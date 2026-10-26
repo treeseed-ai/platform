@@ -34,3 +34,26 @@ Required CI runs on Ubuntu 26.04 with actual Docker, managed source helpers and 
 CA prerequisites. Missing prerequisites fail. All cleanup is limited to verified fixture-owned
 resources/processes. Keep every issue, including #678, open; hand back PRs for review without
 merging, publishing production artifacts or beginning Task 3D.
+
+## Reproduction
+
+Install exact dependencies in `packages/cli` and build its pinned source, then install the
+independent `verification/task3c` consumer with `bun install --frozen-lockfile --ignore-scripts`.
+Run `bun run check:task3c`. `bun run test:extensible` executes all four owner-built CLI scenes;
+CI partitions them onto separate fresh runners. `bun run prepare:ui` rebuilds the matching
+Admin/API/CLI fixture closure once into the ignored verification output, then `bun run test:ui`
+executes the real same-installation replacement. The input and output directories are explicit;
+existing output is refused rather than silently reused. Exact archive hashes and canonical
+owner source heads are checked before builds. Only the UI fixture changes, with all required
+consumer assets/image/binary rebuilt through their own source.
+
+`bun run test:migration` creates a separate detached historical CLI worktree beneath ignored
+verification output, installs the original Task3B archives/lock and runs the original real
+programme with the explicit current Deployment custody check. Successful fixture execution
+removes only that clean temporary worktree. Failure preserves its evidence for diagnosis.
+The original historical composition record and owner working checkouts are unchanged.
+
+`verification/task3c/prerequisites.mts` explicitly prepares digest-pinned test images before
+any accepted application; apply does not pull. CI requires actual Docker/Compose and
+Firefox/NSS tooling on Ubuntu26.04, plus all four source scenes, UI and migration jobs in the
+final aggregate. No prerequisite skip counts as acceptance.
