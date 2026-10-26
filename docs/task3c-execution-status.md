@@ -886,3 +886,43 @@ qualified. No `.46` archive or completed dependency closure is claimed yet. Git,
 builds, complete closure, native PluginManager/activation, migration, CLI plugin commands, remaining
 owner alignment/rebuild and final Platform assembled acceptance remain required. All candidates
 stay drafts for review, every issue including #678 remains open, and Task 3D is not started.
+
+## Complete NPM closure and coherent presentation continuation
+
+Deployment #961 (.46 original archive custody), #963 (.47 exclusive directory reservation),
+#965 (real import/lifecycle canary qualification) and #966 (.48 shared approved registry lookup)
+each have both complete exact-head CI runs green. The latter three run 139 checks (36 unit,
+48 integration, 55 smoke). The reservation regressions establish that an attacker-created empty
+directory is preserved and refused rather than replaced at publication. Default additive apply
+also passed with retained resources and credential/TLS bytes. Source canaries are calibrated by
+actually executing the fixture script/import before the acquisition test, then removing their
+absolute markers and requiring them to remain absent during acquisition.
+
+The current `.49` source-closure branch adds complete flat runtime dependency acquisition,
+per-package approval, exact archive custody and ordinary Bun v2 lock generation offline with
+scripts disabled. Bun 1.4.4 required a standard exact-file root override map for transitive
+semver edges; a retained real-helper reproduction established that requirement. Verification
+accepts that map only when root, lock and every inventory archive path match, and still checks
+every original semver edge and SRI. The compiled programme has passed same-key joining,
+source-free read-back and unapproved-dependency refusal. Additional receipt/lock tampering and
+aggregate memory limits are in final local qualification; no `.49` archive is frozen yet.
+
+Identity `.6` is rejected evidence: its package version was 6 while its native declaration
+still said 5. Admin's real asset closure caught the mismatch despite the old Identity checks
+passing. Corrected Identity #51 is `.7` at `f29824578d0aa8fc7725a195b72c698b476da429`,
+archive `90ac95f3e1d953f0aeddb5d0da01e9e596b226bbbc806bff3566d274a34f22d6`.
+Fresh full eight-check verification and both exact-head CI runs passed, including a new built
+metadata/declaration identity regression. The rejected `.6` archive remains immutable.
+Separate open proposal Identity #52 records the reusable process gap; Keycloak authority,
+issuer, sessions and secrets are unchanged.
+
+Admin #145 is `.10` at `227011825a885f184f1b2540d72d830a905ba8a2`, archive
+`4891b1e51515ae79827ae801cc14abad4e7b66f3cd6d924860113e934c92cfe5`, consuming exact
+SDK `.16`, Identity `.7` and UI `.16` archives. Fresh owner verification passed all nine checks,
+including Firefox fixture login/refresh/logout. Exact-head CI and final genuine Keycloak/API
+assembly remain pending. These are separate owner artifacts, not Platform source copies.
+
+Still required: managed prepared bundle assembly, fresh-root planning, Git acquisition and approved
+isolated builds, native PluginManager registration/selection/activation, qualified live transitions,
+explicit non-serving format migration, CLI plugin commands, final coherent owner rebuilds and
+Platform assembled acceptance. Task 3C remains in progress; these prefixes are not its completion.
