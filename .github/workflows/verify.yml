@@ -29,7 +29,7 @@ jobs:
         env:
           NODE_ENV: production
         with:
-          commit: 9ea569e57305d7a02edf1db3a32affeea9cedcaf
+          commit: ab5ad06894610c5566aa32bbffc7c027a4e3f4ce
           github-token: ${{ github.token }}
           paths: ${{ steps.cli-sdk.outputs.path }}
       - run: trsd platform verify . --json
