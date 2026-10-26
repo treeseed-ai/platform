@@ -33,8 +33,34 @@ Disabling the trust guard makes the canary fail as intended; restored Git/NPM pr
 Git archive custody remains a separate in-progress slice, with its initial compiled-program red
 at the explicit acquisition-not-qualified guard. No Git installation or activation is claimed.
 
-Remaining implementation: exact Git archive/closure acquisition and isolated builds (exact
-resolution is qualified), registered selection and qualified live transitions, explicit non-serving format
+[Deployment #984](https://github.com/treeseed-ai/deployment/pull/984), exact head
+`e8fcc48aedf86bb2e03eeb80ec23f486b74a1b71`, freezes `.60` archive SHA-256
+`698b130a55ff179ba7e7ce130e7781f4fb8e2ded9836b3b24f3dab7ffd8f5ef1`.
+Both full exact-head CI runs pass. Genuine Git archive custody preserves accepted commit/tree,
+normal/executable modes and native metadata without imports/scripts. Compiled checks refuse
+symlinks, unsupported archive attributes, oversized source, incomplete retries, cache tampering
+and unbounded helper work. Disabling the disk-budget walk produces the intended failing canary;
+restored typed budget checks pass. The tar permission-mask correction is recorded in owner docs.
+
+[Deployment #985](https://github.com/treeseed-ai/deployment/pull/985), exact head
+`5de54d7e8858e142431af8bb75eb65c1e7966c0e`, freezes `.61` archive SHA-256
+`03f5d8640956379219adfaa361057185c3ab1485abbbc3368c9ea2d7bc12882e`.
+Prepared Git packages now use the existing complete flat closure verifier and offline managed Bun
+path, with per-dependency approval. Five genuine Git/NPM programmes passed together in 109.68
+seconds, plus build/check, 36 unit and 49 integration checks. Source-free owner restart verifies
+exact Git receipts/closure; tampered dependencies and unapproved pre-fetch lookup are refused.
+Both check jobs and one complete foundation partition passed; an upstream Bun download HTTP 504
+failed the other transition job before tests. Failed jobs are being retried after diagnosis; no
+product change or blanket rerun was substituted for that external failure.
+
+Approved source-only build work is in progress on `feature/910-task3c-isolated-build`. Its compiled
+red was `NATIVE_PLUGIN_BUILD_UNAVAILABLE`. The genuine native disposable build now produces and
+verifies a distributable archive and source-free repeat, with no installation credentials/network
+and explicit owned-container cleanup. Admission/timeout/isolation regression checks remain in
+progress; no frozen candidate or installed source-build activation is claimed yet.
+
+Remaining implementation: approved isolated source builds and installed Git adoption (prepared
+Git resolution/archive/closure are qualified locally), registered selection and qualified live transitions, explicit non-serving format
 migration, final API/owner alignment, and actual Platform extensibility/UI acceptance. Keep all
 candidates open for review, every issue including #678 open, all original services untouched and
 Task 3D gated. The sections below retain chronological evidence, including superseded checkpoints.
