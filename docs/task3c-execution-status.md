@@ -4,6 +4,46 @@ Work is authorized by the maintainer's acceptance of UI setup, request for mobil
 
 ## Latest checkpoint — 2026-10-26
 
+Current source/owner checkpoint supersedes the chronological prefixes below. SDK `.16`, UI `.16`,
+Identity `.7` and Admin `.10` retain their qualified candidates. CLI `.7` still consumes Deployment
+`.58` until final owner alignment; API still needs its coherent final rebuild. No final composition
+record or assembled Task 3C acceptance is claimed.
+
+| Current Deployment review candidate | Exact source | Archive SHA-256 | Evidence |
+| --- | --- | --- | --- |
+| [#985](https://github.com/treeseed-ai/deployment/pull/985), corrected Git closure `.64` | `c48caa4518fceccc6ad1a1b12fa98a9b70e56f5f` | `dc2b577e4df713a4dea21bd4151fe3dfc6d435ed00ff209621ed331945eef5d9` | build/check, 36 unit, 49 integration, six compiled source/helper programmes; refreshed CI has multiple full green runs, with a historical five-second unit timeout retained |
+| [#987](https://github.com/treeseed-ai/deployment/pull/987), corrected native build `.65` | `b2e360116c7b92dafe2e361780e09cc12078d869` | `ea4f8c826a7854fe9b9b5fdde1b6edb47b3d19ca3eba2016516037e13e4992b8` | clean build/check, 36 unit, 49 integration, ten compiled programmes (178.88 s); full green CI plus a cancelled near-deadline job with zero test failures |
+| [#988](https://github.com/treeseed-ai/deployment/pull/988), cold-worker-corrected build adoption `.67` | `4fe695ec2a3e8ab1ea965567c7b3432e78472840` | `c50cdfb937e17f83e57a3ea915e0724610cd38d2f6849125e5660152d4aebdce` | build/check, 36 unit, 49 integration, fourteen real worker/default-owner/source/build programmes (308.54 s); new exact-head CI pending |
+
+[Correction #990](https://github.com/treeseed-ai/deployment/pull/990) / open issue #989 records
+running Git work versus final single-link custody and is already included in #985. An actual
+transient-link helper canary failed before the correction; transient links now pass, permanent
+links and oversize work remain refused. No resource budget was raised.
+[Correction #993](https://github.com/treeseed-ai/deployment/pull/993) / open issue #991 records the
+cold worker module-order regression, already included in #988. The produced worker previously
+crashed before argument parsing; the corrected prelude exits 2 with no tools on PATH, and the
+real five-service worker plus fresh independent owner pass. Historical `.61`–`.66` archives and
+source refs are preserved; none was overwritten.
+
+Open issue #992 separately proposes the required exhaustive CI rebalance: the old foundation
+smoke took 879.24 seconds with zero failures and effectively exhausted its 15-minute job. Four
+nonempty groups retain all tests and the same deadline/aggregate gate. Workflow/inventory red
+and green tests are established; no process policy or skill was changed. Full real CI remains
+required before review readiness.
+
+Installed Git work now shares the NPM outside-in installation contract across genuine HTTPS Git
+repositories and approved source-only builds. Its initial default-owner test exposed #991; after
+that correction, the intended red is `NPM_SOURCE_REQUIRED`. Native Git/build registration and
+source selection are implemented locally and the real fresh-owner test is running. No installed
+Git activation success is claimed yet.
+
+Remaining: finish installed Git qualification; registered selection/qualified live transitions;
+explicit non-serving format migration; final CLI/API/owner adoption; genuine Keycloak/browser/
+terminal replacement and complete Platform acceptance. Keep all PRs for maintainer review, all
+issues including #678 open, original services/legacy branches untouched and Task 3D gated.
+
+### Earlier checkpoint retained as chronological evidence
+
 Task 3C remains in progress. UI `.16`, SDK `.16`, Identity `.7` and Admin `.10` retain their
 qualified owner candidates. Deployment `.58` now qualifies safe NPM container additions, fresh
 installed-manager bootstrap and race-safe live transport reads. CLI `.7` consumes those exact
