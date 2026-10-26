@@ -2,6 +2,32 @@
 
 Work is authorized by the maintainer's acceptance of UI setup, request for mobile-first rendering and explicit resumption. This is an in-progress ledger, not accepted release/composition evidence. Preserve the independent owner repositories, Identity/Keycloak authority, historical formats, original services and all open issues. Task 3D remains gated.
 
+## Latest checkpoint — 2026-10-26
+
+Task 3C remains in progress. UI `.16`, SDK `.16`, Identity `.7` and Admin `.10` retain their
+qualified owner candidates. Deployment `.58` now qualifies safe NPM container additions, fresh
+installed-manager bootstrap and race-safe live transport reads. CLI `.7` consumes those exact
+public SDK/UI/Deployment archives and passes its complete 19-check local suite, including actual
+built-program plugin installation. API remains on its older coherent Task 3C candidate until final
+owner alignment; no final composition record or assembled acceptance pass is claimed.
+
+Latest review candidates: [Deployment #978](https://github.com/treeseed-ai/deployment/pull/978)
+(default installed manager, both full 145-check CI runs green),
+[#979](https://github.com/treeseed-ai/deployment/pull/979) (public fixture, corrected exact-head
+146-check CI green), [#982](https://github.com/treeseed-ai/deployment/pull/982)
+(live read-back race, both full 147-check CI runs green), and
+[CLI #322](https://github.com/treeseed-ai/cli/pull/322) (both full functional CI runs green;
+canonical description-field validation was corrected and is being read back).
+[Deployment #981](https://github.com/treeseed-ai/deployment/pull/981) records the CI-only
+empty-cache correction now also included in #979. Its separate draft preserves the failed/fixed
+evidence; it adds no different owner artifact.
+
+Remaining implementation: exact Git acquisition/isolated builds (resolution is currently under
+qualification), registered selection and qualified live transitions, explicit non-serving format
+migration, final API/owner alignment, and actual Platform extensibility/UI acceptance. Keep all
+candidates open for review, every issue including #678 open, all original services untouched and
+Task 3D gated. The sections below retain chronological evidence, including superseded checkpoints.
+
 ## Published UI baseline and owner candidates
 
 UI `cordis` is the reviewed setup-only bootstrap `d24d02ab842fe9fd431eb840b2a91083c086027c`, from UI source `034b8811e42d7bededb8e2444ca4c099d79de4a3` and Platform `382eefad709a5fa3d60944f3540ded5d8d8f2c01`. UI #79 records explicit approval/publication/resumption. No original UI checkout was cleared or rewritten.
@@ -1037,3 +1063,53 @@ Remaining Task 3C work still includes registered provider selection/qualified li
 Git and approved isolated builds, explicit non-serving format migration, completed CLI integration,
 coherent API/Identity/Admin/UI release closure and final Platform assembled acceptance. Keycloak
 identity and repository ownership are preserved. No merges, issue closures or Task 3D work.
+
+
+## Live transport correction and built CLI checkpoint
+
+Deployment [#978](https://github.com/treeseed-ai/deployment/pull/978) freezes `.56` at
+`74df37dd8c5b14145a6a07aa6c5020fff747c2ff`, archive
+`b88b8980f4ca64c88a5063f672b3464ca57a473e1a61b146b71c1c6cca64680e`.
+Both full 145-check CI runs are green. Ambiguous initial plans, foreign scope and implicit
+stopped-owner restart are refused, while cold read-back remains truthful.
+
+Deployment [#979](https://github.com/treeseed-ai/deployment/pull/979) freezes `.57` at
+`42a53501a460389fe87547869d4ff35e87595783`, archive
+`17301c9c81339e72aefe3135be2eef7858e0634d94f305f94c1b3d105de37d53`.
+Its genuine fixture export is consumed by an independently installed package, not sibling source.
+Original CI correctly failed because another project's offline install lacked cached registry
+manifests. Empty-cache reproduction and build-time dependency resolution corrected the test in
+[#981](https://github.com/treeseed-ai/deployment/pull/981); #979 now includes
+`a108fee8590bd61456c2abb67255fbae4d1d9305` and complete exact-head CI is green. A fresh pack
+matches the frozen archive exactly; no published fixture bytes or runtime cache policy changed.
+
+The first actual built CLI two-instance scene returned an unrecorded inspect blocker; a repeat
+passed. Neither was treated as proof of a fix. A controlled compiled-worker publication pause
+then established exact red `LIVE_READ_SAMPLED_MUTABLE_PUBLICATION:PLUGIN_JOURNAL_HEAD`.
+Deployment [#982](https://github.com/treeseed-ai/deployment/pull/982), issue #980, freezes `.58`
+at `3db1427e6f70ddd1fdb35dd2a41a5e4d1837660d`, archive
+`95f93b0076582c8af554a46b59a1b98dce7942abea4a91314cfa403325e6ccd7`.
+Immutable plan/receipt/launch/socket/process verification now precedes live owner RPC without
+sampling mutable journals from another process. Owner-side full checks and cold full-journal
+rejection remain. The publication pause, foreign receipt, permission/plan tampering and malformed
+cold head negatives pass. Fresh build/check, 36 unit, 49 integration, six real default/source/
+activation programmes (384.75 seconds), packed consumer and both full 147-check CI runs passed.
+
+[CLI #322](https://github.com/treeseed-ai/cli/pull/322) freezes `.7` at
+`7ae6dcc0744e0179a622b2a0ab8ac7912c16f281`, binary
+`86c8625abbe449c634e4af8eab8db44c6ab0f9739be9a0696b84aba57f0834e1`.
+Exact SDK `.16`, UI `.16` and Deployment `.58` archives and installed versions were read back
+after forced fresh-cache installs. Full local verification passed 1 unit, 1 default integration
+and 17 smoke cases (1,244 smoke assertions). The genuine built CLI adds two private typed instances,
+observes their actual protocol, retains prior resources/credential bytes, renders UI references,
+prepares unsafe migration without applying it, reuses an already active application, retries with
+the registry stopped and rejects historical-generation claims. All prior diagnostic/plan/provider/
+worker checks remain. Both full functional CI runs passed; the first PR-description gate exposed
+missing canonical field labels/headings, now corrected pending refreshed validation.
+
+Git resolution is now being qualified through a genuine prepared Git 2.53.0 helper, private libraries
+and HTTPS bare-repository fixtures. The intended red was `NATIVE_GIT_SOURCE_UNAVAILABLE`. A planted
+containing-repository URL rewrite demonstrated that ambient local Git configuration reached the
+first lookup; an explicit private bare repository now isolates it and the genuine source-free/
+moved-ref/tag/ambiguity programme passes. Further trust/negative and owner checks are running.
+No `.59` archive or completed Git acquisition/build path is claimed yet. All issues remain open.
