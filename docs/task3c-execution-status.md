@@ -691,8 +691,8 @@ from the prerequisite; that does not replace the original artifact receipt.
 Both candidates exposed a CI classification error: the malformed-journal test invokes the real
 default host but inherited a five-second unit-test budget. CI reproduced 5.030/5.443 seconds.
 The owning correction moves the unchanged assertion to bounded integration and is being qualified.
-Platform #732 records the recurring classification pattern. Neither candidate is fully CI green
-or ready to merge yet. The revised preparation is reserved as `.38-preparation.2`, and the
+Platform #732 records the recurring classification pattern. The corrected prerequisite now has both full CI runs green; the additive candidate remains
+pending exact-head CI and final acceptance. No merge is authorized in this pass. The revised preparation is reserved as `.38-preparation.2`, and the
 corrected additive source will advance its private candidate version rather than overwrite `.38`.
 
 [Admin #144](https://github.com/treeseed-ai/admin/pull/144), source
@@ -709,9 +709,32 @@ worker programme are committed. The intended red refused an exact valid scope wi
 contracts and immutable historical receipts. The programme caught two implementation gaps before
 candidate publication: resource selection keys must include service identity for repeated slot
 names, and replacement validation must distinguish retained private state from the old container.
-Those corrections are under focused qualification; no passing replacement or completed Task 3C
-claim is made. Temporary safe-code diagnostics were removed before rebuilding.
+The first compiled replacement programme passed in 115.70 seconds at implementation commit
+`8174b8f91` (short local reference), preserving four other containers, every private slot/CA,
+and worker identity while verifying actual protocol output and source-free replay.
+Reversion/uncertain-state cases and the full gate remain pending; Task 3C is incomplete.
+Temporary safe-code diagnostics were removed before the passing rebuild.
 
 Explicit non-serving format migration, complete NPM/HTTPS-Git managed acquisition, durable plugin
 registration/selection, qualified live replacement, CLI command adoption and final assembled
 acceptance remain required. All candidates stay drafts and all issues, including #678, stay open.
+
+
+The corrected prerequisite [Deployment #947](https://github.com/treeseed-ai/deployment/pull/947)
+now points to `a5b06cc4f4ed403a69a7d44d841e690161ad0e70`; `.38-preparation.2` archive
+`4a81ad418e9e87e990fc55f3b5dea4c08ab2270c5aeacdcec348063f4c029430`. Fresh local
+build/source checks, 33 unit and 46 integration checks passed, then both exact-head full Ubuntu
+26.04 CI verify runs passed, including all 42 smoke checks. No prerequisite or assertion was skipped.
+
+[Deployment #948](https://github.com/treeseed-ai/deployment/pull/948) advances to `.39`, source
+`1124f6a8b10c48b49ca3ab7e77ee7de3b7080c65`, frozen archive
+`85cfb1cc08ddb6f4c0a8407fa201ec5f251dff18254ff467a142902aca327996`. Its increment after
+#947 is ten files. Fresh build/source checks, 33 unit, 47 integration and five targeted checks
+passed, including both real retained programmes and cold entry probes; the preceding full
+123-check run covered unchanged activation behavior. Exact-head full CI is pending.
+
+The scoped-restart continuation's next programme returns to the exact original release bytes
+and requires a different actual container identity while preserving historical receipts.
+It asserts the desired composition digest repeats, exposing the distinction between desired
+inputs and running physical incarnations. The test is establishing its red boundary; implementation
+and journal qualification for that edge case are not yet claimed. All candidates remain drafts.
