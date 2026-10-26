@@ -17,13 +17,24 @@ Latest review candidates: [Deployment #978](https://github.com/treeseed-ai/deplo
 146-check CI green), [#982](https://github.com/treeseed-ai/deployment/pull/982)
 (live read-back race, both full 147-check CI runs green), and
 [CLI #322](https://github.com/treeseed-ai/cli/pull/322) (both full functional CI runs green;
-canonical description-field validation was corrected and is being read back).
+canonical description-field validation was corrected and the latest gate passed).
 [Deployment #981](https://github.com/treeseed-ai/deployment/pull/981) records the CI-only
 empty-cache correction now also included in #979. Its separate draft preserves the failed/fixed
 evidence; it adds no different owner artifact.
 
-Remaining implementation: exact Git acquisition/isolated builds (resolution is currently under
-qualification), registered selection and qualified live transitions, explicit non-serving format
+[Deployment #983](https://github.com/treeseed-ai/deployment/pull/983) qualifies native Git
+resolution at `e3bc8b9e7d2217ae8ee1454d3b2a5ce5bac949b3`, private `.59` archive SHA-256
+`899f8d6c6470efb6176842e7abbb3ebcb65a6de2d37fa55e62a9433f569e9dd4`.
+Both full exact-head CI runs are green. Real managed Git/HTTPS checks cover moved refs,
+annotated tags, ambiguous and missing refs, target/origin denial, interrupted lookup fencing,
+held-CA tampering and source-free owner restart. A planted containing repository's URL rewrite
+reached the first lookup; an explicit held private bare repository now isolates its configuration.
+Disabling the trust guard makes the canary fail as intended; restored Git/NPM programmes pass.
+Git archive custody remains a separate in-progress slice, with its initial compiled-program red
+at the explicit acquisition-not-qualified guard. No Git installation or activation is claimed.
+
+Remaining implementation: exact Git archive/closure acquisition and isolated builds (exact
+resolution is qualified), registered selection and qualified live transitions, explicit non-serving format
 migration, final API/owner alignment, and actual Platform extensibility/UI acceptance. Keep all
 candidates open for review, every issue including #678 open, all original services untouched and
 Task 3D gated. The sections below retain chronological evidence, including superseded checkpoints.
