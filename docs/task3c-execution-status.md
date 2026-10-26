@@ -1287,3 +1287,33 @@ containing-repository URL rewrite demonstrated that ambient local Git configurat
 first lookup; an explicit private bare repository now isolates it and the genuine source-free/
 moved-ref/tag/ambiguity programme passes. Further trust/negative and owner checks are running.
 No `.59` archive or completed Git acquisition/build path is claimed yet. All issues remain open.
+
+
+## Final assembly checkpoint
+
+The SDK `.16`, UI `.16`, Identity `.7`, Admin `.10` and CLI `.8` owner gates have passed.
+CLI `.8` completed its full local programme suite (20 smoke cases, 2,719 assertions),
+including genuine NPM, packaged HTTPS Git, approved isolated Git builds and qualified live
+probe replacement. CLI's final source-free registered-selection additions remain under
+verification; no final `.9` binary is frozen.
+
+Deployment [#1005](https://github.com/treeseed-ai/deployment/pull/1005) corrects compiled
+worker external package metadata loading. Its exact-head CI is green, and the genuine
+independent API/Keycloak/Postgres/Caddy/browser scene passed. The regression compiles an
+external genuine Cordis module with ambient configuration and script canaries.
+Deployment [#1006](https://github.com/treeseed-ai/deployment/pull/1006) preserves explicit
+non-serving format-2 custody migration. A fresh genuine historical installation scene passed
+312 assertions, preserving old private bytes, TLS and resource identities, fencing active/
+interrupted state and rejecting old readers. This records custody, not an active format-3
+runtime. Both are unmerged draft candidates.
+
+The final Deployment `.76` composition combines those qualified slices. Actual UI-only
+replacement established intended red `RESOURCE_MIGRATION_REQUIRED`: the private API JSON
+slot binds the asset generation. A bounded correction admits only the exact old-to-new
+`assetDigest` projection under explicit scoped restart, preserving credential, issuer, grant,
+volume and authority definitions. Its positive and authority-changing negative unit tests
+pass; the real same-installation browser/terminal replacement is running. Final API/CLI
+adoption, Platform exact pins and mandatory assembled CI are still outstanding.
+
+All issues remain open. No merge, production publication, legacy change or Task 3D work is
+authorized by these results.
