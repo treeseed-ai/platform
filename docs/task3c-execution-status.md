@@ -926,3 +926,34 @@ Still required: managed prepared bundle assembly, fresh-root planning, Git acqui
 isolated builds, native PluginManager registration/selection/activation, qualified live transitions,
 explicit non-serving format migration, CLI plugin commands, final coherent owner rebuilds and
 Platform assembled acceptance. Task 3C remains in progress; these prefixes are not its completion.
+
+## Private preparation and owner-bound planning checkpoint
+
+Deployment #967 freezes `.49` at `4a55674a55f3da1b06b1df25edafde565c2afac5`, archive
+`86390c23d1e0b72b9c62e516878830febdd5ede94ae41fe9d40cd4773d8ad96b`.
+Both full exact-head CI runs passed 140 checks (36 unit, 49 integration, 55 smoke). Complete
+source closure, exact-file overrides and source-free receipt/lock tampering refusal are qualified.
+
+Deployment #968 freezes `.50` at `a05e3d28730c5514888c8ed706f4ef066dac17b6`, archive
+`7c5c97f22b7db1ad981808ef50099d87d449d7911c819ead6c00bfedd352d18d`.
+Fresh local build/check, 36 unit, 49 integration and the actual compiled NPM programme passed.
+Private preparation derives its recipe from an explicit typed graph, streams retained immutable
+artifacts and independently validates before sealing. Read-back with the registry stopped refuses
+ordinary receipt/recipe tampering, missing receipts and symlink substitution. One complete CI run
+has passed; the other is still being observed. Codex's 100-attachment limit refused attachment of
+#968; its review URL remains https://github.com/treeseed-ai/deployment/pull/968. No current unmerged
+candidate was unlinked to hide that limit, and no PR was merged.
+
+The next `.51` slice admits only these verified private prepared bundles under the existing native
+owner root/writer and enables fresh non-serving replanning before any application/resource history.
+Its compiled source programme first failed at the missing owner planning interface. The real fresh
+application programme first failed at the original PLAN_BINDING guard, then passed after the new
+root-scope checks: no planning effects or writer replacement, followed by five protocol-qualified
+services from the new exact candidate. Additional coherent receipt/payload rewrite qualification
+fails when the acquired-closure guard is disabled. That guard is restored; full local qualification
+is running. No `.51` archive or full Task 3C completion is claimed at this checkpoint.
+
+Admin #145's second CI run timed out while downloading browser prerequisites from the Ubuntu
+mirror, before owner verification. One targeted retry now gives both exact-head full CI runs green
+at `227011825a885f184f1b2540d72d830a905ba8a2`. The owner artifact is unchanged. Final genuine
+Keycloak/API/Platform assembly, source manager/Git/build/activation and migration work remain.
