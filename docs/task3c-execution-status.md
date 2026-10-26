@@ -49,15 +49,28 @@ Prepared Git packages now use the existing complete flat closure verifier and of
 path, with per-dependency approval. Five genuine Git/NPM programmes passed together in 109.68
 seconds, plus build/check, 36 unit and 49 integration checks. Source-free owner restart verifies
 exact Git receipts/closure; tampered dependencies and unapproved pre-fetch lookup are refused.
-Both check jobs and one complete foundation partition passed; an upstream Bun download HTTP 504
-failed the other transition job before tests. Failed jobs are being retried after diagnosis; no
-product change or blanket rerun was substituted for that external failure.
+Both full exact-head CI runs now pass. An upstream Bun download HTTP 504 initially failed one
+transition job before tests; the diagnosed retry and aggregate gate passed. No product change
+was substituted for that external failure.
 
-Approved source-only build work is in progress on `feature/910-task3c-isolated-build`. Its compiled
-red was `NATIVE_PLUGIN_BUILD_UNAVAILABLE`. The genuine native disposable build now produces and
-verifies a distributable archive and source-free repeat, with no installation credentials/network
-and explicit owned-container cleanup. Admission/timeout/isolation regression checks remain in
-progress; no frozen candidate or installed source-build activation is claimed yet.
+[Deployment #987](https://github.com/treeseed-ai/deployment/pull/987), exact head
+`b2e3f71a621184d67ca81c2aa5d6f1fcf525b945`, freezes `.62` archive SHA-256
+`2a26f76c767b14baf395bccae9543c36f2b1ae6dc6ac6a9fe183fb7126312baf`.
+The native `source.build` provider genuinely compiles approved TypeScript in a pinned disposable
+non-root/no-network/read-only Docker sandbox, checks actual isolation and input identities,
+retains immutable source-free build receipts and removes its exact owned container. No source
+script executes on the host; no installation root/socket/credentials are mounted. Missing policy,
+wrong entry, deadline, tampered artifact and actual changed Docker network configuration have
+built-program checks. The isolation fault exposed cleanup incorrectly requiring valid admission;
+a dedicated regression failed, then passed after cleanup used exact ownership independently.
+The failed regular-file `/proc` bind configuration and sealed-path correction retain explicit
+configuration evidence rather than a general Docker limitation claim.
+
+Clean-output build/check, 36 unit, 49 integration and ten genuine compiled build/Git/NPM
+programmes passed (171.56 seconds). Full exact-head CI is pending. The new
+`feature/910-task3c-git-build-adoption` slice now connects the same native build provider to Git
+source acquisition/closure; its intended compiled red is `BUILD_REQUIRED`. No installed
+source-build activation or completed Task 3C claim exists yet.
 
 Remaining implementation: approved isolated source builds and installed Git adoption (prepared
 Git resolution/archive/closure are qualified locally), registered selection and qualified live transitions, explicit non-serving format
