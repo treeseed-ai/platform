@@ -957,3 +957,45 @@ Admin #145's second CI run timed out while downloading browser prerequisites fro
 mirror, before owner verification. One targeted retry now gives both exact-head full CI runs green
 at `227011825a885f184f1b2540d72d830a905ba8a2`. The owner artifact is unchanged. Final genuine
 Keycloak/API/Platform assembly, source manager/Git/build/activation and migration work remain.
+
+## Native registration and safe activation continuation
+
+Deployment [#968](https://github.com/treeseed-ai/deployment/pull/968) and
+[#970](https://github.com/treeseed-ai/deployment/pull/970) now both have full exact-head CI green.
+The `.51` archive is `064d46d3fbfb998e954efbf33aa9498517b4cc7c28fa158cc2dd421b285ee3eb`
+at `0d23a80af9770f601e8a45a6fc1a16ba4c2ef71f`. The acquired-closure guard additionally
+rejects coherent prepared receipt/payload rewrites. Open proposal Deployment #969 records that
+regression strategy without changing shared process policy.
+
+Deployment [#971](https://github.com/treeseed-ai/deployment/pull/971) freezes `.52` at
+`99a3b8b8309f94be69958821e0772d5f94ee407c`, archive
+`7b7dff6b739db853577fd294ff0b8514d448086b709f623285c3536d6b71d655`.
+Both full CI runs passed 141 checks. The default native manager exposes owner-only
+install/list/inspect RPCs, bounded pending replies and exact prepared registration. Accepted
+source jobs drain before writer release. Cold read-only registry inspection does not start or
+adopt a stopped worker. Observer mutation denial and actual compiled worker construction passed.
+This prefix registers packages; it does not claim active installation.
+
+The genuine container-install continuation exposed two resolver prerequisites. Saved canonical
+credential/dependency sets first failed declaration/recipe comparison. Deployment
+[#973](https://github.com/treeseed-ai/deployment/pull/973), `.53`, fixes only declared set ordering,
+at `087de5c1ee92dbf8a0fc6e233f89285ee7df75af`, archive
+`2fbea7e6f23f958e943bf302dc5c9dc987dd3d4e2eff7f0482a01116fc0c0fb4`.
+Both exact-head CI runs passed; changed targets and command overrides still reject.
+
+The next attempt exposed the blanket image-ownership guard for independent packages declaring
+the same exact static image. Deployment [#975](https://github.com/treeseed-ai/deployment/pull/975)
+freezes `.54` at `e982186fc26378a316170241cf0bee065c3db646`, archive
+`40af37e1802b887697b07eb217c41a9e752505e41ca9c687f0ae45cc54ad4cd0`.
+Fresh clean-output build/check, 36 unit, 49 integration and 16 focused checks passed; another
+clean-output build/check and 15 service/runtime-image checks passed. Each static declaration still
+binds exact inventory pins; duplicate runtime or mixed static/runtime ownership remains blocked.
+Full CI is running. Activation resumes separately as `.55`; no successful active-install result
+is claimed yet.
+
+Open SDK proposal [#478](https://github.com/treeseed-ai/sdk/issues/478) records stale generated
+outputs surviving incremental builds. Old output directories are preserved outside the checkout
+before prerequisite builds, and continuation outputs were explicitly absent before freezing.
+No affected archive was published, no frozen archive was overwritten and no process fix was
+silently included. Codex's attachment limit also affects #970/#971/#973/#975; direct links here
+preserve their review handoff. All issues including #678 remain open, with no merges or Task 3D.
