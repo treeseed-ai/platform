@@ -1,0 +1,92 @@
+{
+  "formatVersion": 1,
+  "task": "3C",
+  "fixturesOnly": true,
+  "contracts": {
+    "release": 3,
+    "providerManifest": 2,
+    "packageDescriptor": 4,
+    "operationProjection": "0.5.0-cordis.1",
+    "provider": "0.4.0-cordis.1"
+  },
+  "cli": {
+    "repository": "https://github.com/treeseed-ai/cli.git",
+    "commit": "653faf6e01b45ce2bc720c93dd510a3189ee0296",
+    "checkout": "packages/cli",
+    "binary": "packages/cli/dist/trsd-linux-x64",
+    "sha256": "2b395c9399c13680bdefb0d9036c24c7fadfce36cf5faee120f5e014c28b1bf7"
+  },
+  "owners": {
+    "sdk": {
+      "repository": "https://github.com/treeseed-ai/sdk.git",
+      "commit": "4c0ecd2a0fc28545dbf677cc988ce69f0cf2f15d",
+      "version": "0.0.0-cordis.16",
+      "checkout": "packages/sdk",
+      "archive": "vendor/task3c/sdk.tgz",
+      "sha256": "4084aa8dbe9767984fac9fef7f5cea30a0bec93ed416138d32c804e6389fdba5"
+    },
+    "deployment": {
+      "repository": "https://github.com/treeseed-ai/deployment.git",
+      "commit": "5ea1b2e76abd2b5531a765049f3afbef47abe8d4",
+      "version": "0.0.0-cordis.76",
+      "checkout": "packages/deployment",
+      "archive": "vendor/task3c/deployment.tgz",
+      "sha256": "021a67e0fb488114a12654667f72ebfefa5cbe95fc187a108c9694f1935ffbdf"
+    },
+    "api": {
+      "repository": "https://github.com/treeseed-ai/api.git",
+      "commit": "51f52ba47260a6acfe9272e4711f7c84edc446e9",
+      "version": "0.0.0-cordis.4",
+      "checkout": "packages/api",
+      "archive": "vendor/task3c/api.tgz",
+      "sha256": "9a68ae9cd55e2481048b968541c249fb489b526548e118f1fdabc88a51932ea6"
+    },
+    "identity": {
+      "repository": "https://github.com/treeseed-ai/identity.git",
+      "commit": "f29824578d0aa8fc7725a195b72c698b476da429",
+      "version": "0.0.0-cordis.7",
+      "checkout": "packages/identity",
+      "archive": "vendor/task3c/identity.tgz",
+      "sha256": "90ac95f3e1d953f0aeddb5d0da01e9e596b226bbbc806bff3566d274a34f22d6"
+    },
+    "admin": {
+      "repository": "https://github.com/treeseed-ai/admin.git",
+      "commit": "227011825a885f184f1b2540d72d830a905ba8a2",
+      "version": "0.0.0-cordis.10",
+      "checkout": "packages/admin",
+      "archive": "vendor/task3c/admin.tgz",
+      "sha256": "4891b1e51515ae79827ae801cc14abad4e7b66f3cd6d924860113e934c92cfe5"
+    },
+    "ui": {
+      "repository": "https://github.com/treeseed-ai/ui.git",
+      "commit": "4d20cc65af0a83dd47b3ac436dc44c438d24b250",
+      "version": "0.0.0-cordis.16",
+      "checkout": "packages/ui",
+      "archive": "vendor/task3c/ui.tgz",
+      "sha256": "0251c6ff1f5c4b6a628d85113d1e10b9ab019f26d1dda38c7aad3c12f84ef571"
+    }
+  },
+  "images": {
+    "postgres": "postgres@sha256:e4cb93687b062cd25a0e8f672d85a7708235009d70d31f8a7698d9370092a9c4",
+    "caddy": "caddy@sha256:d8c17a862962def15cde69863a3a463f25a2664942eafd7bdbf050e9c3116b83",
+    "keycloak": "quay.io/keycloak/keycloak@sha256:88943b6ad06d6293a239f0dfca5acec64218c9b3ab327bf9c936acf408a6ae3b",
+    "node": "node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553"
+  },
+  "uiQualification": {
+    "fixture": {
+      "version": "0.0.0-cordis.16.fixture.1",
+      "source": {
+        "repository": "https://github.com/treeseed-ai/ui.git",
+        "baseCommit": "4bc3511b661e832531c60ab37980fed6dcc8aba6",
+        "treeDigest": "0e6d4b062ebf22b04fd41c2e46fba18b37837dd82fb91396da08c1f8522e837e"
+      },
+      "recipeDigest": "d3cc07f8b0c9ef9b1a058492a76961a1280d6572a63a0ba7459957ed45a1e1da",
+      "archive": "vendor/task3c/ui-fixture.tgz",
+      "sha256": "8952846090b0d2aacef43a478f5d4d47bfb7afe1d2ceca5b07c99e45832a737b"
+    }
+  },
+  "runtimeLock": {
+    "path": "vendor/task3c/api.bun.lock",
+    "sha256": "9a308e4eb17e600bb496d8bebd71874ba144e62ce1b923cab4d9e5f5707b235b"
+  }
+}
