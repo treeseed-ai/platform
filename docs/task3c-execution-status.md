@@ -999,3 +999,41 @@ before prerequisite builds, and continuation outputs were explicitly absent befo
 No affected archive was published, no frozen archive was overwritten and no process fix was
 silently included. Codex's attachment limit also affects #970/#971/#973/#975; direct links here
 preserve their review handoff. All issues including #678 remain open, with no merges or Task 3D.
+
+## Safe NPM activation and fresh installed-manager adapter
+
+Deployment [#975](https://github.com/treeseed-ai/deployment/pull/975) now has both full exact-head
+CI runs green (143 checks). Deployment [#976](https://github.com/treeseed-ai/deployment/pull/976)
+freezes `.55` at `d208be52137c6e76011e58f7395663369ed87c1c`, archive
+`b637e1a04fb88bb8f2427a7f3c8edd7599cd20587918e3b011d1ffe0746849a5`.
+Both full exact-head CI runs passed 144 checks (36 unit, 49 integration, 59 smoke).
+The genuine compiled programme passed twice, including 4→5→6 private services, direct protocol,
+retained prior resource/credential/TLS identities, no new listener, already-active reuse,
+unsafe state-version replacement remaining prepared, historical-generation refusal and source-free
+accepted retry. Five broader source/default-host programmes also passed. This qualifies safe
+additive NPM container installation, not arbitrary live replacement or the full task.
+
+The next `.56` slice exposes the public `InstalledPluginManager` transport/bootstrap adapter.
+Its intended red was `INSTALLED_PLUGIN_MANAGER_UNAVAILABLE`. The fresh fixture initially supplied
+the planning placeholder worker, correctly refused as `WORKER_EXECUTABLE`; it now supplies the
+actual compiled release-pinned worker. A separate-process caller then exposed an inspection RPC
+deadline failure during staging. Timestamp-only diagnostic instrumentation established immediate
+RPC replies before provider preparation and a missing event-loop turn while preparations chained.
+The instrumentation was removed. Cooperative yielding between independent provider preparations
+preserves existing deadlines and verification. A genuine default-construction programme passed
+in 81.24 seconds: independent durable worker, five active services, source-free retry, shutdown
+without health claims on cold read-back. Additional ambiguity/scope/stopped-owner negatives and
+broader regressions are running before this slice is frozen or published.
+
+Open proposal [Deployment #977](https://github.com/treeseed-ai/deployment/issues/977) records the
+cheapest process guard: qualify RPC responsiveness with a real worker and caller in separate
+processes, because timers sharing an event loop can hide stalls. No shared process changes are
+included. CLI issue #317 has documentation and built-program red tests committed for plugin
+commands, strict provider JSON, reusable UI human presentation and explicit restart scopes. Its
+implementation is in progress and will consume the frozen public adapter archive; no sibling
+source imports or interim CLI success claim.
+
+Remaining Task 3C work still includes registered provider selection/qualified live transitions,
+Git and approved isolated builds, explicit non-serving format migration, completed CLI integration,
+coherent API/Identity/Admin/UI release closure and final Platform assembled acceptance. Keycloak
+identity and repository ownership are preserved. No merges, issue closures or Task 3D work.
