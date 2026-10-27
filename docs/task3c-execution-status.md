@@ -2,49 +2,61 @@
 
 Work is authorized by the maintainer's acceptance of UI setup, request for mobile-first rendering and explicit resumption. This is an in-progress ledger, not accepted release/composition evidence. Preserve the independent owner repositories, Identity/Keycloak authority, historical formats, original services and all open issues. Task 3D remains gated.
 
-## Latest checkpoint — 2026-10-26
+## Latest checkpoint — final private candidate verification
 
-Final sources/artifacts are recorded in `composition/task3c.json`: SDK16, Deployment76,
-Identity7, Admin10, UI16, API4 and CLI9. These are private candidate artifacts, not a production
-release. SDK/UI/Identity/Admin prefixes have complete green owner CI. Deployment75 compiler
-and Deployment74 explicit custody migration also have complete green CI; combined Deployment76
-is [#1007](https://github.com/treeseed-ai/deployment/pull/1007), final API4 is
-[#635](https://github.com/treeseed-ai/api/pull/635), and final CLI9 remains
-[#323](https://github.com/treeseed-ai/cli/pull/323). Their final CI/acceptance is running.
+Exact selections in `composition/task3c.json` are SDK16, Deployment76, Identity7, Admin10,
+UI16, API5 and CLI9. Final review entry points are in [the review map](task3c-review.md).
+These remain private, unmerged migration candidates. Every issue stays open; no Task3D work.
 
-Deployment76 passed check/build, 41 unit and 53 integration tests. Genuine same-installation
-UI-only replacement now passes: existing Keycloak session, stable private bytes/resource/TLS
-identities, explicit affected-service restart, changed browser and terminal providers, unchanged
-machine JSON/exit behavior and source-free read-back. Final artifact pins are being rerun through
-the reproducible Platform wrapper. The proper prior blocker was RESOURCE_MIGRATION_REQUIRED;
-the bounded correction admits only exact existing JSON assetDigest projections, with all other
-resource, credential, issuer/grant and authority definitions unchanged.
+SDK/UI/Identity/Admin CI is green. Deployment76 passed check/build, 41 unit, 53 integration
+and both complete exact-head CI runs. CLI9's final source is
+`7b773b74c7c9af64a2aee17bc334ce67e3066e0e`; its unchanged standalone binary is
+`2b395c9399c13680bdefb0d9036c24c7fadfce36cf5faee120f5e014c28b1bf7`.
+All seven isolated CI programme partitions and aggregate/metadata pass. A read-only inventory
+confirms all 24 cases (one unit, one integration, 22 smoke) match exactly one partition.
+The earlier combined acquisition/two-selection case hit its 420-second deadline; local cleanup
+interference then affected the following case. These failures remain recorded. Separate
+required acquisition and registered-selection cases preserve every assertion and deadline.
+Open [CLI#324](https://github.com/treeseed-ai/cli/issues/324) proposes checked partition coverage.
 
-The genuine independent API/Postgres/Keycloak/Caddy/private-CA programme passed on corrected
-Deployment75 (124.19 s). Final API4 check/build, five unit and four integration tests pass; the
-same full programme is queued with the frozen Deployment76 archive. API #620 committer policy
-remains exact blob b1a687db754ee2fac141919e6c63052d12bf2812. Earlier in-process Node-host RPC
-failures are retained as negative configuration evidence, not a claimed platform limit.
+API5, source `70f5fd7cde4a3629b1a73f08e0f708376b4d5f85`, archive SHA-256
+`6f224503ea65393aada47b766d636055ec5c029106ed98109c62b54d7d29ff84`, passes final
+check/build, five unit, four integration and six smoke programmes (129.22s). It retains
+#620 policy blob b1a687db754ee2fac141919e6c63052d12bf2812. Explicit public SDK container
+types stabilize a previously variable inferred declaration union. The artifact regression
+first returned PUBLIC_SCHEMA_DECLARATION_REQUIRED, then passed. API4 remains frozen.
 
-CLI8 passed twenty full built-program smoke scenes (2,719 assertions). CLI9 passed check/build,
-one unit and one integration; its full smoke run now includes source-free registered Git/build
-selection of two further instances. NPM's deliberately ambiguous registered archive remains
-blocked without an application. Final head metadata was updated before synchronize so CI reads
-the current canonical contributor declaration.
+The final historical migration wrapper passes against Deployment76: genuine Task3B archives,
+worker/Postgres/Keycloak/Caddy/API/browser, 311 assertions/117.13s. It requires observed
+quiescence, rejects retained-provider tampering before mutation and preserves eighteen
+receipts/private bytes/TLS/resource identities, concurrency/read-back and old-reader fencing.
+Custody remains non-serving/unverified with null activeComposition, never implicit activation.
 
-Explicit migration custody passed a fresh genuine historical Task3B scene (312 assertions,
-118.88 s), including active refusal, observed quiescence, retained provider tamper refusal before
-store mutation, concurrency, eighteen preserved receipts, private bytes/TLS/resource identities,
-repeat read-back, changed-history refusal and old-reader rejection. Custody remains non-serving:
-current runtime is unverified, activeComposition null, and a separately qualified runtime upgrade
-is required. It never fabricates active current-provider identities or replays old plans.
+The API4 exact UI replacement wrapper passed (34 assertions/204.55s), including both changed
+human surfaces, existing Keycloak session, retained resources/private bytes/TLS, explicit
+restart, machine bytes/exit behavior and source-free read-back. The matching API5 scene is
+running with exact base/variant artifact and lock pins. A genuine preparation negative first
+accepted an incorrect runtime-lock digest; it now refuses before builds/state. A second
+controlled build exposed private-mode and inferred-declaration variation. Canonical private
+build modes plus API5 now reproduce all exact Admin/API/CLI artifacts under another caller
+umask; both programme regressions pass (eight assertions,15.68s).
 
-Platform's isolated public-archive consumer and real UI/migration/plugin commands are now being
-qualified with mandatory Ubuntu26.04 CI. No final Task3C completion claim yet. All candidates
-remain draft and every issue stays open. No merge, cutover, production publication or Task3D.
+All six Platform source/plugin scenes and historical migration passed in both hosted runs at
+c55035c. Hosted UI/legacy jobs then timed out before programme execution while Azure's APT
+mirror downloaded signed browser dependencies at tens of kilobytes/sec. The existing job
+budgets and authentication remain; disposable runner setup now selects Ubuntu's official
+archive. The next run reached preparation in about two minutes and correctly caught the
+archive reproducibility gap. Final corrected hosted acceptance is still pending.
 
-The tables and narrative below retain the investigation history; this checkpoint supersedes
-older pending/frozen statements as new evidence is recorded.
+An accidental dependency refresh at Platform root was corrected: the generated lock was
+preserved diagnostically, the historical tracked lock restored byte-for-byte, and API5 installed
+in the intended isolated verification consumer. No owner source, legacy branch or service was
+changed by that refresh. All current typed checks and fixture cleanup pass; no owned labelled
+containers, networks or volumes remained after the completed local scenes.
+
+The tables and narrative below retain investigation history; this checkpoint supersedes their
+older pending/frozen statements. Latest required hosted checks remain authoritative in the
+linked PRs; no completed-hosted-acceptance or integration/release claim is made yet.
 
 | Current Deployment review candidate | Exact source | Archive SHA-256 | Evidence |
 | --- | --- | --- | --- |

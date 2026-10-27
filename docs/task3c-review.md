@@ -1,6 +1,6 @@
 # Task 3C review entry points
 
-Task 3C candidates are implemented. Final exact acceptance is still running; this document
+Task 3C candidates are implemented. Final exact hosted acceptance is still running; this document
 is the review map, not a release or integration claim. Source/archive/image identities are
 in [the composition record](../composition/task3c.json); investigation and failure evidence
 remain in [the execution ledger](task3c-execution-status.md).
@@ -13,7 +13,7 @@ remain in [the execution ledger](task3c-execution-status.md).
 | Admin | [#145](https://github.com/treeseed-ai/admin/pull/145) | 10 | Authorized view models/actions consuming UI; no duplicated renderer or credential authority |
 | Deployment | [#1007](https://github.com/treeseed-ai/deployment/pull/1007) | 76 | Generic service graph, exact sources/builds, durable registry, safe activation and scoped asset restart |
 | CLI | [#323](https://github.com/treeseed-ai/cli/pull/323) | 9 | Built install/list/inspect/select, explicit scopes, reusable human output and unchanged machine contracts |
-| API | [#635](https://github.com/treeseed-ai/api/pull/635) | 4 | Exact runtime/UI image closure, independent default worker and public assembly fixture; #620 policy preserved |
+| API | [#635](https://github.com/treeseed-ai/api/pull/635) | 5 | Exact runtime/UI image closure, independent default worker and public assembly fixture; #620 policy preserved |
 | Platform | [#761](https://github.com/treeseed-ai/platform/pull/761) | integration only | Exact archive pins and genuine installed source/UI/historical migration acceptance |
 
 These entry points include prior unmerged owner prefixes. Their descriptions and the ledger
@@ -54,3 +54,12 @@ Broader multi-runtime replacement, remote interface parity, general recovery, re
 additional native hosts remain Tasks4–9. Agent/Task3D is unstarted and still requires its own
 same-repository initialization and explicit setup review before implementation. Preserve
 Keycloak identity, every owner boundary, legacy branches/services and all issues including #678.
+
+
+The final reproducibility correction preserves private fixture file modes across caller umasks
+and uses an explicit SDK schema reference in API's declaration artifact. API5 supersedes the
+retained API4 candidate. Two real preparation programme regressions now reject an incorrect
+runtime-lock pin before builds/state and verify identical Admin/API/CLI artifacts under a
+different caller umask. Hosted browser setup uses Ubuntu's official signed archive mirror
+after Azure dependency transfers exhausted the existing job budget; positive gates remain
+mandatory. CLI's 24 cases map exactly once across seven required isolated CI partitions.
