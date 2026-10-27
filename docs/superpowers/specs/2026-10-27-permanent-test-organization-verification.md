@@ -40,20 +40,20 @@ API's approved-committer policy retains blob `b1a687db754ee2fac141919e6c63052d12
 
 ## Coverage inventory and gates
 
-The final discovery inventory is 414 registrations: all 374 predecessors and five new layout
+The final discovery inventory is 422 registrations: all 374 predecessors and six new layout
 regressions in each of the eight implemented test repositories. These counts describe registered
 cases, rather than the many assertions inside assembled programs.
 
 | Owner | Acceptance | Regression | Integration | Unit | Issue |
 | --- | ---: | ---: | ---: | ---: | --- |
-| Platform | 11 | 16 | 2 | 1 | platform#768 |
-| SDK | 16 | 6 | 28 | 36 | sdk#480 |
-| Deployment | 87 | 11 | 72 | 16 | deployment#1008 |
-| CLI | 22 | 5 | 2 | 0 | cli#325 |
-| API | 5 | 8 | 4 | 5 | api#638 |
-| Identity | 3 | 5 | 2 | 3 | identity#53 |
-| Admin | 3 | 6 | 2 | 3 | admin#146 |
-| UI | 7 | 9 | 12 | 6 | ui#99 |
+| Platform | 11 | 17 | 2 | 1 | platform#768 |
+| SDK | 16 | 7 | 28 | 36 | sdk#480 |
+| Deployment | 87 | 12 | 72 | 16 | deployment#1008 |
+| CLI | 22 | 6 | 2 | 0 | cli#325 |
+| API | 5 | 9 | 4 | 5 | api#638 |
+| Identity | 3 | 6 | 2 | 3 | identity#53 |
+| Admin | 3 | 7 | 2 | 3 | admin#146 |
+| UI | 7 | 10 | 12 | 6 | ui#99 |
 | Agent | 0 | 0 | 0 | 0 | agent#523 |
 
 CLI's parser constructs real Cordis collaborators and belongs in integration. Its isolated unit
@@ -83,9 +83,9 @@ setup and executable fixture programs remain in support. Direct body read-back a
 preserved all 38 CLI, three retained-plan and six source-custody helper method bodies unchanged.
 
 Every tracked AGENTS.md in the nine owners contains the rule. All nine release-workflow skills
-have SHA-256 `b26b899de100d93c8dff0721c50c513c22a0fb50716454b1c48f3bc6d42e279a`;
+have SHA-256 `c7af6d48928939dc2cc5421ef63d62e6597e3fdaf0ef75457aa81fcf5a82da20`;
 all copied layout checkers have SHA-256
-`a89f5ba3e8cc05a2d79e9977c271e5733c57f800ebfd5bbd93614377f62528ad`.
+`7f993b536d4acb7dbd6256af5c216c2b9500feea8d465e1896da396392f1a30e`.
 Future initialization inherits these tracked resources while excluding the initializer itself.
 
 ## Failures retained and resolved
@@ -136,5 +136,8 @@ A disposable class-based probe combined an explicit single-file tier command wit
 name-filter matrix that omitted the only registered case. The current checker returned zero
 errors. The review fix must reject both conditions and overlapping/empty/malformed partitions.
 All existing cases and their inputs/timeouts/assertions remain preserved; one additional
-partition regression per implemented repository will increase the portfolio inventory to 422.
+partition regression per implemented repository increases the portfolio inventory to 422.
+The expanded suite observed four passes and two behavioral failures before the guard fix,
+then six passes and zero failures after it. Complete-directory and matrix coverage are now
+checked without changing runtime source, assertions, inputs or timeouts of predecessor cases.
 The final reviewed heads and CI results are recorded in the nine owning PRs.
