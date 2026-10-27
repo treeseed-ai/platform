@@ -1,21 +1,114 @@
-import{readFileSync,statSync,existsSync,readdirSync,writeFileSync,chmodSync}from'node:fs';
-import{join}from'node:path';
-import{spawnSync}from'node:child_process';
-import{createHash}from'node:crypto';
-import{InstalledSchemas,ServiceSchemas,CanonicalJson,PlanningBlockedError,type InstalledPlan}from'@treeseed-cordis/sdk';
-import{InstallationStore,Format2Migration,ServicePlanStore,HostSystem}from'@treeseed-cordis/deployment';
+import { readFileSync, statSync, existsSync, readdirSync, writeFileSync, chmodSync } from 'node:fs';
+import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { InstalledSchemas, ServiceSchemas, CanonicalJson, PlanningBlockedError, type InstalledPlan } from '@treeseed-cordis/sdk';
+import { InstallationStore, Format2Migration, ServicePlanStore, HostSystem } from '@treeseed-cordis/deployment';
 /** Fixture-only assembly check. Deployment owns migration, engine validation and private custody. */
 class Task3cMigrationCheck {
- private readonly plan:InstalledPlan;
- private readonly request;
- constructor(private readonly installation:string,digest:string,private readonly project:string){this.plan=InstalledSchemas.plan.parse(JSON.parse(readFileSync(join(installation,'.cordis/plans/plan-'+digest+'.json'),'utf8')));this.require(this.plan.digest===digest&&this.plan.projectName===project&&this.plan.configuration.installationDirectory===installation);this.request={from:2 as const,authorization:'non-serving' as const,expectedComposition:digest};}
- private require(value:unknown):asserts value{if(!value)throw new Error('MIGRATION_ASSEMBLY_FAILED');}
- private command(args:string[]):string{const result=spawnSync('docker',['--host',this.plan.expectedEngine.endpoint,...args],{encoding:'utf8',timeout:180000});if(result.status!==0)throw new Error('MIGRATION_FIXTURE_ENGINE_FAILED');return result.stdout.trim();}
- private resources():string{const result=[];for(const kind of ['container','network','volume']){const args=kind==='container'?['container','ls','--all']: [kind,'ls'];for(const id of this.command([...args,'--filter','label=com.docker.compose.project='+this.project,'--format',kind==='volume'?'{{.Name}}':'{{.ID}}']).split('\n'))if(id){const value=JSON.parse(this.command([kind,'inspect',id]))[0],labels=value.Labels??value.Config.Labels;this.require(labels['ai.treeseed.cordis.installation']===this.plan.configuration.installationId&&labels['ai.treeseed.cordis.generation']===this.plan.digest);result.push({kind,id:value.Id??value.Name,name:value.Name,image:value.Image??null,labels});}}return CanonicalJson.stringify(result);}
- private files(directory:string,prefix='',result:Record<string,string>={}):Record<string,string>{for(const name of readdirSync(directory).sort()){if(!prefix&&['writer.lock','migration-2-to-3'].includes(name))continue;const path=join(directory,name),stat=statSync(path);if(stat.isDirectory())this.files(path,prefix+name+'/',result);else if(stat.isFile())result[prefix+name]=createHash('sha256').update(readFileSync(path)).digest('hex');}return result;}
- private static pause(done:(value:void)=>void):void{setTimeout(done,50);}
- async run():Promise<void>{const store=new InstallationStore(this.installation),receipt=readFileSync(join(this.installation,'.cordis/installation.json'));let blocked=false;try{await store.migrate(this.request);}catch(error){this.require(error instanceof PlanningBlockedError);blocked=error.blockers[0]?.code==='MIGRATION_NON_SERVING_REQUIRED';}this.require(blocked&&!existsSync(join(this.installation,'.cordis/migration-2-to-3'))&&receipt.equals(readFileSync(join(this.installation,'.cordis/installation.json'))));const identity=this.resources(),owner=JSON.parse(readFileSync(join(this.installation,'.cordis/writer.lock/owner.json'),'utf8')),worker=statSync(join(this.installation,'.cordis/worker')),running=statSync('/proc/'+owner.pid+'/exe');this.require(worker.uid===process.getuid!()&&worker.dev===running.dev&&worker.ino===running.ino);process.kill(owner.pid,'SIGTERM');const until=Date.now()+15000;while(existsSync(join(this.installation,'.cordis/writer.lock'))&&Date.now()<until)await new Promise(Task3cMigrationCheck.pause);this.require(!existsSync(join(this.installation,'.cordis/writer.lock')));for(const id of this.command(['container','ls','--all','--filter','label=com.docker.compose.project='+this.project,'--format','{{.ID}}']).split('\n'))if(id)this.command(['container','stop','--time','10',id]);this.require(this.resources()===identity);await this.tamper();const files=this.files(join(this.installation,'.cordis')),results=await Promise.allSettled([store.migrate(this.request),new InstallationStore(this.installation).migrate(this.request)]);let accepted:Awaited<ReturnType<typeof Format2Migration.run>>|undefined;for(const result of results)if(result.status==='fulfilled')accepted=result.value;else {if(!(result.reason instanceof PlanningBlockedError))throw result.reason;}if(!accepted){const codes=[];for(const result of results)if(result.status==='rejected')codes.push(result.reason.blockers?.[0]?.code??result.reason.name);throw new Error('MIGRATION_ADMISSION_REFUSED:'+codes.join(','));}this.require(accepted&&accepted.activeComposition===null&&accepted.previousComposition===this.plan.digest&&accepted.resources.filter(Task3cMigrationCheck.container).length===4);const custody=join(this.installation,'.cordis/migration-2-to-3/installation-format2.json');this.require(readFileSync(custody).equals(receipt));for(const[path,hash]of Object.entries(files)){const target=path==='installation.json'?custody:join(this.installation,'.cordis',path);this.require(createHash('sha256').update(readFileSync(target)).digest('hex')===hash);}this.require(ServiceSchemas.receipt.parse(JSON.parse(readFileSync(join(this.installation,'.cordis/installation.json'),'utf8'))).migration?.previousComposition===this.plan.digest);this.require(CanonicalJson.stringify(Format2Migration.read(this.installation))===CanonicalJson.stringify(accepted)&&CanonicalJson.stringify(await store.migrate(this.request))===CanonicalJson.stringify(accepted));this.require(this.resources()===identity&&new ServicePlanStore(this.installation).inspect()&&new HostSystem().storage(this.installation).code==='OK');let oldRefused=false;try{new InstallationStore(this.installation).inspect();}catch{oldRefused=true;}this.require(oldRefused);let activationRefused=false;try{new ServicePlanStore(this.installation).records();}catch(error){this.require(error instanceof PlanningBlockedError);activationRefused=error.blockers[0]?.code==='MIGRATION_ACTIVATION_REQUIRED';}this.require(activationRefused);const planFile=join(this.installation,'.cordis/plans',this.plan.id+'.json'),old=readFileSync(planFile);try{writeFileSync(planFile,Buffer.concat([old,Buffer.from(' ')]));let changed=false;try{Format2Migration.read(this.installation);}catch{changed=true;}this.require(changed);}finally{writeFileSync(planFile,old);}this.require(this.resources()===identity);process.stdout.write('explicit-format2-custody-migration-ok\n');}
- private async tamper():Promise<void>{const providers=join(this.installation,'.cordis/artifacts/providers');for(const digest of readdirSync(providers)){const root=join(providers,digest),manifest=JSON.parse(readFileSync(join(root,'manifest.json'),'utf8'));if(manifest.package.name!=='@treeseed-cordis/api')continue;const file=join(root,manifest.entry),bytes=readFileSync(file);try{chmodSync(file,0o600);writeFileSync(file,Buffer.concat([bytes,Buffer.from('\n/* tampered fixture */')]));chmodSync(file,0o400);let code='';try{await new InstallationStore(this.installation).migrate(this.request);}catch(error){this.require(error instanceof PlanningBlockedError);code=error.blockers[0]?.code??'';}this.require(code==='MIGRATION_ARTIFACT_INTEGRITY'&&!existsSync(join(this.installation,'.cordis/migration-2-to-3')));}finally{chmodSync(file,0o600);writeFileSync(file,bytes);chmodSync(file,0o400);}return;}throw new Error('LEGACY_API_PROVIDER_MISSING');}
- private static container(resource:{kind:string}):boolean{return resource.kind==='container';}
+    private readonly plan: InstalledPlan;
+    private readonly request;
+    constructor(private readonly installation: string, digest: string, private readonly project: string) { this.plan = InstalledSchemas.plan.parse(JSON.parse(readFileSync(join(installation, '.cordis/plans/plan-' + digest + '.json'), 'utf8'))); this.require(this.plan.digest === digest && this.plan.projectName === project && this.plan.configuration.installationDirectory === installation); this.request = { from: 2 as const, authorization: 'non-serving' as const, expectedComposition: digest }; }
+    private require(value: unknown): asserts value { if (!value)
+        throw new Error('MIGRATION_ASSEMBLY_FAILED'); }
+    private command(args: string[]): string { const result = spawnSync('docker', ['--host', this.plan.expectedEngine.endpoint, ...args], { encoding: 'utf8', timeout: 180000 }); if (result.status !== 0)
+        throw new Error('MIGRATION_FIXTURE_ENGINE_FAILED'); return result.stdout.trim(); }
+    private resources(): string { const result = []; for (const kind of ['container', 'network', 'volume']) {
+        const args = kind === 'container' ? ['container', 'ls', '--all'] : [kind, 'ls'];
+        for (const id of this.command([...args, '--filter', 'label=com.docker.compose.project=' + this.project, '--format', kind === 'volume' ? '{{.Name}}' : '{{.ID}}']).split('\n'))
+            if (id) {
+                const value = JSON.parse(this.command([kind, 'inspect', id]))[0], labels = value.Labels ?? value.Config.Labels;
+                this.require(labels['ai.treeseed.cordis.installation'] === this.plan.configuration.installationId && labels['ai.treeseed.cordis.generation'] === this.plan.digest);
+                result.push({ kind, id: value.Id ?? value.Name, name: value.Name, image: value.Image ?? null, labels });
+            }
+    } return CanonicalJson.stringify(result); }
+    private files(directory: string, prefix = '', result: Record<string, string> = {}): Record<string, string> { for (const name of readdirSync(directory).sort()) {
+        if (!prefix && ['writer.lock', 'migration-2-to-3'].includes(name))
+            continue;
+        const path = join(directory, name), stat = statSync(path);
+        if (stat.isDirectory())
+            this.files(path, prefix + name + '/', result);
+        else if (stat.isFile())
+            result[prefix + name] = createHash('sha256').update(readFileSync(path)).digest('hex');
+    } return result; }
+    private static pause(done: (value: void) => void): void { setTimeout(done, 50); }
+    async run(): Promise<void> { const store = new InstallationStore(this.installation), receipt = readFileSync(join(this.installation, '.cordis/installation.json')); let blocked = false; try {
+        await store.migrate(this.request);
+    }
+    catch (error) {
+        this.require(error instanceof PlanningBlockedError);
+        blocked = error.blockers[0]?.code === 'MIGRATION_NON_SERVING_REQUIRED';
+    } this.require(blocked && !existsSync(join(this.installation, '.cordis/migration-2-to-3')) && receipt.equals(readFileSync(join(this.installation, '.cordis/installation.json')))); const identity = this.resources(), owner = JSON.parse(readFileSync(join(this.installation, '.cordis/writer.lock/owner.json'), 'utf8')), worker = statSync(join(this.installation, '.cordis/worker')), running = statSync('/proc/' + owner.pid + '/exe'); this.require(worker.uid === process.getuid!() && worker.dev === running.dev && worker.ino === running.ino); process.kill(owner.pid, 'SIGTERM'); const until = Date.now() + 15000; while (existsSync(join(this.installation, '.cordis/writer.lock')) && Date.now() < until)
+        await new Promise(Task3cMigrationCheck.pause); this.require(!existsSync(join(this.installation, '.cordis/writer.lock'))); for (const id of this.command(['container', 'ls', '--all', '--filter', 'label=com.docker.compose.project=' + this.project, '--format', '{{.ID}}']).split('\n'))
+        if (id)
+            this.command(['container', 'stop', '--time', '10', id]); this.require(this.resources() === identity); await this.tamper(); const files = this.files(join(this.installation, '.cordis')), results = await Promise.allSettled([store.migrate(this.request), new InstallationStore(this.installation).migrate(this.request)]); let accepted: Awaited<ReturnType<typeof Format2Migration.run>> | undefined; for (const result of results)
+        if (result.status === 'fulfilled')
+            accepted = result.value;
+        else {
+            if (!(result.reason instanceof PlanningBlockedError))
+                throw result.reason;
+        } if (!accepted) {
+        const codes = [];
+        for (const result of results)
+            if (result.status === 'rejected')
+                codes.push(result.reason.blockers?.[0]?.code ?? result.reason.name);
+        throw new Error('MIGRATION_ADMISSION_REFUSED:' + codes.join(','));
+    } this.require(accepted && accepted.activeComposition === null && accepted.previousComposition === this.plan.digest && accepted.resources.filter(Task3cMigrationCheck.container).length === 4); const custody = join(this.installation, '.cordis/migration-2-to-3/installation-format2.json'); this.require(readFileSync(custody).equals(receipt)); for (const [path, hash] of Object.entries(files)) {
+        const target = path === 'installation.json' ? custody : join(this.installation, '.cordis', path);
+        this.require(createHash('sha256').update(readFileSync(target)).digest('hex') === hash);
+    } this.require(ServiceSchemas.receipt.parse(JSON.parse(readFileSync(join(this.installation, '.cordis/installation.json'), 'utf8'))).migration?.previousComposition === this.plan.digest); this.require(CanonicalJson.stringify(Format2Migration.read(this.installation)) === CanonicalJson.stringify(accepted) && CanonicalJson.stringify(await store.migrate(this.request)) === CanonicalJson.stringify(accepted)); this.require(this.resources() === identity && new ServicePlanStore(this.installation).inspect() && new HostSystem().storage(this.installation).code === 'OK'); let oldRefused = false; try {
+        new InstallationStore(this.installation).inspect();
+    }
+    catch {
+        oldRefused = true;
+    } this.require(oldRefused); let activationRefused = false; try {
+        new ServicePlanStore(this.installation).records();
+    }
+    catch (error) {
+        this.require(error instanceof PlanningBlockedError);
+        activationRefused = error.blockers[0]?.code === 'MIGRATION_ACTIVATION_REQUIRED';
+    } this.require(activationRefused); const planFile = join(this.installation, '.cordis/plans', this.plan.id + '.json'), old = readFileSync(planFile); try {
+        writeFileSync(planFile, Buffer.concat([old, Buffer.from(' ')]));
+        let changed = false;
+        try {
+            Format2Migration.read(this.installation);
+        }
+        catch {
+            changed = true;
+        }
+        this.require(changed);
+    }
+    finally {
+        writeFileSync(planFile, old);
+    } this.require(this.resources() === identity); process.stdout.write('explicit-format2-custody-migration-ok\n'); }
+    private async tamper(): Promise<void> { const providers = join(this.installation, '.cordis/artifacts/providers'); for (const digest of readdirSync(providers)) {
+        const root = join(providers, digest), manifest = JSON.parse(readFileSync(join(root, 'manifest.json'), 'utf8'));
+        if (manifest.package.name !== '@treeseed-cordis/api')
+            continue;
+        const file = join(root, manifest.entry), bytes = readFileSync(file);
+        try {
+            chmodSync(file, 0o600);
+            writeFileSync(file, Buffer.concat([bytes, Buffer.from('\n/* tampered fixture */')]));
+            chmodSync(file, 0o400);
+            let code = '';
+            try {
+                await new InstallationStore(this.installation).migrate(this.request);
+            }
+            catch (error) {
+                this.require(error instanceof PlanningBlockedError);
+                code = error.blockers[0]?.code ?? '';
+            }
+            this.require(code === 'MIGRATION_ARTIFACT_INTEGRITY' && !existsSync(join(this.installation, '.cordis/migration-2-to-3')));
+        }
+        finally {
+            chmodSync(file, 0o600);
+            writeFileSync(file, bytes);
+            chmodSync(file, 0o400);
+        }
+        return;
+    } throw new Error('LEGACY_API_PROVIDER_MISSING'); }
+    private static container(resource: {
+        kind: string;
+    }): boolean { return resource.kind === 'container'; }
 }
-await new Task3cMigrationCheck(process.argv[2]!,process.argv[3]!,process.argv[4]!).run();
+await new Task3cMigrationCheck(process.argv[2]!, process.argv[3]!, process.argv[4]!).run();

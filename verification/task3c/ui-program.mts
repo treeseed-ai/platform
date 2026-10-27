@@ -1,29 +1,190 @@
-import{readFileSync,writeFileSync,mkdirSync,mkdtempSync,copyFileSync,chmodSync,statSync,existsSync,rmSync}from'node:fs';
-import{join}from'node:path';import{tmpdir}from'node:os';import{spawnSync}from'node:child_process';import{createHash}from'node:crypto';
-import{firefox,type BrowserContext,type Page}from'playwright';
-import{InstalledApiFixture}from'@treeseed-cordis/api/testing';
-import{ComposeDeploymentHost,ServiceWorkerOwnerClient,ServiceWorkerClient,ServicePlanStore,ServiceProjection,ServiceAuthorityExports,ServiceCredentials,PackageArchiveInspector}from'@treeseed-cordis/deployment';
-import{CanonicalJson,ServiceSchemas,PluginManagementSchemas,PlatformOperations,PlanningBlockedError,type ServicePlan,type ServiceResourceReceipt,type ServiceInstance}from'@treeseed-cordis/sdk';
-interface Selection{archives:Record<'api'|'sdk'|'deployment'|'identity'|'admin'|'ui',string>;lockfile:string;}
-interface Input{base:Selection;variant:Selection;cli:string;variantCli:string;}
-class BrowserRead{static async status():Promise<unknown>{const response=await fetch('/v1/platform/status',{credentials:'same-origin',redirect:'error'});if(!response.ok)throw new Error('STATUS_REFUSED');return response.json();}}
-class PageErrors{readonly names:string[]=[];capture(error:Error):void{this.names.push(error.name);}}
+import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, copyFileSync, chmodSync, statSync, existsSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { firefox, type BrowserContext, type Page } from 'playwright';
+import { InstalledApiFixture } from '@treeseed-cordis/api/testing';
+import { ComposeDeploymentHost, ServiceWorkerOwnerClient, ServiceWorkerClient, ServicePlanStore, ServiceProjection, ServiceAuthorityExports, ServiceCredentials, PackageArchiveInspector } from '@treeseed-cordis/deployment';
+import { CanonicalJson, ServiceSchemas, PluginManagementSchemas, PlatformOperations, PlanningBlockedError, type ServicePlan, type ServiceResourceReceipt, type ServiceInstance } from '@treeseed-cordis/sdk';
+interface Selection {
+    archives: Record<'api' | 'sdk' | 'deployment' | 'identity' | 'admin' | 'ui', string>;
+    lockfile: string;
+}
+interface Input {
+    base: Selection;
+    variant: Selection;
+    cli: string;
+    variantCli: string;
+}
+class BrowserRead {
+    static async status(): Promise<unknown> { const response = await fetch('/v1/platform/status', { credentials: 'same-origin', redirect: 'error' }); if (!response.ok)
+        throw new Error('STATUS_REFUSED'); return response.json(); }
+}
+class PageErrors {
+    readonly names: string[] = [];
+    capture(error: Error): void { this.names.push(error.name); }
+}
 /** Assembled fixture only: domains/renderers/engine all come from their public owner packages. */
-class UiAssembly{
- private base=new InstalledApiFixture();private variant=new InstalledApiFixture();private browser:BrowserContext|undefined;private profile:string|undefined;private stage='prepare';private plan:ServicePlan|undefined;
- constructor(private readonly input:Input){}
- private require(value:unknown):asserts value{if(!value)throw new Error('UI_ASSEMBLY_FAILED:'+this.stage);}
- private static pause(done:(value:void)=>void):void{setTimeout(done,100);}
- private sha(bytes:Uint8Array):string{return createHash('sha256').update(bytes).digest('hex');}
- private async settled(owner:ServiceWorkerOwnerClient,id:string):Promise<void>{let record=await owner.application(id);const until=Date.now()+240000;while(!['completed','failed','cancelled'].includes(record.phase)&&Date.now()<until){await new Promise(UiAssembly.pause);record=await owner.application(id);}this.require(record.phase==='completed'&&record.result==='ready');}
- private resources(store:ServicePlanStore):Map<string,ServiceResourceReceipt>{const result=new Map<string,ServiceResourceReceipt>();for(const binding of store.current()!.resources)for(const receipt of store.resources())if(CanonicalJson.digest(receipt)===binding.receiptDigest)result.set(receipt.resourceId,receipt);return result;}
- private command(program:string,args:string[]):void{const result=spawnSync(program,args,{encoding:'utf8',timeout:30000});this.require(result.status===0);}
- private async login(plan:ServicePlan,authority:Buffer):Promise<Page>{this.profile=mkdtempSync(join(tmpdir(),'cordis-task3c-ui-browser-'));const profile=join(this.profile,'firefox'),ca=join(this.profile,'authority.pem');mkdirSync(profile,{mode:0o700});writeFileSync(ca,authority,{mode:0o600});this.command('certutil',['-N','-d','sql:'+profile,'--empty-password']);this.command('certutil',['-A','-n','CordisTask3cUi','-t','C,,','-i',ca,'-d','sql:'+profile]);this.browser=await firefox.launchPersistentContext(profile,{headless:true,ignoreHTTPSErrors:false});const page=await this.browser.newPage(),errors=new PageErrors();page.on('pageerror',errors.capture.bind(errors));const credential=JSON.parse(new ServiceCredentials(plan).read('issuer-main','secret://issuer-main/bootstrap').toString()) as {username:string;password:string};await page.goto(plan.configuration.origin+'/admin');await page.locator('#username').fill(credential.username);await page.locator('#password').fill(credential.password);await page.getByRole('button',{name:'Sign In',exact:true}).click();await page.waitForURL(plan.configuration.origin+'/admin');await page.getByRole('button',{name:'Refresh status'}).click();await page.getByRole('cell',{name:'api-main',exact:true}).waitFor();this.require(errors.names.length===0&&!(await page.content()).includes(credential.password));return page;}
- private async rebase():Promise<void>{const base=this.plan!;this.variant.configuration={...this.variant.configuration,installationId:base.configuration.installationId,installationDirectory:base.configuration.installationDirectory,origin:base.configuration.origin,engineContext:base.configuration.engineContext};const graph=this.variant.release.composition,descriptors=new Map<string,ReturnType<typeof PluginManagementSchemas.packageDescriptor.parse>>();for(const artifact of this.variant.release.packages){const archive=await PackageArchiveInspector.inspect(join(this.variant.bundle,artifact.path),artifact.sha256);if(archive.metadata.cordisPackage)descriptors.set(artifact.name,PluginManagementSchemas.packageDescriptor.parse(archive.metadata.cordisPackage));}for(const service of graph.services){const descriptor=descriptors.get(service.provider.package.name)!;let definition;for(const item of descriptor.providers)if(item.declaration.id===service.provider.providerId)definition=item.container;this.require(definition);const projected=ServiceProjection.resolve(service,definition,graph,this.variant.configuration),prior=base.composition.services.find(UiAssembly.service.bind(null,service.serviceId))!;service.definition=projected.definition;service.resources=projected.resources;service.readiness.configuration=structuredClone(prior.readiness.configuration);for(const port of prior.definition.ports)if(port.publication)for(const next of service.definition.ports)if(next.id===port.id)next.publication=structuredClone(port.publication);}for(const[name,spec]of Object.entries(this.variant.recipe.services))if(spec.ports)spec.ports=structuredClone(base.recipe.services[name]!.ports);const worker=join(this.variant.bundle,'host-worker');chmodSync(worker,0o700);copyFileSync(join(this.base.bundle,'host-worker'),worker);chmodSync(worker,0o500);graph.worker=structuredClone(base.composition.worker);this.variant.refreshService();}
- private static service(id:string,service:ServiceInstance):boolean{return service.serviceId===id;}
- private terminal():void{const root=mkdtempSync(join(tmpdir(),'cordis-task3c-ui-terminal-'));try{const args=['doctor','--installation',join(root,'missing')],before=spawnSync(this.input.cli,args,{encoding:'utf8',env:{PATH:''}}),after=spawnSync(this.input.variantCli,args,{encoding:'utf8',env:{PATH:''}});this.require(before.status===3&&after.status===3&&!before.stdout.includes('Cordis UI qualification fixture')&&after.stdout.includes('Cordis UI qualification fixture'));const machine=['plugin','install','--json'],a=spawnSync(this.input.cli,machine,{encoding:'utf8',env:{PATH:''}}),b=spawnSync(this.input.variantCli,machine,{encoding:'utf8',env:{PATH:''}});this.require(a.status===2&&b.status===2&&a.stdout===b.stdout&&a.stderr===''&&b.stderr===''&&JSON.parse(a.stdout).result===null);}finally{rmSync(root,{recursive:true,force:true});}}
- private async stop():Promise<void>{if(!this.plan)return;const directory=this.plan.configuration.installationDirectory,child=join(directory,'.cordis/launch/child.json');if(!existsSync(child))return;const data=JSON.parse(readFileSync(child,'utf8')),file=statSync(join(directory,'.cordis/worker'));let running;try{running=statSync('/proc/'+data.pid+'/exe');}catch{return;}this.require(Number.isSafeInteger(data.pid)&&data.pid>0&&file.uid===process.getuid!()&&file.dev===running.dev&&file.ino===running.ino);process.kill(data.pid,'SIGTERM');const until=Date.now()+15000;while(existsSync(join(directory,'.cordis/writer.lock'))&&Date.now()<until)await new Promise(UiAssembly.pause);this.require(!existsSync(join(directory,'.cordis/writer.lock')));}
- async run():Promise<void>{try{await this.base.prepared(this.input.base);const host=new ComposeDeploymentHost(),planned=await host.plan(this.base.configuration);this.require(planned.formatVersion===3);this.plan=planned;const owner=new ServiceWorkerOwnerClient({installationDirectory:planned.configuration.installationDirectory}),observer=new ServiceWorkerClient({installationDirectory:planned.configuration.installationDirectory}),application=await host.apply(planned.id,planned.digest,{installationDirectory:planned.configuration.installationDirectory,idempotencyKey:'ui-base'});await this.settled(owner,application.id);this.stage='base-browser';const authority=Buffer.from(await new ServiceAuthorityExports(planned).read('public-main','secret://public-main/public-ca',{deadline:Date.now()+10000,signal:new AbortController().signal})),page=await this.login(planned,authority);this.require((await page.getByText('Cordis UI qualification fixture',{exact:true}).count())===0);const status=PlatformOperations.status.parseOutput(await page.evaluate(BrowserRead.status));this.require(status.ready&&status.activeComposition===planned.compositionGeneration);const store=new ServicePlanStore(planned.configuration.installationDirectory),before=this.resources(store),files=new Map<string,string>();for(const receipt of before.values())if(receipt.path&&existsSync(join(store.path,receipt.path)))files.set(receipt.path,this.sha(readFileSync(join(store.path,receipt.path))));this.stage='variant-prepare';await this.variant.prepared(this.input.variant);await this.rebase();this.stage='variant-plan';const next=await host.plan(this.variant.configuration);this.require(next.formatVersion===3&&next.composition.assetDigest!==planned.composition.assetDigest);const scopes:string[]=[];for(const change of next.changes)if(change.requiredActions.includes('restart'))scopes.push(change.serviceId);this.require(scopes.includes('api-main')&&!scopes.includes('issuer-main')&&!scopes.includes('store-main'));this.stage='explicit-admission';const count=store.records().length;let refused=false;try{await host.apply(next.id,next.digest,{installationDirectory:store.path,idempotencyKey:'ui-no-implicit-restart'});}catch(error){this.require(error instanceof PlanningBlockedError);refused=error.blockers.some(UiAssembly.actionRequired);}this.require(refused&&store.records().length===count);this.stage='variant-apply';const changed=await host.apply(next.id,next.digest,{installationDirectory:store.path,idempotencyKey:'ui-reviewed-restart',restartServices:scopes});await this.settled(owner,changed.id);this.stage='retained-identity';const after=this.resources(store);for(const[id,receipt]of before){if(receipt.serviceId==='api-main'&&(receipt.kind==='container'||receipt.kind==='configuration'))continue;const current=after.get(id);this.require(current&&current.actualId===receipt.actualId&&current.path===receipt.path&&current.contentDigest===receipt.contentDigest&&current.creatingGeneration===receipt.creatingGeneration);}for(const[path,hash]of files)this.require(this.sha(readFileSync(join(store.path,path)))===hash);const afterAuthority=Buffer.from(await new ServiceAuthorityExports(next).read('public-main','secret://public-main/public-ca',{deadline:Date.now()+10000,signal:new AbortController().signal}));this.require(afterAuthority.equals(authority));this.stage='variant-browser';await page.reload();await page.getByText('Cordis UI qualification fixture',{exact:true}).first().waitFor();await page.getByRole('button',{name:'Refresh status'}).click();await page.getByRole('cell',{name:'api-main',exact:true}).waitFor();const latest=PlatformOperations.status.parseOutput(await page.evaluate(BrowserRead.status));this.require(latest.ready&&latest.activeComposition===next.compositionGeneration);for(const width of[320,375,768,1024,1440,1920,2560]){await page.setViewportSize({width,height:900});const button=await page.getByRole('button',{name:'Sign out'}).boundingBox();this.require(button&&button.width>=44&&button.height>=44);}this.stage='terminal';this.terminal();this.stage='source-free';rmSync(this.base.bundle,{recursive:true,force:true});rmSync(this.variant.bundle,{recursive:true,force:true});this.require((await observer.status()).ready);process.stdout.write(JSON.stringify({fixtureOnly:true,genuineKeycloak:true,browserProviderChanged:true,terminalProviderChanged:true,explicitRestart:true,retainedIdentity:true,retainedTls:true,machineBytesUnchanged:true,sourceFree:true})+'\n');}catch(error){if(error instanceof PlanningBlockedError){const codes=[];for(const blocker of error.blockers)codes.push(blocker.code);throw new Error('UI_ASSEMBLY_BLOCKED:'+this.stage+':'+codes.join(','));}throw error;}finally{await this.browser?.close();await this.stop();this.base.close();this.variant.close();if(this.profile)rmSync(this.profile,{recursive:true,force:true});}}
- private static actionRequired(blocker:{code:string}):boolean{return blocker.code==='TRANSITION_ACTION_REQUIRED';}
+class UiAssembly {
+    private base = new InstalledApiFixture();
+    private variant = new InstalledApiFixture();
+    private browser: BrowserContext | undefined;
+    private profile: string | undefined;
+    private stage = 'prepare';
+    private plan: ServicePlan | undefined;
+    constructor(private readonly input: Input) { }
+    private require(value: unknown): asserts value { if (!value)
+        throw new Error('UI_ASSEMBLY_FAILED:' + this.stage); }
+    private static pause(done: (value: void) => void): void { setTimeout(done, 100); }
+    private sha(bytes: Uint8Array): string { return createHash('sha256').update(bytes).digest('hex'); }
+    private async settled(owner: ServiceWorkerOwnerClient, id: string): Promise<void> { let record = await owner.application(id); const until = Date.now() + 240000; while (!['completed', 'failed', 'cancelled'].includes(record.phase) && Date.now() < until) {
+        await new Promise(UiAssembly.pause);
+        record = await owner.application(id);
+    } this.require(record.phase === 'completed' && record.result === 'ready'); }
+    private resources(store: ServicePlanStore): Map<string, ServiceResourceReceipt> { const result = new Map<string, ServiceResourceReceipt>(); for (const binding of store.current()!.resources)
+        for (const receipt of store.resources())
+            if (CanonicalJson.digest(receipt) === binding.receiptDigest)
+                result.set(receipt.resourceId, receipt); return result; }
+    private command(program: string, args: string[]): void { const result = spawnSync(program, args, { encoding: 'utf8', timeout: 30000 }); this.require(result.status === 0); }
+    private async login(plan: ServicePlan, authority: Buffer): Promise<Page> { this.profile = mkdtempSync(join(tmpdir(), 'cordis-task3c-ui-browser-')); const profile = join(this.profile, 'firefox'), ca = join(this.profile, 'authority.pem'); mkdirSync(profile, { mode: 0o700 }); writeFileSync(ca, authority, { mode: 0o600 }); this.command('certutil', ['-N', '-d', 'sql:' + profile, '--empty-password']); this.command('certutil', ['-A', '-n', 'CordisTask3cUi', '-t', 'C,,', '-i', ca, '-d', 'sql:' + profile]); this.browser = await firefox.launchPersistentContext(profile, { headless: true, ignoreHTTPSErrors: false }); const page = await this.browser.newPage(), errors = new PageErrors(); page.on('pageerror', errors.capture.bind(errors)); const credential = JSON.parse(new ServiceCredentials(plan).read('issuer-main', 'secret://issuer-main/bootstrap').toString()) as {
+        username: string;
+        password: string;
+    }; await page.goto(plan.configuration.origin + '/admin'); await page.locator('#username').fill(credential.username); await page.locator('#password').fill(credential.password); await page.getByRole('button', { name: 'Sign In', exact: true }).click(); await page.waitForURL(plan.configuration.origin + '/admin'); await page.getByRole('button', { name: 'Refresh status' }).click(); await page.getByRole('cell', { name: 'api-main', exact: true }).waitFor(); this.require(errors.names.length === 0 && !(await page.content()).includes(credential.password)); return page; }
+    private async rebase(): Promise<void> { const base = this.plan!; this.variant.configuration = { ...this.variant.configuration, installationId: base.configuration.installationId, installationDirectory: base.configuration.installationDirectory, origin: base.configuration.origin, engineContext: base.configuration.engineContext }; const graph = this.variant.release.composition, descriptors = new Map<string, ReturnType<typeof PluginManagementSchemas.packageDescriptor.parse>>(); for (const artifact of this.variant.release.packages) {
+        const archive = await PackageArchiveInspector.inspect(join(this.variant.bundle, artifact.path), artifact.sha256);
+        if (archive.metadata.cordisPackage)
+            descriptors.set(artifact.name, PluginManagementSchemas.packageDescriptor.parse(archive.metadata.cordisPackage));
+    } for (const service of graph.services) {
+        const descriptor = descriptors.get(service.provider.package.name)!;
+        let definition;
+        for (const item of descriptor.providers)
+            if (item.declaration.id === service.provider.providerId)
+                definition = item.container;
+        this.require(definition);
+        const projected = ServiceProjection.resolve(service, definition, graph, this.variant.configuration), prior = base.composition.services.find(UiAssembly.service.bind(null, service.serviceId))!;
+        service.definition = projected.definition;
+        service.resources = projected.resources;
+        service.readiness.configuration = structuredClone(prior.readiness.configuration);
+        for (const port of prior.definition.ports)
+            if (port.publication)
+                for (const next of service.definition.ports)
+                    if (next.id === port.id)
+                        next.publication = structuredClone(port.publication);
+    } for (const [name, spec] of Object.entries(this.variant.recipe.services))
+        if (spec.ports)
+            spec.ports = structuredClone(base.recipe.services[name]!.ports); const worker = join(this.variant.bundle, 'host-worker'); chmodSync(worker, 0o700); copyFileSync(join(this.base.bundle, 'host-worker'), worker); chmodSync(worker, 0o500); graph.worker = structuredClone(base.composition.worker); this.variant.refreshService(); }
+    private static service(id: string, service: ServiceInstance): boolean { return service.serviceId === id; }
+    private terminal(): void { const root = mkdtempSync(join(tmpdir(), 'cordis-task3c-ui-terminal-')); try {
+        const args = ['doctor', '--installation', join(root, 'missing')], before = spawnSync(this.input.cli, args, { encoding: 'utf8', env: { PATH: '' } }), after = spawnSync(this.input.variantCli, args, { encoding: 'utf8', env: { PATH: '' } });
+        this.require(before.status === 3 && after.status === 3 && !before.stdout.includes('Cordis UI qualification fixture') && after.stdout.includes('Cordis UI qualification fixture'));
+        const machine = ['plugin', 'install', '--json'], a = spawnSync(this.input.cli, machine, { encoding: 'utf8', env: { PATH: '' } }), b = spawnSync(this.input.variantCli, machine, { encoding: 'utf8', env: { PATH: '' } });
+        this.require(a.status === 2 && b.status === 2 && a.stdout === b.stdout && a.stderr === '' && b.stderr === '' && JSON.parse(a.stdout).result === null);
+    }
+    finally {
+        rmSync(root, { recursive: true, force: true });
+    } }
+    private async stop(): Promise<void> { if (!this.plan)
+        return; const directory = this.plan.configuration.installationDirectory, child = join(directory, '.cordis/launch/child.json'); if (!existsSync(child))
+        return; const data = JSON.parse(readFileSync(child, 'utf8')), file = statSync(join(directory, '.cordis/worker')); let running; try {
+        running = statSync('/proc/' + data.pid + '/exe');
+    }
+    catch {
+        return;
+    } this.require(Number.isSafeInteger(data.pid) && data.pid > 0 && file.uid === process.getuid!() && file.dev === running.dev && file.ino === running.ino); process.kill(data.pid, 'SIGTERM'); const until = Date.now() + 15000; while (existsSync(join(directory, '.cordis/writer.lock')) && Date.now() < until)
+        await new Promise(UiAssembly.pause); this.require(!existsSync(join(directory, '.cordis/writer.lock'))); }
+    async run(): Promise<void> { try {
+        await this.base.prepared(this.input.base);
+        const host = new ComposeDeploymentHost(), planned = await host.plan(this.base.configuration);
+        this.require(planned.formatVersion === 3);
+        this.plan = planned;
+        const owner = new ServiceWorkerOwnerClient({ installationDirectory: planned.configuration.installationDirectory }), observer = new ServiceWorkerClient({ installationDirectory: planned.configuration.installationDirectory }), application = await host.apply(planned.id, planned.digest, { installationDirectory: planned.configuration.installationDirectory, idempotencyKey: 'ui-base' });
+        await this.settled(owner, application.id);
+        this.stage = 'base-browser';
+        const authority = Buffer.from(await new ServiceAuthorityExports(planned).read('public-main', 'secret://public-main/public-ca', { deadline: Date.now() + 10000, signal: new AbortController().signal })), page = await this.login(planned, authority);
+        this.require((await page.getByText('Cordis UI qualification fixture', { exact: true }).count()) === 0);
+        const status = PlatformOperations.status.parseOutput(await page.evaluate(BrowserRead.status));
+        this.require(status.ready && status.activeComposition === planned.compositionGeneration);
+        const store = new ServicePlanStore(planned.configuration.installationDirectory), before = this.resources(store), files = new Map<string, string>();
+        for (const receipt of before.values())
+            if (receipt.path && existsSync(join(store.path, receipt.path)))
+                files.set(receipt.path, this.sha(readFileSync(join(store.path, receipt.path))));
+        this.stage = 'variant-prepare';
+        await this.variant.prepared(this.input.variant);
+        await this.rebase();
+        this.stage = 'variant-plan';
+        const next = await host.plan(this.variant.configuration);
+        this.require(next.formatVersion === 3 && next.composition.assetDigest !== planned.composition.assetDigest);
+        const scopes: string[] = [];
+        for (const change of next.changes)
+            if (change.requiredActions.includes('restart'))
+                scopes.push(change.serviceId);
+        this.require(scopes.includes('api-main') && !scopes.includes('issuer-main') && !scopes.includes('store-main'));
+        this.stage = 'explicit-admission';
+        const count = store.records().length;
+        let refused = false;
+        try {
+            await host.apply(next.id, next.digest, { installationDirectory: store.path, idempotencyKey: 'ui-no-implicit-restart' });
+        }
+        catch (error) {
+            this.require(error instanceof PlanningBlockedError);
+            refused = error.blockers.some(UiAssembly.actionRequired);
+        }
+        this.require(refused && store.records().length === count);
+        this.stage = 'variant-apply';
+        const changed = await host.apply(next.id, next.digest, { installationDirectory: store.path, idempotencyKey: 'ui-reviewed-restart', restartServices: scopes });
+        await this.settled(owner, changed.id);
+        this.stage = 'retained-identity';
+        const after = this.resources(store);
+        for (const [id, receipt] of before) {
+            if (receipt.serviceId === 'api-main' && (receipt.kind === 'container' || receipt.kind === 'configuration'))
+                continue;
+            const current = after.get(id);
+            this.require(current && current.actualId === receipt.actualId && current.path === receipt.path && current.contentDigest === receipt.contentDigest && current.creatingGeneration === receipt.creatingGeneration);
+        }
+        for (const [path, hash] of files)
+            this.require(this.sha(readFileSync(join(store.path, path))) === hash);
+        const afterAuthority = Buffer.from(await new ServiceAuthorityExports(next).read('public-main', 'secret://public-main/public-ca', { deadline: Date.now() + 10000, signal: new AbortController().signal }));
+        this.require(afterAuthority.equals(authority));
+        this.stage = 'variant-browser';
+        await page.reload();
+        await page.getByText('Cordis UI qualification fixture', { exact: true }).first().waitFor();
+        await page.getByRole('button', { name: 'Refresh status' }).click();
+        await page.getByRole('cell', { name: 'api-main', exact: true }).waitFor();
+        const latest = PlatformOperations.status.parseOutput(await page.evaluate(BrowserRead.status));
+        this.require(latest.ready && latest.activeComposition === next.compositionGeneration);
+        for (const width of [320, 375, 768, 1024, 1440, 1920, 2560]) {
+            await page.setViewportSize({ width, height: 900 });
+            const button = await page.getByRole('button', { name: 'Sign out' }).boundingBox();
+            this.require(button && button.width >= 44 && button.height >= 44);
+        }
+        this.stage = 'terminal';
+        this.terminal();
+        this.stage = 'source-free';
+        rmSync(this.base.bundle, { recursive: true, force: true });
+        rmSync(this.variant.bundle, { recursive: true, force: true });
+        this.require((await observer.status()).ready);
+        process.stdout.write(JSON.stringify({ fixtureOnly: true, genuineKeycloak: true, browserProviderChanged: true, terminalProviderChanged: true, explicitRestart: true, retainedIdentity: true, retainedTls: true, machineBytesUnchanged: true, sourceFree: true }) + '\n');
+    }
+    catch (error) {
+        if (error instanceof PlanningBlockedError) {
+            const codes = [];
+            for (const blocker of error.blockers)
+                codes.push(blocker.code);
+            throw new Error('UI_ASSEMBLY_BLOCKED:' + this.stage + ':' + codes.join(','));
+        }
+        throw error;
+    }
+    finally {
+        await this.browser?.close();
+        await this.stop();
+        this.base.close();
+        this.variant.close();
+        if (this.profile)
+            rmSync(this.profile, { recursive: true, force: true });
+    } }
+    private static actionRequired(blocker: {
+        code: string;
+    }): boolean { return blocker.code === 'TRANSITION_ACTION_REQUIRED'; }
 }
 await new UiAssembly(JSON.parse(readFileSync(process.argv[2]!, 'utf8'))).run();
