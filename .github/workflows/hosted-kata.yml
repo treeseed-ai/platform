@@ -1,0 +1,52 @@
+name: Hosted Kata qualification
+on:
+  pull_request:
+    branches: [cordis]
+    paths: ['.github/workflows/hosted-kata.yml', 'tests/acceptance/hosted-kata.test.mts', 'tests/support/kata-host.mts']
+  push:
+    branches: ['feature/791-hosted-kata-qualification']
+permissions:
+  contents: read
+jobs:
+  hosted-kata:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.4
+      - name: Install pinned development verification tools without scripts
+        run: bun install --frozen-lockfile --ignore-scripts
+        working-directory: tests/support/assembly
+      - name: Strictly check fixture programs and test layout
+        run: |
+          bun tests/support/assembly/node_modules/typescript/bin/tsc --strict --noEmit --module nodenext --target es2022 --skipLibCheck --typeRoots tests/support/assembly/node_modules/@types --types bun,node tests/support/kata-host.mts tests/acceptance/hosted-kata.test.mts
+          bun run check:test-layout
+      - name: Record hosted image and require KVM
+        run: |
+          uname -a
+          cat /etc/os-release
+          test -c /dev/kvm
+          sudo modprobe vhost_vsock
+          command -v containerd
+          command -v ctr
+      - name: Acquire immutable Kata qualification fixture
+        run: |
+          curl --fail --location --retry 2 --output "$RUNNER_TEMP/kata.tar.zst" https://github.com/kata-containers/kata-containers/releases/download/4.1.0/kata-static-4.1.0-amd64.tar.zst
+          test "$(stat -c %s "$RUNNER_TEMP/kata.tar.zst")" = 969565384
+          echo "3dc6b69c4acb787b967b04b64599a20d02a8beb1a8eaab3084110df9d0b08c96  $RUNNER_TEMP/kata.tar.zst" | sha256sum --check --strict
+          sudo tar --zstd -xf "$RUNNER_TEMP/kata.tar.zst" -C /
+          sudo /opt/kata/bin/kata-runtime --version
+      - name: Build the actual fixture program
+        run: bun build tests/support/kata-host.mts --target bun --outdir .qualification
+      - name: Qualify nested KVM and a real Kata guest
+        run: |
+          sudo env PATH="/opt/kata/bin:$PATH" GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted RUNNER_TEMP="$RUNNER_TEMP" ImageVersion="$ImageVersion" KATA_CONF_FILE=/opt/kata/share/defaults/kata-containers/configuration-qemu.toml "$(command -v bun)" test tests/acceptance/hosted-kata.test.mts
+      - name: Preserve daemon diagnostics on failure
+        if: failure()
+        run: sudo find "$RUNNER_TEMP" -maxdepth 2 -name containerd.log -exec tail -n 100 {} \;

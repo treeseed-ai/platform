@@ -23,5 +23,8 @@ class HostedKataAcceptance {
 }
 
 const suite = new HostedKataAcceptance();
-test('acceptance: hosted KVM boots a real pinned Kata guest and verifies cleanup',
-  suite.run.bind(suite), 250_000);
+test(
+  'acceptance: hosted KVM boots a real pinned Kata guest and verifies cleanup',
+  suite.run.bind(suite),
+  250_000,
+);
