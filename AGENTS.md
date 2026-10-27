@@ -1,5 +1,9 @@
 # TreeSeed Cordis development guidance
 
+Platform's development checks install the exact SDK and Deployment archives carried by the
+CLI commit pinned in the verification workflow. Its root lockfile must match those bytes;
+verify with a fresh package cache so a populated workstation cache cannot hide stale hashes.
+
 **Scope: development only.** This file guides agents developing THIS repository. Nothing shipped —
 runtime behavior, the knowledge corpus, or any test — may depend on it or its contents: every real
 target project carries its own instruction files, unpredictable and private to that project.
