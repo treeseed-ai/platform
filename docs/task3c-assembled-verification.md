@@ -82,3 +82,10 @@ in the runner mirror list before installing dependencies, preserving suites, sig
 existing job budgets. See the [runner-image incident](https://github.com/actions/runner-images/issues/12949)
 and [Ubuntu archive documentation](https://ubuntu.com/project/docs/how-ubuntu-is-made/concepts/package-archive/).
 Actual rerun evidence, not this hypothesis, must clear acceptance.
+
+A controlled second build under umask0022 reproduced the hosted digest refusal: Admin's
+archive differed by file modes (0644 versus0640), cascading into the API archive; the CLI
+binary stayed identical. The fixture build programme therefore sets/restores a canonical
+private umask0027 across source extraction, owner builds and packing. Qualification must
+produce the same pinned bytes even when its caller uses a different umask. Existing frozen
+owner archives are preserved; no live installation permission rule changes.
