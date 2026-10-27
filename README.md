@@ -2,26 +2,16 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → native Cordis composition in every runtime → integrated deployment and provider/plugin installation → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: Task 3B owner implementations are integrated on cordis.** The installed composition and durable worker passed the real database/identity/API/HTTPS/browser scene and Ubuntu 26.04 CI. The integration record binds accepted owner archives to their reviewed source and merged trees. See the [Task 3B implementation plan](docs/superpowers/plans/2026-10-24-task3b-installed-composition.md).
+**Status: Tasks 1–2 and 3A–3C are integrated on owner `cordis` branches. Task 3D is resumed under the approved seed-driven Capacity Provider amendment.** Agent setup was reviewed/published; do not initialize it again. The current SDK probe candidate and Agent draft are not a completed manager/worker/Kata installation.
 
-CLI and local Deployment already use native Cordis roots and exact prepared-provider loading from Task 3A. The current Task 3B slice adds installed apply/status/application read-back, a durable worker, native service plugins (including containers), configured identity and a protected Admin status contribution. Task 3C acquisition/installation, Task 3D Agent initialization and implementation, broader transport parity and full recovery remain later work. No production publication or cutover is authorized.
+Read [Agent architecture](docs/agent-architecture.md), [seed architecture](docs/seed-architecture.md) and the [revised Task 3D delivery plan](docs/superpowers/plans/2026-10-27-agent-composition.md). They specify separate services, native Cordis roots, extensible profiles and dependency setup, and seeds as the platform integration mechanism. Real Work/model execution remains Task 10. Review handoff does not authorize merging, production release or cutover.
 
 Build each independent owner using its README and pinned Bun 1.4.4 toolchain. The qualified
 planning host is Ubuntu 26.04 x64 with a local Linux/amd64 Docker engine. Other hosts report
 explicit blockers. Platform's exact composition and assembled Node tests bind source trees,
 archives and the built CLI; see [Task 2 composition](composition/task2.json). Owner code is consumed through public packages.
 
-**Next architecture checkpoint:** native Cordis roots are required in CLI, API, Deployment
-worker and Agent. Typed service-locator adapters use Cordis service resolution for explicit
-provider selection and safe hot replacement. Proposed `trsd plugin install <NPM package|Git repo>`
-installs and activates when safe; unresolved restart/migration/trust/build requirements remain
-visible. These are design requirements, not existing commands. Review the
-[context/plugin/package maps](docs/superpowers/specs/2026-10-24-cordis-composition-providers-design.md)
-and [Task 3A–3D delivery plan](docs/superpowers/plans/2026-10-24-cordis-composition-providers.md)
-for the approved foundation and delivered Task 3B scope. [Issue #704](https://github.com/treeseed-ai/platform/issues/704)
-tracks the accepted architecture.
-
-**Task 3C plan reviewed; UI setup resumes next:** [extensible container providers and required reusable UI](docs/superpowers/specs/2026-10-24-extensible-deployment-ui-design.md) and the [detailed owner implementation plan](docs/superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722). The next contract replaces fixed roles with typed named instances, retains unaffected resources and makes UI-owned browser/server/terminal presentation mandatory. These are future requirements: the current format-2 implementation still has four fixed services and inline consumer presentation. `packages/ui` is absent at this plan revision; the authorized next step initializes its existing canonical repository and stops for setup review. This documentation pass performs no initialization or product implementation.
+Native Cordis composition and typed provider selection are required across the runtimes. Task 3C delivered extensible container services, package acquisition and reusable UI providers; the four-role limit is historical. Agent manager/worker container plugins belong to Agent, while Deployment supplies bounded host operations. See the durable references above for the approved current boundaries and implementation ledger.
 
 Start with these documents in order:
 
@@ -37,7 +27,7 @@ class architecture, required research and child-repository review pauses. Alread
 edits and execution methods retain their authority; missing skill packages are not mandatory
 installation dependencies. Project skill installation uses `.agents/skills/` through the
 configured installer. [#678](https://github.com/treeseed-ai/platform/issues/678) records the
-alignment audit. Run reference/template regressions with `node --test tests/skills/*.test.mts`
+alignment audit. Run reference/template regressions with `node --test tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts`
 on Node.js 24; read-only scenario review checks decisions beyond those static guards.
 
 The migration integration branch is `cordis`: issue branches start from verified `origin/cordis` and PRs target `cordis`. Migration work must not merge into legacy `staging` or `main`. A separate reviewed, explicitly authorized cutover will preserve legacy work, adopt the verified successor as `staging`, update workflow/settings/CI, then restore PR-only promotion to `main`. The instruction/skill policy is tracked in [#674 / #675](https://github.com/treeseed-ai/platform/pull/675); completing the plan does not authorize cutover.
@@ -61,7 +51,7 @@ All handwritten Cordis implementation uses strict **TypeScript classes**, typed 
 contracts and replaceable class plugins through Cordis injection/configuration. This lifetime
 architecture rule is mandatory in AGENTS.md; TreeDX remains the Elixir/Rust exception.
 
-The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. Only UI setup is resumed now, followed by its setup review; see the detailed Task 3C amendment/plan.
+The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. UI setup and Task 3C implementation are integrated; preserve those qualified public interfaces during Task 3D.
 
 ## Development skill consistency
 
@@ -75,7 +65,7 @@ unrelated ECC release checklist is removed. Planning/writing helpers use availab
 class-based TypeScript examples, required research and the configured `.agents/skills/`
 destination; spikes retain the project workflow and child setup gates.
 
-Run policy regressions with `node --test tests/skills/*.test.mts` using Node.js 24 (verified
+Run policy regressions with `node --test tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts` using Node.js 24 (verified
 with 24.19.0). These checks inspect executable examples and local skill dependencies;
 read-only scenario review complements them. Neither check proves universal agent compliance,
 GitHub protections, CI or the proposed product runtime. Task 1 product checks are recorded separately in the exact composition and owner CI.

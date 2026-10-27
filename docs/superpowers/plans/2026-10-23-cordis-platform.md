@@ -1,5 +1,8 @@
 # CLI-first Cordis Platform Implementation Plan
 
+
+**Current Task 3D authority:** the maintainer approved and resumed the [seed-driven Capacity Provider amendment](../specs/2026-10-27-agent-composition-design.md) and [delivery plan](2026-10-27-agent-composition.md). Separate Agent manager/worker/Kata services replace the embedded-root proposal. Real Work/model execution remains Task 10. The dedicated KVM-runner gate is outstanding. Earlier setup-only/unstarted Task 3D wording is historical and does not override this checkpoint.
+
 > **For implementing agents:** Load the actual configured workflow/testing skills and deliver one bounded task at a time. Each eligible Cordis repository uses the parent initializer and pauses for user review before code. TreeDX remains its existing Elixir/Rust service. Checked Task 1 boxes record verified candidate evidence; later unchecked tasks remain future work.
 
 **Goal:** Deliver a standalone CLI that installs and recovers one integrated Cordis platform, then expose its bounded plugin lifecycle through REST, SDK, CLI, MCP and browser actions before adding feature domains.

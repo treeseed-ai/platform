@@ -1,5 +1,8 @@
 # Cordis composition and provider migration implementation plan
 
+
+**Current Task 3D authority:** the maintainer approved and resumed the [seed-driven Capacity Provider amendment](../specs/2026-10-27-agent-composition-design.md) and [delivery plan](2026-10-27-agent-composition.md). Separate Agent manager/worker/Kata services replace the embedded-root proposal. Real Work/model execution remains Task 10. The dedicated KVM-runner gate is outstanding. Earlier setup-only/unstarted Task 3D wording is historical and does not override this checkpoint.
+
 > **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D has resumed after the test-organization review; portable contracts are in implementation, and runtime/installed-target qualification remains pending.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
@@ -109,7 +112,7 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 
 ## Task 3D: Agent composition baseline without domain execution migration
 
-Resumed under Platform #773, SDK #482 and Agent #525. Agent setup review/publication is complete. The [bounded design](../specs/2026-10-27-agent-composition-design.md) and [delivery slices](2026-10-27-agent-composition.md) specify the durable worker host, trusted probe grant boundary and exact owner responsibilities. SDK portable contract candidate: https://github.com/treeseed-ai/sdk/pull/483. Real Work/model execution remains Task 10; no runtime or installed-target completion is implied by the first contract slice.
+Resumed under Platform #773, SDK #482 and Agent #525. Agent setup review/publication is complete. The [bounded design](../specs/2026-10-27-agent-composition-design.md) and [delivery slices](2026-10-27-agent-composition.md) specify separate manager/worker/guest roots, seed coordination, bounded host custody and exact owner responsibilities. SDK portable contract candidate: https://github.com/treeseed-ai/sdk/pull/483. Real Work/model execution remains Task 10; no runtime or installed-target completion is implied by the first contract slice.
 
 **Files:** Agent root and provider/handler/tool/context/reporting interfaces/plugins plus real program tests; human view-model adapters consuming UI terminal/browser providers; SDK declarations; Deployment target installer; Platform assembled Agent-context fixture.
 
@@ -163,6 +166,6 @@ owner/assembled checks cover genuine sources, repeated services, retained creden
 qualified native readiness replacement, explicit historical custody and both UI surfaces.
 Task3C is not integrated or released by this record. No merge or issue closure is authorized.
 
-Task3D remains unimplemented. Agent must receive its own same-repository initializer and
+Historical pre-initialization checkpoint (superseded by approved/published Agent setup): Agent required its own same-repository initializer and
 explicit setup review before code. Broader runtime replacement, parity, recovery and removal
 remain Tasks4–7, with unchanged repository/Keycloak/release boundaries.
