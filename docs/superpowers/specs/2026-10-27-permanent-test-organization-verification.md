@@ -40,13 +40,14 @@ API's approved-committer policy retains blob `b1a687db754ee2fac141919e6c63052d12
 
 ## Coverage inventory and gates
 
-The final discovery inventory is 422 registrations: all 374 predecessors and six new layout
-regressions in each of the eight implemented test repositories. These counts describe registered
+The final discovery inventory is 423 registrations: all 374 predecessors, six new layout
+regressions in each of the eight implemented test repositories, and one Platform planning-guide
+regression. These counts describe registered
 cases, rather than the many assertions inside assembled programs.
 
 | Owner | Acceptance | Regression | Integration | Unit | Issue |
 | --- | ---: | ---: | ---: | ---: | --- |
-| Platform | 11 | 17 | 2 | 1 | platform#768 |
+| Platform | 11 | 18 | 2 | 1 | platform#768 |
 | SDK | 16 | 7 | 28 | 36 | sdk#480 |
 | Deployment | 87 | 12 | 72 | 16 | deployment#1008 |
 | CLI | 22 | 6 | 2 | 0 | cli#325 |
