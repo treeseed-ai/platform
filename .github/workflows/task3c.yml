@@ -32,6 +32,8 @@ jobs:
           ref: ${{ steps.pins.outputs.cli }}
           path: packages/cli
           persist-credentials: false
+      - run: git remote set-url origin https://github.com/treeseed-ai/cli.git
+        working-directory: packages/cli
       - run: bun install --frozen-lockfile --ignore-scripts && bun run check && bun run build
         working-directory: packages/cli
       - run: bun verification/task3c/prerequisites.mts
@@ -68,6 +70,11 @@ jobs:
           ref: ${{ steps.pins.outputs.admin }}
           path: packages/admin
           persist-credentials: false
+      - name: Normalize canonical owner HTTPS remotes
+        run: |
+          for task_owner in cli api admin; do
+            git -C "packages/$task_owner" remote set-url origin "https://github.com/treeseed-ai/$task_owner.git"
+          done
       - run: bun install --frozen-lockfile --ignore-scripts && bun run build
         working-directory: packages/cli
       - run: bun install --frozen-lockfile --ignore-scripts
@@ -95,6 +102,8 @@ jobs:
           ref: 89fb78b6fd362a8de9dec9d238a310f65545175b
           path: packages/cli
           persist-credentials: false
+      - run: git remote set-url origin https://github.com/treeseed-ai/cli.git
+        working-directory: packages/cli
       - run: bun install --frozen-lockfile --ignore-scripts
         working-directory: verification/task3c
       - run: sudo apt-get update && sudo apt-get install -y libnss3-tools
