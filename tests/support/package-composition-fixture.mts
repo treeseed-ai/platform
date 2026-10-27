@@ -36,10 +36,7 @@ export class PackageCompositionFixture {
     assert.equal(result.status,0,result.stderr);return result.stdout.trim();
   }
 
-  assertSource(directory:string,tree:string):void {
-    assert.equal(this.git(directory,['rev-parse','HEAD^{tree}']),tree,'Checkout source tree differs from the accepted candidate');
-    assert.equal(this.git(directory,['status','--porcelain=v1','--untracked-files=normal']),'','Candidate checkout must be clean');
-  }
+
 
   listen(completion:(port:number)=>void):void {this.completion=completion;this.server=createServer();this.server.listen(0,'127.0.0.1',this.listening.bind(this));}
 

@@ -7,7 +7,7 @@ import { createRequire } from 'node:module';
 import { resolve, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createServer, type Server } from 'node:net';
-import {PackageCompositionFixture} from '../support/package-composition-fixture.mts';
+import {SourceCustodyContract as PackageCompositionFixture} from '../integration/source-custody-contract.mts';
 class PackageCompositionFixtureRegression extends PackageCompositionFixture {
 
   mergeIdentity():void {
