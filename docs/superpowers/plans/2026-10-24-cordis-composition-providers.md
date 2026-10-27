@@ -56,7 +56,7 @@ All paths below are inside the named independent repository, except Platform doc
 
 Existing SDK/CLI/Deployment owners currently expose `bun run verify` (check, build, unit, integration and smoke). Preserve those meaningful gates and existing Task 1–2 program checks. New owners must document and implement nonempty equivalent scripts in their own setup-approved issue before execution; do not claim an uncreated command ran.
 
-Current Platform regression command is `node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts` under the existing qualified Node toolchain. New assembled scenes are added in their owner's slice and recorded in composition/CI; complete owner prerequisites run before those scenes. Native positive gates must not skip when dependencies are missing. No new runtime proof is executed in this documentation delivery.
+Current Platform regression command is `node --test --test-concurrency=1 tests/skills/*.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts` under the existing qualified Node toolchain. New assembled scenes are added in their owner's slice and recorded in composition/CI; complete owner prerequisites run before those scenes. Native positive gates must not skip when dependencies are missing. No new runtime proof is executed in this documentation delivery.
 
 ## Task 3A: Prove native composition in CLI and local Deployment
 

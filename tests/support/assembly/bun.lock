@@ -3,14 +3,14 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@treeseed-cordis/task3c-assembly",
+      "name": "@treeseed-cordis/installed-composition-fixtures",
       "dependencies": {
-        "@treeseed-cordis/admin": "file:../../vendor/task3c/admin.tgz",
-        "@treeseed-cordis/api": "file:../../vendor/task3c/api.tgz",
-        "@treeseed-cordis/deployment": "file:../../vendor/task3c/deployment.tgz",
-        "@treeseed-cordis/identity": "file:../../vendor/task3c/identity.tgz",
-        "@treeseed-cordis/sdk": "file:../../vendor/task3c/sdk.tgz",
-        "@treeseed-cordis/ui": "file:../../vendor/task3c/ui.tgz",
+        "@treeseed-cordis/admin": "file:../../../vendor/task3c/admin.tgz",
+        "@treeseed-cordis/api": "file:../../../vendor/task3c/api.tgz",
+        "@treeseed-cordis/deployment": "file:../../../vendor/task3c/deployment.tgz",
+        "@treeseed-cordis/identity": "file:../../../vendor/task3c/identity.tgz",
+        "@treeseed-cordis/sdk": "file:../../../vendor/task3c/sdk.tgz",
+        "@treeseed-cordis/ui": "file:../../../vendor/task3c/ui.tgz",
         "playwright": "1.64.1",
       },
       "devDependencies": {
@@ -25,17 +25,17 @@
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
-    "@treeseed-cordis/admin": ["@treeseed-cordis/admin@../../vendor/task3c/admin.tgz", { "dependencies": { "cordis": "4.0.0-rc.12" }, "peerDependencies": { "@treeseed-cordis/identity": "0.0.0-cordis.7", "@treeseed-cordis/sdk": "0.0.0-cordis.16", "@treeseed-cordis/ui": "0.0.0-cordis.16", "react": "19.3.1", "react-dom": "19.3.1" } }, "sha512-nJEmqqvdGEUQ/uUk4A7tnxKlWZ3H1gAlFEZZceDUQ8B3wAMnue18LRZAk7uTGyRa+lrRnuZngYfObcW4WosObg=="],
+    "@treeseed-cordis/admin": ["@treeseed-cordis/admin@../../../vendor/task3c/admin.tgz", { "dependencies": { "cordis": "4.0.0-rc.12" }, "peerDependencies": { "@treeseed-cordis/identity": "0.0.0-cordis.7", "@treeseed-cordis/sdk": "0.0.0-cordis.16", "@treeseed-cordis/ui": "0.0.0-cordis.16", "react": "19.3.1", "react-dom": "19.3.1" } }, "sha512-nJEmqqvdGEUQ/uUk4A7tnxKlWZ3H1gAlFEZZceDUQ8B3wAMnue18LRZAk7uTGyRa+lrRnuZngYfObcW4WosObg=="],
 
-    "@treeseed-cordis/api": ["@treeseed-cordis/api@../../vendor/task3c/api.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "jsonc-parser": "3.3.1", "semver": "7.8.5" }, "peerDependencies": { "@treeseed-cordis/admin": "0.0.0-cordis.10", "@treeseed-cordis/deployment": "0.0.0-cordis.76", "@treeseed-cordis/identity": "0.0.0-cordis.7", "@treeseed-cordis/sdk": "0.0.0-cordis.16", "@treeseed-cordis/ui": "0.0.0-cordis.16" } }, "sha512-k4h0RvgEauiRQMvC4rZoBdByAIfHNLrJAShU/B583ygBQqGBNV2mi/9gDOBYpAbbyUZ7SH7YZMRUe4cgHDhGnA=="],
+    "@treeseed-cordis/api": ["@treeseed-cordis/api@../../../vendor/task3c/api.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "jsonc-parser": "3.3.1", "semver": "7.8.5" }, "peerDependencies": { "@treeseed-cordis/admin": "0.0.0-cordis.10", "@treeseed-cordis/deployment": "0.0.0-cordis.76", "@treeseed-cordis/identity": "0.0.0-cordis.7", "@treeseed-cordis/sdk": "0.0.0-cordis.16", "@treeseed-cordis/ui": "0.0.0-cordis.16" } }, "sha512-k4h0RvgEauiRQMvC4rZoBdByAIfHNLrJAShU/B583ygBQqGBNV2mi/9gDOBYpAbbyUZ7SH7YZMRUe4cgHDhGnA=="],
 
-    "@treeseed-cordis/deployment": ["@treeseed-cordis/deployment@../../vendor/task3c/deployment.tgz", { "dependencies": { "ajv": "8.17.1", "ajv-formats": "3.0.1", "cordis": "4.0.0-rc.12", "jsonc-parser": "3.3.1", "postgres": "3.4.9", "semver": "7.8.5", "tar": "7.5.22", "zod": "4.6.7" }, "peerDependencies": { "@treeseed-cordis/sdk": "0.0.0-cordis.16" } }, "sha512-/+B2drru7gOnOGu0G+y24kTSV26iFilDKCIUQhjpOxN3e8vNlg0fN/7pCt9ZAejk+Pd0zOSmAzCfy6kkstGL+Q=="],
+    "@treeseed-cordis/deployment": ["@treeseed-cordis/deployment@../../../vendor/task3c/deployment.tgz", { "dependencies": { "ajv": "8.17.1", "ajv-formats": "3.0.1", "cordis": "4.0.0-rc.12", "jsonc-parser": "3.3.1", "postgres": "3.4.9", "semver": "7.8.5", "tar": "7.5.22", "zod": "4.6.7" }, "peerDependencies": { "@treeseed-cordis/sdk": "0.0.0-cordis.16" } }, "sha512-/+B2drru7gOnOGu0G+y24kTSV26iFilDKCIUQhjpOxN3e8vNlg0fN/7pCt9ZAejk+Pd0zOSmAzCfy6kkstGL+Q=="],
 
-    "@treeseed-cordis/identity": ["@treeseed-cordis/identity@../../vendor/task3c/identity.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "openid-client": "6.8.8", "postgres": "3.4.9" }, "peerDependencies": { "@treeseed-cordis/sdk": "0.0.0-cordis.16" } }, "sha512-6HRxydsGkxlStDLD2VUORS94ats/OL/Cgue26y1Jr9ciuK60Q38xqMO9TxwcPCV0y++LQ08f38cgfKVrAJoDsQ=="],
+    "@treeseed-cordis/identity": ["@treeseed-cordis/identity@../../../vendor/task3c/identity.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "openid-client": "6.8.8", "postgres": "3.4.9" }, "peerDependencies": { "@treeseed-cordis/sdk": "0.0.0-cordis.16" } }, "sha512-6HRxydsGkxlStDLD2VUORS94ats/OL/Cgue26y1Jr9ciuK60Q38xqMO9TxwcPCV0y++LQ08f38cgfKVrAJoDsQ=="],
 
-    "@treeseed-cordis/sdk": ["@treeseed-cordis/sdk@../../vendor/task3c/sdk.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "jsonc-parser": "3.3.1", "semver": "7.8.5", "zod": "4.6.7" } }, "sha512-rAg7xVOU05Z1+TcMxn2DWpAqZBrZuUvIhmYa4aEP6PetQrJdTBAtAxnM/Jo17Qa26wBq7j1hmwt6alu00sM4BQ=="],
+    "@treeseed-cordis/sdk": ["@treeseed-cordis/sdk@../../../vendor/task3c/sdk.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "jsonc-parser": "3.3.1", "semver": "7.8.5", "zod": "4.6.7" } }, "sha512-rAg7xVOU05Z1+TcMxn2DWpAqZBrZuUvIhmYa4aEP6PetQrJdTBAtAxnM/Jo17Qa26wBq7j1hmwt6alu00sM4BQ=="],
 
-    "@treeseed-cordis/ui": ["@treeseed-cordis/ui@../../vendor/task3c/ui.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "zod": "4.6.7" }, "peerDependencies": { "@treeseed-cordis/sdk": "0.0.0-cordis.16", "react": "19.3.1", "react-dom": "19.3.1", "typescript": "5.9.3" }, "optionalPeers": ["typescript"] }, "sha512-0ZM+ysL8u97gcyKJrSwDZW9hawyeAAAJ9Ax5SUk/OMlJHG3MNqwijC/ewbcdhsSE77soqwW+VUP+ysAAOoLIxw=="],
+    "@treeseed-cordis/ui": ["@treeseed-cordis/ui@../../../vendor/task3c/ui.tgz", { "dependencies": { "cordis": "4.0.0-rc.12", "zod": "4.6.7" }, "peerDependencies": { "@treeseed-cordis/sdk": "0.0.0-cordis.16", "react": "19.3.1", "react-dom": "19.3.1", "typescript": "5.9.3" }, "optionalPeers": ["typescript"] }, "sha512-0ZM+ysL8u97gcyKJrSwDZW9hawyeAAAJ9Ax5SUk/OMlJHG3MNqwijC/ewbcdhsSE77soqwW+VUP+ysAAOoLIxw=="],
 
     "@types/bun": ["@types/bun@1.4.4", "", { "dependencies": { "bun-types": "1.4.4" } }, "sha512-9wkRDXUXK124pEnAutE6n/l18j+i9GC5IAHK8TmX/2nlySETmky0OU6yL5U8pW1AoKh++AN9auDCr647BfurjQ=="],
 

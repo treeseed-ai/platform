@@ -10,7 +10,7 @@ class ArtifactFiles {
  static async run():Promise<void>{
   const composition=JSON.parse(readFileSync('composition/task3c.json','utf8'));
   if(process.argv[2]==='record'){
-   const receipt=JSON.parse(readFileSync('verification/task3c/dist/ui/closure/ui-owner-closure.json','utf8')),evidence:Evidence={formatVersion:1,owners:{}};
+   const receipt=JSON.parse(readFileSync('tests/support/assembly/dist/ui/closure/ui-owner-closure.json','utf8')),evidence:Evidence={formatVersion:1,owners:{}};
    for(const owner of ['admin','api']){const item=receipt.owners[owner],sha256=this.sha(item.path);if(sha256!==composition.uiQualification.expectedArtifacts[owner].sha256)throw new Error('ARTIFACT_SELECTION_REQUIRED');evidence.owners[owner]={sha256,files:(await PackageArchiveInspector.inspect(resolve(item.path),sha256)).files};}
    writeFileSync('composition/task3c-ui-artifact-files.json',JSON.stringify(evidence,null,2)+'\n',{flag:'wx'});return;
   }

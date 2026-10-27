@@ -80,7 +80,7 @@ with 24.19.0). These checks inspect executable examples and local skill dependen
 read-only scenario review complements them. Neither check proves universal agent compliance,
 GitHub protections, CI or the proposed product runtime. Task 1 product checks are recorded separately in the exact composition and owner CI.
 
-Run assembled verification with Node 24.19.0: `node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts tests/task3a-composition.test.mts`. Snapshot tests run serially to avoid other tests’ temporary doctor port probes. CI runs Ubuntu 24.04 prerequisite rejection and a mandatory successful-plan gate on Ubuntu 26.04; no skipped positive gate counts as qualification.
+Run assembled verification with Node 24.19.0: `node --test --test-concurrency=1 tests/skills/*.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts tests/acceptance/native-composition.test.mts`. Snapshot tests run serially to avoid other tests’ temporary doctor port probes. CI runs Ubuntu 24.04 prerequisite rejection and a mandatory successful-plan gate on Ubuntu 26.04; no skipped positive gate counts as qualification.
 
 Task 3A selects exact owner source trees and archives in [composition/task3a.json](composition/task3a.json).
 The CLI mounts native command/configuration/output and Deployment providers; the SDK runtime

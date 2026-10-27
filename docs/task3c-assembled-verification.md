@@ -6,7 +6,7 @@ repositories remain retained. Agent setup and Task 3D are outside this delivery.
 
 `composition/task3c.json` records the exact SDK, Deployment, UI, Identity, Admin, API and CLI
 sources, archive/binary digests and qualification fixture recipe. An isolated
-`verification/task3c` consumer locks these public archives independently of the historical
+`tests/support/assembly` consumer locks these public archives independently of the historical
 Task 3B harness. Owner builds and fixture producers remain in their owning repositories.
 
 `bun run test:extensible` must invoke the built CLI against genuine Deployment public fixtures:
@@ -38,7 +38,7 @@ merging, publishing production artifacts or beginning Task 3D.
 ## Reproduction
 
 Install exact dependencies in `packages/cli` and build its pinned source, then install the
-independent `verification/task3c` consumer with `bun install --frozen-lockfile --ignore-scripts`.
+independent `tests/support/assembly` consumer with `bun install --frozen-lockfile --ignore-scripts`.
 Run `bun run check:task3c`. `bun run test:extensible` executes all four owner-built CLI scenes;
 CI partitions them onto separate fresh runners. `bun run prepare:ui` rebuilds the matching
 Admin/API/CLI fixture closure once into the ignored verification output, then `bun run test:ui`
@@ -53,7 +53,7 @@ programme with the explicit current Deployment custody check. Successful fixture
 removes only that clean temporary worktree. Failure preserves its evidence for diagnosis.
 The original historical composition record and owner working checkouts are unchanged.
 
-`verification/task3c/prerequisites.mts` explicitly prepares digest-pinned test images before
+`tests/support/assembly/host-prerequisites.mts` explicitly prepares digest-pinned test images before
 any accepted application; apply does not pull. CI requires actual Docker/Compose and
 Firefox/NSS tooling on Ubuntu26.04, plus all four source scenes, UI and migration jobs in the
 final aggregate. No prerequisite skip counts as acceptance.

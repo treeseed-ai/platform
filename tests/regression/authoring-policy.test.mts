@@ -47,6 +47,13 @@ class AuthoringSkillPolicy {
     assert.match(source, /class\s+\w+/, 'Provide a usable class-based example');
   }
 
+  planningExamplesUseTiers(): void {
+    const source = readFileSync(resolve(this.skills, 'writing-plans/SKILL.md'), 'utf8');
+    const paths = [...source.matchAll(/tests\/[a-z0-9/-]+\.test\.[cm]?tsx?/g)];
+    assert.ok(paths.length > 0, 'The planning guide must retain concrete executable test examples');
+    for (const match of paths) assert.match(match[0], /^tests\/(acceptance|regression|integration|unit)\//, 'Planning examples must use the permanent test tiers');
+  }
+
   installationPathsResolve(): void {
     const path = resolve(this.skills, 'find-skills/SKILL.md');
     const source = readFileSync(path, 'utf8');
@@ -66,7 +73,8 @@ class AuthoringSkillPolicy {
 }
 
 const policy = new AuthoringSkillPolicy();
-test('Authoring instructions reference available skill packages', policy.requiredSkillsExist.bind(policy));
-test('Authoring skill local references resolve', policy.localReferencesExist.bind(policy));
-test('Planning implementation examples use TypeScript classes', policy.planningExamplesUseClasses.bind(policy));
-test('Skill installation examples select the discoverable project directory', policy.installationPathsResolve.bind(policy));
+test("regression: Authoring instructions reference available skill packages", policy.requiredSkillsExist.bind(policy));
+test("regression: Authoring skill local references resolve", policy.localReferencesExist.bind(policy));
+test("regression: Planning implementation examples use TypeScript classes", policy.planningExamplesUseClasses.bind(policy));
+test("regression: Planning test examples use permanent tier directories", policy.planningExamplesUseTiers.bind(policy));
+test("regression: Skill installation examples select the discoverable project directory", policy.installationPathsResolve.bind(policy));

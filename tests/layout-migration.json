@@ -1,0 +1,43 @@
+{
+  "repository": "platform",
+  "baseline": "d634a4c128ceb0ea33befa395d39c3454d005772",
+  "registrationCount": 25,
+  "entries": [
+    {"from":"tests/skills/authoring-policy.test.mts","to":"tests/regression/authoring-policy.test.mts","tier":"regression","name":"Authoring instructions reference available skill packages","currentName":"regression: Authoring instructions reference available skill packages"},
+    {"from":"tests/skills/authoring-policy.test.mts","to":"tests/regression/authoring-policy.test.mts","tier":"regression","name":"Authoring skill local references resolve","currentName":"regression: Authoring skill local references resolve"},
+    {"from":"tests/skills/authoring-policy.test.mts","to":"tests/regression/authoring-policy.test.mts","tier":"regression","name":"Planning implementation examples use TypeScript classes","currentName":"regression: Planning implementation examples use TypeScript classes"},
+    {"from":"tests/skills/authoring-policy.test.mts","to":"tests/regression/authoring-policy.test.mts","tier":"regression","name":"Skill installation examples select the discoverable project directory","currentName":"regression: Skill installation examples select the discoverable project directory"},
+    {"from":"tests/skills/github-policy.test.mts","to":"tests/regression/github-policy.test.mts","tier":"regression","name":"GitHub skill PR examples explicitly target cordis","currentName":"regression: GitHub skill PR examples explicitly target cordis"},
+    {"from":"tests/skills/github-policy.test.mts","to":"tests/regression/github-policy.test.mts","tier":"regression","name":"GitHub skill examples cannot approve PRs or print tokens","currentName":"regression: GitHub skill examples cannot approve PRs or print tokens"},
+    {"from":"tests/skills/github-policy.test.mts","to":"tests/regression/github-policy.test.mts","tier":"regression","name":"GitHub skills and routed references contain no production publication commands","currentName":"regression: GitHub skills and routed references contain no production publication commands"},
+    {"from":"tests/skills/github-policy.test.mts","to":"tests/regression/github-policy.test.mts","tier":"regression","name":"GitHub examples do not target foreign repositories or close migration issues","currentName":"regression: GitHub examples do not target foreign repositories or close migration issues"},
+    {"from":"tests/task1-composition.test.mts","to":"tests/integration/package-composition.test.mts","tier":"integration","name":"assembled: exact owner archives, installed exports and source identity","currentName":"integration: exact owner archives, installed exports and source identity"},
+    {"from":"tests/task1-composition.test.mts","to":"tests/unit/package-composition.test.mts","tier":"unit","name":"assembled: semantic class policy for composition test","currentName":"unit: semantic class policy for composition test"},
+    {"from":"tests/task1-composition.test.mts","to":"tests/acceptance/package-composition.test.mts","tier":"acceptance","name":"assembled: exact standalone artifact from foreign cwd without writes","currentName":"acceptance: exact standalone artifact from foreign cwd without writes"},
+    {"from":"tests/task1-composition.test.mts","to":"tests/regression/package-composition.test.mts","tier":"regression","name":"assembled: accepted source survives commit rewrite but rejects changed trees","currentName":"regression: accepted source survives commit rewrite but rejects changed trees"},
+    {"from":"tests/task2-planning.test.mts","to":"tests/acceptance/deployment-planning.test.mts","tier":"acceptance","name":"assembled: plan_changes_no_runtime with exact local inputs and saved read-back","currentName":"acceptance: plan_changes_no_runtime with exact local inputs and saved read-back"},
+    {"from":"tests/task3a-composition.test.mts","to":"tests/integration/native-composition.test.mts","tier":"integration","name":"assembled: exact published Cordis and portable provider contract identities","currentName":"integration: exact published Cordis and portable provider contract identities"},
+    {"from":"tests/task3a-composition.test.mts","to":"tests/acceptance/native-composition.test.mts","tier":"acceptance","name":"assembled: compiled CLI uses prepared native providers and awaited cleanup","currentName":"acceptance: compiled CLI uses prepared native providers and awaited cleanup"},
+    {"from":"tests/task3b-installed.test.ts","to":"tests/acceptance/installed-composition.test.ts","tier":"acceptance","name":"installed_composition_has_real_contexts","currentName":"acceptance: installed_composition_has_real_contexts"},
+    {"from":"tests/task3c-plugins.test.mts","to":"tests/acceptance/plugin-activation.test.mts","tier":"acceptance","name":"task3c: assembled NPM instances and safe migration refusal","currentName":"acceptance: assembled NPM instances and safe migration refusal"},
+    {"from":"tests/task3c-plugins.test.mts","to":"tests/acceptance/plugin-activation.test.mts","tier":"acceptance","name":"task3c: assembled packaged Git acquisition and exact replay","currentName":"acceptance: assembled packaged Git acquisition and exact replay"},
+    {"from":"tests/task3c-plugins.test.mts","to":"tests/acceptance/plugin-activation.test.mts","tier":"acceptance","name":"task3c: assembled approved Git build acquisition and exact replay","currentName":"acceptance: assembled approved Git build acquisition and exact replay"},
+    {"from":"tests/task3c-plugins.test.mts","to":"tests/acceptance/plugin-activation.test.mts","tier":"acceptance","name":"task3c: assembled registered packaged Git source-free selection","currentName":"acceptance: assembled registered packaged Git source-free selection"},
+    {"from":"tests/task3c-plugins.test.mts","to":"tests/acceptance/plugin-activation.test.mts","tier":"acceptance","name":"task3c: assembled registered Git build source-free selection","currentName":"acceptance: assembled registered Git build source-free selection"},
+    {"from":"tests/task3c-plugins.test.mts","to":"tests/acceptance/plugin-activation.test.mts","tier":"acceptance","name":"task3c: assembled qualified native live install and unsafe reverse refusal","currentName":"acceptance: assembled qualified native live install and unsafe reverse refusal"},
+    {"from":"tests/task3c-selection.test.mts","to":"tests/regression/assembly-selection.test.mts","tier":"regression","name":"task3c: preparation rejects a changed runtime lock pin before builds or store state","currentName":"regression: preparation rejects a changed runtime lock pin before builds or store state"},
+    {"from":"tests/task3c-selection.test.mts","to":"tests/regression/assembly-selection.test.mts","tier":"regression","name":"task3c: owner fixture builds preserve exact archive pins under a different caller umask","currentName":"regression: owner fixture builds preserve exact archive pins under a different caller umask"},
+    {"from":"tests/task3c-ui.test.mts","to":"tests/acceptance/reusable-presentation.test.mts","tier":"acceptance","name":"task3c: reusable UI changes browser and terminal through an explicitly restarted exact closure","currentName":"acceptance: reusable UI changes browser and terminal through an explicitly restarted exact closure"}
+  ],
+  "mapping": {
+    "tests/skills/authoring-policy.test.mts": ["tests/regression/authoring-policy.test.mts"],
+    "tests/skills/github-policy.test.mts": ["tests/regression/github-policy.test.mts"],
+    "tests/task1-composition.test.mts": ["tests/acceptance/package-composition.test.mts", "tests/regression/package-composition.test.mts", "tests/integration/package-composition.test.mts", "tests/unit/package-composition.test.mts"],
+    "tests/task2-planning.test.mts": ["tests/acceptance/deployment-planning.test.mts"],
+    "tests/task3a-composition.test.mts": ["tests/acceptance/native-composition.test.mts", "tests/integration/native-composition.test.mts"],
+    "tests/task3b-installed.test.ts": ["tests/acceptance/installed-composition.test.ts"],
+    "tests/task3c-plugins.test.mts": ["tests/acceptance/plugin-activation.test.mts"],
+    "tests/task3c-selection.test.mts": ["tests/regression/assembly-selection.test.mts"],
+    "tests/task3c-ui.test.mts": ["tests/acceptance/reusable-presentation.test.mts"]
+  }
+}

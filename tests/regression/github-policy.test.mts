@@ -71,7 +71,7 @@ class GitHubSkillPolicy {
 }
 
 const policy = new GitHubSkillPolicy();
-test('GitHub skill PR examples explicitly target cordis', policy.prTargets.bind(policy));
-test('GitHub skill examples cannot approve PRs or print tokens', policy.noApprovalOrSecretOutput.bind(policy));
-test('GitHub skills and routed references contain no production publication commands', policy.noProductionMutation.bind(policy));
-test('GitHub examples do not target foreign repositories or close migration issues', policy.noForeignRepositoryOrAutomaticClosure.bind(policy));
+test("regression: GitHub skill PR examples explicitly target cordis", policy.prTargets.bind(policy));
+test("regression: GitHub skill examples cannot approve PRs or print tokens", policy.noApprovalOrSecretOutput.bind(policy));
+test("regression: GitHub skills and routed references contain no production publication commands", policy.noProductionMutation.bind(policy));
+test("regression: GitHub examples do not target foreign repositories or close migration issues", policy.noForeignRepositoryOrAutomaticClosure.bind(policy));

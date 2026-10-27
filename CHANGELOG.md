@@ -26,6 +26,8 @@
 
 ### Changed
 
+- Platform: organize permanent tests by tier and enforce the shared development/testing strategy (#768).
+
 - Platform: plan extensible container providers and required reusable UI (#722).
 
 - Platform: require Cordis composition and selectable provider plugins across runtimes (#704).

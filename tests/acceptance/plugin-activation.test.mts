@@ -39,9 +39,9 @@ class ExtensibleAssembly {
     live(): void { this.scene('^smoke: built CLI installs and selects'); }
 }
 const suite = new ExtensibleAssembly();
-test('task3c: assembled NPM instances and safe migration refusal', suite.npm.bind(suite), 660000);
-test('task3c: assembled packaged Git acquisition and exact replay', suite.git.bind(suite), 660000);
-test('task3c: assembled approved Git build acquisition and exact replay', suite.build.bind(suite), 660000);
-test('task3c: assembled registered packaged Git source-free selection', suite.registeredGit.bind(suite), 660000);
-test('task3c: assembled registered Git build source-free selection', suite.registeredBuild.bind(suite), 660000);
-test('task3c: assembled qualified native live install and unsafe reverse refusal', suite.live.bind(suite), 660000);
+test('acceptance: assembled NPM instances and safe migration refusal', suite.npm.bind(suite), 660000);
+test('acceptance: assembled packaged Git acquisition and exact replay', suite.git.bind(suite), 660000);
+test('acceptance: assembled approved Git build acquisition and exact replay', suite.build.bind(suite), 660000);
+test('acceptance: assembled registered packaged Git source-free selection', suite.registeredGit.bind(suite), 660000);
+test('acceptance: assembled registered Git build source-free selection', suite.registeredBuild.bind(suite), 660000);
+test('acceptance: assembled qualified native live install and unsafe reverse refusal', suite.live.bind(suite), 660000);
