@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 14:40 UTC. Issues own plans; Actions own verification; Git/TreeDX own products. Unknown usage, price, custody or closure stays unknown.
+Updated: 2026-10-27 15:28 UTC. Issues own plans; Actions own verification; Git/TreeDX own products. Unknown usage, price, custody or closure stays unknown.
 
 [Complete earlier evidence through13:40](https://github.com/treeseed-ai/platform/blob/66b7e94e50cf6d086e76f4b8cddb2dcb589a3078/docs/agent-log.md), blob `95db70c95f3759937e93dbf076219e356f86204b`, preserves all earlier failures, products, team changes and exact receipts, and links the preceding frozen history. This consolidation does not turn any failure into a pass.
 
@@ -84,4 +84,23 @@ Native MCP schema gap: proposal body remains opaque; initial missing groupIds/op
 
 Owned duplicate build workspace/dependencies removed after merge/ancestry checks; active persistent source, rollback source, exported retained bundle and unknown-usage claims preserved. Owned empty knowledge diagnostic workspace96031b79-667a-45b3-9e72-37df904015a1 abandoned through signed MCP. User-owned root dirty/untracked files untouched.
 
-Next: qualify/API640 and recover the real TreeDX proposal through MCP; finish owners' dependency/scope estimates and approve only the coherent plan; deliver guest Compose and isolated project entry; resume the retained exact TreeDX Decision, then its real Engineer/review/Releaser chain. Record actual output, review effect, source integration, runtime adoption and cleanup; never substitute fixture success for that outcome.
+Next: qualify API640 and recover the real TreeDX proposal through MCP; establish supported correction admission for the exhausted review cycle; deliver guest Compose and isolated project entry; resume the retained exact TreeDX Decision. Preserve all original products, failures, deadlines and unknown usage.
+
+## 15:28 UTC — approved Compose work reaches a material review finding
+
+| Vital | Real observation |
+|---|---|
+| Group/authority | Agent Compose proposal `abe17cd1-9196-4f5b-a2e1-dd0b402505ea` v10 accepted as Decision `58cf8f1d-258d-4ea5-a291-15c48f5f2f74`; 4 own formal estimates; docs → regressions → image/provider → integration |
+| Real output | Writer `assignment_Esh_kWyBz4gCy9xaAzslzRIMTMUGCyfP`, canonical `result-3ce5848887b9ed4fef1e3b64`, Git `c905f990695a4eca03b8d8e8c5d9d9286225f4df`: README + docs/compose-workloads-in-sandbox.md; retained simulation product, not integrated upstream |
+| Review effect | Separate Writer reviewing execution `assignment_mKlOvJL1o_0c_gvkRM3fHnIJKQPwx-cN`, `result-f3740c6e589fd6d427ec9c58`, requests distinguishing result correlation from VM teardown; neither proves Compose-resource cleanup. Same configured identity, not independent identity |
+| Score | Acting products 1; review changes requested 1; approved products 0; author revisions 0; simulated releases 0 for this workday |
+| Cost/clock | Canonical elapsed 98 + 59 sec; native active 97.927985191 + 58.641594773 sec. Reported model input 1,811,155 / cached 1,676,544 / output 8,173 / reasoning 3,375; 18 compliant clock checks. Price/settlement not inferred |
+| Evidence limit | Two Writer and one reviewer nonreplayable check claims omitted; verification arrays empty. VM teardown receipts do not certify Compose cleanup |
+| Actual blocker | Owner estimated maximumReviewCycles=1. First request-changes exhausted that authority; actor/review/successors blocked. No automatic correction admitted; no reset or allowance increase |
+| Cleanup | Supported MCP stop requested after both assignments completed/released, no active assignment. Plan closing; original 15:05–19:05 window preserved. Native final read-back cancelled/ended at 15:27:07.452 UTC; final report contents not yet assessed |
+
+Architect and Writer discussion `send-f46e9235e123bbadb9b464ac611783fb` recommends linked documentation correction plus explicit governed downstream admission. The native API rejects editing accepted proposals; no public path to splice that correction into this accepted graph has yet been established. Do not call this a completed Writer→Tester→Engineer→Releaser chain. Team definitions, grants, allocations and concurrency were unchanged.
+
+Architect's corrected bounded TreeDX read-authority draft (`send-5b1ec5026b7db5d1b1167fe9bc6662ce`) validates against the API-installed SDK's portable proposal v2 schema when serialized through its normal native envelope. This is schema-only evidence, not admission or execution. Broader history/search and actual Releaser origin parity remain unresolved.
+
+API bootstrap [#640](https://github.com/treeseed-ai/api/pull/640) first full run [40524853426](https://github.com/treeseed-ai/api/actions/runs/40524853426) failed: native test's exact proposal read-back lacked path permission. Candidate `cafdc8774a5fbf76e9032aefac635ffc6af66a33` scopes that test read to `workspacePaths:[path]`; no production permissions or denials broadened. Post-fix local selection 18 tests/2 files passed; full replacement [40530506981](https://github.com/treeseed-ai/api/actions/runs/40530506981) pending. Authorization40530500056 and validation40530502987 passed. No merge/adoption or successful recovery of the real TreeDX orphan yet. Previous failures and skipped native/scene layers remain unproved, not passes.
