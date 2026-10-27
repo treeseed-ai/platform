@@ -54,6 +54,8 @@
 
 **Files:** typed target adapter/stager/receipt modules; existing `src/plugin-manager.ts` branch/read-back extension; public exports and focused owner tests. Create owning issue/verified branch before edits.
 
+**Host choice:** the existing durable Deployment worker hosts the Agent-owned native root. Its installation-authority adapter reads/rechecks the owner-private probe grant record; no request-derived authority or new daemon. The standalone program constructs the same root for owner proof.
+
 **Interfaces:** accepted closure + selected Agent provider + exact trusted installation binding → private target plan → target admission/application → matching Agent-target acknowledgement. Target generation is distinct from service graph generation; active requires current handshake.
 
 - [ ] Document target plan/ack/journal schema and restart projection; commit docs before tests.
