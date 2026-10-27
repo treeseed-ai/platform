@@ -81,6 +81,8 @@ jobs:
         working-directory: verification/task3c
       - run: bun run check:task3c
       - run: bun test tests/task3c-selection.test.mts
+      - name: Use official Ubuntu archive for bounded browser prerequisites
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
       - run: sudo apt-get update && sudo apt-get install -y libnss3-tools
       - run: bunx playwright install --with-deps firefox
         working-directory: verification/task3c
@@ -107,6 +109,8 @@ jobs:
         working-directory: packages/cli
       - run: bun install --frozen-lockfile --ignore-scripts
         working-directory: verification/task3c
+      - name: Use official Ubuntu archive for bounded browser prerequisites
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
       - run: sudo apt-get update && sudo apt-get install -y libnss3-tools
       - run: bunx playwright install --with-deps firefox
         working-directory: verification/task3c
