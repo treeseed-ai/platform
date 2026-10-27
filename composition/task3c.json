@@ -83,6 +83,18 @@
       "recipeDigest": "d3cc07f8b0c9ef9b1a058492a76961a1280d6572a63a0ba7459957ed45a1e1da",
       "archive": "vendor/task3c/ui-fixture.tgz",
       "sha256": "8952846090b0d2aacef43a478f5d4d47bfb7afe1d2ceca5b07c99e45832a737b"
+    },
+    "expectedArtifacts": {
+      "admin": {
+        "sha256": "d72213d3ce0c04280c86069e6040a91609cf79588ffd1e241073aefdbaee4a4d"
+      },
+      "api": {
+        "sha256": "459094a67bd83bcc31cb14f9af2b75d3e429e8661bc21a070c3382841e052b64",
+        "lockSha256": "652ccc0b9c89f728c22c5b70e6a98b6721f0388758c7e4d4de6f8b4fa45a3fee"
+      },
+      "cli": {
+        "sha256": "57e5939d0fc3978a4a2017ca2446fa06b9c58751be373e82cd517dd92c3f3aa1"
+      }
     }
   },
   "runtimeLock": {

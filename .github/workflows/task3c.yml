@@ -80,6 +80,7 @@ jobs:
       - run: bun install --frozen-lockfile --ignore-scripts
         working-directory: verification/task3c
       - run: bun run check:task3c
+      - run: bun test tests/task3c-selection.test.mts
       - run: sudo apt-get update && sudo apt-get install -y libnss3-tools
       - run: bunx playwright install --with-deps firefox
         working-directory: verification/task3c

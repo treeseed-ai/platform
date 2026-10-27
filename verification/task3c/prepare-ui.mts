@@ -10,6 +10,7 @@ interface Pin {
     checkout: string;
 }
 interface Composition {
+    runtimeLock: {path:string;sha256:string};
     owners: Record<'sdk' | 'deployment' | 'identity' | 'admin' | 'api' | 'ui', Pin>;
     cli: {
         repository: string;
@@ -19,6 +20,7 @@ interface Composition {
         sha256: string;
     };
     uiQualification: {
+        expectedArtifacts: Record<'admin'|'api'|'cli',{sha256:string;lockSha256?:string}>;
         fixture: {
             archive: string;
             sha256: string;
@@ -43,6 +45,7 @@ class PrepareUiAssembly {
         throw new Error('ASSEMBLY_PREPARATION_FAILED:' + result.stderr.slice(-3000)); return result.stdout.trim(); }
     run(): void {
         const composition = this.composition, owners = composition.owners;
+        this.require(this.sha(composition.runtimeLock.path)===composition.runtimeLock.sha256);
         for (const [owner, pin] of Object.entries(owners)) {
             this.require(pin.repository === 'https://github.com/treeseed-ai/' + owner + '.git' && /^[a-f0-9]{40}$/.test(pin.commit) && this.sha(pin.archive) === pin.sha256);
         }
@@ -64,11 +67,13 @@ class PrepareUiAssembly {
         writeFileSync(request, JSON.stringify({ output: join(this.output, 'closure'), ui: { ...fixture, archive: resolve(fixture.archive) }, owners: sources }), { mode: 0o600, flag: 'wx' });
         this.command(process.execPath, [resolve('verification/task3c/ui-owner-closure.mts'), request], process.cwd());
         const receipt = JSON.parse(readFileSync(join(this.output, 'closure/ui-owner-closure.json'), 'utf8'));
+        for(const owner of ['admin','api','cli'] as const){const actual=receipt.owners[owner],expected=composition.uiQualification.expectedArtifacts[owner];this.require(actual.sha256===expected.sha256&&this.sha(actual.path)===expected.sha256);}
+        this.require(this.sha(join(this.output,'closure/api/bun.lock'))===composition.uiQualification.expectedArtifacts.api.lockSha256);
         const archives: Record<string, string> = {};
         for (const [owner, pin] of Object.entries(owners))
             archives[owner] = resolve(pin.archive);
         const variant = { ...archives, ui: resolve(fixture.archive), admin: receipt.owners.admin.path, api: receipt.owners.api.path };
-        writeFileSync(join(this.output, 'input.json'), JSON.stringify({ base: { archives, lockfile: resolve('vendor/task3c/api.bun.lock') }, variant: { archives: variant, lockfile: join(this.output, 'closure/api/bun.lock') }, cli: resolve(composition.cli.binary), variantCli: receipt.owners.cli.path }), { mode: 0o600, flag: 'wx' });
+        writeFileSync(join(this.output, 'input.json'), JSON.stringify({ base: { archives, lockfile: resolve(composition.runtimeLock.path) }, variant: { archives: variant, lockfile: join(this.output, 'closure/api/bun.lock') }, cli: resolve(composition.cli.binary), variantCli: receipt.owners.cli.path }), { mode: 0o600, flag: 'wx' });
         process.stdout.write('Exact UI assembly prepared\n');
     }
 }
