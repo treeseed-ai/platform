@@ -146,6 +146,7 @@ class KataGuestQualification {
   private readonly pullArguments = [
     'images',
     'pull',
+    '--local',
     '--platform',
     'linux/amd64',
     '--snapshotter',
