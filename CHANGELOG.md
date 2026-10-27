@@ -8,6 +8,8 @@
 
 ### Added
 
+- Platform: qualify hosted Ubuntu KVM and real Kata guests before requiring a dedicated runner (#791).
+
 - Platform: assemble extensible plugins and mobile-first reusable UI (#726).
 
 - Platform: verify first installed Cordis composition and durable worker (#713).
