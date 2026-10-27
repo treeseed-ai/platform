@@ -42,4 +42,4 @@ class Task2Planning {
   static kind(artifact:{kind:string}):string {return artifact.kind;}
 }
 const suite=new Task2Planning();
-test('assembled: plan_changes_no_runtime with exact local inputs and saved read-back',suite.plan_changes_no_runtime.bind(suite));
+test("acceptance: plan_changes_no_runtime with exact local inputs and saved read-back",suite.plan_changes_no_runtime.bind(suite));

@@ -1,10 +1,6 @@
 # Changelog
 
 ## [Unreleased]
-
-### Changed
-
-- Organize permanent tests by tier and enforce the shared development/testing strategy (#768).
 ### Fixed
 
 - platform: align authoring and discovery skills with Cordis (#678).
@@ -29,6 +25,8 @@
 - platform: document CLI-first Cordis development and independent project ownership (#672).
 
 ### Changed
+
+- Organize permanent tests by tier and enforce the shared development/testing strategy (#768).
 
 - Platform: plan extensible container providers and required reusable UI (#722).
 

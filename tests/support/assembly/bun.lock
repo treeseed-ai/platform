@@ -3,14 +3,14 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@treeseed-cordis/task3c-assembly",
+      "name": "@treeseed-cordis/installed-composition-fixtures",
       "dependencies": {
-        "@treeseed-cordis/admin": "file:../../vendor/task3c/admin.tgz",
-        "@treeseed-cordis/api": "file:../../vendor/task3c/api.tgz",
-        "@treeseed-cordis/deployment": "file:../../vendor/task3c/deployment.tgz",
-        "@treeseed-cordis/identity": "file:../../vendor/task3c/identity.tgz",
-        "@treeseed-cordis/sdk": "file:../../vendor/task3c/sdk.tgz",
-        "@treeseed-cordis/ui": "file:../../vendor/task3c/ui.tgz",
+        "@treeseed-cordis/admin": "file:../../../vendor/task3c/admin.tgz",
+        "@treeseed-cordis/api": "file:../../../vendor/task3c/api.tgz",
+        "@treeseed-cordis/deployment": "file:../../../vendor/task3c/deployment.tgz",
+        "@treeseed-cordis/identity": "file:../../../vendor/task3c/identity.tgz",
+        "@treeseed-cordis/sdk": "file:../../../vendor/task3c/sdk.tgz",
+        "@treeseed-cordis/ui": "file:../../../vendor/task3c/ui.tgz",
         "playwright": "1.64.1",
       },
       "devDependencies": {

@@ -66,7 +66,7 @@ class AuthoringSkillPolicy {
 }
 
 const policy = new AuthoringSkillPolicy();
-test('Authoring instructions reference available skill packages', policy.requiredSkillsExist.bind(policy));
-test('Authoring skill local references resolve', policy.localReferencesExist.bind(policy));
-test('Planning implementation examples use TypeScript classes', policy.planningExamplesUseClasses.bind(policy));
-test('Skill installation examples select the discoverable project directory', policy.installationPathsResolve.bind(policy));
+test("regression: Authoring instructions reference available skill packages", policy.requiredSkillsExist.bind(policy));
+test("regression: Authoring skill local references resolve", policy.localReferencesExist.bind(policy));
+test("regression: Planning implementation examples use TypeScript classes", policy.planningExamplesUseClasses.bind(policy));
+test("regression: Skill installation examples select the discoverable project directory", policy.installationPathsResolve.bind(policy));
