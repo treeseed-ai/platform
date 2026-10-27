@@ -141,3 +141,8 @@ The expanded suite observed four passes and two behavioral failures before the g
 then six passes and zero failures after it. Complete-directory and matrix coverage are now
 checked without changing runtime source, assertions, inputs or timeouts of predecessor cases.
 The final reviewed heads and CI results are recorded in the nine owning PRs.
+
+Review also found two `tests/smoke/` paths in the copied writing-plans guide. A policy
+regression must reject those example specification paths before they are corrected to
+`tests/acceptance/` in every owner and future setup. This adds one Platform regression;
+final portfolio inventory becomes 423 registrations while preserving all 374 predecessors.
