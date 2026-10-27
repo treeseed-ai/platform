@@ -1,7 +1,9 @@
 # TreeSeed Cordis development guidance
 
-Platform's development checks install the exact SDK and Deployment archives carried by the
-CLI commit pinned in the verification workflow. Its root lockfile must match those bytes;
+Platform's root development checks retain the historical Task 3B SDK and Deployment archives
+carried by the exact CLI commit in `composition/task3b.json`. Their workflow must check out that
+same CLI commit before installing the root lockfile; later composition closures stay isolated.
+The root lockfile must match those bytes;
 verify with a fresh package cache so a populated workstation cache cannot hide stale hashes.
 
 **Scope: development only.** This file guides agents developing THIS repository. Nothing shipped —
