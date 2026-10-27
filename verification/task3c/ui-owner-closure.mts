@@ -1,0 +1,65 @@
+import { mkdirSync, readFileSync, writeFileSync, copyFileSync, existsSync, realpathSync } from 'node:fs';
+import { join, resolve, dirname, isAbsolute } from 'node:path';
+import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+interface Source {
+    repository: string;
+    directory: string;
+    commit: string;
+}
+interface Request {
+    output: string;
+    ui: {
+        archive: string;
+        sha256: string;
+        version: string;
+        source: {
+            baseCommit: string;
+        };
+        recipeDigest: string;
+    };
+    owners: Record<'admin' | 'api' | 'cli', Source>;
+}
+/** Integration-only orchestration. Each owner's unchanged build produces its own artefacts. */
+class UiOwnerClosure {
+    private readonly selected = new Map<string, {
+        path: string;
+        sha256: string;
+    }>();
+    private readonly evidence: Record<string, unknown> = {};
+    constructor(private readonly input: Request) { }
+    private require(value: unknown): asserts value { if (!value)
+        throw new Error('UI_OWNER_CLOSURE_REFUSED'); }
+    private sha(path: string): string { return createHash('sha256').update(readFileSync(path)).digest('hex'); }
+    private command(program: string, args: string[], cwd: string, cache?: string): string { const result = spawnSync(program, args, { cwd, encoding: 'utf8', timeout: 180000, maxBuffer: 4 * 1024 * 1024, env: { ...process.env, BUN_INSTALL_CACHE_DIR: cache ?? process.env.BUN_INSTALL_CACHE_DIR } }); if (result.status !== 0)
+        throw new Error('OWNER_BUILD_FAILED:' + args[0] + ':' + result.stderr.slice(-2000)); return result.stdout.trim(); }
+    private build(owner: 'admin' | 'api' | 'cli'): void { const source = this.input.owners[owner], directory = join(this.input.output, owner), archive = join(this.input.output, owner + '-source.tar'); this.require(source.repository === 'https://github.com/treeseed-ai/' + owner + '.git' && /^[a-f0-9]{40}$/.test(source.commit)); this.require(this.command('git', ['remote', 'get-url', 'origin'], source.directory) === source.repository && this.command('git', ['rev-parse', source.commit + '^{commit}'], source.directory) === source.commit); mkdirSync(directory, { mode: 0o700 }); this.command('git', ['archive', '--format=tar', '--output', archive, source.commit], source.directory); this.command('tar', ['--extract', '--file', archive, '--directory', directory], this.input.output); const metadata = JSON.parse(readFileSync(join(directory, 'package.json'), 'utf8')); this.require(metadata.name === '@treeseed-cordis/' + owner); for (const lifecycle of ['preinstall', 'install', 'postinstall', 'prepare', 'prepack', 'postpack'])
+        this.require(metadata.scripts[lifecycle] === undefined); copyFileSync(this.input.ui.archive, join(directory, 'vendor/ui.tgz')); if (metadata.peerDependencies?.['@treeseed-cordis/ui'])
+        metadata.peerDependencies['@treeseed-cordis/ui'] = this.input.ui.version; metadata.cordisCandidate.ui = { repository: 'https://github.com/treeseed-ai/ui.git', commit: this.input.ui.source.baseCommit, sha256: this.input.ui.sha256, qualificationFixture: { recipeDigest: this.input.ui.recipeDigest } }; if (owner === 'api') {
+        const admin = this.selected.get('admin')!;
+        copyFileSync(admin.path, join(directory, 'vendor/admin.tgz'));
+        metadata.cordisCandidate.admin = { repository: this.input.owners.admin.repository, commit: this.input.owners.admin.commit, sha256: admin.sha256, qualificationFixture: true };
+    } writeFileSync(join(directory, 'package.json'), JSON.stringify(metadata, null, 2) + '\n'); const cache = join(this.input.output, 'cache-' + owner); this.command(process.execPath, ['install', '--force', '--ignore-scripts'], directory, cache); const installed = JSON.parse(readFileSync(join(directory, 'node_modules/@treeseed-cordis/ui/package.json'), 'utf8')); this.require(installed.version === this.input.ui.version && this.sha(join(directory, 'vendor/ui.tgz')) === this.input.ui.sha256); this.command(process.execPath, ['run', 'check'], directory); this.command(process.execPath, ['run', 'build'], directory); let path: string; if (owner === 'cli') {
+        path = join(directory, 'dist/trsd-linux-x64');
+    }
+    else {
+        const output = join(this.input.output, owner + '-archive');
+        mkdirSync(output, { mode: 0o700 });
+        this.command(process.execPath, ['pm', 'pack', '--ignore-scripts', '--destination', output], directory);
+        path = join(output, 'treeseed-cordis-' + owner + '-' + metadata.version + '.tgz');
+    } this.require(existsSync(path)); const result = { path, sha256: this.sha(path) }; this.selected.set(owner, result); this.evidence[owner] = { ...result, source, version: metadata.version, lockSha256: this.sha(join(directory, 'bun.lock')), manifestSha256: this.sha(join(directory, 'package.json')) }; }
+    run(): void {
+        const previousUmask=process.umask(0o027);
+        try {
+            this.require(isAbsolute(this.input.output) && resolve(this.input.output) === this.input.output && realpathSync(dirname(this.input.output)) === dirname(this.input.output) && this.sha(this.input.ui.archive) === this.input.ui.sha256);
+            mkdirSync(this.input.output, {mode:0o700});
+            for(const owner of ['admin','api','cli'] as const)this.build(owner);
+            const receipt={formatVersion:1,fixture:true,purpose:'assembled-ui-only-owner-rebuild',ui:this.input.ui,owners:this.evidence};
+            writeFileSync(join(this.input.output,'ui-owner-closure.json'),JSON.stringify(receipt,null,2)+'\n',{mode:0o600,flag:'wx'});
+            process.stdout.write(JSON.stringify(receipt)+'\n');
+        } finally {
+            process.umask(previousUmask);
+        }
+    }
+}
+new UiOwnerClosure(JSON.parse(readFileSync(process.argv[2]!, 'utf8'))).run();

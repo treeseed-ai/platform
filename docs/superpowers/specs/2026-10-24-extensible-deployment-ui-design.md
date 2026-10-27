@@ -1,6 +1,6 @@
 # Extensible container providers and required reusable UI
 
-Date: 2026-10-24. Status: **reviewed plan; UI setup only authorized, followed by maintainer setup review**. Tracking: [Platform #722](https://github.com/treeseed-ai/platform/issues/722). This amendment extends the [composition/provider design](2026-10-24-cordis-composition-providers-design.md) before Task 3C. The maintainer has authorized merging this plan and then Task 3C.0 UI initialization only. Product implementation, baseline publication, Task 3D and activation remain gated; this PR changes documentation only.
+Date: 2026-10-24. Status: **reviewed plan; UI setup accepted, baseline publication and Task 3C implementation resumed**. Tracking: [Platform #722](https://github.com/treeseed-ai/platform/issues/722). This amendment extends the [composition/provider design](2026-10-24-cordis-composition-providers-design.md) before Task 3C. The maintainer accepted UI setup, authorized baseline publication and resumed Task 3C. Task 3D, production publication and activation outside isolated acceptance fixtures remain separately gated.
 
 ## Intent and evidence boundary
 
@@ -104,6 +104,12 @@ UI provides separate `./contracts`, `./react`, `./browser`, `./server` and `./te
 | `UiBrowserRenderer.mount(target, view)` | UI-owned React DOM mounting/hydration adapter with native effects, accessible semantics and awaited root/listener/subscription disposal |
 | `UiActionDispatcher.invoke(actionId, input)` | Typed adapter supplied by the authorized feature host; UI does not perform privileged domain operations or acquire credentials |
 | Theme, component and navigation contribution providers | Explicit typed selection/collection contracts; collisions and incompatible models fail before mount |
+
+### Mobile-first rendering is mandatory
+
+Every visual component starts with a usable 320 CSS-pixel layout and adapts through widescreen monitors. Qualification widths are **320, 375, 768, 1024, 1440, 1920 and 2560 CSS pixels**; test each exported visual component, not only a responsive shell. Use fluid/logical dimensions and progressively enhanced layouts, accessible names/labels, keyboard focus, touch targets at least 44×44 CSS pixels for authored controls, long/localized text and 200% text resizing. Do not hide required actions/data on narrow screens. Page/content must reflow without horizontal scrolling; intrinsically two-dimensional tables may use an explicitly labeled, keyboard-focusable local overflow region, never whole-page overflow. Wider screens may increase columns/space while keeping readable text measures. Respect reduced motion and avoid hover-only actions.
+
+The [WCAG reflow guidance](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) and [enhanced target-size guidance](https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html) inform these project requirements; passing the named tests is not a blanket WCAG conformance claim. CSS/React components, design tokens and target renderers remain UI-owned. Mobile-first here requires responsive web rendering; future native mobile providers need their separate platform qualification.
 
 ### React portability and shared identity
 

@@ -1,6 +1,6 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722; only UI setup is resumed, with Task 3C/3D product implementation unstarted.**
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D remains unstarted.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -10,13 +10,13 @@
 
 **Spec:** [Required composition and provider design](../specs/2026-10-24-cordis-composition-providers-design.md). Tracking: [Platform #704](https://github.com/treeseed-ai/platform/issues/704). This refines [Tasks 3–10](2026-10-23-cordis-platform.md); Tasks 1–2 remain completed historical evidence.
 
-The [Task 3C amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md) propose required reusable UI and generic service instances. They supersede optional UI wording and any interpretation of the Task 3B four-service profile as a permanent limit. The maintainer authorizes integration and UI setup only, followed by setup review.
+The [Task 3C amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md) propose required reusable UI and generic service instances. They supersede optional UI wording and any interpretation of the Task 3B four-service profile as a permanent limit. The maintainer accepted UI setup, authorized publication and resumed Task 3C implementation, followed by PR review.
 
-The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. Only UI setup is resumed now, followed by its setup review; see the detailed Task 3C amendment/plan.
+The maintainer's PR #723 review selects pure reusable React TSX class components in UI, with native Cordis provider selection and UI-owned browser/SSR/terminal adapters. Astro consumes the React exports; renderer-neutral contracts support future desktop/native adapters without claiming DOM/native equivalence. Identity retains shared Keycloak authority and hosts retain session/token custody. UI setup review/publication is complete and Task 3C is explicitly resumed; see the detailed Task 3C amendment/plan and [execution evidence](../../task3c-execution-status.md).
 
 ## Global constraints
 
-- Every human-facing browser/server/terminal surface consumes UI-owned class providers. Admin/CLI keep domain view models and authority; SDK machine contracts remain separate. UI initialization/review is the first future Task 3C step.
+- Every human-facing browser/server/terminal surface consumes UI-owned class providers. Admin/CLI keep domain view models and authority; SDK machine contracts remain separate. UI initialization/review and baseline publication are complete; Task 3C candidates retain the separate Agent initialization/review gate.
 - Cordis roots are required in CLI, API, Deployment worker and Agent. A manually assembled class graph cannot satisfy this gate.
 - ServiceLocator is a typed native-Cordis facade; no parallel DI graph, service instance cache, provider lifecycle or static provider-switch catalog.
 - Provider adapters at each meaningful seam; invariant exceptions require a reason in the owning issue and the spec's seam ledger.
@@ -75,7 +75,7 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
 
-Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C/3D remain unstarted.
+Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and qualified for PR review; Task 3D remains unstarted.
 
 ## Task 3B: First installed composition and durable host root
 
@@ -94,16 +94,16 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 
 ## Task 3C: Extensible container plugins, reusable UI and safe installation
 
-**Detailed execution authority:** the [Task 3C owner plan](2026-10-24-task3c-extensible-plugins-ui.md) implements the [proposed amendment](../specs/2026-10-24-extensible-deployment-ui-design.md). It replaces this milestone's earlier acquisition-only task list; product implementation remains pending UI setup review/resumption.
+**Detailed execution authority:** the [Task 3C owner plan](2026-10-24-task3c-extensible-plugins-ui.md) implements the [proposed amendment](../specs/2026-10-24-extensible-deployment-ui-design.md). It replaces this milestone's earlier acquisition-only task list; UI setup was accepted and product implementation explicitly resumed. Final candidate verification is recorded in [the execution ledger](../../task3c-execution-status.md).
 
 **Files/interfaces:** SDK format-3 service/binding/profile/transition contracts and portable native composition; Deployment generic graph/engine, resource receipts and `PluginManager.install/select`; UI reusable `./contracts`, `./browser`, `./server`, `./terminal`; Identity/API typed declarations; Admin/CLI UI consumers; Platform exact assembly. Existing seven operations remain unchanged.
 
-- [ ] After approval and explicit resumption, initialize only UI in its canonical repository, then **stop for setup review before dependencies/scaffolding/code**. Publish only with explicit instruction. Agent retains its separate Task 3D gate.
-- [ ] Deliver executable typed service/probe/endpoint bindings with named repeated provider instances. Remove fixed role/count, package-name, image and routing assumptions from generic host code; retain four services as the default profile.
-- [ ] Deliver required reusable UI providers before extending human surfaces; replace existing Admin HTML/DOM and CLI human rendering with UI public exports. Enforce source/import boundaries and qualify browser/terminal default construction and accessibility.
-- [ ] Qualify additive activation with stable per-service resource/credential/TLS retention, explicit old-format migration, bounded probes, native leases and truthful pending/recovery results. Unsafe restart/state/issuer/TLS migration requires explicit scope authorization.
-- [ ] Deliver NPM/HTTPS-Git source/build adapters, managed pinned clean-host helpers, pre-acquisition idempotency receipts, immutable registration and common plan/apply. Preserve source/build trust, scripts-disabled custody and lost-reply guarantees from the provider design.
-- [ ] Prove a fifth service, two same-provider instances, a new probe provider without engine edits, unchanged original resources, and UI-only replacement on real browser AND terminal surfaces. Run owner and exact Ubuntu 26.04 assembled/CI gates; open review candidates and stop.
+- [x] After approval and explicit resumption, initialize only UI in its canonical repository, then **stop for setup review before dependencies/scaffolding/code**. Publish only with explicit instruction. Agent retains its separate Task 3D gate.
+- [x] Deliver executable typed service/probe/endpoint bindings with named repeated provider instances. Remove fixed role/count, package-name, image and routing assumptions from generic host code; retain four services as the default profile.
+- [x] Deliver required reusable UI providers before extending human surfaces; replace existing Admin HTML/DOM and CLI human rendering with UI public exports. Enforce source/import boundaries and qualify browser/terminal default construction and accessibility.
+- [x] Qualify additive activation with stable per-service resource/credential/TLS retention, explicit old-format migration, bounded probes, native leases and truthful pending/recovery results. Unsafe restart/state/issuer/TLS migration requires explicit scope authorization.
+- [x] Deliver NPM/HTTPS-Git source/build adapters, managed pinned clean-host helpers, pre-acquisition idempotency receipts, immutable registration and common plan/apply. Preserve source/build trust, scripts-disabled custody and lost-reply guarantees from the provider design.
+- [x] Prove a fifth service, two same-provider instances, a new probe provider without engine edits, unchanged original resources, and UI-only replacement on real browser AND terminal surfaces. Run owner and exact Ubuntu 26.04 assembled/CI gates; open review candidates and stop.
 
 **Deliverable:** exact plugin installation activates qualified safe services/contributions through a generic host, with reusable UI and truthful action-required boundaries. Removal remains Task 7; full recovery Task 6. Documentation approval alone initializes nothing.
 
@@ -154,4 +154,13 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required. Task 3A native composition and Task 3B installed composition now have verified owner implementations. Task 3C/3D remain unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; completed Task 3A/3B checkboxes above record observed owner, program and assembled verification. The earlier architecture and Tasks 3A/3B have been accepted and delivered. The maintainer has requested integration of the #722 amendment and UI initialization only; stop after that setup for review. Agent remains separately gated at Task 3D.
+Tasks3A/3B are integrated. Task3C owner implementations and exact public-artifact acceptance
+are qualified for maintainer PR review; see [the candidate map](../../task3c-review.md),
+[execution evidence](../../task3c-execution-status.md) and composition/task3c.json. Required
+owner/assembled checks cover genuine sources, repeated services, retained credentials/TLS,
+qualified native readiness replacement, explicit historical custody and both UI surfaces.
+Task3C is not integrated or released by this record. No merge or issue closure is authorized.
+
+Task3D remains unimplemented. Agent must receive its own same-repository initializer and
+explicit setup review before code. Broader runtime replacement, parity, recovery and removal
+remain Tasks4–7, with unchanged repository/Keycloak/release boundaries.

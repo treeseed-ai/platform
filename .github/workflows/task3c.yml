@@ -1,0 +1,126 @@
+name: Task 3C exact installed acceptance
+on:
+  pull_request:
+    branches: [cordis]
+  push:
+    branches: ['feature/**', 'fix/**']
+permissions:
+  contents: read
+jobs:
+  extensible:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        scene: ['NPM instances', 'assembled packaged Git acquisition', 'approved Git build acquisition', 'registered packaged Git', 'registered Git build', 'qualified native live']
+    env:
+      CORDIS_REQUIRE_PLAN: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: pins
+        run: bun -e "class Pins {static run(){const p=require('./composition/task3c.json');console.log('cli='+p.cli.commit)}}Pins.run()" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/cli
+          ref: ${{ steps.pins.outputs.cli }}
+          path: packages/cli
+          persist-credentials: false
+      - run: git remote set-url origin https://github.com/treeseed-ai/cli.git
+        working-directory: packages/cli
+      - run: bun install --frozen-lockfile --ignore-scripts && bun run check && bun run build
+        working-directory: packages/cli
+      - run: bun verification/task3c/prerequisites.mts
+      - name: Require exact built CLI and actual installed scene
+        run: bun test tests/task3c-plugins.test.mts --test-name-pattern '${{ matrix.scene }}'
+  ui:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: pins
+        run: bun -e "class Pins {static run(){const p=require('./composition/task3c.json');for(const n of ['cli','api','admin'])console.log(n+'='+(n==='cli'?p.cli:p.owners[n]).commit)}}Pins.run()" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/cli
+          ref: ${{ steps.pins.outputs.cli }}
+          path: packages/cli
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/api
+          ref: ${{ steps.pins.outputs.api }}
+          path: packages/api
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/admin
+          ref: ${{ steps.pins.outputs.admin }}
+          path: packages/admin
+          persist-credentials: false
+      - name: Normalize canonical owner HTTPS remotes
+        run: |
+          for task_owner in cli api admin; do
+            git -C "packages/$task_owner" remote set-url origin "https://github.com/treeseed-ai/$task_owner.git"
+          done
+      - run: bun install --frozen-lockfile --ignore-scripts && bun run build
+        working-directory: packages/cli
+      - run: bun install --frozen-lockfile --ignore-scripts
+        working-directory: verification/task3c
+      - run: bun run check:task3c
+      - run: bun test tests/task3c-selection.test.mts
+      - name: Use official Ubuntu archive for bounded browser prerequisites
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
+      - run: sudo apt-get update && sudo apt-get install -y libnss3-tools
+      - run: bunx playwright install --with-deps firefox
+        working-directory: verification/task3c
+      - run: bun verification/task3c/prerequisites.mts
+      - run: bun run prepare:ui && bun run test:ui
+  migration:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/cli
+          ref: 89fb78b6fd362a8de9dec9d238a310f65545175b
+          path: packages/cli
+          persist-credentials: false
+      - run: git remote set-url origin https://github.com/treeseed-ai/cli.git
+        working-directory: packages/cli
+      - run: bun install --frozen-lockfile --ignore-scripts
+        working-directory: verification/task3c
+      - name: Use official Ubuntu archive for bounded browser prerequisites
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
+      - run: sudo apt-get update && sudo apt-get install -y libnss3-tools
+      - run: bunx playwright install --with-deps firefox
+        working-directory: verification/task3c
+      - run: bun verification/task3c/prerequisites.mts composition/task3b.json
+      - run: bun run test:migration
+  task3c-acceptance:
+    if: always()
+    needs: [extensible, ui, migration]
+    runs-on: ubuntu-26.04
+    steps:
+      - env:
+          QUALIFIED: ${{ needs.extensible.result == 'success' && needs.ui.result == 'success' && needs.migration.result == 'success' }}
+        run: test "$QUALIFIED" = true

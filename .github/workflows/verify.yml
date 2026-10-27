@@ -61,6 +61,8 @@ jobs:
       - run: bun install --frozen-lockfile --ignore-scripts && bun run verify
         working-directory: packages/cli
       - run: bun install --frozen-lockfile --ignore-scripts
+      - name: Use official Ubuntu archive for bounded browser prerequisites
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
       - name: Require real host and browser prerequisites
         run: |
           docker info

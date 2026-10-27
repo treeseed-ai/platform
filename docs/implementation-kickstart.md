@@ -146,3 +146,7 @@ approve PRs or merge main. Clean up only a verified merged task-owned branch;
 protect cordis, staging, main and unrelated retained work. Deliver Task 1 and
 report its result before starting Task 2.
 ```
+
+## Task 3C resumed: mobile-first UI
+
+The maintainer accepted UI setup and authorized exact baseline publication and Task 3C implementation. Every visual component must be mobile-first from 320 CSS pixels to widescreen monitors; test 320/375/768/1024/1440/1920/2560 widths, long content, keyboard/touch and 200% text resizing. Keep authored controls at least 44×44 CSS pixels, required actions visible, logical/fluid dimensions and no page overflow (labeled local semantic-table overflow is permitted). UI owns components/styles/renderers; consumers retain domain behavior and Identity retains Keycloak authority. All issues, including #678, remain open.

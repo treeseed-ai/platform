@@ -4,7 +4,12 @@
   "type": "module",
   "scripts": {
     "check:installed": "tsc --strict --noEmit --module nodenext --target es2022 --skipLibCheck --types node,bun tests/task3b-installed.test.ts",
-    "test:installed": "bun run check:installed && bun test tests/task3b-installed.test.ts --timeout 900000"
+    "test:installed": "bun run check:installed && bun test tests/task3b-installed.test.ts --timeout 900000",
+    "check:task3c": "verification/task3c/node_modules/.bin/tsc --strict --noEmit --module nodenext --target es2022 --skipLibCheck --types node,bun --typeRoots verification/task3c/node_modules/@types verification/task3c/*.mts tests/task3c-*.mts",
+    "prepare:ui": "bun verification/task3c/prepare-ui.mts",
+    "test:extensible": "bun test tests/task3c-plugins.test.mts",
+    "test:ui": "bun test tests/task3c-ui.test.mts",
+    "test:migration": "bun verification/task3c/migration-program.mts"
   },
   "devDependencies": {
     "@treeseed-cordis/sdk": "file:packages/cli/vendor/sdk.tgz",
