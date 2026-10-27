@@ -129,3 +129,12 @@ Public helper export names remain stable while their emitted paths move under `t
 Keycloak identity and API's approved committer policy are preserved. Each repository has its own
 issue branch and review candidate targeting `cordis`; all issues, including #678, remain open.
 Task 3D runtime work stays held pending review of this higher-priority cleanup.
+
+## Pre-merge discovery review
+
+A disposable class-based probe combined an explicit single-file tier command with a CI
+name-filter matrix that omitted the only registered case. The current checker returned zero
+errors. The review fix must reject both conditions and overlapping/empty/malformed partitions.
+All existing cases and their inputs/timeouts/assertions remain preserved; one additional
+partition regression per implemented repository will increase the portfolio inventory to 422.
+The final reviewed heads and CI results are recorded in the nine owning PRs.
