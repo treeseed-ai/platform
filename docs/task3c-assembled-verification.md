@@ -62,3 +62,9 @@ The checkout action initially supplies HTTPS remotes without the canonical `.git
 CI must explicitly normalize each fixture owner's origin to its declared canonical HTTPS URL
 before source identity checks. The strict checks remain intact; the first hosted UI job caught
 this setup mismatch before any fixture activation.
+
+Hosted qualification also exposed the acquisition-plus-two-selections Git build case reaching
+its existing 420-second owner deadline. Acquisition and source-free registered selection are
+separate required owner/Platform jobs, keeping the deadline and all assertions. The selection
+case starts from one genuine installed archive and verifies two further activations with the
+source stopped; acquisition independently keeps two named installs and exact offline replay.
