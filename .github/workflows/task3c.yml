@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scene: ['NPM instances', 'packaged Git', 'approved Git build', 'qualified native live']
+        scene: ['NPM instances', 'assembled packaged Git acquisition', 'approved Git build acquisition', 'registered packaged Git', 'registered Git build', 'qualified native live']
     env:
       CORDIS_REQUIRE_PLAN: '1'
     steps:

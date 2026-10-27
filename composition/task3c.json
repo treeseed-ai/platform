@@ -11,7 +11,7 @@
   },
   "cli": {
     "repository": "https://github.com/treeseed-ai/cli.git",
-    "commit": "653faf6e01b45ce2bc720c93dd510a3189ee0296",
+    "commit": "7b773b74c7c9af64a2aee17bc334ce67e3066e0e",
     "checkout": "packages/cli",
     "binary": "packages/cli/dist/trsd-linux-x64",
     "sha256": "2b395c9399c13680bdefb0d9036c24c7fadfce36cf5faee120f5e014c28b1bf7"
