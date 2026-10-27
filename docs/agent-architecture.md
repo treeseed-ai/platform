@@ -191,7 +191,11 @@ NPM/pinned-Git substitution, real Kata setup/exclusive claim/refill/destruction,
 contract evidence and exact assembled archives. Permanent tests use behavior names in the four
 tests tiers. No task-numbered permanent specifications.
 
-Real Kata acceptance requires an isolated self-hosted Ubuntu 26.04 x64 runner labelled
-`cordis-kata`. Provisioning is outstanding; do not register the workstation implicitly. Hosted
-checks remain useful but cannot substitute for this gate. All issues remain open; review handoff
-does not authorize merges, production release or cutover.
+Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. Qualify GitHub-hosted
+`ubuntu-26.04` first through [Platform #792](https://github.com/treeseed-ai/platform/pull/792):
+usable KVM, a real pinned guest and verified cleanup. GitHub documents Linux KVM acceleration
+but offers no general nested-VM support guarantee; this caveat does not establish inability.
+If hosted qualification is unsuitable, an isolated self-hosted `cordis-kata` runner remains an
+explicit provisioning prerequisite. Do not register the workstation implicitly. The full Agent
+pool/setup/replacement gate remains required on whichever venue qualifies. All issues remain
+open; review handoff does not authorize merges, production release or cutover.

@@ -20,7 +20,7 @@ records owner slices, tests, source/artifact evidence and outstanding gates.
 - Setup runs inside claimed sandboxes using exact declared entrypoints. Offline default; declared destinations require host policy and grants. No ambient host lifecycle scripts or used-sandbox recycling.
 - Native provider instances are generation-pinned through verified cleanup. Affected old warm bases are discarded; worker/sandbox replacement requires restart unless an exact transition qualifies.
 - Small cohesive classes and twenty-line changed methods with reviewed exact exceptions are critical across all nine Cordis owners, enforced by a shared development-only checker and contextual refactoring obligations.
-- Dedicated isolated self-hosted Ubuntu 26.04 x64 KVM runner labelled cordis-kata is required. Provisioning is outstanding; no implicit workstation registration.
+- Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. Qualify GitHub-hosted ubuntu-26.04 first (Platform #791/#792); dedicated isolated self-hosted cordis-kata provisioning is an explicit fallback prerequisite if hosted qualification is unsuitable. No implicit workstation registration.
 - Preserve owner repositories, licenses, API committer policy, original checkouts, long-lived branches and every issue including #678. Hand review candidates back; no merges, production release or cutover.
 
 ## Evidence limits

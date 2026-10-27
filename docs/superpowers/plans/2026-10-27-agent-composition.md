@@ -20,7 +20,7 @@
 - Offline setup by default; only declared destinations allowed by host policy and assignment grants. No ambient lifecycle script runs in the live install.
 - Every issue including #678 stays open. PRs target cordis and are handed back for review; no merge, production publication or cutover authorization.
 - Permanent tests use tests/acceptance, tests/regression, tests/integration and tests/unit with behavior names; support contains no registrations. Keep historical artifact bytes and provenance unchanged.
-- Dedicated isolated self-hosted Ubuntu 26.04 x64 runner, labels self-hosted/linux/x64/cordis-kata, is required for real Kata acceptance. Provisioning is outstanding; do not register the workstation implicitly. Hosted checks do not replace the hardware gate.
+- Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. First qualify GitHub-hosted ubuntu-26.04 through Platform #791/#792; general unsupported nested-VM status does not prove inability. If unsuitable, isolated self-hosted provisioning (labels self-hosted/linux/x64/cordis-kata) remains an explicit prerequisite. Do not register the workstation implicitly. The real runtime gate cannot be replaced by schema-only checks.
 
 ## Review focus
 
@@ -106,7 +106,7 @@
 - [ ] Before composition changes, write installed seed/manager/worker/Kata/Keycloak scene and genuine NPM/HTTPS Git provider fixtures.
 - [ ] Qualify install A, held execution, B selection/drain/fencing, original generation cleanup, fresh B acknowledgement and all owned resource cleanup.
 - [ ] Cover tampering, missing/duplicate/cyclic providers, incompatible profiles, stale grants, concurrent claims/publication, restart/lost replies, setup network/secret/script canaries and failed destruction.
-- [ ] Add real Kata acceptance on the dedicated self-hosted venue, normal hosted compatibility checks and an aggregate gate that cannot silently skip missing prerequisites. Preserve historical tests/pins.
+- [ ] Qualify hosted Ubuntu KVM/Kata first; add full Agent Kata acceptance on the qualified venue, normal compatibility checks and an aggregate gate that cannot silently skip missing prerequisites. Use explicit isolated self-hosted provisioning only if hosted qualification is unsuitable. Preserve historical tests/pins.
 - [ ] Run owner checks/build/all applicable tiers and actual consumer artifacts; run exact assembled CI. Report every unavailable prerequisite rather than claiming completion.
 - [ ] Reload release-workflow, self-review actual diffs/CI and open bounded owner cordis PRs with Part of references and per-owner changelogs. Keep all issues open and hand back dependency order; no merges.
 
