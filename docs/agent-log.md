@@ -97,7 +97,7 @@ Next: qualify API640 and recover the real TreeDX proposal through MCP; establish
 | Cost/clock | Canonical elapsed 98 + 59 sec; native active 97.927985191 + 58.641594773 sec. Reported model input 1,811,155 / cached 1,676,544 / output 8,173 / reasoning 3,375; 18 compliant clock checks. Price/settlement not inferred |
 | Evidence limit | Two Writer and one reviewer nonreplayable check claims omitted; verification arrays empty. VM teardown receipts do not certify Compose cleanup |
 | Actual blocker | Owner estimated maximumReviewCycles=1. First request-changes exhausted that authority; actor/review/successors blocked. No automatic correction admitted; no reset or allowance increase |
-| Cleanup | Supported MCP stop requested after both assignments completed/released, no active assignment. Plan closing; original 15:05–19:05 window preserved. Final Reporter/closure read-back still pending at this checkpoint |
+| Cleanup | Supported MCP stop requested after both assignments completed/released, no active assignment. Plan closing; original 15:05–19:05 window preserved. Native final read-back cancelled/ended at 15:27:07.452 UTC; final report contents not yet assessed |
 
 Architect and Writer discussion `send-f46e9235e123bbadb9b464ac611783fb` recommends linked documentation correction plus explicit governed downstream admission. The native API rejects editing accepted proposals; no public path to splice that correction into this accepted graph has yet been established. Do not call this a completed Writer→Tester→Engineer→Releaser chain. Team definitions, grants, allocations and concurrency were unchanged.
 
