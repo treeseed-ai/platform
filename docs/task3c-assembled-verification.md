@@ -57,3 +57,8 @@ The original historical composition record and owner working checkouts are uncha
 any accepted application; apply does not pull. CI requires actual Docker/Compose and
 Firefox/NSS tooling on Ubuntu26.04, plus all four source scenes, UI and migration jobs in the
 final aggregate. No prerequisite skip counts as acceptance.
+
+The checkout action initially supplies HTTPS remotes without the canonical `.git` suffix.
+CI must explicitly normalize each fixture owner's origin to its declared canonical HTTPS URL
+before source identity checks. The strict checks remain intact; the first hosted UI job caught
+this setup mismatch before any fixture activation.
