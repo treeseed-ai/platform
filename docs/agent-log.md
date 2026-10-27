@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 22:24 UTC. Issues own plans/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure remain unknown.
+Updated: 2026-10-27 22:51 UTC. Issues own plans/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure remain unknown.
 
 [Complete frozen history through 21:51 UTC](https://github.com/treeseed-ai/platform/blob/79742fecbaece386ff788b8f64a82477c0e83d4c/docs/agent-log.md), blob `fdc05a927c758e85572f81a5b67df53b90714b28`, preserves the preceding checkpoints, all failed runs, original receipts, team changes and earlier frozen-history links. This consolidation makes current state concise; it does not replace failed observations with later passes.
 
@@ -18,7 +18,8 @@ This is the explicitly enumerated recovery cohort below, not an audited lifetime
 | 21:36 | 0 | 5 | 0/5 = 0% | +0/+2 |
 | 21:51 | 0 | 5 | 0/5 = 0% | +0/+0 |
 | 22:16 | 0 | 6 | 0/6 = 0% | +0/+1 |
-| 22:24 | 0 | 6 | **0/6 = 0%** | +0/+0; two governed team changes, no new execution |
+| 22:24 | 0 | 6 | 0/6 = 0% | +0/+0; two governed team changes, no new execution |
+| 22:51 | 0 | 6 | **0/6 = 0%** | +0/+0; Deployment326 published; Agent528 pending, no team activation |
 
 Mixed/unclassified deliveries in this cohort:0. Current coordinator code deliveries:
 
@@ -29,7 +30,7 @@ Mixed/unclassified deliveries in this cohort:0. Current coordinator code deliver
 | [Deployment1012](https://github.com/treeseed-ai/deployment/pull/1012) | 08e1428f8404b08c384c8c95eb6b79f33bce5f71 | Checked merge; rc324 publication failed, no adoption. |
 | [Deployment1015](https://github.com/treeseed-ai/deployment/pull/1015) | 194a8fad12f16a0e9269fa5f0c9906604f5db5f7 | Checked SDK CLI closure repair; rc325 publication failed, no adoption. |
 | [API641](https://github.com/treeseed-ai/api/pull/641) | 008e400cfb4974615b040c33a1bec8f773c58c7f | Supported rebuild and real nativeMCP provenance readback passed. |
-| [Deployment1016](https://github.com/treeseed-ai/deployment/pull/1016) | fbb3046847f074e004f4bc82c8c842feecadc5fa | All required checks passed; rc326 protected publication running, no release/adoption claim. |
+| [Deployment1016](https://github.com/treeseed-ai/deployment/pull/1016) | fbb3046847f074e004f4bc82c8c842feecadc5fa | All required checks passed; rc326 published, release asset/exact-head and signed APT readback passed. Active runtime adoption remains pending. |
 
 ## Current team architecture — actual governed changes
 
@@ -69,22 +70,26 @@ API641 supported adoption returnedok:true/manual:[agent.provider]; receiptSHA256
 
 **Git product retrieval remains OPEN:** actual MCP assignment read for Engineera691 returns its exact simulation Git reference but artifacts=[]/artifactRefs=[]. The configured handler emits no artifact payloads and the provider declares only result.json; its existing artifact transport decodes bytes asUTF-8. Local export is not a shared authenticated MCP route. No wrapper, new queue/runner, alternate source-transfer implementation or artifact backfill was introduced. SDK411 retains this evidence and remaining generic input-schema gaps; do not confuse references with downloadable products.
 
-## Checked dependency repair and live publication
+## Checked dependency repair and published release
 
 [Deployment1016 required40590103127](https://github.com/treeseed-ai/deployment/actions/runs/40590103127) passed every job: complete verify:direct; fresh Deployment1409/1409 and executing Reviewer213/213 prerequisites;307/307component steps, packaging, exact-head custody, secret custody and uninstall. Sourcee7c49036, testedmergef785994a and protectedmergefbb30468 share tree30f69fd4ef7ea89bd2c2446e1747cf4d819df046.
 
 Verified downloaded sceneZIP12775466201 SHA25641bb3dca78ad6e34fc5fe23cf831b82a8476219505dd09896d29a59c0c15115a; candidateZIP12775730128 SHA2569217c6fdd2c541181071e7a47ca99938fb8e04a0d26cac9d94db2c1c3efecb65. Existing Verify Reviewer preparation is now shared with Publish; Publish pins Node24.12 and prunes the same SDK tree. Original assertions, native cases, pins, scene bindings and timeouts remain.
 
-Annotated rc326 tagobjectfc0d127302cef35ac93cf560c1c022a9ffb012d5 peelsfbb30468, remote readback passed. [Protected publisher40593520279](https://github.com/treeseed-ai/deployment/actions/runs/40593520279) uses the SAME711a06d6 composition locks as Verify. Native initialization and the full-suite step passed; Debian verification is running. **Assets, signedAPT, release readback and runtime adoption are not yet claimed.**
+Annotated rc326 tagobjectfc0d127302cef35ac93cf560c1c022a9ffb012d5 peelsfbb30468, remote readback passed. [Protected publisher40593520279](https://github.com/treeseed-ai/deployment/actions/runs/40593520279) **passed**, using the SAME711a06d6 composition locks as Verify: native initialization, full1409/1409 owning tests, packaging, SBOM/attestation, GitHub assets and signedAPT. APT Pages converged to f25f7a01acf17f76b82ff1e06b18f01b237198a6. Raw publisher logSHA25640b8cea8f76c15e964451b9fd21a0243baff6669d82d36206790eb72eeb952c1.
+
+Actual published runtimeSHA256 **435b3393b0168fee48d7c8d128763458edf2c5a84b8f032c5a6100800e1c2d2e** matches sealed publisher artifact12776165169 (ZIP0c83639a23bf898d7dd9b21e2b814ae8d01903cdece9abaae012c26862c4f059). Published exact-headJSON identifies fbb30468/tag0.1.0-rc.326, SHA25660952e30ff76819d31f2b2a8e8f226a8c7084132da60077937d1e96c2d5ffa46. This is actual publication/readback, not active host/Agent runtime adoption.
 
 Preserved failures: rc324 publisher40580402484 failed missing SDK zod-to-json-schema after differing composition inputs; rc325 publisher40588357465 failed4original prerequisite cases/1405passed due missing Reviewer and changed held lock bytes under Node24.21/npm11.19. Immutable tags remain. Raw325 logSHA2567fcd0cda4087a04cf771bfce464ac6922b8f422bee344a16fb6adc0af783d02f. All earlier native/cache/backup/reporting failures remain in frozen history and Deployment913.
 
-Agent494 local follow-up **bfe61b3031d5b3249b80f77a9ed5d8e46c4e56f5** is clean/unpushed. It removes the obsolete verification dependency overlay and preserves original Deployment build-SDK custody;2binding tests passed under exact Node24.12. Final manifest/lock/native-owner source/digest/artifact inputs await actual publication, followed by complete Agent qualification. No adopted Agent repair yet.
+[Agent528](https://github.com/treeseed-ai/agent/pull/528), candidate **d478b65cf6964cc6ef309002c15646b305dab1b1**, pins actual published Deployment326/source/archive, removes the obsolete CI overlay and preserves Deployment CBC build-SDK custody and original22 SDK integrated steps. Strict build/typecheck,2packaging bindings and7real provider-freeze cases passed locally. First full run40596679520 stopped before complete suites/scenes: native prerequisites160passed/1failed because the original custody scene step lacked expect.status. Restored that assertion without weakening the validator; focused bindings16/16 passed. Fresh complete candidate qualification is pending. Initial omitted PR-template metadata failure40596679634 was corrected;40597050870 passed on the unchanged earlier source. Other local failed observations (missing nested SDK declarations, incorrect function/array expectation, missing container Git metadata) are retained in Agent494. No adopted Agent repair or additional integrated delivery is claimed.
+
+Declared Agent SDK artifactab5/0.13.0-rc.131 is held separately from the active persistent SDK31bf (same version label). Exact composed-runtime compatibility must be established before activation; do not silently downgrade the persistent selection or reuse receipts across differing inputs.
 
 ## Environment custody and next work
 
 Active host source92198d11 in codex-candidate-delta; generationdev-1793107125904-017c2586/manifest509a094a; current guest106ae8b4. Old guest receipts do not qualify the changed guest. Active source/private dependencies, rollback, root user files, credentials, retained products and TreeDX4GiB/default configurable cache budget remain protected. Removed only owned merged branches/worktrees after exact integration/adoption; no global prune.
 
-Next: finish current publication/readback and the exact Agent dependency/runtime qualification; close supported MCP Git-product retrieval; let the five-member group author its real plan and own estimates, approve only ready authority, then execute/review/integrate meaningful work. Required full instructions/definition/core objective/proposal/Decision, global/profile context queries, mandatory related objectives and searchable real TreeDX history still need actual Codex execution proof. Linked TreeDX Compose proposal899179f2 v2 remains open with0estimates; exhausted earlier attempts are preserved. Guest Compose, simulation local-upstream/origin parity, complete simulated release and automated portfolio cleanup remain **UNPROVEN**.
+Next: finish exact Agent dependency/runtime qualification and supported adoption; close supported MCP Git-product retrieval; let the five-member group author its real plan and own estimates, approve only ready authority, then execute/review/integrate meaningful work. Required full instructions/definition/core objective/proposal/Decision, global/profile context queries, mandatory related objectives and searchable real TreeDX history still need actual Codex execution proof. Linked TreeDX Compose proposal899179f2 v2 remains open with0estimates; exhausted earlier attempts are preserved. Guest Compose, simulation local-upstream/origin parity, complete simulated release and automated portfolio cleanup remain **UNPROVEN**.
 
 The full goal remains active. Team-building changes are real; delegated implementation progress is still0/6.
