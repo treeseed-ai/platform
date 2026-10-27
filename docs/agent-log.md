@@ -1,90 +1,69 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 16:57 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
+Updated: 2026-10-27 17:31 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
 
-[Complete frozen history through 15:28](https://github.com/treeseed-ai/platform/blob/377d262f7185ebc11cf4af867cd8e8542c37023c/docs/agent-log.md), blob `0787ded036e75828274303592c6b7a98254ef394`, retains every previous team change, failed observation, source/candidate receipt and earlier history link. Consolidation does not turn failures into passes.
+[Complete frozen history through 16:57](https://github.com/treeseed-ai/platform/blob/1b8d0f1417e9b46f472351c58a8192000c4678f8/docs/agent-log.md), blob `1ab0731353f1cd58dc8a4612530718245a968f65`, preserves every earlier team change, failed observation, exact source/candidate receipt and preceding history link. Consolidation does not turn failed observations into passes.
 
-## Purpose and operating boundaries
+## Purpose and boundaries
 
-Prove objective → group-built team → shared discussion → each subscriber's own contribution/estimate → approval → dependency-ordered implementation and separate review → ordinary simulated release. Native TreeSeed MCP manages teams/work; no private assignment, estimate, review, usage or node edits. The human authorized code-only bootstrap repairs of backend/MCP defects blocking this flow; coordinator repairs receive no delegated implementation credit.
+Prove objective → group-built team → shared discussion → each subscriber's own contribution/estimate → approval → dependency-ordered implementation and separate review → ordinary simulated release. Native TreeSeed MCP manages teams/work; no private assignment, estimate, review, usage or node edits. Human-authorized code-only bootstrap repairs of blocking backend/MCP defects receive no delegated implementation credit.
 
-Classes govern allocation/memory; groups proposal participation; topics discussion. Every subscriber owns a contribution. No agent/class proposal targeting, fake assignments, verification-only acting work, invented estimates, deadline extensions or erased failure history. Preserve the reserved SDK Tester-on-BASE/Engineer chain and retained products/unknown usage.
+Classes govern allocation/memory; groups govern proposal participation; topics govern discussion. Every subscriber owns a contribution. Preserve original deadlines, unknown usage, retained products and the reserved SDK Tester-on-BASE/Engineer chain. No fake or verification-only assignments, fabricated estimates, review-cycle resets or copied agent patches.
 
-Project toolchains belong in project images. Compose workloads **inside the sandbox** must support services, isolated networking, volumes, real command results and cleanup. This remains unproved; host installations and documentation do not establish it.
+Repository Compose workloads must execute **inside the sandbox**, using project toolchain images and isolated services, networks and volumes, with real exit status and teardown. This remains **UNPROVEN**. Host Rust/Elixir installations and documentation are not guest proof.
 
-## Current team and management changes
+## Teams and management changes
 
-Agent project group `project-agent` has Engineer, Releaser, Technical Writer and Tester. Architect coordinates through addressed discussion; its absence from implementation-group membership is deliberate. All four subscribers discuss/estimate and own real work. Definition revision remains `14cd0e275eda807cc59d3c01ad2e2f35f1cd5ae1`; this checkpoint changed no profile, membership, model, grant ceiling, allocation or concurrency limit.
+Agent `project-agent` subscribers: Technical Writer, Tester, Engineer, Releaser. Architect coordinates through addressed discussion and is not an implementation-group subscriber. Definitions remain `14cd0e275eda807cc59d3c01ad2e2f35f1cd5ae1`; no identities, groups, profiles, models, limits or allocations changed in this checkpoint. Reviewing uses separate executions of the same configured identity by default, not an independent reviewer identity.
 
-Reviewing sources are omitted: a separate reviewing execution uses the same configured identity. This is separate execution, **not independent reviewer identity**.
+The earlier scope overlap was corrected through group discussion, Architect reconciliation, ordinary proposal revision and fresh estimates from the affected owners. All four subscribers supplied their own final estimates; no agent-specific proposal targeting. Accepted v13 permits two review cycles. We did not change issued authority to obtain the successful revision.
 
-Observed improvement: group discussion now agrees on existing work-item IDs before formal correction. Architect authored a full proposal reconciliation from actual owner outputs; the coordinator published it through version-checked MCP. Every surviving field compared identical with the actual estimate. This is governed proposal content, not runtime-state repair. Automatic owner-retirement intent remains absent from the additive estimate-patch contract; no code fix of that behavior is claimed.
+Current discussion `send-4c6ede49ea11475a442240b1c69687d6` addresses Agent Architect/Releaser and Deployment Architect about real publication recovery, missing dependency/build artifacts and sandbox Compose ownership. All three have completed canonical responses and verified VM teardown. Deployment Architect inspected9b61425e and confirmed incremental bundle exclusions and existing source exports; the actual failure and installed dependency artifacts remain unproved. Their inspected source is the authorized base620e629; supplied candidate/failure facts are explicitly distinguished from independent inspection. No new implementation was admitted for that discussion.
 
-Management calls used: communications.send/sends.show; governance.proposals.create/open/show/update/evaluate and decisions.show; workdays.plan/start/show/stop; assignments.list/show; execution.graph.show; protected workday event reads. Signed confirmations use the SDK encoder. No private HTTP/CLI team-management wrapper was used.
+## Scoreboard — real context-read repair
 
-## Scoreboard — real work, costs and review effects
+Proposal `36112257-0e47-43e9-bfbb-f55463d2fe2c` v13 → Decision `332473e7-130c-486f-a394-76b4f33c8d7e`. Exact proposal commit `725e438ec87dc056d38b37e26f61225cf4f43567`; Decision commit `417a131265f594989ec8a48a3e1ec921cf95524a`, repository `repo_25cc2b1854b3ccda`. Native evaluate returned409 graph-revision-conflict after durable acceptance; exact accepted proposal and Decision were read back before execution. No duplicate approval or fabricated graph state.
 
-| Campaign/checkpoint | Real result | Limits |
-|---|---|---|
-| Compose initial group planning | 4 planning + 4 own estimates completed; 401.322778323 native active seconds | One model counter set missing; price not inferred |
-| Compose dependency refinement | Four owners revised their own scopes/dependencies; v10 approved | Broader Compose/runtime behavior unproved |
-| Compose acting workday5394eef1 | Writer Git `c905f990695a4eca03b8d8e8c5d9d9286225f4df`; separate review requested a material correction | Accepted maximumReviewCycles=1 exhausted; no author revision or release |
-| Context first scope round0154a61c | 4 planning + 2 formal estimates; duplicate IDs and inspection-only release scope identified before approval | Stop raced with a Writer estimate; cancelled output retained, not counted/copy-pasted |
-| Context second round7a153451 | 4 planning + 4 corrected own estimates completed; 281.15883226 native active / 286 summed canonical elapsed seconds | Four later automatic re-planning turns failed empty; their model tokens/cost remain unknown |
-| Group scope discussion53204046 | All four agreed on the stable IDs; 178.294634491 native active seconds; all four canonical completed/released with VM teardown | Discussion is not formal estimation or product approval |
-| Context reconciled roundde3de781 | 4 planning + 4 fresh own estimates completed; 244.481922293 native active / 249 canonical elapsed seconds; v13 accepted | No acting product/release in that planning round |
-| Context acting workdayd4f3a441 | Writer product a70d690a approved by its separate review; Tester automatically executing on that exact base | Engineer → Releaser and remaining reviews/releases still ahead |
+Workday `workday-d4f3a441-b541-4a56-9898-dfa0ce657a33`, simulation, project-agent, concurrency1, original16:50–20:50 UTC.
 
-Second context round reports 1,523,306 input / 1,217,920 cached / 14,400 output / 7,856 reasoning tokens. Reconciled round reports 1,472,747 / 1,148,160 / 13,753 / 7,362 respectively. These are canonical reported counters, not prices or settlement claims. Different scopes make these observations unsuitable as a controlled performance benchmark.
+| Stage | Actual product and observation | Outcome |
+| --- | --- | --- |
+| Writer | a70d690ae442e4855d7313f354f0eb13724bc0f4; result-b73b1f50685912b03ad08318 | Documentation reviewed approved, result-ed66580dd3dcdc540e7248f6 |
+| Tester | 754bf5413262ffcd107cb795c8990bc091f0ad70; result-47e63a4d2aeaffd88f77b9d0 | Real focused regression FAILED as intended; reviewed test-only product approved, result-daa9abf3ad326dc8ff009bbc |
+| Engineer first implementation | d01e9afeb26843be43a6503fe0e603716f68a0b6; result-62df247a8384556585d08bb5 | Focused check passed; review result-a6a6db0943d37716fd266d51 requested changes for empty/omitted-primary readRepositories authorization bypass |
+| Engineer automatic revision | a691c98c92396cf6ce4a4a8593069b383e901a47; assignment_X95s0WDet4RlV25JMOi8EogS14V4cyfw; result-bab01b5da001291e4d1d0bc3 | Removed ungranted fallback and added both negative cases; second review result-dbbff0116719eb4514634b6e approved exact product after independently passing13 focused tests |
+| Releaser | assignment_WDI8Kr1UscCzMYetii1aw72UpdT5PnmD | FAILED candidate-bundle publication; source retained, VM teardown verified17:20:09.442; no canonical release product |
 
-Compose Writer/review report 97.927985191 + 58.641594773 native active seconds. Review correctly distinguished execution-result correlation from VM teardown; neither establishes Compose-resource cleanup. Three nonreplayable check claims were omitted; verification arrays stayed empty. Products remain retained simulation output, not upstream code delivery.
+Automatic Writer→Tester→Engineer predecessor Git handoff was observed, without manual base restoration. The backend admitted Engineer revision and second review after the first review's finding. This proves a useful reviewer-effect loop; it does not prove a complete simulated release.
 
-## Current accepted Agent repair
+Eight canonical completed contributions: summed elapsed1018s, native active1014.956710531s, input9880582/cached9265536/output36290/reasoning19996 tokens,86 authoritative clock checks. These are aggregate input counts across turns, not unique context size. Releaser failed attempt separately measured299s active/elapsed, input3470266/cached3385472/output10900/reasoning6974; canonical result absent. Price unknown; no claimed cost saving. Earlier four upstream empty-output replan failures and their unknown model usage remain preserved in frozen history.
 
-Proposal `36112257-0e47-43e9-bfbb-f55463d2fe2c` v13 repairs TreeDX tool authorization through existing readRepositories and current/historical requested-path checks; preserves Git authority and existing denials. Broader history/search and simulation-origin parity stay unresolved.
+Strict typecheck remains FAILED2, digest `8c6920dc167ed071389ef866235b0124fc79030715296f7a934393b58088522a`: missing Deployment exports agentDevelopmentRuntimeRoots/copyDevelopmentRuntime and Agent public/generated declarations. Causes and correct dependency/build ordering are still being investigated. No weakened check or release-ready claim.
 
-| Contribution ID | Own formal estimate assignment | Acting expected/max seconds | Review expected/max |
-|---|---|---:|---:|
-| agent-treedx-read-contract-docs | pK-zBJV9MSpGdfm_34lu7m6HMdrzMVNx | 300/420 | 180/300 |
-| agent-treedx-read-scope-regressions | Jjl3xT_MpXFOlfAheRnj2CEYhmslQgHV | 720/1080 | 420/660 |
-| agent-treedx-read-scope-fix | iCzrQhRfBHdD6y67YSdTj1NseUcTMLT3 | 780/1140 | 480/720 |
-| agent-treedx-read-scope-integration | -_HUEVm-hcweuq1Lrf04dyjlJ5Li65N1 | 900/1500 | 540/900 |
+Stopped only the affected workday through signed native MCP after publication failed. Final cancelled/ended17:23:39.010; terminalization8completed/1failed, zero unfinished, no settlement errors reported. Reporter closeout and durable accounting are separate from the eight product contributions. Original20:50 deadline and all history/products remain preserved.
 
-Assignment IDs above use the `assignment_` prefix. All owners chose two review cycles. Dependencies are docs → regressions → fix → integration, with explicit preceding dependencies retained.
+## Backend delivery and source integration
 
-Exact proposal: repo_25cc2b1854b3ccda @ `725e438ec87dc056d38b37e26f61225cf4f43567`, proposals/governance/use-existing-treedx-read-scope-in-agent-treedx-tools.mdx, digest `sha256:7dd8bb76423c0bfed4bb57a48cb8a746a6a92affe0ae79a37b8743ff4ed0d448`.
+| Delivery | Exact checked/merged result | Runtime/live proof |
+| --- | --- | --- |
+| SDK484, existing SDK411 | source ea7f73347db08bb70c253b73964227b30b38af6f; merged31bf5176404b5711b389b8592ca6fd81e3c8e574; tree9d200d67aabcf2f03cbce09a3e1d94d4391e6cfb | Adoption pending; active SDKb771723, native catalog still80 |
+| API640, existing API625 | source cafdc8774a5fbf76e9032aefac635ffc6af66a33; merged0d181ff1ded895c517fdc8742695ff0f10365bfc; treefbf02ad710e82958bcc154f3a4e9034ec42fc2e3 equals checked merge d90a713c | Adoption pending; active API565cdee; same orphaned TreeDX proposal recovery not yet proved |
+| Agent team products above | Reviewed Engineer a691c98c remains retained local simulation source | No upstream PR/merge, release or runtime adoption counted |
 
-Accepted Decision `332473e7-130c-486f-a394-76b4f33c8d7e`: same repository @ `417a131265f594989ec8a48a3e1ec921cf95524a`, decisions/332473e7-130c-486f-a394-76b4f33c8d7e.mdx, digest `sha256:0b1ea3319e2d9b94e8f362bfe7543a831f84f922ab0898b97466fa31a0e479f7`.
+SDK484 exposes only existing withdraw/supersede base operations through strict MCP contracts. Four new regressions first failed; final53 focused tests passed. Required [40544866866](https://github.com/treeseed-ai/sdk/actions/runs/40544866866) passed complete owner verification and two coded scenes: component-boundaries289/289 steps, product-custody16/16; zero failed/blocked/skipped scenes. Complete artifact12753650576 digest `sha256:7ed9424d60e2b63264e0984a8531b7aa0471750c499339f3bc0e5de41661647c` is preserved on root disk. Prior40541079727/12752315020 remains failed: regex binding selected zero checks. Replacement changed bindings to exact names, not tests/assertions. Controlled downstream HTTP failures are SDK transport evidence, not live API authorization proof.
 
-Approval response409 execution_graph_revision_conflict (request fc62e6cc-79ad-4fb6-9e25-dc2f925dcf96) occurred after durable acceptance/publication. Native proposal and exact Decision read-back established accepted authority; no fabricated replacement. Planning round closed cancelled/ended16:46:08.492UTC with9completed including Reporter. First acting start rejected stale preflight, request5ef4b44b-f4e9-4192-a676-18bce8902975; fresh normal preflight/start then admitted workday `workday-d4f3a441-b541-4a56-9898-dfa0ce657a33`, original16:50–20:50UTC, simulation/project-agent/max1. No issued deadline was extended.
+API640 required [40530506981/job122281678447](https://github.com/treeseed-ai/api/actions/runs/40530506981/job/122281678447) passed in1h58m14s: full verify:direct, native prerequisite regressions, real PostgreSQL migration/identity/concurrent allocation checks and coded golden component scenes. Earlier native403 run40524853426 preserved; replacement scopes the test fixture's gateway read to its explicit workspace path. No production permission widening. Coordinator bootstrap changes receive no agent-delivery credit.
 
-Writer `assignment_9lRKosWs4M7a1wEGhbc1GfiPryIZh_dx` delivered canonical `result-b73b1f50685912b03ad08318`, Git `a70d690ae442e4855d7313f354f0eb13724bc0f4`; actual replayed `git diff --check` passed. Separate review `assignment_JdhlNwOu_XDklpu7UoiTfzfuP0JQelRm`, canonical `result-ed66580dd3dcdc540e7248f6`, approved the intended documentation contract and explicit unproved behavior; its actual `git show --stat` check passed, one nonreplayable claimed check was omitted. Review Note/Decision commit `e4d66742c82858f1576ef11e8527bb40ad4b046d`. Both assignments completed/released with verified VM teardown. Their reported native active seconds84.963067247+61.570830521; input1,871,123/cached1,691,520/output7,612/reasoning3,279,16clock checks. Not cost or full storage-cleanup proof.
+## Environment and failures
 
-Backend then admitted Tester `assignment_wHKyNOiklCFvrfISTHtIccQB3ntyrUje`: workspace.baseCommit is exactly `a70d690ae442e4855d7313f354f0eb13724bc0f4`, with predecessor result IDs `result-ed66580dd3dcdc540e7248f6` and `result-b73b1f50685912b03ad08318`. This proves real product/review-to-dependent source handoff without manual base restoration. Test implementation, its review and the remaining chain are still pending.
+Host/tmp reached1048574/1048576 inodes, two free, despite27GiB free bytes. This delivery's two inactive coordinator Git worktrees were preserved under the delivery-owned root-disk worktree directory and Git registrations repaired. Old user-owned Node compilation cache was preserved on root disk under codex-mcp-lifecycle-evidence/retained-cache/node-compile-cache-20261027; ordinary writable cache path recreated. About68000inodes free afterward,94%used. Unknown older workspaces, active runtime selections, retained agent products, TreeDX cache configuration/budget and root user-owned files were untouched. Automated cleanup and remaining residue ownership are UNPROVEN.
 
-## Failures, interventions and preserved recovery
+Deployment candidate verifier discards Git stderr and reports generic nonzero bundle failure. Host inode recovery does not establish the cause of a separate verifier VM failure. Retain source and diagnose the earliest owning boundary before a supported recovery. No blind replay, deadline extension, review reset or manual source export.
 
-- Round0154 stop cancelled Writer estimate Dcm-SglaN9iaD8AQex2IT_gMJC9QqNlg after lease-renewal denial. Its raw output used the correct docs ID but never became a canonical completed estimate. Reported67active/67elapsed,369028input/329216cached/2620output/1278reasoning; price unknown. Do not call that stop clean draining. Detailed refs remain Agent494.
-- Round7a153451's four later planning failures reported upstream max_output_tokens before any model tool/clock action or turn.completed. Missing timing checks were a later wrapper, not proof of deliberately skipped clocks. Their original contexts/events remain protected native evidence. First planning canonical context76,424serialized bytes/5entries/0predecessors; failing re-plan250,838bytes/13entries/8predecessors. Growth is a lead, not proven cause; SDK sets no explicit max_output_tokens override.
-- Stopped only the affected run after repeated failures. Final cancelled/ended16:10:07.939UTC,9completed including Reporter/4failed; native events show all four failed VMs destroyed with verified teardown. Model token/cost totals remain unknown, not zero. Architect and the fresh v9 planning round subsequently succeeded on the same provider. No mandatory context, allowance or guard was weakened.
-- Architect reconciliation send-b233897b88938a188291ed4f288f7e92 produced v9 source0e27848d98c39ede7a41ec8d92bf648b5d863c03 from actual v8 source836bd8ac926f4761c20e5e15b817a1f99e801618. Normal publication retained all estimates/history; fresh owner confirmations restored readiness.
-- Four retained old claim identities remain preserved. Native reads distinguish already-recovered unresolved usage and an already-cancelled measured attempt from other expired records; provider inventory alone is not proof of live physical occupancy. Reserved SDK work was not altered. Full automated claim/storage cleanup remains unproved.
-
-## Source delivery and pending candidates
-
-| Owner | Source/runtime state | Evidence |
-|---|---|---|
-| API637 | Merged565cdee5279234a0a24b0cbfcf1bca448ced113a; existing active candidate | Required40490239822; 1081 coded steps; details in frozen history |
-| Agent522 | Merged620e629af6c3b44c9c8dc12330e48a2926fc740f; active guestd50aa33af89eb127e3a985a7a3cfac166360554dc45e454c18a80b65a67dcd75 | Full40501496583;929coded steps/2guarantees; installed custody |
-| Deployment1009 | Merged9b61425e399d8dec727a49bf602f090a0128ad70; active checked source92198d110b7e59e6dc2686944903505481f95e6b | Required40508926964;293coded steps; supported activationdev-1793107125904-017c2586 |
-| [API640](https://github.com/treeseed-ai/api/pull/640) | Candidatecafdc8774a5fbf76e9032aefac635ffc6af66a33; not merged/adopted | Current40530506981 passed verification/SQL phases; component scenes still live. Prior native read-back403 and correction retained |
-| [SDK484](https://github.com/treeseed-ai/sdk/pull/484) | Candidateea7f73347db08bb70c253b73964227b30b38af6f; not merged/adopted | Adds existing MCP withdraw/supersede plus schemas, not a new dispatcher. Red4/4 at eb9b52e7; focused53/6files, build/shape pass on functional source; final four exact-case checks pass |
-| Real agent products | Context docsa70d690a approved; Compose docsc905f990; TreeDX Writerf3d66e73 and Tester1ba137fc retained | None counted as merged upstream or a simulated release |
-
-SDK484 first full40541079727 passed package verification, then its new scene regex selected zero checks. Artifact12752315020, digestsha256:cef5cb719d5e43d9fa48e44dc499ccca90100849445cff4af125abf097585b22, remains failed/blocked. Replacement uses four exact test names; no assertion changed. Required replacement40544866866 and validation40544859467 (pass) apply to ea7f7334. Initial PR-record validation40541079865 failed for missing Outcome header, corrected40541167372 passed. Native MCP remains on its existing catalog until checked adoption/refresh.
-
-Bootstrap source changes are coordinator-authored under explicit authorization, not delegated team output. Source worktrees, retained bundle, active host source and rollback source remain preserved. Root user-owned dirty/untracked files remain untouched.
+An initial discussion send was rejected404 because an unescaped scoped package name was parsed as an agent mention (requestc092d594-1ad6-4978-8e72-cf1636426e3d); corrected ordinary text and a new idempotency key admitted only the intended three mentioned agents. No assignment was fabricated to replace that failed send.
 
 ## Remaining work
 
-Finish the current real Writer/review → Tester/review → Engineer/review → Releaser/review chain. Qualify/merge/adopt API640 and SDK484 through exact-ref custody; recover the same orphaned TreeDX proposal through supported MCP, never a duplicate slug or direct persistence binding. Complete the Compose provider/project-entry work and retained TreeDX chain. Prove simulated upstream/origin parity, actively queried full context/history and related objectives across profiles, reviewer correction loops, durable usage/accounting and automated physical cleanup. A successful component check or one product is not completion of this objective.
+Adopt checked SDK/API candidates at safe quiescence through supported development operations, refresh native MCP and recover the original orphaned TreeDX proposal without a duplicate slug. Diagnose retained Releaser publication and exact dependency/build contract, then resume through normal authority. Complete linked Agent/TreeDX Compose work and the retained TreeDX chain. Prove local simulated upstream/origin parity, complete context/history and related objectives across all profiles, durable usage/settlement and automated physical cleanup. The goal remains active.
+
+Platform777 initial required40551630693 failed personal_path_forbidden because this coordinator log named a local home directory. Corrected the prose to describe the storage location without committing a personal path; no check was disabled.
