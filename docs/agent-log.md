@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 16:53 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
+Updated: 2026-10-27 16:57 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
 
 [Complete frozen history through 15:28](https://github.com/treeseed-ai/platform/blob/377d262f7185ebc11cf4af867cd8e8542c37023c/docs/agent-log.md), blob `0787ded036e75828274303592c6b7a98254ef394`, retains every previous team change, failed observation, source/candidate receipt and earlier history link. Consolidation does not turn failures into passes.
 
@@ -32,8 +32,8 @@ Management calls used: communications.send/sends.show; governance.proposals.crea
 | Context first scope round0154a61c | 4 planning + 2 formal estimates; duplicate IDs and inspection-only release scope identified before approval | Stop raced with a Writer estimate; cancelled output retained, not counted/copy-pasted |
 | Context second round7a153451 | 4 planning + 4 corrected own estimates completed; 281.15883226 native active / 286 summed canonical elapsed seconds | Four later automatic re-planning turns failed empty; their model tokens/cost remain unknown |
 | Group scope discussion53204046 | All four agreed on the stable IDs; 178.294634491 native active seconds; all four canonical completed/released with VM teardown | Discussion is not formal estimation or product approval |
-| Context reconciled roundde3de781 | 4 planning + 4 fresh own estimates completed; 244.481922293 native active / 249 canonical elapsed seconds; v13 accepted | No acting product/release yet at this checkpoint |
-| Context acting workdayd4f3a441 | Writer assignment `assignment_9lRKosWs4M7a1wEGhbc1GfiPryIZh_dx` leased for real documentation | Tester → Engineer → Releaser and their reviews still ahead |
+| Context reconciled roundde3de781 | 4 planning + 4 fresh own estimates completed; 244.481922293 native active / 249 canonical elapsed seconds; v13 accepted | No acting product/release in that planning round |
+| Context acting workdayd4f3a441 | Writer product a70d690a approved by its separate review; Tester automatically executing on that exact base | Engineer → Releaser and remaining reviews/releases still ahead |
 
 Second context round reports 1,523,306 input / 1,217,920 cached / 14,400 output / 7,856 reasoning tokens. Reconciled round reports 1,472,747 / 1,148,160 / 13,753 / 7,362 respectively. These are canonical reported counters, not prices or settlement claims. Different scopes make these observations unsuitable as a controlled performance benchmark.
 
@@ -58,6 +58,10 @@ Accepted Decision `332473e7-130c-486f-a394-76b4f33c8d7e`: same repository @ `417
 
 Approval response409 execution_graph_revision_conflict (request fc62e6cc-79ad-4fb6-9e25-dc2f925dcf96) occurred after durable acceptance/publication. Native proposal and exact Decision read-back established accepted authority; no fabricated replacement. Planning round closed cancelled/ended16:46:08.492UTC with9completed including Reporter. First acting start rejected stale preflight, request5ef4b44b-f4e9-4192-a676-18bce8902975; fresh normal preflight/start then admitted workday `workday-d4f3a441-b541-4a56-9898-dfa0ce657a33`, original16:50–20:50UTC, simulation/project-agent/max1. No issued deadline was extended.
 
+Writer `assignment_9lRKosWs4M7a1wEGhbc1GfiPryIZh_dx` delivered canonical `result-b73b1f50685912b03ad08318`, Git `a70d690ae442e4855d7313f354f0eb13724bc0f4`; actual replayed `git diff --check` passed. Separate review `assignment_JdhlNwOu_XDklpu7UoiTfzfuP0JQelRm`, canonical `result-ed66580dd3dcdc540e7248f6`, approved the intended documentation contract and explicit unproved behavior; its actual `git show --stat` check passed, one nonreplayable claimed check was omitted. Review Note/Decision commit `e4d66742c82858f1576ef11e8527bb40ad4b046d`. Both assignments completed/released with verified VM teardown. Their reported native active seconds84.963067247+61.570830521; input1,871,123/cached1,691,520/output7,612/reasoning3,279,16clock checks. Not cost or full storage-cleanup proof.
+
+Backend then admitted Tester `assignment_wHKyNOiklCFvrfISTHtIccQB3ntyrUje`: workspace.baseCommit is exactly `a70d690ae442e4855d7313f354f0eb13724bc0f4`, with predecessor result IDs `result-ed66580dd3dcdc540e7248f6` and `result-b73b1f50685912b03ad08318`. This proves real product/review-to-dependent source handoff without manual base restoration. Test implementation, its review and the remaining chain are still pending.
+
 ## Failures, interventions and preserved recovery
 
 - Round0154 stop cancelled Writer estimate Dcm-SglaN9iaD8AQex2IT_gMJC9QqNlg after lease-renewal denial. Its raw output used the correct docs ID but never became a canonical completed estimate. Reported67active/67elapsed,369028input/329216cached/2620output/1278reasoning; price unknown. Do not call that stop clean draining. Detailed refs remain Agent494.
@@ -75,7 +79,7 @@ Approval response409 execution_graph_revision_conflict (request fc62e6cc-79ad-4f
 | Deployment1009 | Merged9b61425e399d8dec727a49bf602f090a0128ad70; active checked source92198d110b7e59e6dc2686944903505481f95e6b | Required40508926964;293coded steps; supported activationdev-1793107125904-017c2586 |
 | [API640](https://github.com/treeseed-ai/api/pull/640) | Candidatecafdc8774a5fbf76e9032aefac635ffc6af66a33; not merged/adopted | Current40530506981 passed verification/SQL phases; component scenes still live. Prior native read-back403 and correction retained |
 | [SDK484](https://github.com/treeseed-ai/sdk/pull/484) | Candidateea7f73347db08bb70c253b73964227b30b38af6f; not merged/adopted | Adds existing MCP withdraw/supersede plus schemas, not a new dispatcher. Red4/4 at eb9b52e7; focused53/6files, build/shape pass on functional source; final four exact-case checks pass |
-| Real agent products | Compose docsc905f990; TreeDX Writerf3d66e73 and Tester1ba137fc retained | None of these counted as merged upstream or a simulated release |
+| Real agent products | Context docsa70d690a approved; Compose docsc905f990; TreeDX Writerf3d66e73 and Tester1ba137fc retained | None counted as merged upstream or a simulated release |
 
 SDK484 first full40541079727 passed package verification, then its new scene regex selected zero checks. Artifact12752315020, digestsha256:cef5cb719d5e43d9fa48e44dc499ccca90100849445cff4af125abf097585b22, remains failed/blocked. Replacement uses four exact test names; no assertion changed. Required replacement40544866866 and validation40544859467 (pass) apply to ea7f7334. Initial PR-record validation40541079865 failed for missing Outcome header, corrected40541167372 passed. Native MCP remains on its existing catalog until checked adoption/refresh.
 
