@@ -67,7 +67,7 @@ mandatory. CLI's 24 cases map exactly once across seven required isolated CI par
 
 ## Acceptance evidence
 
-The functional Platform prefix eef084f qualifies all six built CLI source/selection/live
+All 24 hosted checks at functional Platform prefix eef084f pass, qualifying all six built CLI source/selection/live
 scenes, real API6 browser/terminal UI replacement, explicit genuine historical migration,
 Task1–3A matrices and the Task3B installed scene on hosted Ubuntu26.04. Owner SDK/UI/Identity/
 Admin/Deployment/CLI/API candidates have complete green CI. The final record-only revision
@@ -78,7 +78,7 @@ cases (132.00s). Exact API6 UI replacement passes 34 wrapper assertions (208.32s
 actual application observations performed inside the programme. Historical migration passes
 311 assertions (117.13s); polling makes the count variable. Two archive-selection/reproducibility
 programmes pass eight assertions. All 24 CLI cases match exactly one of seven required CI
-partitions. Eleven changed Markdown pages/66 local targets and three workflows validate.
+partitions. Eleven changed Markdown pages/70 local targets and three workflows validate.
 
 Qualified behavior remains bounded as described above. Review proposals
 [CLI#324](https://github.com/treeseed-ai/cli/issues/324) and

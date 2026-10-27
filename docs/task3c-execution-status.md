@@ -1,6 +1,6 @@
 # Task 3C execution status
 
-Work is authorized by the maintainer's acceptance of UI setup, request for mobile-first rendering and explicit resumption. This is an in-progress ledger, not accepted release/composition evidence. Preserve the independent owner repositories, Identity/Keycloak authority, historical formats, original services and all open issues. Task 3D remains gated.
+Work is authorized by the maintainer's acceptance of UI setup, request for mobile-first rendering and explicit resumption. This delivery ledger records qualified review candidates and retained investigation history; it is not an integration or production-release acceptance. Preserve the independent owner repositories, Identity/Keycloak authority, historical formats, original services and all open issues. Task 3D remains gated.
 
 ## Latest checkpoint — final private candidate verification
 
@@ -45,7 +45,7 @@ c55035c. Hosted UI/legacy jobs then timed out before programme execution while A
 mirror downloaded signed browser dependencies at tens of kilobytes/sec. The existing job
 budgets and authentication remain; disposable runner setup now selects Ubuntu's official
 archive. The next run reached preparation in about two minutes and correctly caught the
-archive reproducibility gap. The corrected functional prefix eef084f passes the required hosted UI, migration and source/plugin acceptance.
+archive reproducibility gap. All 24 hosted checks at corrected functional prefix eef084f pass, including required UI, migration, source/plugin and historical acceptance.
 
 An accidental dependency refresh at Platform root was corrected: the generated lock was
 preserved diagnostically, the historical tracked lock restored byte-for-byte, and API6 installed
