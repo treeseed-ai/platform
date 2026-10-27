@@ -28,15 +28,15 @@
 
 ### Slice 1: SDK portable contracts
 
-**Files:** `src/agent.ts`, public `src/contracts.ts` and `src/portable.ts`, `tests/acceptance/agent-contract.test.ts`, `tests/unit/agent-contract.test.ts`, owner docs/changelog/manifest/lock. Keep the PR bounded to ten files.
+**Files:** `src/agent.ts`, public `src/contracts.ts` and `src/portable.ts`, `tests/acceptance/agent-contract.test.ts`, `tests/unit/agent-contract.test.ts`, owner README/changelog/manifest (lock unchanged; no new third-party dependency). Keep the PR bounded to ten files.
 
 **Interfaces:** `AgentSchemas.authority/request/result`, `AgentContractBinding.assert(request, authority, generation): AgentExecutionRequest`, safe `AgentContractError`; inferred authority/request/result types. These data contracts add no global operation ID.
 
-- [ ] Commit docs for fields, bounds, strict errors and owner boundaries.
-- [ ] Write a built public-package program proving accepted matching scope plus denial of forged principal/grant/stale generation. Run against the pre-implementation artifact and observe missing public contract.
-- [ ] Add unit cases for unknown/credential/model fields, payload bounds, grant revocation/revision and result state/cleanup consistency.
-- [ ] Implement portable strict schemas and pure binding check with fixed safe errors; include schemas in generated projection without changing existing provider formats or operations.
-- [ ] Run `bun run build`, `bun run verify`, public artifact program and diff review. Record exact archive/source identity and open cordis candidate with actual CI evidence.
+- [x] Commit docs for fields, bounds, strict errors and owner boundaries.
+- [x] Write a built public-package program proving accepted matching scope plus denial of forged principal/grant/stale generation. Run against the pre-implementation artifact and observe missing public contract.
+- [x] Add unit cases for unknown/credential/model fields, payload bounds, grant revocation/revision and result state/cleanup consistency.
+- [x] Implement portable strict schemas and pure binding check with fixed safe errors; include schemas in generated projection without changing existing provider formats or operations.
+- [x] Run `bun run build`, `bun run verify`, public artifact program and diff review. Record exact archive/source identity and open cordis candidate with actual CI evidence.
 
 ### Slice 2: Agent root and child scopes
 
@@ -71,3 +71,7 @@
 - [ ] Qualify installed A/held execution/B drain/cancel/read-back/cleanup, exact principal/grant identity and no cross-scope leakage with genuine package archives.
 - [ ] Verify permanent tier/discovery, exact artifact identities, owner CI, Platform assembled CI and preserved existing acceptance. Report any missing gate; do not call Task 3D complete until all slices qualify.
 - [ ] Hand back PRs for review. Keep all issues open; Task 4 and Task 10 require their own explicit execution scope.
+
+## Current execution checkpoint
+
+SDK #483 source `890902948c9ca9df778a90d4fde975d33e29142d`: local full verification passed 17 acceptance, 7 regression, 28 integration and 41 unit cases. A genuine packed candidate passed a clean isolated Node consumer smoke. Candidate SHA-256 `a1e32909f12a1d93d6929a67eee1460f6abb7c5a507ca7262a8d74f8611f541a`. Current-head PR CI and maintainer review remain separate gates. Agent root, Deployment target and assembled qualification are not implemented by this checkpoint.

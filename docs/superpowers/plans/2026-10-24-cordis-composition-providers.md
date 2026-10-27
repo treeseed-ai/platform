@@ -1,6 +1,6 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D remains unstarted.**
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D has resumed after the test-organization review; portable contracts are in implementation, and runtime/installed-target qualification remains pending.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -56,7 +56,7 @@ All paths below are inside the named independent repository, except Platform doc
 
 Existing SDK/CLI/Deployment owners currently expose `bun run verify` (check, build, unit, integration and smoke). Preserve those meaningful gates and existing Task 1–2 program checks. New owners must document and implement nonempty equivalent scripts in their own setup-approved issue before execution; do not claim an uncreated command ran.
 
-Current Platform regression command is `node --test --test-concurrency=1 tests/skills/*.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts` under the existing qualified Node toolchain. New assembled scenes are added in their owner's slice and recorded in composition/CI; complete owner prerequisites run before those scenes. Native positive gates must not skip when dependencies are missing. No new runtime proof is executed in this documentation delivery.
+Current Platform tier commands and exact assembled closure assignments are in the root `package.json` and `tests/README.md`; use `bun run test:regression` under the existing qualified Node toolchain for policy/correspondence coverage. New assembled scenes are added in their owner's slice and recorded in composition/CI; complete owner prerequisites run before those scenes. Native positive gates must not skip when dependencies are missing. No new runtime proof is executed in this documentation delivery.
 
 ## Task 3A: Prove native composition in CLI and local Deployment
 
@@ -75,7 +75,7 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
 
-Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and qualified for PR review; Task 3D remains unstarted.
+Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and qualified for PR review; Task 3D has resumed after the test-organization review; portable contracts are in implementation, and runtime/installed-target qualification remains pending.
 
 ## Task 3B: First installed composition and durable host root
 
@@ -109,11 +109,13 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 
 ## Task 3D: Agent composition baseline without domain execution migration
 
+Resumed under Platform #773, SDK #482 and Agent #525. Agent setup review/publication is complete. The [bounded design](../specs/2026-10-27-agent-composition-design.md) and [delivery slices](2026-10-27-agent-composition.md) specify the durable worker host, trusted probe grant boundary and exact owner responsibilities. SDK portable contract candidate: https://github.com/treeseed-ai/sdk/pull/483. Real Work/model execution remains Task 10; no runtime or installed-target completion is implied by the first contract slice.
+
 **Files:** Agent root and provider/handler/tool/context/reporting interfaces/plugins plus real program tests; human view-model adapters consuming UI terminal/browser providers; SDK declarations; Deployment target installer; Platform assembled Agent-context fixture.
 
 **Interfaces:** produces `AgentApplication` and execution child contexts consuming `ServiceLocator`/leases; a harmless capability fixture supplies two interchangeable providers. This is composition infrastructure, not an implemented Work/Agent product or model provider.
 
-- [ ] Select/initialize Agent through the parent initializer in its same canonical repository: a fresh cleared cordis worktree with pinned shared setup, preserved legacy history/license and its own explicit review pause. Do not reuse/clear its legacy checkout, skip this gate because other projects were initialized, or initialize it speculatively in Task 3B. After resumption, map the legacy HandlerRegistry/provider-kernel boundary and commit owner docs for root/child lifetimes, provider pins, isolation and authority.
+- [x] Select/initialize Agent through the parent initializer in its same canonical repository: a fresh cleared cordis worktree with pinned shared setup, preserved legacy history/license and its own explicit review pause. Do not reuse/clear its legacy checkout, skip this gate because other projects were initialized, or initialize it speculatively in Task 3B. After resumption, map the legacy HandlerRegistry/provider-kernel boundary and commit owner docs for root/child lifetimes, provider pins, isolation and authority.
 - [ ] Write `agent_program_uses_selected_registered_provider` and `execution_scope_pins_generation`: start the actual default Agent program; install/select a harmless approved provider through the common manager; execute a bounded fixture task; assert generation identity and child-scope cleanup.
 - [ ] Test missing/duplicate handler, revoked resource grant, cross-execution scope leakage, in-flight switch drain, cancellation boundary, stale leases and failing cleanup. A pending execution must never jump to a new provider or credential.
 - [ ] Implement the minimum real Cordis Agent root/provider contracts. Keep durable Work authority and all real model/task product capabilities deferred to Task 10.
