@@ -18,7 +18,7 @@ Agent `project-agent` subscribers: Technical Writer, Tester, Engineer, Releaser.
 
 The earlier scope overlap was corrected through group discussion, Architect reconciliation, ordinary proposal revision and fresh estimates from the affected owners. All four subscribers supplied their own final estimates; no agent-specific proposal targeting. Accepted v13 permits two review cycles. We did not change issued authority to obtain the successful revision.
 
-Current discussion `send-4c6ede49ea11475a442240b1c69687d6` addresses Agent Architect/Releaser and Deployment Architect about real publication recovery, missing dependency/build artifacts and sandbox Compose ownership. Agent Architect and Releaser have responded; Deployment Architect is still executing. Their inspected source is the authorized base620e629; supplied candidate/failure facts are explicitly distinguished from independent inspection. No new implementation was admitted for that discussion.
+Current discussion `send-4c6ede49ea11475a442240b1c69687d6` addresses Agent Architect/Releaser and Deployment Architect about real publication recovery, missing dependency/build artifacts and sandbox Compose ownership. All three have completed canonical responses and verified VM teardown. Deployment Architect inspected9b61425e and confirmed incremental bundle exclusions and existing source exports; the actual failure and installed dependency artifacts remain unproved. Their inspected source is the authorized base620e629; supplied candidate/failure facts are explicitly distinguished from independent inspection. No new implementation was admitted for that discussion.
 
 ## Scoreboard — real context-read repair
 
@@ -56,7 +56,7 @@ API640 required [40530506981/job122281678447](https://github.com/treeseed-ai/api
 
 ## Environment and failures
 
-Host/tmp reached1048574/1048576 inodes, two free, despite27GiB free bytes. This delivery's two inactive coordinator Git worktrees were preserved under /home/adrian/Projects/.worktrees and Git registrations repaired. Old user-owned Node compilation cache was preserved on root disk under codex-mcp-lifecycle-evidence/retained-cache/node-compile-cache-20261027; ordinary writable cache path recreated. About68000inodes free afterward,94%used. Unknown older workspaces, active runtime selections, retained agent products, TreeDX cache configuration/budget and root user-owned files were untouched. Automated cleanup and remaining residue ownership are UNPROVEN.
+Host/tmp reached1048574/1048576 inodes, two free, despite27GiB free bytes. This delivery's two inactive coordinator Git worktrees were preserved under the delivery-owned root-disk worktree directory and Git registrations repaired. Old user-owned Node compilation cache was preserved on root disk under codex-mcp-lifecycle-evidence/retained-cache/node-compile-cache-20261027; ordinary writable cache path recreated. About68000inodes free afterward,94%used. Unknown older workspaces, active runtime selections, retained agent products, TreeDX cache configuration/budget and root user-owned files were untouched. Automated cleanup and remaining residue ownership are UNPROVEN.
 
 Deployment candidate verifier discards Git stderr and reports generic nonzero bundle failure. Host inode recovery does not establish the cause of a separate verifier VM failure. Retain source and diagnose the earliest owning boundary before a supported recovery. No blind replay, deadline extension, review reset or manual source export.
 
@@ -65,3 +65,5 @@ An initial discussion send was rejected404 because an unescaped scoped package n
 ## Remaining work
 
 Adopt checked SDK/API candidates at safe quiescence through supported development operations, refresh native MCP and recover the original orphaned TreeDX proposal without a duplicate slug. Diagnose retained Releaser publication and exact dependency/build contract, then resume through normal authority. Complete linked Agent/TreeDX Compose work and the retained TreeDX chain. Prove local simulated upstream/origin parity, complete context/history and related objectives across all profiles, durable usage/settlement and automated physical cleanup. The goal remains active.
+
+Platform777 initial required40551630693 failed personal_path_forbidden because this coordinator log named a local home directory. Corrected the prose to describe the storage location without committing a personal path; no check was disabled.
