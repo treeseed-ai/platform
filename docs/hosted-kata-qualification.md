@@ -51,6 +51,14 @@ run cannot replace fresh runtime qualification on subsequent jobs.
 
 ## Current evidence
 
-Qualification is pending until an exact-head Actions run passes. No hosted Kata success,
-self-hosted provisioning, production deployment or Task 3D completion is claimed. Every issue,
-including #678 and #791, remains open under release policy.
+The [exact-head hosted run](https://github.com/treeseed-ai/platform/actions/runs/40594996161)
+passed for source `5b929c4cc9922744dda88beb1176e3e96a740696`. Runner image
+`20261026.180.1` supplied Ubuntu 26.04.1 x64, host kernel `7.0.0-1017-azure` and containerd
+`2.4.2` (`b7a25261e029d68978bbf290df0a62fc819b3c51`). KVM API 12 and VM creation succeeded.
+Kata runtime-rs 4.1.0 booted guest kernel `6.18.35`, returned the fixed probe marker and passed
+task/container/snapshot cleanup. The exact archive and image digests are in the fixture and log.
+
+This qualifies the basic hosted KVM/Kata venue; dedicated runner provisioning is not a current
+prerequisite for this configuration. Full Agent warm-pool, environment and replacement acceptance
+remains outstanding. No self-hosted provisioning, production deployment or Task 3D completion is
+claimed. Every issue, including #678 and #791, remains open under release policy.
