@@ -5,7 +5,7 @@ Work is authorized by the maintainer's acceptance of UI setup, request for mobil
 ## Latest checkpoint — final private candidate verification
 
 Exact selections in `composition/task3c.json` are SDK16, Deployment76, Identity7, Admin10,
-UI16, API5 and CLI9. Final review entry points are in [the review map](task3c-review.md).
+UI16, API6 and CLI9. Final review entry points are in [the review map](task3c-review.md).
 These remain private, unmerged migration candidates. Every issue stays open; no Task3D work.
 
 SDK/UI/Identity/Admin CI is green. Deployment76 passed check/build, 41 unit, 53 integration
@@ -19,12 +19,12 @@ interference then affected the following case. These failures remain recorded. S
 required acquisition and registered-selection cases preserve every assertion and deadline.
 Open [CLI#324](https://github.com/treeseed-ai/cli/issues/324) proposes checked partition coverage.
 
-API5, source `70f5fd7cde4a3629b1a73f08e0f708376b4d5f85`, archive SHA-256
-`6f224503ea65393aada47b766d636055ec5c029106ed98109c62b54d7d29ff84`, passes final
-check/build, five unit, four integration and six smoke programmes (129.22s). It retains
+API6, source `0e7bc2cfe5163c6209de507dab535e3eaabd5f0c`, archive SHA-256
+`0c5ed5cabb5010e3163c373cbc4422ca694872f27f1862c7cc2205fdbf91fb1b`, passes final
+check/build, five unit, four integration and eight smoke programmes (132.00s). It retains
 #620 policy blob b1a687db754ee2fac141919e6c63052d12bf2812. Explicit public SDK container
 types stabilize a previously variable inferred declaration union. The artifact regression
-first returned PUBLIC_SCHEMA_DECLARATION_REQUIRED, then passed. API4 remains frozen.
+first returned PUBLIC_SCHEMA_DECLARATION_REQUIRED, then passed. API4/API5 remain frozen.
 
 The final historical migration wrapper passes against Deployment76: genuine Task3B archives,
 worker/Postgres/Keycloak/Caddy/API/browser, 311 assertions/117.13s. It requires observed
@@ -34,11 +34,11 @@ Custody remains non-serving/unverified with null activeComposition, never implic
 
 The API4 exact UI replacement wrapper passed (34 assertions/204.55s), including both changed
 human surfaces, existing Keycloak session, retained resources/private bytes/TLS, explicit
-restart, machine bytes/exit behavior and source-free read-back. The matching API5 scene is
+restart, machine bytes/exit behavior and source-free read-back. The matching API6 scene is
 running with exact base/variant artifact and lock pins. A genuine preparation negative first
 accepted an incorrect runtime-lock digest; it now refuses before builds/state. A second
 controlled build exposed private-mode and inferred-declaration variation. Canonical private
-build modes plus API5 now reproduce all exact Admin/API/CLI artifacts under another caller
+build modes plus API6 now reproduce all exact Admin/API/CLI artifacts under another caller
 umask; both programme regressions pass (eight assertions,15.68s).
 
 All six Platform source/plugin scenes and historical migration passed in both hosted runs at
@@ -49,7 +49,7 @@ archive. The next run reached preparation in about two minutes and correctly cau
 archive reproducibility gap. Final corrected hosted acceptance is still pending.
 
 An accidental dependency refresh at Platform root was corrected: the generated lock was
-preserved diagnostically, the historical tracked lock restored byte-for-byte, and API5 installed
+preserved diagnostically, the historical tracked lock restored byte-for-byte, and API6 installed
 in the intended isolated verification consumer. No owner source, legacy branch or service was
 changed by that refresh. All current typed checks and fixture cleanup pass; no owned labelled
 containers, networks or volumes remained after the completed local scenes.
@@ -57,6 +57,14 @@ containers, networks or volumes remained after the completed local scenes.
 The tables and narrative below retain investigation history; this checkpoint supersedes their
 older pending/frozen statements. Latest required hosted checks remain authoritative in the
 linked PRs; no completed-hosted-acceptance or integration/release claim is made yet.
+
+Hosted member-level diagnostics at27749c isolated the remaining mismatch to container.d.ts
+(the retained historical metadata export); every runtime file matched. API6 names that SDK
+definition/declaration and current provider declarations explicitly. All three public declaration
+regressions pass after their proper reds. A matching API6 reference closure and caller-umask
+programme reproduce exact hashes; hosted verification and final API6 UI acceptance are running.
+The expected entry metadata remains in composition/task3c-ui-artifact-files.json for safe
+name/digest/mode-only differential diagnostics; no artifact contents or credentials are logged.
 
 | Current Deployment review candidate | Exact source | Archive SHA-256 | Evidence |
 | --- | --- | --- | --- |

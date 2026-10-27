@@ -13,7 +13,7 @@ remain in [the execution ledger](task3c-execution-status.md).
 | Admin | [#145](https://github.com/treeseed-ai/admin/pull/145) | 10 | Authorized view models/actions consuming UI; no duplicated renderer or credential authority |
 | Deployment | [#1007](https://github.com/treeseed-ai/deployment/pull/1007) | 76 | Generic service graph, exact sources/builds, durable registry, safe activation and scoped asset restart |
 | CLI | [#323](https://github.com/treeseed-ai/cli/pull/323) | 9 | Built install/list/inspect/select, explicit scopes, reusable human output and unchanged machine contracts |
-| API | [#635](https://github.com/treeseed-ai/api/pull/635) | 5 | Exact runtime/UI image closure, independent default worker and public assembly fixture; #620 policy preserved |
+| API | [#635](https://github.com/treeseed-ai/api/pull/635) | 6 | Exact runtime/UI image closure, independent default worker and public assembly fixture; #620 policy preserved |
 | Platform | [#761](https://github.com/treeseed-ai/platform/pull/761) | integration only | Exact archive pins and genuine installed source/UI/historical migration acceptance |
 
 These entry points include prior unmerged owner prefixes. Their descriptions and the ledger
@@ -57,8 +57,8 @@ Keycloak identity, every owner boundary, legacy branches/services and all issues
 
 
 The final reproducibility correction preserves private fixture file modes across caller umasks
-and uses an explicit SDK schema reference in API's declaration artifact. API5 supersedes the
-retained API4 candidate. Two real preparation programme regressions now reject an incorrect
+and uses an explicit SDK schema reference in API's declaration artifact. API6 supersedes the
+retained API4/API5 candidates, including explicit historical metadata schema references. Two real preparation programme regressions now reject an incorrect
 runtime-lock pin before builds/state and verify identical Admin/API/CLI artifacts under a
 different caller umask. Hosted browser setup uses Ubuntu's official signed archive mirror
 after Azure dependency transfers exhausted the existing job budget; positive gates remain
