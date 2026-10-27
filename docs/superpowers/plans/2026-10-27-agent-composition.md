@@ -20,7 +20,7 @@
 - Offline setup by default; only declared destinations allowed by host policy and assignment grants. No ambient lifecycle script runs in the live install.
 - Every issue including #678 stays open. PRs target cordis and are handed back for review; no merge, production publication or cutover authorization.
 - Permanent tests use tests/acceptance, tests/regression, tests/integration and tests/unit with behavior names; support contains no registrations. Keep historical artifact bytes and provenance unchanged.
-- Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. First qualify GitHub-hosted ubuntu-26.04 through Platform #791/#792; general unsupported nested-VM status does not prove inability. If unsuitable, isolated self-hosted provisioning (labels self-hosted/linux/x64/cordis-kata) remains an explicit prerequisite. Do not register the workstation implicitly. The real runtime gate cannot be replaced by schema-only checks.
+- Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. GitHub-hosted ubuntu-26.04 passed the initial KVM/real-Kata-guest/cleanup qualification through Platform #791/#792 (run 40594996161); general unsupported nested-VM status does not prove inability. Use hosted Ubuntu for full Agent qualification. If a required configuration later proves unsuitable, isolated self-hosted provisioning (labels self-hosted/linux/x64/cordis-kata) remains an explicit fallback prerequisite. Do not register the workstation implicitly. The full runtime gate cannot be replaced by schema-only checks.
 
 ## Review focus
 

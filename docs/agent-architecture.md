@@ -193,7 +193,10 @@ tests tiers. No task-numbered permanent specifications.
 
 Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. Qualify GitHub-hosted
 `ubuntu-26.04` first through [Platform #792](https://github.com/treeseed-ai/platform/pull/792):
-usable KVM, a real pinned guest and verified cleanup. GitHub documents Linux KVM acceleration
+usable KVM, a real pinned guest and verified cleanup. The [initial qualification passed](https://github.com/treeseed-ai/platform/actions/runs/40594996161)
+on image `20261026.180.1`: host `7.0.0-1017-azure`, Kata runtime-rs 4.1.0, guest `6.18.35`,
+containerd 2.4.2, KVM API 12, successful VM creation and verified task/container/snapshot cleanup.
+GitHub documents Linux KVM acceleration
 but offers no general nested-VM support guarantee; this caveat does not establish inability.
 If hosted qualification is unsuitable, an isolated self-hosted `cordis-kata` runner remains an
 explicit provisioning prerequisite. Do not register the workstation implicitly. The full Agent
