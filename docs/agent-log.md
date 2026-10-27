@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 18:53 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
+Updated: 2026-10-27 18:52 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
 
 [Complete frozen history through 16:57](https://github.com/treeseed-ai/platform/blob/1b8d0f1417e9b46f472351c58a8192000c4678f8/docs/agent-log.md), blob `1ab0731353f1cd58dc8a4612530718245a968f65`, preserves every earlier team change, failed observation, exact source/candidate receipt and preceding history link. Consolidation does not turn failed observations into passes.
 
@@ -81,7 +81,7 @@ Platform777 initial required40551630693 failed personal_path_forbidden because t
 Earlier scoreboard and failed observations above remain timestamped history. Compose within the sandbox, retained Releaser publication, shared context/history, complete simulated release and automated cleanup are still unproved. The full goal remains active.
 
 
-## MCP refresh and real group planning — 2026-10-27 18:53 UTC
+## MCP refresh and real group planning — 2026-10-27 18:52 UTC
 
 - User refresh exposes **82 native TreeSeed tools**, including proposal withdrawal and supersession. Authenticated native proposal reads pass. Those two mutations have not yet been exercised against real authority; do not count discovery as live supersession proof. Architect/Writer recommend a linked Compose documentation correction with fresh own estimates and unchanged historical attempts; no node reset or cycle extension.
 - Native MCP opened recovered real TreeDX proposal `899179f2-22ae-4733-8f6c-b1f791e32ce8` at **v2**. Exact readback: repository `repo_7e1e75a5295419dd`, source `b0d627b242bd9d9cbeab6447dd977473340ce5a7`, digest `42427e115f651ca745ce91a4518412b96e3fe83e54b93afd336e5f624b4a70de`. Scope is the Architect's isolated Compose entry for real federation ExUnit tests, meaningful project work. Readiness requires **all four** productive project-treedx subscribers: Writer, Tester, Engineer, Releaser. **0 estimates, no ready execution plan, approval blocked**. Native open changed no source bytes and created no estimates. Team configuration unchanged; no new activation on unqualified guest106ae8b4.
