@@ -48,7 +48,18 @@ class UiOwnerClosure {
         this.command(process.execPath, ['pm', 'pack', '--ignore-scripts', '--destination', output], directory);
         path = join(output, 'treeseed-cordis-' + owner + '-' + metadata.version + '.tgz');
     } this.require(existsSync(path)); const result = { path, sha256: this.sha(path) }; this.selected.set(owner, result); this.evidence[owner] = { ...result, source, version: metadata.version, lockSha256: this.sha(join(directory, 'bun.lock')), manifestSha256: this.sha(join(directory, 'package.json')) }; }
-    run(): void { this.require(isAbsolute(this.input.output) && resolve(this.input.output) === this.input.output && realpathSync(dirname(this.input.output)) === dirname(this.input.output) && this.sha(this.input.ui.archive) === this.input.ui.sha256); mkdirSync(this.input.output, { mode: 0o700 }); for (const owner of ['admin', 'api', 'cli'] as const)
-        this.build(owner); const receipt = { formatVersion: 1, fixture: true, purpose: 'assembled-ui-only-owner-rebuild', ui: this.input.ui, owners: this.evidence }; writeFileSync(join(this.input.output, 'ui-owner-closure.json'), JSON.stringify(receipt, null, 2) + '\n', { mode: 0o600, flag: 'wx' }); process.stdout.write(JSON.stringify(receipt) + '\n'); }
+    run(): void {
+        const previousUmask=process.umask(0o027);
+        try {
+            this.require(isAbsolute(this.input.output) && resolve(this.input.output) === this.input.output && realpathSync(dirname(this.input.output)) === dirname(this.input.output) && this.sha(this.input.ui.archive) === this.input.ui.sha256);
+            mkdirSync(this.input.output, {mode:0o700});
+            for(const owner of ['admin','api','cli'] as const)this.build(owner);
+            const receipt={formatVersion:1,fixture:true,purpose:'assembled-ui-only-owner-rebuild',ui:this.input.ui,owners:this.evidence};
+            writeFileSync(join(this.input.output,'ui-owner-closure.json'),JSON.stringify(receipt,null,2)+'\n',{mode:0o600,flag:'wx'});
+            process.stdout.write(JSON.stringify(receipt)+'\n');
+        } finally {
+            process.umask(previousUmask);
+        }
+    }
 }
 new UiOwnerClosure(JSON.parse(readFileSync(process.argv[2]!, 'utf8'))).run();

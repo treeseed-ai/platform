@@ -35,11 +35,11 @@
     },
     "api": {
       "repository": "https://github.com/treeseed-ai/api.git",
-      "commit": "51f52ba47260a6acfe9272e4711f7c84edc446e9",
-      "version": "0.0.0-cordis.4",
+      "commit": "70f5fd7cde4a3629b1a73f08e0f708376b4d5f85",
+      "version": "0.0.0-cordis.5",
       "checkout": "packages/api",
       "archive": "vendor/task3c/api.tgz",
-      "sha256": "9a68ae9cd55e2481048b968541c249fb489b526548e118f1fdabc88a51932ea6"
+      "sha256": "6f224503ea65393aada47b766d636055ec5c029106ed98109c62b54d7d29ff84"
     },
     "identity": {
       "repository": "https://github.com/treeseed-ai/identity.git",
@@ -89,7 +89,7 @@
         "sha256": "d72213d3ce0c04280c86069e6040a91609cf79588ffd1e241073aefdbaee4a4d"
       },
       "api": {
-        "sha256": "459094a67bd83bcc31cb14f9af2b75d3e429e8661bc21a070c3382841e052b64",
+        "sha256": "be1b21215ae1cb9a2cf8844870e394e65a39969aea37ce040c78895d528d32e6",
         "lockSha256": "652ccc0b9c89f728c22c5b70e6a98b6721f0388758c7e4d4de6f8b4fa45a3fee"
       },
       "cli": {
