@@ -28,7 +28,15 @@ digest, exact Linux/amd64 BusyBox manifest, guest kernel and cleanup outcome. It
    failure. Cleanup failure fails the gate and is reported alongside the original failure.
 
 The fixture uses the upstream [Kata containerd procedure](https://github.com/kata-containers/kata-containers/blob/4.1.0/docs/install/container-manager/containerd/containerd-install.md),
-with immutable artifacts and isolated daemon state. Host package installation is confined to
+adapted to the [4.1.0 Rust-runtime archive split](https://kata-containers.github.io/kata-containers/releases/4.1.0/).
+The selected archive contains `runtime-rs/bin/containerd-shim-kata-v2` and the
+`runtime-rs/configuration-qemu-runtime-rs.toml` configuration, rather than the Go `kata-runtime`
+CLI. Preflight uses KVM ioctls directly, and the runtime version comes from the selected Rust shim.
+The first hosted run verified Ubuntu 26.04, `/dev/kvm` and the exact archive but failed at the
+obsolete Go executable path before the KVM/guest program ran. This was a fixture configuration
+error, not a runtime compatibility finding.
+
+Use immutable artifacts and isolated daemon state. Host package installation is confined to
 the disposable GitHub runner. Download or prerequisite failure is a visible failure, never a
 skip. Fork PRs do not receive this privileged fixture; there are no deployment credentials.
 
