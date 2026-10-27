@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: treeseed-ai/cli
-          ref: 7225330dd8d78a6953849886fa873b5ba0216a1f
+          ref: 89fb78b6fd362a8de9dec9d238a310f65545175b
           path: packages/cli
           persist-credentials: false
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
