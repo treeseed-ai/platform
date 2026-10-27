@@ -264,14 +264,15 @@ class HostedKataProgram {
   }
 
   private runtime(): void {
-    const version = QualificationCommand.run('/opt/kata/bin/kata-runtime', ['--version']);
-    assert.match(version, /kata-runtime\s+:?\s*4\.1\.0/);
-    const check = QualificationCommand.run('/opt/kata/bin/kata-runtime', [
-      'check',
-      '--no-network-checks',
+    const version = QualificationCommand.run('/opt/kata/runtime-rs/bin/containerd-shim-kata-v2', [
+      '--version',
     ]);
-    assert.match(check, /System can currently create Kata Containers/);
-    process.stderr.write(`${version}\n${check}\n`);
+    assert.match(version, /version: 4\.1\.0(?:,|\s|$)/);
+    const config =
+      '/opt/kata/share/defaults/kata-containers/runtime-rs/configuration-qemu-runtime-rs.toml';
+    assert.equal(process.env.KATA_CONF_FILE, config);
+    assert.match(readFileSync(config, 'utf8'), /^\[hypervisor\.qemu\]$/m);
+    process.stderr.write(`${version}\n`);
   }
 
   private host(): void {

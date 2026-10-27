@@ -41,12 +41,12 @@ jobs:
           test "$(stat -c %s "$RUNNER_TEMP/kata.tar.zst")" = 969565384
           echo "3dc6b69c4acb787b967b04b64599a20d02a8beb1a8eaab3084110df9d0b08c96  $RUNNER_TEMP/kata.tar.zst" | sha256sum --check --strict
           sudo tar --zstd -xf "$RUNNER_TEMP/kata.tar.zst" -C /
-          sudo /opt/kata/bin/kata-runtime --version
+          sudo /opt/kata/runtime-rs/bin/containerd-shim-kata-v2 --version
       - name: Build the actual fixture program
         run: bun build tests/support/kata-host.mts --target bun --outdir .qualification
       - name: Qualify nested KVM and a real Kata guest
         run: |
-          sudo env PATH="/opt/kata/bin:$PATH" GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted RUNNER_TEMP="$RUNNER_TEMP" ImageVersion="$ImageVersion" KATA_CONF_FILE=/opt/kata/share/defaults/kata-containers/configuration-qemu.toml "$(command -v bun)" test tests/acceptance/hosted-kata.test.mts
+          sudo env PATH="/opt/kata/runtime-rs/bin:/opt/kata/bin:$PATH" GITHUB_ACTIONS=true RUNNER_ENVIRONMENT=github-hosted RUNNER_TEMP="$RUNNER_TEMP" ImageVersion="$ImageVersion" KATA_CONF_FILE=/opt/kata/share/defaults/kata-containers/runtime-rs/configuration-qemu-runtime-rs.toml "$(command -v bun)" test tests/acceptance/hosted-kata.test.mts
       - name: Preserve daemon diagnostics on failure
         if: failure()
         run: sudo find "$RUNNER_TEMP" -maxdepth 2 -name containerd.log -exec tail -n 100 {} \;
