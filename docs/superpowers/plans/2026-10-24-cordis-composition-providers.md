@@ -1,6 +1,6 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation is authorized and final candidate verification is in progress. Task 3D remains unstarted.**
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D remains unstarted.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -75,7 +75,7 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
 
-Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and undergoing final acceptance; Task 3D remains unstarted.
+Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and qualified for PR review; Task 3D remains unstarted.
 
 ## Task 3B: First installed composition and durable host root
 
@@ -103,7 +103,7 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 - [x] Deliver required reusable UI providers before extending human surfaces; replace existing Admin HTML/DOM and CLI human rendering with UI public exports. Enforce source/import boundaries and qualify browser/terminal default construction and accessibility.
 - [x] Qualify additive activation with stable per-service resource/credential/TLS retention, explicit old-format migration, bounded probes, native leases and truthful pending/recovery results. Unsafe restart/state/issuer/TLS migration requires explicit scope authorization.
 - [x] Deliver NPM/HTTPS-Git source/build adapters, managed pinned clean-host helpers, pre-acquisition idempotency receipts, immutable registration and common plan/apply. Preserve source/build trust, scripts-disabled custody and lost-reply guarantees from the provider design.
-- [ ] Prove a fifth service, two same-provider instances, a new probe provider without engine edits, unchanged original resources, and UI-only replacement on real browser AND terminal surfaces. Run owner and exact Ubuntu 26.04 assembled/CI gates; open review candidates and stop.
+- [x] Prove a fifth service, two same-provider instances, a new probe provider without engine edits, unchanged original resources, and UI-only replacement on real browser AND terminal surfaces. Run owner and exact Ubuntu 26.04 assembled/CI gates; open review candidates and stop.
 
 **Deliverable:** exact plugin installation activates qualified safe services/contributions through a generic host, with reusable UI and truthful action-required boundaries. Removal remains Task 7; full recovery Task 6. Documentation approval alone initializes nothing.
 
@@ -154,4 +154,13 @@ Task 10 must be split into separately reviewed domain plans; Task 3D infrastruct
 
 ## Review handoff
 
-This plan makes Cordis composition and provider hot replacement required. Task 3A native composition and Task 3B installed composition now have verified owner implementations. Task 3C owner candidates are implemented, with final exact acceptance pending; Task 3D remains unimplemented. The documentation delivery must check local references, Mermaid source structure and contradictions against the spec/master plan; completed Task 3A/3B checkboxes above record observed owner, program and assembled verification. The earlier architecture and Tasks 3A/3B have been accepted and delivered. The maintainer accepted UI setup/publication and explicitly resumed Task 3C. Stop after its final candidate verification for PR review, without merging or starting Task 3D. Agent remains separately gated at Task 3D.
+Tasks3A/3B are integrated. Task3C owner implementations and exact public-artifact acceptance
+are qualified for maintainer PR review; see [the candidate map](../../task3c-review.md),
+[execution evidence](../../task3c-execution-status.md) and composition/task3c.json. Required
+owner/assembled checks cover genuine sources, repeated services, retained credentials/TLS,
+qualified native readiness replacement, explicit historical custody and both UI surfaces.
+Task3C is not integrated or released by this record. No merge or issue closure is authorized.
+
+Task3D remains unimplemented. Agent must receive its own same-repository initializer and
+explicit setup review before code. Broader runtime replacement, parity, recovery and removal
+remain Tasks4–7, with unchanged repository/Keycloak/release boundaries.

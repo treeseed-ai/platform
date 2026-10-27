@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. The [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), were reviewed and integrated. UI setup was accepted/published and Task 3C explicitly resumed; final owner candidates and exact assembled verification are in progress. Task 3D remains unstarted. See the [execution ledger](../../task3c-execution-status.md).
+**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. The [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), were reviewed and integrated. UI setup was accepted/published and Task 3C explicitly resumed; owner candidates and exact assembled functional acceptance are qualified for maintainer PR review. Task 3D remains unstarted. See the [execution ledger](../../task3c-execution-status.md).
 
 ## Global constraints
 
@@ -47,7 +47,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Tasks 1–2 | Standalone diagnostics and exact saved local plans; seven SDK bindings | Merged, bounded evidence only |
 | Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Integrated; exact Task 3A evidence |
 | Task 3B | First installed API/Identity/Admin composition and durable Deployment worker root | Integrated; exact Task 3B evidence |
-| Task 3C | Extensible typed container plugins, required reusable UI and NPM/Git safe activation | Implemented candidates; final acceptance/PR review pending |
+| Task 3C | Extensible typed container plugins, required reusable UI and NPM/Git safe activation | Qualified candidates; maintainer PR review pending |
 | Task 3D | Agent root/execution-child composition with harmless real provider harness | Proposed; Agent setup review; no domain migration |
 | Task 4 | Hot-swap proof in all four runtimes plus operation/CLI/browser contributions | Proposed |
 | Task 5 | REST/SDK/CLI/MCP/browser parity with equivalent provider/authority semantics | Proposed |

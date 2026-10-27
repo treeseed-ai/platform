@@ -1,7 +1,7 @@
 # Task 3C review entry points
 
-Task 3C candidates are implemented. Final exact hosted acceptance is still running; this document
-is the review map, not a release or integration claim. Source/archive/image identities are
+Task 3C implementation and exact functional acceptance are qualified for maintainer PR review.
+This is the review map, not a release or integration claim. Latest-head CI is visible on each PR. Source/archive/image identities are
 in [the composition record](../composition/task3c.json); investigation and failure evidence
 remain in [the execution ledger](task3c-execution-status.md).
 
@@ -63,3 +63,24 @@ runtime-lock pin before builds/state and verify identical Admin/API/CLI artifact
 different caller umask. Hosted browser setup uses Ubuntu's official signed archive mirror
 after Azure dependency transfers exhausted the existing job budget; positive gates remain
 mandatory. CLI's 24 cases map exactly once across seven required isolated CI partitions.
+
+
+## Acceptance evidence
+
+The functional Platform prefix eef084f qualifies all six built CLI source/selection/live
+scenes, real API6 browser/terminal UI replacement, explicit genuine historical migration,
+Task1–3A matrices and the Task3B installed scene on hosted Ubuntu26.04. Owner SDK/UI/Identity/
+Admin/Deployment/CLI/API candidates have complete green CI. The final record-only revision
+retains the same frozen owner artifacts; its required checks remain on Platform#761.
+
+Local final API6 verification passes five unit, four integration and eight programme smoke
+cases (132.00s). Exact API6 UI replacement passes 34 wrapper assertions (208.32s), with its
+actual application observations performed inside the programme. Historical migration passes
+311 assertions (117.13s); polling makes the count variable. Two archive-selection/reproducibility
+programmes pass eight assertions. All 24 CLI cases match exactly one of seven required CI
+partitions. Eleven changed Markdown pages/66 local targets and three workflows validate.
+
+Qualified behavior remains bounded as described above. Review proposals
+[CLI#324](https://github.com/treeseed-ai/cli/issues/324) and
+[API#636](https://github.com/treeseed-ai/api/issues/636) separately; they do not authorize
+shared-tooling scope. All task and proposal issues, including Platform#678, remain open.

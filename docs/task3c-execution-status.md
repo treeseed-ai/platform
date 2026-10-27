@@ -5,7 +5,7 @@ Work is authorized by the maintainer's acceptance of UI setup, request for mobil
 ## Latest checkpoint — final private candidate verification
 
 Exact selections in `composition/task3c.json` are SDK16, Deployment76, Identity7, Admin10,
-UI16, API6 and CLI9. Final review entry points are in [the review map](task3c-review.md).
+UI16, API6 and CLI9. Implementation and functional acceptance are qualified for maintainer PR review. Final review entry points are in [the review map](task3c-review.md).
 These remain private, unmerged migration candidates. Every issue stays open; no Task3D work.
 
 SDK/UI/Identity/Admin CI is green. Deployment76 passed check/build, 41 unit, 53 integration
@@ -34,8 +34,7 @@ Custody remains non-serving/unverified with null activeComposition, never implic
 
 The API4 exact UI replacement wrapper passed (34 assertions/204.55s), including both changed
 human surfaces, existing Keycloak session, retained resources/private bytes/TLS, explicit
-restart, machine bytes/exit behavior and source-free read-back. The matching API6 scene is
-running with exact base/variant artifact and lock pins. A genuine preparation negative first
+restart, machine bytes/exit behavior and source-free read-back. The matching API6 scene passes 34 assertions/208.32s with exact base/variant artifact and lock pins. A genuine preparation negative first
 accepted an incorrect runtime-lock digest; it now refuses before builds/state. A second
 controlled build exposed private-mode and inferred-declaration variation. Canonical private
 build modes plus API6 now reproduce all exact Admin/API/CLI artifacts under another caller
@@ -46,7 +45,7 @@ c55035c. Hosted UI/legacy jobs then timed out before programme execution while A
 mirror downloaded signed browser dependencies at tens of kilobytes/sec. The existing job
 budgets and authentication remain; disposable runner setup now selects Ubuntu's official
 archive. The next run reached preparation in about two minutes and correctly caught the
-archive reproducibility gap. Final corrected hosted acceptance is still pending.
+archive reproducibility gap. The corrected functional prefix eef084f passes the required hosted UI, migration and source/plugin acceptance.
 
 An accidental dependency refresh at Platform root was corrected: the generated lock was
 preserved diagnostically, the historical tracked lock restored byte-for-byte, and API6 installed
@@ -55,14 +54,15 @@ changed by that refresh. All current typed checks and fixture cleanup pass; no o
 containers, networks or volumes remained after the completed local scenes.
 
 The tables and narrative below retain investigation history; this checkpoint supersedes their
-older pending/frozen statements. Latest required hosted checks remain authoritative in the
-linked PRs; no completed-hosted-acceptance or integration/release claim is made yet.
+older pending/frozen statements. Latest required hosted checks remain authoritative in the linked PRs. Functional acceptance
+is qualified at eef084f; the final record-only revision retains every owner artifact. No
+integration merge, production release, issue closure or Task3D work is authorized.
 
 Hosted member-level diagnostics at27749c isolated the remaining mismatch to container.d.ts
 (the retained historical metadata export); every runtime file matched. API6 names that SDK
 definition/declaration and current provider declarations explicitly. All three public declaration
 regressions pass after their proper reds. A matching API6 reference closure and caller-umask
-programme reproduce exact hashes; hosted verification and final API6 UI acceptance are running.
+programme reproduce exact hashes; hosted UI and final API6 local acceptance now pass.
 The expected entry metadata remains in composition/task3c-ui-artifact-files.json for safe
 name/digest/mode-only differential diagnostics; no artifact contents or credentials are logged.
 
