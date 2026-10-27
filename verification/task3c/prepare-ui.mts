@@ -67,7 +67,7 @@ class PrepareUiAssembly {
         writeFileSync(request, JSON.stringify({ output: join(this.output, 'closure'), ui: { ...fixture, archive: resolve(fixture.archive) }, owners: sources }), { mode: 0o600, flag: 'wx' });
         this.command(process.execPath, [resolve('verification/task3c/ui-owner-closure.mts'), request], process.cwd());
         const receipt = JSON.parse(readFileSync(join(this.output, 'closure/ui-owner-closure.json'), 'utf8'));
-        for(const owner of ['admin','api','cli'] as const){const actual=receipt.owners[owner],expected=composition.uiQualification.expectedArtifacts[owner];this.require(actual.sha256===expected.sha256&&this.sha(actual.path)===expected.sha256);}
+        for(const owner of ['admin','api','cli'] as const){const actual=receipt.owners[owner],expected=composition.uiQualification.expectedArtifacts[owner];if(actual.sha256!==expected.sha256||this.sha(actual.path)!==expected.sha256){const diagnosis=this.command(process.execPath,[resolve('verification/task3c/artifact-files.mts'),owner,actual.path],process.cwd());throw new Error('ASSEMBLY_ARTIFACT_CHANGED:'+diagnosis);}}
         this.require(this.sha(join(this.output,'closure/api/bun.lock'))===composition.uiQualification.expectedArtifacts.api.lockSha256);
         const archives: Record<string, string> = {};
         for (const [owner, pin] of Object.entries(owners))
