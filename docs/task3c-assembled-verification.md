@@ -73,3 +73,12 @@ UI qualification also binds the generated Admin archive, API archive, CLI binary
 runtime lock to recorded hashes. Both preparation and the programme wrapper verify the exact
 selected base/variant paths and bytes before activation; stale prepared input cannot replace
 the composition's accepted selection. The runtime lock itself is an explicitly hashed input.
+
+The hosted UI jobs at c55035c timed out before programme execution: the runner's Azure APT
+mirror transferred roughly 55MB of signed browser dependencies at tens of kilobytes per second.
+The logs name each package and show no UI execution. This is a measured runner configuration,
+not a Playwright capability limit. Disposable CI setup selects Ubuntu's official archive mirror
+in the runner mirror list before installing dependencies, preserving suites, signatures and
+existing job budgets. See the [runner-image incident](https://github.com/actions/runner-images/issues/12949)
+and [Ubuntu archive documentation](https://ubuntu.com/project/docs/how-ubuntu-is-made/concepts/package-archive/).
+Actual rerun evidence, not this hypothesis, must clear acceptance.
