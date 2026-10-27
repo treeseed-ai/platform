@@ -79,7 +79,7 @@
       ]
     },
     "api": {
-      "sha256": "be1b21215ae1cb9a2cf8844870e394e65a39969aea37ce040c78895d528d32e6",
+      "sha256": "2909e9dc3b73df54b655b0f5251575e10078af144791dd9f32faffd942414751",
       "files": [
         {
           "path": "LICENSE",
@@ -89,8 +89,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "34a72955de3974354faa115e017e8032b1a181582dba795922217b95b480d7c2",
-          "size": 16152,
+          "sha256": "79aa016884504e8a2561180c5dafe62d000130df4e48413ecbeff07a17da8627",
+          "size": 16594,
           "mode": 416
         },
         {
@@ -119,8 +119,8 @@
         },
         {
           "path": "dist/src/container.d.ts",
-          "sha256": "ce2c104a5d5ca920cdb9d96c903911bd50d801326bf0e6a7811d9b7a0725aa59",
-          "size": 2240,
+          "sha256": "ebcd5632a07e40c4c7ce1de6819a5df4013727b55e96aac3226681d2332ffce2",
+          "size": 976,
           "mode": 416
         },
         {
@@ -179,8 +179,8 @@
         },
         {
           "path": "dist/src/services.d.ts",
-          "sha256": "dcd2e41470073f74939293593725d8698e03195e5be00622d4583d268498d225",
-          "size": 2752,
+          "sha256": "db54c09bd97197ca85b50b57994f7dd09f41378fec1b33fc19e16f4980828bb7",
+          "size": 2376,
           "mode": 416
         },
         {
@@ -215,7 +215,7 @@
         },
         {
           "path": "package.json",
-          "sha256": "f8ba5dbad4ec9834bc7265cde4a9345a5c9931c8fa4bb7fd2a895126a128b393",
+          "sha256": "c20814649264f3868bc4ce584c3d3db4b5b47ff4386eda310d7600b6eae4d74a",
           "size": 23690,
           "mode": 416
         }
