@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 19:57 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
+Updated: 2026-10-27 20:21 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
 
 [Complete frozen history through 18:52](https://github.com/treeseed-ai/platform/blob/92cf4094fa7e9e04bf25d251351cf47445da5f8b/docs/agent-log.md), blob `cb00906033f9c84c54aa444abbbf6fa294d2a610`, retains all earlier checkpoints, team changes, failed observations, exact receipts and preceding history links. This consolidation updates current state without relabeling prior failures.
 
@@ -48,8 +48,8 @@ Stopped only the affected workday through signed native MCP after publication fa
 | --- | --- | --- |
 | [SDK484](https://github.com/treeseed-ai/sdk/pull/484), SDK411 | sourceea7f7334; merged31bf5176404b5711b389b8592ca6fd81e3c8e574; tree9d200d67aabcf2f03cbce09a3e1d94d4391e6cfb | Supported rebuild completedok:true/manual:[], receipt SHA2561a2bd1bc3d88d0b59c9c688632fdc5126fa5fc0b523518c11395400294dd76bc. User refresh exposes82nativeMCPtools, including existing withdraw/supersede. Live supersession remains unproved. |
 | [API640](https://github.com/treeseed-ai/api/pull/640), API625 | sourcecafdc877; merged0d181ff1ded895c517fdc8742695ff0f10365bfc; treefbf02ad710e82958bcc154f3a4e9034ec42fc2e3 | Supported rebuild completedok:true, receipt SHA256e20529dd29b6e4af73fed2783764bc8ca43136b387315b7d1a2300fbcb631a23. Original orphaned TreeDX proposal recovered with unchanged source/no changed files; unchanged-request repeat still failed23505 and is retained underAPI625. |
-| [Deployment1012](https://github.com/treeseed-ai/deployment/pull/1012), Deployment913 | current4a23a0021a2d73b2fc221687c5203bc53211a436; protected base9b61425e | [40572854630](https://github.com/treeseed-ai/deployment/actions/runs/40572854630) live; no merge/publication/adoption.43focusedtests/9files and strict build/source-shape passed; fresh full/native/scenes pending. |
-| [API641](https://github.com/treeseed-ai/api/pull/641), API625 | dc1ae3e951a58655ad9ace4f4613aaa5a6330995 on protected0d181ff1 | [40573258980](https://github.com/treeseed-ai/api/actions/runs/40573258980) live.38focusedtests/5files, strict build/file policies passed; native/full/scene/adoption pending. No agent implementation credit. |
+| [Deployment1012](https://github.com/treeseed-ai/deployment/pull/1012), Deployment913 | current0704c9c3436b34525aeb7557770f54c5563764b6; protected base9b61425e | [40576777643](https://github.com/treeseed-ai/deployment/actions/runs/40576777643) live; full/native/scenes pending. R4 full suite and301scene steps passed,1exact-name binding failed/4blocked. Two catalog literals corrected; no merge/publication/adoption. |
+| [API641](https://github.com/treeseed-ai/api/pull/641), API625 | dc1ae3e951a58655ad9ace4f4613aaa5a6330995 on protected0d181ff1 | [40573258980](https://github.com/treeseed-ai/api/actions/runs/40573258980) live: native prerequisites and complete owning suite passed; coded scenes running, adoption pending.38focusedtests/5files and strict build/file policies passed. No agent implementation credit. |
 | Agent team products above | reviewed Engineera691c98c retained in local simulation source | No upstream PR/merge, release or runtime adoption counted. |
 | [Platform779](https://github.com/treeseed-ai/platform/pull/779) | merged92cf4094; tree7607c11a equals checked tree;40564029168passed | Remote log checkpoint integrated. Root user-owned files untouched. |
 
@@ -97,3 +97,14 @@ The full goal remains active; no complete native-MCP workflow or release claim.
 - Existing exact TreeDX note links already project cross-project predecessor review→dependent actor edges; Decision dependencies validate accepted authority separately. That concrete guidance was posted to TreeDX899v2 throughMCP; no relation or node was authored/reset. Real source-download transport and create-replay23505 gaps remain open.
 
 **Team vitals unchanged:** no new agent execution, productive completion, membership/profile/model/limit/allocation change or delivery credit. Eight canonical contributions and one failed Releaser attempt above remain the actual scoreboard. No agent activation on unqualified runtime, no retained-product deletion, usage invention or deadline extension. Critical full context/history remains ahead of unrelated portfolio work; full goal active.
+
+
+## Actual scene readback — 2026-10-27 20:21 UTC
+
+Deployment R4 [40572854630](https://github.com/treeseed-ai/deployment/actions/runs/40572854630), source4a23a0021/tested merge91dd1abc4: **full owning suite passed; scene301passed/1failed/4blocked**. The sole failure was new `scene-report-success-unit`: Vitest formats zero as `+0`, but the catalog requested `0`; the strict verifier rejected zero matching assertions despite process exit0. Actual focused reproduction confirmed0passed/8skipped; correcting both zero-case catalog literals selected2passed/0failed. No assertion, runtime, timeout or allowance changed. Fresh full run40576777643 remains required.
+
+Readable complete artifact12765894056/digest `sha256:1dcf025d298f4dae1397c4461d2b9a8ed807b04211a06b7a2e0cc652c64d6230` is retained. The original managed encrypted backup case **passed1945.639ms**, COMPLETED/aborted:false/cleanupComplete:true. R3's exact scene failure remains unknown; this R4 result does not rewrite it. Raw R4 job log digest `sha256:76d4864ef3b420a5150b9798b0db2f71a4d77894918ef131dbd3b93fd409f24e`.
+
+Native MCP refreshed reads work; current running-assignment inventory is empty. Agent context/history v5 still lacks all four current estimates, Engineer work item and dependencies; TreeDX Compose v2 has0estimates. Existing group discussion feedback is retained; no coordinator-authored plan or estimate. SDK411 records that local-only source export lacks shared correct-host authenticated transport; adding an MCP catalog flag or generic host command would not close it.
+
+No team/profile/model/allocation changes or new agent delivery credit. Actual scoreboard remains8canonical contributions plus1failed retained Releaser attempt. No activation, release or adoption of either pending candidate.
