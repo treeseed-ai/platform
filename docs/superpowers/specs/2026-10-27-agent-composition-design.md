@@ -38,6 +38,8 @@ The installed authority provider is a Deployment-owned native adapter over the e
 
 ## Installed target and human interfaces
 
+Agent target package closures are isolated from the running container service package closure. Compatible base artifacts may be reused by exact identity; any different dependency version requires policy-authorized acquisition into the Agent closure. One locked version per package remains mandatory within each closure. No container selection or generation changes as a side effect.
+
 Deployment's existing manager continues to acquire/verify NPM or HTTPS Git sources with scripts disabled in the live installation. A typed Agent target adapter stages the verified closure into the existing immutable manifest format, binds exact artifact/configuration/installation/grant identity, and asks the Agent-owned root to admit the candidate. Target activation has separate plan/application identity and an Agent-target ready acknowledgement; the existing Deployment service generation cannot stand in for Agent read-back. Missing target support remains prepared with an explicit action. Uncertain publication remains recovery-required. A runtime restart must report prepared/recovery until a fresh target handshake establishes the stored generation.
 
 The default Agent program exposes help/version plus a bounded composition probe using an owner-private accepted configuration/manifest. Machine output is the SDK result; human output is an Agent view model rendered by UI's public terminal adapter. Tests never claim arbitrary request-supplied grant identities establish authorization. Browser consumers can reuse the same view model and UI provider; this slice adds no separate browser application or identity login flow.
