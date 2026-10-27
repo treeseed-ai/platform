@@ -35,6 +35,10 @@ CLI. Preflight uses KVM ioctls directly, and the runtime version comes from the 
 The first hosted run verified Ubuntu 26.04, `/dev/kvm` and the exact archive but failed at the
 obsolete Go executable path before the KVM/guest program ran. This was a fixture configuration
 error, not a runtime compatibility finding.
+The corrected Rust-shim run passed KVM creation and reached the private containerd 2.4.1 image
+pull. Its default transfer-service unpacker rejected the requested `native` snapshotter. The
+fixture therefore uses containerd's explicit `images pull --local` client path, retaining native
+snapshots and the same pinned image. This changes image acquisition, not the Kata/KVM requirement.
 
 Use immutable artifacts and isolated daemon state. Host package installation is confined to
 the disposable GitHub runner. Download or prerequisite failure is a visible failure, never a
