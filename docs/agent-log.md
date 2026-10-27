@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-27 21:10 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
+Updated: 2026-10-27 21:34 UTC. Issues own planning/status; Actions own verification; Git/TreeDX own products. Unknown usage, price and closure stay unknown.
 
 [Complete frozen history through 18:52](https://github.com/treeseed-ai/platform/blob/92cf4094fa7e9e04bf25d251351cf47445da5f8b/docs/agent-log.md), blob `cb00906033f9c84c54aa444abbbf6fa294d2a610`, retains all earlier checkpoints, team changes, failed observations, exact receipts and preceding history links. This consolidation updates current state without relabeling prior failures.
 
@@ -11,6 +11,26 @@ Prove objective → group-built team → shared discussion → each subscriber's
 Classes govern allocation/memory; groups govern proposal participation; topics govern discussion. Every subscriber owns a contribution. Preserve original deadlines, unknown usage, retained products and the reserved SDK Tester-on-BASE/Engineer chain. No fake or verification-only assignments, fabricated estimates, review-cycle resets or copied agent patches.
 
 Repository Compose workloads must execute **inside the sandbox**, using project toolchain images and isolated services, networks and volumes, with real exit status and teardown. This remains **UNPROVEN**. Host Rust/Elixir installations and documentation are not guest proof.
+
+## Primary progress measure — TreeSeed implementation share
+
+User direction, 2026-10-27: increase the ratio of TreeSeed team implementation to coordinator implementation. Optimize for meaningful, reviewed project changes reaching source through the governed workflow. Coordinator code-only bootstrap work is a cost of restoring delegation, not team delivery.
+
+**Primary ratio: agent-origin integrated code delivery PRs / all origin-classified integrated code delivery PRs.** Show raw numerator/denominator and the corresponding coordinator share at every checkpoint. Attribute implementation to its actual producer, regardless of who opens or merges the PR. Count each delivery PR once; preserve linked product/result/review and exact merge refs. Mixed-origin deliveries remain separately reported until their attribution is explicit; never silently classify them as wholly delegated. This is a delivery-count proxy, not a claim about hours, complexity, lines, tokens or cost. Do not split work or create trivial assignments to raise it.
+
+Baseline scope is the explicitly enumerated recovery cohort below, through 2026-10-27 21:34 UTC; it is **not an audited lifetime percentage for this long-running chat**. Continue this cumulative cohort without resetting away coordinator work. Also report changes since the preceding checkpoint so a cumulative number cannot hide a stalled interval.
+
+| Checkpoint UTC | Team-origin integrated code PRs | Coordinator-origin integrated code PRs | Mixed / unclassified in this cohort | TreeSeed / coordinator share | Evidence and limits |
+| --- | ---: | ---: | ---: | --- | --- |
+| 2026-10-27 21:34 baseline | 0 | 3 | 0 | **0/3 = 0% / 100%** | Coordinator bootstrap: SDK484 merge31bf5176404b5711b389b8592ca6fd81e3c8e574; API640 merge0d181ff1ded895c517fdc8742695ff0f10365bfc; Deployment1012 merge08e1428f8404b08c384c8c95eb6b79f33bce5f71. Team Engineer product a691c98c remains retained, not integrated. Earlier portfolio deliveries are outside this explicitly enumerated baseline, not implicitly assigned zero credit. |
+
+Track production and integration separately. The earlier context-read chain produced **4 canonical acting products and 4 completed reviews**, including an Engineer change-request/revision loop; the failed Releaser has no canonical release product. These contributions are real, but no agent-origin source integration from that chain is counted. The 19:00–21:34 UTC interval has **0 new team admissions, executions or completed products** while the coordinator performs bootstrap repairs. Earlier architecture discussion responses are preserved separately and receive no implementation credit.
+
+Pending coordinator code work at baseline: Deployment1015 and API641 now have successful owning Actions runs40584142479 and40573258980 respectively, but are not yet merged/adopted; Agent494 dependency follow-up bfe61b303 is local only. They enter the integrated denominator only upon protected-source integration. Documentation/scoreboard PRs, management messages, reviews, CI runs and releases of an already counted implementation do not add code-delivery units. Runtime adoption is a separate state, never inferred from a merge or a passing job.
+
+**Checkpoint discipline:** update this existing log after each meaningful admission, acting completion, review/change request, revision, integration, adoption, team change or blocking failure; batch documentation writes for adjacent events without omitting them. Each update records interval and cumulative origin counts, retained/unintegrated products, actual reviews/rework, blockers, coordinator interventions, and exact evidence. Use existing MCP records, Issues, Actions and Git custody; no second status database, wrapper or synthetic work. Preserve failed attempts and unknown usage. Comparable coordinator-versus-team effort and cost data are currently unavailable, so those percentages remain **unknown**.
+
+Management priority: finish only the smallest authorized shared-backend/dependency repairs that prevent governed delivery, resume the real group-owned chain as soon as its exact runtime is qualified, and have the teams produce the next meaningful implementation. A rising count of coordinator-only fixes with no agent-origin integration is a failure to improve this measure, even when CI passes.
 
 ## Teams and management changes
 
