@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+
+### Changed
+
+- Organize permanent tests by tier and enforce the shared development/testing strategy (#768).
 ### Fixed
 
 - platform: align authoring and discovery skills with Cordis (#678).
