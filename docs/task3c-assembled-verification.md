@@ -68,3 +68,8 @@ its existing 420-second owner deadline. Acquisition and source-free registered s
 separate required owner/Platform jobs, keeping the deadline and all assertions. The selection
 case starts from one genuine installed archive and verifies two further activations with the
 source stopped; acquisition independently keeps two named installs and exact offline replay.
+
+UI qualification also binds the generated Admin archive, API archive, CLI binary and variant
+runtime lock to recorded hashes. Both preparation and the programme wrapper verify the exact
+selected base/variant paths and bytes before activation; stale prepared input cannot replace
+the composition's accepted selection. The runtime lock itself is an explicitly hashed input.

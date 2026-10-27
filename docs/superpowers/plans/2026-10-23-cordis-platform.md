@@ -10,7 +10,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. Before Task 3C, the [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), are reviewed for integration. Only UI initialization resumes next, followed by setup review; Task 3C/3D product implementation remains unstarted.
+**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. The [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), were reviewed and integrated. UI setup was accepted/published and Task 3C explicitly resumed; final owner candidates and exact assembled verification are in progress. Task 3D remains unstarted. See the [execution ledger](../../task3c-execution-status.md).
 
 ## Global constraints
 
@@ -24,7 +24,7 @@
 - Consumers depend on typed capability contracts; constructor injection and Cordis service bindings select class implementations through existing plugin configuration. Missing/duplicate/incompatible required implementations block planning. Reuse native Cordis lifecycle; no second container or speculative provider hierarchy.
 - Documentation → tests outside-in → implementation → verified delivery. Browser source may use TSX for class components. Generated output/upstream dependencies/resources are not handwritten parallel implementation.
 - One executable schema is authority for types and transport projections. One owner per durable fact. No second plugin loader, package manager, reconciliation engine, job model or status database.
-- Every human-facing browser/server/terminal surface consumes reusable UI-owned class providers; domain view models/auth/actions remain with consumers. UI setup and its review pause are the first future Task 3C step. Generic service instances replace a permanent four-role limit; see the #722 amendment.
+- Every human-facing browser/server/terminal surface consumes reusable UI-owned class providers; domain view models/auth/actions remain with consumers. UI setup/review and baseline publication are complete; Agent retains its separate future initialization/review gate. Generic service instances replace a permanent four-role limit; see the #722 amendment.
 - Native composition and registered provider selection are required across CLI/API/Deployment/Agent. Qualified safe live replacement is a core gate; explicit restart/migration handles unproven live safety. `trsd plugin install <NPM package|Git repo>` installs and activates when safe. Persistent development selections have no expiry/fallback; removal preserves data. See the reviewed-design checkpoint, not legacy restart-only wording.
 - Run complete participating-owner unit/integration suites before each real scene/guarantee invocation on the exact candidate. Do not run a live campaign to discover prerequisite failures.
 - Unit/integration, build, CI and smoke execution of actual assembled artifacts are separate gates. A cross-compiled file is not native target proof. Never claim missing gates passed.
@@ -47,7 +47,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Tasks 1–2 | Standalone diagnostics and exact saved local plans; seven SDK bindings | Merged, bounded evidence only |
 | Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Integrated; exact Task 3A evidence |
 | Task 3B | First installed API/Identity/Admin composition and durable Deployment worker root | Integrated; exact Task 3B evidence |
-| Task 3C | Extensible typed container plugins, required reusable UI and NPM/Git safe activation | Revised proposal; UI setup review first |
+| Task 3C | Extensible typed container plugins, required reusable UI and NPM/Git safe activation | Implemented candidates; final acceptance/PR review pending |
 | Task 3D | Agent root/execution-child composition with harmless real provider harness | Proposed; Agent setup review; no domain migration |
 | Task 4 | Hot-swap proof in all four runtimes plus operation/CLI/browser contributions | Proposed |
 | Task 5 | REST/SDK/CLI/MCP/browser parity with equivalent provider/authority semantics | Proposed |
@@ -58,7 +58,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Task 10 | Projects → Knowledge/TreeDX → Work/Agent, with typed provider seams | Separately specified domain slices |
 | Cutover | Reviewed preservation/data/settings/recovery plan and explicit authority | Separate; never automatic |
 
-Tasks 3A/3B have actual owner/program/assembled evidence. The next Task 3C step is authorized UI initialization followed by setup review; it is not new runtime evidence. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; no owner code or setup changes occur in this documentation delivery.
+Tasks 3A/3B have actual owner/program/assembled evidence. UI setup/publication and Task 3C implementation have explicit maintainer authority; final source/archive and programme evidence is recorded in composition/task3c.json and the execution ledger. Generic shared helpers stay SDK-owned; root Platform adds no runtime implementation. Existing child guidance is adopted through each owner's issue branch; Task 3C runtime changes stay in their independent owner candidates; Platform contains public integration only.
 
 ## Proposed file ownership
 
