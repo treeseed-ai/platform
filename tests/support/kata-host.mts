@@ -204,6 +204,15 @@ class KataGuestQualification {
   }
 
   private cleanup(): void {
+    this.removeExecution();
+    for (const key of this.snapshots()) {
+      this.daemon.run(['snapshots', '--snapshotter', 'native', 'remove', key]);
+    }
+    this.daemon.attempt(['images', 'remove', KataFixture.image]);
+    assert.deepEqual(this.snapshots(), [], 'No retained snapshots');
+  }
+
+  private removeExecution(): void {
     const tasks = this.daemon.run(['tasks', 'list', '--quiet']).split('\n');
     if (tasks.includes(this.id)) {
       this.daemon.attempt(['tasks', 'kill', '--signal', 'SIGKILL', this.id]);
@@ -217,11 +226,18 @@ class KataGuestQualification {
       '',
       'No retained Kata containers',
     );
-    assert.equal(
-      this.daemon.run(['snapshots', '--snapshotter', 'native', 'list', '--quiet']),
-      '',
-      'No retained snapshots',
-    );
+  }
+
+  private snapshots(): string[] {
+    const listing = this.daemon.run(['snapshots', '--snapshotter', 'native', 'list']);
+    const lines = listing.split('\n');
+    assert.match(lines.shift() ?? '', /^KEY\s+PARENT\s+KIND/);
+    const keys: string[] = [];
+    for (const line of lines) {
+      const key = line.trim().split(/\s+/)[0];
+      if (key) keys.push(key);
+    }
+    return keys;
   }
 }
 
