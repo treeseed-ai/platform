@@ -110,21 +110,23 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 
 **Deliverable:** exact plugin installation activates qualified safe services/contributions through a generic host, with reusable UI and truthful action-required boundaries. Removal remains Task 7; full recovery Task 6. Documentation approval alone initializes nothing.
 
-## Task 3D: Agent composition baseline without domain execution migration
+## Task 3D: Seed-driven Agent Capacity Provider
 
-Resumed under Platform #773, SDK #482 and Agent #525. Agent setup review/publication is complete. The [bounded design](../specs/2026-10-27-agent-composition-design.md) and [delivery slices](2026-10-27-agent-composition.md) specify separate manager/worker/guest roots, seed coordination, bounded host custody and exact owner responsibilities. SDK portable contract candidate: https://github.com/treeseed-ai/sdk/pull/483. Real Work/model execution remains Task 10; no runtime or installed-target completion is implied by the first contract slice.
+The maintainer approved and resumed the revised [Agent architecture](../../agent-architecture.md), [seed architecture](../../seed-architecture.md) and [owner delivery plan](2026-10-27-agent-composition.md). Platform #773, Agent #525, SDK #482 and Deployment #1011 track runtime work; separate owner policy issues track the critical readability rule. Agent setup was reviewed/published and must not be repeated.
 
-**Files:** Agent root and provider/handler/tool/context/reporting interfaces/plugins plus real program tests; human view-model adapters consuming UI terminal/browser providers; SDK declarations; Deployment target installer; Platform assembled Agent-context fixture.
+**Interfaces:** separate manager/worker/guest Cordis roots and typed process protocols; definition-owned extensible activity profiles; Agent-owned virgin pool policy, runners and setup; bounded Deployment sandbox control; API-owned headless seed coordination and exact owner receipts. Existing-team connections use the existing public control plane and preserve Keycloak approval/provider credentials. SDK #483 remains a bounded probe contract candidate, not completion evidence for this expanded delivery.
 
-**Interfaces:** produces `AgentApplication` and execution child contexts consuming `ServiceLocator`/leases; a harmless capability fixture supplies two interchangeable providers. This is composition infrastructure, not an implemented Work/Agent product or model provider.
+- [x] Complete Agent same-repository setup review/publication and preserve original legacy sources/services.
+- [x] Commit approved durable references and revised owner plan before new runtime tests/implementation.
+- [ ] Deliver the critical readable-capability-layer rule and executable gate across all nine initialized Cordis owners and future shared setup.
+- [ ] Qualify separate default manager/worker/guest programs, actual virgin warm Kata claims/refill/generation discard and verified teardown.
+- [ ] Qualify external activity-profile/handler/execution/environment capabilities without core edits, exact live grants, bounded setup and declared network destinations.
+- [ ] Qualify seed bootstrap/locked plans/policy-admitted installation/owner reconciliation, partial recovery and exact read-back.
+- [ ] Prove enrollment/heartbeat/revocation/team isolation through real isolated Keycloak and existing-control-plane contract fixtures; no production enrollment during tests.
+- [ ] Record exact public archives, owner CI and dedicated self-hosted KVM assembled acceptance; runner provisioning remains outstanding.
+- [ ] Hand bounded cordis candidates back for review without merging. Keep every issue including #678 open.
 
-- [x] Select/initialize Agent through the parent initializer in its same canonical repository: a fresh cleared cordis worktree with pinned shared setup, preserved legacy history/license and its own explicit review pause. Do not reuse/clear its legacy checkout, skip this gate because other projects were initialized, or initialize it speculatively in Task 3B. After resumption, map the legacy HandlerRegistry/provider-kernel boundary and commit owner docs for root/child lifetimes, provider pins, isolation and authority.
-- [ ] Write `agent_program_uses_selected_registered_provider` and `execution_scope_pins_generation`: start the actual default Agent program; install/select a harmless approved provider through the common manager; execute a bounded fixture task; assert generation identity and child-scope cleanup.
-- [ ] Test missing/duplicate handler, revoked resource grant, cross-execution scope leakage, in-flight switch drain, cancellation boundary, stale leases and failing cleanup. A pending execution must never jump to a new provider or credential.
-- [ ] Implement the minimum real Cordis Agent root/provider contracts. Keep durable Work authority and all real model/task product capabilities deferred to Task 10.
-- [ ] Run owner check/build/nonempty suites/program and assembled target installation. Commit/review exact Agent package pins without claiming model usage, sandbox teardown or domain migration from a harmless fixture.
-
-**Deliverable:** Agent is no longer a future composition exception; its default infrastructure uses the same real provider model before useful domain execution is introduced.
+**Deliverable:** a working extensible Capacity Provider infrastructure foundation and seed-driven host integration. Real Work/models/productive handlers/accounting remain Task 10. Deployment never embeds the Agent root in its worker. No production publication, cutover or early Team-domain migration is authorized.
 
 ## Task 4: Prove hot replacement and a multi-surface plugin
 
