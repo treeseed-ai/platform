@@ -2,7 +2,7 @@
 
 This branch specifies a replacement TreeSeed platform built from the operator interface downward: standalone CLI → native Cordis composition in every runtime → integrated deployment and provider/plugin installation → shared REST/SDK/CLI/MCP/browser operations → feature plugins.
 
-**Status: Tasks 1–2 and 3A–3C are integrated on owner `cordis` branches. Task 3D is resumed under the approved seed-driven Capacity Provider amendment.** Agent setup was reviewed/published; do not initialize it again. The current SDK probe candidate and Agent draft are not a completed manager/worker/Kata installation.
+**Status: Tasks 1–2 and 3A–3C are integrated on owner `cordis` branches. Task 3D is resumed under the approved seed-driven Capacity Provider amendment.** Agent setup was reviewed/published; do not initialize it again. The SDK probe foundation and hosted Kata backend are integrated; the Agent service/runtime delivery remains in progress.
 
 Read [Agent architecture](docs/agent-architecture.md), [seed architecture](docs/seed-architecture.md) and the [revised Task 3D delivery plan](docs/superpowers/plans/2026-10-27-agent-composition.md). They specify separate services, native Cordis roots, extensible profiles and dependency setup, and seeds as the platform integration mechanism. Real Work/model execution remains Task 10. Review handoff does not authorize merging, production release or cutover.
 

@@ -176,15 +176,22 @@ isolated control-plane fixtures and real isolated Keycloak, never production enr
 
 | Capability | Current status |
 | --- | --- |
-| Agent Cordis setup | Reviewed and published. Do not initialize again. |
-| Bounded SDK probe contracts | Implemented candidate [SDK #483](https://github.com/treeseed-ai/sdk/pull/483), not merged. |
-| Agent native probe root/children | Existing unmerged draft; refactoring and additional qualification required. |
-| Separate manager/worker/guest roots | Approved requirement; implementation pending. |
-| Real warm Kata pool and setup | Approved requirement; implementation pending. |
-| Extensible activity-profile bindings | Approved requirement; implementation pending. |
-| Real existing-team adapter | Approved requirement; implementation pending. |
-| Seeds and installed target integration | Approved requirement; implementation pending. |
+| Agent Cordis setup and critical readability policy | Reviewed/published; all nine policy candidates integrated. Do not initialize again. |
+| Bounded SDK probe, provider-control and seed foundations | SDK #483/#489/#490/#492 integrated; seven global operation IDs retained. |
+| Extensible activity/profile, environment and lease contracts | SDK #493/#494/#495 are independent review candidates with 121/123/129 owner cases respectively; exact public archives/declarations qualified. |
+| Native private probe authority | Agent #531 has real default Cordis construction, fresh grant/revocation reads, bounded descriptor-anchored files and public archive evidence. Local authority is not team enrollment. |
+| Native probe root, profile preparation and pool policy | Preserved unmerged owner integration; 57 owner cases. Pool and environment collaborators in these component tests are explicitly fixtures. |
+| Guest preparation | SDK #494 defines immutable entries/offline policy; Agent #532 is a draft native component with sequencing, live-policy rereads, safe receipts and monotonic deadlines. Real guest execution/authority still required. |
+| Separate manager/worker/guest programs | Implementation and built service-program qualification pending. |
+| Real Kata host backend | Deployment #1022 integrated; real default guest, host custody and verified destruction qualified. Worker-scoped transport/grants, exclusive real pool, setup, egress and replacement remain pending. |
+| Reusable UI | Existing React/Cordis/Keycloak boundaries retained. UI #105 is an exact-successor compatibility draft with 46 owner cases; upstream combined SDK review remains required. |
+| Real existing-team connection | Agent signing/enrollment/heartbeat/revocation and isolated Keycloak/control-plane qualification pending. SDK protocol transport alone is insufficient. |
+| Seeds and installed targets | Seed SDK foundation integrated; API #645 remains draft. Public default coordinator, real authority/artifact/custody adapters, CLI selection and full installed capacity assembly remain pending. |
 | Real Work/model execution/accounting | Deferred to Task 10. |
+
+The [current delivery checkpoint](superpowers/plans/2026-10-27-agent-composition.md#current-checkpoint)
+records exact source/archive identities and review dependencies. Component tests, a local grant,
+a prewarmed host guest or an immutable archive alone cannot establish a working installed battery.
 
 Completion requires owner checks/build/all applicable test tiers, actual built programs, genuine
 NPM/pinned-Git substitution, real Kata setup/exclusive claim/refill/destruction, Keycloak/connection

@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- Platform: record verified capacity foundations and remaining Agent service gates (#773).
+
 ### Fixed
 - Platform: observe transient application read-back failures within the existing readiness deadline (#796).
 
