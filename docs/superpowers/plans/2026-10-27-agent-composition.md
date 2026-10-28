@@ -112,27 +112,54 @@
 
 ## Current checkpoint
 
-The maintainer approved this expanded plan and explicitly resumed implementation using hosted
-Ubuntu for Kata. The previous embedded-root proposal is superseded. No merges, production
-publication or issue closure are authorized. Work/model execution remains Task 10.
+The original 21 ready candidates and verification repairs Platform #805/#806 have integrated on
+Cordis after owner/assembled gates. Their verified merged task branches are cleaned. The new
+implementation candidates below remain unmerged for review. Keep every issue, including #678,
+open. Real Work/model execution remains Task 10; no legacy/production/cutover changes.
 
-| Boundary | Verified state | Remaining gate |
+| Review boundary | Current evidence | Next obligation |
 | --- | --- | --- |
-| Critical readability rule | Identical rule/checker, frozen baseline and ten helper program cases; nine bounded policy PRs ready with owner CI | Maintainer review and merge |
-| Architecture | Durable Agent/seed references and corrected hosting/qualification venue in Platform PR #785 | Current-head documentation/compatibility qualification and review |
-| Hosted Kata | Real KVM API/VM creation, Kata 4.1 guest boot and private containerd cleanup passed on two Ubuntu 26.04 runner images; PR #792 ready with all current checks green | Full Agent warm-pool, setup, egress and replacement acceptance |
-| SDK | Exact `.19` contract archive verified by 119 owner tests and five independent packed-consumer programs; separately versioned seed, activity, environment, capacity and pool data | Bounded delivery waves, public control transports and final owner integration |
-| Agent/UI | Preserved probe foundation, exclusive pool policy and native profile parameter preparation pass 47 Agent cases; genuine external profile/handler tarballs pass public Node and emitted-declaration consumers without lifecycle scripts; UI 46 cases and exact SDK `.19`/UI `.18` selections retained | Manager/worker/guest services, real pool/control adapter, orchestration/environment execution and isolated validator admission |
-| API seeds | Internal owner-step reconciliation verifies canonical plan identity, intent-before-effect, exact request resume, fresh owner read-back and disposal failures; 20 focused cases pass | Native default authority/artifact/custody adapters, public coordinator and full assembled seed gate |
-| Owner compatibility | Identity #58, Admin #151, Deployment #1019 and API #646 are ready after exact-head hosted gates; API's genuine installed database/Keycloak/API/edge composition passed | Maintainer review; bounded owner-step #645 still depends on #646's compatible closure |
-| Kata backend | Deployment #1022 introduces a separate host-only package entry, typed native provider, private custody and fixed bounded runtime commands; local checks/build/rejection programs and canonical method gate pass | Draft: real default hosted warm/inspect/destruction and complete owner CI are running; hypervisor teardown proof, private service grants and full installed Agent integration remain required |
+| Shared policy | All nine critical instruction/checker candidates integrated; new methods have no added debt/exemptions | Continue contextual refactoring and unchanged baseline verification |
+| SDK activity data | [#493](https://github.com/treeseed-ai/sdk/pull/493), 121 owner cases and genuine archive/declaration consumers | Native profile/handler orchestration and live authority |
+| SDK environments | [#494](https://github.com/treeseed-ai/sdk/pull/494), 123 owner cases, exact archive and offline-policy intersection | Qualified guest execution, artifact custody and enforced egress |
+| SDK capacity leases | [#495](https://github.com/treeseed-ai/sdk/pull/495), 129 owner cases, generation/readiness/cleanup binding | Bounded pool/protocol follow-up and authenticated service transports |
+| Agent independent build | [#530](https://github.com/treeseed-ai/agent/pull/530), 12 acceptance plus four unit cases and exact SDK custody | Reconcile with runtime slices without losing any controls |
+| Agent native probe authority | [#531](https://github.com/treeseed-ai/agent/pull/531), 11 acceptance plus six filesystem integration cases; actual default root and packed Node/declaration consumers | Live existing-team authority remains distinct and required |
+| Agent guest preparation | [#532](https://github.com/treeseed-ai/agent/pull/532), draft public component: 11 acceptance plus nine native boundary cases; late-timer control fails before monotonic deadline correction | Real default execution/authority, actual Kata setup/egress and complete runtime composition |
+| SDK combined integration | Source 39d337c79528a3b815973a684844781211c4669a; 144 local owner cases plus five genuine packed portable programs and declarations | Deliver pool/protocol as bounded owner PRs after predecessor review; integration branch is not a substitute |
+| UI compatibility | [#105](https://github.com/treeseed-ai/ui/pull/105), draft exact successor; 46 owner cases, actual public server/terminal rendering and declarations | Upstream combined SDK review and final single-version owner closure |
+| Preserved Agent integration | Source 2d9afaba06ab6a827ea6eb8df8d7b456eec4be16; 57 owner cases, including existing external profile/handler archives | Separate manager/worker/guest programs, actual pool/control transport and live enrollment |
+| API seed sequencing | [#645](https://github.com/treeseed-ai/api/pull/645) stays draft; 20 focused sequencing cases | Default real authority/artifact/custody providers and full installed gate |
+| Kata backend/venue | Deployment #1022 and Platform #792 integrated after real hosted guest and verified cleanup; final Platform head f82ef1b506f518d0d48c521e25b41a3326ee8633 passed all 28 checks | Full Agent pool/assignment/setup/replacement gate, using hosted Ubuntu |
 
-All nine policy candidates remain open: Platform #784, CLI #328, SDK #486, Deployment #1014,
-API #643, Identity #56, Admin #149, UI #103 and Agent #527. Original Agent and Deployment
-dirty drafts remain preserved. SDK #483 remains the probe-contract review candidate. Runtime
-integration branches are not a substitute for bounded review PRs.
+### Exact private artifacts
 
-The hosted prerequisite proof is [run 40595947464](https://github.com/treeseed-ai/platform/actions/runs/40595947464)
-at `ecd942ad314a314af14564df31a3ab02ad3c75a7`; full compatibility checks are green at the same head.
-This proves the venue and harmless guest fixture, not a completed capacity provider. No mandatory
-dedicated runner remains while hosted qualification succeeds; no workstation runner was registered.
+| Owner artifact | Exact source | SHA-256 |
+| --- | --- | --- |
+| SDK .27 activity | 7eb60a4a68ca770f896e07d0e3d8d2324154e6e9 | ee30dbacf0e95d3fd9f88d097b15332c3dbf8020c3313c90e0a0578937a5d1df |
+| SDK .28 environment | eabe9b892ad1d2f73ef4ea75405965c3c9cc3cee | b06c943463c3aa87d8e4101088e355af487aefbac67aa99c4947b3040872a321 |
+| SDK .29 capacity | a868b25fdbad76cb28efafc02c136f94acb7ef32 | 822f6cdb4d3ed6dfe7dd313777f71e334a195166159a8f33077e5ebe1b5b6dd3 |
+| SDK .30 combined integration | 39d337c79528a3b815973a684844781211c4669a | ce65aa96b9366a6c6aab3fad9d673d659f410f68eccb47325e1c5943b5ae0723 |
+| Agent .2 native probe authority | 65db5ef89d9022e75a6119620d799de3eefdee19 | 69fc8e4a78e120e8468c437d7d44eed861020ee17f788b7ce00dfe33dd057e48 |
+| Agent .4 environment component | f7db6d1a17c3e459193369c5eaca0e97af63d35f | 1a94d5fd694ba759ef042e1e44bd994a2b753da883f2f42037e65fabad52a5c4 |
+| UI .21 SDK compatibility | 45684e6b0b91374df87774513a0fbe4d6872d2fb | 6ec80d79da213e6e04a791850d2f200da36ae74e124f7786f467513f7b7f3c56 |
+
+Earlier artifacts, including Agent .3 before the deadline refinement, retain their original
+bytes. Each row is one private candidate, not a production publication or a claim that different
+SDK versions may coexist. Before merging overlapping SDK/Agent candidates, reconcile all accepted
+exports/projections, package metadata, locks and tests into one exact dependency closure and run
+fresh resulting-head gates. Preserve every independent suite; never select one side wholesale.
+
+A populated Bun cache retained an earlier same-path SDK during the UI successor update. The
+owner identity gate caught it; a fresh-cache update and independent empty-cache frozen install
+verified both SDK .30/UI and SDK .28/Agent selection. Shared prevention is proposed separately in
+[Platform #809](https://github.com/treeseed-ai/platform/issues/809), not added to runtime PRs.
+
+### Remaining Task 3D delivery
+
+Deliver actual separate manager/worker/guest programs and native roots; named service-scoped
+private sandbox grants/transport; exclusive real virgin claims/refill/generation disposal;
+immutable guest setup/verification and egress; live existing-team signing/enrollment/heartbeat/
+revocation; API default seed planning, isolated preparation, authority, custody, journal and
+recovery; CLI project/profile/seed/capacity commands; complete exact-artifact assembly and
+replacement/fencing. Real Work/model execution stays Task 10. All issues remain open.
