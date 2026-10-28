@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 21:26 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 22:55 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -33,6 +33,8 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 17:21 | 0 | 9 | **0/9 = 0%** | +0/+0; API647 qualification failed again; two owner discussions completed; no implementation delivered |
 | 19:30 | 0 | 10 | **0/10 = 0%** | +0/+1 TreeDX100 bootstrap merged; original Agent Releaser retry admitted, continuation selects no work; no simulated release |
 | 21:26 | 0 | 10 | **0/10 = 0%** | +0/+0; API647 recovery replacement qualifying; five Deployment subscribers completed native MCP discussion; implementation/release still unproved |
+| 22:26 | 0 | 11 | **0/11 = 0%** | +0/+1 API647 bootstrap checked/merged; local runtime adoption pending; no simulated release |
+| 22:55 | 0 | 11 | **0/11 = 0%** | +0/+0; API647 adopted and native v13 readiness recovered; API648 qualifies frozen-reporting blocker; no simulated release |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -40,7 +42,29 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 - [API647](https://github.com/treeseed-ai/api/pull/647): bootstrap retained-estimate recovery; not merged, no credit.
 - [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
 
-## Single-delivery recovery — 21:26 UTC
+## Adopted recovery and next blocker — 22:55 UTC
+
+API647/925def15 is adopted through supported `trsd` live rebuilds of api.service and api.operations-runner in existing sessiondev-5007e344-493. Both receipts passed/no blockers; ready generations13502/13340. Actual container read-back matched **732 service source files +732 runner modules**. Manifest SHA256 **21691c1a9d06307eeba9a658b936d159831c409f981d8aabf21839387bfeb5c8** / **dd373a70854a1000f448681e58c27c8694f36ecb87c3726e0ad6571ca904167d**; receipt SHA256e16a7865f4ec8843c0c58b784d16aac23e2337c435565199d9ab383fc0c9bf28 / d6a4aeb15fd832062bbac858b1d6fc171412b819ed7df933ba3d1a19c0d0b8cd. Provider manual selection and unrelated services preserved. Old API647 checkout/local branch removed after verified source custody; remote history and Actions retained.
+
+**Native MCP result:** Agent36112257v13 now reports votingReady, participationVersionReady and executionPlanReady true, original4estimates, no missing participants. Original6completed acting/review node identities/revisions remain; Releaser actorready6, authorityconditionstale1861. Coordinator's first preview used unsupported activityTypes acting and was rejected before mutation. Correct high-level Decision/group continuation **ef4b2e70-06b4-4bf3-b9c1-5110963c6e13** selected0demands and was not started. Supported execution.reconcile plan preview failed `The reporting profile differs from its frozen Workday authority.` No manual node or estimate edits.
+
+Exact blocker is Agent **workday-d4f9513b-db23-416a-98ac-edf4cf50301f**, still running after original deadline **2026-10-26T01:02:04.748Z**. MCP shows expired Reporter assignment_rlAiqF-mMIJAJOAEnPsDrJhA5nAsX7xZ and Tester assignment_DHZEfd3KsKzIRTiKCvtFPlBFEvMr1Rfc, plus completed/released Tester assignment_LeS-wbWbV5zEITr85wtv5Iy_oYsevWlK/result-7e2f2a703680dc685261fe8e. The expired assignments' own deadlines remain2026-10-26T00:00Z. Unknown usage/held claims, original workday/profile/products preserved. No false closeout or cleanup claimed.
+
+[API648](https://github.com/treeseed-ai/api/pull/648), source **c6a1be1416e989a30f445722ee19b86e9f0446cf**, fixes only the blocking reporting projection. Reuse existing hash-verified frozen snapshot; legacy snapshots without revision retain exact-current-profile denials. Genuine red **f8e14fcd3e8f0c032414886cc3b7a95c39933eed**, logSHA **3a0aa525a9fe0fcc54232cd1b121ad823105463e9e8d0e76d578b6b15367ffff**. Local22focused unit/service-SQL tests plus18caller tests across6files, declaration build and structural policies passed; no live acting assignment created. Focused logSHA0b382c3c5848b9ab978761b5f981d1295b3f8fd18c8cde7bb2472d6961f93259; callerSHA94ae31b0717572bf87a60dc30176a5dbc73c67f04ec9d8772b42f2e750e1abea. Existing native component scene now binds both new cases. [Fresh40783251921](https://github.com/treeseed-ai/api/actions/runs/40783251921)/job123149966144 is running prerequisites; complete qualification/adoption/native repair remain pending. Earlier local failures retained: invalid placeholder snapshot hash (b2089f5a...log), corrected with canonical fixture construction; legitimate appended node event changed an overbroad counter expectation (921be1e8...log), corrected to assert unchanged authority and the exact append. Existing denial assertions and time budgets unchanged.
+
+Next: qualify/adopt648; source-derived native reconciliation and fresh continuation preflight; then agent-authored Deployment objective planning, every subscriber's real estimate, approval and implementation/review of913's necessary upstream prerequisite. Team configuration unchanged. Integrated implementation ratio stays0/11; full native-MCP simulated releases0. No broader portfolio work or fabricated success.
+
+## Prior qualified merge checkpoint — 22:26 UTC
+
+[API647](https://github.com/treeseed-ai/api/pull/647) source **900daec2eac062104077a9b645c4146c88c59e77**, checked merge **0edcda27fbcffe90e54a66496d57c8a2b9c39187**, protected staging **925def15207abdb98ee1efd7b692d3bbfab708d6**: fresh fetch/ancestry/read-back verified; all three trees **03ad4b331225161aabdbac750af61ff141568264**. This adds one coordinator integration, no team credit.
+
+[Verify40760204284](https://github.com/treeseed-ai/api/actions/runs/40760204284)/job123069757158 **passed**: complete API2526/2526 across462files; coded component guarantee1101/1101steps,0failed/blocked/skipped, including original `api.golden.execution-decision-producer-native-1` under its unchanged budget and `api.golden.accepted-contribution-profiles`. Scene artifact12855024144 SHA256 **35f4097fb2f4b3109cd3ec52434fc06774197af65bd38423476cc26bf3a8d2d5**; complete raw job log SHA256 **dea97b6532bf8604f80fc476dcf020ce2b2b2e953c5164d3a8e36ada87c14f10**; native prerequisites12856650307/source12856615379. MCP log fetch returned Transport closed; authenticated GitHub CLI retrieved the original final log. Earlier failed/cancelled campaigns remain failed/cancelled, not retrospectively passing.
+
+RootAPI was clean at008e400c before switching to the checked protected925def15. Supported `trsd dev rebuild api.service --plan --json` passed with no blockers, existing sessiondev-5007e344-493/live target. Actual rebuild is running; status reports ready API targets, but final receipt/installed-code read-back and native accepted-team recovery remain **pending**. Public RC publication and full native-MCP simulated release remain unproved. No old expired workday or new acting assignment launched into the known origin gap.
+
+Architect boundary follow-up **send-cd611982828bc05b6d1c09cdd3fbb0ad** / assignment_ElY4ZHu1I0cSbXXeXJkmMz14N26WRRjf / result-cf895b5fea46286722a8b670 completed/released with reported verified teardown:34active/elapsed seconds,291604input/246016cached/2776output/1419reasoning, unknown cost/independent settlement. Durable `response-7675f0eb11c46af43ca30dac.mdx` recommends the minimum linked SDK/API ref-authority contract plus Deployment913's ordinary isolated upstream, reusing existing simulation custody/verification/publication/read-back. SDK/API source findings were coordinator-inspected supplied evidence; Architect independently inspected only Deployment0c831973. This is scope guidance, not an estimate or implementation. The existing same-chat follow-up is active for this single delivery, quiet on unchanged checks; no team configuration change.
+
+## Prior single-delivery recovery — 21:26 UTC
 
 Only target: retained Agent proposal36112257v13/Decision332473e7, reviewed Writera70d690/Tester754bf541/corrected Engineera691c98c, then ordinary Releaser integration and simulated release. **Full native-MCP simulated releases:0.** Discussion/recovery work below adds no implementation credit. Rosters, allocations, original deadlines, retained products and unknown usage remain unchanged.
 
