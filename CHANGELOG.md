@@ -27,6 +27,7 @@
 - platform: document CLI-first Cordis development and independent project ownership (#672).
 
 ### Changed
+- Require readable capability layers and contextual refactoring with a twenty-line method gate (#781).
 
 - Platform: organize permanent tests by tier and enforce the shared development/testing strategy (#768).
 
