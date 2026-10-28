@@ -37,23 +37,23 @@
 - [x] Inventory current branches/worktrees/dirty state and verify all nine HTTPS origin/cordis heads. Existing drafts retained.
 - [x] Create nine independent policy issues and feature worktrees; commit identical critical AGENTS rule and release-workflow guidance before implementation.
 - [x] Observe control: the previous guidance has no method-size, contextual refactoring, compressed-code, baseline or exception gate.
-- [ ] Write acceptance/program checks for changed long methods, compressed statements, unchanged debt, baseline tampering and stale/unused exceptions; verify failures before implementation.
-- [ ] Implement canonical formatter/AST checker, pinned baseline provenance and owner wiring. Include tooling/tests/fixtures; exclude frozen artifacts, generated outputs and upstream resources. Preserve owner-specific instructions.
-- [ ] Run normal owner checks/build/applicable tiers and copied helper programs, then open bounded policy candidates against cordis. Future setup copies helper resources without dependencies/scaffolding; first implementation wires the gate.
+- [x] Write acceptance/program checks for changed long methods, compressed statements, unchanged debt, baseline tampering and stale/unused exceptions; verify failures before implementation.
+- [x] Implement canonical formatter/AST checker, pinned baseline provenance and owner wiring. Include tooling/tests/fixtures; exclude frozen artifacts, generated outputs and upstream resources. Preserve owner-specific instructions.
+- [x] Run normal owner checks/build/applicable tiers and copied helper programs, then open bounded policy candidates against cordis. Future setup copies helper resources without dependencies/scaffolding; first implementation wires the gate.
 
 ## Slice 2: durable architecture and migration documentation
 
 **Interfaces:** stable Agent/seed references linked by owner docs and portfolio plans; implemented/fixture-only/deferred ledger; legacy-to-same-owner capability map.
 
-- [ ] Commit approved references, replace obsolete embedded-Agent hosting text, and correct current migration/kickoff/README status before new runtime tests/code.
-- [ ] Document exact process/IPC/trust boundaries, package/provider map, profile concepts, warm-pool generations, setup/network policy, enrollment compatibility and seed partial recovery.
+- [x] Commit approved references, replace obsolete embedded-Agent hosting text, and correct current migration/kickoff/README status before new runtime tests/code.
+- [x] Document exact process/IPC/trust boundaries, package/provider map, profile concepts, warm-pool generations, setup/network policy, enrollment compatibility and seed partial recovery.
 - [ ] Verify links and eliminate conflicting current Task 3D requirements while retaining historical evidence.
 
 ## Slice 3: SDK portable contracts
 
 **Interfaces:** versioned SeedBundle/SeedPlan/SeedReceipt, capacity configuration/status/control, Agent definition/profile/environment, worker leases and target acknowledgements; inferred types, generated projections and safe errors. Preserve compatible probe contracts and seven global operation IDs.
 
-- [ ] Document fields, identity bindings, strict validation and compatibility/version boundaries.
+- [x] Document fields, identity bindings, strict validation and compatibility/version boundaries.
 - [ ] Write portable built-archive acceptance before contract implementation; cover unknown/credential/Work/model fields, forged authority, invalid state and generation mismatches.
 - [ ] Add separately versioned contracts and projections; resource/profile identifiers stay extensible rather than fixed core enums. Readiness binds actual manager/worker generations.
 - [ ] Run bun run verify, public Node consumer smoke and exact packed-artifact checks; preserve/extend SDK #483 as a bounded candidate and split additional public boundaries.
@@ -112,4 +112,26 @@
 
 ## Current checkpoint
 
-The maintainer approved this expanded plan and explicitly resumed implementation. The previous sandbox-free embedded-root proposal is superseded. Nine policy documentation commits exist in isolated worktrees under packages/.readability; checker/tests/wiring remain pending. Agent and Deployment draft changes are preserved. SDK #483 remains an open, bounded probe contract candidate. No working manager/worker/Kata/seed delivery or qualified-runner provisioning is claimed.
+The maintainer approved this expanded plan and explicitly resumed implementation using hosted
+Ubuntu for Kata. The previous embedded-root proposal is superseded. No merges, production
+publication or issue closure are authorized. Work/model execution remains Task 10.
+
+| Boundary | Verified state | Remaining gate |
+| --- | --- | --- |
+| Critical readability rule | Identical rule/checker, frozen baseline and ten helper program cases; nine bounded policy PRs ready with owner CI | Maintainer review and merge |
+| Architecture | Durable Agent/seed references and corrected hosting/qualification venue in Platform PR #785 | Current-head documentation/compatibility qualification and review |
+| Hosted Kata | Real KVM API/VM creation, Kata 4.1 guest boot and private containerd cleanup passed on two Ubuntu 26.04 runner images; PR #792 ready with all current checks green | Full Agent warm-pool, setup, egress and replacement acceptance |
+| SDK | Exact `.19` contract archive verified by 119 owner tests and five independent packed-consumer programs; separately versioned seed, activity, environment, capacity and pool data | Bounded delivery waves, public control transports and final owner integration |
+| Agent/UI | Preserved probe foundation refactored without new debt; Agent 22 and UI 46 tests passed; exact SDK `.19`/UI `.18` selections | Manager/worker/guest services, real pool and extensible profile/environment execution |
+| API seeds | Internal owner-step reconciliation verifies canonical plan identity, intent-before-effect, exact request resume, fresh owner read-back and disposal failures; 20 focused cases pass | Native default authority/artifact/custody adapters, public coordinator and full assembled seed gate |
+| Owner compatibility | Identity PR #58 ready after full hosted CI and independent packed consumer; Admin PR #151 has full local owner/consumer proof | Admin/Deployment exact-head CI, final API peer closure and installed acceptance |
+
+All nine policy candidates remain open: Platform #784, CLI #328, SDK #486, Deployment #1014,
+API #643, Identity #56, Admin #149, UI #103 and Agent #527. Original Agent and Deployment
+dirty drafts remain preserved. SDK #483 remains the probe-contract review candidate. Runtime
+integration branches are not a substitute for bounded review PRs.
+
+The hosted prerequisite proof is [run 40595947464](https://github.com/treeseed-ai/platform/actions/runs/40595947464)
+at `ecd942ad314a314af14564df31a3ab02ad3c75a7`; full compatibility checks are green at the same head.
+This proves the venue and harmless guest fixture, not a completed capacity provider. No mandatory
+dedicated runner remains while hosted qualification succeeds; no workstation runner was registered.
