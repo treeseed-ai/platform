@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+### Added
+- Agent: qualify native composition and installed provider target (#773).
 ### Fixed
 
 - platform: align authoring and discovery skills with Cordis (#678).

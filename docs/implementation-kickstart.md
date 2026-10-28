@@ -1,12 +1,10 @@
 # Cordis implementation kickoff prompt
 
-## Current checkpoint before Task 3C
+## Current checkpoint: revised Task 3D
 
-Tasks 1–2 and 3A/3B are integrated with exact owner artifact and assembled evidence. CLI/local Deployment/worker/API native roots and the first installed four-service profile exist. Plugin acquisition, generic service instances, UI-owned presentation and Agent remain future work.
+Tasks 1–2 and 3A–3C are integrated. Agent setup was accepted/published; the maintainer explicitly resumed the seed-driven Task 3D plan. Read [Agent architecture](agent-architecture.md), [seed architecture](seed-architecture.md) and the [delivery plan](superpowers/plans/2026-10-27-agent-composition.md).
 
-**Current authority: integrate the reviewed Task 3C plan, initialize UI only, then stop for setup review.** Read the [extensible-container/UI amendment](superpowers/specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](superpowers/plans/2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722). They remove the fixed four-role limit and require UI-owned reusable browser/server/terminal providers, stable retained resources and qualified safe activation.
-
-No UI checkout or Task 3C implementation is created by planning. After approval and explicit execution resumption, initialize only the existing canonical UI repository in its own Cordis worktree, then stop again for setup review before scaffolding/dependencies/tests/builds/code. Baseline publication requires explicit direction. Agent retains the same separate gate at Task 3D. Do not revive historical kickoff text below as new authority or treat earlier optional UI wording as current policy.
+Implement the critical readability rule/checker first across the nine Cordis owners, then separate manager/worker/Kata infrastructure, extensible profiles/setup, seed host composition and public existing-team connection adapters. Preserve native Cordis and independent package ownership. Real Work/model execution remains Task 10. Dedicated KVM-runner provisioning is outstanding. Keep all issues including #678 open; hand back PRs without merging. The earlier UI-only initialization and embedded-Agent hosting instructions below are historical, not current execution authority.
 
 ## Historical Task 1 prompt
 
