@@ -2,8 +2,11 @@
 
 ## [Unreleased]
 
+### Fixed
+- Platform: preserve primary presentation failures while attempting every cleanup step (#796).
+
 ### Added
-- Agent: qualify native composition and installed provider target (#773).
+- Agent: define the seed-driven Capacity Provider architecture (#773).
 ### Fixed
 
 - platform: align authoring and discovery skills with Cordis (#678).
