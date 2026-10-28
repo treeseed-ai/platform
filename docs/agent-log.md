@@ -1,6 +1,8 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 16:02 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 16:25 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+
+[Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
 [Prior 14:46 checkpoint](https://github.com/treeseed-ai/platform/blob/9a7c5825665b60b551640e20b4a792157a373f22/docs/agent-log.md) preserves the complete intermediate checks and failures. The current gates below supersede its pending states.
 
@@ -27,6 +29,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 14:00 | 0 | 9 | **0/9 = 0%** | +0/+0; first five-subscriber discussion completed; revised scope underway |
 | 14:46 | 0 | 9 | **0/9 = 0%** | +0/+0; API647 replacement qualifying, canonical planning gap reproduced; no integration credit |
 | 16:02 | 0 | 9 | **0/9 = 0%** | +0/+0; Deployment group repaired through MCP; API647 replacement qualifying; no integrated team product |
+| 16:25 | 0 | 9 | **0/9 = 0%** | +0/+0; Agent/SDK reporting groups aligned; API647 complete verification passed, coded scenes live |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -46,7 +49,21 @@ Historical mixed successes are [Agent508](https://github.com/treeseed-ai/agent/p
 
 Team `0d8835ed-b366-4163-8f91-58a4864822ef`. Agent project `688bc693-8175-4b4e-b0c1-59d18a332771`; API project `b371c2ba-c9f3-41f0-b249-eb084ef9e610`.
 
-**project-agent:** Architect, Technical Writer, Tester, Engineer, Releaser; roster24de6daa62bcd8d2c8bf942a9509d1f4e3ca3d42. Correction from native roster readback: its pure Reporter subscribes to provider-runtime/agent-runtime-core/project-agent; API Reporter uses workday-closeout. The previous log conflated these configurations; no hidden reconfiguration occurred. Researcher/Reviewer remain available through addressed discussion, groups=[].
+**project-agent:** Architect, Technical Writer, Tester, Engineer, Releaser; current roster **d7157e80ab8e62393564e75ea38add33183884ce**. Pure Reporter now subscribes only to workday-closeout through the governed changes below. Earlier24de6daa Reporter provider-runtime/agent-runtime-core/project-agent memberships and the prior log's conflation with API are preserved at the checkpoint. Researcher/Reviewer remain available through addressed discussion, groups=[].
+
+**project-sdk:** the same five productive subscribers; current roster **3eea1762e5f8619a9ac5b98f98a6e9734c3c8f69**, pure Reporter reporting-only/workday-closeout. Researcher/Reviewer groups=[] retained. Each productive subscriber in Agent/SDK exposes planning/estimating/acting/reviewing/chat; no identities deleted or activity permission/model/handler/class/review-source changes.
+
+**Actual native MCP team changes,16:19–16:24UTC:** `agents.list` identified reporting-only subscribers in proposal work groups. Existing `knowledge.workspaces.create/content.show/content.update/diff/submit/show` used exact original bytes, kind=agent-profile, expectedSha/If-Match, standing reviewed authority and final published readback. No persistence edits or model execution.
+
+| Change | Workspace / approved review | Published commit / final workspace version |
+| --- | --- | --- |
+| Agent Reporter → workday-closeout | 73e42925-40d7-4890-8f7a-86d812a2a167 /ea1edcb8-b42d-4292-bc03-54bc3149712d | 6210e4c79077486752e835e4a87ea3ceb143f2b4 /v5 |
+| SDK Reporter → workday-closeout | b40e3b80-462c-450c-b5d6-49d184ca2f2d /a8294297-1e2e-4769-9ba2-4bd9015fc948 | 3eea1762e5f8619a9ac5b98f98a6e9734c3c8f69 /v5 |
+| Three Agent planning prompts: own class → own agent | c54ecdc4-62f1-4cd4-b571-17ea59c87aa2 /2830d029-1df5-4b70-86f9-ab205636ced1 | d7157e80ab8e62393564e75ea38add33183884ce /v7 |
+
+Only Reporter groupIds changed in the first two publications. Last publication replaces two obsolete phrases in Architect/Engineer/general Reviewer planning, preserving YAML folding and every other byte; fresh roster has zero remaining own-class contribution phrases. Publication/operation IDs, exact before/after byte digests and intermediate approvedv6 observation are retained in [Agent494](https://github.com/treeseed-ai/agent/issues/494) and [SDK411](https://github.com/treeseed-ai/sdk/issues/411). Issued authority, golden SDK chain, retained products, old claims/deadlines and unknown usage untouched. This is team-building configuration, not implementation credit.
+
+**Current preparation:** complete queued/running native execution pages were both empty. Default workday policyrevision6 remains4h/20%planning/180splanning turn/maxConcurrency2/communicationConcurrency5. Next first planning run uses operator maxConcurrency1 for observed writable-workspace contention, with all5group subscribers; fresh activation preflight still required. Provider diagnosis healthytrue/2active execution providers/synthesisFailure=null does not prove newly free capacity; legacy codex-managed offers unavailable. A wrong membership.id diagnose request returned404; corrected to actual membership.providerId. No holds or budgets changed.
 
 **project-api:** same five productive subscribers. Architect joined through governed MCP workspace664db2dd-e091-4e5c-b9b5-99018cd2c8d7, approved review7423c495-50cb-46fd-be7d-f317bcb2fdfb, publicationa8efbf92-45e0-4751-969d-c1a8c9aeddfb. Rosterrefe8d5bd70fa0ad95e88397aef4cecd5b4017bc71a validated. Only its groupIds changed; classes/handlers/prompts/permissions/models and issued authority stayed unchanged. Membership is not an invented dependency or estimate. Default review is the same agent in a separate execution; reviewing.sources selects the performer using subject review instructions plus performer experience/directives.
 
@@ -100,7 +117,11 @@ Assignment IDs have the native `assignment_` prefix. Exact Git/TreeDX references
 
 **New concrete context defect:** canonical Discussion messages store `authorId`/`authorRef`; history snapshot reads nonexistent `author`. Prepared API branch `codex/discussion-history-authorship` at **acbcc64ec5ccdf952ed1c1746906994057b5c0d6**, red d49f57abfa, corrects one runtime line to preserve full canonical authorId. This is not proof that it caused the off-topic replies. Red2failed/6passed (SHAe4ddc79d56ea40c0773c4467c4a5ddd3a21bbc2a4c18a166d816e331368dee2e), green8passed (225b33b920e3e6bce6dc0d22ea824d1751b5ce6ae9daeea24427ebeb51f323bb). Original real PostgreSQL admission1passed4.3s proves persisted peer authorship, exact refs and replay, logSHAcc7611923c704122a463ca2520a910a0dbf0f7c01cd1d0a5b2b23712184c2de9. Exact CI postgres17.11-alpine digest18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73 ran in task-only loopback384MiBcontainer; container and anonymous volume verified removed. Build/file policies and scene-evidence guard passed;2bindings extend existing scenes. Full exact-candidate qualification/adoption and actual Codex attribution proof remain pending. No second full campaign launched while647qualifies.
 
-## Current gates and next work — 16:02 UTC
+## Current gates and next work — 16:25 UTC
+
+Current API6478e31/Verify40721700645 has passed complete verify:direct, native planning/recovery/lease/TreeDX prerequisites and PostgreSQL stages per authoritative job metadata; coded component scenes are live. Exact final suite/native case counts and all scene evidence remain pending; no merge/adoption/real MCP planning claimed. Corrected submission40721966702/author40721966553 passed. Earlier failures below remain failed.
+
+**Schema diagnosis correction:** SDK31bf's owning workdays.plan JSON Schema actually exports type=object, all17intent properties, required profileId/projects/startsAt, additionalProperties=false and original group/continuation conditions. Existing coordinator-mcp test covers these fields and API sdkOperationInputStandardSchema embeds that same projection. Codex still renders body unknown&unknown; native wire/rendering comparison remains unproved, so do not call this alone a missing server schema or add a duplicate. Generic knowledge workspace maps are a separate discovery limitation. Read-only source/projection observations, including the corrected nested-catalog getter probe, are retained in SDK411; no speculative SDK repair or new test runner.
 
 **API647 now includes canonical planning integration**, source **8e31c548645eff2641737807631e438d5f9a6973**, tree3b6b5a57adaeadde8edc7ebc43979db1b9c1dfca. Completed-product callback passes the transitioned canonical assignment; exact original agent/result/source/groups are checked. Original proposal initializer atomically commits row/version/creation event; original binder indexes the unchanged agent bytes. Lost-receipt recovery preserves later authority and history; no coordinator proposal transcription. Valid red fixture replay on unchangedbd34 failed twice, SHAedf8dfc6ea517f33f34bcd1272b77faeb7f562e6904c586c508350e08ac4bab5. Initial669fixture omitted required nested fields and is insufficient valid-product proof. API625 retains corrections and all source/test refs.
 
