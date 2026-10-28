@@ -1,5 +1,5 @@
 import { setTimeout as delay } from 'node:timers/promises';
-import { PresentationReadback } from './assembly/presentation-readback.mjs';
+import { PresentationReadback } from './presentation-readback.mjs';
 import { PlanningBlockedError } from '@treeseed-cordis/sdk';
 
 class ReadbackProgram {

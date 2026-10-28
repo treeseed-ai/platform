@@ -23,7 +23,7 @@ class ReadbackRegression {
   }
   private build(program: string): void {
     const result = spawnSync(process.execPath, ['build',
-      'tests/support/presentation-readback-program.mts', '--target', 'node',
+      'tests/support/assembly/presentation-readback-program.mts', '--target', 'node',
       '--outfile', program], { encoding: 'utf8', timeout: 30000 });
     expect(result.status, result.stderr).toBe(0);
   }
