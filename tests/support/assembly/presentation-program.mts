@@ -143,12 +143,14 @@ class UiAssembly {
             await this.retainedIdentity();
             await this.variantBrowser();
             await this.finishScenario();
-        } catch (error) {
-            if (!(error instanceof PlanningBlockedError)) throw error;
-            const codes: string[] = [];
-            for (const blocker of error.blockers) codes.push(blocker.code);
-            throw new Error('UI_ASSEMBLY_BLOCKED:' + this.stage + ':' + codes.join(','));
-        }
+        } catch (error) { throw this.failure(error); }
+    }
+    private failure(error: unknown): Error {
+        if (!(error instanceof PlanningBlockedError))
+            return new Error('UI_ASSEMBLY_OPERATION_FAILED:' + this.stage, { cause: error });
+        const codes: string[] = [];
+        for (const blocker of error.blockers) codes.push(blocker.code);
+        return new Error('UI_ASSEMBLY_BLOCKED:' + this.stage + ':' + codes.join(','), { cause: error });
     }
     private async prepareBase(): Promise<void> {
         await this.base.prepared(this.input.base);
@@ -159,9 +161,10 @@ class UiAssembly {
         const options = { installationDirectory: planned.configuration.installationDirectory };
         this.owner = new ServiceWorkerOwnerClient(options);
         this.observer = new ServiceWorkerClient(options);
-        this.stage = 'base-apply';
+        this.stage = 'base-submit';
         const application = await this.host.apply(planned.id, planned.digest,
             { ...options, idempotencyKey: 'ui-base' });
+        this.stage = 'base-application-readback';
         await this.settled(this.owner, application.id);
     }
     private async baseBrowser(): Promise<void> {
@@ -209,11 +212,12 @@ class UiAssembly {
         this.require(refused && this.store.records().length === count);
     }
     private async applyVariant(): Promise<void> {
-        this.stage = 'variant-apply';
+        this.stage = 'variant-submit';
         const changed = await this.host.apply(this.next.id, this.next.digest, {
             installationDirectory: this.store.path, idempotencyKey: 'ui-reviewed-restart',
             restartServices: this.scopes,
         });
+        this.stage = 'variant-application-readback';
         await this.settled(this.owner, changed.id);
     }
     private retainedResources(): void {
