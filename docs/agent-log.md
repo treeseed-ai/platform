@@ -1,8 +1,10 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 12:18 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 14:00 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Complete checkpoint through 02:19 UTC](https://github.com/treeseed-ai/platform/blob/8a0e994a368136daf3ce4286c97a15244f719b06/docs/agent-log.md), blob `6b76ebad899d48655e32726cfc1b767914d4687f`, retains all prior scoreboard rows, exact products/reviews/candidates, failed observations, team changes and frozen-history links. This concise current view does not replace that evidence.
+
+[Prior 12:18 checkpoint](https://github.com/treeseed-ai/platform/blob/225ffd7d3b135ae89722c689ace5ecd45c54b25a/docs/agent-log.md), blob `6a9de3c7412fee74bb804e8e8965c639da573208`, preserves the pre-discussion evidence and then-current pending checks.
 
 ## Objective and scoreboard
 
@@ -17,7 +19,8 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 22:16 | 0 | 6 | 0/6 | +0/+1 |
 | Oct28 00:21 | 0 | 7 | 0/7 | +0/+1 Deployment1017 |
 | 02:00 | 0 | 8 | 0/8 | +0/+1 Agent528 |
-| 02:40–12:14 | 0 | 9 | **0/9 = 0%** | +0/+1 Agent529; API647 pending/excluded |
+| 02:40–12:14 | 0 | 9 | 0/9 = 0% | +0/+1 Agent529; API647 pending/excluded |
+| 14:00 | 0 | 9 | **0/9 = 0%** | +0/+0; first five-subscriber discussion completed; revised scope underway |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -57,7 +60,7 @@ Confirmed start request5d9084eb-8a59-41f3-b6fd-f8e995df70fe failed before assign
 
 [API647](https://github.com/treeseed-ai/api/pull/647), Issue625: red **5cf67c3322522ecb44a6a4687a7111530aad407c** reproduced1unit failure/7negative passes and1owning SQL/SDK HTTP/native Git failure with the same raw422/proposal_execution_plan_invalid. Fix **8eb0e4d007190408bdd6a3d15ac3dfe9b2d403c8** classifies only obsolete frozen estimating schema as noncurrent, so existing inactive-history rules apply. Moved/digest/identity/denied/unavailable/unknown failures and active/unmaterialized authority stay errors. Source/result/history untouched.
 
-Final35focused cases/6files passed, SHA256be0ac9d37d9180af41e93d974bd7ae7d42b8e98b3007b0840037cd6d93b447c7. RedSHA94b85bd6bd2a9e451ba3df7fcc951754c2c199e9dfc763d2054c57f143619810/native-reda5809d2a62e4e982177c1185187603cfbb36bf8b8981797c53155329ae5c5ad5. Build/file/architecture/whitespace passed. Local dependency is managed SDK31bf; owning component uses PGlite/isolated HTTP/Git, not managed TreeDX/live proof. Required full [40685552805](https://github.com/treeseed-ai/api/actions/runs/40685552805) is live; authorization40685552749/submission40685552646 passed. New unit bindings extend original component scene. No live retry claimed.
+Final35focused cases/6files passed, SHA256be0ac9d37d9180af41e93d974bd7ae7d42b8e98b3007b0840037cd6d93b447c7. RedSHA94b85bd6bd2a9e451ba3df7fcc951754c2c199e9dfc763d2054c57f143619810/native-reda5809d2a62e4e982177c1185187603cfbb36bf8b8981797c53155329ae5c5ad5. Build/file/architecture/whitespace passed. Local dependency is managed SDK31bf; owning component uses PGlite/isolated HTTP/Git, not managed TreeDX/live proof. First full [40685552805](https://github.com/treeseed-ai/api/actions/runs/40685552805) failed before complete suites/scenes:163early passes/1failed scene-evidence guard. Coordinator insertion displaced an existing expectation and omitted a new one. Commit **7abc67e7bc49f0d37fcebc5b62e60bcc12206f9c** restores2explicit passing-evidence expectations. Replacement [40687837452](https://github.com/treeseed-ai/api/actions/runs/40687837452) has passed complete verify:direct and PostgreSQL steps per job metadata and is executing coded scenes; exact suite counts/artifact readback remain pending. Authorization40687893835/submission40687893730 passed. Local broad guard/readback11passed/1failed on the unchanged hydration fixture's local SDK-overlay dependency closure; focused original scene-evidence guard1passed/8deselected. Failed observations and hashes remain in API625. New unit bindings extend original component scene. No live retry claimed.
 
 ## Checked runtime delivery
 
@@ -66,6 +69,28 @@ Agent528 source301/checked mergee6d4/protected53fd share treec84f209f36f40aec26e
 Agent529 checked source d17/mergece8f/protected93f share tree77ab7bf755ba7c93907aacaacd3d7fa893d5d7b4. Verify40617698541 passed1223Agent/213Reviewer fresh prerequisites,911+23component steps and6owners/22assets, zero failed/blocked/skipped. Sources/schema/handler path now supports planning Proposal products without class/name targeting; no live proposal credit yet. Supported rebuild receiptSHA2d017390271d384bdaa1ee47546fe0ae76eec5d633b9c534f8624627b5a7839d adopted provider12683/sandbox12416; SDK31bf gen200 and API008e gen13500/13336 preserved. Guest3468d891beaa72bc42d5fd7d303b50029bdf36b78d5d74b702b844bab72d3864, runtime64ebd73e0239005d8f99e1e5919e70ea5c9c808848a22ed9bf37d52361555fa2; healthy2workers.4old retained claims are not newly freed capacity.
 
 Protected62 Verify40621836487/publisher40621836492 passed. Sealed artifact12789119287 ZIPSHAda4ef39785bea82d4503e73377098f21ccdf8582d58c10eb4d4d8b0abd3206c4; evidence candidate binds93f/62 and passed verification. Annotated62 tagade0f3864318eec5323ec4d7e1dda16d66b674f0 peels93f. Normal promotion **40685777735 passed**; [62release](https://github.com/treeseed-ai/agent/releases/tag/0.13.0-rc.62) published12:13UTC. Public GitHub tgz, evidence and component manifest match sealed bytes; tgzSHA c467ca468c01540269fceb63bfa9b6f8b456b53ea3781c6e7ed361378dd4eba2. First official npm read returned404 while the published package was processing; later official read succeeded with version62 and SHA512czKdIqYKlM6d9agr1PRAGeiN/kssxU4mmblQk+75gsB4XsdaDXkFBh4OhTiHlz5wskvaDey7v8AsnHM3Zt1Rzg== matching the public tgz. No rebuild/republish.
+
+## Full group discussion and evidence-driven coaching
+
+Native MCP **@project-api**, send **send-dd0a35d8e56b908a82102228cb3fcc32**, completed **5/5required responses** from the existing Architect/Engineer/Releaser/Writer/Tester subscribers. This proves group-derived discussion execution, not a ready proposal. All5canonical assignments completed/released, first/final clock compliant,33clock checks. Claimed intervals did not overlap; parallel execution is not proven. Observed staging writable-lease conflicts and capacity queueing are retained.
+
+| Agent | Actual assignment | Result | Elapsed / active seconds |
+| --- | --- | --- | ---: |
+| Architect | h-wla8eTvAgCE_OZgAtGf4ghwepucUUU | result-3b5fee4233c086ababc5865b | 84 /83.151528653 |
+| Engineer | xy6-In7QGj3vbhvNlRzmGWbQnArqyR4Y | result-27653e2812864b5768f511e9 | 64 /63.008530281 |
+| Releaser | LxM3h-g2NCyfOpWiy1O1MIJbu4d4BYVL | result-05f563f1a8d25c5497f912b6 | 70 /69.812433595 |
+| Writer | 5Kpsvb5pnNIxh0Y4nVQFAvlVLtoH2_bB | result-d13b520f215d87b093257ce9 | 60 /59.381124334 |
+| Tester | iZYKS6iPhGHRAUhvWcvExDPTCd_gH_SS | result-da1a61d5b3ec1063d676e475 | 89 /88.130186688 |
+
+Assignment IDs have the native `assignment_` prefix. Exact Git/TreeDX references, diagnostics and rejected recommendations are in [API625](https://github.com/treeseed-ai/api/issues/625). Operator wall600.214s; canonical elapsed367s/active363.483803551s. Modelgpt-6-luna. Known4of5usage3,178,917input/2,908,800cached/21,025output/13,370reasoning; Engineer model-token fields absent remain **unknown**, so these are not whole-group token totals. Cost/settlement unproven.
+
+**Quality evaluation:** Architect/Engineer/Releaser repeated the separately excluded proposal-binding bootstrap; Writer discussed TreeDX readback; Tester discussed predecessor grants. These were rejected as a coherent Git-download scope. Engineer misattributed an Architect response as its own history, although its effective profile and agent context correctly identifyapi/engineer. No proposal/estimate/review/implementation credit.
+
+**Management intervention:** separate focused topic `retained-git-product-delivery`, same group, send **send-78f2b7c2cd68cd451202ac5bbbabbf50**. The business outcome leads: a coordinator retrieves the ORIGINAL retained Git package of a completed assignment with exact repository/base/head/custody. Original discussion remains history. First four revised responses now address that read boundary and linked ownership; Tester is still running. Architect correctly asks which existing provider capability exports products. Native send **send-8fa755878c9df6171ce57ef460bdce6c** asks AgentArchitect for its actual export contract/linked scope; queued. Releaser's eventual acting scope must integrate reviewed work, not become verification-only. No acting work admitted.
+
+**Governed configuration:** APIArchitect/Engineer planning wording now says each agent owns its contribution and cannot copy another agent's estimate. Only2sentences changed; workspace3b3c8268-825f-4604-acab-a8f3bd80852f publishedv6, approved review0a598e74-6a7a-4774-bf09-7dc214ebdb06, publication84517fa1-5975-4c65-ba80-9a5c278f9c13; rosterref **ff25fa2125a2d0346b20489b3adec7331aa6af65**, both profiles validate. Existing groups/classes/handlers/permissions/models and issued authority unchanged.
+
+**New concrete context defect:** canonical Discussion messages store `authorId`/`authorRef`; history snapshot reads nonexistent `author`. Prepared API branch `codex/discussion-history-authorship` at **acbcc64ec5ccdf952ed1c1746906994057b5c0d6**, red d49f57abfa, corrects one runtime line to preserve full canonical authorId. This is not proof that it caused the off-topic replies. Red2failed/6passed (SHAe4ddc79d56ea40c0773c4467c4a5ddd3a21bbc2a4c18a166d816e331368dee2e), green8passed (225b33b920e3e6bce6dc0d22ea824d1751b5ce6ae9daeea24427ebeb51f323bb). Original real PostgreSQL admission1passed4.3s proves persisted peer authorship, exact refs and replay, logSHAcc7611923c704122a463ca2520a910a0dbf0f7c01cd1d0a5b2b23712184c2de9. Exact CI postgres17.11-alpine digest18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73 ran in task-only loopback384MiBcontainer; container and anonymous volume verified removed. Build/file policies and scene-evidence guard passed;2bindings extend existing scenes. Full exact-candidate qualification/adoption and actual Codex attribution proof remain pending. No second full campaign launched while647qualifies.
 
 ## Remaining gates and next work
 
