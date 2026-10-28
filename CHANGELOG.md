@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+### Fixed
+- Platform: preserve primary presentation failures while attempting every cleanup step (#796).
 ### Fixed
 
 - platform: align authoring and discovery skills with Cordis (#678).
