@@ -1,5 +1,8 @@
 # CLI-first Cordis Platform Implementation Plan
 
+
+**Current Task 3D authority:** the maintainer approved and resumed the [seed-driven Capacity Provider amendment](../specs/2026-10-27-agent-composition-design.md) and [delivery plan](2026-10-27-agent-composition.md). Separate Agent manager/worker/Kata services replace the embedded-root proposal. Real Work/model execution remains Task 10. The dedicated KVM-runner gate is outstanding. Earlier setup-only/unstarted Task 3D wording is historical and does not override this checkpoint.
+
 > **For implementing agents:** Load the actual configured workflow/testing skills and deliver one bounded task at a time. Each eligible Cordis repository uses the parent initializer and pauses for user review before code. TreeDX remains its existing Elixir/Rust service. Checked Task 1 boxes record verified candidate evidence; later unchecked tasks remain future work.
 
 **Goal:** Deliver a standalone CLI that installs and recovers one integrated Cordis platform, then expose its bounded plugin lifecycle through REST, SDK, CLI, MCP and browser actions before adding feature domains.
@@ -10,7 +13,7 @@
 
 **Spec:** [Platform contract](../../platform-contract.md). Context: [migration reference](../../migration-reference.md), [AGENTS.md](../../../AGENTS.md), [#672](https://github.com/treeseed-ai/platform/issues/672).
 
-**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. The [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), were reviewed and integrated. UI setup was accepted/published and Task 3C explicitly resumed; owner candidates and exact assembled functional acceptance are qualified for maintainer PR review. Task 3D remains unstarted. See the [execution ledger](../../task3c-execution-status.md).
+**Execution status:** Tasks 1–2 and 3A/3B are integrated on owner `cordis` branches; exact records remain historical. Task 3B now has real CLI/worker/API roots, service plugins and a protected Admin browser. The [extensible-container/UI amendment](../specs/2026-10-24-extensible-deployment-ui-design.md) and [detailed owner plan](2026-10-24-task3c-extensible-plugins-ui.md), tracked by [#722](https://github.com/treeseed-ai/platform/issues/722), were reviewed and integrated. UI setup was accepted/published and Task 3C explicitly resumed; owner candidates and exact assembled functional acceptance are qualified for maintainer PR review. Task 3D is resumed under the approved seed-driven Capacity Provider amendment. See the [execution ledger](../../task3c-execution-status.md).
 
 ## Global constraints
 
@@ -48,7 +51,7 @@ The [composition/provider specification](../specs/2026-10-24-cordis-composition-
 | Task 3A | Built CLI and local Deployment use real Cordis roots and installed selectable providers | Integrated; exact Task 3A evidence |
 | Task 3B | First installed API/Identity/Admin composition and durable Deployment worker root | Integrated; exact Task 3B evidence |
 | Task 3C | Extensible typed container plugins, required reusable UI and NPM/Git safe activation | Qualified candidates; maintainer PR review pending |
-| Task 3D | Agent root/execution-child composition with harmless real provider harness | Proposed; Agent setup review; no domain migration |
+| Task 3D | Seed-driven separate Agent manager/worker/guest roots, real warm Kata and extensible profiles/setup | Approved and resumed; owner implementation and dedicated KVM qualification pending |
 | Task 4 | Hot-swap proof in all four runtimes plus operation/CLI/browser contributions | Proposed |
 | Task 5 | REST/SDK/CLI/MCP/browser parity with equivalent provider/authority semantics | Proposed |
 | Task 6 | Interrupted installs/swaps, leases, partial generations, cancellation and recovery | Proposed |

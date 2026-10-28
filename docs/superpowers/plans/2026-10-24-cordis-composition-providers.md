@@ -1,6 +1,9 @@
 # Cordis composition and provider migration implementation plan
 
-> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D remains unstarted.**
+
+**Current Task 3D authority:** the maintainer approved and resumed the [seed-driven Capacity Provider amendment](../specs/2026-10-27-agent-composition-design.md) and [delivery plan](2026-10-27-agent-composition.md). Separate Agent manager/worker/Kata services replace the embedded-root proposal. Real Work/model execution remains Task 10. The dedicated KVM-runner gate is outstanding. Earlier setup-only/unstarted Task 3D wording is historical and does not override this checkpoint.
+
+> **For implementing agents:** Use the actual available workflow/testing tools, preserve the user's execution method, and deliver one bounded task at a time. Checkboxes record verified results, not intentions. Retain child-repository setup pauses. **Tasks 3A/3B are integrated. The Task 3C extensible-container/UI revision is reviewed under #722. UI setup was accepted and published; Task 3C implementation and functional candidate acceptance are qualified for maintainer PR review. Task 3D has resumed after the test-organization review; portable contracts are in implementation, and runtime/installed-target qualification remains pending.**
 
 **Goal:** Make native Cordis composition, typed selectable providers, package registration and safe live replacement executable requirements across CLI, API, Deployment and Agent before domain migration.
 
@@ -56,7 +59,7 @@ All paths below are inside the named independent repository, except Platform doc
 
 Existing SDK/CLI/Deployment owners currently expose `bun run verify` (check, build, unit, integration and smoke). Preserve those meaningful gates and existing Task 1–2 program checks. New owners must document and implement nonempty equivalent scripts in their own setup-approved issue before execution; do not claim an uncreated command ran.
 
-Current Platform regression command is `node --test --test-concurrency=1 tests/skills/*.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts` under the existing qualified Node toolchain. New assembled scenes are added in their owner's slice and recorded in composition/CI; complete owner prerequisites run before those scenes. Native positive gates must not skip when dependencies are missing. No new runtime proof is executed in this documentation delivery.
+Current Platform tier commands and exact assembled closure assignments are in the root `package.json` and `tests/README.md`; use `bun run test:regression` under the existing qualified Node toolchain for policy/correspondence coverage. New assembled scenes are added in their owner's slice and recorded in composition/CI; complete owner prerequisites run before those scenes. Native positive gates must not skip when dependencies are missing. No new runtime proof is executed in this documentation delivery.
 
 ## Task 3A: Prove native composition in CLI and local Deployment
 
@@ -75,7 +78,7 @@ Current Platform regression command is `node --test --test-concurrency=1 tests/s
 
 **Deliverable:** CLI and packaged local Deployment really use Cordis; installed provider bytes can be loaded by the standalone executable. No fake-injected graph is the only evidence.
 
-Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and qualified for PR review; Task 3D remains unstarted.
+Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-native-composition.md) and Platform #708. Task 3B delivery is recorded below; Task 3C candidates are implemented and qualified for PR review; Task 3D has resumed after the test-organization review; portable contracts are in implementation, and runtime/installed-target qualification remains pending.
 
 ## Task 3B: First installed composition and durable host root
 
@@ -107,19 +110,23 @@ Local Task 3A verification is recorded in its [delivery](2026-10-24-task3a-nativ
 
 **Deliverable:** exact plugin installation activates qualified safe services/contributions through a generic host, with reusable UI and truthful action-required boundaries. Removal remains Task 7; full recovery Task 6. Documentation approval alone initializes nothing.
 
-## Task 3D: Agent composition baseline without domain execution migration
+## Task 3D: Seed-driven Agent Capacity Provider
 
-**Files:** Agent root and provider/handler/tool/context/reporting interfaces/plugins plus real program tests; human view-model adapters consuming UI terminal/browser providers; SDK declarations; Deployment target installer; Platform assembled Agent-context fixture.
+The maintainer approved and resumed the revised [Agent architecture](../../agent-architecture.md), [seed architecture](../../seed-architecture.md) and [owner delivery plan](2026-10-27-agent-composition.md). Platform #773, Agent #525, SDK #482 and Deployment #1011 track runtime work; separate owner policy issues track the critical readability rule. Agent setup was reviewed/published and must not be repeated.
 
-**Interfaces:** produces `AgentApplication` and execution child contexts consuming `ServiceLocator`/leases; a harmless capability fixture supplies two interchangeable providers. This is composition infrastructure, not an implemented Work/Agent product or model provider.
+**Interfaces:** separate manager/worker/guest Cordis roots and typed process protocols; definition-owned extensible activity profiles; Agent-owned virgin pool policy, runners and setup; bounded Deployment sandbox control; API-owned headless seed coordination and exact owner receipts. Existing-team connections use the existing public control plane and preserve Keycloak approval/provider credentials. SDK #483 remains a bounded probe contract candidate, not completion evidence for this expanded delivery.
 
-- [ ] Select/initialize Agent through the parent initializer in its same canonical repository: a fresh cleared cordis worktree with pinned shared setup, preserved legacy history/license and its own explicit review pause. Do not reuse/clear its legacy checkout, skip this gate because other projects were initialized, or initialize it speculatively in Task 3B. After resumption, map the legacy HandlerRegistry/provider-kernel boundary and commit owner docs for root/child lifetimes, provider pins, isolation and authority.
-- [ ] Write `agent_program_uses_selected_registered_provider` and `execution_scope_pins_generation`: start the actual default Agent program; install/select a harmless approved provider through the common manager; execute a bounded fixture task; assert generation identity and child-scope cleanup.
-- [ ] Test missing/duplicate handler, revoked resource grant, cross-execution scope leakage, in-flight switch drain, cancellation boundary, stale leases and failing cleanup. A pending execution must never jump to a new provider or credential.
-- [ ] Implement the minimum real Cordis Agent root/provider contracts. Keep durable Work authority and all real model/task product capabilities deferred to Task 10.
-- [ ] Run owner check/build/nonempty suites/program and assembled target installation. Commit/review exact Agent package pins without claiming model usage, sandbox teardown or domain migration from a harmless fixture.
+- [x] Complete Agent same-repository setup review/publication and preserve original legacy sources/services.
+- [x] Commit approved durable references and revised owner plan before new runtime tests/implementation.
+- [ ] Deliver the critical readable-capability-layer rule and executable gate across all nine initialized Cordis owners and future shared setup.
+- [ ] Qualify separate default manager/worker/guest programs, actual virgin warm Kata claims/refill/generation discard and verified teardown.
+- [ ] Qualify external activity-profile/handler/execution/environment capabilities without core edits, exact live grants, bounded setup and declared network destinations.
+- [ ] Qualify seed bootstrap/locked plans/policy-admitted installation/owner reconciliation, partial recovery and exact read-back.
+- [ ] Prove enrollment/heartbeat/revocation/team isolation through real isolated Keycloak and existing-control-plane contract fixtures; no production enrollment during tests.
+- [ ] Record exact public archives, owner CI and dedicated self-hosted KVM assembled acceptance; runner provisioning remains outstanding.
+- [ ] Hand bounded cordis candidates back for review without merging. Keep every issue including #678 open.
 
-**Deliverable:** Agent is no longer a future composition exception; its default infrastructure uses the same real provider model before useful domain execution is introduced.
+**Deliverable:** a working extensible Capacity Provider infrastructure foundation and seed-driven host integration. Real Work/models/productive handlers/accounting remain Task 10. Deployment never embeds the Agent root in its worker. No production publication, cutover or early Team-domain migration is authorized.
 
 ## Task 4: Prove hot replacement and a multi-surface plugin
 
@@ -161,6 +168,6 @@ owner/assembled checks cover genuine sources, repeated services, retained creden
 qualified native readiness replacement, explicit historical custody and both UI surfaces.
 Task3C is not integrated or released by this record. No merge or issue closure is authorized.
 
-Task3D remains unimplemented. Agent must receive its own same-repository initializer and
+Historical pre-initialization checkpoint (superseded by approved/published Agent setup): Agent required its own same-repository initializer and
 explicit setup review before code. Broader runtime replacement, parity, recovery and removal
 remain Tasks4–7, with unchanged repository/Keycloak/release boundaries.
