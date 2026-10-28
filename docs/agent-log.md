@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 19:30 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 21:26 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -32,6 +32,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 16:25 | 0 | 9 | **0/9 = 0%** | +0/+0; Agent/SDK reporting groups aligned; API647 complete verification passed, coded scenes live |
 | 17:21 | 0 | 9 | **0/9 = 0%** | +0/+0; API647 qualification failed again; two owner discussions completed; no implementation delivered |
 | 19:30 | 0 | 10 | **0/10 = 0%** | +0/+1 TreeDX100 bootstrap merged; original Agent Releaser retry admitted, continuation selects no work; no simulated release |
+| 21:26 | 0 | 10 | **0/10 = 0%** | +0/+0; API647 recovery replacement qualifying; five Deployment subscribers completed native MCP discussion; implementation/release still unproved |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -39,7 +40,29 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 - [API647](https://github.com/treeseed-ai/api/pull/647): bootstrap retained-estimate recovery; not merged, no credit.
 - [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
 
-## One retained contribution only — 19:30 UTC
+## Single-delivery recovery — 21:26 UTC
+
+Only target: retained Agent proposal36112257v13/Decision332473e7, reviewed Writera70d690/Tester754bf541/corrected Engineera691c98c, then ordinary Releaser integration and simulated release. **Full native-MCP simulated releases:0.** Discussion/recovery work below adds no implementation credit. Rosters, allocations, original deadlines, retained products and unknown usage remain unchanged.
+
+**API bootstrap:** [API647](https://github.com/treeseed-ai/api/pull/647), source **900daec2eac062104077a9b645c4146c88c59e77**, repairs accepted participation being recomputed from today's subscribers. Native accepted Agent readiness lost authority after Architect joined; original approved contributors/products remain retained. Accepted sources now validate exact Decision/estimate/result evidence and original owning-workday profile snapshots; drafts still require current subscribers. Native team-growth case preserves original node identities; no manual agent-state edits. Genuine test-first red `f357a99eec6ef75b76efc92b81226e7973d20e41ca0011d58939b5e4c985c04d`; local owning36/36 plus distinct callers60/60, build and original policy guards passed. Fixture migration omission, deterministic-graph assertion error and policy-limit failures remain in Issue625. [40760204284](https://github.com/treeseed-ai/api/actions/runs/40760204284)/job123069757158 has passed full `verify:direct`, early native Decision/team-growth proof and PostgreSQL stages; coded component scenes **still running**, exact final totals/qualification/adoption unproved. Earlier156e997 run40754676578 was explicitly cancelled for the newly reproduced accepted-team defect; no qualification credit.
+
+**Necessary Deployment prerequisite:** [Issue913](https://github.com/treeseed-ai/deployment/issues/913) owns the missing acting-workspace simulation upstream at inspected Deployment0c831973. Existing manager acquisition/publication/export does not establish ordinary guest Git integration/release. Native human objective `retained-agent-simulated-release` published at **7b93f6a2039aebcb23150634ad6186fbe2fadfbd**, workspace655b237f-233a-4c81-a359-f0d7a15594b4/reviewc821fdfe-fb2d-4e4a-addb-34692a46ee8e/publication50b52651-f278-4dfb-be5c-24a225f1e4e4. Exact bytes read back in fresh public workspace375280d7-f5a5-45e8-94f4-fe076c25d271, then observed abandoned/v2. Closed original-workspace read failed raw `io error: No such file or directory`; not counted as a read pass. No human-authored proposal or invented estimate.
+
+**Group discussion:** first native send24c7be21 addressed all five project-deployment subscribers. Engineer responded. Architect assignment_HSJQq0wH3CrL7z0xNMFVYRXjh3LGebxU failed timing-awareness validation; no canonical result,48active seconds reported,187382input/140416cached/3837output/2627reasoning, unknown cost/settlement. Three unclaimed requests pinned to pre-objective revisionf5874fb4 were denied after current projection advanced to7b93f6a2. Public MCP cancellation preserved their histories; two stale If-Match denials preceded successful fresh-version cancellation. No issued authority was replaced. These are recovery interventions, not a repaired admission invariant.
+
+Fresh group send **send-59e2d91a1b8d135dabf5d9ffe6c815e4** completed **5/5 durable responses**. All five canonical assignments completed/released with reported verified teardown; independent physical cleanup/settlement and cost remain unknown. Actual usage below is provider-reported, not priced or fabricated. No acting assignment/approval or formal estimate inferred.
+
+| Agent | Assignment suffix | Canonical result | Active / elapsed s | Input / cached | Output / reasoning |
+| --- | --- | --- | ---: | ---: | ---: |
+| Architect | 9jILWBkSGUXIofns8FggmCjvIKO78Ttd | result-b34168e2a7d576cca98e0753 | 40 / 40 | 362858 / 313472 | 2351 / 1262 |
+| Engineer | kTOaRMkq-eKjr1PNPeJRge48jNCd1FtA | result-00f1b139a0ab0ec5cd8d6b33 | 35 / 35 | 227471 / 182656 | 1691 / 825 |
+| Releaser | djkjd9to8xEA8b2kRXCVG-8gLemjXAiB | result-2cc5e66f1377ed3eb840c805 | 33 / 33 | 396425 / 346112 | 2264 / 1151 |
+| Writer | rbIuz9-9bdpQ85R47Qs9w5fWVjakKRte | result-b6790b90ff8cafe5572e71ef | 42 / 42 | 384271 / 339328 | 2661 / 1339 |
+| Tester | jsSOD8C8qpsgCwTo0xJn0P1dQYCQjS06 | result-ac847ce1bb17edc887815bb5 | 33 / 34 | 272744 / 234368 | 2035 / 955 |
+
+Scope findings: Architect/Engineer identify source-origin contract; Writer owns its documentation; Tester proposes actual authorized push/ref/credential-denial/read-back proof; Releaser requires ordinary integration/release rather than candidate handoff. Architect follow-up **send-5f9ed834104c35f22a783f67f668c450**, assignment_NHdZP1WuQ4vVR0A0IWHowLmgI1aDJSuh, returned durable `response-1401d50a6651365f16f7c1c9.mdx`: confirms the gap between feature publicationRef and protected staging/tag authority; the issuing operation/ref derivation remains unresolved, not a completed design. Canonical planning/self-estimates await API adoption. No fake forge, extra release runner, private retained export or adjacent portfolio work.
+
+## Prior one-contribution checkpoint — 19:30 UTC
 
 Target: original Agent proposal36112257v13/Decision332473e7, reviewed Writera70d690, Tester754bf541 and corrected Engineera691c98c. Team configuration unchanged. Native MCP send1ffc4b35 completed Deployment Architect `assignment_GQuiYCCdWAeVZnKIlQm1RE9JIKMVli5P`/`result-d046f20d69998793187ea583`, response at repo_c6e08eb9721e363b@aaf6a1143e2d01edb53596f1601ff393ef8f4ba2. It found existing bounded Git diagnostics and predecessor-relative bundles in Deployment0c831973; Agent's installed dependency327 contains them. Native verifier adoption and the original Git failure cause are not proved. Wider proposal/history reads were denied. No new Git-download feature or private export is being pursued before existing continuation is exhausted.
 
@@ -201,4 +224,4 @@ SDK Architect initially claimed no source.read tool (response385568377f4368d97af
 4. Obtain each subscriber's own contribution/estimate, approve ready revision, run actual dependency/review chains and Releaser integration to ordinary simulation upstream. Full MCP release remains0.
 5. Full definition/instructions/core objective/proposal/Decision, global+profile queries, related objectives and real searchable history across profiles, Compose parity, clean retained-claim recovery and durable cleanup remain unproven.
 
-Goal remains active. Root user files, credentials, retained products/unknown usage, rollback and persistent selections are protected. TreeDX4GiB/default configurable cache budget unchanged. No new agent implementation ratio credited this interval.
+The user has explicitly resumed the goal. The app goal record still reports blocked at21:26UTC; available goal tools cannot resume it. Work continues on the single contribution without an adjacent app-goal repair. Root user files, credentials, retained products/unknown usage, rollback and persistent selections are protected. TreeDX4GiB/default configurable cache budget unchanged. No new agent implementation ratio credited this interval.
