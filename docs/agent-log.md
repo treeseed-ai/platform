@@ -35,7 +35,6 @@ Mixed/unclassified deliveries in this cohort:0. Current coordinator code deliver
 | [Deployment1015](https://github.com/treeseed-ai/deployment/pull/1015) | 194a8fad12f16a0e9269fa5f0c9906604f5db5f7 | Checked SDK CLI closure repair; rc325 publication failed, no adoption. |
 | [API641](https://github.com/treeseed-ai/api/pull/641) | 008e400cfb4974615b040c33a1bec8f773c58c7f | Supported rebuild and real nativeMCP provenance readback passed. |
 | [Deployment1016](https://github.com/treeseed-ai/deployment/pull/1016) | fbb3046847f074e004f4bc82c8c842feecadc5fa | rc326 published/read back and signed APT passed; host adoptedfbb30468 through trsd. Agent dependency/runtime adoption remains pending. |
-
 | [Deployment1017](https://github.com/treeseed-ai/deployment/pull/1017) | 0c83197373c60a208431315756a26d866f319d9b | Compiled SDK runtime repair passed exact qualification and merged;327 protected publication40608156441 pending. Host remains326. |
 
 ## Current team architecture — actual governed changes
