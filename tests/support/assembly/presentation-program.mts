@@ -1,3 +1,4 @@
+import { PresentationReadback } from './presentation-readback.mjs';
 import { PresentationLifecycle } from './presentation-lifecycle.mjs';
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, copyFileSync, chmodSync, statSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
@@ -50,12 +51,8 @@ class UiAssembly {
     private static pause(done: (value: void) => void): void { setTimeout(done, 100); }
     private sha(bytes: Uint8Array): string { return createHash('sha256').update(bytes).digest('hex'); }
     private async settled(owner: ServiceWorkerOwnerClient, id: string): Promise<void> {
-        let record = await owner.application(id);
-        const until = Date.now() + 240000;
-        while (!['completed', 'failed', 'cancelled'].includes(record.phase) && Date.now() < until) {
-            await new Promise(UiAssembly.pause);
-            record = await owner.application(id);
-        }
+        const record = await new PresentationReadback().wait(
+            owner.application.bind(owner, id), Date.now() + 240000);
         if (record.phase !== 'completed' || record.result !== 'ready')
             throw new Error('UI_APPLICATION_FAILED:' + this.stage + ':' + record.phase + ':' + record.result);
     }

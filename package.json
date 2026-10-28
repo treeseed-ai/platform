@@ -12,7 +12,7 @@
     "check:test-layout": "bun .agents/skills/release-workflow/scripts/test-layout.ts",
     "check:composition": "tests/support/assembly/node_modules/.bin/tsc --strict --noEmit --allowImportingTsExtensions --module nodenext --target es2022 --skipLibCheck --types node,bun --typeRoots tests/support/assembly/node_modules/@types tests/support/assembly/*.mts tests/acceptance/plugin-activation.test.mts tests/acceptance/reusable-presentation.test.mts tests/regression/assembly-selection.test.mts",
     "test:acceptance": "bun run test:installed && bun run test:extensible && bun run prepare:ui && bun run test:ui && bun test tests/acceptance/source-readability.test.mts",
-    "test:regression": "node --test tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts tests/regression/package-composition.test.mts && bun test tests/regression/test-layout.test.mts tests/regression/assembly-selection.test.mts tests/regression/presentation-cleanup.test.mts",
+    "test:regression": "node --test tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts tests/regression/package-composition.test.mts && bun test tests/regression/test-layout.test.mts tests/regression/assembly-selection.test.mts tests/regression/presentation-cleanup.test.mts tests/regression/presentation-readback.test.mts",
     "test:integration": "node --test tests/integration/*.test.mts",
     "test:unit": "node --test tests/unit/*.test.mts",
     "check:readability": "bun .agents/skills/release-workflow/scripts/source-readability.ts",

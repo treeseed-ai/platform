@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Fixed
+- Platform: observe transient application read-back failures within the existing readiness deadline (#796).
+
+### Fixed
 - Platform: preserve primary presentation failures while attempting every cleanup step (#796).
 
 ### Added
