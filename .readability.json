@@ -1,0 +1,412 @@
+{
+  "formatVersion": 1,
+  "baselineCommit": "9edfb89a3afa31979ee5d802e62ed97f99a85013",
+  "violations": [
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestLayout.inspect",
+      "fingerprint": "bfff01a3fe612610a72c2bcc0f00c92fdb5abbe557d2b876614a24990d557a0c"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestLayout.check",
+      "fingerprint": "aec11cb99ea6438078fa6cbf353bbf8c4b5f5803a1e0102c86b725180f20e669"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestLayout.discovery",
+      "fingerprint": "771becf2a0f493fa9ee054d98379140581968b2134e1ccfd778ac1618eb4074b"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestLayout.partitions",
+      "fingerprint": "95cef1faa4182536c0be52904c7525d3ed245bac04f22d969ea73307ef0fa2bd"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestLayout.directory",
+      "fingerprint": "fb2f15a07b290e17c566adedf0e37dd7b4093a59a6085ebbf4f787474f6adb0a"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestRegistrationVisitor.inspect",
+      "fingerprint": "ccbfb614b5e447bf0eb3230ba9a80b6a369bae7ec130ef5e134c087a2d0c7058"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestRegistrationVisitor.visit",
+      "fingerprint": "8740012694378c96522cedfa0f69377ee1f26c18d316baaee9050fcb4d6e752d"
+    },
+    {
+      "file": ".agents/skills/release-workflow/scripts/test-layout.ts",
+      "symbol": "TestRegistrationVisitor.test",
+      "fingerprint": "facc0ab411b33f7d001b6f8e5852eebf4ff02716394b318b20ec046794e30fe1"
+    },
+    {
+      "file": "tests/acceptance/deployment-planning.test.mts",
+      "symbol": "Task2Planning.snapshot",
+      "fingerprint": "120345ce5596314ad312c7aa3b5e91e9b9489f27a261d4ab714e96755f8a2f9c"
+    },
+    {
+      "file": "tests/acceptance/deployment-planning.test.mts",
+      "symbol": "Task2Planning.plan_changes_no_runtime",
+      "fingerprint": "740cdb8d257ecfdcdb62aa100ccc6d8d85a86393c36e775eea6e49863f5b2ea9"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "Commands.static run",
+      "fingerprint": "3177a6c8fc4b78f840216aa75c49b104200edf6c1e51bc32a3232417a947aa4e"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "Commands.static write",
+      "fingerprint": "1822ce220d762b12fa072b90fd054936094cf1c30e41825781a12c38b87dc0b4"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "HttpsFixture.start",
+      "fingerprint": "5ab13e35d8bca8022f631e1d66743a5ec39ad24d2f8494c33a113910de15986c"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "HttpsFixture.response",
+      "fingerprint": "f1772019d2f3553ffc182b6e0f30c08fc9182893b86763fb08f6c9a7e6b27e92"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "HttpsFixture.chunk",
+      "fingerprint": "9850a8c2347c400e925e25184ec0094fdf23a9a00514a2c16b6aaaa8a32e6abf"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "LostReply.start",
+      "fingerprint": "ad58b3fecfca47615ee82013972e7fe1ce9e43c52f4e25236ddf285467c2926e"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "LostReply.sent",
+      "fingerprint": "33dabd36ba9020857773548147b922abd4999a55d4c1dc960b1d3a64ce691dc9"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "LostReply.failed",
+      "fingerprint": "04285d1f1b209a29ae9585594e5cc317bbe8f7e7e1d319e27a209eb4ef6e4040"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "FreePort.get",
+      "fingerprint": "cbb33268ca11b7779ff66e8f4739f4099029bb2afb5da8c7705081823fb1683a"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "OciFixture.export",
+      "fingerprint": "726cdfd6363e71d163a65656a72f9cdd9c60c8aacc8e25bd28cff8fb91d255d8"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "OciFixture.blob",
+      "fingerprint": "d4f3c5d4d3bf835f67c59505e880181fbaf61ca6f5d9960df59c0523728a1f8e"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "OciFixture.select",
+      "fingerprint": "2f34fe09d71a7460baafc0b1b86478cc3c8a4c978c52a65a82742a416b35ece9"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.prepare",
+      "fingerprint": "32e80cef760b24379b0bb93fc2f6a11f24d9a308c186aa032a57c56073a2358a"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.command",
+      "fingerprint": "8e4bd9d2cc08d33a9130af3cbfff967535c3afcd34d36a3b76b29cb166932a4e"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.planning",
+      "fingerprint": "aaf9985ca4ebdc2fa0b13b227560d3a90a9725e0025f8c0e6fe2cf0d9a990b01"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.blockedConfiguration",
+      "fingerprint": "103d142f5418e858a7421334b899701dbc822de76880946554ae9c712738bb6c"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.negativePlans",
+      "fingerprint": "80c54d99642c4f5aff3bd5e0f4ebc4bf8108eae01437143f181e32e31e6b4ca8"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.variant",
+      "fingerprint": "6b2fde5906abdde8df6aee1b9515f50646909821de672cb189f0b3d9b86f00a4"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.blockedApply",
+      "fingerprint": "47b86e2854f2d536b6ef5e231a1c4a446f8541550a0f969d4b46ceedb53ad59a"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.hostAuthority",
+      "fingerprint": "2400774cc08e898f928dac9a186b58b53defecf9a3b6a31d96e5d380f4ce1193"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.activate",
+      "fingerprint": "12b2a91d5cbf956769bf5285b2571d9c8aec4f200797d43bec093533052d509f"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.browserCheck",
+      "fingerprint": "0f0e979d522bb7dbae0c813776a8e24978fb2a6e42380f74864e8b7b68661dbf"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.run",
+      "fingerprint": "c5699c4341958dda69616b394b6a09803a6bc3ef29272425c73d89c2ef30b9da"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.migrationCheck",
+      "fingerprint": "35ecb36eb17d2196fcb209f048435f2139cc870d7b9fe7036131da0bfdd71302"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.cleanup",
+      "fingerprint": "36ee584ce8f8ee59165094e3e0148fbc14132c8c747fc28e423f9dcba3aa0500"
+    },
+    {
+      "file": "tests/acceptance/installed-composition.test.ts",
+      "symbol": "InstalledScene.writable",
+      "fingerprint": "e952294bef3cb2b9f2feef38f4088ff4214ee0396fd72d9abba46edcbcac08c3"
+    },
+    {
+      "file": "tests/acceptance/native-composition.test.mts",
+      "symbol": "NativeCompositionFixtureAcceptance.executable",
+      "fingerprint": "935e1cf57c0020685e7b075de1e017d2e440f1957d6ae89403f7593c05cd414c"
+    },
+    {
+      "file": "tests/acceptance/package-composition.test.mts",
+      "symbol": "PackageCompositionFixtureAcceptance.artifact",
+      "fingerprint": "454762171bae2e90deba773d2424dbb36967bdc48f904724938136455db3706f"
+    },
+    {
+      "file": "tests/acceptance/plugin-activation.test.mts",
+      "symbol": "ExtensibleAssembly.evidence",
+      "fingerprint": "30a98672572bcf249b5e39eb7f21004053e4dc20455bfa91b6af074a9af6def9"
+    },
+    {
+      "file": "tests/acceptance/plugin-activation.test.mts",
+      "symbol": "ExtensibleAssembly.scene",
+      "fingerprint": "aa1f2cac4841850b0ba38e06d83b2018670259e535cb08a71121b013a6d7b86e"
+    },
+    {
+      "file": "tests/acceptance/reusable-presentation.test.mts",
+      "symbol": "UiAssemblyGate.program",
+      "fingerprint": "2072614173a006edffdb188532aaef265797c62c59940d7e0454952c5567d3ad"
+    },
+    {
+      "file": "tests/integration/native-composition.test.mts",
+      "symbol": "NativeCompositionFixtureIntegration.framework",
+      "fingerprint": "6ad618cb990c8a92e107bfbadee899979d7ef41c54578ab9e1bd03039cf6828e"
+    },
+    {
+      "file": "tests/integration/package-composition.test.mts",
+      "symbol": "PackageCompositionFixtureIntegration.closure",
+      "fingerprint": "f664271053b498e7743cdc1a1d0b536979454e712b9a62716eb5e93f5b04ba9e"
+    },
+    {
+      "file": "tests/regression/assembly-selection.test.mts",
+      "symbol": "AssemblySelectionTests.archiveModes",
+      "fingerprint": "da1c0f5ebdbcc74961acbe5b732892cd1836729b16b5f268ddcc27f2c96aa6bf"
+    },
+    {
+      "file": "tests/regression/assembly-selection.test.mts",
+      "symbol": "AssemblySelectionTests.lockPin",
+      "fingerprint": "869b40e0261773ad36bd2b472dda038dbef90e5888ed6e985367262177704c33"
+    },
+    {
+      "file": "tests/regression/authoring-policy.test.mts",
+      "symbol": "AuthoringSkillPolicy.installationPathsResolve",
+      "fingerprint": "1d354f84c8fdadcd49be59ff6849b42e57346f10c93d4bc9b3c62843591a6e29"
+    },
+    {
+      "file": "tests/regression/package-composition.test.mts",
+      "symbol": "PackageCompositionFixtureRegression.mergeIdentity",
+      "fingerprint": "78a84cf70e4e40c056d8255087b8d178e0b0d98233c34ab7e57b7e5c01286184"
+    },
+    {
+      "file": "tests/regression/test-layout.test.mts",
+      "symbol": "TestLayoutRegression.check",
+      "fingerprint": "58a1e54d5b4d5e806480547f2c44fc7fd4a30b548e11033ce1aec339518628f4"
+    },
+    {
+      "file": "tests/regression/test-layout.test.mts",
+      "symbol": "TestLayoutRegression.discovery",
+      "fingerprint": "9a2d5796d031c1f6b33cfe9b537b6ebaacb870e3bcdf578110c016bbc44dca2d"
+    },
+    {
+      "file": "tests/regression/test-layout.test.mts",
+      "symbol": "TestLayoutRegression.matrix",
+      "fingerprint": "ec2572e83c489f133b4c787afaaa99cc1106c22b8e76a2cbbc5dae077a23c0c5"
+    },
+    {
+      "file": "tests/regression/test-layout.test.mts",
+      "symbol": "TestLayoutRegression.partitions",
+      "fingerprint": "99923590bc7eb9c1f0b70fd32403786ecdc51b98ed1eec4241ae1a0693c17dcd"
+    },
+    {
+      "file": "tests/regression/test-layout.test.mts",
+      "symbol": "TestLayoutRegression.support",
+      "fingerprint": "e933ea0a60e46f10d31f0368c7d6413a5b60d3e5b392dca3f3c18daa81cb0966"
+    },
+    {
+      "file": "tests/support/assembly/artifact-inventory.mts",
+      "symbol": "ArtifactFiles.static run",
+      "fingerprint": "42ec55a626d4d0164a3f3548b546f75dcb7c626ba4b5ed82c0a99e87ba9bcd2c"
+    },
+    {
+      "file": "tests/support/assembly/host-prerequisites.mts",
+      "symbol": "AssemblyPrerequisites.command",
+      "fingerprint": "9d8292868823ecd045bc38489d82e489cd09b168ae0b7096fb11bcc074198256"
+    },
+    {
+      "file": "tests/support/assembly/host-prerequisites.mts",
+      "symbol": "AssemblyPrerequisites.run",
+      "fingerprint": "d03c8466d6b7e763be6024b51da7cbca6b690e41068c3d14c297df942aeeee7e"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-check.mts",
+      "symbol": "Task3cMigrationCheck.constructor",
+      "fingerprint": "938d341a0af33c9c13659bfdce719558f82379b188230753d04b9af3c155f6e7"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-check.mts",
+      "symbol": "Task3cMigrationCheck.command",
+      "fingerprint": "aaa41a46c60768e3a8dac1e6bf734ce9ad234e5e1b356c8e012737c2a463abef"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-check.mts",
+      "symbol": "Task3cMigrationCheck.resources",
+      "fingerprint": "140bcf042b31c55b85a0828cb27c2ca90197a1f8282a95439271d089e037c15f"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-check.mts",
+      "symbol": "Task3cMigrationCheck.files",
+      "fingerprint": "bbe0c2be7149ed8e8a9bc18afa0cb1eb7dc224043383970365bba89de671351f"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-check.mts",
+      "symbol": "Task3cMigrationCheck.run",
+      "fingerprint": "c2f5744cd037e0d8d52d4f6103d311ed05eaecd5aa5040b9fa1d466347980040"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-check.mts",
+      "symbol": "Task3cMigrationCheck.tamper",
+      "fingerprint": "84589ea36a6cfd08a810a414d1b1bff2ca3a2fbbf61167ecc1b4e36384c2d908"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-program.mts",
+      "symbol": "MigrationAssembly.command",
+      "fingerprint": "7a54330cef49a8564d99c5f0934a00764b75d2170ef6d09ba80425f6a6e7b389"
+    },
+    {
+      "file": "tests/support/assembly/installed-state-migration-program.mts",
+      "symbol": "MigrationAssembly.run",
+      "fingerprint": "9df7f894b78bf6076beeb32ea9290da5544b11de17cb0356d63589347eb58165"
+    },
+    {
+      "file": "tests/support/assembly/prepare-presentation.mts",
+      "symbol": "PrepareUiAssembly.command",
+      "fingerprint": "e9294f6d3d8c59c538eb2dc067e850262f451e729fd3d53e66a8c106268898b8"
+    },
+    {
+      "file": "tests/support/assembly/prepare-presentation.mts",
+      "symbol": "PrepareUiAssembly.run",
+      "fingerprint": "b61ff2167f5d8c691c077e0d784cacb88225c74d8c1d6e4f5a47dfc140b3bef2"
+    },
+    {
+      "file": "tests/support/assembly/presentation-owner-closure.mts",
+      "symbol": "UiOwnerClosure.command",
+      "fingerprint": "769a6c6ac525df467f9ae9e41ce5b9a4d34ec9f9c328cd4646d6d90180c5afde"
+    },
+    {
+      "file": "tests/support/assembly/presentation-owner-closure.mts",
+      "symbol": "UiOwnerClosure.build",
+      "fingerprint": "48d6664861ac658b7381a8fc93cf738c6842700d21e0c3d2ad364423051a8f44"
+    },
+    {
+      "file": "tests/support/assembly/presentation-owner-closure.mts",
+      "symbol": "UiOwnerClosure.run",
+      "fingerprint": "0cbeb5024191fe9300397ef9f9e57c12a861a33b0b7d3bbd9710876a6686060c"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "BrowserRead.static status",
+      "fingerprint": "6e542ad0f701b2e6e85d6e6670e8f9513d111ed74266772eba140e5feebe2a06"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.settled",
+      "fingerprint": "03c2fa2e31e6601494becab7148a234d3932dcde714b39efa19477c7958de4c7"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.resources",
+      "fingerprint": "7ee91d5846d4bcb67cf995c632f1c96b5bf4a851787da8580a785961093fb4a6"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.command",
+      "fingerprint": "e36f3828dd729eb88b56b312b5d4fc7ad84571bba5f726f3aeb5eb5313e5a652"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.login",
+      "fingerprint": "9ea7ec8b46a3c7d2b44e9333d74ac5f61d9e843367768ae906c854a0016b3bab"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.rebase",
+      "fingerprint": "cf1687ec40ff12425ca9666bcc74e26809ede0b93b95ed5d764f743d78ee88e0"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.terminal",
+      "fingerprint": "4303030c02fa96c350e8587d7357c7c2c07cb3e7f9b3b6fcc997d389f1ae4f12"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.stop",
+      "fingerprint": "95f51ade0f9a0f97e5f520bd6fb0f6393beedebf4e93bf3dec8e1e54ea7fb2ee"
+    },
+    {
+      "file": "tests/support/assembly/presentation-program.mts",
+      "symbol": "UiAssembly.run",
+      "fingerprint": "488a46d39e174f51106845e7f407b7cd292899f6bf33da0a33b3ed3bb0864980"
+    },
+    {
+      "file": "tests/support/package-composition-fixture.mts",
+      "symbol": "PackageCompositionFixture.readArchive",
+      "fingerprint": "3c979cd9beffa7060267cb6b8e3c60199e5472f3581bd55ede6ad7220089c039"
+    },
+    {
+      "file": "tests/support/package-composition-fixture.mts",
+      "symbol": "PackageCompositionFixture.git",
+      "fingerprint": "e0bc0be3929878c533f766c3c94303e9b2392d768e666de65a90d28b18e71828"
+    },
+    {
+      "file": "tests/support/package-composition-fixture.mts",
+      "symbol": "PackageCompositionFixture.listen",
+      "fingerprint": "add95f1e0388f233e6a61163bf9c1b82903c768630d4325dc0c916dc3733858a"
+    },
+    {
+      "file": "tests/support/package-composition-fixture.mts",
+      "symbol": "PackageCompositionFixture.listening",
+      "fingerprint": "954c112d665ee4fb5a050567446b3069fd85df33921abf8174caa288f4861726"
+    }
+  ],
+  "exceptions": []
+}

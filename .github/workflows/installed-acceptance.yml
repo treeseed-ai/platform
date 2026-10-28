@@ -12,16 +12,22 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: treeseed-ai/cli
+          ref: 89fb78b6fd362a8de9dec9d238a310f65545175b
+          path: packages/cli
+          persist-credentials: false
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: 1.4.4
       - run: bun install --frozen-lockfile --ignore-scripts
-        working-directory: tests/support/assembly
-      - name: Verify permanent test locations and discovery rejection cases
+      - name: Verify development policy and executable rejection cases
         run: |
-          ln -s tests/support/assembly/node_modules node_modules
-          bun run check:test-layout
-          bun test tests/regression/test-layout.test.mts
+          bun run check
+          bun test tests/regression/test-layout.test.mts tests/acceptance/source-readability.test.mts
   extensible:
     runs-on: ubuntu-26.04
     timeout-minutes: 15
