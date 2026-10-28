@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 16:25 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 17:21 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -30,6 +30,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 14:46 | 0 | 9 | **0/9 = 0%** | +0/+0; API647 replacement qualifying, canonical planning gap reproduced; no integration credit |
 | 16:02 | 0 | 9 | **0/9 = 0%** | +0/+0; Deployment group repaired through MCP; API647 replacement qualifying; no integrated team product |
 | 16:25 | 0 | 9 | **0/9 = 0%** | +0/+0; Agent/SDK reporting groups aligned; API647 complete verification passed, coded scenes live |
+| 17:21 | 0 | 9 | **0/9 = 0%** | +0/+0; API647 qualification failed again; two owner discussions completed; no implementation delivered |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -44,6 +45,27 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 | Complete native-MCP objective-to-simulated-release delivery | **0** |
 
 Historical mixed successes are [Agent508](https://github.com/treeseed-ai/agent/pull/508) (Engineer eecc889d plus coordinator corrections, protected f177a0f5) and [API612](https://github.com/treeseed-ai/api/pull/612) (Tester53066e7d/Engineeracd47ba1 plus coordinator delivery coverage, protected3497c1dc). Native MCP/Actions/ancestry audit is frozen above. They are earlier deliveries, not new team-only credit or proof of today's full-MCP flow. Whole-thread ratio remains unaudited; comparable effort/cost shares remain unknown.
+
+## Current incident and next action — 17:21 UTC
+
+This checkpoint supersedes earlier pending qualification states. [API647](https://github.com/treeseed-ai/api/pull/647) source **8e31c548645eff2641737807631e438d5f9a6973**, checked merge **38e94410524af1c25d4c8431f7cf59912f78aed6**, [run40721700645](https://github.com/treeseed-ai/api/actions/runs/40721700645)/job122934041473 is terminal **failure**. The complete original API suite passed **2525/2525 across461files**; component scenes were **664passed/1failed/435blocked**. The same native Decision producer exceeded its unchanged30s test limit at30006.436171ms. The TreeDX13d9 sequence-index pin did not resolve that failure. No unchanged rerun, longer deadline, merge or adoption followed. Runtime/API selection and retained products/unknown usage remain unchanged.
+
+Retained raw job log SHA256 **e91571b6b45be360cba20bedb58b1d778dc3637c8aa4ffebbb171d69728e7c15**; scene artifact12835358908 ZIP **95001bd651cbc5c4c909a2b3533e7217149a7fa957035f0465d2e589e885da34**; native logs artifact12835242485. API625 retains the literal failed verifier, source digest and timings. The30s failure is a coded native integration test, not evidence that a live model execution timed out.
+
+**Native MCP coordinator queries:** valid `knowledge.team.query` type=path returned `federated_scope_empty`. Adopted federatedQuery declares query:federated, while the native executor additionally requires query-specific file capability. [API regression4a55aa987d](https://github.com/treeseed-ai/api/commit/4a55aa987da13265b37a36367de2c3b3a3bdae83) on codex/native-knowledge-query-regression preserves all7supported query-type failures; no production fix/integration/scene pass claimed. Original full file8fail/5pass includes an unrelated installed-client workspace-capability mismatch; isolated new cases7fail/6unselected, logSHA e100b759004784c265e16cdbb0bc92179990ef6378cbc8d7014cd451a9146c6e. Coordinator code/test work earns no team implementation credit. Its clean temporary worktree/dependency link was removed; remote branch/commit retained.
+
+**Operator correction:** the first search503 used a malformed filters object where TreeDX expects an array. Corrected native `knowledge.team.search` succeeded:1repository executed,0partial/rejected repositories,0matches for opaque. That503 does not prove a search outage. No broader token or alternate transport bypass was used.
+
+**Team evaluation:** TreeDX roster e5853bf8351d353c1c96018fa23e21115602d4f8 retains four project-treedx subscribers (Writer/Tester/Engineer/Releaser); Architect/general Reviewer subscribe to storage-lifecycle, Reporter to workday-closeout. No configuration changed: preserve the accepted four-subscriber proposal rather than change its participation during recovery. Fresh native running/queued pages were complete/empty before owner discussion; provider healthy/2active execution providers does not release the retained429.938s reservation.
+
+`communications.send` on native-decision-recovery, addressed to API/TreeDX Architects, produced **send-03d31aa2300bd08d52350c999089fa8e**, complete. Both assignments completed with released leases; canonical results below are discussion findings, not estimates, accepted proposals, independent review or implementation. API found duplicate service/store readiness checks, explicitly not a proved timeout cause. TreeDX identified retained per-path locks, cache eviction scans and audit replay candidates, also without causal proof. Actual inspected sources API008e400 and TreeDX175fa48c differ from the failing CI candidate/pin; preserve that limitation. Next: reproduce/measure the late native path before changing production code or qualifying again. Do not implement an unproved lock/timeout workaround.
+
+| Owner | Assignment / result | Exact TreeDX response |
+| --- | --- | --- |
+| API Architect | assignment_R70nufzuxCEKme3My1x5W_W5LDMUQ28B / result-be5419f47f18657ffbce1cd5 | repo_be2b46a14c729f0e@9158b12614b2034940bf638aa587e6cec97789cb, discussion-messages/native-decision-recovery/response-d56e2476c0292abfbbce6ac8.mdx |
+| TreeDX Architect | assignment_cmX875EE55EALRvCLIVbAFDQpvk7sCtI / result-e209f2a519a8b917d4d7cd74 | repo_7e1e75a5295419dd@0aed73480b46a3062d106b8ac8d9012f4e9fbdc7, discussion-messages/native-decision-recovery/response-a4f9e752ed816122be643a07.mdx |
+
+Actual combined model-active **185.50194724s** (API88.334361946/TreeDX97.167585294), **1372894input /1220480cached /13642output /9233reasoning** tokens. Cached tokens are an input subset; repeated request context is included. Cost, canonical exactly-once settlement and independently observed physical teardown are not proved by released lease reads. No new acting assignments; full MCP simulated release0; primary cohort ratio remains0/9.
 
 ## Teams and actual agent work
 
@@ -117,7 +139,7 @@ Assignment IDs have the native `assignment_` prefix. Exact Git/TreeDX references
 
 **New concrete context defect:** canonical Discussion messages store `authorId`/`authorRef`; history snapshot reads nonexistent `author`. Prepared API branch `codex/discussion-history-authorship` at **acbcc64ec5ccdf952ed1c1746906994057b5c0d6**, red d49f57abfa, corrects one runtime line to preserve full canonical authorId. This is not proof that it caused the off-topic replies. Red2failed/6passed (SHAe4ddc79d56ea40c0773c4467c4a5ddd3a21bbc2a4c18a166d816e331368dee2e), green8passed (225b33b920e3e6bce6dc0d22ea824d1751b5ce6ae9daeea24427ebeb51f323bb). Original real PostgreSQL admission1passed4.3s proves persisted peer authorship, exact refs and replay, logSHAcc7611923c704122a463ca2520a910a0dbf0f7c01cd1d0a5b2b23712184c2de9. Exact CI postgres17.11-alpine digest18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73 ran in task-only loopback384MiBcontainer; container and anonymous volume verified removed. Build/file policies and scene-evidence guard passed;2bindings extend existing scenes. Full exact-candidate qualification/adoption and actual Codex attribution proof remain pending. No second full campaign launched while647qualifies.
 
-## Current gates and next work — 16:25 UTC
+## Prior gates and next work — 16:25 UTC
 
 Current API6478e31/Verify40721700645 has passed complete verify:direct, native planning/recovery/lease/TreeDX prerequisites and PostgreSQL stages per authoritative job metadata; coded component scenes are live. Exact final suite/native case counts and all scene evidence remain pending; no merge/adoption/real MCP planning claimed. Corrected submission40721966702/author40721966553 passed. Earlier failures below remain failed.
 
