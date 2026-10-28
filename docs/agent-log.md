@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 00:36 UTC. Issues own plans/status, Actions own verification, Git/TreeDX own products. Unknown usage, price and closure remain unknown.
+Updated: 2026-10-28 00:47 UTC. Issues own plans/status, Actions own verification, Git/TreeDX own products. Unknown usage, price and closure remain unknown.
 
 [Complete frozen history through 00:24 UTC](https://github.com/treeseed-ai/platform/blob/ad690a0184cf6d619d515b38cc50fe803c33e571/docs/agent-log.md), blob `b363a61d6a9c21897911d2227c36ad59a48e2fa4`, preserves prior checkpoints, every failed approach, team changes, exact receipts and older history links. This current-state log consolidates that history without replacing failed evidence.
 
@@ -31,6 +31,17 @@ Current coordinator integrations (full earlier qualification/failed observations
 | [Deployment1017](https://github.com/treeseed-ai/deployment/pull/1017) | 0c83197373c60a208431315756a26d866f319d9b | rc327published/adopted; compiled registry SDK replaces source-only dependency. |
 
 Pending [Agent528](https://github.com/treeseed-ai/agent/pull/528) is excluded until merged. Retained team products are excluded until integrated. Comparable implementation effort/cost shares remain **unknown**.
+
+## Historical delivery audit — correction to the zero-only report
+
+**At least2earlier mixed deliveries contain real TreeSeed implementation already integrated into current protected source.** These are historical successes verified now, not new deliveries or proof of the current full-MCP workflow. Keep the recent0/7recovery cohort unchanged; it must not be presented as the entire thread's result. The whole-thread implementation ratio remains **unaudited/unknown**.
+
+| Delivery | Actual team contribution and proof | Coordinator contribution / limit |
+| --- | --- | --- |
+| [Agent508](https://github.com/treeseed-ai/agent/pull/508), merged Oct23 | Engineer assignment8b4HlqIgueoNlGebM2yMrUj5vV7W-pif/result-f94149b29078df0624018157 produced **eecc889d454e6fb44cd67c7bb98e9c5015c33c5f**. Native MCP still returnscompleted and that exact Git ref. Separate Reviewer XSVbuyYDSgIh03ErIg-z2pelPyk9gTkM/result-06db36b80814abf3dabfbae9 approved the original whole candidate; TreeDX27ffc3b2. Original Engineer commit and protected mergef177a0f57e95a05fc6d5d98d29bc4f312a11d5d8 are ancestors of current Agent620e. [39950774531](https://github.com/treeseed-ai/agent/actions/runs/39950774531) verify + installed-owner custody passed. | Codex added architecture correctionsc697f61/e5d59bb0 after the original agent review; this is **mixed**, not a wholly team-authored/peer-approved final candidate. Reviewer used then-current legacy activity routing, not proof of today's reviewing.sources semantics. |
+| [API612](https://github.com/treeseed-ai/api/pull/612), merged Oct24 | Tester **53066e7d0c716d7168fe1d8c867b3f42d36c95f4** and Engineer **acd47ba16ab26636cd60d10f6b37d42de38e3b20** retain their original regression/implementation commits. Both and merge3497c1dc81328994383bfe9804e06039fac3c673 are ancestors of current API008e. Native MCP proposal2068d610-fb5a-4ae0-858e-9d11242848e5 remainsacceptedv6/Decisionce6c1e0f-fc81-46a5-af14-fc8560cb5465. [40094427126](https://github.com/treeseed-ai/api/actions/runs/40094427126) and required authorization/submission checks passed. | Codex combined real products and added native delivery coverage; **mixed**. Original failed40091842281 retained. Product retrieval used the supported CLI, so this does **not** establish native MCP product retrieval or a full MCP simulated release. |
+
+This audit proves useful team code reached source; it does not convert retained products, reviews or bootstrap work into additional integrations. For the current retained Engineer a691, native MCP re-read still returnscompleted/result-bab01b5da001291e4d1d0bc3 with exact Git product and13focused passes, plus an explicitly failed typecheck. Its two changed paths remain unintegrated; current source still contains the empty/omitted-primary TreeDX read-scope fallback it fixes. No private product transfer or manual Git transplant was used for this audit.
 
 ## Team configuration and actual team work
 
@@ -71,4 +82,4 @@ Next: finish528qualification and supported Agent adoption, restore supported pro
 
 Native MCP before activation:0queued/0running, complete pages. After host adoption:0active assignments reported, provider available; its advertised4old claim IDs remain3expired/1cancelled canonically, with unresolved usage preserved. Adapter activeWorkers4 is not proof of4running assignments. No model workload admitted this interval. Old physical-cleanup receipts are historical; fresh physical preflight is still required before new admission. Root user files, credentials, retained Git/TreeDX products, rollback, persistent selections and TreeDX4GiB/default configurable cache budget remain protected. Temporary native test resources cleaned by passing cases; only verified merged log branch removed.
 
-The full goal remains active. Team configuration and retained review loops are real; **integrated implementation share remains0/7=0%**.
+The full goal remains active. At least2historical mixed deliveries are source-verified. The recent bootstrap cohort still has **0/7team-only integrations**; there is no newly completed native-MCP simulated release.
