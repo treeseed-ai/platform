@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 17:21 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 19:30 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -31,11 +31,25 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 16:02 | 0 | 9 | **0/9 = 0%** | +0/+0; Deployment group repaired through MCP; API647 replacement qualifying; no integrated team product |
 | 16:25 | 0 | 9 | **0/9 = 0%** | +0/+0; Agent/SDK reporting groups aligned; API647 complete verification passed, coded scenes live |
 | 17:21 | 0 | 9 | **0/9 = 0%** | +0/+0; API647 qualification failed again; two owner discussions completed; no implementation delivered |
+| 19:30 | 0 | 10 | **0/10 = 0%** | +0/+1 TreeDX100 bootstrap merged; original Agent Releaser retry admitted, continuation selects no work; no simulated release |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
 - [Agent529](https://github.com/treeseed-ai/agent/pull/529): protected `93f50eba1930626b045b409e109d508734cf0efa`; planning Proposal content path repaired;62 locally adopted and publicly released.
 - [API647](https://github.com/treeseed-ai/api/pull/647): bootstrap retained-estimate recovery; not merged, no credit.
+- [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
+
+## One retained contribution only — 19:30 UTC
+
+Target: original Agent proposal36112257v13/Decision332473e7, reviewed Writera70d690, Tester754bf541 and corrected Engineera691c98c. Team configuration unchanged. Native MCP send1ffc4b35 completed Deployment Architect `assignment_GQuiYCCdWAeVZnKIlQm1RE9JIKMVli5P`/`result-d046f20d69998793187ea583`, response at repo_c6e08eb9721e363b@aaf6a1143e2d01edb53596f1601ff393ef8f4ba2. It found existing bounded Git diagnostics and predecessor-relative bundles in Deployment0c831973; Agent's installed dependency327 contains them. Native verifier adoption and the original Git failure cause are not proved. Wider proposal/history reads were denied. No new Git-download feature or private export is being pursued before existing continuation is exhausted.
+
+Architect completed/released with reported verified teardown:53elapsed/52.418120271active seconds;718722input/663552cached/3208output/1375reasoning. Cost and independent billing/physical closure remain unproved; discussion adds no implementation credit.
+
+Supported MCP `assignments.retry` confirmed exact failed Releaser `assignment_WDI8Kr1UscCzMYetii1aw72UpdT5PnmD`; original failure and expired2026-10-27T20:50:00Z deadline remain, terminal stateVersion6, integration node ready revision6. Fresh continuation preflight15f38902 selects0demands because its accepted-authority condition remains stale; no empty workday started. Original three acting/review pairs remain completed. Fresh owning retry/continuation tests19/19 include real PostgreSQL; SHA256a8b48725eb87bdc8a07bc6ce8bfe43795bee3bc82517fa3a1e0e4f751473ef95. First invocation18passed/1failed lacked the required disposable PostgreSQL URL; retained SHAafb5528c51ea8ec3a46883a225bb372d10b62df96e805107e6d3fe8565f649ba. Task container727162dfd0a1 and its anonymous volume removed; API source unchanged.
+
+TreeDX100 reproduces256validations for one warm exact lookup and bounds derived positions within the existing cache budget. Source286d4e1/checked2897df91/protected6336aaf0 share the tree above. [40752535995](https://github.com/treeseed-ai/treedx/actions/runs/40752535995) passed both full Verify gates, Fast PR Gate, SDK Spec, release contract and all8SDK jobs; native engine280/0. Prior403fixture, Rust audit and Bandit audit failures remain in TreeDX86. No timeout/cache/grant/assertion increase. Native logs artifact12843689195 retains amd64 evidence. Runtime selections unchanged.
+
+API647 replacement156e99776a29d664a35fa9816d7abba6f6864c91 pins exact checked TreeDX6336aaf0 and updates both original pin guards. [40754676578](https://github.com/treeseed-ai/api/actions/runs/40754676578) is pending; native Decision30s timeout resolution and admission recovery remain unproved. Three focused guards passed/6deselected, SHAfe8ec983a540d2bcd6e9a66c023505e3c3380ef807134034ccd6417a1f22f76d. The broader local file had8passes/1hydration failure from local SDK dependency closure, SHAb5c7b6616e9b8e6512c29bb89c3d9fe9623d2bd5159bf1fd1cd74702ca428287; not claimed as full qualification. Issues625/86 preserve detail. Full native-MCP simulated releases remain0.
 
 | Product outcome | Proven |
 | --- | ---: |
