@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 12:14 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-28 12:18 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Complete checkpoint through 02:19 UTC](https://github.com/treeseed-ai/platform/blob/8a0e994a368136daf3ce4286c97a15244f719b06/docs/agent-log.md), blob `6b76ebad899d48655e32726cfc1b767914d4687f`, retains all prior scoreboard rows, exact products/reviews/candidates, failed observations, team changes and frozen-history links. This concise current view does not replace that evidence.
 
@@ -21,7 +21,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
-- [Agent529](https://github.com/treeseed-ai/agent/pull/529): protected `93f50eba1930626b045b409e109d508734cf0efa`; planning Proposal content path repaired;62 locally adopted, normal publication active.
+- [Agent529](https://github.com/treeseed-ai/agent/pull/529): protected `93f50eba1930626b045b409e109d508734cf0efa`; planning Proposal content path repaired;62 locally adopted and publicly released.
 - [API647](https://github.com/treeseed-ai/api/pull/647): bootstrap retained-estimate recovery; not merged, no credit.
 
 | Product outcome | Proven |
@@ -65,7 +65,7 @@ Agent528 source301/checked mergee6d4/protected53fd share treec84f209f36f40aec26e
 
 Agent529 checked source d17/mergece8f/protected93f share tree77ab7bf755ba7c93907aacaacd3d7fa893d5d7b4. Verify40617698541 passed1223Agent/213Reviewer fresh prerequisites,911+23component steps and6owners/22assets, zero failed/blocked/skipped. Sources/schema/handler path now supports planning Proposal products without class/name targeting; no live proposal credit yet. Supported rebuild receiptSHA2d017390271d384bdaa1ee47546fe0ae76eec5d633b9c534f8624627b5a7839d adopted provider12683/sandbox12416; SDK31bf gen200 and API008e gen13500/13336 preserved. Guest3468d891beaa72bc42d5fd7d303b50029bdf36b78d5d74b702b844bab72d3864, runtime64ebd73e0239005d8f99e1e5919e70ea5c9c808848a22ed9bf37d52361555fa2; healthy2workers.4old retained claims are not newly freed capacity.
 
-Protected62 Verify40621836487/publisher40621836492 passed. Sealed artifact12789119287 ZIPSHAda4ef39785bea82d4503e73377098f21ccdf8582d58c10eb4d4d8b0abd3206c4; evidence candidate binds93f/62 and passed verification. Annotated62 tagade0f3864318eec5323ec4d7e1dda16d66b674f0 peels93f. Normal promotion **40685777735 queued/live**; publication/readback is pending. Sealed tgzSHA c467ca468c01540269fceb63bfa9b6f8b456b53ea3781c6e7ed361378dd4eba2; no public success claimed.
+Protected62 Verify40621836487/publisher40621836492 passed. Sealed artifact12789119287 ZIPSHAda4ef39785bea82d4503e73377098f21ccdf8582d58c10eb4d4d8b0abd3206c4; evidence candidate binds93f/62 and passed verification. Annotated62 tagade0f3864318eec5323ec4d7e1dda16d66b674f0 peels93f. Normal promotion **40685777735 passed**; [62release](https://github.com/treeseed-ai/agent/releases/tag/0.13.0-rc.62) published12:13UTC. Public GitHub tgz, evidence and component manifest match sealed bytes; tgzSHA c467ca468c01540269fceb63bfa9b6f8b456b53ea3781c6e7ed361378dd4eba2. First official npm read returned404 while the published package was processing; later official read succeeded with version62 and SHA512czKdIqYKlM6d9agr1PRAGeiN/kssxU4mmblQk+75gsB4XsdaDXkFBh4OhTiHlz5wskvaDey7v8AsnHM3Zt1Rzg== matching the public tgz. No rebuild/republish.
 
 ## Remaining gates and next work
 
