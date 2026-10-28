@@ -17,3 +17,8 @@ first failure before claiming reliability. This correction grants no runtime or 
 owner checks and exact-head hosted acceptance → bounded review candidate targeting Cordis.
 
 All issues remain open. Work/model execution stays deferred to Task 10.
+
+The first repaired hosted run retained `SERVICE_WORKER_EXCHANGE_FAILED` during base activation,
+followed by the unchanged fifteen-second cleanup deadline. Distinguish submit from application
+read-back stages and retain the original exception as the cause. Do not infer which request failed
+from the earlier shared stage label or change budgets before identifying that boundary.
