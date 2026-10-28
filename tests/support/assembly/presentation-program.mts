@@ -1,3 +1,4 @@
+import { PresentationLifecycle } from './presentation-lifecycle.mjs';
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, copyFileSync, chmodSync, statSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -33,15 +34,31 @@ class UiAssembly {
     private profile: string | undefined;
     private stage = 'prepare';
     private plan: ServicePlan | undefined;
+    private host!: ComposeDeploymentHost;
+    private owner!: ServiceWorkerOwnerClient;
+    private observer!: ServiceWorkerClient;
+    private page!: Page;
+    private authority!: Buffer;
+    private store!: ServicePlanStore;
+    private before = new Map<string, ServiceResourceReceipt>();
+    private readonly files = new Map<string, string>();
+    private next!: ServicePlan;
+    private scopes: string[] = [];
     constructor(private readonly input: Input) { }
     private require(value: unknown): asserts value { if (!value)
         throw new Error('UI_ASSEMBLY_FAILED:' + this.stage); }
     private static pause(done: (value: void) => void): void { setTimeout(done, 100); }
     private sha(bytes: Uint8Array): string { return createHash('sha256').update(bytes).digest('hex'); }
-    private async settled(owner: ServiceWorkerOwnerClient, id: string): Promise<void> { let record = await owner.application(id); const until = Date.now() + 240000; while (!['completed', 'failed', 'cancelled'].includes(record.phase) && Date.now() < until) {
-        await new Promise(UiAssembly.pause);
-        record = await owner.application(id);
-    } this.require(record.phase === 'completed' && record.result === 'ready'); }
+    private async settled(owner: ServiceWorkerOwnerClient, id: string): Promise<void> {
+        let record = await owner.application(id);
+        const until = Date.now() + 240000;
+        while (!['completed', 'failed', 'cancelled'].includes(record.phase) && Date.now() < until) {
+            await new Promise(UiAssembly.pause);
+            record = await owner.application(id);
+        }
+        if (record.phase !== 'completed' || record.result !== 'ready')
+            throw new Error('UI_APPLICATION_FAILED:' + this.stage + ':' + record.phase + ':' + record.result);
+    }
     private resources(store: ServicePlanStore): Map<string, ServiceResourceReceipt> { const result = new Map<string, ServiceResourceReceipt>(); for (const binding of store.current()!.resources)
         for (const receipt of store.resources())
             if (CanonicalJson.digest(receipt) === binding.receiptDigest)
@@ -84,105 +101,172 @@ class UiAssembly {
     finally {
         rmSync(root, { recursive: true, force: true });
     } }
-    private async stop(): Promise<void> { if (!this.plan)
-        return; const directory = this.plan.configuration.installationDirectory, child = join(directory, '.cordis/launch/child.json'); if (!existsSync(child))
-        return; const data = JSON.parse(readFileSync(child, 'utf8')), file = statSync(join(directory, '.cordis/worker')); let running; try {
-        running = statSync('/proc/' + data.pid + '/exe');
+    private async stop(): Promise<void> {
+        if (!this.plan) return;
+        const directory = this.plan.configuration.installationDirectory;
+        const child = join(directory, '.cordis/launch/child.json');
+        if (!existsSync(child)) return;
+        const data = JSON.parse(readFileSync(child, 'utf8')) as { pid: number };
+        this.require(Number.isSafeInteger(data.pid) && data.pid > 0);
+        const file = statSync(join(directory, '.cordis/worker'));
+        const running = this.workerExecutable(data.pid);
+        if (!running) return;
+        this.require(file.uid === process.getuid!() && file.dev === running.dev && file.ino === running.ino);
+        process.kill(data.pid, 'SIGTERM');
+        const until = Date.now() + 15000;
+        while (existsSync(join(directory, '.cordis/writer.lock')) && Date.now() < until)
+            await new Promise(UiAssembly.pause);
+        this.require(!existsSync(join(directory, '.cordis/writer.lock')));
     }
-    catch {
-        return;
-    } this.require(Number.isSafeInteger(data.pid) && data.pid > 0 && file.uid === process.getuid!() && file.dev === running.dev && file.ino === running.ino); process.kill(data.pid, 'SIGTERM'); const until = Date.now() + 15000; while (existsSync(join(directory, '.cordis/writer.lock')) && Date.now() < until)
-        await new Promise(UiAssembly.pause); this.require(!existsSync(join(directory, '.cordis/writer.lock'))); }
-    async run(): Promise<void> { try {
+    private workerExecutable(pid: number): ReturnType<typeof statSync> | undefined {
+        try { return statSync('/proc/' + pid + '/exe'); }
+        catch (error) {
+            if ((error as NodeJS.ErrnoException).code === 'ENOENT') return;
+            throw error;
+        }
+    }
+    async run(): Promise<void> {
+        await new PresentationLifecycle().run(this.scenario.bind(this), [
+            this.closeBrowser.bind(this), this.stop.bind(this), this.closeBase.bind(this),
+            this.closeVariant.bind(this), this.closeProfile.bind(this),
+        ]);
+    }
+    private async scenario(): Promise<void> {
+        try {
+            await this.prepareBase();
+            await this.baseBrowser();
+            this.recordResources();
+            await this.prepareVariant();
+            await this.refuseImplicitRestart();
+            await this.applyVariant();
+            this.retainedResources();
+            await this.retainedIdentity();
+            await this.variantBrowser();
+            await this.finishScenario();
+        } catch (error) {
+            if (!(error instanceof PlanningBlockedError)) throw error;
+            const codes: string[] = [];
+            for (const blocker of error.blockers) codes.push(blocker.code);
+            throw new Error('UI_ASSEMBLY_BLOCKED:' + this.stage + ':' + codes.join(','));
+        }
+    }
+    private async prepareBase(): Promise<void> {
         await this.base.prepared(this.input.base);
-        const host = new ComposeDeploymentHost(), planned = await host.plan(this.base.configuration);
+        this.host = new ComposeDeploymentHost();
+        const planned = await this.host.plan(this.base.configuration);
         this.require(planned.formatVersion === 3);
         this.plan = planned;
-        const owner = new ServiceWorkerOwnerClient({ installationDirectory: planned.configuration.installationDirectory }), observer = new ServiceWorkerClient({ installationDirectory: planned.configuration.installationDirectory }), application = await host.apply(planned.id, planned.digest, { installationDirectory: planned.configuration.installationDirectory, idempotencyKey: 'ui-base' });
-        await this.settled(owner, application.id);
+        const options = { installationDirectory: planned.configuration.installationDirectory };
+        this.owner = new ServiceWorkerOwnerClient(options);
+        this.observer = new ServiceWorkerClient(options);
+        this.stage = 'base-apply';
+        const application = await this.host.apply(planned.id, planned.digest,
+            { ...options, idempotencyKey: 'ui-base' });
+        await this.settled(this.owner, application.id);
+    }
+    private async baseBrowser(): Promise<void> {
         this.stage = 'base-browser';
-        const authority = Buffer.from(await new ServiceAuthorityExports(planned).read('public-main', 'secret://public-main/public-ca', { deadline: Date.now() + 10000, signal: new AbortController().signal })), page = await this.login(planned, authority);
-        this.require((await page.getByText('Cordis UI qualification fixture', { exact: true }).count()) === 0);
-        const status = PlatformOperations.status.parseOutput(await page.evaluate(BrowserRead.status));
-        this.require(status.ready && status.activeComposition === planned.compositionGeneration);
-        const store = new ServicePlanStore(planned.configuration.installationDirectory), before = this.resources(store), files = new Map<string, string>();
-        for (const receipt of before.values())
-            if (receipt.path && existsSync(join(store.path, receipt.path)))
-                files.set(receipt.path, this.sha(readFileSync(join(store.path, receipt.path))));
+        const plan = this.plan!;
+        const signal = new AbortController().signal;
+        this.authority = Buffer.from(await new ServiceAuthorityExports(plan).read(
+            'public-main', 'secret://public-main/public-ca', { deadline: Date.now() + 10000, signal }));
+        this.page = await this.login(plan, this.authority);
+        this.require((await this.page.getByText('Cordis UI qualification fixture', { exact: true }).count()) === 0);
+        const status = PlatformOperations.status.parseOutput(await this.page.evaluate(BrowserRead.status));
+        this.require(status.ready && status.activeComposition === plan.compositionGeneration);
+    }
+    private recordResources(): void {
+        this.store = new ServicePlanStore(this.plan!.configuration.installationDirectory);
+        this.before = this.resources(this.store);
+        for (const receipt of this.before.values()) {
+            if (receipt.path && existsSync(join(this.store.path, receipt.path)))
+                this.files.set(receipt.path, this.sha(readFileSync(join(this.store.path, receipt.path))));
+        }
+    }
+    private async prepareVariant(): Promise<void> {
         this.stage = 'variant-prepare';
         await this.variant.prepared(this.input.variant);
         await this.rebase();
         this.stage = 'variant-plan';
-        const next = await host.plan(this.variant.configuration);
-        this.require(next.formatVersion === 3 && next.composition.assetDigest !== planned.composition.assetDigest);
-        const scopes: string[] = [];
+        const next = await this.host.plan(this.variant.configuration);
+        this.require(next.formatVersion === 3 && next.composition.assetDigest !== this.plan!.composition.assetDigest);
+        this.next = next;
         for (const change of next.changes)
-            if (change.requiredActions.includes('restart'))
-                scopes.push(change.serviceId);
-        this.require(scopes.includes('api-main') && !scopes.includes('issuer-main') && !scopes.includes('store-main'));
+            if (change.requiredActions.includes('restart')) this.scopes.push(change.serviceId);
+        this.require(this.scopes.includes('api-main') && !this.scopes.includes('issuer-main') && !this.scopes.includes('store-main'));
+    }
+    private async refuseImplicitRestart(): Promise<void> {
         this.stage = 'explicit-admission';
-        const count = store.records().length;
+        const count = this.store.records().length;
         let refused = false;
         try {
-            await host.apply(next.id, next.digest, { installationDirectory: store.path, idempotencyKey: 'ui-no-implicit-restart' });
-        }
-        catch (error) {
+            await this.host.apply(this.next.id, this.next.digest,
+                { installationDirectory: this.store.path, idempotencyKey: 'ui-no-implicit-restart' });
+        } catch (error) {
             this.require(error instanceof PlanningBlockedError);
             refused = error.blockers.some(UiAssembly.actionRequired);
         }
-        this.require(refused && store.records().length === count);
+        this.require(refused && this.store.records().length === count);
+    }
+    private async applyVariant(): Promise<void> {
         this.stage = 'variant-apply';
-        const changed = await host.apply(next.id, next.digest, { installationDirectory: store.path, idempotencyKey: 'ui-reviewed-restart', restartServices: scopes });
-        await this.settled(owner, changed.id);
+        const changed = await this.host.apply(this.next.id, this.next.digest, {
+            installationDirectory: this.store.path, idempotencyKey: 'ui-reviewed-restart',
+            restartServices: this.scopes,
+        });
+        await this.settled(this.owner, changed.id);
+    }
+    private retainedResources(): void {
         this.stage = 'retained-identity';
-        const after = this.resources(store);
-        for (const [id, receipt] of before) {
-            if (receipt.serviceId === 'api-main' && (receipt.kind === 'container' || receipt.kind === 'configuration'))
-                continue;
-            const current = after.get(id);
-            this.require(current && current.actualId === receipt.actualId && current.path === receipt.path && current.contentDigest === receipt.contentDigest && current.creatingGeneration === receipt.creatingGeneration);
+        const after = this.resources(this.store);
+        for (const [id, receipt] of this.before) {
+            if (receipt.serviceId === 'api-main' && (receipt.kind === 'container' || receipt.kind === 'configuration')) continue;
+            this.sameResource(after.get(id), receipt);
         }
-        for (const [path, hash] of files)
-            this.require(this.sha(readFileSync(join(store.path, path))) === hash);
-        const afterAuthority = Buffer.from(await new ServiceAuthorityExports(next).read('public-main', 'secret://public-main/public-ca', { deadline: Date.now() + 10000, signal: new AbortController().signal }));
-        this.require(afterAuthority.equals(authority));
+        for (const [path, hash] of this.files)
+            this.require(this.sha(readFileSync(join(this.store.path, path))) === hash);
+    }
+    private sameResource(current: ServiceResourceReceipt | undefined, receipt: ServiceResourceReceipt): void {
+        this.require(current && current.actualId === receipt.actualId && current.path === receipt.path
+            && current.contentDigest === receipt.contentDigest && current.creatingGeneration === receipt.creatingGeneration);
+    }
+    private async retainedIdentity(): Promise<void> {
+        const signal = new AbortController().signal;
+        const afterAuthority = Buffer.from(await new ServiceAuthorityExports(this.next).read(
+            'public-main', 'secret://public-main/public-ca', { deadline: Date.now() + 10000, signal }));
+        this.require(afterAuthority.equals(this.authority));
+    }
+    private async variantBrowser(): Promise<void> {
         this.stage = 'variant-browser';
-        await page.reload();
-        await page.getByText('Cordis UI qualification fixture', { exact: true }).first().waitFor();
-        await page.getByRole('button', { name: 'Refresh status' }).click();
-        await page.getByRole('cell', { name: 'api-main', exact: true }).waitFor();
-        const latest = PlatformOperations.status.parseOutput(await page.evaluate(BrowserRead.status));
-        this.require(latest.ready && latest.activeComposition === next.compositionGeneration);
+        await this.page.reload();
+        await this.page.getByText('Cordis UI qualification fixture', { exact: true }).first().waitFor();
+        await this.page.getByRole('button', { name: 'Refresh status' }).click();
+        await this.page.getByRole('cell', { name: 'api-main', exact: true }).waitFor();
+        const latest = PlatformOperations.status.parseOutput(await this.page.evaluate(BrowserRead.status));
+        this.require(latest.ready && latest.activeComposition === this.next.compositionGeneration);
         for (const width of [320, 375, 768, 1024, 1440, 1920, 2560]) {
-            await page.setViewportSize({ width, height: 900 });
-            const button = await page.getByRole('button', { name: 'Sign out' }).boundingBox();
+            await this.page.setViewportSize({ width, height: 900 });
+            const button = await this.page.getByRole('button', { name: 'Sign out' }).boundingBox();
             this.require(button && button.width >= 44 && button.height >= 44);
         }
+    }
+    private async finishScenario(): Promise<void> {
         this.stage = 'terminal';
         this.terminal();
         this.stage = 'source-free';
         rmSync(this.base.bundle, { recursive: true, force: true });
         rmSync(this.variant.bundle, { recursive: true, force: true });
-        this.require((await observer.status()).ready);
-        process.stdout.write(JSON.stringify({ fixtureOnly: true, genuineKeycloak: true, browserProviderChanged: true, terminalProviderChanged: true, explicitRestart: true, retainedIdentity: true, retainedTls: true, machineBytesUnchanged: true, sourceFree: true }) + '\n');
+        this.require((await this.observer.status()).ready);
+        process.stdout.write(JSON.stringify({ fixtureOnly: true, genuineKeycloak: true,
+            browserProviderChanged: true, terminalProviderChanged: true, explicitRestart: true,
+            retainedIdentity: true, retainedTls: true, machineBytesUnchanged: true, sourceFree: true }) + '\n');
     }
-    catch (error) {
-        if (error instanceof PlanningBlockedError) {
-            const codes = [];
-            for (const blocker of error.blockers)
-                codes.push(blocker.code);
-            throw new Error('UI_ASSEMBLY_BLOCKED:' + this.stage + ':' + codes.join(','));
-        }
-        throw error;
+    private async closeBrowser(): Promise<void> { await this.browser?.close(); }
+    private async closeBase(): Promise<void> { this.base.close(); }
+    private async closeVariant(): Promise<void> { this.variant.close(); }
+    private async closeProfile(): Promise<void> {
+        if (this.profile) rmSync(this.profile, { recursive: true, force: true });
     }
-    finally {
-        await this.browser?.close();
-        await this.stop();
-        this.base.close();
-        this.variant.close();
-        if (this.profile)
-            rmSync(this.profile, { recursive: true, force: true });
-    } }
     private static actionRequired(blocker: {
         code: string;
     }): boolean { return blocker.code === 'TRANSITION_ACTION_REQUIRED'; }

@@ -27,7 +27,7 @@ jobs:
       - name: Verify development policy and executable rejection cases
         run: |
           bun run check
-          bun test tests/regression/test-layout.test.mts tests/acceptance/source-readability.test.mts
+          bun test tests/regression/test-layout.test.mts tests/regression/presentation-cleanup.test.mts tests/acceptance/source-readability.test.mts
   extensible:
     runs-on: ubuntu-26.04
     timeout-minutes: 15
