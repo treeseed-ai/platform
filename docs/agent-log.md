@@ -1,12 +1,14 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 02:00 UTC. Issues own plans/status, Actions own verification, Git/TreeDX own products. Unknown usage, price and closure remain unknown.
+Updated: 2026-10-28 02:19 UTC. Issues own plans/status, Actions own verification, Git/TreeDX own products. Unknown usage, price and closure remain unknown.
 
 [Complete frozen history through 00:24 UTC](https://github.com/treeseed-ai/platform/blob/ad690a0184cf6d619d515b38cc50fe803c33e571/docs/agent-log.md), blob `b363a61d6a9c21897911d2227c36ad59a48e2fa4`, preserves prior checkpoints, every failed approach, team changes, exact receipts and older history links. This current-state log consolidates that history without replacing failed evidence.
 
 [Prior checkpoint through 00:52 UTC](https://github.com/treeseed-ai/platform/blob/2dbb74d66c56c9bfb1884a0f1ad0e418cd6c3134/docs/agent-log.md), blob `25a959f36fcb1c34e1f92630f35baca3b61477bc`, retains the historical delivery audit and prior candidate observations.
 
 [Prior 01:41 checkpoint](https://github.com/treeseed-ai/platform/blob/d7a25301f5d05e635b09b5210a0e0f193effe0c7/docs/agent-log.md), blob `91efe04027a1d84768c65ea887d5c355dc84a0a0`, preserves the prepared-only repair, failed fixture/binding observations and then-live qualification status.
+
+[Prior 02:00 adoption checkpoint](https://github.com/treeseed-ai/platform/blob/bf74f96c70ae4ef4734f1089492f61a569175497/docs/agent-log.md), blob `49021b9d610d67fca80264d93973ca5033c9dd63`, preserves the completed runtime adoption before the following real discussion.
 
 ## Objective and implementation scoreboard
 
@@ -83,6 +85,23 @@ Sandbox12414/provider12681 are live/ready; API13500/operations13336 retained. Ho
 
 **Planning repair is now [Agent529](https://github.com/treeseed-ai/agent/pull/529)**, rc62/head **d17d7ef98991d2d111c8d66bb81b91d9edb06fee** on protected53fd. Preserves original red/repair commits;06b2ef245 binds four new scene cases. Binding check first1failed/13passed because the parameterized test prefix was not a literal registered case, SHA2c856987e0e8d5fc6af99b482af916817c1760bb677b27d3fe879c83800df5a6. Replaced only its declaration with one literal case retaining all30handler/mutation scenarios; no assertion or timeout relaxed. Final **92/92 in8files** (78compatibility/native/CLI +14bindings), SHA552ebdbbc574179296ef31968fe263e525ef7a6c349d90ae0f163c81107bf961. Strict typecheck11bf6dcc2199fd5ea519d9d00653c7d6eb542a87b69a94d080540b70e9d3389a/file policies/whitespace pass. Full [40617698541](https://github.com/treeseed-ai/agent/actions/runs/40617698541) live; metadata40617698774 passed. No529merge/adoption or genuine agent-authored proposal proof.
 
+## Native team discussion and roster improvement — 2026-10-28 02:19 UTC
+
+No new implementation unit: recent cohort stays **0team/8coordinator**, historicalmixed2 and full MCP-only simulated releases0. Two real cross-project architectural responses completed through native MCP on adopted Agent61; no verification-only acting assignments.
+
+Discussion **send-8ac65d2c7086140a44df2255bc48057c**, existing topic `mcp-product-delivery`, addressed Agent/API Architects by supported discussion mentions. Agent ran first; native allocator queued API and then admitted it after the slot cleared. No coordinator claim edits, extra admission path or agent-specific proposal targeting.
+
+| Actual contributor | Canonical result / source product | Observation |
+| --- | --- | --- |
+| Agent Architect, assignment_WAgNKOgS2YUGp15hvJNoUOQ0WonmxhYj | result-ae12a6067c4e7513820790ed; repo_25cc2b1854b3ccda@5382862bee5e6ff012acfdd351c9611366562fb3, discussion-messages/mcp-product-delivery/response-14430add71b9aa3568a5f0fd.mdx | Inspected actual Agent53fd; correctly stated API source was outside its grant. Identified API-owned canonical-draft handoff questions.6compliant clocks;40.267324996active seconds. |
+| API Architect, assignment_4zGO9VJ4l9ZNXo7cYDedaDDmXEXUueYT | result-7479e9b604babfe0aa57dd77; repo_be2b46a14c729f0e@cde8c011b2589983bdd037353d988e34d0fa6005, discussion-messages/mcp-product-delivery/response-f9cb44fb5fba2cfef0369fb8.mdx | Independently inspected API008e and confirmed no planning-result -> approval-inbox path. Recommends binding exact retained source through existing completion/read-back/governance authority, no second queue/publisher or transcription.10compliant clocks;86.837896593active seconds. |
+
+Both canonical statusescompleted, leasesreleased, teardownverified. Native active total127.105221589s;1,609,391input/1,441,024cached/8,443output/5,184reasoning tokens. Price remains unknown; no exactly-once accounting guarantee inferred. Both answers distinguish source findings from supplied evidence and discussion from accepted work. API's successful treedx_search_files/treedx_build_context calls and citation of prior architect responseb26c0977 atdcfee629 demonstrate one real history/context-use example; not proof across every profile. Agent's actual context refs include1agent definition/2objectives/5discussions/1knowledge/1repository.
+
+**API team gap repaired through governed MCP:** Architect hadgroups=[] while Writer/Tester/Engineer/Releaser subscribed toproject-api. This architecture task requires its participation before formal estimates. Workspace664db2dd-e091-4e5c-b9b5-99018cd2c8d7 changed ONLY agents/architect.mdx groupIds to[project-api], with exact content read-back. Base3bece533391cf32b8ded0ac8b2c0a69546c1d1d5; beforeSHA256afb7d14aef2a3fa596bfcab89cea028449bbe0e0af5edf3f04b4e3c674a2900f/after9fb3f16fc4576ef8e4af7546584e6989d2db278dd79179cfe36dbbd7c50ba1ae. Review7423c495-50cb-46fd-be7d-f317bcb2fdfb approved; publicationa8efbf92-45e0-4751-969d-c1a8c9aeddfb / operationf4b9f88e-b9ca-47f3-9090-01d483e8b1e2. Workspace nowpublishedv5; current roster revision **e8d5bd70fa0ad95e88397aef4cecd5b4017bc71a**, validatevalid=true. API project group now contains **Architect, Technical Writer, Tester, Engineer and Releaser**, with separate reviewing activities; the real proposal must still establish their contribution dependencies and execution order; Researcher/Reviewer remain addressed-discussion participants and Reporter deterministic. Only membership changed, for future assignments; no class, handler, prompt, permission, model, estimate, issued authority/deadline, retained product or unknown usage changed.
+
+Next real work is the native agent-authored planning Proposal for that API handoff, followed by each group subscriber's own contribution/estimate, approval and implementation/review. Agent529 authoring support is still checking, not adopted. Existing API625/Agent494 own the exact boundary and findings.
+
 ## Current blockers and next team handoff
 
 1. Native MCP exposes82tools but no Git-product download; Engineer a691 still has a Git reference with empty artifactRefs, not retrievable bytes. Existing completed-publication host export validates exact owner/ref/closure and bounded bundle; authenticated API/provider/MCP delivery remains missing. No private export or manual Git transplant used.
@@ -95,6 +114,6 @@ Next: finish protected61publication, qualify/adopt529planning output, close the 
 
 ## Environment and accounting custody
 
-Native MCP before activation:0queued/0running, complete pages. After host adoption:0active assignments reported, provider available; its advertised4old claim IDs remain3expired/1cancelled canonically, with unresolved usage preserved. Adapter activeWorkers4 is not proof of4running assignments. No model workload admitted this interval. Old physical-cleanup receipts are historical; fresh physical preflight is still required before new admission. Root user files, credentials, retained Git/TreeDX products, rollback, persistent selections and TreeDX4GiB/default configurable cache budget remain protected. Temporary native test resources cleaned by passing cases; only verified merged log branch removed.
+Native MCP before activation:0queued/0running, complete pages. After host adoption:0active assignments reported, provider available; its advertised4old claim IDs remain3expired/1cancelled canonically, with unresolved usage preserved. Adapter activeWorkers4 is not proof of4running assignments. Two native discussion workloads were subsequently admitted and completed as recorded above; no acting work was admitted. Old physical-cleanup receipts are historical; fresh physical preflight is still required before new admission. Root user files, credentials, retained Git/TreeDX products, rollback, persistent selections and TreeDX4GiB/default configurable cache budget remain protected. Temporary native test resources cleaned by passing cases; only verified merged log branch removed.
 
 The full goal remains active. At least2historical mixed deliveries are source-verified. The recent bootstrap cohort now has **0/8team-only integrations**; there is no newly completed native-MCP simulated release.
