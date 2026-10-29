@@ -15,6 +15,9 @@ Native Cordis composition and typed provider selection are required across the r
 
 The [architectural language draft](architecture/README.md) records current implementation and
 architectural intent separately, with pinned source inventory and explicit conformance gaps.
+[Architecture Studio](architecture/studio/README.md) provides a local React workspace for design,
+validation, comparison and migration export. Run `npm --prefix architecture/studio ci`,
+`npm --prefix architecture/studio run build`, then `npm --prefix architecture/studio start`.
 
 Start with these documents in order:
 

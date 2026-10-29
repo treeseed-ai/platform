@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "studio-mappings/0.1"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bindings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9._:/-]*$"
+                },
+                "revision": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                "path": {
+                  "type": "string",
+                  "pattern": "^(?!/)(?![A-Za-z]:)(?!.*\\\\)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)[^/]+(?:/[^/]+)*$"
+                },
+                "symbol": {
+                  "type": "string"
+                },
+                "start": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "end": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "fingerprint": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "project",
+                "revision",
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "provenance": {
+            "type": "string",
+            "minLength": 1
+          },
+          "review": {
+            "enum": [
+              "proposed",
+              "accepted"
+            ]
+          }
+        },
+        "required": [
+          "subject",
+          "bindings",
+          "provenance",
+          "review"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "entries"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
