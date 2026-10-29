@@ -76,3 +76,9 @@ No source scripts executed, and these verification runs did not publish a new ac
 
 The dedicated Studio workflow runs its isolated install/check/build/browser tests. Remote CI and
 review remain separate gates; this local report does not mark historical assembly CI green.
+
+Studio CI run [40933074381](https://github.com/treeseed-ai/platform/actions/runs/40933074381)
+passed install, strict/policy checks, build and all tests at `809162e8882caa0271672bdc29fd24caf54a1743`.
+A subsequent source-inspector fix resolves bound symbols to their exact source spans before
+opening Monaco; its local check/build/browser journey passed. Its new remote head is verified
+separately from this earlier CI run.

@@ -67,10 +67,25 @@ export class SourceBrowser extends Component<Props, State> {
         declarations: Declaration[];
       }>("source", { binding });
       this.loaded(path, view);
-      this.props.onBinding(binding);
+      this.props.onBinding(this.resolvedBinding(binding, view.declarations));
     } catch (error) {
       this.setState({ error: String(error) });
     }
+  }
+  private resolvedBinding(
+    binding: Binding,
+    declarations: Declaration[],
+  ): Binding {
+    if (!binding.symbol) return binding;
+    const matches = declarations.filter(
+      SourceBrowser.symbol.bind(null, binding.symbol),
+    );
+    if (matches.length !== 1) return binding;
+    const { start, end, fingerprint } = matches[0];
+    return { ...binding, start, end, fingerprint };
+  }
+  private static symbol(symbol: string, declaration: Declaration): boolean {
+    return declaration.symbol === symbol;
   }
   private binding(repository: Repository, path: string): Binding {
     if (
