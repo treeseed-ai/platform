@@ -3,18 +3,18 @@
 This is an owner-evidence reference for [the Agent architecture](agent-architecture.md) and
 [seed architecture](seed-architecture.md). It records independent accepted capabilities, not a
 completed installed Capacity Provider or a newly assembled release lock. All issues remain open;
-productive Work/model execution and accounting remain Task10.
+productive Work/model execution and accounting remain Task 10.
 
 ## Composition and admission boundaries
 
 ```mermaid
 flowchart TB
-  SDK[SDK44 portable contracts and public TLS clients]
+  SDK[SDK .44 portable contracts and public TLS clients]
   Archive[Deployment: exact archive and component custody]
   Alias[Deployment: retained installed aliases]
-  Policy[Deployment133: complete effective policy and image-aware bounds]
-  Boot[Deployment132: actual QEMU process and boot observation]
-  Join[Draft1070: join retained policy to the actual finite launch]
+  Policy[Deployment .133: complete effective policy and image-aware bounds]
+  Boot[Deployment .132: actual QEMU process and boot observation]
+  Join[Draft #1070: join retained policy to the actual finite launch]
   Profile[Pending: native advertised profile admission]
   Pool[Pending: Agent-owned virgin pool and dispatch]
   Seed[Pending: API live seed coordination and CLI integration]
@@ -45,37 +45,37 @@ accepted PRs record their complete owner checks, public consumers and hosted evi
 
 | Owner candidate | Producer source | Archive SHA256 | Accepted evidence |
 | --- | --- | --- | --- |
-| SDK44 | `00be028b92998f8d7039a3906e784c6b8598e730` | `d95c54cf6081c7634498dfb4f3235d42d65b8664a5d62cc87c4dd4e85381f0f3` | [SDK508](https://github.com/treeseed-ai/sdk/pull/508) |
-| Deployment133 | `7d2fdf605e6c8aabe6e75276300bbc331d7bd2d7` | `beb76d0896f4c0b856214b0429d3e959300454db20a139b940ab22d6a9a4ac0c` | [Deployment1068](https://github.com/treeseed-ai/deployment/pull/1068) |
-| Agent35 | `4404149276af9b35cedf88aea0e67c8bcf982030` | `a4a8609e8d427337a0e1470fac3b397a591b741105f6f958a94ad2a2d228d341` | [Agent562](https://github.com/treeseed-ai/agent/pull/562) |
-| API16 | `9fb1af1e52370120d561f897d804c16ba85db091` | `44b5e4d6dcb9bae08e089d84516eea268edaacecf0ff2f16f51e2cdbf45dede0` | [API658](https://github.com/treeseed-ai/api/pull/658) |
+| SDK .44 | `00be028b92998f8d7039a3906e784c6b8598e730` | `d95c54cf6081c7634498dfb4f3235d42d65b8664a5d62cc87c4dd4e85381f0f3` | [SDK #508](https://github.com/treeseed-ai/sdk/pull/508) |
+| Deployment .133 | `7d2fdf605e6c8aabe6e75276300bbc331d7bd2d7` | `beb76d0896f4c0b856214b0429d3e959300454db20a139b940ab22d6a9a4ac0c` | [Deployment #1068](https://github.com/treeseed-ai/deployment/pull/1068) |
+| Agent .35 | `4404149276af9b35cedf88aea0e67c8bcf982030` | `a4a8609e8d427337a0e1470fac3b397a591b741105f6f958a94ad2a2d228d341` | [Agent #562](https://github.com/treeseed-ai/agent/pull/562) |
+| API .16 | `9fb1af1e52370120d561f897d804c16ba85db091` | `44b5e4d6dcb9bae08e089d84516eea268edaacecf0ff2f16f51e2cdbf45dede0` | [API #658](https://github.com/treeseed-ai/api/pull/658) |
 
-Agent35 still selects Deployment127, while API16 selects Deployment130. They must not be presented
-as an assembled closure using Deployment133. Update consumers through exact public archives and
-fresh owner/assembled verification before making that claim. UI24, Identity10 and Admin13 are
-accepted compatible owner candidates through [UI108](https://github.com/treeseed-ai/ui/pull/108),
-[Identity61](https://github.com/treeseed-ai/identity/pull/61) and
-[Admin154](https://github.com/treeseed-ai/admin/pull/154). Their acceptance preserves React reuse,
+Agent .35 still selects Deployment .127, while API .16 selects Deployment .130. They must not be presented
+as an assembled closure using Deployment .133. Update consumers through exact public archives and
+fresh owner/assembled verification before making that claim. UI .24, Identity .10 and Admin .13 are
+accepted compatible owner candidates through [UI #108](https://github.com/treeseed-ai/ui/pull/108),
+[Identity #61](https://github.com/treeseed-ai/identity/pull/61) and
+[Admin #154](https://github.com/treeseed-ai/admin/pull/154). Their acceptance preserves React reuse,
 mobile-to-widescreen behavior and Keycloak identity; it does not implement Agent UI or activation.
 
 The frozen earlier assembled evidence remains immutable historical evidence. In particular,
-Platform817's SDK39/Deployment95/Agent21 selection is not a current installed manager/worker/pool
+Platform #817's SDK .39/Deployment .95/Agent .21 selection is not a current installed manager/worker/pool
 proof. Do not repack, relabel or rewrite those artifacts or their acceptance expectations.
 
 ## What the current evidence proves
 
-- Deployment133 has complete template-policy comparison, private descriptor custody, exact installed
+- Deployment .133 has complete template-policy comparison, private descriptor custody, exact installed
   alias checks, real QEMU boot observation and bounded root-image address-space interpretation.
-  Both complete owner closures passed, including102 foundation cases each. The new finite policy
+  Both complete owner closures passed, including 102 foundation cases each. The new finite policy
   has not yet been joined to a running VM by an accepted owner candidate.
-- Agent35 has separate built manager/worker/guest programs and twenty native provider descriptions.
-  Both139-case owner acceptance runs included genuine worker/Kata readiness. Default manager/worker
+- Agent .35 has separate built manager/worker/guest programs and twenty native provider descriptions.
+  Both 139-case owner acceptance runs included genuine worker/Kata readiness. Default manager/worker
   diagnostics remain unready. The frozen guest channel is readiness-only; run/cancel and productive
   handlers are not established by that result.
-- API16 includes API-owned native seed-journal semantics over Deployment's private installation
+- API .16 includes API-owned native seed-journal semantics over Deployment's private installation
   records, with public default construction and isolated real Keycloak/browser verification.
   A journal is not the seed coordinator, team-management authority or resource reconciliation.
-- SDK44 has exact portable contracts and real TLS availability create/refresh/close transport.
+- SDK .44 has exact portable contracts and real TLS availability create/refresh/close transport.
   A transport or registration-status response is not approval, a live grant or manager orchestration.
   The seven global platform operation IDs remain unchanged.
 
@@ -116,12 +116,12 @@ manager/worker interfaces still require their owner integration and assembled te
 
 ## Draft native launch binding
 
-[Deployment1070](https://github.com/treeseed-ai/deployment/pull/1070) is a review candidate for
-`KataLaunchAttestation`. Its frozen134 producer is
+[Deployment #1070](https://github.com/treeseed-ai/deployment/pull/1070) is a review candidate for
+`KataLaunchAttestation`. Its frozen .134 producer is
 `8c4e95714d32c1a40d13dcbe4a8a94266446432c`, archive SHA256
 `34130ebddc71b24844b104b68be7efc6904441faff4c91ca1beece6ef0d15f19`.
 The fixture-only corrected head is `9ebfc0331d8fe5d1b86322260aed5f31555ef380`;
-all176 packaged files/modes remain identical, with no repack. Fresh corrected-head hosted finite
+all 176 packaged files/modes remain identical, with no repack. Fresh corrected-head hosted finite
 launch, valid mismatched-policy denial and destruction invalidation remain required. A previous
 fixture stopped before launch at invalid sandbox-ID admission and cannot count as VM evidence.
 
@@ -138,6 +138,6 @@ generation discard, setup/verification/egress, real runner dispatch/cancellation
 one-use destruction. Preserve manager lease fencing, live existing-team enrollment/heartbeat/
 revocation, exact Keycloak authority and cross-team denial. Complete the API coordinator/resource
 owners, CLI seed/capacity and project/profile selection, exact final assembly and qualified Agent
-replacement transitions. General replacement expansion remains Task4; productive Work/models and
-accounting remain Task10. Integration into cordis neither closes issues nor authorizes production
+replacement transitions. General replacement expansion remains Task 4; productive Work/models and
+accounting remain Task 10. Integration into cordis neither closes issues nor authorizes production
 publication or cutover.
