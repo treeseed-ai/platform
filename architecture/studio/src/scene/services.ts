@@ -1,5 +1,9 @@
 import { Context } from "cordis";
-import type { LayoutService, ProjectionService } from "./contracts.js";
+import type {
+  LayoutService,
+  ProjectionService,
+  NavigationService,
+} from "./contracts.js";
 import { SceneProjection } from "./projection.js";
 import { CellNavigation } from "./navigation.js";
 import { ElkLayout } from "./layout.js";
@@ -8,7 +12,7 @@ declare module "cordis" {
   interface Context {
     cellProjection: ProjectionService;
     cellLayout: LayoutService;
-    cellNavigation: CellNavigation;
+    cellNavigation: NavigationService;
   }
 }
 class ProjectionPlugin {
@@ -53,7 +57,7 @@ export class CellServices {
   get layout(): LayoutService {
     return this.context.cellLayout;
   }
-  get navigation(): CellNavigation {
+  get navigation(): NavigationService {
     return this.context.cellNavigation;
   }
   async dispose(): Promise<void> {

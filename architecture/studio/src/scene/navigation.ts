@@ -2,11 +2,12 @@ import { Data } from "../model/types.js";
 import type {
   LayoutDocument,
   NavigationView,
+  NavigationService,
   Point,
   Viewport,
 } from "./contracts.js";
 
-export class CellNavigation {
+export class CellNavigation implements NavigationService {
   private document: LayoutDocument = {
     schemaVersion: "studio-layout/0.2",
     engine: "elkjs/0.12.1:layered/1",

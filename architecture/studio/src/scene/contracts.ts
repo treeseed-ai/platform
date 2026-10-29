@@ -125,3 +125,20 @@ export interface LayoutDocument {
   views: Record<string, NavigationView>;
   legacy?: unknown;
 }
+
+export interface NavigationService {
+  load(value?: unknown): void;
+  enter(view: string, project?: string): void;
+  current(): NavigationView;
+  initialize(
+    cells: Array<Point & { id: string; width: number; height: number }>,
+  ): void;
+  move(id: string, position: Point): void;
+  expand(id: string): void;
+  select(id: string): void;
+  viewport(viewport: Viewport): void;
+  arrange(positions: Record<string, Point>): void;
+  undo(): void;
+  canUndo(): boolean;
+  serialize(): LayoutDocument;
+}
