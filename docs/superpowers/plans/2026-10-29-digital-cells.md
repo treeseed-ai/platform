@@ -48,3 +48,12 @@ context; produces cells, ports, provenance-bearing connectors and diagnostics.
 Layout consumes a scene plus measured dimensions; returns cells/ports/routes and
 engine identity. Navigation owns per-view selection/expansion/viewport/positions
 and undoable layout commands. All services are supplied through Cordis bindings.
+
+## Observed red acceptance
+
+2026-10-29: ran the new `cells.test.ts` through the existing Studio fixture and
+built companion on Studio head e2ee173. The program loaded successfully; the test
+failed at its first behavioral assertion waiting for `Enter project Agent` after
+15 seconds (1 fail, 0 pass, no skips). This establishes the missing navigation
+surface before implementation. The temporary test copy in that prerequisite
+checkout was removed; the permanent case remains in #844's branch.
