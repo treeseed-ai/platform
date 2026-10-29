@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-29 12:51 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 13:16 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -48,6 +48,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 11:38 | 0 | 14 | **0/14 = 0%** | +0/+0; Reviewer team modernized through MCP;4/5valid first planning products,1preserved model omission; shared agent-authored hub open, no formal estimates/acting/release |
 | 12:12 | 0 | 14 | **0/14 = 0%** | +0/+0; exact retained Reviewer product passes218tests/128scene steps in draft129; coordinator discussion edit invalidated first formal cohort; normal scoped closeout, no integration/release |
 | 12:51 | 0 | 14 | **0/14 = 0%** | +0/+0; five healthy formal estimates exposed overlap; agent-authored source-bound successor selected through MCP and old hub superseded; five healthy planning products, no acting integration/release |
+| 13:16 | 0 | 14 | **0/14 = 0%** | +0/+0; new source binding proved, five formal attempts failed before models on cache unmount/fence; affected run closed normally; diagnosis needs privileged read-only observation |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -59,7 +60,17 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 
 - [API650](https://github.com/treeseed-ai/api/pull/650): coordinator bootstrap selected-objective/source-context repair, protected `248deb3935c235fcdaaab74cfa4a6f89afd30441`, checked/adopted.
 
-## Current delivery — Oct29 12:51 UTC
+## Current delivery — Oct29 13:16 UTC
+
+[Platform831 / complete12:51checkpoint](https://github.com/treeseed-ai/platform/blob/d0e53cee6c7f4b459d4d5aa3dd484793c1380fef/docs/agent-log.md), bloba256d5eead896a67cfc646703336a379049cbf47, preserves all genuine five-member planning/estimation products, Writer successor selection, old-hub supersession and FAILED enclosing planning-run discrepancy. Source2ad134658a39da2f9a771e9a3e6b57806baa9164/checked7f46be3edd8957727b2e64c547d49e4763bca59b/protected sharetree2746a651b25d86c3c2c9c24cddfcdb072e7b02d0. Verify40877080625/job123458540967 passed all3Platformchecks/exactskillslock/noartifacts; logSHA5ea8dc771b172972ab3941e8c1f25495365aeaa7de10a5f7ac20fdd334eeb5cb. Protectedreadback/ownedlogcheckout+branchcleanup complete; rootuserfiles untouched.
+
+**Source context delivered; cold preparation failed.** Selected OPEN Writer assignment_kpaxFJmRVqa_ZWcEcS5XLEfIomtvMscW:proposalv1/source3fd94a408b2c2f58b07e3592ab3c54980968989a remains unapproved with0formalestimates. Native full-group workday1eaf5783-c5dc-4a6b-8d8e-a3e0edc85563/default6/project-reviewer+workday-closeout/estimating/simulation/planningOnly/max1/14400s correctly grants exact original Gitb09 and discussion6a05/00be. Checkout/model execution NOTproved. First Architect assignment_DTqiUzEwU7L_v1WIBqgq9Oq_bM5bFcB2 failed/released12:54:10.799 source_cache_unmount_exit_32; next Engineer_xAISuSn1Qpk5b3heLnYErFvolMHbqpQe, Releaser_PeAvnodCpisJJJd2C-M85HRSABn8P5yy, Writer_QQ1QEjBL0aAk1HHWSi--H7HABQT1dEcJ, Tester_iSB0-JWihhBMmQCOJTspdYHB5qPYueeZ failed/released source_cache_fenced before models. Architect reports0active/6elapsed/0tokens, cost/settlementunknown. Signed scoped normalstop reported5failed/0completed/0unfinished/0settlementerrors; Reportercompleted and runclosedcancelled12:58:35.542. Original deadlines/products/unknowns retained; no retry against fence.
+
+Deployment Architect native send-bafc589c39b5491a18c9d02d346db758/assignment_W5M-70v9X1z4woNJzFDiv-U6d0p6b4Zs/response8579b619fbb0c2b4c489946f inspected actual0c831: ordinaryumount+udevsettle+loop-detach proof, automatic recovery only after journaled owner PID dies. Current status/doctor lack targeted cache mount evidence; syntheticcache.qualify is not diagnosis. Exit32 does NOT establish EBUSY/namespacecause. Hostdoctor ready; supported13:10–13:11inventory complete but workspace metadata incomplete (jobs/candidates/results unavailable), local rawcaptureSHA41e26c02f339778fa6a33e3402399b045c85fc5cc743443fcf9fab3e20718d76. Canonical stopped first-job source matchesb09/repositoryIdtreeseed-ai/reviewer, deriving cachefc8306cad255661b87cb65a9b9661037f5db076d6154a6131779c5ccac0a44ca. Earlier visible loop17 is a DIFFERENTcache; hostnamespace has no matching Git-cachemount, broker2062946 namespace requires interactiveOSauthentication. Requested exact read-only journal/mount/fuser/loop observations. No unmount, restart, fence/claim edits, cache deletion, source/runtime change, new campaign or speculative fix. RootDeployment68b6600 is old; actual activehostsource0c831 was inspected instead. No team/profile/groupchanges.
+
+Reviewer129 originalb09 CI remainsgreen218tests/43files+fresh218/218exit0+128existingsteps; separate governed product review and real runtime-error regression stillunproved, unmerged. API651 failed/unmerged/unadopted; original2558passing assertions but exit1 blocked1113scenes, causeunknown. Final Agentv13 reviewed products preserved/unintegrated. **0team/14coordinator=0%;0ordinary native-MCP simulated releases.** Logs/configuration/qualification/source-context proof add no implementationunits. [API625](https://github.com/treeseed-ai/api/issues/625), [Reviewer98](https://github.com/treeseed-ai/reviewer/issues/98), [Deployment913](https://github.com/treeseed-ai/deployment/issues/913) retain current exact blocker and next gate.
+
+## Previous delivery — Oct29 12:51 UTC
 
 [Platform830 / complete12:13checkpoint](https://github.com/treeseed-ai/platform/blob/b86b4f7fba03f43bb817b1a19ccf018b5a2dba8d/docs/agent-log.md), blob0c4d8dee4033a3cc353676f7cf64aa46ec7ee0eb, retains exact qualification artifacts and coordinator-induced stale-cohort failures. Sourcee3ed9be2b85ecdd7e50715eab41b08df74ad008e/checked5d3a8a009bc842f00bbadb16737c60d6024b4a2f/protected sharetree92b994a26b62f98f0b9238d7903322142dc238f6. Verify40871529424/job123439522820 passed requiredverify/all3Platformchecks/exactskillslock/noartifacts; logSHAdcd491c4a1c89bcddcd495b9376af225b7bfa6145e1453b0204cbc110a606719. Protectedreadback/ownedlogcheckout+localbranchcleanup complete. Root userfiles untouched.
 
