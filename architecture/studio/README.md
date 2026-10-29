@@ -26,11 +26,12 @@ static validation does not certify them. Migration export never modifies source 
 
 ## Working in Studio
 
-1. Select a project and choose Portfolio, Integration seams, Components or Flows. Integration
-   seams initially shows the selected object and its immediate neighbors. Show all objects
-   expands the map. Focus selection, fit, minimap and zoom controls navigate larger diagrams.
+1. Start in Portfolio, then enter a project and choose Integration seams, Components or Flows.
+   Boundary connectors retain their original subjects. Focus selection, fit, minimap and zoom
+   controls navigate larger diagrams; search reveals internal subjects in their owning project.
 2. Use Inspect implementation for pinned, read-only architecture. Switch to Edit intent before
-   creating from the palette, dragging nodes, connecting typed handles or editing properties.
+   creating from the palette, connecting typed handles or editing properties. Dragging changes
+   presentation only and is also available while inspecting implementation.
    The Connect dialog and Remove connection controls also work entirely from the keyboard.
 3. Edit YAML applies only schema-valid documents. Unresolved relationships remain diagnostics;
    invalid text remains in the editor. Undo/redo includes structured edits, connections and
@@ -93,3 +94,30 @@ class-based behavior, test placement and the shared 20-line readability policy.
 
 The dedicated Architecture Studio CI job installs only this lockfile. Platform's historical
 assembly dependencies and all owner package checkouts remain independent.
+
+## Digital cell map
+
+The map starts with nine collapsed project cells. Use **Enter project** to inspect
+plugins and neighboring repository boundaries, then **Expand plugin** to inspect
+its explicitly owned providers. Choose a composition and scope to distinguish
+registration and selection; readiness remains unknown without runtime evidence.
+Boundary buttons and connection bundles expose original relationships and source
+subjects. Use search to reveal a contract or provider in its owning project.
+
+**Arrange by connections** runs deterministic layered ELK routing in a worker.
+Dependency diagrams describe topology; **Flows** uses modeled transitions. Zoom
+changes label detail without entering a project. Glow and counts indicate distinct
+connected peers; separate badges identify architectural differences and contract
+impact. Unresolved endpoints remain visible. Diagram containment never changes
+repository ownership or implies a shared runtime context.
+
+Drag cells to position them, or use React Flow keyboard navigation. **Undo layout**
+undoes presentation changes independently from intent commands. **Save layout**
+writes only `.studio/layout.json` with expected-content-hash protection. The new
+`studio-layout/0.2` format stores each view's positions, viewport, selection and
+expansion. Imported 0.1 coordinates remain under `legacy`; they are not applied to
+the nested map. Saving intent no longer saves diagram positions implicitly.
+
+Keyboard: focus a cell, press Enter to select it, then use arrow keys to move it.
+Enter-project and expand-provider buttons are keyboard accessible. The inspector
+Connect dialog supplies keyboard endpoint selection and validation.

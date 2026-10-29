@@ -133,7 +133,8 @@ export class WorkspaceService {
       throw new Error("WRITE_FORBIDDEN");
     this.auxiliarySchemas.check(name, data);
     const value = Data.record(data);
-    if (value.schemaVersion !== "studio-" + name + "/0.1")
+    if (value.schemaVersion !== "studio-" + name + "/0.1" &&
+      !(name === "layout" && value.schemaVersion === "studio-layout/0.2"))
       throw new Error("SCHEMA_INVALID");
     this.files.transaction([
       {

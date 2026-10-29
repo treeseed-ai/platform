@@ -1,55 +1,195 @@
 {
-  "type": "object",
-  "properties": {
-    "schemaVersion": {
-      "const": "studio-layout/0.1"
-    },
-    "positions": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "properties": {
-          "x": {
-            "type": "number"
-          },
-          "y": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "x",
-          "y"
-        ],
-        "additionalProperties": false
-      }
-    },
-    "viewport": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
       "type": "object",
       "properties": {
-        "x": {
-          "type": "number"
+        "schemaVersion": {
+          "const": "studio-layout/0.1"
         },
-        "y": {
-          "type": "number"
+        "positions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false
+          }
         },
-        "zoom": {
-          "type": "number",
-          "minimum": 0.08,
-          "maximum": 10
+        "viewport": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "zoom": {
+              "type": "number",
+              "minimum": 0.025,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "zoom"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
-        "x",
-        "y",
-        "zoom"
+        "schemaVersion",
+        "positions"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "studio-layout/0.2"
+        },
+        "engine": {
+          "type": "string"
+        },
+        "views": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "positions": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "viewport": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "zoom": {
+                    "type": "number",
+                    "minimum": 0.025,
+                    "maximum": 10
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "zoom"
+                ],
+                "additionalProperties": false
+              },
+              "expanded": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "selected": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "positions",
+              "expanded",
+              "selected"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "legacy": {
+          "type": "object",
+          "properties": {
+            "schemaVersion": {
+              "const": "studio-layout/0.1"
+            },
+            "positions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "viewport": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "zoom": {
+                  "type": "number",
+                  "minimum": 0.025,
+                  "maximum": 10
+                }
+              },
+              "required": [
+                "x",
+                "y",
+                "zoom"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "schemaVersion",
+            "positions"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "engine",
+        "views"
       ],
       "additionalProperties": false
     }
-  },
-  "required": [
-    "schemaVersion",
-    "positions"
-  ],
-  "additionalProperties": false,
-  "$schema": "https://json-schema.org/draft/2020-12/schema"
+  ]
 }

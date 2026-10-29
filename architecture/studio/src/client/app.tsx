@@ -1,3 +1,4 @@
+import type { LayoutDocument } from "../scene/contracts.js";
 import { Component } from "react";
 import {
   Data,
@@ -53,8 +54,8 @@ export class StudioApp extends Component<object, State> {
     ready: false,
     layer: "intent",
     selected: "",
-    project: "project.agent",
-    view: "Integration seams",
+    project: "*",
+    view: "Portfolio",
     query: "",
     dock: "",
     findings: [],
@@ -83,7 +84,7 @@ export class StudioApp extends Component<object, State> {
         ready: true,
         positions: this.layout(),
         viewport: this.savedViewport(),
-        selected: this.store.objects().find(StudioApp.initial)?.id || "",
+        selected: "",
       });
       await this.compare();
     } catch (error) {
@@ -95,7 +96,7 @@ export class StudioApp extends Component<object, State> {
   }
   private layout(): State["positions"] {
     const text = this.store.state.auxiliary.layout.text;
-    return text ? JSON.parse(text).positions : {};
+    return text ? JSON.parse(text).positions || {} : {};
   }
   private savedViewport(): State["viewport"] {
     const text = this.store.state.auxiliary.layout.text;
@@ -125,7 +126,7 @@ export class StudioApp extends Component<object, State> {
     this.setState({ selected: id });
   }
   private project(project: string): void {
-    this.setState({ project });
+    this.setState({ project, view: project === "*" ? "Portfolio" : "Components" });
   }
   private view(view: string): void {
     this.setState({
@@ -204,15 +205,6 @@ export class StudioApp extends Component<object, State> {
     this.setState({ busy: true, error: "" });
     try {
       await this.store.save();
-      await this.store.api.call("layout", {
-        expected: this.store.state.auxiliary.layout.hash,
-        data: {
-          schemaVersion: "studio-layout/0.1",
-          positions: this.state.positions,
-          viewport: this.state.viewport,
-        },
-      });
-      await this.store.load();
       this.setState({
         busy: false,
         message: "Intent saved. Implementation unchanged.",
@@ -795,6 +787,19 @@ export class StudioApp extends Component<object, State> {
       </div>
     );
   }
+  private layoutData(): unknown {
+    const text = this.store.state.auxiliary.layout.text;
+    return text ? JSON.parse(text) : undefined;
+  }
+  private navigate(project: string, view: string): void {
+    this.setState({ project, view, selected: "" });
+  }
+  private async saveLayout(data: LayoutDocument): Promise<void> {
+    await this.store.api.call("layout", { expected: this.store.state.auxiliary.layout.hash, data });
+    const state = await this.store.api.call<Workspace>("workspace");
+    this.store.state.auxiliary.layout = state.auxiliary.layout;
+    this.setState({ message: "Layout saved. Architecture unchanged." });
+  }
   private graph(): React.ReactNode {
     return (
       <GraphCanvas
@@ -804,12 +809,13 @@ export class StudioApp extends Component<object, State> {
         query={this.state.query}
         selected={this.state.selected}
         changed={new Set(this.state.findings.map(StudioApp.subject))}
-        positions={this.state.positions}
-        viewport={this.state.viewport}
-        onViewport={this.viewport.bind(this)}
+        comparison={this.store.state.documents.map(StudioApp.model)}
+        readOnly={this.state.layer === "implementation"}
+        initialLayout={this.layoutData()}
+        onNavigate={this.navigate.bind(this)}
+        onSaveLayout={this.saveLayout.bind(this)}
         onSelect={this.select.bind(this)}
         onConnect={this.connect.bind(this)}
-        onMove={this.move.bind(this)}
         onCreate={this.create.bind(this)}
       />
     );
