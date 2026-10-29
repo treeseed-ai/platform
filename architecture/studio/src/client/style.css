@@ -694,3 +694,4 @@ a {
 .cell-port.added button { color:#80dbad; }
 .cell-port.removed button { color:#ed9daf; text-decoration:line-through; }
 .cell-port.removed .react-flow__handle { border-style:dashed; }
+.connection-label.dimmed { opacity: .18; }

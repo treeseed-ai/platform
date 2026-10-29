@@ -46,7 +46,9 @@ export class RoutedConnection extends Component<
     return (
       <EdgeLabelRenderer>
         <button
-          className="connection-label nodrag nopan"
+          className={
+            "connection-label nodrag nopan" + (data.dimmed ? " dimmed" : "")
+          }
           style={{
             transform: `translate(-50%, -50%) translate(${first.startPoint.x + 40}px,${first.startPoint.y - 12}px)`,
           }}

@@ -224,6 +224,7 @@ export class GraphCanvas extends Component<Props, State> {
     const layout = this.freshPresentation();
     const presentation = new CellPresentation(layout, {
       comparison: new SceneComparison(this.union()),
+      route: this.route(),
       positions: this.services.navigation.current().positions,
       zoom: this.zoom,
       selected: this.props.selected,
@@ -331,11 +332,35 @@ export class GraphCanvas extends Component<Props, State> {
     this.anchor = id;
     void this.rebuild(true);
   }
+  private route(): Set<string> {
+    const result = new Set<string>();
+    if (!this.scene || !this.state.boundary) return result;
+    let face = "";
+    for (const edge of this.scene.connectors)
+      if (
+        [edge.id, edge.sourcePort, edge.targetPort].includes(
+          this.state.boundary,
+        )
+      ) {
+        result.add(edge.id);
+        face =
+          this.scene.ports.find(GraphCanvas.id.bind(null, edge.sourcePort))
+            ?.interface || "";
+      }
+    if (!new SceneFacts(this.union()).graph.objects.has(face)) return result;
+    const ports = new Set<string>();
+    for (const port of this.scene.ports)
+      if (port.interface === face) ports.add(port.id);
+    for (const edge of this.scene.connectors)
+      if (ports.has(edge.sourcePort) || ports.has(edge.targetPort))
+        result.add(edge.id);
+    return result;
+  }
   private inspect(id: string): void {
-    this.setState({ boundary: id });
+    this.setState({ boundary: id }, this.paint.bind(this));
   }
   private closeBoundary(): void {
-    this.setState({ boundary: "" });
+    this.setState({ boundary: "" }, this.paint.bind(this));
   }
   private closeConnection(): void {
     this.setState({ connection: undefined });

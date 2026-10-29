@@ -9,6 +9,7 @@ import type { CellNode } from "./node.js";
 import type { CellEdge } from "./connector.js";
 export interface PresentationOptions {
   comparison: SceneComparison;
+  route: Set<string>;
   zoom: number;
   positions: Record<string, Point>;
   selected: string;
@@ -48,7 +49,7 @@ export class CellPresentation {
         ...this.options,
         cell,
         ports,
-        dimmed: !this.matches(cell),
+        dimmed: !this.matches(cell) || this.outsideRoute(cell.id),
         ghost: this.options.ghosts.has(cell.id),
       },
     };
@@ -72,19 +73,35 @@ export class CellPresentation {
       targetHandle: connector.targetPort,
       type: "routed",
       markerEnd: { type: MarkerType.ArrowClosed },
-      data: {
-        connector: this.adjusted(connector),
-        status: this.options.comparison.relationships(
-          connector.relationships.map(CellPresentation.relationshipId),
-        ),
-        dimmed: !!this.options.selected && !this.related(connector),
-        changed: this.affected(connector),
-        onInspect: this.options.onPort,
-      },
+      selected: this.options.route.has(connector.id),
+      data: this.edgeData(connector),
+    };
+  }
+  private edgeData(connector: RoutedConnector): NonNullable<CellEdge["data"]> {
+    return {
+      connector: this.adjusted(connector),
+      status: this.options.comparison.relationships(
+        connector.relationships.map(CellPresentation.relationshipId),
+      ),
+      dimmed: this.options.route.size
+        ? !this.options.route.has(connector.id)
+        : !!this.options.selected && !this.related(connector),
+      changed: this.affected(connector),
+      onInspect: this.options.onPort,
     };
   }
   private static relationshipId(edge: { id: string }): string {
     return edge.id;
+  }
+  private outsideRoute(id: string): boolean {
+    if (!this.options.route.size) return false;
+    for (const edge of this.layout.connectors)
+      if (
+        this.options.route.has(edge.id) &&
+        [edge.source, edge.target].includes(id)
+      )
+        return false;
+    return true;
   }
   private related(connector: RoutedConnector): boolean {
     if ([connector.source, connector.target].includes(this.options.selected))

@@ -33,6 +33,10 @@ class BoundaryJourney {
       .getByRole("button", { name: /^requires · 6/ })
       .first()
       .click();
+    await page
+      .locator(".cell-connection.dimmed")
+      .first()
+      .waitFor({ state: "attached" });
     const inspector = page.getByRole("complementary", {
       name: "Boundary inspector",
     });
