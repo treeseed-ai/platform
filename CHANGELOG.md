@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Changed
+- Platform: refresh runtime custody, native Agent provider catalogue and seed-journal evidence with explicit pending admission gates (#773).
 - Platform: refresh accepted Agent, SDK and sandbox-control evidence with explicit remaining runtime gates (#773).
 - Platform: record verified capacity foundations and remaining Agent service gates (#773).
 

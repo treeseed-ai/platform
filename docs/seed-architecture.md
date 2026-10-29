@@ -1,11 +1,15 @@
 # Seeds: the TreeSeed integration architecture
 
-Status: maintainer-approved Task 3D foundation, implementation pending under
+Status: maintainer-approved Task 3D foundation; native journal custody is integrated, while live
+coordination and installed resource reconciliation remain pending under
 [Platform #773](https://github.com/treeseed-ai/platform/issues/773). See the
 [Agent architecture](agent-architecture.md) for capacity services and the
 [delivery plan](superpowers/plans/2026-10-27-agent-composition.md) for execution evidence.
 
 ## Intent and ownership
+
+See [current runtime and journal evidence](runtime-custody-evidence.md): API .16 includes the
+headless native journal, not a completed default seed coordinator or live team authority.
 
 A seed is an immutable, versioned collection of TreeSeed resources and capability requirements.
 It is the integration mechanism across the platform: a seed expresses what should exist, native

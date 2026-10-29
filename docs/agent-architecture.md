@@ -65,13 +65,11 @@ invariant. The kernel's authorization, lease fencing and result-custody invarian
 bypassed through provider selection. Metadata catalogues describe providers; native injection
 supplies their instances. Advertised substitutions share a contract suite.
 
-The current draft exports seven probe plugins from `@treeseed-cordis/agent`:
-`AgentFileGrantPlugin` (`agent.authority`), `AgentContextPlugin` (`agent.context`),
-`AgentEchoToolPlugin` (`agent.tool`), `AgentEchoHandlerPlugin` (`agent.handler`),
-`AgentReporterPlugin` (`agent.reporting`), `AgentExecutionPlugin` (`agent.execution`) and
-`AgentHostPlugin` (`agent.host`). These are draft composition infrastructure, not implemented
-manager/worker/Kata capabilities. New capability metadata must be generated from the same class
-declarations used for native `provide`/`inject`; update this map with verified exports.
+Accepted Agent .35 declares twenty native provider classes. The exact
+[class/capability/module catalogue](runtime-custody-evidence.md#agent-provider-catalogue) comes from
+its generated package metadata, using the same native provide/inject declarations. Available
+probe and infrastructure providers do not establish a live manager kernel, complete enrollment,
+worker pool or guest dispatch. Program roots select their own providers; contexts remain process-local.
 
 ## Definitions and extensible activity profiles
 
@@ -212,17 +210,20 @@ All current executable probes remain harmless; real Work/models stay Task 10.
 | --- | --- |
 | Agent Cordis setup and critical readability policy | Reviewed/published; all nine policy candidates integrated. Do not initialize again. |
 | Bounded SDK probe, provider-control and seed foundations | SDK #483/#489/#490/#492 integrated; seven global operation IDs retained. |
-| Extensible activity/profile, environment and lease contracts | SDK #493–#498/#500–#502 integrated. Accepted .39 contains extensible profiles/environments/leases, host-mediated runner frames and guest-runtime manifests; 188 owner cases and public archive/declaration consumers passed. |
+| Extensible activity/profile, environment and lease contracts | SDK #493–#498/#500–#502 and #507/#508 are integrated. Accepted SDK .44 retains extensible profiles/environments/leases, host-mediated runner frames and exact guest artifacts, and adds validated v2 availability offers plus real TLS create/refresh/close transport. The earlier .39 assembled evidence remains historical; seven global operation IDs are unchanged. |
 | Native private probe authority | Agent #531 has real default Cordis construction, fresh grant/revocation reads, bounded descriptor-anchored files and public archive evidence. Local authority is not team enrollment. |
 | Native probe root, profile preparation and pool policy | Preserved unmerged owner integration; 57 owner cases. Pool and environment collaborators in these component tests are explicitly fixtures. |
 | Guest preparation | SDK #494 defines immutable entries/offline policy; Agent #532 is a draft native component with sequencing, live-policy rereads, safe receipts and monotonic deadlines. Real guest execution/authority still required. |
-| Separate manager/worker/guest programs | Agent #542/#543/#544 integrated the actual Node/standalone GNU guest, native profile/handler/execution seams, trusted dispatch read-back and bounded stdio. Accepted Agent .21 preserves those built-program gates. Separate manager/worker programs and persistent guest sessions remain pending; the guest has not yet been qualified inside Kata. |
-| Real Kata host backend | Deployment #1022/#1024/#1027 integrated real scoped Kata lifecycle and assigned offline setup/verification. #1028 integrated the native authenticated private channel with real hosted Kata/read-back/destruction. Installed named grants/socket mounts, actual Agent sessions, exclusive pool, allowed egress and replacement remain pending. |
-| Reusable UI | Existing React/Cordis/Keycloak boundaries retained. UI #105 integrated its compatibility slice and 46 owner cases. Final assembled selection against the current SDK/Agent/Deployment closure remains required; retained earlier archives are historical evidence. |
+| Separate manager/worker/guest programs | Agent #560/#562 integrate separate manager, worker and frozen guest programs with native process-local roots and twenty providers. Accepted .35 passed both hosted owner closures, including the real worker/Kata readiness fixture. Manager/worker diagnostics still report unready; actual guest run/cancel dispatch, installed service plugins and lease-driven pool orchestration remain pending. |
+| Real Kata host backend | Deployment #1022/#1024/#1027/#1028 provide scoped lifecycle, offline assigned setup/verification and an authenticated private channel. Accepted #1062/#1064/#1066/#1068 add installed alias custody, full retained effective policy, real QEMU boot observation and image-aware finite bounds. Joining these inputs to a live finite launch is draft #1070, not accepted host/profile admission. Named grants/mounts, exclusive pool, allowed egress and replacement remain pending. |
+| Reusable UI | React/Cordis/mobile-first/Keycloak boundaries are retained. UI #108 (.24), Identity #61 (.10), Admin #154 (.13) and API #658 (.16) have accepted public owner closures. API default isolated Keycloak/browser verification passed. These independent archives are not a new assembled capacity release. |
 | Real existing-team connection | Agent #545 integrated native private-key Ed25519 proof signing; #547 integrated real default TLS registration-status read-back and coherent identity admission above replacement providers. This is not team approval or execution authority. Credential exchange/enrollment/heartbeat/revocation and isolated Keycloak/live grant qualification remain pending. |
-| Guest artifact admission | Deployment #1033 remains unmerged: bounded archive/chunk/gzip/ELF checks and a genuine accepted Agent consumer pass locally, but a retained hosted Git-install prerequisite failure blocks acceptance. No structural check alone proves VM execution. |
-| Seeds and installed targets | Seed SDK foundation integrated; API #645 remains draft. Public default coordinator, real authority/artifact/custody adapters, CLI selection and full installed capacity assembly remain pending. |
+| Guest artifact admission | Accepted Deployment .133 exports bounded archive/chunk/gzip/ELF and retained runtime component/alias admission. Agent .35 owner qualification includes the frozen readiness-only guest inside real Kata. This supersedes the earlier blocked structural-only candidate status; actual guest handler run/cancel and complete installed Agent service admission remain required. |
+| Seeds and installed targets | API #656 integrates a native headless seed journal using Deployment installation-record custody; API #658 retains it in the accepted .16 closure. API #645 remains a draft reconciler. Default live-authority coordinator/resource owners, CLI project/profile selection and full installed capacity assembly remain pending. |
 | Real Work/model execution/accounting | Deferred to Task 10. |
+
+The [runtime custody evidence](runtime-custody-evidence.md) records current owner pins and the
+remaining live-admission boundary. It does not replace a complete assembled lock.
 
 The [current delivery checkpoint](superpowers/plans/2026-10-27-agent-composition.md#current-checkpoint)
 records exact source/archive identities and review dependencies. Component tests, a local grant,
