@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-28 22:55 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 00:53 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -35,14 +35,28 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 21:26 | 0 | 10 | **0/10 = 0%** | +0/+0; API647 recovery replacement qualifying; five Deployment subscribers completed native MCP discussion; implementation/release still unproved |
 | 22:26 | 0 | 11 | **0/11 = 0%** | +0/+1 API647 bootstrap checked/merged; local runtime adoption pending; no simulated release |
 | 22:55 | 0 | 11 | **0/11 = 0%** | +0/+0; API647 adopted and native v13 readiness recovered; API648 qualifies frozen-reporting blocker; no simulated release |
+| Oct29 00:53 | 0 | 12 | **0/12 = 0%** | +0/+1 API648 qualified/merged/adopted; MCP reconciliation passes; real Deployment planning exposes invalid shared schema; no simulated release |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
 - [Agent529](https://github.com/treeseed-ai/agent/pull/529): protected `93f50eba1930626b045b409e109d508734cf0efa`; planning Proposal content path repaired;62 locally adopted and publicly released.
-- [API647](https://github.com/treeseed-ai/api/pull/647): bootstrap retained-estimate recovery; not merged, no credit.
+- [API647](https://github.com/treeseed-ai/api/pull/647): coordinator bootstrap retained-estimate recovery, protected `925def15207abdb98ee1efd7b692d3bbfab708d6`, adopted.
+- [API648](https://github.com/treeseed-ai/api/pull/648): coordinator bootstrap frozen-reporting recovery, protected `e3b3a05892eb25ef5f2fd77c476788f2870118d2`, adopted.
 - [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
 
-## Adopted recovery and next blocker — 22:55 UTC
+## Native planning resumed; shared schema rejected — Oct29 00:53 UTC
+
+**API648 delivered:** source c6a1be1416e989a30f445722ee19b86e9f0446cf, checked e4a0d20f48f0d484582a675f98c7d15ced566491 and protected e3b3a05892eb25ef5f2fd77c476788f2870118d2 share tree0dadeee98a54c4919f9f54e1840cd47df8943a43. [Verify40783251921](https://github.com/treeseed-ai/api/actions/runs/40783251921)/job123149966144 passed **2528API tests/462files and1103component steps**,0failed/blocked/skipped. Both new reporting cases passed; unchanged native Decision binding passed. Final logSHA256e23bd0afed0bab0f4381ee59518934f8517e6b122b47f2664c61fcf84b812f44; scene artifact12862998200 ZIP SHA25613ec8eb884a7d8ba427df04fa9d1d617312c8e4cb05c2a2c01621474ac95d2ac. Earlier failures remain failed; these component results are not a full live release.
+
+Supported trsd rebuilds adopted only api.service/operations-runner in dev-5007e344-493, ready13504/13344. Installed read-back matched732source files/732runner modules. Manifest SHA256f948fcedbe629cf63ceab7005402bde0b2ee22ec0f900331be74d8e7e9ee3990 /458046bc71684868c3b8f0b877139f4403e94313b46ad23315c0812c532ed76c; receipt SHA256858d181ddb6dfb31f44fff58f259f496a4c908461d9693a607e60b2b8d18618a /37cf313c2184cbabe968590bec45ed6746958c975411b021e0d9317e8d42093e. Provider/manual selection and unrelated services preserved.
+
+**Native MCP:** execution.reconcile preview succeeded; normal apply revision97993 derived86changed nodes,0added/completed/blocked/stale transitions, no edge changes. Target proposal36112257v13 remains accepted/ready,4original estimates. Its9original nodes were already stale at the first post-adoption read97988, before explicit apply; cancelled simulations lose active projection ownership. The completed product/review records were not replaced. Fresh continuation231453f4-2221-415f-a58c-9d6c48ada98f from original d4f3 selected0demands and was not started. Restoring useful continuation remains **unproved**, including the six completed node revisions; do not call this a complete retry-recovery pass.
+
+**Real group planning:** objective retained-agent-simulated-release, published7b93f6a2, group project-deployment +workday-closeout, planningOnly/planning, concurrency1. Native preflight1ee1494b-8fd7-4386-bf13-e499a60aa3ac and exact signed start created workday1ee1494b; autonomous planning seeded all5subscribers. No team configuration changed. Architect CT1oAqIAlIJ9KWc9irwhKwmPMiUsjZJ7 and Engineer fcQEHBZ04D-7nD8whJkuHBLE36940WGi returned before tools: Codex400 `invalid_json_schema`, invalid response_format keyword; timing-awareness missing was secondary. Normal signed MCP stop reached cancelled/ended. These2terminal records retain operator-stop disposition; Releaser waYPdaxX0DfwRqMFo4OGuNRGsCsxArWe, Writer yD3BaEjq0O-r9fzFb-iF51BTAzcrVu-u and Tester YRPaFMFvE8dA9gTwa5tAQYFeZyy42D9H failed source-context admission. All5failed/released, no canonical planning product. Deterministic Reporter CEFwj5b417i0zQh3VGfEcSarSD8vHKTB completed/released, report-3fb89171b2f1d81eae6dbcc9. Prefix assignment_ applies. Unknown usage/cost and independent settlement/physical teardown remain unknown; stop reported0settlement errors, not proof of zero usage.
+
+AgentArchitect discussion send-a0409a78723bdb10add7a29fa983cf5f completed via BGIyQmcKwTGvzyLoag096AOs3JmWHpZE/result-fa60f085df1519157a3e2f6e, response5b167f9438eb447a62507ee3, reported verified teardown. It inspected Agent93f50eba and correctly left the exact keyword unproved; its const hypothesis is not accepted as cause. Coordinator's test-first SDK411 branch red **d6c24ce8** proves the shared canonical frontmatter exporter emits `type:ZodIntersection` for Note links.from/to, included in every real planning request. Red logSHA2563a0e3f51b42b2ff02e97ec6e5d3384513fd06545aa5b4c2dd9712c931ccaa3b7,1failed/6deselected; no functional repair yet. SDKArchitect source discussion send-66c536ebe21f793338f674dc8d8ff75a is running. No new proposal, estimate, acting contribution or release credit. Next: repair the earliest shared exporter without dropping output types/canonical validation, qualify/adopt, then resume group-owned913 work. Ratio0/12, full MCP simulated releases0.
+
+## Prior adopted recovery and blocker — 22:55 UTC
 
 API647/925def15 is adopted through supported `trsd` live rebuilds of api.service and api.operations-runner in existing sessiondev-5007e344-493. Both receipts passed/no blockers; ready generations13502/13340. Actual container read-back matched **732 service source files +732 runner modules**. Manifest SHA256 **21691c1a9d06307eeba9a658b936d159831c409f981d8aabf21839387bfeb5c8** / **dd373a70854a1000f448681e58c27c8694f36ecb87c3726e0ad6571ca904167d**; receipt SHA256e16a7865f4ec8843c0c58b784d16aac23e2337c435565199d9ab383fc0c9bf28 / d6a4aeb15fd832062bbac858b1d6fc171412b819ed7df933ba3d1a19c0d0b8cd. Provider manual selection and unrelated services preserved. Old API647 checkout/local branch removed after verified source custody; remote history and Actions retained.
 
