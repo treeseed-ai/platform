@@ -10,7 +10,12 @@ packages from the qualified lock. Local owner archives remain `file:` dependenci
 registry overrides do not promote development packages into runtime dependencies.
 Reject nested or ambiguous registry resolutions instead of flattening them. Keep
 the existing post-resolution identity and SRI comparisons and archive-byte checks.
-Scripts remain disabled during preparation, and the script canary remains checked.
+The historical Deployment release reader rejects manifest overrides. They are
+preparation-only constraints: after resolution remove the override metadata from
+both temporary package manifest and lock, retain all resolved package records,
+and verify the resulting pair with a frozen lockfile operation before publication.
+Hash only the final manifest and lock. Scripts remain disabled during preparation,
+and the script canary remains checked.
 
 Both journeys must copy and invoke the same fixture preparation helper. The
 migration sandbox must include its support files explicitly. Refactor only the
