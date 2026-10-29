@@ -1,0 +1,270 @@
+schemaVersion: architecture/0.1
+view: implementation
+project: project.sdk
+objects:
+- id: project.sdk
+  kind: project
+  name: Sdk
+  purpose: Independent sdk ownership boundary
+  repository: https://github.com/treeseed-ai/sdk.git
+  revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+  language: typescript
+  external: false
+- id: sdk.capability.cordis.composition
+  kind: capability
+  name: cordis.composition
+  purpose: Native capability cordis.composition
+  contract: sdk.contract.cordis.composition
+  cardinality: singleton
+  implementationMode: fixed
+  coherentInvariant: One native resolver/handle owns this process-local composition; swapping it independently would invalidate leases and lifecycle ownership.
+- id: sdk.capacity
+  kind: component
+  name: Capacity
+  purpose: Publish agent, capacity, environment and provider-control contracts
+  project: project.sdk
+  componentKind: object
+  ownedFiles:
+  - src/activities.ts
+  - src/agent.ts
+  - src/capacity-channel.ts
+  - src/capacity-protocol.ts
+  - src/capacity.ts
+  - src/environments.ts
+  - src/guest-runtime.ts
+  - src/pool.ts
+  - src/provider-control-contracts.ts
+  - src/provider-control.ts
+  - src/sandbox-control.ts
+  - src/seeds.ts
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/activities.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/agent.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/capacity-channel.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/capacity-protocol.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/capacity.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/environments.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/guest-runtime.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/pool.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/provider-control-contracts.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/provider-control.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/sandbox-control.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/seeds.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: sdk.composition.CordisScope.mount.handle
+  kind: composition
+  name: CordisScope.mount.handle
+  purpose: Source composition construction site; configuration-dependent selections remain unresolved
+  project: project.sdk
+  target: configuration-dependent
+  process: sdk.composition.CordisScope.mount.handle.process
+  scopes:
+  - id: sdk.composition.CordisScope.mount.handle.scope
+    lifetime: configuration-dependent; source site only
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/composition.ts
+    start: 150
+    symbol: CordisScope.mount.handle
+    end: 150
+    fingerprint: 423fc82c73ce0f5c65a36b2b8c5c40b3f4aa0e0f3f0533130507651ea1549c44
+  extensions:
+    architecture:qualification: unknown
+    architecture:processIdentity: symbolic placeholder; source site may be a wrapper within an existing process
+- id: sdk.contract.cordis.composition
+  kind: contract
+  name: cordis.composition
+  purpose: Boundary supplied for cordis.composition
+  project: project.sdk
+  version: unresolved
+  operations: []
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/composition.ts
+    symbol: CompositionKernel
+    start: 55
+    end: 55
+    fingerprint: 190e66a0dec7eca23e52cb0b0cd9f576abe1102185bb78b68e65900b0974eb7d
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: sdk.contracts
+  kind: component
+  name: Contracts
+  purpose: Publish portable schemas and public cross-project contracts
+  project: project.sdk
+  componentKind: object
+  ownedFiles:
+  - src/contracts.ts
+  - src/management.ts
+  - src/plugin-source.ts
+  - src/portable.ts
+  - src/schemas.ts
+  - src/service-journal.ts
+  - src/service-projection.ts
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/contracts.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/management.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/plugin-source.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/portable.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/schemas.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/service-journal.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/service-projection.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: sdk.plugin.CompositionHandle.start.ReadinessConsumer
+  kind: component
+  name: CompositionHandle.start.ReadinessConsumer
+  purpose: Native injection consumer plugin; supplies no selectable capability
+  project: project.sdk
+  componentKind: plugin
+  componentRole: runtime
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/composition.ts
+    symbol: CompositionHandle.start.ReadinessConsumer
+    start: 77
+    end: 77
+    fingerprint: dfbf1773ce61fccb735a35e86aafbe8c1dbfd352aff745daa68561d8381a5332
+  extensions:
+    cordis:injectExpression: '[token.id]'
+    architecture:registrationEvidence: See inventory compositionSites for native mounting; dynamic targets not executed
+- id: sdk.plugin.CompositionKernel
+  kind: component
+  name: CompositionKernel
+  purpose: Native plugin declaration supplying cordis.composition
+  project: project.sdk
+  componentKind: plugin
+  capabilities:
+  - sdk.capability.cordis.composition
+  contracts:
+  - sdk.contract.cordis.composition
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/composition.ts
+    symbol: CompositionKernel
+    start: 55
+    end: 55
+    fingerprint: 190e66a0dec7eca23e52cb0b0cd9f576abe1102185bb78b68e65900b0974eb7d
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      provide: '[''cordis.composition'']'
+  componentRole: runtime
+- id: sdk.plugin.CordisScope.mount.Gateway
+  kind: component
+  name: CordisScope.mount.Gateway
+  purpose: Native injection consumer plugin; supplies no selectable capability
+  project: project.sdk
+  componentKind: plugin
+  componentRole: runtime
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/composition.ts
+    symbol: CordisScope.mount.Gateway
+    start: 150
+    end: 150
+    fingerprint: 58aede817d07256c58eaecdc16a3cab9127745d08354536d67e4641e33c6b05d
+  extensions:
+    cordis:injectExpression: inject
+    architecture:registrationEvidence: See inventory compositionSites for native mounting; dynamic targets not executed
+- id: sdk.policy
+  kind: component
+  name: Policy
+  purpose: Provide development-only source policy checks
+  project: project.sdk
+  componentKind: object
+  ownedFiles:
+  - src/source-policy.ts
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/source-policy.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: sdk.runtime
+  kind: component
+  name: Runtime
+  purpose: Supply native Cordis composition, selection facade and provider leases
+  project: project.sdk
+  componentKind: object
+  ownedFiles:
+  - src/composition.ts
+  - src/runtime.ts
+  sourceBindings:
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/composition.ts
+  - project: project.sdk
+    revision: 519611d2496fa6e8a7d6aa29d7585a487c0bfb07
+    path: src/runtime.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+metadata:
+  baseline: cordis-2026-10-29
+  status: observed
+  notes:
+  - Source snapshot is not a qualified assembled release.
+  - Logical-area components group inventory; native plugin components are separate.
+  references:
+  - ../baselines/repositories.json
+  - inventory/sdk.json
+  - ../baselines/public-surfaces.json
+  limitations:
+  - Dynamic injection/selection expressions retained in inventory; not evaluated.
+  - No runtime readiness, cleanup or conformance checks executed.
+relationships:
+- kind: provides
+  from: sdk.plugin.CompositionKernel
+  to: sdk.capability.cordis.composition
+- kind: implements
+  from: sdk.plugin.CompositionKernel
+  to: sdk.contract.cordis.composition

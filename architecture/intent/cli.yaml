@@ -1,0 +1,133 @@
+schemaVersion: architecture/0.1
+view: intent
+project: project.cli
+objects:
+- id: cli.capability.cli.commands.0_3_0_cordis_1
+  kind: capability
+  name: cli.commands
+  purpose: Native capability cli.commands
+  contract: cli.contract.cli.commands.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.capability.cli.configuration.0_3_0_cordis_1
+  kind: capability
+  name: cli.configuration
+  purpose: Native capability cli.configuration
+  contract: cli.contract.cli.configuration.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.capability.cli.output.0_3_0_cordis_1
+  kind: capability
+  name: cli.output
+  purpose: Native capability cli.output
+  contract: cli.contract.cli.output.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.capability.cli.plugins.0_3_0_cordis_1
+  kind: capability
+  name: cli.plugins
+  purpose: Native capability cli.plugins
+  contract: cli.contract.cli.plugins.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.contract.cli.commands.0_3_0_cordis_1
+  kind: contract
+  name: cli.commands
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+- id: cli.contract.cli.configuration.0_3_0_cordis_1
+  kind: contract
+  name: cli.configuration
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+- id: cli.contract.cli.output.0_3_0_cordis_1
+  kind: contract
+  name: cli.output
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+- id: cli.contract.cli.plugins.0_3_0_cordis_1
+  kind: contract
+  name: cli.plugins
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+- id: cli.plugin.CommandsPlugin
+  kind: component
+  name: CommandsPlugin
+  purpose: Native plugin declaration supplying dynamically resolved capabilities
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.commands.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.commands.0_3_0_cordis_1
+  componentRole: runtime
+- id: cli.plugin.ConfigurationPlugin
+  kind: component
+  name: ConfigurationPlugin
+  purpose: Native plugin declaration supplying dynamically resolved capabilities
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.configuration.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.configuration.0_3_0_cordis_1
+  componentRole: runtime
+- id: cli.plugin.InvocationPlugin
+  kind: component
+  name: InvocationPlugin
+  purpose: Candidate native consumer boundary for review; not automatically approved
+  project: project.cli
+  componentKind: plugin
+  componentRole: runtime
+- id: cli.plugin.OutputPlugin
+  kind: component
+  name: OutputPlugin
+  purpose: Native plugin declaration supplying dynamically resolved capabilities
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.output.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.output.0_3_0_cordis_1
+  componentRole: runtime
+- id: cli.plugin.PluginCommandsPlugin
+  kind: component
+  name: PluginCommandsPlugin
+  purpose: Native plugin declaration supplying dynamically resolved capabilities
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.plugins.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.plugins.0_3_0_cordis_1
+  componentRole: runtime
+- id: cli.program
+  kind: component
+  name: Program
+  purpose: Run operator commands and invoke public owner capabilities
+  project: project.cli
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: project.cli
+  kind: project
+  name: Cli
+  purpose: Independent cli ownership boundary
+  repository: https://github.com/treeseed-ai/cli.git
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: proposed
+  notes:
+  - Candidate identity/contract map for architectural review; source existence is not architectural acceptance.
+  - No requirement to retain every observed provider implementation; select by approved capability contract.
+  - TreeSeed profile supplies obligations; omitted properties are unspecified.
+  references:
+  - ../profiles/treeseed.yaml
+  - ../profiles/languages.md
