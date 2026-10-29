@@ -1,7 +1,9 @@
 import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
+import { StudioStructure } from "./structure.js";
 class StudioPolicy {
   static run(): void {
+    new StudioStructure().check();
     const script = resolve(
       "../../.agents/skills/release-workflow/scripts/source-readability.ts",
     );

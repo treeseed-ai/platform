@@ -7,25 +7,31 @@ class StudioTests {
     const root = resolve("../..");
     const tiers = process.argv[2]
       ? [process.argv[2]]
-      : ["unit", "integration", "acceptance"];
+      : ["unit", "regression", "integration", "acceptance"];
     for (const tier of tiers) {
       const directory = resolve(root, "tests", tier, "architecture-studio");
-      if (!existsSync(directory)) continue;
-      const files = readdirSync(directory)
-        .filter(StudioTests.testFile)
-        .map(StudioTests.path.bind(null, directory));
-      execFileSync(
-        process.execPath,
-        [
-          "--import",
-          resolve("node_modules/tsx/dist/loader.mjs"),
-          "--test",
-          "--test-concurrency=1",
-          ...files,
-        ],
-        { cwd: root, stdio: "inherit" },
-      );
+      if (!existsSync(directory)) {
+        console.log("Studio " + tier + ": no specifications in this tier");
+        continue;
+      }
+      StudioTests.execute(root, directory);
     }
+  }
+  private static execute(root: string, directory: string): void {
+    const files = readdirSync(directory)
+      .filter(StudioTests.testFile)
+      .map(StudioTests.path.bind(null, directory));
+    execFileSync(
+      process.execPath,
+      [
+        "--import",
+        resolve("node_modules/tsx/dist/loader.mjs"),
+        "--test",
+        "--test-concurrency=1",
+        ...files,
+      ],
+      { cwd: root, stdio: "inherit" },
+    );
   }
   private static testFile(file: string): boolean {
     return file.endsWith(".test.ts");

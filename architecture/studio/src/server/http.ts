@@ -80,14 +80,35 @@ export class StudioHttpPlugin {
     this.json(response, await this.api.handle(operation, body));
   }
   private staticFile(path: string, response: ServerResponse): void {
-    const target = resolve(this.options.client, '.' + decodeURIComponent(path === '/' ? '/index.html' : path));
-    if (!target.startsWith(resolve(this.options.client) + '/') || !existsSync(target)) { response.writeHead(404); response.end('Not found'); return; }
+    const target = resolve(
+      this.options.client,
+      "." + decodeURIComponent(path === "/" ? "/index.html" : path),
+    );
+    if (
+      !target.startsWith(resolve(this.options.client) + "/") ||
+      !existsSync(target)
+    ) {
+      response.writeHead(404);
+      response.end("Not found");
+      return;
+    }
     this.fileHeaders(target, response);
     response.end(readFileSync(target));
   }
   private fileHeaders(target: string, response: ServerResponse): void {
-    const types: Record<string, string> = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
-    response.writeHead(200, { 'content-type': types[extname(target)] || 'application/octet-stream', 'x-content-type-options': 'nosniff', 'cache-control': 'no-store' });
+    const types: Record<string, string> = {
+      ".html": "text/html",
+      ".js": "text/javascript",
+      ".css": "text/css",
+      ".json": "application/json",
+      ".svg": "image/svg+xml",
+      ".woff2": "font/woff2",
+    };
+    response.writeHead(200, {
+      "content-type": types[extname(target)] || "application/octet-stream",
+      "x-content-type-options": "nosniff",
+      "cache-control": "no-store",
+    });
   }
   private json(response: ServerResponse, value: unknown, status = 200): void {
     response.writeHead(status, {

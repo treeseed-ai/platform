@@ -8,12 +8,17 @@ import {
 export class ArchitectureGraph {
   readonly objects = new Map<string, ArchitectureObject>();
   readonly edges: Relationship[] = [];
+  readonly declared: Relationship[] = [];
   readonly owners = new Map<string, string>();
   readonly duplicates: string[] = [];
   constructor(documents: Blueprint[]) {
     for (const document of documents) {
-      for (const object of document.objects) { this.add(object); this.owners.set(object.id, String(object.project || document.project)); }
+      for (const object of document.objects) {
+        this.add(object);
+        this.owners.set(object.id, String(object.project || document.project));
+      }
       this.edges.push(...(document.relationships ?? []));
+      this.declared.push(...(document.relationships ?? []));
     }
     this.infer();
   }
@@ -24,10 +29,28 @@ export class ArchitectureGraph {
   private infer(): void {
     for (const object of this.objects.values()) {
       this.fields(object);
+      this.composition(object);
       if (object.kind === "provider" && object.contract)
         this.edge("implements", object.id, String(object.contract));
       if (object.kind === "component" && object.project)
         this.edge("owns", String(object.project), object.id);
+    }
+  }
+  private composition(object: ArchitectureObject): void {
+    if (object.kind !== "composition") return;
+    for (const selection of Data.records(object.selections)) {
+      this.edge("depends-on", object.id, String(selection.provider));
+      this.edge("depends-on", object.id, String(selection.capability));
+    }
+    for (const scope of Data.records(object.scopes)) {
+      for (const registration of Data.strings(scope.registrations))
+        this.edge("depends-on", object.id, registration);
+      for (const selection of Data.records(scope.selections)) {
+        this.edge("depends-on", object.id, String(selection.provider));
+        this.edge("depends-on", object.id, String(selection.capability));
+      }
+      for (const fixed of Data.records(scope.fixedBindings))
+        this.edge("depends-on", object.id, String(fixed.component));
     }
   }
   private fields(object: ArchitectureObject): void {
@@ -46,6 +69,18 @@ export class ArchitectureGraph {
     for (const edge of this.edges)
       if (edge.kind === kind && edge.from === from && edge.to === to) return;
     this.edges.push({ kind, from, to });
+  }
+  required(subject: string): string[] {
+    const seen = new Set([subject]);
+    const queue = [subject];
+    while (queue.length) {
+      const id = queue.shift()!;
+      for (const edge of this.edges)
+        if (edge.from === id && edge.kind !== "owns")
+          this.enqueue(edge.to, seen, queue);
+    }
+    seen.delete(subject);
+    return [...seen].sort();
   }
   affected(subject: string): string[] {
     const seen = new Set([subject]);

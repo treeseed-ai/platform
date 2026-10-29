@@ -1,3 +1,4 @@
+import { EvidenceValidator } from "../language/evidence.js";
 import { Context } from "cordis";
 import { WorkspaceService } from "../workspace/service.js";
 import { SourceService } from "../source/service.js";
@@ -13,33 +14,99 @@ import type {
   Blueprint,
 } from "../model/types.js";
 
-export interface StudioServices {
-  workspace: WorkspaceService;
-  source: SourceService;
-  refresh: RefreshService;
-  comparison: ComparisonService;
-  validator: SemanticValidator;
-  migration: MigrationService;
-}
+import type { StudioServices } from "./contracts.js";
+export type { StudioServices } from "./contracts.js";
 declare module "cordis" {
   interface Context {
     studio: StudioServices;
+    studioWorkspace: StudioServices["workspace"];
+    studioSource: StudioServices["source"];
+    studioRefresh: StudioServices["refresh"];
+    studioComparison: StudioServices["comparison"];
+    studioValidator: StudioServices["validator"];
+    studioMigration: StudioServices["migration"];
   }
 }
 export class StudioServicesPlugin {
-  static readonly provide = ["studio"];
   constructor(context: Context, root: string) {
-    const workspace = new WorkspaceService(root);
-    const source = new SourceService(
-      new GitSource(workspace.roots(workspace.load().baseline)),
+    context.plugin(WorkspacePlugin, root);
+    context.plugin(SourcePlugin);
+    context.plugin(RefreshPlugin);
+    context.plugin(ComparisonPlugin);
+    context.plugin(ValidationPlugin);
+    context.plugin(MigrationPlugin);
+    context.plugin(StudioFacadePlugin);
+  }
+}
+class WorkspacePlugin {
+  static readonly provide = ["studioWorkspace"];
+  constructor(context: Context, root: string) {
+    context.provide("studioWorkspace", new WorkspaceService(root));
+  }
+}
+class SourcePlugin {
+  static readonly inject = ["studioWorkspace"];
+  static readonly provide = ["studioSource"];
+  constructor(context: Context) {
+    const workspace = context.studioWorkspace;
+    context.provide(
+      "studioSource",
+      new SourceService(
+        new GitSource(workspace.roots(workspace.load().baseline)),
+      ),
     );
+  }
+}
+class RefreshPlugin {
+  static readonly inject = ["studioWorkspace", "studioSource"];
+  static readonly provide = ["studioRefresh"];
+  constructor(context: Context) {
+    context.provide(
+      "studioRefresh",
+      new RefreshService(context.studioWorkspace, context.studioSource),
+    );
+  }
+}
+class ComparisonPlugin {
+  static readonly provide = ["studioComparison"];
+  constructor(context: Context) {
+    context.provide("studioComparison", new ComparisonService());
+  }
+}
+class ValidationPlugin {
+  static readonly provide = ["studioValidator"];
+  constructor(context: Context) {
+    context.provide("studioValidator", new SemanticValidator());
+  }
+}
+class MigrationPlugin {
+  static readonly inject = ["studioWorkspace"];
+  static readonly provide = ["studioMigration"];
+  constructor(context: Context) {
+    context.provide(
+      "studioMigration",
+      new MigrationService(context.studioWorkspace),
+    );
+  }
+}
+class StudioFacadePlugin {
+  static readonly inject = [
+    "studioWorkspace",
+    "studioSource",
+    "studioRefresh",
+    "studioComparison",
+    "studioValidator",
+    "studioMigration",
+  ];
+  static readonly provide = ["studio"];
+  constructor(context: Context) {
     context.provide("studio", {
-      workspace,
-      source,
-      refresh: new RefreshService(workspace, source),
-      comparison: new ComparisonService(),
-      validator: new SemanticValidator(),
-      migration: new MigrationService(workspace),
+      workspace: context.studioWorkspace,
+      source: context.studioSource,
+      refresh: context.studioRefresh,
+      comparison: context.studioComparison,
+      validator: context.studioValidator,
+      migration: context.studioMigration,
     });
   }
 }
@@ -55,7 +122,7 @@ export class StudioAnalysis {
     return this.services.comparison.workspace(current, intent);
   }
   validate(state: Workspace): Diagnostic[] {
-    const result: Diagnostic[] = [];
+    const result: Diagnostic[] = new EvidenceValidator().check(state);
     for (const view of ["implementation", "intent"]) {
       const models = [];
       for (const document of state.documents) {

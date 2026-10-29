@@ -33,6 +33,7 @@ export class ComparisonService {
       [...current.objects.values()],
       [...desired.objects.values()],
     );
+    this.relationships(implementation, intent, findings);
     for (const finding of findings) {
       finding.impact = [
         ...new Set([
@@ -49,18 +50,88 @@ export class ComparisonService {
         );
     return findings;
   }
-  private compare(before: ArchitectureObject | undefined, after: ArchitectureObject, findings: Finding[]): void {
-    if (!before) { findings.push(this.finding(after.id, '*', 'missing-implementation', undefined, after)); return; }
+  private compare(
+    before: ArchitectureObject | undefined,
+    after: ArchitectureObject,
+    findings: Finding[],
+  ): void {
+    if (!before) {
+      findings.push(
+        this.finding(after.id, "*", "missing-implementation", undefined, after),
+      );
+      return;
+    }
     for (const field of Object.keys(after).sort()) {
       if (ComparisonService.excluded.has(field)) continue;
-      if (Data.canonical(this.normalize(before[field], field)) === Data.canonical(this.normalize(after[field], field))) continue;
-      findings.push(this.finding(after.id, field, this.category(after.kind, field), before[field], after[field]));
+      if (this.agrees(before[field], after[field], field)) continue;
+      findings.push(
+        this.finding(
+          after.id,
+          field,
+          this.category(after.kind, field),
+          before[field],
+          after[field],
+        ),
+      );
     }
     this.sourceDrift(before, after, findings);
   }
-  private sourceDrift(before: ArchitectureObject, after: ArchitectureObject, findings: Finding[]): void {
-    if (!after.sourceBindings || Data.canonical(before.sourceBindings) === Data.canonical(after.sourceBindings)) return;
-    findings.push(this.finding(after.id, 'sourceBindings', 'source-drift', before.sourceBindings, after.sourceBindings));
+  private agrees(before: unknown, after: unknown, field: string): boolean {
+    if (Array.isArray(after))
+      return (
+        Data.canonical(this.normalize(before, field)) ===
+        Data.canonical(this.normalize(after, field))
+      );
+    if (after && typeof after === "object") {
+      for (const [key, value] of Object.entries(after))
+        if (!this.agrees(Data.record(before)[key], value, key)) return false;
+      return true;
+    }
+    return Data.canonical(before) === Data.canonical(after);
+  }
+  private relationships(
+    current: Blueprint[],
+    intent: Blueprint[],
+    findings: Finding[],
+  ): void {
+    const observed = new Set<string>();
+    for (const document of current)
+      for (const edge of document.relationships ?? [])
+        observed.add(Data.canonical(edge));
+    for (const document of intent)
+      for (const edge of document.relationships ?? []) {
+        if (observed.has(Data.canonical(edge))) continue;
+        findings.push(
+          this.finding(
+            edge.from,
+            "relationship:" + edge.kind + ":" + edge.to,
+            "dependency-mismatch",
+            undefined,
+            edge,
+          ),
+        );
+      }
+  }
+  private sourceDrift(
+    before: ArchitectureObject,
+    after: ArchitectureObject,
+    findings: Finding[],
+  ): void {
+    if (
+      !after.sourceBindings ||
+      Data.canonical(before.sourceBindings) ===
+        Data.canonical(after.sourceBindings)
+    )
+      return;
+    findings.push(
+      this.finding(
+        after.id,
+        "sourceBindings",
+        "source-drift",
+        before.sourceBindings,
+        after.sourceBindings,
+      ),
+    );
   }
   private normalize(value: unknown, field: string): unknown {
     if (!Array.isArray(value)) return value;

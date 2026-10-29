@@ -3,13 +3,14 @@ import assert from "node:assert/strict";
 import { StudioFixture } from "../../support/architecture-studio/fixture.js";
 
 class WorkspaceIntegration {
+  private static agent(item: { path: string }): boolean {
+    return item.path === "intent/agent.yaml";
+  }
   static async conflicts(): Promise<void> {
     const fixture = await StudioFixture.start();
     try {
       const state = await fixture.request("workspace");
-      const doc = state.documents.find(
-        (item: { path: string }) => item.path === "intent/agent.yaml",
-      );
+      const doc = state.documents.find(WorkspaceIntegration.agent);
       const changes = [
         { path: doc.path, expected: doc.hash, text: doc.text + "\n# saved\n" },
       ];

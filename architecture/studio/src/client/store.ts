@@ -5,6 +5,7 @@ import {
   type Blueprint,
   type ArchitectureObject,
   type DocumentRecord,
+  type Relationship,
 } from "../model/types.js";
 import { ApiClient } from "./api.js";
 
@@ -61,6 +62,7 @@ export class DraftStore {
   update(id: string, field: string, value: unknown): void {
     const object = this.find(id);
     if (!object || field === "id" || field === "kind") return;
+    if (Data.canonical(object[field]) === Data.canonical(value)) return;
     this.checkpoint();
     object[field] = value;
     this.unaccept(id);
@@ -87,6 +89,19 @@ export class DraftStore {
     document.model.relationships.push({ from, to, kind });
     this.unaccept(from);
     this.serialize();
+  }
+  disconnect(edge: Relationship): void {
+    const document = this.document(edge.from);
+    if (!document) return;
+    this.checkpoint();
+    document.model.relationships = document.model.relationships?.filter(
+      DraftStore.otherEdge.bind(null, edge),
+    );
+    this.unaccept(edge.from);
+    this.serialize();
+  }
+  private static otherEdge(edge: Relationship, item: Relationship): boolean {
+    return Data.canonical(edge) !== Data.canonical(item);
   }
   remove(id: string): void {
     this.checkpoint();
@@ -128,6 +143,7 @@ export class DraftStore {
       subjects: [id],
       status: "accepted",
       rationale: "Reviewed by the local architect in Architecture Studio.",
+      provenance: ["Explicit local Studio review action"],
     });
     this.serialize();
   }
@@ -161,8 +177,21 @@ export class DraftStore {
     if (model.view !== "intent" || model.project !== document.model.project)
       throw new Error("Intent owner cannot change");
     this.checkpoint();
+    const previous = document.model;
     document.model = model;
-    document.text = text;
+    for (const object of model.objects) {
+      const old = previous.objects.find(
+        DraftStore.matches.bind(null, object.id),
+      );
+      if (Data.canonical(old) !== Data.canonical(object))
+        this.unaccept(object.id);
+    }
+    if (
+      Data.canonical(previous.relationships) !==
+      Data.canonical(model.relationships)
+    )
+      for (const edge of model.relationships ?? []) this.unaccept(edge.from);
+    this.serialize();
   }
   private static path(path: string, document: DocumentRecord): boolean {
     return document.path === path;
@@ -170,12 +199,21 @@ export class DraftStore {
   private unaccept(id: string): void {
     const document = this.document(id);
     if (!document) return;
-    const accepted = document.model.metadata.status === 'accepted' ? document.model.objects.map(DraftStore.objectId) : Data.strings(document.model.metadata.acceptedSubjects);
-    document.model.metadata.status = 'mixed';
-    document.model.metadata.acceptedSubjects = accepted.filter(DraftStore.otherId.bind(null, id));
+    const accepted =
+      document.model.metadata.status === "accepted"
+        ? document.model.objects.map(DraftStore.objectId)
+        : Data.strings(document.model.metadata.acceptedSubjects);
+    document.model.metadata.status = "mixed";
+    document.model.metadata.acceptedSubjects = accepted.filter(
+      DraftStore.otherId.bind(null, id),
+    );
   }
-  private static objectId(object: ArchitectureObject): string { return object.id; }
-  private static otherId(id: string, value: string): boolean { return value !== id; }
+  private static objectId(object: ArchitectureObject): string {
+    return object.id;
+  }
+  private static otherId(id: string, value: string): boolean {
+    return value !== id;
+  }
   private serialize(): void {
     for (const document of this.documents())
       document.text = stringify(document.model, { lineWidth: 100 });

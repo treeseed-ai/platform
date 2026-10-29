@@ -40,12 +40,12 @@ export class FlowValidator {
     for (const edge of next) this.walk(flow, nodes, edge, visited, cleanup);
   }
   private edges(node: Record<string, unknown>): string[] {
-    const result = Data.strings(node.branches);
+    const result = node.kind === "parallel" ? Data.strings(node.branches) : [];
     for (const field of ["next", "body", "exhausted"])
       if (typeof node[field] === "string") result.push(String(node[field]));
     for (const target of Object.values(Data.record(node.outcomes)))
       if (typeof target === "string") result.push(target);
-    if (node.kind === "parallel" && node.join) result.push(String(node.join));
+
     return [...new Set(result)];
   }
   private terminal(

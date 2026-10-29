@@ -120,6 +120,12 @@ export interface InventoryFile {
   imports: string[];
   exports: string[];
   registrations: string[];
+  facts?: Array<{
+    kind: string;
+    symbol: string;
+    value: unknown;
+    resolved: boolean;
+  }>;
   diagnostics: string[];
 }
 export interface Inventory {

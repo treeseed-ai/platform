@@ -22,6 +22,7 @@ export class Sidebar extends Component<Props> {
     return (
       <button
         className="palette-item"
+        aria-label={"Create " + kind}
         key={kind}
         draggable
         onDragStart={this.drag.bind(this, kind)}
@@ -57,9 +58,42 @@ export class Sidebar extends Component<Props> {
     this.props.onQuery(event.target.value);
   }
   render(): React.ReactNode {
-    return <aside className="sidebar"><input aria-label="Find architectural objects" placeholder="⌕ Find an object…" value={this.props.query} onChange={this.queryChanged.bind(this)}/><h3>Create</h3><div className="palette">{ObjectCatalog.kinds.map(this.palette.bind(this))}</div><h3>Views</h3>{['Portfolio','Integration seams','Components','Flows'].map(this.view.bind(this))}{this.projects()}<p className="muted small">Drag or click to create. Edits change intent only.</p></aside>;
+    return (
+      <aside className="sidebar">
+        <input
+          aria-label="Find architectural objects"
+          placeholder="⌕ Find an object…"
+          value={this.props.query}
+          onChange={this.queryChanged.bind(this)}
+        />
+        <h3>Create</h3>
+        <div className="palette">
+          {ObjectCatalog.kinds.map(this.palette.bind(this))}
+        </div>
+        <h3>Views</h3>
+        {["Portfolio", "Integration seams", "Components", "Flows"].map(
+          this.view.bind(this),
+        )}
+        {this.projects()}
+        <p className="muted small">
+          Drag or click to create. Edits change intent only.
+        </p>
+      </aside>
+    );
   }
   private projects(): React.ReactNode {
-    return <><h3>Owning project</h3><select aria-label="Owning project" value={this.props.project} onChange={this.projectChanged.bind(this)}><option value="*">All projects</option>{this.props.repositories.map(this.repository)}</select></>;
+    return (
+      <>
+        <h3>Owning project</h3>
+        <select
+          aria-label="Owning project"
+          value={this.props.project}
+          onChange={this.projectChanged.bind(this)}
+        >
+          <option value="*">All projects</option>
+          {this.props.repositories.map(this.repository)}
+        </select>
+      </>
+    );
   }
 }

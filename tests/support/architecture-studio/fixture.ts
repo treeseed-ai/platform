@@ -20,6 +20,33 @@ export class StudioFixture {
     return fixture;
   }
   private async launch(): Promise<void> {
+    this.copyWorkspace();
+    this.process = spawn(process.execPath, ["dist/server.mjs"], {
+      cwd: resolve("architecture/studio"),
+      env: {
+        ...process.env,
+        PORT: "0",
+        STUDIO_WORKSPACE: this.directory,
+        STUDIO_REPOSITORIES: JSON.stringify(this.repositories()),
+      },
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    await new Promise<void>(this.waitReady.bind(this));
+    this.token = (
+      (await (await fetch(this.url + "/api/session")).json()) as {
+        token: string;
+      }
+    ).token;
+  }
+  private repositories(): Record<string, string> {
+    const repositories: Record<string, string> = {};
+    for (const item of JSON.parse(
+      readFileSync("architecture/baselines/repositories.json", "utf8"),
+    ).repositories)
+      repositories[item.project] = resolve(item.checkout);
+    return repositories;
+  }
+  private copyWorkspace(): void {
     for (const name of [
       "language",
       "implementation",
@@ -35,27 +62,6 @@ export class StudioFixture {
       "architecture/workspace.yaml",
       join(this.directory, "workspace.yaml"),
     );
-    const repositories: Record<string, string> = {};
-    for (const item of JSON.parse(
-      readFileSync("architecture/baselines/repositories.json", "utf8"),
-    ).repositories)
-      repositories[item.project] = resolve(item.checkout);
-    this.process = spawn(process.execPath, ["dist/server.mjs"], {
-      cwd: resolve("architecture/studio"),
-      env: {
-        ...process.env,
-        PORT: "0",
-        STUDIO_WORKSPACE: this.directory,
-        STUDIO_REPOSITORIES: JSON.stringify(repositories),
-      },
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-    await new Promise<void>(this.waitReady.bind(this));
-    this.token = (
-      (await (await fetch(this.url + "/api/session")).json()) as {
-        token: string;
-      }
-    ).token;
   }
   private waitReady(
     resolveReady: () => void,
@@ -113,12 +119,27 @@ export class StudioFixture {
     const require = createRequire(resolve("architecture/studio/package.json"));
     const { chromium } = require("playwright");
     this.browser = await chromium.launch({ headless: true });
-    return this.browser!.newPage({ viewport: { width: 1600, height: 1000 } });
+    const page = await this.browser!.newPage({
+      viewport: { width: 1600, height: 1000 },
+    });
+    page.setDefaultTimeout(15000);
+    return page;
   }
   async editorJourney(page: Page): Promise<void> {
     await page.getByRole("button", { name: "Close review panel" }).click();
-    await page.getByRole("button", { name: "Edit YAML", exact: true }).click();
-    await page.getByRole("button", { name: "Apply YAML to draft" }).click();
+    await page
+      .getByRole("button", { name: "Create component", exact: true })
+      .click();
+    await page.getByLabel("name", { exact: true }).fill("Acceptance component");
+    await page.getByLabel("purpose", { exact: true }).click();
+    await page.getByRole("button", { name: "Connect…", exact: true }).click();
+    await page.getByLabel("Relationship kind").selectOption("depends-on");
+    await page.getByLabel("Target object").selectOption("agent.activities");
+    await page
+      .getByRole("button", { name: "Add relationship", exact: true })
+      .click();
+    await page.getByRole("button", { name: "Undo", exact: false }).click();
+    await page.getByRole("button", { name: "Redo", exact: false }).click();
     await page
       .getByRole("button", { name: "Save intent", exact: true })
       .click();
@@ -128,6 +149,8 @@ export class StudioFixture {
       .getByRole("button", { name: "Migration package", exact: false })
       .click();
     await page.getByRole("button", { name: "Download manifest" }).waitFor();
+    await page.getByRole("button", { name: "Close dialog" }).click();
+    await page.screenshot({ path: "/tmp/architecture-studio-acceptance.png" });
   }
   async stop(): Promise<void> {
     await this.browser?.close();

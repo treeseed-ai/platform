@@ -48,54 +48,59 @@ export class ObjectCatalog {
       "A reviewable rationale affecting stable architectural identities.",
     project: "A canonical repository and ownership boundary.",
   };
-    static readonly defaults: Record<string, unknown> = {
-      component: { project: "", componentKind: "plugin", componentRole: "runtime" },
-      capability: {
-        contract: "contract.unassigned",
-        cardinality: "singleton",
-        implementationMode: "selectable",
-      },
-      contract: { project: "", version: "1", operations: [] },
-      provider: {
-        component: "component.unassigned",
-        capabilities: [],
-        contractVersion: "1",
-        replacement: { kind: "restart" },
-      },
-      composition: {
-        project: "",
-        target: "local",
-        process: "",
-        scopes: [{ id: "root", lifetime: "process" }],
-      },
-      flow: {
-        participants: [],
-        entry: "done",
-        nodes: [{ id: "done", kind: "complete", description: "Complete" }],
-        outcomes: ["done"],
-      },
-      resource: { owner: "component.unassigned", lifecycle: "process" },
-      placement: {
-        project: "",
-        subject: "component.unassigned",
-        role: "plugin",
-        path: "src/new.plugin.ts",
-        language: "typescript",
-      },
-      rule: {
-        subjects: [],
-        ruleType: "cohesive-responsibility",
-        parameters: {},
-        verification: "review",
-        severity: "review",
-      },
-      decision: {
-        subjects: [],
-        status: "proposed",
-        rationale: "Explain the decision",
-      },
-      project: { repository: "https://example.invalid/project.git" },
-    };
+  static readonly defaults: Record<string, unknown> = {
+    component: {
+      project: "",
+      componentKind: "plugin",
+      componentRole: "runtime",
+    },
+    capability: {
+      contract: "contract.unassigned",
+      cardinality: "singleton",
+      implementationMode: "selectable",
+    },
+    contract: { project: "", version: "1", operations: [] },
+    provider: {
+      component: "component.unassigned",
+      capabilities: [],
+      contractVersion: "1",
+      replacement: { kind: "restart" },
+    },
+    composition: {
+      project: "",
+      target: "local",
+      process: "",
+      scopes: [{ id: "root", lifetime: "process" }],
+    },
+    flow: {
+      participants: [],
+      entry: "done",
+      nodes: [{ id: "done", kind: "complete", description: "Complete" }],
+      outcomes: ["done"],
+    },
+    resource: { owner: "component.unassigned", lifecycle: "process" },
+    placement: {
+      project: "",
+      subject: "component.unassigned",
+      role: "plugin",
+      path: "src/new.plugin.ts",
+      language: "typescript",
+    },
+    rule: {
+      subjects: [],
+      ruleType: "cohesive-responsibility",
+      parameters: {},
+      verification: "review",
+      severity: "review",
+    },
+    decision: {
+      subjects: [],
+      status: "proposed",
+      rationale: "Explain the decision",
+      provenance: ["Studio authored proposal"],
+    },
+    project: { repository: "https://example.invalid/project.git" },
+  };
 
   static create(kind: string, project: string): ArchitectureObject {
     const id = kind + "." + crypto.randomUUID();
@@ -105,9 +110,12 @@ export class ObjectCatalog {
       name: "New " + kind,
       purpose: "Describe this responsibility",
     };
-    const defaults = structuredClone(ObjectCatalog.defaults[kind]) as Record<string, unknown>;
-    if ('project' in defaults) defaults.project = project;
-    if ('process' in defaults) defaults.process = id;
+    const defaults = structuredClone(ObjectCatalog.defaults[kind]) as Record<
+      string,
+      unknown
+    >;
+    if ("project" in defaults) defaults.project = project;
+    if ("process" in defaults) defaults.process = id;
     return { ...base, ...defaults };
   }
   static relationship(from: string, to: string): string | undefined {

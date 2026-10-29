@@ -15,9 +15,44 @@ class StudioAcceptance {
       await page.getByText("Validation results", { exact: true }).waitFor();
       assert.equal(await page.locator(".react-flow").count(), 1);
       await fixture.editorJourney(page);
+      StudioAcceptance.persisted(workspace, await fixture.request("workspace"));
     } finally {
       await fixture.stop();
     }
+  }
+  private static persisted(
+    before: import("../../../architecture/studio/src/model/types.js").Workspace,
+    after: import("../../../architecture/studio/src/model/types.js").Workspace,
+  ): void {
+    for (const document of before.documents) {
+      const saved = after.documents.find(
+        StudioAcceptance.path.bind(null, document.path),
+      )!;
+      if (document.model.view === "implementation")
+        assert.equal(saved.text, document.text);
+    }
+    const agent = after.documents.find(
+      StudioAcceptance.path.bind(null, "intent/agent.yaml"),
+    )!;
+    const created = agent.model.objects.find(StudioAcceptance.created)!;
+    assert.ok(created.id.startsWith("component."));
+    assert.ok(
+      agent.model.relationships?.some(
+        StudioAcceptance.connected.bind(null, created.id),
+      ),
+    );
+  }
+  private static path(path: string, document: { path: string }): boolean {
+    return document.path === path;
+  }
+  private static created(object: { name: string }): boolean {
+    return object.name === "Acceptance component";
+  }
+  private static connected(
+    id: string,
+    edge: { from: string; to: string },
+  ): boolean {
+    return edge.from === id && edge.to === "agent.activities";
   }
 }
 test(

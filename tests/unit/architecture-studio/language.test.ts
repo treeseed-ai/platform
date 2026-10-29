@@ -24,6 +24,8 @@ class LanguageTests {
       const text = readFileSync("architecture/examples/" + item.file, "utf8");
       const results = language.inspect(text);
       assert.equal(results.length === 0, item.layer === "valid", item.file);
+      if (item.layer !== "valid")
+        assert.equal(results[0].code, item.expected, item.file);
     }
   }
   static unspecified(): void {

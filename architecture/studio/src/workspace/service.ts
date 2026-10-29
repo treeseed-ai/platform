@@ -29,16 +29,7 @@ export class WorkspaceService {
     );
     if (this.language.shape(manifest, "workspace").length)
       throw new Error("WORKSPACE_INVALID");
-    const documents = [];
-    for (const path of Data.strings(manifest.documents)) {
-      const text = this.files.read(path);
-      documents.push({
-        path,
-        text,
-        hash: WorkspaceFiles.hash(text),
-        model: this.language.parse(text) as Blueprint,
-      });
-    }
+    const documents = this.documents(Data.strings(manifest.documents));
     const profiles = Data.strings(manifest.profiles).map(
       this.profile.bind(this),
     );
@@ -51,6 +42,19 @@ export class WorkspaceService {
       auxiliary: this.auxiliary(),
       schemas: this.language.schemas,
     };
+  }
+  private documents(paths: string[]): Workspace["documents"] {
+    const documents = [];
+    for (const path of paths) {
+      const text = this.files.read(path);
+      documents.push({
+        path,
+        text,
+        hash: WorkspaceFiles.hash(text),
+        model: this.language.parse(text) as Blueprint,
+      });
+    }
+    return documents;
   }
   private profile(path: string): Blueprint {
     return this.language.parse(this.files.read(path)) as Blueprint;

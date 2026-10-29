@@ -6,6 +6,9 @@ import {
   type Diagnostic,
   type Binding,
   type Pattern,
+  type Workspace,
+  type ArchitectureObject,
+  type Relationship,
 } from "../model/types.js";
 import { DraftStore } from "./store.js";
 import { ObjectCatalog } from "./catalog.js";
@@ -14,10 +17,12 @@ import { GraphCanvas } from "./graph.js";
 import { Inspector } from "./inspector.js";
 import { ReviewDock } from "./dock.js";
 import { Dialog } from "./dialog.js";
+import { SourceBrowser } from "./source-browser.js";
 import { CodeEditor } from "./monaco.js";
 
 interface State {
   ready: boolean;
+  layer: "intent" | "implementation";
   selected: string;
   project: string;
   view: string;
@@ -34,6 +39,7 @@ interface State {
   dialog: string;
   dialogText: string;
   positions: Record<string, { x: number; y: number }>;
+  viewport?: { x: number; y: number; zoom: number };
   binding?: Binding;
   assessment: "useful" | "avoid";
   target: string;
@@ -45,6 +51,7 @@ export class StudioApp extends Component<object, State> {
   private store = new DraftStore();
   state: State = {
     ready: false,
+    layer: "intent",
     selected: "",
     project: "project.agent",
     view: "Integration seams",
@@ -75,6 +82,7 @@ export class StudioApp extends Component<object, State> {
       this.setState({
         ready: true,
         positions: this.layout(),
+        viewport: this.savedViewport(),
         selected: this.store.objects().find(StudioApp.initial)?.id || "",
       });
       await this.compare();
@@ -88,6 +96,13 @@ export class StudioApp extends Component<object, State> {
   private layout(): State["positions"] {
     const text = this.store.state.auxiliary.layout.text;
     return text ? JSON.parse(text).positions : {};
+  }
+  private savedViewport(): State["viewport"] {
+    const text = this.store.state.auxiliary.layout.text;
+    return text ? JSON.parse(text).viewport : undefined;
+  }
+  private viewport(viewport: State["viewport"]): void {
+    this.setState({ viewport });
   }
   private failure(error: unknown): void {
     this.setState({
@@ -122,6 +137,10 @@ export class StudioApp extends Component<object, State> {
     this.setState({ query });
   }
   private create(kind: string): void {
+    if (this.state.layer === "implementation") {
+      this.failure(new Error("Switch to intent to design"));
+      return;
+    }
     try {
       const project =
         this.state.project === "*" ? "project.agent" : this.state.project;
@@ -138,12 +157,25 @@ export class StudioApp extends Component<object, State> {
     }
   }
   private update(field: string, value: unknown): void {
+    if (this.state.layer === "implementation") return;
     this.store.update(this.state.selected, field, value);
     this.changed();
   }
   private connect(from: string, to: string, kind: string): void {
+    if (this.state.layer === "implementation") return;
     this.store.connect(from, to, kind);
     this.changed();
+  }
+  private disconnect(edge: Relationship): void {
+    this.store.disconnect(edge);
+    this.changed();
+  }
+  private connections(): Relationship[] {
+    const result: Relationship[] = [];
+    for (const model of this.documents())
+      for (const edge of model.relationships ?? [])
+        if (edge.from === this.state.selected) result.push(edge);
+    return result;
   }
   private move(id: string, position: { x: number; y: number }): void {
     this.setState({ positions: { ...this.state.positions, [id]: position } });
@@ -177,6 +209,7 @@ export class StudioApp extends Component<object, State> {
         data: {
           schemaVersion: "studio-layout/0.1",
           positions: this.state.positions,
+          viewport: this.state.viewport,
         },
       });
       await this.store.load();
@@ -210,6 +243,17 @@ export class StudioApp extends Component<object, State> {
       this.failure(error);
     }
   }
+  private async quality(): Promise<void> {
+    this.setState({ busy: true, error: "" });
+    try {
+      const diagnostics = await this.store.api.call<Diagnostic[]>("quality", {
+        project: this.state.project,
+      });
+      this.setState({ diagnostics, dock: "Validation results", busy: false });
+    } catch (error) {
+      this.failure(error);
+    }
+  }
   private yaml(): void {
     const document =
       this.store.document(this.state.selected) || this.store.documents()[0];
@@ -232,23 +276,21 @@ export class StudioApp extends Component<object, State> {
     }
   }
   private async source(): Promise<void> {
-    const binding = this.store.find(this.state.selected)?.sourceBindings?.[0];
-    if (!binding) {
-      this.setState({
-        dock: "Source review",
-        source:
-          "No source binding for this intent object. Choose a bound object or review the mapping ledger.",
-      });
-      return;
-    }
-    try {
-      const result = await this.store.api.call<{ text: string }>("source", {
-        binding,
-      });
-      this.setState({ dock: "Source review", source: result.text, binding });
-    } catch (error) {
-      this.failure(error);
-    }
+    const binding = this.selectedObject()?.sourceBindings?.[0];
+    this.setState({ dock: "Source review", binding });
+  }
+  private sourceBinding(binding: Binding): void {
+    this.setState({ binding });
+  }
+  private sourceBrowser(): React.ReactNode {
+    return (
+      <SourceBrowser
+        api={this.store.api}
+        repositories={this.store.state.baseline.repositories}
+        binding={this.state.binding}
+        onBinding={this.sourceBinding.bind(this)}
+      />
+    );
   }
   private openDock(dock: string): void {
     this.setState({ dock });
@@ -297,12 +339,16 @@ export class StudioApp extends Component<object, State> {
         data: JSON.parse(this.state.dialogText),
       });
       this.closeDialog();
-      await this.load();
+      await this.reloadAuxiliary();
     } catch (error) {
       this.failure(error);
     }
   }
   private refresh(): void {
+    if (this.store.dirty) {
+      this.failure(new Error("Save intent before refreshing source snapshots"));
+      return;
+    }
     const revisions: Record<string, string> = {};
     for (const repository of this.store.state.baseline.repositories)
       revisions[repository.project] = repository.revision;
@@ -342,10 +388,40 @@ export class StudioApp extends Component<object, State> {
       this.failure(error);
     }
   }
+  private async reloadAuxiliary(): Promise<void> {
+    const state = await this.store.api.call<Workspace>("workspace");
+    this.store.state.auxiliary = state.auxiliary;
+    this.forceUpdate();
+  }
+  private patterns(): void {
+    const text = this.store.state.auxiliary.patterns.text;
+    this.setState({
+      dialog: "Review pattern guidance",
+      dialogText:
+        text ||
+        JSON.stringify(
+          { schemaVersion: "studio-patterns/0.1", entries: [] },
+          null,
+          2,
+        ),
+    });
+  }
+  private async reviewPatterns(): Promise<void> {
+    try {
+      await this.store.api.call("patterns", {
+        expected: this.store.state.auxiliary.patterns.hash,
+        data: JSON.parse(this.state.dialogText),
+      });
+      await this.reloadAuxiliary();
+      this.closeDialog();
+    } catch (error) {
+      this.failure(error);
+    }
+  }
   private pattern(): void {
-    if (!this.state.binding) {
+    if (!this.state.binding?.fingerprint) {
       this.setState({
-        error: "Inspect pinned source before recording feedback.",
+        error: "Select a pinned declaration before recording feedback.",
       });
       return;
     }
@@ -364,27 +440,33 @@ export class StudioApp extends Component<object, State> {
         throw new Error("Explain the pattern rationale");
       const existing = this.store.state.auxiliary.patterns.text;
       const entries: Pattern[] = existing ? JSON.parse(existing).entries : [];
-      entries.push({
-        id: crypto.randomUUID(),
-        binding: this.state.binding!,
-        assessment: this.state.assessment,
-        rationale: this.state.dialogText,
-        applicability: [this.state.selected],
-        review: "proposed",
-      });
+      entries.push(this.patternEntry());
       await this.store.api.call("patterns", {
         expected: this.store.state.auxiliary.patterns.hash,
         data: { schemaVersion: "studio-patterns/0.1", entries },
       });
       this.closeDialog();
-      await this.load();
+      await this.reloadAuxiliary();
     } catch (error) {
       this.failure(error);
     }
   }
+  private patternEntry(): Pattern {
+    return {
+      id: crypto.randomUUID(),
+      binding: this.state.binding!,
+      assessment: this.state.assessment,
+      rationale: this.state.dialogText,
+      applicability: [this.state.selected],
+      review: "proposed",
+    };
+  }
   private async migration(): Promise<void> {
     try {
-      const selected = this.state.findings
+      const findings = await this.store.api.call<Finding[]>("compare", {
+        drafts: this.store.drafts(),
+      });
+      const selected = findings
         .filter(this.selectedFinding.bind(this))
         .map(StudioApp.findingId);
       const migration = await this.store.api.call<Record<string, unknown>>(
@@ -421,8 +503,23 @@ export class StudioApp extends Component<object, State> {
   private exportInstructions(): void {
     this.download("MIGRATION.md", String(this.state.migration?.markdown));
   }
+  private toggleLayer(): void {
+    this.setState({
+      layer: this.state.layer === "intent" ? "implementation" : "intent",
+    });
+  }
+  private selectedObject(): ArchitectureObject | undefined {
+    for (const model of this.documents())
+      for (const object of model.objects)
+        if (object.id === this.state.selected) return object;
+    return undefined;
+  }
   private documents(): Blueprint[] {
-    return this.store.documents().map(StudioApp.model);
+    const documents: Blueprint[] = [];
+    for (const document of this.store.state.documents)
+      if (document.model.view === this.state.layer)
+        documents.push(document.model);
+    return documents;
   }
   private static model(document: { model: Blueprint }): Blueprint {
     return document.model;
@@ -444,25 +541,103 @@ export class StudioApp extends Component<object, State> {
     return <option key={kind}>{kind}</option>;
   }
   private dialogContent(): React.ReactNode {
-    if (this.state.dialog === 'Connect objects') return this.connectionDialog();
-    if (this.state.dialog === 'Migration package') return this.migrationContent();
-    return <div className="dialog-body">{this.dialogDescription()}<textarea aria-label={this.state.dialog} rows={15} value={this.state.dialogText} onChange={this.dialogText.bind(this)}/>{this.dialogAction()}</div>;
+    if (this.state.dialog === "Connect objects") return this.connectionDialog();
+    if (this.state.dialog === "Migration package")
+      return this.migrationContent();
+    return (
+      <div className="dialog-body">
+        {this.dialogDescription()}
+        <textarea
+          aria-label={this.state.dialog}
+          rows={15}
+          value={this.state.dialogText}
+          onChange={this.dialogText.bind(this)}
+        />
+        {this.dialogAction()}
+      </div>
+    );
   }
   private connectionDialog(): React.ReactNode {
-    return <div className="dialog-body"><p>From: {this.state.selected}</p>{this.connectionFields()}<button disabled={!this.state.target} onClick={this.connectSelected.bind(this)}>Add relationship</button></div>;
+    return (
+      <div className="dialog-body">
+        <p>From: {this.state.selected}</p>
+        {this.connectionFields()}
+        <button
+          disabled={!this.state.target}
+          onClick={this.connectSelected.bind(this)}
+        >
+          Add relationship
+        </button>
+      </div>
+    );
   }
+  private static readonly relationshipKinds = [
+    "requires",
+    "provides",
+    "implements",
+    "owns",
+    "calls",
+    "emits",
+    "depends-on",
+  ];
   private connectionFields(): React.ReactNode {
-    return <><select aria-label="Relationship kind" onChange={this.relation.bind(this)} value={this.state.relation}>{['requires', 'provides', 'implements', 'owns', 'calls', 'emits', 'depends-on'].map(this.relationOption)}</select><select aria-label="Target object" value={this.state.target} onChange={this.target.bind(this)}><option value="">Choose target…</option>{this.store.objects().map(this.option)}</select></>;
+    return (
+      <>
+        <select
+          aria-label="Relationship kind"
+          onChange={this.relation.bind(this)}
+          value={this.state.relation}
+        >
+          {StudioApp.relationshipKinds.map(this.relationOption)}
+        </select>
+        <select
+          aria-label="Target object"
+          value={this.state.target}
+          onChange={this.target.bind(this)}
+        >
+          <option value="">Choose target…</option>
+          {this.store.objects().map(this.option)}
+        </select>
+      </>
+    );
   }
   private dialogDescription(): React.ReactNode {
-    if (this.state.dialog === 'Pattern feedback') return this.patternDescription();
-    if (this.state.dialog === 'Source mappings') return <p>Review source identity before changing a mapping to accepted.</p>;
-    return <p>Exact Git commits only. {this.state.refreshId ? 'Inspect gaps before publication.' : 'Edit revisions, then extract a preview.'}</p>;
+    if (this.state.dialog === "Pattern feedback")
+      return this.patternDescription();
+    if (this.state.dialog === "Source mappings")
+      return (
+        <p>Review source identity before changing a mapping to accepted.</p>
+      );
+    return (
+      <p>
+        Exact Git commits only.{" "}
+        {this.state.refreshId
+          ? "Inspect gaps before publication."
+          : "Edit revisions, then extract a preview."}
+      </p>
+    );
   }
   private patternDescription(): React.ReactNode {
-    return <><p>Guidance attached to exact bound source, not a mandatory rule.</p><select value={this.state.assessment} onChange={this.assessment.bind(this)}><option value="useful">Useful pattern</option><option value="avoid">Avoid pattern</option></select></>;
+    return (
+      <>
+        <p>Guidance attached to exact bound source, not a mandatory rule.</p>
+        <select
+          value={this.state.assessment}
+          onChange={this.assessment.bind(this)}
+        >
+          <option value="useful">Useful pattern</option>
+          <option value="avoid">Avoid pattern</option>
+        </select>
+      </>
+    );
   }
   private dialogAction(): React.ReactNode {
+    if (this.state.dialog === "Review pattern guidance")
+      return (
+        <button onClick={this.reviewPatterns.bind(this)}>
+          Save reviewed guidance
+        </button>
+      );
     if (this.state.dialog === "Pattern feedback")
       return (
         <button onClick={this.savePattern.bind(this)}>Save feedback</button>
@@ -505,44 +680,229 @@ export class StudioApp extends Component<object, State> {
     );
   }
   private header(): React.ReactNode {
-    return <><header className="app-header"><span className="brand-icon">⌘</span><strong>Architecture Studio</strong><span className="workspace-name">TreeSeed / Cordis</span><span className="grow"/>{this.navigation()}</header>{this.commands()}</>;
+    return (
+      <>
+        <header className="app-header">
+          <span className="brand-icon">⌘</span>
+          <strong>Architecture Studio</strong>
+          <span className="workspace-name">TreeSeed / Cordis</span>
+          <span className="grow" />
+          {this.navigation()}
+        </header>
+        {this.commands()}
+      </>
+    );
   }
   private navigation(): React.ReactNode {
-    return <><button onClick={this.closeDock.bind(this)}>Design</button><button onClick={this.openDock.bind(this, 'Compare')}>Compare <em>{this.state.findings.length}</em></button><button onClick={this.source.bind(this)}>Source review</button><button onClick={this.validate.bind(this)}>✓ Validate</button><button className="primary" onClick={this.migration.bind(this)}>⬡ Migration package</button></>;
+    return (
+      <>
+        <button onClick={this.closeDock.bind(this)}>Design</button>
+        <button onClick={this.openDock.bind(this, "Compare")}>
+          Compare <em>{this.state.findings.length}</em>
+        </button>
+        <button onClick={this.source.bind(this)}>Source review</button>
+        <button aria-label="Validate" onClick={this.validate.bind(this)}>
+          ✓ Validate
+        </button>
+        <button className="primary" onClick={this.migration.bind(this)}>
+          ⬡ Migration package
+        </button>
+      </>
+    );
   }
   private commands(): React.ReactNode {
-    return <div className="command-bar"><span className="pill">Intent · {this.store.dirty ? 'unsaved draft' : 'saved'}</span><button onClick={this.undo.bind(this)}>↶ Undo</button><button onClick={this.redo.bind(this)}>↷ Redo</button><button onClick={this.save.bind(this)} disabled={this.state.busy}>Save intent</button><span className="grow"/>{this.sourceCommands()}</div>;
+    return (
+      <div className="command-bar">
+        {this.layerStatus()}
+        <button onClick={this.toggleLayer.bind(this)}>
+          {this.state.layer === "intent"
+            ? "Inspect implementation"
+            : "Edit intent"}
+        </button>
+        <button onClick={this.undo.bind(this)}>↶ Undo</button>
+        <button onClick={this.redo.bind(this)}>↷ Redo</button>
+        <button onClick={this.save.bind(this)} disabled={this.state.busy}>
+          Save intent
+        </button>
+        <span className="grow" />
+        {this.sourceCommands()}
+      </div>
+    );
+  }
+  private layerStatus(): React.ReactNode {
+    return (
+      <span className="pill">
+        {this.state.layer} ·{" "}
+        {this.state.layer === "implementation"
+          ? "read only"
+          : this.store.dirty
+            ? "unsaved draft"
+            : "saved"}
+      </span>
+    );
   }
   private sourceCommands(): React.ReactNode {
-    return <><button onClick={this.mappings.bind(this)}>Mappings</button><button onClick={this.refresh.bind(this)}>Refresh sources</button><button onClick={this.sourceValidate.bind(this)}>Check bindings</button><button onClick={this.pattern.bind(this)}>Pattern feedback</button></>;
+    return (
+      <>
+        <button onClick={this.mappings.bind(this)}>Mappings</button>
+        <button onClick={this.refresh.bind(this)}>Refresh sources</button>
+        <button onClick={this.sourceValidate.bind(this)}>Check bindings</button>
+        <button onClick={this.quality.bind(this)}>Source quality</button>
+        <button onClick={this.pattern.bind(this)}>Pattern feedback</button>
+        <button onClick={this.patterns.bind(this)}>Review guidance</button>
+      </>
+    );
   }
   private workspace(): React.ReactNode {
-    return <main className="workspace">{this.sidebar()}<section className="canvas-column">{this.breadcrumbs()}{this.graph()}</section>{this.inspector()}</main>;
+    return (
+      <main className="workspace">
+        {this.sidebar()}
+        <section className="canvas-column">
+          {this.breadcrumbs()}
+          {this.graph()}
+        </section>
+        {this.inspector()}
+      </main>
+    );
   }
   private sidebar(): React.ReactNode {
-    return <Sidebar repositories={this.store.state.baseline.repositories} project={this.state.project} view={this.state.view} query={this.state.query} onProject={this.project.bind(this)} onView={this.view.bind(this)} onQuery={this.query.bind(this)} onCreate={this.create.bind(this)}/>;
+    return (
+      <Sidebar
+        repositories={this.store.state.baseline.repositories}
+        project={this.state.project}
+        view={this.state.view}
+        query={this.state.query}
+        onProject={this.project.bind(this)}
+        onView={this.view.bind(this)}
+        onQuery={this.query.bind(this)}
+        onCreate={this.create.bind(this)}
+      />
+    );
   }
   private breadcrumbs(): React.ReactNode {
-    return <div className="breadcrumbs">Portfolio <span>/</span>{this.state.project.replace('project.', '')}<span>/</span><b>{this.state.view}</b><span className="grow"/><small>Editing intent</small></div>;
+    return (
+      <div className="breadcrumbs">
+        Portfolio <span>/</span>
+        {this.state.project.replace("project.", "")}
+        <span>/</span>
+        <b>{this.state.view}</b>
+        <span className="grow" />
+        <small>
+          {this.state.layer === "intent"
+            ? "Editing intent"
+            : "Pinned implementation · read only"}
+        </small>
+      </div>
+    );
   }
   private graph(): React.ReactNode {
-    return <GraphCanvas documents={this.documents()} project={this.state.project} view={this.state.view} query={this.state.query} selected={this.state.selected} changed={new Set(this.state.findings.map(StudioApp.subject))} positions={this.state.positions} onSelect={this.select.bind(this)} onConnect={this.connect.bind(this)} onMove={this.move.bind(this)} onCreate={this.create.bind(this)}/>;
+    return (
+      <GraphCanvas
+        documents={this.documents()}
+        project={this.state.project}
+        view={this.state.view}
+        query={this.state.query}
+        selected={this.state.selected}
+        changed={new Set(this.state.findings.map(StudioApp.subject))}
+        positions={this.state.positions}
+        viewport={this.state.viewport}
+        onViewport={this.viewport.bind(this)}
+        onSelect={this.select.bind(this)}
+        onConnect={this.connect.bind(this)}
+        onMove={this.move.bind(this)}
+        onCreate={this.create.bind(this)}
+      />
+    );
   }
   private inspector(): React.ReactNode {
-    return <Inspector object={this.store.find(this.state.selected)} findings={this.state.findings.filter(this.matching.bind(this))} onChange={this.update.bind(this)} onSource={this.source.bind(this)} onYaml={this.yaml.bind(this)} onAccept={this.accept.bind(this)} onDelete={this.remove.bind(this)} onConnect={this.openConnection.bind(this)}/>;
+    return (
+      <Inspector
+        object={this.selectedObject()}
+        readOnly={this.state.layer === "implementation"}
+        findings={this.state.findings.filter(this.matching.bind(this))}
+        onChange={this.update.bind(this)}
+        relationships={this.connections()}
+        onDisconnect={this.disconnect.bind(this)}
+        onNavigate={this.select.bind(this)}
+        onSource={this.source.bind(this)}
+        onYaml={this.yaml.bind(this)}
+        onAccept={this.accept.bind(this)}
+        onDelete={this.remove.bind(this)}
+        onConnect={this.openConnection.bind(this)}
+      />
+    );
   }
   render(): React.ReactNode {
-    if (!this.state.ready) return <div className="loading"><h1>Architecture Studio</h1><p>{this.state.error || 'Reading architectural workspace…'}</p></div>;
-    return <div className="studio">{this.header()}{this.status()}{this.workspace()}{this.review()}{this.footer()}{this.state.dialog && <Dialog title={this.state.dialog} onClose={this.closeDialog.bind(this)}>{this.dialogContent()}</Dialog>}</div>;
+    if (!this.state.ready)
+      return (
+        <div className="loading">
+          <h1>Architecture Studio</h1>
+          <p>{this.state.error || "Reading architectural workspace…"}</p>
+        </div>
+      );
+    return (
+      <div className="studio">
+        {this.header()}
+        {this.status()}
+        {this.workspace()}
+        {this.review()}
+        {this.footer()}
+        {this.modal()}
+      </div>
+    );
+  }
+  private modal(): React.ReactNode {
+    return this.state.dialog ? (
+      <Dialog title={this.state.dialog} onClose={this.closeDialog.bind(this)}>
+        {this.dialogContent()}
+      </Dialog>
+    ) : null;
   }
   private status(): React.ReactNode {
-    return <>{this.state.error && <div role="alert" className="error-banner">{this.state.error}</div>}{this.state.busy && <div className="busy">Working against the pinned workspace…</div>}</>;
+    return (
+      <>
+        {this.state.error && (
+          <div role="alert" className="error-banner">
+            {this.state.error}
+          </div>
+        )}
+        {this.state.busy && (
+          <div className="busy">Working against the pinned workspace…</div>
+        )}
+      </>
+    );
   }
   private review(): React.ReactNode {
     if (!this.state.dock) return null;
-    return <ReviewDock mode={this.state.dock} findings={this.state.findings} diagnostics={this.state.diagnostics} selected={this.state.selected} yaml={this.state.yaml} source={this.state.source} onSelect={this.select.bind(this)} onYaml={this.yamlChanged.bind(this)} onApply={this.applyYaml.bind(this)} onClose={this.closeDock.bind(this)}/>;
+    return (
+      <ReviewDock
+        mode={this.state.dock}
+        findings={this.state.findings}
+        diagnostics={this.state.diagnostics}
+        selected={this.state.selected}
+        yaml={this.state.yaml}
+        source={this.state.source}
+        sourceBrowser={
+          this.state.dock === "Source review" ? this.sourceBrowser() : undefined
+        }
+        onSelect={this.select.bind(this)}
+        onYaml={this.yamlChanged.bind(this)}
+        onApply={this.applyYaml.bind(this)}
+        onClose={this.closeDock.bind(this)}
+      />
+    );
   }
   private footer(): React.ReactNode {
-    return <footer><span>● Local workspace</span><span>{this.state.message || 'Pinned observations · Intent draft · Runtime evidence separate'}</span><span className="grow"/><span>{this.store.state.baseline.id}</span></footer>;
+    return (
+      <footer>
+        <span>● Local workspace</span>
+        <span>
+          {this.state.message ||
+            "Pinned observations · Intent draft · Runtime evidence separate"}
+        </span>
+        <span className="grow" />
+        <span>{this.store.state.baseline.id}</span>
+      </footer>
+    );
   }
 }

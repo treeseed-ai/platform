@@ -10,13 +10,15 @@ blueprints; [baseline](baselines/repositories.json) pins each source repository 
 - `implementation/`: observed architecture, bindings and source inventory at those revisions.
 - `intent/`: separate, corresponding requirements; omission means unspecified.
 - `comparisons/`: differences, debt, coverage and validation evidence, never an automatic merge.
-- `examples/`: conformance cases, including semantic obligations not yet executable.
+- `examples/`: conformance cases, including semantic obligations; Studio executes model cases and uses real source fixtures for source-dependent checks.
 
 Compare corresponding files with `git diff --no-index architecture/implementation/agent.yaml architecture/intent/agent.yaml`.
 A diff exit status of 1 means differences exist. Metadata differences are intentional; compare
 `objects` by stable IDs for architectural meaning. Profiles add requirements without rewriting observations.
 
-No executable importer/validator, application, automated test suite or code generator ships here.
+[Architecture Studio](studio/README.md) supplies the standalone designer, restricted-YAML editor,
+static validator, pinned TypeScript observation refresh and migration handoff. The language
+remains independent of the application. No code generator ships here.
 Schema validity is not implementation conformance. Source evidence does not prove runtime behavior.
 Read [coverage and limitations](comparisons/coverage.md) before treating this snapshot as complete evidence.
 

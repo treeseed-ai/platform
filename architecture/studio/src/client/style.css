@@ -572,3 +572,55 @@ footer {
 a {
   color: #8adbdc;
 }
+.react-flow__node-projectBoundary {
+  border: 1px dashed #365369;
+  background: #0a172333;
+  border-radius: 10px;
+}
+.project-boundary-label {
+  padding: 16px 24px;
+  font: 10px monospace;
+  letter-spacing: 2px;
+  color: #638396;
+}
+.source-browser {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.source-browser .dock-actions select {
+  max-width: 32%;
+}
+.source-browser small {
+  padding: 7px 16px;
+  color: #80b3c3;
+}
+.comparison > .code-editor {
+  flex: 1;
+  min-width: 0;
+}
+.architecture-node.branch {
+  border-radius: 35px 5px;
+  border-color: #d7ac63;
+}
+.architecture-node.cleanup,
+.architecture-node.completion {
+  border-radius: 28px;
+  border-color: #68c8ad;
+}
+.react-flow {
+  background: #0a1520 !important;
+}
+.property-field pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 10px;
+  background: #0b1825;
+}
+.command-bar {
+  flex-wrap: wrap;
+}
+.graph-tools {
+  flex-wrap: wrap;
+}

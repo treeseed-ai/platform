@@ -30,8 +30,12 @@ export class LanguageService {
       throw new Error(
         document.errors[0].code + ": " + document.errors[0].message,
       );
+    visit(document, { Alias: LanguageService.alias });
     visit(document, { Node: LanguageService.node });
     return document.toJS({ maxAliasCount: 0 });
+  }
+  private static alias(): never {
+    throw new Error("YAML_ALIAS: aliases are forbidden");
   }
   private static node(_key: unknown, node: unknown): void {
     if (isAlias(node)) throw new Error("YAML_ALIAS: aliases are forbidden");

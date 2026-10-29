@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Data, type Finding, type Diagnostic } from "../model/types.js";
+import { DiffEditor } from "./diff-editor.js";
 import { CodeEditor } from "./monaco.js";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
   selected: string;
   yaml: string;
   source: string;
+  sourceBrowser?: React.ReactNode;
   onSelect: (id: string) => void;
   onYaml: (value: string) => void;
   onApply: () => void;
@@ -44,25 +46,10 @@ export class ReviewDock extends Component<Props> {
         <div className="findings">
           {this.props.findings.map(this.finding.bind(this))}
         </div>
-        <div className="diff-pair">
-          <div>
-            <h4>Implementation · read only</h4>
-            <CodeEditor
-              value={JSON.stringify(findings.map(ReviewDock.before), null, 2)}
-              readOnly
-            />
-          </div>
-          <div>
-            <h4>
-              Intent ·{" "}
-              {findings.some(ReviewDock.accepted) ? "reviewed" : "proposed"}
-            </h4>
-            <CodeEditor
-              value={JSON.stringify(findings.map(ReviewDock.after), null, 2)}
-              readOnly
-            />
-          </div>
-        </div>
+        <DiffEditor
+          before={JSON.stringify(findings.map(ReviewDock.before), null, 2)}
+          after={JSON.stringify(findings.map(ReviewDock.after), null, 2)}
+        />
       </div>
     );
   }
@@ -80,22 +67,14 @@ export class ReviewDock extends Component<Props> {
   }
   private content(): React.ReactNode {
     if (this.props.mode === "Compare") return this.difference();
-    if (this.props.mode === "YAML")
-      return (
-        <>
-          <div className="dock-actions">
-            <span>Intent YAML · invalid text stays here until corrected</span>
-            <button onClick={this.props.onApply}>Apply YAML to draft</button>
-          </div>
-          <CodeEditor value={this.props.yaml} onChange={this.props.onYaml} />
-        </>
-      );
+    if (this.props.mode === "YAML") return this.yaml();
     if (this.props.mode === "Validation results")
       return (
         <div className="diagnostics">
           {this.props.diagnostics.map(this.diagnostic)}
         </div>
       );
+    if (this.props.sourceBrowser) return this.props.sourceBrowser;
     return (
       <CodeEditor
         value={
@@ -105,6 +84,17 @@ export class ReviewDock extends Component<Props> {
         language="typescript"
         readOnly
       />
+    );
+  }
+  private yaml(): React.ReactNode {
+    return (
+      <>
+        <div className="dock-actions">
+          <span>Intent YAML · invalid text stays here until corrected</span>
+          <button onClick={this.props.onApply}>Apply YAML to draft</button>
+        </div>
+        <CodeEditor value={this.props.yaml} onChange={this.props.onYaml} />
+      </>
     );
   }
   render(): React.ReactNode {

@@ -11,21 +11,21 @@ import { PlacementValidator } from "./placement.js";
 import { FlowValidator } from "./flows.js";
 
 export class SemanticValidator {
-    static readonly endpoints: Record<string, [string[], string[]]> = {
-      provides: [["component", "provider"], ["capability"]],
-      requires: [["component"], ["capability"]],
-      implements: [["provider", "component"], ["contract"]],
-      owns: [
-        ["project", "component"],
-        ["component", "resource"],
-      ],
-      calls: [["component"], ["contract"]],
-      emits: [["component"], ["contract"]],
-      "depends-on": [
-        ["component", "project"],
-        ["component", "project"],
-      ],
-    };
+  static readonly endpoints: Record<string, [string[], string[]]> = {
+    provides: [["component", "provider"], ["capability"]],
+    requires: [["component"], ["capability"]],
+    implements: [["provider", "component"], ["contract"]],
+    owns: [
+      ["project", "component"],
+      ["component", "resource"],
+    ],
+    calls: [["component"], ["contract"]],
+    emits: [["component"], ["contract"]],
+    "depends-on": [
+      ["component", "project"],
+      ["component", "project"],
+    ],
+  };
 
   validate(documents: Blueprint[], profiles: Blueprint[] = []): Diagnostic[] {
     const graph = new ArchitectureGraph(documents);
@@ -54,11 +54,24 @@ export class SemanticValidator {
     placement: PlacementValidator,
   ): void {
     this.references(object, graph, output);
+    this.evidence(object, output);
     if (object.kind === "composition")
       new CompositionValidator(graph, output).check(object);
-    if (object.kind === "flow") new FlowValidator(output).check(object);
+    if (object.kind === "flow") {
+      this.participants(object, graph, output);
+      new FlowValidator(output).check(object);
+    }
     if (object.kind === "placement") placement.check(object);
     if (object.kind === "rule") this.rule(object, graph, output);
+  }
+  private evidence(object: ArchitectureObject, output: Diagnostics): void {
+    if (Data.record(object.extensions)["studio:observation-v1"])
+      output.add(
+        "OBSERVATION_REVIEW_REQUIRED",
+        object.id,
+        "Refreshed source bindings retain authored meaning; review semantic observations against extracted inventory",
+        "unknown",
+      );
     if (
       object.kind === "provider" &&
       Data.record(object.replacement).kind === "live"
@@ -69,6 +82,21 @@ export class SemanticValidator {
         "Live replacement requires scoped runtime assertion and artifact evidence",
         "unknown",
       );
+  }
+  private participants(
+    flow: ArchitectureObject,
+    graph: ArchitectureGraph,
+    output: Diagnostics,
+  ): void {
+    for (const id of Data.strings(flow.participants)) {
+      const participant = graph.objects.get(id);
+      if (participant && participant.kind !== "component")
+        output.add(
+          "INVALID_ENDPOINT",
+          flow.id,
+          "Flow participant must be a component: " + id,
+        );
+    }
   }
   private references(
     object: ArchitectureObject,
@@ -92,7 +120,7 @@ export class SemanticValidator {
       for (const id of Data.strings(object[field]))
         this.reference(id, object.id, graph, output);
     for (const node of Data.records(object.nodes))
-      for (const field of ["component", "contract"])
+      for (const field of ["participant", "contract"])
         if (node[field])
           this.reference(String(node[field]), object.id, graph, output);
   }
@@ -105,7 +133,7 @@ export class SemanticValidator {
     if (!graph.objects.has(id)) output.add("UNRESOLVED_REFERENCE", subject, id);
   }
   private relationships(graph: ArchitectureGraph, output: Diagnostics): void {
-    for (const edge of graph.edges) {
+    for (const edge of graph.declared) {
       this.reference(edge.from, edge.from, graph, output);
       this.reference(edge.to, edge.from, graph, output);
       const kinds = SemanticValidator.endpoints[edge.kind];

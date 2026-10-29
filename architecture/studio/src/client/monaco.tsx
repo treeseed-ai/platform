@@ -16,6 +16,7 @@ interface Props {
   value: string;
   language?: string;
   readOnly?: boolean;
+  line?: number;
   onChange?: (value: string) => void;
 }
 export class CodeEditor extends Component<Props> {
@@ -33,6 +34,7 @@ export class CodeEditor extends Component<Props> {
       scrollBeyondLastLine: false,
     });
     this.editor.onDidChangeModelContent(this.changed.bind(this));
+    this.reveal();
   }
   componentDidUpdate(previous: Props): void {
     if (
@@ -40,10 +42,20 @@ export class CodeEditor extends Component<Props> {
       this.editor?.getValue() !== this.props.value
     )
       this.editor?.setValue(this.props.value);
+    if (
+      previous.line !== this.props.line ||
+      previous.value !== this.props.value
+    )
+      this.reveal();
   }
   componentWillUnmount(): void {
     this.editor?.getModel()?.dispose();
     this.editor?.dispose();
+  }
+  private reveal(): void {
+    if (!this.props.line) return;
+    this.editor?.setPosition({ lineNumber: this.props.line, column: 1 });
+    this.editor?.revealLineInCenter(this.props.line);
   }
   private changed(): void {
     this.props.onChange?.(this.editor?.getValue() || "");

@@ -7,10 +7,12 @@ import {
 } from "../model/types.js";
 import { WorkspaceFiles } from "../workspace/files.js";
 import { WorkspaceService } from "../workspace/service.js";
+import { AuxiliarySchemas } from "../workspace/auxiliary.js";
 import { ArchitectureGraph } from "../language/graph.js";
 
+import type { WorkspacePort } from "../server/contracts.js";
 export class MigrationService {
-  constructor(private workspace: WorkspaceService) {}
+  constructor(private workspace: WorkspacePort) {}
   build(
     state: Workspace,
     findings: Finding[],
@@ -28,7 +30,8 @@ export class MigrationService {
     if (!wanted.length) throw new Error("EMPTY_SELECTION");
     const subjects = new Set(wanted.map(MigrationService.subject));
     for (const finding of wanted)
-      for (const id of finding.impact) subjects.add(id);
+      for (const id of [...finding.impact, ...graph.required(finding.subject)])
+        subjects.add(id);
     const closure = findings.filter(
       MigrationService.inClosure.bind(null, subjects),
     );
@@ -41,6 +44,7 @@ export class MigrationService {
       blockers,
       diagnostics,
     );
+    new AuxiliarySchemas().check("migration", manifest);
     return {
       manifest,
       markdown: this.markdown(manifest),
@@ -57,7 +61,9 @@ export class MigrationService {
     return {
       schemaVersion: "studio-migration/0.1",
       status:
-        blockers.length || !findings.some(MigrationService.accepted)
+        blockers.length ||
+        findings.some(MigrationService.proposed) ||
+        !findings.some(MigrationService.accepted)
           ? "draft"
           : "reviewed",
       baseline: state.baseline,
@@ -68,7 +74,15 @@ export class MigrationService {
       proposals: findings.filter(MigrationService.proposed),
       diagnostics,
       blockers,
-      patterns: this.workspace.patterns(state),
+      patterns: this.patterns(state, diagnostics),
+      ...this.obligations(state),
+      intent: state.documents
+        .filter(MigrationService.intent)
+        .map(MigrationService.model),
+    };
+  }
+  private obligations(state: Workspace): Record<string, unknown> {
+    return {
       limitations: [
         "Known dependency closure only; dynamic boundaries remain unresolved.",
         "Runtime qualification must be supplied before implementation is called conformant.",
@@ -78,10 +92,31 @@ export class MigrationService {
         "Run owning repository checks and built-program acceptance.",
         "Refresh exact source pins and revalidate; do not copy observations into intent.",
       ],
-      intent: state.documents
-        .filter(MigrationService.intent)
-        .map(MigrationService.model),
     };
+  }
+  private patterns(state: Workspace, diagnostics: Diagnostic[]): unknown[] {
+    const result: unknown[] = [];
+    for (const pattern of this.workspace.patterns(state)) {
+      let freshness = "unknown";
+      for (const diagnostic of diagnostics)
+        if (
+          diagnostic.subject === "pattern:" + pattern.id &&
+          diagnostic.code === "PATTERN_CURRENT"
+        )
+          freshness = "current";
+      for (const repository of state.baseline.repositories)
+        if (
+          repository.project === pattern.binding.project &&
+          repository.revision !== pattern.binding.revision
+        )
+          freshness = "stale";
+      result.push({
+        ...pattern,
+        freshness,
+        obligation: "advisory; fingerprint must be checked before use",
+      });
+    }
+    return result;
   }
   private tasks(
     findings: Finding[],
@@ -91,11 +126,7 @@ export class MigrationService {
     for (const finding of findings) {
       if (!finding.accepted) continue;
       const object = graph.objects.get(finding.subject);
-      const project = String(
-        object?.project ||
-          graph.objects.get(String(object?.component))?.project ||
-          "cross-project",
-      );
+      const project = graph.owners.get(finding.subject) || "cross-project";
       (result[project] ??= []).push({
         subject: finding.subject,
         change: finding,
@@ -135,7 +166,7 @@ export class MigrationService {
     return subjects.has(finding.subject);
   }
   private static violated(diagnostic: Diagnostic): boolean {
-    return diagnostic.status === "violated";
+    return diagnostic.status !== "satisfied";
   }
   private static accepted(finding: Finding): boolean {
     return finding.accepted;
