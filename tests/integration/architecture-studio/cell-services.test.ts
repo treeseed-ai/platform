@@ -7,7 +7,10 @@ class CellServicesTests {
   static async production(): Promise<void> {
     const services = new CellServices();
     try {
-      const scene = services.projection.project(CellSceneFixture.documents(), { view: "Portfolio" });
+      await services.ready;
+      const scene = services.projection.project(CellSceneFixture.documents(), {
+        view: "Portfolio",
+      });
       const first = await services.layout.arrange(scene);
       const second = await services.layout.arrange(scene);
       assert.deepEqual(first, second);
@@ -25,4 +28,7 @@ class CellServicesTests {
     return edge.sections.length > 0;
   }
 }
-test("Cell production composition projects and deterministically routes real service collaborators", CellServicesTests.production);
+test(
+  "Cell production composition projects and deterministically routes real service collaborators",
+  CellServicesTests.production,
+);

@@ -4,13 +4,16 @@ import { CellSceneFixture } from "../../support/architecture-studio/cell-scene.j
 import { SceneProjection } from "../../../architecture/studio/src/scene/projection.js";
 import { ElkLayout } from "../../../architecture/studio/src/scene/layout.js";
 
-interface Rectangle { id: string; x: number; y: number; width: number; height: number }
+interface Rectangle {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
 class LayoutTests {
   static async geometry(): Promise<void> {
-    const documents = CellSceneFixture.documents();
-    documents[1].relationships!.push({ kind: "calls", from: "provider.run", to: "plugin.client" });
-    documents[2].objects.push({ id: "isolated", kind: "component", name: "Disconnected helper with a deliberately long label", componentKind: "object" });
-    const scene = new SceneProjection().project(documents, { view: "Components", project: "project.api" });
+    const scene = LayoutTests.scene();
     const engine = new ElkLayout();
     const result = await engine.arrange(scene);
     for (const first of result.cells)
@@ -25,10 +28,35 @@ class LayoutTests {
     }
     assert.deepEqual(result, await engine.arrange(scene));
   }
+  private static scene() {
+    const documents = CellSceneFixture.documents();
+    documents[1].relationships!.push({
+      kind: "calls",
+      from: "provider.run",
+      to: "plugin.client",
+    });
+    documents[2].objects.push({
+      id: "isolated",
+      kind: "component",
+      name: "Disconnected helper with a deliberately long label",
+      componentKind: "object",
+    });
+    return new SceneProjection().project(documents, {
+      view: "Components",
+      project: "project.api",
+    });
+  }
   private static disjoint(first: Rectangle, second: Rectangle): void {
-    assert.ok(first.x + first.width <= second.x || second.x + second.width <= first.x ||
-      first.y + first.height <= second.y || second.y + second.height <= first.y,
-      "Cell interiors overlap: " + first.id + " / " + second.id);
+    assert.ok(
+      first.x + first.width <= second.x ||
+        second.x + second.width <= first.x ||
+        first.y + first.height <= second.y ||
+        second.y + second.height <= first.y,
+      "Cell interiors overlap: " + first.id + " / " + second.id,
+    );
   }
 }
-test("ELK lays out cycles, disconnected cells and long labels without interior overlaps", LayoutTests.geometry);
+test(
+  "ELK lays out cycles, disconnected cells and long labels without interior overlaps",
+  LayoutTests.geometry,
+);

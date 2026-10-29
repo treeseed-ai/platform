@@ -93,3 +93,26 @@ class-based behavior, test placement and the shared 20-line readability policy.
 
 The dedicated Architecture Studio CI job installs only this lockfile. Platform's historical
 assembly dependencies and all owner package checkouts remain independent.
+
+## Digital cell map
+
+The map starts with nine collapsed project cells. Use **Enter project** to inspect
+plugins and neighboring repository boundaries, then **Expand plugin** to inspect
+its explicitly owned providers. Choose a composition and scope to distinguish
+registration and selection; readiness remains unknown without runtime evidence.
+Boundary buttons and connection bundles expose original relationships and source
+subjects. Use search to reveal a contract or provider in its owning project.
+
+**Arrange by connections** runs deterministic layered ELK routing in a worker.
+Dependency diagrams describe topology; **Flows** uses modeled transitions. Zoom
+changes label detail without entering a project. Glow and counts indicate distinct
+connected peers; separate badges identify architectural differences and contract
+impact. Unresolved endpoints remain visible. Diagram containment never changes
+repository ownership or implies a shared runtime context.
+
+Drag cells to position them, or use React Flow keyboard navigation. **Undo layout**
+undoes presentation changes independently from intent commands. **Save layout**
+writes only `.studio/layout.json` with expected-content-hash protection. The new
+`studio-layout/0.2` format stores each view's positions, viewport, selection and
+expansion. Imported 0.1 coordinates remain under `legacy`; they are not applied to
+the nested map. Saving intent no longer saves diagram positions implicitly.

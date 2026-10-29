@@ -12,12 +12,20 @@ jobs:
     timeout-minutes: 15
     env:
       STUDIO_TEST_FILES: |
+        tests/acceptance/architecture-studio/cells.test.ts
         tests/acceptance/architecture-studio/studio.test.ts
+        tests/integration/architecture-studio/cell-persistence.test.ts
+        tests/integration/architecture-studio/cell-services.test.ts
         tests/integration/architecture-studio/refresh.test.ts
         tests/integration/architecture-studio/security.test.ts
         tests/integration/architecture-studio/source.test.ts
         tests/integration/architecture-studio/workspace.test.ts
         tests/unit/architecture-studio/authoring.test.ts
+        tests/unit/architecture-studio/cell-boundaries.test.ts
+        tests/unit/architecture-studio/cell-flows.test.ts
+        tests/unit/architecture-studio/cell-layout.test.ts
+        tests/unit/architecture-studio/cell-navigation.test.ts
+        tests/unit/architecture-studio/cell-projection.test.ts
         tests/unit/architecture-studio/language.test.ts
         tests/unit/architecture-studio/migration.test.ts
         tests/unit/architecture-studio/semantics.test.ts

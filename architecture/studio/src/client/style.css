@@ -624,3 +624,49 @@ a {
 .graph-tools {
   flex-wrap: wrap;
 }
+
+/* Cell membranes are presentation boundaries; repository ownership stays explicit. */
+.cell-map .react-flow { background: radial-gradient(ellipse at 40% 40%, #142633 0, #08111a 80%); }
+.cell-map .graph-tools { flex-wrap: wrap; max-width: 100%; gap: 6px; }
+.cell-map .graph-tools select { max-width: 170px; font-size: 11px; }
+.cell-breadcrumbs { position: absolute; top: 58px; left: 14px; z-index: 5; display: flex; gap: 8px; align-items: center; padding: 6px 12px; background: #0b1725e8; border: 1px solid #294251; border-radius: 6px; max-width: 95%; font-size: 11px; }
+.digital-cell { position: relative; border: 1px solid #57929d; border-radius: 24px; background: linear-gradient(145deg,#152a38f5,#0d1d29f8); box-shadow: 0 0 28px rgba(99,210,220,var(--connectivity)); color: #dfedf2; overflow: visible; }
+.digital-cell.chosen { border: 2px solid #d6fbff; outline: 3px solid #75d5e045; }
+.digital-cell.ghost { border-style: dashed; opacity: .65; }
+.digital-cell.dimmed { opacity: .3; }
+.digital-cell.component-cell:not(.plugin-cell) { border-radius: 5px; border-color: #7485a6; }
+.digital-cell.external-cell { background: #10212ce8; border-style: dashed; }
+.digital-cell.unresolved-cell { border: 2px dashed #e4b573; }
+.cell-header { padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; max-width: 100%; }
+.cell-header strong { font-size: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell-type { color: #7cb8c6; text-transform: uppercase; letter-spacing: 2px; font-size: 9px; }
+.cell-degree { position: absolute; top: 14px; right: 16px; color: #9cd8dc; font-size: 10px; }
+.cell-header small { color: #a1b7c5; font-size: 11px; }
+.cell-impact, .cell-problem { color: #ffd18b; font-size: 10px; }
+.cell-action { position: absolute; bottom: 12px; right: 16px; font-size: 11px; z-index: 3; background: #1a3543; }
+.cell-port { position: absolute; width: 165px; font-size: 10px; height: 24px; z-index: 2; }
+.cell-port.in { left: 0; text-align: left; }
+.cell-port.out { right: 0; text-align: right; }
+.cell-port .react-flow__handle { width: 9px; height: 9px; border: 1px solid #c4f1f0; background: #4a999e; top: 0; }
+.cell-port button { max-width: 156px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border: 0; padding: 2px 10px; color: #b3d8e4; font-size: 10px; background: #0b1a24cc; transform: translateY(-50%); }
+.cell-port button span { color: #e2f7ff; }
+.cell-port.impacted button { color: #ffd18b; }
+.cell-inhabitants { position: absolute; left: 44px; right: 44px; bottom: 48px; display: flex; flex-direction: column; gap: 10px; z-index: 3; }
+.provider-card { display: flex; flex-direction: column; text-align: left; gap: 5px; padding: 10px; background: #24374e; border: 1px solid #7687b4; border-radius: 10px; min-height: 95px; }
+.provider-card b { font-size: 12px; }.provider-card small { font-size: 9px; color: #b7c6e2; }
+.cell-connection.depends-on path { stroke-dasharray: 6 4; }.cell-connection.implements path { stroke-dasharray: 2 5; }.cell-connection.emits path { stroke-dasharray: 10 3 2 3; }
+.connection-label { position: absolute; pointer-events: all; background: #0c1a24ec; color: #99b9c9; font-size: 9px; padding: 2px 5px; border-color: #2d4654; }
+.boundary-inspector, .cell-connection-editor { position: absolute; top: 100px; right: 14px; max-height: calc(100% - 150px); width: 380px; overflow: auto; z-index: 12; padding: 18px; border: 1px solid #5d8999; border-radius: 12px; background: #101e2bf5; box-shadow: 0 10px 50px #0009; }
+.boundary-inspector pre { white-space: pre-wrap; max-height: 200px; overflow: auto; font-size: 10px; }.boundary-inspector p { font-size: 12px; color: #a3b9c7; }.boundary-inspector > button { float: right; }
+.boundary-relationship { margin: 12px 0; }.boundary-relationship button { font-size: 10px; word-break: break-word; text-align: left; }.boundary-relationship small { display: block; color: #9aaeba; }
+.cell-error, .scene-diagnostics { position: absolute; bottom: 38px; left: 12px; z-index: 8; background: #302622; border: 1px solid #a47746; padding: 10px; max-width: 70%; max-height: 200px; overflow: auto; font-size: 11px; }
+@media (prefers-reduced-motion: reduce) { .cell-map *, .cell-map *::before, .cell-map *::after { animation: none !important; transition: none !important; } }
+@media (max-width: 1100px) { .cell-breadcrumbs { top: 95px; }.boundary-inspector { width: min(330px,85%); } }
+.zoom-far .cell-header strong { font-size: var(--screen-font); white-space: normal; line-height: 1.1; }
+.zoom-far .cell-type, .zoom-far .cell-port button, .zoom-far .cell-degree, .zoom-far .cell-badges { display: none; }
+.zoom-far .cell-action { font-size: calc(var(--screen-font) * .65); bottom: 12px; }
+.cell-badges { position: absolute; top: 70px; left: 18px; display: flex; gap: 8px; font-size: 10px; }
+.cell-map .react-flow__background { background-color: #0a1721; }
+.cell-search { position: absolute; top: 100px; left: 12px; z-index: 11; width: 280px; max-height: 65%; overflow: auto; padding: 12px; background: #102130f5; border: 1px solid #467382; border-radius: 8px; font-size: 11px; }
+.cell-search button { display: flex; flex-direction: column; text-align: left; width: 100%; margin-top: 8px; }.cell-search small { color: #8cabbc; font-size: 9px; word-break: break-all; }
+.cell-connection.dimmed { opacity: .18; }.cell-connection.dimmed .connection-label { opacity: .18; }

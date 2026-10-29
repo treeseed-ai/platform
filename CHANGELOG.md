@@ -14,6 +14,7 @@
 - Platform: preserve primary presentation failures while attempting every cleanup step (#796).
 
 ### Added
+- Platform: map architectural projects and plugins as digital cells with typed boundary connections (#844).
 - Platform: add Architecture Studio designer, validator and migration handoff (#839).
 - Platform: define architectural language v0.1 and Cordis portfolio blueprints (#836).
 - Agent: define the seed-driven Capacity Provider architecture (#773).
