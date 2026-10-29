@@ -30,6 +30,7 @@ class BoundaryTests {
   static scope(): void {
     const documents = CellSceneFixture.documents();
     documents[1].objects.push(BoundaryTests.composition);
+    documents[1].objects[2].replacement = { kind: "restart" };
     const scene = new SceneProjection().project(documents, {
       view: "Components",
       project: "project.agent",
@@ -41,6 +42,7 @@ class BoundaryTests {
     assert.equal(plugin.providers[0].selection, "selected");
     assert.equal(plugin.providers[0].registered, true);
     assert.equal(plugin.providers[0].readiness, "unknown");
+    assert.equal(plugin.providers[0].replacement, "restart");
   }
   private static readonly composition = {
     id: "composition.agent",

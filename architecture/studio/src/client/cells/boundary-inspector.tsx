@@ -1,3 +1,4 @@
+import { SceneFacts } from "../../scene/facts.js";
 import { Component } from "react";
 import type { Blueprint } from "../../model/types.js";
 import type { Connector, Port, Scene } from "../../scene/contracts.js";
@@ -27,7 +28,7 @@ export class BoundaryInspector extends Component<Props> {
         <p>
           Projected boundary route · original architectural endpoints preserved.
         </p>
-        {port && this.interface(port.interface)}
+        {this.interface(port?.interface || this.connectorInterface(connector))}
         {edges.map(this.connection.bind(this))}
         <small>
           Dependencies are structural, not execution order. Runtime readiness
@@ -35,6 +36,11 @@ export class BoundaryInspector extends Component<Props> {
         </small>
       </aside>
     );
+  }
+  private connectorInterface(connector?: Connector): string {
+    for (const port of this.props.scene.ports)
+      if (port.id === connector?.sourcePort) return port.interface;
+    return "";
   }
   private interface(id: string): React.ReactNode {
     for (const document of this.props.documents)
@@ -47,9 +53,35 @@ export class BoundaryInspector extends Component<Props> {
               </button>
               <p>{object.purpose}</p>
               <pre>{this.details(object)}</pre>
+              {this.impact(id)}
             </div>
           );
     return <p>Interface evidence unresolved: {id}</p>;
+  }
+  private impact(id: string): React.ReactNode {
+    const facts = new SceneFacts(this.props.documents);
+    return (
+      <details>
+        <summary>
+          Known downstream impact · {facts.graph.affected(id).length} subjects
+        </summary>
+        <p>
+          Composition {this.props.scene.context.composition || "unknown"} ·
+          scope {this.props.scene.context.scope || "unknown"}
+        </p>
+        {facts.graph.affected(id).map(this.subject.bind(this))}
+        <p>
+          Static declared dependencies only; dynamic impact remains unresolved.
+        </p>
+      </details>
+    );
+  }
+  private subject(id: string): React.ReactNode {
+    return (
+      <button key={id} onClick={this.props.onSelect.bind(null, id)}>
+        {id}
+      </button>
+    );
   }
   private details(object: Record<string, unknown>): string {
     return JSON.stringify(

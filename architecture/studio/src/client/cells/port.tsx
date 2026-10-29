@@ -21,7 +21,7 @@ export class BoundaryPort extends Component<Props> {
       >
         <Handle
           id={port.id}
-          type={out ? "source" : "target"}
+          type={port.attachment || (out ? "source" : "target")}
           position={out ? Position.Right : Position.Left}
         />
         {this.label()}
@@ -38,7 +38,7 @@ export class BoundaryPort extends Component<Props> {
         title={port.label + " · " + port.category}
         aria-label={"Inspect boundary " + port.label}
       >
-        {out ? "↗ " : "↙ "}
+        {port.direction === "neutral" ? "◇ " : out ? "↗ " : "↙ "}
         {port.label} <span>{port.count}</span>
       </button>
     );

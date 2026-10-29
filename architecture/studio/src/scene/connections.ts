@@ -67,11 +67,12 @@ export class BoundaryConnections {
     ].includes(edge.kind)
       ? direction
       : "neutral";
-    const id = JSON.stringify(["port", cell, face, side, edge.kind]);
+    const id = JSON.stringify(["port", cell, face, side, edge.kind, direction]);
     const port =
       this.ports.get(id) || this.newPort(id, cell, face, side, edge.kind);
     const endpoint = direction === "out" ? edge.from : edge.to;
     if (!port.endpoints.includes(endpoint)) port.endpoints.push(endpoint);
+    port.attachment = direction === "out" ? "source" : "target";
     port.count++;
     this.ports.set(id, port);
     return port;
@@ -101,6 +102,7 @@ export class BoundaryConnections {
         ...Data.strings(cell.object.capabilities),
         ...Data.strings(cell.object.contracts),
       ]) {
+        if (this.connected(cell.id, face)) continue;
         const id = JSON.stringify(["declared", cell.id, face]);
         const port = this.newPort(
           id,
@@ -114,6 +116,13 @@ export class BoundaryConnections {
         this.ports.set(id, port);
       }
     }
+  }
+  private connected(cell: string, face: string): boolean {
+    const contract = this.catalog.facts.interface(face) || face;
+    for (const port of this.ports.values())
+      if (port.cell === cell && port.interface === contract && port.count)
+        return true;
+    return false;
   }
   finish(): void {
     for (const cell of this.catalog.cells.values()) {

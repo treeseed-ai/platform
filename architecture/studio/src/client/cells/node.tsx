@@ -66,6 +66,9 @@ export class DigitalCell extends Component<NodeProps<CellNode>> {
           {String(cell.object?.componentKind || cell.kind)}
         </span>
         <strong title={cell.purpose}>{cell.name}</strong>
+        <small className="cell-purpose" title={cell.purpose}>
+          {cell.purpose}
+        </small>
         <span
           className="cell-degree"
           title="Distinct connected architectural peers"

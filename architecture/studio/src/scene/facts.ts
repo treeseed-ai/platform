@@ -21,24 +21,28 @@ export class SceneFacts {
     return JSON.stringify([kind, from, to]);
   }
   private normalize(documents: Blueprint[]): void {
-    const explicit = new Set<string>();
-    for (const document of documents)
-      for (const edge of document.relationships || [])
-        explicit.add(SceneFacts.identity(edge.kind, edge.from, edge.to));
-    const seen = new Set<string>();
-    for (const edge of this.graph.edges) {
-      const id = SceneFacts.identity(edge.kind, edge.from, edge.to);
-      if (seen.has(id)) continue;
-      seen.add(id);
-      this.relationships.push({
-        ...edge,
-        id,
-        provenance: [
-          explicit.has(id) ? "explicit" : "derived from declared fields",
-        ],
-      });
-    }
+    const records = new Map<string, SceneRelationship>();
+    for (const document of documents) this.documentEdges(document, records);
+    this.relationships.push(...records.values());
     this.relationships.sort(SceneFacts.ordered);
+  }
+  private documentEdges(
+    document: Blueprint,
+    records: Map<string, SceneRelationship>,
+  ): void {
+    const explicit = new Set<string>();
+    for (const edge of document.relationships || [])
+      explicit.add(SceneFacts.identity(edge.kind, edge.from, edge.to));
+    for (const edge of new ArchitectureGraph([document]).edges) {
+      const id = SceneFacts.identity(edge.kind, edge.from, edge.to);
+      const record = records.get(id) || { ...edge, id, provenance: [] };
+      const origin =
+        document.view +
+        ": " +
+        (explicit.has(id) ? "explicit" : "derived from declared fields");
+      if (!record.provenance.includes(origin)) record.provenance.push(origin);
+      records.set(id, record);
+    }
   }
   private providerOwner(object: ArchitectureObject): void {
     const owner = Data.text(object.component);

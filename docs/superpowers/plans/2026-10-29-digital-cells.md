@@ -57,3 +57,15 @@ failed at its first behavioral assertion waiting for `Enter project Agent` after
 15 seconds (1 fail, 0 pass, no skips). This establishes the missing navigation
 surface before implementation. The temporary test copy in that prerequisite
 checkout was removed; the permanent case remains in #844's branch.
+
+## Delivery evidence
+
+Prerequisites #843, #838 and #842 were integrated after their exact heads passed
+CI and the maintainer authorized integration. The digital-cells branch incorporates
+`e7d9e5df5c128aa1397ea5b5e875f53dbc3e3823`. The prerequisite task branches were
+removed only after verifying their merged heads; the existing Studio checkout and
+its running service were retained at the same detached commit.
+
+See [verification and screenshots](../evidence/digital-cells/README.md). Runtime
+readiness and dynamic dependency completeness remain explicitly unknown. Layout
+custody is auxiliary; layout saves never accept or persist architecture edits.

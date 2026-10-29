@@ -16,6 +16,25 @@ class FlowTests {
     assert.ok(scene.connectors.some(FlowTests.failure));
     assert.ok(scene.cells.every(FlowTests.subject));
   }
+  static unresolved(): void {
+    const documents = CellSceneFixture.documents();
+    documents[1].objects.push({
+      id: "flow.broken",
+      kind: "flow",
+      name: "Missing step",
+      nodes: [{ id: "entry", kind: "entry", next: "missing" }],
+    });
+    const scene = new SceneProjection().project(documents, {
+      view: "Flows",
+      project: "project.agent",
+      flow: "flow.broken",
+    });
+    assert.ok(scene.cells.some(FlowTests.unknown));
+    assert.equal(scene.diagnostics[0].code, "FLOW_ENDPOINT");
+  }
+  private static unknown(cell: { unresolved: boolean }): boolean {
+    return cell.unresolved;
+  }
   private static failure(edge: { label: string }): boolean {
     return edge.label === "failed";
   }
@@ -42,3 +61,5 @@ test(
   "Flow scenes project modeled outcomes and cleanup rather than dependency order",
   FlowTests.transitions,
 );
+
+test("Missing flow targets remain visible diagnostics", FlowTests.unresolved);

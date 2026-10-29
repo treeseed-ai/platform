@@ -1,3 +1,7 @@
+import { CellMeasurement } from "./cells/measurement.js";
+import { SceneComparison } from "../scene/comparison.js";
+import { LayoutSession } from "../scene/layout-session.js";
+import { ProviderEvidence } from "../scene/providers.js";
 import { CellSearch } from "./cells/search.js";
 import { SceneFacts } from "../scene/facts.js";
 import { Component } from "react";
@@ -73,7 +77,8 @@ export class GraphCanvas extends Component<Props, State> {
   private ready = false;
   private zoom = 1;
   private restoring = false;
-  private cache = new Map<string, LayoutResult>();
+  private anchor = "";
+  private requests!: LayoutSession;
   private static nodeTypes = { cell: DigitalCell };
   private static edgeTypes = { routed: RoutedConnection };
   componentDidMount(): void {
@@ -81,10 +86,12 @@ export class GraphCanvas extends Component<Props, State> {
   }
   componentWillUnmount(): void {
     this.sequence++;
+    this.requests?.cancel();
     void this.services.dispose();
   }
   private async start(): Promise<void> {
     await this.services.ready;
+    this.requests = new LayoutSession(this.services.layout);
     this.ready = true;
     await this.rebuild();
   }
@@ -100,7 +107,8 @@ export class GraphCanvas extends Component<Props, State> {
     if (
       previous.documents !== this.props.documents ||
       previous.project !== this.props.project ||
-      previous.view !== this.props.view
+      previous.view !== this.props.view ||
+      (this.props.view === "Flows" && previous.selected !== this.props.selected)
     )
       void this.rebuild();
     else if (
@@ -143,6 +151,7 @@ export class GraphCanvas extends Component<Props, State> {
       this.union(),
       this.sceneContext(),
     );
+    new CellMeasurement().measure(scene);
     this.scene = scene;
     const signature = this.topology(scene);
     if (!force && signature === this.signature && this.layout) {
@@ -161,13 +170,11 @@ export class GraphCanvas extends Component<Props, State> {
     request: number,
   ): Promise<void> {
     try {
-      const result =
-        (!force && this.cache.get(signature)) ||
-        (await this.services.layout.arrange(scene));
-      if (request !== this.sequence) return;
-      this.cache.set(signature, result);
+      const result = await this.requests.request(scene, signature, force);
+      if (!result || request !== this.sequence) return;
       this.layout = result;
       if (force) this.services.navigation.arrange(this.positions(result));
+      else this.services.navigation.initialize(result.cells);
       this.setState({ busy: false }, this.paint.bind(this));
       setTimeout(this.restoreViewport.bind(this, force), 50);
     } catch (error) {
@@ -177,39 +184,29 @@ export class GraphCanvas extends Component<Props, State> {
   }
   private topology(scene: Scene): string {
     return Data.canonical({
-      context: scene.context,
+      context: [scene.context.view, scene.context.project, scene.context.flow],
       cells: scene.cells.map(GraphCanvas.cellShape),
-      ports: scene.ports,
-      connectors: scene.connectors,
+      ports: scene.ports.map(GraphCanvas.portShape),
+      connectors: scene.connectors.map(GraphCanvas.edgeShape),
     });
+  }
+  private static portShape(port: Port): unknown {
+    return [port.id, port.cell, port.direction];
+  }
+  private static edgeShape(edge: Scene["connectors"][number]): unknown {
+    return [edge.id, edge.sourcePort, edge.targetPort];
   }
   private static cellShape(cell: Scene["cells"][number]): unknown {
     return [cell.id, cell.width, cell.height];
   }
   private union(): Blueprint[] {
-    const documents = new Map<string, Blueprint>();
-    const objects = new Map<
-      string,
-      Map<string, Blueprint["objects"][number]>
-    >();
-    for (const document of [
-      ...this.props.comparison,
-      ...this.props.documents,
-    ]) {
-      const group = objects.get(document.project) || new Map();
-      for (const object of document.objects) group.set(object.id, object);
-      objects.set(document.project, group);
-      const previous = documents.get(document.project);
-      documents.set(document.project, {
-        ...document,
-        objects: [...group.values()],
-        relationships: [
-          ...(previous?.relationships || []),
-          ...(document.relationships || []),
-        ],
-      });
-    }
-    return [...documents.values()];
+    return [...this.props.comparison].sort(GraphCanvas.layerOrder);
+  }
+  private static layerOrder(a: Blueprint, b: Blueprint): number {
+    return (
+      Number(a.view === "intent") - Number(b.view === "intent") ||
+      a.project.localeCompare(b.project, "en")
+    );
   }
   private ghosts(): Set<string> {
     const current = new Set<string>(),
@@ -225,6 +222,7 @@ export class GraphCanvas extends Component<Props, State> {
     if (!this.layout || !this.scene) return;
     const layout = this.freshPresentation();
     const presentation = new CellPresentation(layout, {
+      comparison: new SceneComparison(this.union()),
       positions: this.services.navigation.current().positions,
       zoom: this.zoom,
       selected: this.props.selected,
@@ -240,14 +238,45 @@ export class GraphCanvas extends Component<Props, State> {
     this.setState({ nodes: presentation.nodes(), edges: presentation.edges() });
   }
   private freshPresentation(): LayoutResult {
-    const cells = [];
-    for (const geometry of this.layout!.cells) {
-      const current = this.scene!.cells.find(
-        GraphCanvas.id.bind(null, geometry.id),
-      );
-      cells.push({ ...geometry, ...current });
-    }
+    const facts = new SceneFacts(this.props.documents);
+    const evidence = new ProviderEvidence(facts, this.scene!.context);
+    const cells = this.layout!.cells.map(
+      this.currentCell.bind(this, facts, evidence),
+    );
     return { ...this.layout!, cells };
+  }
+  private currentCell(
+    facts: SceneFacts,
+    evidence: ProviderEvidence,
+    geometry: LayoutResult["cells"][number],
+  ) {
+    const current = this.scene!.cells.find(
+      GraphCanvas.id.bind(null, geometry.id),
+    );
+    const object = facts.graph.objects.get(geometry.subject);
+    const cell = { ...geometry, ...current };
+    if (object && !this.scene!.context.flow) {
+      cell.object = object;
+      cell.name = object.name;
+    }
+    cell.providers = cell.providers.map(
+      GraphCanvas.currentProvider.bind(null, facts, evidence),
+    );
+    return cell;
+  }
+  private static currentProvider(
+    facts: SceneFacts,
+    evidence: ProviderEvidence,
+    card: LayoutResult["cells"][number]["providers"][number],
+  ) {
+    const provider = facts.graph.objects.get(card.subject);
+    return provider
+      ? evidence.card(provider)
+      : {
+          ...card,
+          selection: "absent in this layer",
+          registered: "unknown" as const,
+        };
   }
   private impacted(): Set<string> {
     const result = new Set<string>();
@@ -255,6 +284,9 @@ export class GraphCanvas extends Component<Props, State> {
       for (const object of document.objects)
         if (object.kind === "contract" && this.props.changed.has(object.id))
           result.add(object.id);
+    const facts = new SceneFacts(this.union());
+    for (const id of [...result])
+      for (const affected of facts.graph.affected(id)) result.add(affected);
     for (const edge of this.scene?.connectors || [])
       for (const relationship of edge.relationships)
         if (result.has(relationship.from) || result.has(relationship.to)) {
@@ -295,7 +327,8 @@ export class GraphCanvas extends Component<Props, State> {
   private expand(id: string): void {
     this.services.navigation.expand(id);
     this.props.onSelect(id);
-    void this.rebuild();
+    this.anchor = id;
+    void this.rebuild(true);
   }
   private inspect(id: string): void {
     this.setState({ boundary: id });
@@ -307,13 +340,15 @@ export class GraphCanvas extends Component<Props, State> {
     this.setState({ connection: undefined });
   }
   private changes(changes: NodeChange<CellNode>[]): void {
+    for (const change of changes)
+      if (change.type === "position" && change.position && !change.dragging)
+        this.services.navigation.move(change.id, change.position);
     this.setState({ nodes: applyNodeChanges(changes, this.state.nodes) });
   }
   private selected(_event: React.MouseEvent, node: CellNode): void {
     this.props.onSelect(node.data.cell.subject);
   }
   private moved(_event: unknown, node: CellNode): void {
-    this.services.navigation.move(node.id, node.position);
     this.paint();
   }
   private viewport(_event: unknown, viewport: Viewport): void {
@@ -326,6 +361,14 @@ export class GraphCanvas extends Component<Props, State> {
     this.flow = flow;
   }
   private restoreViewport(fit = false): void {
+    if (this.anchor) {
+      const anchor = this.anchor;
+      this.anchor = "";
+      void this.flow
+        ?.fitView({ nodes: [{ id: anchor }], padding: 0.4, maxZoom: 1 })
+        .then(this.restored.bind(this));
+      return;
+    }
     const viewport = this.services.navigation.current().viewport;
     const restored =
       viewport && !fit
@@ -441,6 +484,11 @@ export class GraphCanvas extends Component<Props, State> {
         </button>
         <button onClick={this.fit.bind(this)}>Fit map</button>
         <button onClick={this.focus.bind(this)}>Focus selection</button>
+        {this.props.view === "Flows" && this.activeFlow() && (
+          <button onClick={this.props.onSelect.bind(null, "")}>
+            Flow overview
+          </button>
+        )}
         {this.state.busy && <span>Routing…</span>}
         {this.contextSelectors()}
       </div>
@@ -567,7 +615,7 @@ export class GraphCanvas extends Component<Props, State> {
         {this.state.boundary && this.scene && (
           <BoundaryInspector
             scene={this.scene}
-            documents={this.union()}
+            documents={this.props.documents}
             id={this.state.boundary}
             onSelect={this.reveal.bind(this)}
             onClose={this.closeBoundary.bind(this)}

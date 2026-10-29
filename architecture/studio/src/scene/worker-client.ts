@@ -4,14 +4,17 @@ interface Pending {
   reject: (error: Error) => void;
 }
 export class WorkerLayout implements LayoutService {
-  private worker = new Worker(new URL("./layout-worker.ts", import.meta.url), {
-    type: "module",
-  });
+  private worker?: Worker;
   private sequence = 0;
   private pending = new Map<number, Pending>();
-  constructor() {
-    this.worker.onmessage = this.received.bind(this);
-    this.worker.onerror = this.failed.bind(this);
+  private open(): Worker {
+    const worker = new Worker(new URL("./layout-worker.ts", import.meta.url), {
+      type: "module",
+    });
+    worker.onmessage = this.received.bind(this);
+    worker.onerror = this.failed.bind(this);
+    this.worker = worker;
+    return worker;
   }
   arrange(scene: Scene): Promise<LayoutResult> {
     return new Promise<LayoutResult>(this.send.bind(this, scene));
@@ -23,7 +26,7 @@ export class WorkerLayout implements LayoutService {
   ): void {
     const id = ++this.sequence;
     this.pending.set(id, { resolve, reject });
-    this.worker.postMessage({ id, scene });
+    (this.worker || this.open()).postMessage({ id, scene });
   }
   private received(
     event: MessageEvent<{ id: number; result: LayoutResult; error?: string }>,
@@ -34,12 +37,14 @@ export class WorkerLayout implements LayoutService {
     this.pending.delete(event.data.id);
   }
   private failed(event: ErrorEvent): void {
+    this.worker?.terminate();
+    this.worker = undefined;
     for (const pending of this.pending.values())
       pending.reject(new Error(event.message));
     this.pending.clear();
   }
   dispose(): void {
-    this.worker.terminate();
+    this.worker?.terminate();
     for (const pending of this.pending.values())
       pending.reject(new Error("Layout worker disposed"));
     this.pending.clear();

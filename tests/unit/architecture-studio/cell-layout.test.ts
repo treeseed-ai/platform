@@ -26,7 +26,76 @@ class LayoutTests {
         assert.ok(Number.isFinite(section.endPoint.y));
       }
     }
+    LayoutTests.routes(result);
     assert.deepEqual(result, await engine.arrange(scene));
+  }
+  private static routes(
+    result: Awaited<ReturnType<ElkLayout["arrange"]>>,
+  ): void {
+    for (const edge of result.connectors) {
+      const source = result.cells.find(LayoutTests.id.bind(null, edge.source))!;
+      const target = result.cells.find(LayoutTests.id.bind(null, edge.target))!;
+      const out = result.ports.find(
+        LayoutTests.id.bind(null, edge.sourcePort),
+      )!;
+      const into = result.ports.find(
+        LayoutTests.id.bind(null, edge.targetPort),
+      )!;
+      assert.deepEqual(edge.sections[0].startPoint, {
+        x: source.x + out.x,
+        y: source.y + out.y,
+      });
+      assert.deepEqual(edge.sections.at(-1)!.endPoint, {
+        x: target.x + into.x,
+        y: target.y + into.y,
+      });
+      for (const section of edge.sections)
+        LayoutTests.segments(section, result.cells, edge.source, edge.target);
+    }
+  }
+  private static segments(
+    section: {
+      startPoint: { x: number; y: number };
+      endPoint: { x: number; y: number };
+      bendPoints?: { x: number; y: number }[];
+    },
+    cells: Rectangle[],
+    source: string,
+    target: string,
+  ): void {
+    const points = [
+      section.startPoint,
+      ...(section.bendPoints || []),
+      section.endPoint,
+    ];
+    for (let i = 1; i < points.length; i++) {
+      const a = points[i - 1],
+        b = points[i];
+      assert.ok(a.x === b.x || a.y === b.y, "Route must be orthogonal");
+      for (const cell of cells) {
+        if (cell.id === source || cell.id === target) continue;
+        const crosses = LayoutTests.crosses(a, b, cell);
+        assert.equal(crosses, false, "Route crosses unrelated cell " + cell.id);
+      }
+    }
+  }
+  private static crosses(
+    a: { x: number; y: number },
+    b: { x: number; y: number },
+    cell: Rectangle,
+  ): boolean {
+    return a.x === b.x
+      ? a.x > cell.x &&
+          a.x < cell.x + cell.width &&
+          Math.max(a.y, b.y) > cell.y &&
+          Math.min(a.y, b.y) < cell.y + cell.height
+      : a.y > cell.y &&
+          a.y < cell.y + cell.height &&
+          Math.max(a.x, b.x) > cell.x &&
+          Math.min(a.x, b.x) < cell.x + cell.width;
+  }
+  private static id(id: string, value: { id: string }): boolean {
+    return id === value.id;
   }
   private static scene() {
     const documents = CellSceneFixture.documents();

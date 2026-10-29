@@ -59,6 +59,7 @@ export interface Port {
   label: string;
   direction: "in" | "out" | "neutral";
   category: string;
+  attachment?: "source" | "target";
   endpoints: string[];
   count: number;
   unused?: boolean;

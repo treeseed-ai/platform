@@ -1,3 +1,4 @@
+import type { SceneComparison } from "../../scene/comparison.js";
 import { MarkerType } from "@xyflow/react";
 import type {
   LayoutResult,
@@ -7,6 +8,7 @@ import type {
 import type { CellNode } from "./node.js";
 import type { CellEdge } from "./connector.js";
 export interface PresentationOptions {
+  comparison: SceneComparison;
   zoom: number;
   positions: Record<string, Point>;
   selected: string;
@@ -59,11 +61,17 @@ export class CellPresentation {
       markerEnd: { type: MarkerType.ArrowClosed },
       data: {
         connector: this.adjusted(connector),
+        status: this.options.comparison.relationships(
+          connector.relationships.map(CellPresentation.relationshipId),
+        ),
         dimmed: !!this.options.selected && !this.related(connector),
         changed: this.affected(connector),
         onInspect: this.options.onPort,
       },
     };
+  }
+  private static relationshipId(edge: { id: string }): string {
+    return edge.id;
   }
   private related(connector: RoutedConnector): boolean {
     if ([connector.source, connector.target].includes(this.options.selected))
@@ -90,17 +98,28 @@ export class CellPresentation {
       (!source.x && !source.y && !target.x && !target.y)
     )
       return copy;
-    const first = copy.sections[0],
-      last = copy.sections[copy.sections.length - 1];
-    first.startPoint = {
-      x: first.startPoint.x + source.x,
-      y: first.startPoint.y + source.y,
-    };
-    last.endPoint = {
-      x: last.endPoint.x + target.x,
-      y: last.endPoint.y + target.y,
-    };
+    this.attach(copy.sections[0], source, true);
+    this.attach(copy.sections[copy.sections.length - 1], target, false);
     return copy;
+  }
+  private attach(
+    section: RoutedConnector["sections"][number],
+    offset: Point,
+    source: boolean,
+  ): void {
+    const key = source ? "startPoint" : "endPoint";
+    const original = section[key];
+    const moved = { x: original.x + offset.x, y: original.y + offset.y };
+    const side = source ? 24 : -24;
+    const bridge = [
+      { x: moved.x + side, y: moved.y },
+      { x: moved.x + side, y: original.y },
+      original,
+    ];
+    section[key] = moved;
+    section.bendPoints = source
+      ? [...bridge, ...(section.bendPoints || [])]
+      : [...(section.bendPoints || []), ...bridge.reverse()];
   }
   private offset(id: string): Point {
     const cell = this.layout.cells.find(CellPresentation.id.bind(null, id))!;

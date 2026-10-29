@@ -670,3 +670,23 @@ a {
 .cell-search { position: absolute; top: 100px; left: 12px; z-index: 11; width: 280px; max-height: 65%; overflow: auto; padding: 12px; background: #102130f5; border: 1px solid #467382; border-radius: 8px; font-size: 11px; }
 .cell-search button { display: flex; flex-direction: column; text-align: left; width: 100%; margin-top: 8px; }.cell-search small { color: #8cabbc; font-size: 9px; word-break: break-all; }
 .cell-connection.dimmed { opacity: .18; }.cell-connection.dimmed .connection-label { opacity: .18; }
+
+.cell-connection.added path { stroke: #80dbad !important; }
+.cell-connection.removed path { stroke: #ed9daf !important; stroke-dasharray: 3 6; }
+.cell-connection.observed-only path { stroke-dasharray: 2 5; opacity: .65; }
+.cell-map .react-flow__minimap { width: 130px; height: 85px; }
+
+.cell-purpose { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zoom-far .cell-purpose { display: none; }
+.zoom-far .cell-badges { display: flex; top: auto; bottom: 68px; }
+.zoom-far .cell-badges small { display: none; }
+.zoom-far .cell-impact, .zoom-far .cell-problem { font-size: calc(var(--screen-font) * .5); }
+@media (max-width: 1100px) {
+  .studio { min-width: 720px; }
+  .workspace { grid-template-columns: 160px minmax(300px,1fr) 235px; }
+  .app-header { gap: 8px; padding: 8px 12px; }
+  .app-header strong { font-size: 17px; }
+  .workspace-name { display: none; }
+  .command-bar { height: auto; min-height: 43px; }
+  .sidebar { padding: 12px 8px; }
+}

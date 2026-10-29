@@ -16,7 +16,7 @@ export class ProviderEvidence {
       name: object.name,
       contractVersion: Data.text(object.contractVersion) || "unknown",
       replacement:
-        Data.text(Data.record(object.replacement).policy) || "unspecified",
+        Data.text(Data.record(object.replacement).kind) || "unspecified",
       registered: composition
         ? this.registered(object.id, composition)
         : "unknown",

@@ -6,6 +6,7 @@ import type {
   Scene,
   SceneContext,
   SceneRelationship,
+  SceneDiagnostic,
 } from "./contracts.js";
 export class FlowProjection {
   private static readonly geometry = {
@@ -18,20 +19,44 @@ export class FlowProjection {
     height: 180,
   };
   private cells: Cell[] = [];
+  private diagnostics: SceneDiagnostic[] = [];
   private ports: Port[] = [];
   private connectors: Connector[] = [];
   private relationships: SceneRelationship[] = [];
   project(flow: ArchitectureObject, context: SceneContext): Scene {
     for (const node of Data.records(flow.nodes)) this.node(flow, node);
     for (const node of Data.records(flow.nodes)) this.transitions(flow, node);
+    this.complete(flow);
     return {
       context,
       cells: this.cells,
       ports: this.ports,
       connectors: this.connectors,
       relationships: this.relationships,
-      diagnostics: [],
+      diagnostics: this.diagnostics,
     };
+  }
+  private complete(flow: ArchitectureObject): void {
+    for (const port of this.ports) {
+      let cell = this.cells.find(FlowProjection.matches.bind(null, port.cell));
+      if (!cell) {
+        this.node(flow, {
+          id: port.cell.slice(flow.id.length + 1),
+          kind: "unresolved",
+        });
+        cell = this.cells[this.cells.length - 1];
+        cell.unresolved = true;
+        this.diagnostics.push({
+          code: "FLOW_ENDPOINT",
+          subject: flow.id,
+          message: "Unresolved flow target: " + port.cell,
+        });
+      }
+      cell.height += 32;
+    }
+  }
+  private static matches(id: string, cell: Cell): boolean {
+    return cell.id === id;
   }
   private node(flow: ArchitectureObject, node: Record<string, unknown>): void {
     const id = flow.id + "/" + node.id;

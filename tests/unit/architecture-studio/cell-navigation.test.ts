@@ -24,6 +24,16 @@ class NavigationTests {
       y: 80,
     });
   }
+  static stable(): void {
+    const navigation = new CellNavigation();
+    navigation.initialize([{ id: "a", x: 10, y: 20, width: 380, height: 200 }]);
+    navigation.initialize([
+      { id: "a", x: 900, y: 900, width: 380, height: 200 },
+      { id: "b", x: 0, y: 0, width: 380, height: 200 },
+    ]);
+    assert.deepEqual(navigation.current().positions.a, { x: 10, y: 20 });
+    assert.ok(navigation.current().positions.b.x > 390);
+  }
   static legacy(): void {
     const legacy = {
       schemaVersion: "studio-layout/0.1",
@@ -44,4 +54,9 @@ test(
 test(
   "Legacy grid coordinates remain recoverable without becoming nested cell geometry",
   NavigationTests.legacy,
+);
+
+test(
+  "New cells do not reshuffle established positions",
+  NavigationTests.stable,
 );

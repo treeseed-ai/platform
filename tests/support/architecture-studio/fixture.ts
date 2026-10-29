@@ -138,7 +138,7 @@ export class StudioFixture {
     await page
       .getByRole("button", { name: "Add relationship", exact: true })
       .click();
-    await page.getByRole("button", { name: "Undo", exact: false }).click();
+    await page.getByRole("button", { name: "↶ Undo", exact: true }).click();
     await page.getByRole("button", { name: "Redo", exact: false }).click();
     await page
       .getByRole("button", { name: "Save intent", exact: true })

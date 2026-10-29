@@ -36,6 +36,24 @@ export class CellNavigation {
       selected: "",
     });
   }
+  initialize(
+    cells: Array<Point & { id: string; width: number; height: number }>,
+  ): void {
+    const positions = this.current().positions;
+    const established = Object.keys(positions).length > 0;
+    let right = 0,
+      bottom = 60;
+    for (const cell of cells)
+      if (positions[cell.id])
+        right = Math.max(right, positions[cell.id].x + cell.width + 120);
+    for (const cell of cells) {
+      if (positions[cell.id]) continue;
+      positions[cell.id] = established
+        ? { x: right, y: bottom }
+        : { x: cell.x, y: cell.y };
+      bottom += cell.height + 80;
+    }
+  }
   move(id: string, position: Point): void {
     this.checkpoint();
     this.current().positions[id] = { ...position };

@@ -8,6 +8,7 @@ import {
 import type { RoutedConnector, Point } from "../../scene/contracts.js";
 export type CellEdge = Edge<{
   connector: RoutedConnector;
+  status: string;
   dimmed: boolean;
   changed: boolean;
   onInspect: (id: string) => void;
@@ -28,6 +29,8 @@ export class RoutedConnection extends Component<
         className={
           "cell-connection " +
           data.connector.category +
+          " " +
+          data.status +
           (data.dimmed ? " dimmed" : "") +
           (data.changed ? " impacted" : "")
         }
@@ -50,6 +53,7 @@ export class RoutedConnection extends Component<
           onClick={this.inspect.bind(this)}
         >
           {data.connector.label} · {data.connector.relationships.length}
+          {data.status !== "unchanged" && " · " + data.status}
         </button>
       </EdgeLabelRenderer>
     );
