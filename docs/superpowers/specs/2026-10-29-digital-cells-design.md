@@ -78,3 +78,43 @@ results, routing, legacy persistence, conflicts, connection editing, comparisons
 keyboard controls and existing validator/source/migration journeys. Inspect real
 Agent and cross-project seams at desktop and smaller widths. Screenshots accompany
 review. Required checks, build, tier tests and CI must pass before completion.
+
+## Projection and custody contracts
+
+`SceneProjection.project(documents, context)` accepts a single architectural layer
+(or an explicitly aligned comparison union). Context includes view, project,
+expanded plugin IDs, composition and scope. The scene exposes cells, ports,
+connectors, deduplicated original relationships and diagnostics. Cells carry their
+architectural subject ID; providers remain selectable child records tied to the
+explicit owner. Original relationship endpoints never change when a boundary
+represents them. Unknown ownership creates a visible unresolved cell.
+
+`CellNavigation` owns presentation state only. `enter(view, project?)` selects a
+scope; `current()` returns that scope's positions, viewport, selected subject and
+expanded plugins. `move`, `expand`, `viewport`, `arrange` and `undo` cannot write to
+blueprints. `serialize()` emits layout 0.2 and preserves any imported 0.1 record
+under `legacy`. Saving uses the last observed auxiliary content hash. A failed
+save keeps the in-memory layout and reports the conflict.
+
+`CellServices` constructs native Cordis bindings for projection, navigation and
+layout. The layout contract accepts a scene and returns cell rectangles, port
+coordinates and connector sections. Browser construction supplies a worker-backed
+adapter; deterministic engine tests exercise the same ELK graph translation.
+The main thread rejects results from obsolete request IDs. A layout failure keeps
+the previous geometry and exposes retry. Presentation objects are never persisted
+as architectural identities.
+
+## Verification sequence
+
+The first browser case loads the actual workspace through the built companion,
+enters Agent, expands a plugin, selects a provider, returns to Portfolio and back,
+arranges and undoes, saves layout and reloads. It compares every blueprint document
+before/after, including intent metadata. Companion integration additionally tests
+concurrent expected-hash conflicts. Projection fixtures include an SDK-owned
+contract with an Agent implementation and an API consumer; duplicate explicit and
+inferred relationships must preserve provenance without increasing peer counts.
+
+The engine uses ELK's documented [port constraints](https://eclipse.dev/elk/reference/options/org-eclipse-elk-portConstraints.html)
+and [layered routing](https://eclipse.dev/elk/reference/algorithms/org-eclipse-elk-layered.html).
+Geometry tests establish behavior for the installed pinned version, rather than
+assuming that an algorithm's general capabilities prove our adapter is correct.
