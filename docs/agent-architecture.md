@@ -172,20 +172,55 @@ grant revisions explicitly. Do not create teams, migrate accounts or authorize f
 equality. Heartbeat/readiness expires honestly; revoked/expired authority fails closed. Tests use
 isolated control-plane fixtures and real isolated Keycloak, never production enrollment.
 
+## Implemented Agent plugin map
+
+All entries below belong to the independent `treeseed-ai/agent` repository and its private
+`@treeseed-cordis/agent` .21 artifact. They are read from the accepted
+[native package projection](https://github.com/treeseed-ai/agent/blob/1407d65c39ff53de24af857e2054415b58542c35/package.json),
+not a second runtime registration catalogue. Required selections still resolve through native Cordis.
+
+| Native class | Provider ID / provided capability | Current composition |
+| --- | --- | --- |
+| `ProviderRegistrationPlugin` | `agent.provider.connection.registration` → `agent.provider.connection` | Proof/connection library roots; manager program pending |
+| `ProviderFileProofPlugin` | `agent.provider.proof.private-file` → `agent.provider.proof` | Proof/connection library roots; manager program pending |
+| `GuestProfilePlugin` | `agent.guest.profile.probe` → `agent.guest.profile` | Guest root |
+| `GuestContextPlugin` | `agent.guest.context.isolated` → `agent.guest.context` | Guest root |
+| `GuestHandlerPlugin` | `agent.guest.handler.echo` → `agent.guest.handler` | Guest root |
+| `GuestToolPlugin` | `agent.guest.tool.echo` → `agent.guest.tool` | Guest root |
+| `GuestReportingPlugin` | `agent.guest.reporting.probe` → `agent.guest.reporting` | Guest root |
+| `GuestExecutionPlugin` | `agent.guest.execution.probe` → `agent.guest.execution` | Guest root |
+| `AgentCapacityAssignmentFilePlugin` | `agent.capacity.assignment.private-file` → `agent.capacity.assignment` | Guest root |
+| `AgentFileGrantPlugin` | `agent.authority.private-file` → `agent.authority` | Bounded probe root |
+| `AgentHostPlugin` | `agent.host.native` → `agent.host` | Bounded probe root |
+| `AgentContextPlugin` | `agent.context.isolated` → `agent.context` | Bounded probe root |
+| `AgentEchoToolPlugin` | `agent.tool.probe-echo` → `agent.tool` | Bounded probe root |
+| `AgentEchoHandlerPlugin` | `agent.handler.echo` → `agent.handler` | Bounded probe root |
+| `AgentReporterPlugin` | `agent.reporting.probe` → `agent.reporting` | Bounded probe root |
+| `AgentExecutionPlugin` | `agent.execution.probe` → `agent.execution` | Bounded probe root |
+
+The registration provider declares native `cordis.composition` and `agent.provider.proof` injection.
+The probe host declares the composition service and its authority/context/handler/tool/reporting/
+execution dependencies. Guest execution receives retained typed capabilities from its coherent
+guest kernel; an empty direct injection list does not create another dependency container.
+Manager/worker container-service plugins and installed service projections are still required.
+Core profile schema identifiers are data contracts, not proof that productive handlers exist.
+All current executable probes remain harmless; real Work/models stay Task 10.
+
 ## Current implementation and acceptance ledger
 
 | Capability | Current status |
 | --- | --- |
 | Agent Cordis setup and critical readability policy | Reviewed/published; all nine policy candidates integrated. Do not initialize again. |
 | Bounded SDK probe, provider-control and seed foundations | SDK #483/#489/#490/#492 integrated; seven global operation IDs retained. |
-| Extensible activity/profile, environment and lease contracts | SDK #493/#494/#495 are independent review candidates with 121/123/129 owner cases respectively; exact public archives/declarations qualified. |
+| Extensible activity/profile, environment and lease contracts | SDK #493–#498/#500–#502 integrated. Accepted .39 contains extensible profiles/environments/leases, host-mediated runner frames and guest-runtime manifests; 188 owner cases and public archive/declaration consumers passed. |
 | Native private probe authority | Agent #531 has real default Cordis construction, fresh grant/revocation reads, bounded descriptor-anchored files and public archive evidence. Local authority is not team enrollment. |
 | Native probe root, profile preparation and pool policy | Preserved unmerged owner integration; 57 owner cases. Pool and environment collaborators in these component tests are explicitly fixtures. |
 | Guest preparation | SDK #494 defines immutable entries/offline policy; Agent #532 is a draft native component with sequencing, live-policy rereads, safe receipts and monotonic deadlines. Real guest execution/authority still required. |
-| Separate manager/worker/guest programs | Implementation and built service-program qualification pending. |
-| Real Kata host backend | Deployment #1022 integrated; real default guest, host custody and verified destruction qualified. Worker-scoped transport/grants, exclusive real pool, setup, egress and replacement remain pending. |
-| Reusable UI | Existing React/Cordis/Keycloak boundaries retained. UI #105 is an exact-successor compatibility draft with 46 owner cases; upstream combined SDK review remains required. |
-| Real existing-team connection | Agent signing/enrollment/heartbeat/revocation and isolated Keycloak/control-plane qualification pending. SDK protocol transport alone is insufficient. |
+| Separate manager/worker/guest programs | Agent #542/#543/#544 integrated the actual Node/standalone GNU guest, native profile/handler/execution seams, trusted dispatch read-back and bounded stdio. Accepted Agent .21 preserves those built-program gates. Separate manager/worker programs and persistent guest sessions remain pending; the guest has not yet been qualified inside Kata. |
+| Real Kata host backend | Deployment #1022/#1024/#1027 integrated real scoped Kata lifecycle and assigned offline setup/verification. #1028 integrated the native authenticated private channel with real hosted Kata/read-back/destruction. Installed named grants/socket mounts, actual Agent sessions, exclusive pool, allowed egress and replacement remain pending. |
+| Reusable UI | Existing React/Cordis/Keycloak boundaries retained. UI #105 integrated its compatibility slice and 46 owner cases. Final assembled selection against the current SDK/Agent/Deployment closure remains required; retained earlier archives are historical evidence. |
+| Real existing-team connection | Agent #545 integrated native private-key Ed25519 proof signing; #547 integrated real default TLS registration-status read-back and coherent identity admission above replacement providers. This is not team approval or execution authority. Credential exchange/enrollment/heartbeat/revocation and isolated Keycloak/live grant qualification remain pending. |
+| Guest artifact admission | Deployment #1033 remains unmerged: bounded archive/chunk/gzip/ELF checks and a genuine accepted Agent consumer pass locally, but a retained hosted Git-install prerequisite failure blocks acceptance. No structural check alone proves VM execution. |
 | Seeds and installed targets | Seed SDK foundation integrated; API #645 remains draft. Public default coordinator, real authority/artifact/custody adapters, CLI selection and full installed capacity assembly remain pending. |
 | Real Work/model execution/accounting | Deferred to Task 10. |
 

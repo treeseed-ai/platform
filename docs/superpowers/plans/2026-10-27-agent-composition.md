@@ -112,27 +112,42 @@
 
 ## Current checkpoint
 
-The original 21 ready candidates and verification repairs Platform #805/#806 have integrated on
-Cordis after owner/assembled gates. Their verified merged task branches are cleaned. The new
-implementation candidates below remain unmerged for review. Keep every issue, including #678,
-open. Real Work/model execution remains Task 10; no legacy/production/cutover changes.
+Task 3D remains active and incomplete. Ready foundations have integrated only after exact-head
+owner/artifact/hosted/review gates; only verified merged task branches are cleaned. All issues,
+including #678, stay open. Real Work/models remain Task 10; no legacy/production/cutover changes.
+This ledger records owner qualification, not a completed assembled Capacity Provider.
 
-| Review boundary | Current evidence | Next obligation |
+| Boundary | Accepted evidence | Next obligation |
 | --- | --- | --- |
-| Shared policy | All nine critical instruction/checker candidates integrated; new methods have no added debt/exemptions | Continue contextual refactoring and unchanged baseline verification |
-| SDK activity data | [#493](https://github.com/treeseed-ai/sdk/pull/493), 121 owner cases and genuine archive/declaration consumers | Native profile/handler orchestration and live authority |
-| SDK environments | [#494](https://github.com/treeseed-ai/sdk/pull/494), 123 owner cases, exact archive and offline-policy intersection | Qualified guest execution, artifact custody and enforced egress |
-| SDK capacity leases | [#495](https://github.com/treeseed-ai/sdk/pull/495), 129 owner cases, generation/readiness/cleanup binding | Bounded pool/protocol follow-up and authenticated service transports |
-| Agent independent build | [#530](https://github.com/treeseed-ai/agent/pull/530), 12 acceptance plus four unit cases and exact SDK custody | Reconcile with runtime slices without losing any controls |
-| Agent native probe authority | [#531](https://github.com/treeseed-ai/agent/pull/531), 11 acceptance plus six filesystem integration cases; actual default root and packed Node/declaration consumers | Live existing-team authority remains distinct and required |
-| Agent guest preparation | [#532](https://github.com/treeseed-ai/agent/pull/532), draft public component: 11 acceptance plus nine native boundary cases; late-timer control fails before monotonic deadline correction | Real default execution/authority, actual Kata setup/egress and complete runtime composition |
-| SDK combined integration | Source 39d337c79528a3b815973a684844781211c4669a; 144 local owner cases plus five genuine packed portable programs and declarations | Deliver pool/protocol as bounded owner PRs after predecessor review; integration branch is not a substitute |
-| UI compatibility | [#105](https://github.com/treeseed-ai/ui/pull/105), draft exact successor; 46 owner cases, actual public server/terminal rendering and declarations | Upstream combined SDK review and final single-version owner closure |
-| Preserved Agent integration | Source 2d9afaba06ab6a827ea6eb8df8d7b456eec4be16; 57 owner cases, including existing external profile/handler archives | Separate manager/worker/guest programs, actual pool/control transport and live enrollment |
-| API seed sequencing | [#645](https://github.com/treeseed-ai/api/pull/645) stays draft; 20 focused sequencing cases | Default real authority/artifact/custody providers and full installed gate |
-| Kata backend/venue | Deployment #1022 and Platform #792 integrated after real hosted guest and verified cleanup; final Platform head f82ef1b506f518d0d48c521e25b41a3326ee8633 passed all 28 checks | Full Agent pool/assignment/setup/replacement gate, using hosted Ubuntu |
+| Critical architecture policy | All nine owner instruction/checker candidates integrated; touched methods pass the 20-line rule without new baseline debt/exemptions | Continue contextual refactoring and unchanged historical provenance |
+| SDK contracts | #493–#498/#500–#502 integrated; .39 has 188 owner cases, generated portable projections, exact public Node/declaration consumers and seven unchanged global operations | Consume one exact accepted SDK closure in remaining owners and final assembly |
+| Native Agent probe/guest | #530/#531 and subsequent #533–#544 integrated; actual Node and standalone GNU guest, native seams, trusted full dispatch, cancellation/fencing and immutable chunked runtime | Run this actual binary through a persistent Kata session; deliver separate manager/worker programs |
+| Existing-team connection | #545 signing and #547 status connection integrated. Agent .21 has 68 cases, real default TLS/crypto receiver, foreign/replacement identity denial and source-free public consumption | Approved credential/enrollment lifecycle, heartbeat/revocation and isolated Keycloak/live authority; status is not a grant |
+| Kata lifecycle and setup | Deployment #1022/#1024/#1027 integrated; real hosted Ubuntu 26.04 x64/KVM, scoped custody, one-use assignment, offline setup/verification and physical destruction | Exact GNU guest image/session, exclusive actual pool/refill/quarantine, allowlisted egress and generation transitions |
+| Private sandbox control | Deployment #1028 integrated as 09878d332ce8b1764ee86cb0c2736a81041494cc; .95 has 139 lower cases, genuine public Unix-peer consumer and two full hosted runs with real channel/Kata | Installed named grants/socket projections and actual Agent worker consumption; observer stays separate |
+| Guest payload admission | Deployment #1033 draft: bounded archive/chunk/gzip/ELF checks, 144 local cases and actual Agent .20 archive read-back | Retained hosted Git-installed prerequisite failure blocks acceptance; requalify after safe evidence transport. No VM execution claim |
+| Docker prerequisite investigation | #1030/#1034/#1035 integrated safe read-back/invocation/cause evidence; #1029 remains open. A distinct post-handoff child observation remains #1032 | Shared fixture formatter follow-up and causal diagnosis; do not select a green duplicate or silently retry failed heads |
+| Preserved Agent components | #532 and the 57-case integration remain unmerged; fixture pool/environment collaborators are not production evidence | Reconcile useful components into real default collaborators without resetting original work |
+| UI and API | UI #105 compatibility integrated (46 cases); API #645 seed sequencing remains draft (20 focused cases) | Current owner closures, default seed authority/artifacts/custody/journal, idempotent partial recovery and CLI/UI integration |
 
-### Exact private artifacts
+### Current accepted private artifacts
+
+| Artifact | Exact producer source | SHA-256 | Qualification limit |
+| --- | --- | --- | --- |
+| SDK .39 | f09247dbf020f0354edce9af2f9ccef6ba351ff3 | ddfb91a065bee6d7e9482427570e7c036b18f0fbbcaa09c0fc62fee094abdbd4 | Portable contracts and native composition, not an installed deployment |
+| Deployment .95 | 5114c6ac870cafcaa43f9d49531b0dd127a3a560 | 789b07fe1c55e1de128dcd3f9e75ff152e483b385fefcd2595fd1156ba95ce0c | Real private channel/Kata; actual Agent runtime session and installed grants remain required |
+| Agent .21 | 1407d65c39ff53de24af857e2054415b58542c35 | ea47621da50bcf311f4a8d684cc6dd9fc8f371ca0f0c7a4317cc537a0b87cf62 | Standalone guest and registration status; no actual guest-in-Kata/manager/worker/live authority claim |
+
+These are immutable private artifacts from reviewed producer commits. Squash integration commits
+are different identities; owner PRs retain both. This table does not change composition selections,
+peer pins, historical acceptance archives or production channels. Agent's development-only auditor
+still selects Deployment .88 with the same SDK .39; final assembly must record its own exact
+compatible owner closure and run genuine archive acceptance.
+
+### Historical private artifacts — initial checkpoint
+
+The following initial candidates retain their exact bytes and provenance. Their old review status
+is historical; use the accepted ledger above for current capability claims.
 
 | Owner artifact | Exact source | SHA-256 |
 | --- | --- | --- |
@@ -157,9 +172,10 @@ verified both SDK .30/UI and SDK .28/Agent selection. Shared prevention is propo
 
 ### Remaining Task 3D delivery
 
-Deliver actual separate manager/worker/guest programs and native roots; named service-scoped
-private sandbox grants/transport; exclusive real virgin claims/refill/generation disposal;
-immutable guest setup/verification and egress; live existing-team signing/enrollment/heartbeat/
-revocation; API default seed planning, isolated preparation, authority, custody, journal and
+Deliver separate manager/worker programs and native roots, and the actual existing guest
+through a persistent Kata session; installed named service-scoped private sandbox grants/socket
+projections consuming the accepted bounded transport; exclusive real virgin claims/refill/generation disposal;
+actual Agent setup/verification ordering and allowlisted egress; complete existing-team
+credential/enrollment/heartbeat/revocation and Keycloak/live authority qualification; API default seed planning, isolated preparation, authority, custody, journal and
 recovery; CLI project/profile/seed/capacity commands; complete exact-artifact assembly and
 replacement/fencing. Real Work/model execution stays Task 10. All issues remain open.
