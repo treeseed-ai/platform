@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-29 01:39 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 02:07 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -37,6 +37,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 22:55 | 0 | 11 | **0/11 = 0%** | +0/+0; API647 adopted and native v13 readiness recovered; API648 qualifies frozen-reporting blocker; no simulated release |
 | Oct29 00:53 | 0 | 12 | **0/12 = 0%** | +0/+1 API648 qualified/merged/adopted; MCP reconciliation passes; real Deployment planning exposes invalid shared schema; no simulated release |
 | 01:39 | 0 | 13 | **0/13 = 0%** | +0/+1 SDK503 shared schema repair; checked/adopted modules read back; API649/Agent548 qualify consumer pins; no new agent work or simulated release |
+| 02:07 | 0 | 13 | **0/13 = 0%** | +0/+0; Agent548's first full check failed on release-image SDK mismatch; declarations corrected together, replacement qualifying; API649 still running |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -46,7 +47,17 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 - [SDK503](https://github.com/treeseed-ai/sdk/pull/503): coordinator bootstrap structured content schema repair, protected `d5ef1e2985a639e7bd197d94847d66ce06b98f84`, adopted; consumer qualification pending.
 - [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
 
-## Shared schema adopted; consumer checks — 01:39 UTC
+## Consumer failure and custody correction — 02:07 UTC
+
+Agent548 source3dea159ba804adf34f549f9d0454a024e60a09a0 failed [Verify40801110911](https://github.com/treeseed-ai/agent/actions/runs/40801110911)/job123209176159: **1222passed/1failed across202files**, before scenes; installed-owner job skipped, not passed. The original `release-publication` guard found both native image preparation jobs still selecting old SDK while verification selected d5. Final failed logSHA25650d55224dce3238e184c6b36ef0e0cfd1f0ea2d1dcabc890c79d1e1e408ad2b7. Cheap same-guard red retained, SHA2567e5a6e708fca4a4a96a8000b61feb2f031cdb34285154230695880b293b7b7f4. No unchanged campaign rerun.
+
+**Correction to the previous custody description:** the Agent installed-owner input uses `${{ github.sha }}` and therefore describes the **current candidate**, not an old retained Agent artifact. Its buildSdk must move with the SDK used to build that candidate. Coordinator's earlier characterization was wrong. New Agent548 source **8710a751397f6fdf48bcdb61348d30d5dfd086dd** aligns verification, both image-preparation jobs, current Agent buildSdk d5/tarballb492149d.../run40799401377 and its download. The original verification-to-buildSdk assertion is restored; other owners' historical source/SDK/digest/run facts remain unchanged. No issued workday authority, original results, estimates or reserved golden chain changed.
+
+Final focused **18tests/3files passed** with CI Node24.12/npm11.6.2, including genuine packed installation/SBOM; logSHA2566a569064fb5de4b35788a2c45d201ddb4f629e45bec6c76cf54c5379ff37a6ad. Build/structural policies/whitespace passed. Earlier local linked-dependency, wrong-CWD and inherited host-npm failures are preserved in the owned evidence folder; they are not the CI failure. The isolated real SDK installation and correct PATH passed the unchanged tests. One empty test directory from the wrong-CWD invocation was identified/removed; live SDK213modules and package manifest were rechecked against the protected artifact, unchanged. No live dependency/state repair was used to get passing tests.
+
+[Replacement40804227906](https://github.com/treeseed-ai/agent/actions/runs/40804227906) runs the changed candidate's full verification/coded/installed-owner gates. API649/7096ed9f5d remains in its original [40801108184](https://github.com/treeseed-ai/api/actions/runs/40801108184), complete API verification still running. Neither consumer is merged or fully qualified. No new agent execution admitted, no simulated release; team configuration unchanged and ratio remains0/13. Next: finish these checks/adoption, then resume real group-only913 planning and retained delivery through MCP. All prior failed observations and unknown usage remain.
+
+## Prior shared schema adoption and consumer checks — 01:39 UTC
 
 SDK503 source **7ecda44bbb7edb0e8c561a0c37c3c2d4508eaaac**, checked9c8ed24df26b549b2f0d25a20011961daab0bc0c and protectedd5ef1e2985a639e7bd197d94847d66ce06b98f84 share tree35077ca051ce7d7f03cf4de4151d3bcd7ab78303. [Verify40797709215](https://github.com/treeseed-ai/sdk/actions/runs/40797709215)/job123198087923 passed **670tests/103files +290component/16product-custody steps**,0failed/blocked/skipped. Both new schema case and strengthened original native endpoint case passed. Final logSHA256eaf8d205fae5ecdf600b8c5f2611b1f5d401da1d60b59941ee203e3f5d18c730; scene artifact12864847682 ZIPb775378137055cf650499247ac03f84bf0b78210bb7dcc71a05a2e6d87dffc28. Protected [Verify40799401377](https://github.com/treeseed-ai/sdk/actions/runs/40799401377)/job123203606360 also passed670tests and sealed staging custody. No public SDK tag/npm release claimed.
 
