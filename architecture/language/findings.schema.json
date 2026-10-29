@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:treeseed:architecture-findings:0.1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "architecture-findings/0.1"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "missing-implementation",
+              "unclassified",
+              "contract-mismatch",
+              "dependency-mismatch",
+              "provider-mismatch",
+              "scope-mismatch",
+              "lifecycle-mismatch",
+              "placement-mismatch",
+              "insufficient-evidence",
+              "stale-evidence",
+              "accepted-exception"
+            ]
+          },
+          "expected": {
+            "$ref": "#/$defs/json"
+          },
+          "observed": {
+            "$ref": "#/$defs/json"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "disposition": {
+            "enum": [
+              "open",
+              "proposed-change",
+              "accepted-intent",
+              "accepted-exception",
+              "reconciled"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "subject",
+          "category",
+          "expected",
+          "observed",
+          "evidence",
+          "disposition"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "findings"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "json": {
+      "anyOf": [
+        {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/json"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/json"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -13,7 +13,7 @@ or graph semantics. JSON is an accepted interchange serialization, not a second 
 
 A workspace declares `schemaVersion`, document membership, baseline and profiles. Paths are
 relative to the architecture directory. A blueprint has `schemaVersion: architecture/0.1`,
-`view` (implementation, intent or example), `project`, `objects` and `metadata`. Object IDs are
+`view` (implementation, intent, example or profile), `project`, `objects` and `metadata`. Object IDs are
 stable namespaced strings. Duplicate IDs across a view are errors. The same ID in implementation
 and intent intentionally denotes the same architectural object. Example workspaces are isolated.
 
@@ -25,7 +25,7 @@ unsupported versions fail, never silently upgrade.
 
 Canonical comparison recursively sorts mapping keys, preserves scalar types and array order,
 and excludes comments. Objects are matched by ID rather than array position. Authors sort
-object lists by ID; named set-like arrays are sorted for readable diffs. Flow order is semantic.
+object lists by ID; named set-like arrays are sorted for readable diffs. Flow edge order is semantic; node-list layout is not execution order.
 Canonical bytes use UTF-8 compact JSON without a trailing newline. Do not use YAML spelling,
 source paths, display names or line numbers as architectural identity.
 
@@ -107,7 +107,8 @@ record both instead of deciding that either automatically overrides the other.
 A composition owns a target and process identity. Scopes have IDs, optional parent, and lifetime.
 Parent scopes must belong to the same process. Registrations reference providers; selections bind
 a capability and scope to a provider. Registration is not selection; selection is not readiness.
-Exactly one selected compatible provider is required per required singleton capability/scope.
+Exactly one compatible binding is required per required singleton capability/scope: a provider
+selection for selectable capabilities, or a fixed binding for fixed capabilities.
 Collections require an explicit collection contract. Missing, duplicate or incompatible selection
 is an error. Contract versions are exact in v0.1; no implicit semver compatibility inference.
 
@@ -161,3 +162,114 @@ requires an explicit version and migration decision; preserve original baselines
 
 Standards: [YAML 1.2](https://yaml.org/spec/1.2/),
 [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/json-schema-core).
+
+## Resolver and comparison decisions
+
+`view: profile` is a reusable requirement overlay. Evaluate it separately against the selected
+implementation or intent workspace. Its project/subject references resolve in that target view.
+Missing subjects are unresolved-reference errors; an accepted profile does not approve observations.
+The workspace's document list contains both views, but resolution indexes them independently.
+
+Composition `components` identifies active consumer component IDs. Each scope may state
+`requiredCapabilities`; these and active consumers' `requires` relationships determine obligations.
+If membership or requirements are omitted in an observed partial composition, report unknown
+coverage rather than claiming all required selections exist. Registration/selection omission is
+unknown; explicit empty arrays mean no recorded registrations/selections, not a complete-coverage claim.
+Selections must reference a registration in the same composition. In v0.1 selections never inherit
+implicitly: a child lists its effective selection, including intentional reuse of a parent's provider.
+Child overrides are explicit child selections; duplicate singleton capability/scope selections fail.
+Collections reject duplicate capability/scope/provider tuples, while permitting distinct providers. A scope
+ID is local to its composition. A process ID is a symbolic identity owned by that composition,
+not an architectural object reference; sharing processes between composition records is not inferred.
+
+A provider's contractVersion applies to every supplied capability contract. Mixed versions require
+separate provider records (which may bind the same implementation class). An optional provider
+`contract` must equal the contract of every supplied capability; otherwise omit it. `unresolved`
+versions/native IDs in the source survey are extraction markers and never evidence of compatibility.
+
+Component capabilities imply provides edges; component contracts imply implements edges;
+component dependencies imply component-to-component depends-on edges; capability owner implies
+component-to-capability provides. Provider capabilities imply provides. Explicit relationships are
+unioned with these implied edges, deduplicated by kind/from/to; they do not replace fields. A closed
+boundary rule constrains the union. IDs must have the permitted endpoint kinds. No ordering priority
+allows contradictory records or ownership claims to overwrite one another.
+
+Reference fields: project/component/capability/contract/subject/participants/relationship endpoints
+refer to object IDs. Evidence qualification/readiness references refer to evidence IDs in the selected
+view's metadata. Flow entry/next/outcomes/branches/join/body/exhausted/requiredCleanup refer to local
+node IDs; predicates refer to local predicate IDs. Flow outcomes is a set of terminal node IDs,
+not labels. Scope selection scope/parent refer to local scope IDs. Baseline is a baseline document ID.
+Operation input/output/errors/events are descriptive type strings in v0.1, not resolvable object IDs;
+use explicit contract references on calls/messages for typed architectural edges. Schema references
+are owner-relative file plus optional JSON Pointer, resolved using the object's source binding
+project/revision; absent/ambiguous owner provenance is unknown. Artifact strings are immutable
+identifiers/claims, not fetch instructions or qualification. General references and provenance lists
+are informational document links. Extensions never supply implicit core reference targets.
+
+Flows: a nonterminal node uses either next or a nonempty outcomes map, never both. Branch maps
+name predicate results; call maps name success/error/cancellation outcomes. Complete and terminal
+failure/cancel nodes have no outgoing edges and must be declared in the flow's outcomes. Failure
+or cancellation nodes may instead route to cleanup. Parallel uses branches plus join; join lists
+its required branch endpoints and has a next edge. Repeat has body, bound, exhausted; body paths
+return to that repeat or exit, and exhaustion must reach a terminal node. All reachable executions
+must terminate within declared repetition bounds. requiredCleanup lists cleanup node IDs which
+must occur on every relevant terminal path; partial observations remain unknown. No implicit
+exception edge is assumed. Missing modeled exceptions are a coverage gap, not proof of safety.
+
+Acceptance is per decision subject. A document marked accepted covers all its objects only when
+provenance explicitly authorizes that scope. Mixed documents require `metadata.acceptedSubjects`
+listing accepted IDs and decisions explaining that acceptance; unlisted objects remain proposed.
+Imported candidate identity maps are always proposed, even when their source names are retained.
+
+Canonical data serialization preserves arrays as stated above. Architectural comparison applies
+an additional field-aware projection: objects by ID; operations by name; scopes and flow nodes by
+local ID; selections by scope/capability/provider tuple; relationships by kind/from/to; predicates
+by ID. capabilities/contracts/dependencies/participants/registrations/requiredCapabilities/
+requiredCleanup/flow outcomes and branches are sets of IDs (duplicates fail). Other arrays remain
+ordered, including descriptive errors/events. Node edges, not YAML list position, establish flow
+execution order. A future ordered-step syntax must lower to these explicit edges.
+
+Architectural diff excludes metadata, sourceBindings, extensions, project revision, and observed
+component ownedFiles; source/path drift is reported separately by binding/placement comparisons.
+It includes names, purposes and all normative properties. Extensions are compared separately as
+opaque data, never interpreted as requirements. Canonical serialization and architectural projection
+are different operations and must not share an unexplained digest.
+
+## Fixed versus selectable capabilities
+
+A plugin need not offer provider choice. Capability `implementationMode` distinguishes fixed from
+selectable. Omission in a partial source model means unknown selection semantics. Fixed capabilities
+require a coherentInvariant describing why independent replacement is inappropriate; their scope
+`fixedBindings` maps capability to the supplying component. Selectable capabilities use registered
+Providers and selections. A capability cannot be both fixed-bound and provider-selected in a scope.
+A fixed binding must reference a component that provides that capability. These bindings are explicit
+per scope, with no implicit inheritance. A required capability must resolve through exactly one of
+these mechanisms; its cardinality controls provider count. This makes Cordis's intrinsic composition handle explicit without inventing a
+swappable provider for its resolver. Neither fixedBinding nor provider selection proves readiness.
+
+The ruleType vocabulary is closed in v0.1 and listed in the schema. Profile rules supply their
+parameters. A forbidden-dependency parameter `target` is an architectural object ID; a closed-boundary
+parameter `allowed` is a set of allowed target IDs. Unsupported parameter semantics are errors, not
+ignored rules. Review rules demand recorded human/agent review evidence rather than numeric proxies.
+
+## Scope membership and role precision
+
+Component `componentRole` is a core field: runtime (default when omitted), logical-area, contract,
+data, internal-helper or development-policy. The TreeSeed plugin requirement applies to runtime
+components; its exemptions use this field, never opaque extensions. Consumer plugins which only
+inject capabilities are Components even though they supply no Provider. Inventory separately keeps
+implementation classes that do not form architectural runtime units.
+
+Composition components is shorthand for consumer membership of its single parentless scope.
+Multiple parentless scopes require per-scope components and prohibit this shorthand. Scope components
+is explicit local membership; it never inherits. Agent's child execution consumer has its own
+membership and explicit effective selections reusing root registrations. This describes resolution,
+not mounting new copies. Missing observed membership keeps completeness unknown.
+
+For a singleton reject duplicate capability/scope pairs. Collections permit multiple distinct
+providers and reject duplicate capability/scope/provider tuples; the collection contract defines
+aggregation and ordering (v0.1 does not infer it from registration order). The earlier duplicate
+selection rule is restricted to singleton capabilities.
+
+Parallel and repeat nodes are exceptions to the next/outcomes edge form: their branches/join and
+body/exhausted edges define their control flow respectively. Termination requirements still apply.
