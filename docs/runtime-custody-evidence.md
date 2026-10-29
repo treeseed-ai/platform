@@ -120,15 +120,17 @@ manager/worker interfaces still require their owner integration and assembled te
 `KataLaunchAttestation`. Its frozen .134 producer is
 `8c4e95714d32c1a40d13dcbe4a8a94266446432c`, archive SHA256
 `34130ebddc71b24844b104b68be7efc6904441faff4c91ca1beece6ef0d15f19`.
-The fixture-only corrected head is `9ebfc0331d8fe5d1b86322260aed5f31555ef380`;
+The fixture-only diagnostic head is `ebbe8c8d178965ed6edf24db7dd6f3b368c310ee`;
 all 176 packaged files/modes remain identical, with no repack. Fresh corrected-head hosted finite
-launch, valid mismatched-policy denial and destruction invalidation remain required. A previous
-fixture stopped before launch at invalid sandbox-ID admission and cannot count as VM evidence.
+launch, valid mismatched-policy denial and destruction invalidation remain required. The first
+fixture stopped at invalid sandbox-ID admission; its corrected successor failed sandbox creation
+before attestation. Bounded fixture diagnostics are investigating the runtime cause. Neither
+failed run counts as finite-policy VM evidence.
 
 Owner references: [effective policy](https://github.com/treeseed-ai/deployment/blob/0e88b49b8957772110bb26271dcd4e86a1f439e9/docs/runtime-policy-custody.md),
 [installed aliases](https://github.com/treeseed-ai/deployment/blob/0e88b49b8957772110bb26271dcd4e86a1f439e9/docs/runtime-alias-custody.md),
 [guest artifact boundary](https://github.com/treeseed-ai/deployment/blob/0e88b49b8957772110bb26271dcd4e86a1f439e9/docs/kata-guest-runtime.md),
-and [candidate launch contract](https://github.com/treeseed-ai/deployment/blob/9ebfc0331d8fe5d1b86322260aed5f31555ef380/docs/kata-launch-binding.md).
+and [candidate launch contract](https://github.com/treeseed-ai/deployment/blob/ebbe8c8d178965ed6edf24db7dd6f3b368c310ee/docs/kata-launch-binding.md).
 
 ## Remaining delivery gates
 
