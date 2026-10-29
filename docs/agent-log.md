@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-29 21:04 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 22:55 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -57,6 +57,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 20:21 | 0 | 16 | **0/16 = 0%** | +0/+1 API654 qualified/merged; supported adoption underway |
 | 20:31 | 0 | 16 | **0/16 = 0%** | +0/+0; exact installed API adopted; original Releaser plan recovered through MCP and old workday closed normally |
 | 21:04 | 0 | 16 | **0/16 = 0%** | +0/+0; Architect correctsv16;4useful plan/notes,1unadopted competing draft; API659 closeout repair qualifying |
+| 22:55 | 0 | 16 | **0/16 = 0%** | +0/+0;659 first native fixture failure retained/corrected; changed-candidate full verify:direct passed, coded scenes pending |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -101,6 +102,17 @@ Reported aggregate224active/225elapsed seconds,1484479input1245568cached18203out
 [API659](https://github.com/treeseed-ai/api/pull/659), source4d4c974d7d2bf1913671ae9d20ce9e5f206059cd from73e, repairs only that boundary. Test-firstred25752d3e0ecb36d8a41371782039e4a581318a34 reproduced the exact real error, logSHA01c24abbe43a4d2091abc5ebbc64d8f3834d6f3de3ea7149d75ef595e9cb3492. Final8focusedtests3files/strictbuild/structural/whitespace passed; final testlogSHAee46e11a7aa6f0447eb2763d149801ad903864e8eb5964179829cd682c7ef019. Initial strict metadata-spread error fixed with object narrowing, no checks disabled. Only after original canonical result/author/profile/groups/workspace/grants and immutable source verification plus matching BOTH genuine version-row hashes does a newer editable source yield explicit not_adopted/source_advanced in the existing audit. Existing assignments.explain derives the SAME fact; no new endpoint/model/store, auto-merge, version/vote/estimate/review credit or changed result/deadline/usage. All prior closed/invalid/missing/corrupt denial assertions retained. Real signedTreeDX/PostgreSQL concurrent non-adoption/explanation/history/readback case and existing coded binding strengthened. Original Verify40954445172 queued; complete qualification/adoption/live closeout UNPROVED. No new coordinator credit until merge.
 
 Next action is checked659/adoption, native explanation proving ORIGINAL Engineer product not adopted, normal9dcloseout, then fresh genuine group self-estimates on coherentv16. No further activation while9d is blocked. Source cache35382/loop17 remains fenced/causeUNKNOWN; Reviewer129 independent review and original retained Agentv13 ordinary release remain unproved. **0team/16coordinator=0%;0ordinary native-MCP simulated releases.**
+
+
+## Fixture correction — Oct29 22:55 UTC
+
+[API659](https://github.com/treeseed-ai/api/pull/659) remains unmerged/unadopted. First source4d4c974d7d2bf1913671ae9d20ce9e5f206059cd / Verify40954445172/job123730756579 **FAILED**:32native tests/4files passed, one public explanation case correctly rejected its incomplete controlled assignment envelope (capacityEnvelope.teamId required). Full suites/scenes were not run. Failed full logSHAac9136b04159a7c02ca3017945a11f3baa387f015005d5a0f6eaf44a126b1d57; native artifact12932434847/ZIPdigestd9c2943dda7f4d2686d9c07e22c5c180f1d596a2482430578812a4f3ab320dec retained. No unchanged rerun.
+
+Fixture-only commit **f50ec2fc20f0415abbaf920da261d8f24d0c2912** shares complete controlled canonical rows between cheap serializer/public-explanation regression and original native case, using existing emptyCapacityBudget, original identity and controlled execution-provider/reservation parents. No production validator, assertion, deadline or allowance change. Initial cheap regression also exposed omitted lease/default fields (redlogSHA6d4c657f7818194d8f191f9c67dbf8eec6b22f0c04c80df40603be2457bb961a). Final9tests/3files passed/logSHA19ec673a007450d186eb08b3db17e41b3bffd17df54bf31e1c9a554f719d010c; strict declarations, structural policies and whitespace passed. Temporary dependency symlink removed; owned API source worktree clean.
+
+Changed-candidate **original Verify40957220392/job123740312061** passed preliminary native prerequisites, including corrected explanation, full verify:direct and subsequent PostgreSQL steps; coded component scenes still RUNNING22:55. Complete final logs/artifacts/scene qualification and live repair remain unproved. Exacthead authorization40957274718/job123740503585 and contract40957274374/job123740502382 passed. Earlier metadata-triggered contract40957218275/job123740305186 failed stale recorded head during push/body update; normal body correction triggered the passing check, old failure preserved. No duplicate full campaign.
+
+No team/profile/group change or new agent execution; canonicalv16/original9ddeadline/products and cache35382/loop17 fence preserved. Human mount diagnostics show kernel mount and no listed user-process holder at observation; original unmount cause remains UNKNOWN. Root user files untouched. Root API remains checked/adopted654 at73e7252e96acdd43bcb4f08e5190fe75793f06c4. **0team/16coordinator=0%; ordinary native-MCP simulated releases0.** API659 earns coordinator credit only on merge; this log earns none. Continue its existing CI, exact checked merge/adoption, truthful original Engineer non-adoption and normal9d/Reporter closeout, then real group self-estimates.
 
 
 ## Retained target and next work
