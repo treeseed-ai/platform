@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-29 04:14 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 04:53 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -40,6 +40,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 02:07 | 0 | 13 | **0/13 = 0%** | +0/+0; Agent548's first full check failed on release-image SDK mismatch; declarations corrected together, replacement qualifying; API649 still running |
 | 03:05 | 0 | 13 | **0/13 = 0%** | +0/+0; Agent548 qualified/merged/adopted with exact live/image read-back; API649's original coded scenes continue; no new agent contribution/release |
 | 04:14 | 0 | 13 | **0/13 = 0%** | +0/+0; API649 adopted; real planning reached model but selected-objective/source-context gaps block proposals; affected run stopped normally |
+| 04:53 | 0 | 13 | **0/13 = 0%** | +0/+0; API650 qualifies exact context repair; governed planning source permissions published for Architect/Engineer; no new acting contribution/release |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -49,7 +50,17 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 - [SDK503](https://github.com/treeseed-ai/sdk/pull/503): coordinator bootstrap structured content schema repair, protected `d5ef1e2985a639e7bd197d94847d66ce06b98f84`, adopted; API649/Agent548 consumers qualified/adopted.
 - [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
 
-## Current delivery — Oct29 04:14 UTC
+## Current delivery — Oct29 04:53 UTC
+
+[API650](https://github.com/treeseed-ai/api/pull/650), exact source **631da09f099c0d36488e90f3010ccc6ade8a2266**, base9aac16b9d346ada374c2d9cff0b58d73e5964392, is in its original [Verify40819186065](https://github.com/treeseed-ai/api/actions/runs/40819186065)/job123267369580. Native server prerequisites passed; complete suites/scenes, checked merge, adoption and live recovery remain unproved. No duplicate campaign or new agent activation. The repair reuses existing workday source context and canonical TreeDX ID lookup/read-back at frozen source; no guessed filename, new state or agent-output substitution.
+
+**Local exact candidate:**49focused cases/2files passed, SHA25695d9dd012822a138b847426ad5a70d36d94a36ae7d21404fa514c07cd9aee6c4. New real PostgreSQL/HTTP source case passed1selected/5deselected (not full suite), log16aa2fb5cbec8cfe58d7d8e05cc72508fba8f5e87bd75e8bb5a2c562efe3f0ec; owned DB/container/volume verified absent after asynchronous auto-removal. Signed native TreeDX/SQL objective case is collected for original CI, not locally claimed. Strict declaration builda6db69154dfbcb0b066a2a62e57de2c396aac5ca20fb0244d69e7f05d0e4c063 and structural policies201613fce20dd9d2ba19e8c38449fc001a519deb969302a570ca23d59ef88404 pass. Four exact unit/native bindings extend the existing coded component scene. Selected-objective redf20f15e2(1failed/1passed), negative red68b8d87b(2failed/20passed), initial old-fixture omission(1failed/48passed) and original source red below remain failed observations in [API625](https://github.com/treeseed-ai/api/issues/625).
+
+**Team configuration via native MCP:** Deployment Architect/Engineer planning now grant source.read and direct exact read-only source/context inspection. Every other definition field and document body is semantically unchanged: groups/classes/handlers/models/acting/reviewing profiles and issued authority preserved. Other three subscribers already had this planning permission. Workspacefe8dd955-709c-412c-9717-8ca7b44970c7 published/v6; approved review1bd89bc4-8248-4289-bd63-69779a6e7ab8, publication3771aa1d-08d3-4ae2-80b2-6f054c7324f0/operation4f7a34ee-e312-484b-8eda-804d08a26e9f succeeded. Exact commit98aba24f2848cca88b998afcabf0deca79d97c30 published staging revisiond91ba2d289e4901aa58a52c11d93b7683aa1e0b5; native roster definitions match semantically. This repairs the observed denial for subsequent work, without changing frozen workdays.
+
+Ratio stays **0team/13coordinator=0%**, full native-MCP simulated releases **0**. Unmerged650 and configuration/research/log/adoption add no implementation credit. Resume the same objective's five-subscriber planning only after checked650 adoption. [Prior complete 04:14 checkpoint](https://github.com/treeseed-ai/platform/blob/8dfcc783c4494c4bb9db43894a0d4afb589a5d42/docs/agent-log.md), blob48e8f0d315ad45bf172163bec173c87e989004df, retains exact previous observations; the history below is not a current pending-state claim.
+
+## Retained delivery observations — Oct29 04:14 UTC
 
 Earlier source, failure, configuration, usage and adoption evidence is preserved in the [complete 03:05 checkpoint](https://github.com/treeseed-ai/platform/blob/0dea6f76bdc433cf1236d4e9443f65c2a82cd488/docs/agent-log.md), blob `b99f8b11f90172ec6ae3b56acad43be762ade3b3`. This concise view supersedes its pending states; no historical failure is relabelled.
 
