@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-29 02:07 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 03:05 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -38,6 +38,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | Oct29 00:53 | 0 | 12 | **0/12 = 0%** | +0/+1 API648 qualified/merged/adopted; MCP reconciliation passes; real Deployment planning exposes invalid shared schema; no simulated release |
 | 01:39 | 0 | 13 | **0/13 = 0%** | +0/+1 SDK503 shared schema repair; checked/adopted modules read back; API649/Agent548 qualify consumer pins; no new agent work or simulated release |
 | 02:07 | 0 | 13 | **0/13 = 0%** | +0/+0; Agent548's first full check failed on release-image SDK mismatch; declarations corrected together, replacement qualifying; API649 still running |
+| 03:05 | 0 | 13 | **0/13 = 0%** | +0/+0; Agent548 qualified/merged/adopted with exact live/image read-back; API649's original coded scenes continue; no new agent contribution/release |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -46,6 +47,14 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 - [API648](https://github.com/treeseed-ai/api/pull/648): coordinator bootstrap frozen-reporting recovery, protected `e3b3a05892eb25ef5f2fd77c476788f2870118d2`, adopted.
 - [SDK503](https://github.com/treeseed-ai/sdk/pull/503): coordinator bootstrap structured content schema repair, protected `d5ef1e2985a639e7bd197d94847d66ce06b98f84`, adopted; consumer qualification pending.
 - [TreeDX100](https://github.com/treeseed-ai/treedx/pull/100): coordinator bootstrap, protected `6336aaf0de38adbc88c26fb60c076e83f6fde4ea`; exact checked tree `3398189e07c4694b1cc31b0f917f97988151de5d`.
+
+## Agent consumer qualified and adopted — 03:05 UTC
+
+[Agent548](https://github.com/treeseed-ai/agent/pull/548) is merged at **7296807ee190eb024dd6de086aae65e43f1da1a3**. Source8710a751397f6fdf48bcdb61348d30d5dfd086dd / checked d75b00be2b974108e3087d5754b2849bd4eb3387 / protected merge share tree **b13fad632427c1a3e99f30f26a2bbf5fa28aa2db**. Original replacement [Verify40804227906](https://github.com/treeseed-ai/agent/actions/runs/40804227906), main job123219198806 and installed-owner job123233576897 both passed. **1223tests/202files; 911component-boundary +23planning-recovery steps**, no failed/blocked/skipped steps. Scene artifact12869800334 ZIP SHA256d1f38732f6713177bf4a8098bf2f2877ed852396c12ab2093b0974a54a8fef2d; main log SHA256a9b44bbab5dbb59931616afb01b03a68dde4afd441d1ea8065038d1b19796ed7. Installed custody artifact12868934430 SHA256e09797747fbb8b79ac70369fc85706a21e44dabe5876cf34b2d71b6911b21a67 verifies six owners/22selected assets and cleanup; managedPass/specificationPass remain false, so this is not managed acceptance or a native MCP release. Original3dea failure remains failed.
+
+Supported agent.sandbox and agent.provider rebuilds completed in dev-5007e344-493, no blockers/manual actions; sandbox12420/provider12689 ready, SDK202/API13506+13346 unchanged. Receipt SHA25689a22f210c54721639a6dcae12df108fe7ae712a280890adeacb2dc3bcd8497f /52424cfc02e162908ee446370bc5ba51a769f108c8f5dfcd93d772c84cef4a77. Exact61Agent JS modules match checked Actions package, root build, live manager/runner and sandbox image41be37cbd3640545eddbcec0e96b24578be0c71e8f36126269d30a6d1f31a437; manifest SHA25661b80d61e4d3b54666f3ebf6199f2813faabeebeb5c98ccdf38e8e91785842b1. Exact213SDK modules still match protected SDK503 in manager/runner/image. Never-started readback container/copied public code removed. No team configuration or issued authority changed; unknown retained usage/settlement remain unknown.
+
+API649's original Verify40801108184/job123209167114 still runs coded component scenes; no duplicate campaign or new planning activation. Finish exact checked API adoption before fresh group-owned Deployment913 planning, own estimates/approval/contributions/reviews and the retained Agent continuation/release. **0team/13coordinator=0%; full native-MCP simulated releases0**. Agent548 configuration/adoption adds no implementation unit.
 
 ## Consumer failure and custody correction — 02:07 UTC
 
