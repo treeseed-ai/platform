@@ -172,6 +172,40 @@ grant revisions explicitly. Do not create teams, migrate accounts or authorize f
 equality. Heartbeat/readiness expires honestly; revoked/expired authority fails closed. Tests use
 isolated control-plane fixtures and real isolated Keycloak, never production enrollment.
 
+## Implemented Agent plugin map
+
+All entries below belong to the independent `treeseed-ai/agent` repository and its private
+`@treeseed-cordis/agent` .21 artifact. They are read from the accepted
+[native package projection](https://github.com/treeseed-ai/agent/blob/1407d65c39ff53de24af857e2054415b58542c35/package.json),
+not a second runtime registration catalogue. Required selections still resolve through native Cordis.
+
+| Native class | Provider ID / provided capability | Current composition |
+| --- | --- | --- |
+| `ProviderRegistrationPlugin` | `agent.provider.connection.registration` → `agent.provider.connection` | Proof/connection library roots; manager program pending |
+| `ProviderFileProofPlugin` | `agent.provider.proof.private-file` → `agent.provider.proof` | Proof/connection library roots; manager program pending |
+| `GuestProfilePlugin` | `agent.guest.profile.probe` → `agent.guest.profile` | Guest root |
+| `GuestContextPlugin` | `agent.guest.context.isolated` → `agent.guest.context` | Guest root |
+| `GuestHandlerPlugin` | `agent.guest.handler.echo` → `agent.guest.handler` | Guest root |
+| `GuestToolPlugin` | `agent.guest.tool.echo` → `agent.guest.tool` | Guest root |
+| `GuestReportingPlugin` | `agent.guest.reporting.probe` → `agent.guest.reporting` | Guest root |
+| `GuestExecutionPlugin` | `agent.guest.execution.probe` → `agent.guest.execution` | Guest root |
+| `AgentCapacityAssignmentFilePlugin` | `agent.capacity.assignment.private-file` → `agent.capacity.assignment` | Guest root |
+| `AgentFileGrantPlugin` | `agent.authority.private-file` → `agent.authority` | Bounded probe root |
+| `AgentHostPlugin` | `agent.host.native` → `agent.host` | Bounded probe root |
+| `AgentContextPlugin` | `agent.context.isolated` → `agent.context` | Bounded probe root |
+| `AgentEchoToolPlugin` | `agent.tool.probe-echo` → `agent.tool` | Bounded probe root |
+| `AgentEchoHandlerPlugin` | `agent.handler.echo` → `agent.handler` | Bounded probe root |
+| `AgentReporterPlugin` | `agent.reporting.probe` → `agent.reporting` | Bounded probe root |
+| `AgentExecutionPlugin` | `agent.execution.probe` → `agent.execution` | Bounded probe root |
+
+The registration provider declares native `cordis.composition` and `agent.provider.proof` injection.
+The probe host declares the composition service and its authority/context/handler/tool/reporting/
+execution dependencies. Guest execution receives retained typed capabilities from its coherent
+guest kernel; an empty direct injection list does not create another dependency container.
+Manager/worker container-service plugins and installed service projections are still required.
+Core profile schema identifiers are data contracts, not proof that productive handlers exist.
+All current executable probes remain harmless; real Work/models stay Task 10.
+
 ## Current implementation and acceptance ledger
 
 | Capability | Current status |
