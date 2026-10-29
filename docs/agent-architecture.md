@@ -65,13 +65,11 @@ invariant. The kernel's authorization, lease fencing and result-custody invarian
 bypassed through provider selection. Metadata catalogues describe providers; native injection
 supplies their instances. Advertised substitutions share a contract suite.
 
-The current draft exports seven probe plugins from `@treeseed-cordis/agent`:
-`AgentFileGrantPlugin` (`agent.authority`), `AgentContextPlugin` (`agent.context`),
-`AgentEchoToolPlugin` (`agent.tool`), `AgentEchoHandlerPlugin` (`agent.handler`),
-`AgentReporterPlugin` (`agent.reporting`), `AgentExecutionPlugin` (`agent.execution`) and
-`AgentHostPlugin` (`agent.host`). These are draft composition infrastructure, not implemented
-manager/worker/Kata capabilities. New capability metadata must be generated from the same class
-declarations used for native `provide`/`inject`; update this map with verified exports.
+Accepted Agent .35 declares twenty native provider classes. The exact
+[class/capability/module catalogue](runtime-custody-evidence.md#agent-provider-catalogue) comes from
+its generated package metadata, using the same native provide/inject declarations. Available
+probe and infrastructure providers do not establish a live manager kernel, complete enrollment,
+worker pool or guest dispatch. Program roots select their own providers; contexts remain process-local.
 
 ## Definitions and extensible activity profiles
 

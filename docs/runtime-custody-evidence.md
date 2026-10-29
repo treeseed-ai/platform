@@ -79,6 +79,41 @@ proof. Do not repack, relabel or rewrite those artifacts or their acceptance exp
   A transport or registration-status response is not approval, a live grant or manager orchestration.
   The seven global platform operation IDs remain unchanged.
 
+## Agent provider catalogue
+
+All twenty entries belong to the independent `@treeseed-cordis/agent` package. Their declared
+metadata target is `agent`; each program's native root selects its required subset. The table
+records accepted class declarations and archive modules, not a claim that every provider is
+active or that pending enrollment/dispatch/pool behavior is qualified.
+
+| Provider class | Typed capability | Declared archive module |
+| --- | --- | --- |
+| `ProviderEnrollmentPlugin` | `agent.provider.enrollment` | `dist/src/provider-enrollment.js` |
+| `WorkerSandboxPlugin` | `agent.worker.sandbox` | `dist/src/worker.js` |
+| `ProviderTokenPlugin` | `agent.provider.token` | `dist/src/provider-token.js` |
+| `ProviderCredentialPlugin` | `agent.provider.credential` | `dist/src/provider-credentials.js` |
+| `ProviderRegistrationPlugin` | `agent.provider.connection` | `dist/src/provider-connection.js` |
+| `ProviderFileProofPlugin` | `agent.provider.proof` | `dist/src/provider-proof.js` |
+| `GuestProfilePlugin` | `agent.guest.profile` | `dist/src/guest-providers.js` |
+| `GuestContextPlugin` | `agent.guest.context` | `dist/src/guest-providers.js` |
+| `GuestHandlerPlugin` | `agent.guest.handler` | `dist/src/guest-providers.js` |
+| `GuestToolPlugin` | `agent.guest.tool` | `dist/src/guest-providers.js` |
+| `GuestReportingPlugin` | `agent.guest.reporting` | `dist/src/guest-providers.js` |
+| `GuestExecutionPlugin` | `agent.guest.execution` | `dist/src/guest-providers.js` |
+| `AgentCapacityAssignmentFilePlugin` | `agent.capacity.assignment` | `dist/src/authority.js` |
+| `AgentFileGrantPlugin` | `agent.authority` | `dist/src/authority.js` |
+| `AgentHostPlugin` | `agent.host` | `dist/src/execution.js` |
+| `AgentContextPlugin` | `agent.context` | `dist/src/providers.js` |
+| `AgentEchoToolPlugin` | `agent.tool` | `dist/src/providers.js` |
+| `AgentEchoHandlerPlugin` | `agent.handler` | `dist/src/providers.js` |
+| `AgentReporterPlugin` | `agent.reporting` | `dist/src/providers.js` |
+| `AgentExecutionPlugin` | `agent.execution` | `dist/src/providers.js` |
+
+Deployment's custody/observation/attestation classes are invariants beneath its selected native
+Kata provider; they are not another plugin registry. This wave adds public owner package
+capabilities, not a new public CLI or HTTP endpoint. New seed/capacity commands and installed
+manager/worker interfaces still require their owner integration and assembled tests.
+
 ## Draft native launch binding
 
 [Deployment1070](https://github.com/treeseed-ai/deployment/pull/1070) is a review candidate for
