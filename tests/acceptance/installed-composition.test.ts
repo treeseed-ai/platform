@@ -1,3 +1,4 @@
+import {QualifiedFixtureLock} from '../support/assembly/qualified-fixture-lock.ts';
 import {test,expect} from 'bun:test';
 import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,copyFileSync,existsSync,statSync,chmodSync,readdirSync,lstatSync,rmSync} from 'node:fs';
 import {join,resolve,dirname} from 'node:path';
@@ -14,6 +15,7 @@ import {SourcePolicy} from '@treeseed-cordis/sdk/source-policy';
 import {PostgresContainerPlugin,CaddyContainerPlugin,InstallationStore} from '@treeseed-cordis/deployment';
 import {NodeApiContainerPlugin} from '@treeseed-cordis/api/container';
 import {KeycloakContainerPlugin} from '@treeseed-cordis/identity';
+interface ImageContextReceipt {assetDigest: string; packageDigest: string;}
 interface OwnerPin {repository:string;commit:string;archive:string;sha256:string;}
 interface Evidence {formatVersion:number;fixturesOnly:boolean;cli:{repository:string;commit:string};owners:Record<string,OwnerPin>;images:Record<string,string>;}
 interface Descriptor {mediaType:string;digest:string;size:number;platform?:{os:string;architecture:string};}
@@ -69,22 +71,411 @@ class InstalledScene {
  configuration!:DeploymentConfiguration;inventory!:InstalledRelease;plan!:InstalledPlan;browser:BrowserContext|null=null;project='';fixtureImage='';
  private beforeContainers:string[]=[];private beforeVolumes:string[]=[];private beforeNetworks:string[]=[];
  private snapshot(kind:string):string[]{return Commands.run('docker',[kind,'ls','--quiet',...(kind==='container'?['--all','--no-trunc']:[])]).split('\n').filter(Boolean).sort();}
- async prepare():Promise<void>{
-  expect(readFileSync('/etc/os-release','utf8')).toContain('VERSION_ID="26.04"');expect(process.arch).toBe('x64');Commands.run('docker',['compose','version']);Commands.run('certutil',['--build-flags']);expect(this.evidence.fixturesOnly).toBe(true);expect(new SourcePolicy().inspect('tests/acceptance/installed-composition.test.ts',readFileSync(import.meta.filename,'utf8'))).toEqual([]);
-  expect(Commands.run('git',['rev-parse','HEAD'],'packages/cli')).toBe(this.evidence.cli.commit);for(const owner of Object.values(this.evidence.owners))expect(Commands.sha(readFileSync(owner.archive))).toBe(owner.sha256);
-  mkdirSync(this.cache,{recursive:true,mode:0o700});expect(statSync(this.cache).uid).toBe(process.getuid!());expect(statSync(this.cache).mode&0o777).toBe(0o700);mkdirSync(this.bundle,{mode:0o700});mkdirSync(join(this.bundle,'archives'),{mode:0o700});mkdirSync(join(this.bundle,'oci'),{mode:0o700});
-  const dependencies:Record<string,string>={};for(const [name,pin] of Object.entries(this.evidence.owners)){copyFileSync(pin.archive,join(this.bundle,'archives',name+'.tgz'));dependencies['@treeseed-cordis/'+name]='file:archives/'+name+'.tgz';}
-  const packageJson={name:'cordis-installed-acceptance-fixture',version:'1.0.0',private:true,dependencies,scripts:{postinstall:'bun script-canary.ts'}};writeFileSync(join(this.bundle,'script-canary.ts'),"export class ScriptCanary {static run():void {Bun.write('SCRIPT_EXECUTED','unexpected');}} ScriptCanary.run();\n",{mode:0o600});const packageHash=Commands.write(join(this.bundle,'package.json'),packageJson);Commands.run('bun',['install','--lockfile-only','--ignore-scripts'],this.bundle);
-  const lock=parse(readFileSync(join(this.bundle,'bun.lock'),'utf8')) as {packages:Record<string,unknown[]>},qualified=parse(readFileSync('bun.lock','utf8')) as {packages:Record<string,unknown[]>},packages:InstalledRelease['packages']=[];
-  for(const [name,record] of Object.entries(lock.packages)){if(name.includes('/')&&!name.startsWith('@'))throw new Error('Nested runtime resolution');let version:string,path:string;const own=this.evidence.owners[name.slice('@treeseed-cordis/'.length)];if(name.startsWith('@treeseed-cordis/')&&own){path='archives/'+name.slice('@treeseed-cordis/'.length)+'.tgz';const metadata=JSON.parse(Commands.run('tar',['-xOf',join(this.bundle,path),'package/package.json'])) as {version:string};version=metadata.version;}else{expect(record[0]).toBe(qualified.packages[name]![0]);expect(record.at(-1)).toBe(qualified.packages[name]!.at(-1));const identity=String(record[0]);if(!identity.startsWith(name+'@'))throw new Error('Unexpected locked identity');version=identity.slice(name.length+1);const integrity=String(record.at(-1)),pathName=Commands.sha(name+'@'+version)+'.tgz',cached=join(this.cache,pathName);path='archives/'+pathName;if(!existsSync(cached)){const response=await fetch('https://registry.npmjs.org/'+name,{signal:AbortSignal.timeout(30000)});if(!response.ok)throw new Error('Registry fixture metadata unavailable');const registry=await response.json() as {versions:Record<string,{dist:{tarball:string;integrity:string}}>};const dist=registry.versions[version]!.dist;if(dist.integrity!==integrity)throw new Error('Registry integrity differs from lock');const archive=await fetch(dist.tarball,{signal:AbortSignal.timeout(30000)});if(!archive.ok)throw new Error('Registry fixture archive unavailable');writeFileSync(cached,Buffer.from(await archive.arrayBuffer()),{mode:0o600});}const bytes=readFileSync(cached),algorithm=integrity.split('-')[0]!;expect(algorithm+'-'+createHash(algorithm).update(bytes).digest('base64')).toBe(integrity);copyFileSync(cached,join(this.bundle,path));}packages.push({name,version,path,sha256:Commands.sha(readFileSync(join(this.bundle,path)))});}
-  const build=join(this.root,'image-context');mkdirSync(build,{mode:0o700});const input=join(this.root,'image-input.json');Commands.write(input,{directory:build,baseImage:this.evidence.images.node,packages:packages.map(this.absolutePackage.bind(this))});const built=Commands.json('node',[fileURLToPath(import.meta.resolve('@treeseed-cordis/api')),'--image-context',input]) as {assetDigest:string;packageDigest:string};this.fixtureImage='cordis-task3b-fixture:'+Commands.sha(CanonicalJson.stringify(built)).slice(0,16);Commands.run('docker',['build','--network=none','--tag',this.fixtureImage,build],undefined,180000);
-  const exporter=new OciFixture(this.cache),images=[];for(const role of ['database','identity','api','edge'])images.push(exporter.export(role==='api'?this.fixtureImage:this.evidence.images[role]!,join(this.bundle,'oci',role),role));
-  const port=await new FreePort().get(),services:InstalledRelease['composition']['services']=[],classes=[PostgresContainerPlugin,KeycloakContainerPlugin,NodeApiContainerPlugin,CaddyContainerPlugin],recipe:ReturnType<typeof PlatformSchemas.recipe.parse>={services:{},volumes:{},secrets:{}},plugins:DeploymentConfiguration['plugins']=[],slots=new Set<string>();
-  for(const plugin of classes){const definition=plugin.definition,role=definition.role,provider=plugin.declaration,image=images.find(InstalledScene.image.bind(null,role))!,owner=role==='identity'?'identity':role==='api'?'api':null;services.push({role,definition,provider,imageId:role,package:owner?'@treeseed-cordis/'+owner:null,entry:owner?'dist/src/'+(owner==='api'?'container':owner)+'.js':null});const service:ReturnType<typeof PlatformSchemas.recipe.parse>['services'][string]={image:image.reference};const depends=[];for(const inject of provider.inject)if(inject.startsWith('container.'))depends.push(inject.slice('container.'.length));if(depends.length)service.depends_on=depends;if(definition.service.portTarget)service.ports=[{target:definition.service.portTarget,published:port,host_ip:'127.0.0.1',protocol:'tcp'}];if(definition.service.volumes.length)service.volumes=definition.service.volumes.map(InstalledScene.volume);if(definition.service.secrets.length)service.secrets=definition.service.secrets.map(InstalledScene.secret);for(const volume of definition.service.volumes)recipe.volumes[volume.source]={};for(const slot of Object.keys(definition.slots))slots.add(slot);recipe.services[role]=service;}
-  for(const slot of slots)recipe.secrets[slot]={file:'.cordis/credentials/'+slot};for(const owner of ['identity','api','admin']){const item=packages.find(InstalledScene.packageName.bind(null,'@treeseed-cordis/'+owner))!,metadata=JSON.parse(Commands.run('tar',['-xOf',join(this.bundle,item.path),'package/package.json'])) as {cordis:ProviderDeclaration};plugins.push({id:metadata.cordis.id,package:item.name,version:item.version,integrity:item.sha256});}
-  copyFileSync(this.cli,join(this.bundle,'trsd'));const worker=readFileSync(this.cli);this.inventory=InstalledSchemas.release.parse({formatVersion:2,packageJson:{path:'package.json',sha256:packageHash},lockfile:{path:'bun.lock',sha256:Commands.sha(readFileSync(join(this.bundle,'bun.lock')))},recipe:{path:'compose.json',sha256:Commands.write(join(this.bundle,'compose.json'),recipe)},requiredPluginIds:plugins.map(InstalledScene.pluginId),requiredServices:['container.database','container.identity','container.api','container.edge'],packages,images,composition:{profile:'first-installed',assetDigest:built.assetDigest,worker:{path:'trsd',sha256:Commands.sha(worker),size:worker.length},services}});this.configuration=PlatformSchemas.desired.parse({installationId:this.installationId,engineContext:this.context,installationDirectory:this.installation,origin:'https://localhost:'+port,runtimeState:'running',plugins,credentialReferences:[...slots].map(InstalledScene.reference),release:{directory:this.bundle,manifestDigest:Commands.write(join(this.bundle,'release.json'),this.inventory)}});Commands.write(join(this.root,'configuration.json'),this.configuration);this.project='cordis-'+CanonicalJson.digest({installationId:this.installationId,installationDirectory:this.installation}).slice(0,16);
-  this.beforeContainers=this.snapshot('container');this.beforeVolumes=this.snapshot('volume');this.beforeNetworks=this.snapshot('network');
- }
+  private readonly releasePackages: InstalledRelease["packages"] = [];
+  private readonly releaseImages: InstalledRelease["images"] = [];
+  private readonly releaseServices: InstalledRelease["composition"]["services"] =
+    [];
+  private readonly releasePlugins: DeploymentConfiguration["plugins"] = [];
+  private readonly releaseSlots = new Set<string>();
+  private readonly recipe: ReturnType<typeof PlatformSchemas.recipe.parse> = {
+    services: {},
+    volumes: {},
+    secrets: {},
+  };
+  private readonly requiredServices = [
+    "container.database",
+    "container.identity",
+    "container.api",
+    "container.edge",
+  ];
+  private packageHash = "";
+  private assetDigest = "";
+  private port = 0;
+
+  async prepare(): Promise<void> {
+    this.requireHost();
+    this.requireOwners();
+    this.prepareDirectories();
+    this.prepareManifest();
+    await this.preparePackages();
+    this.prepareImage();
+    this.exportImages();
+    this.port = await new FreePort().get();
+    this.prepareServices();
+    this.preparePlugins();
+    this.prepareInventory();
+    this.prepareConfiguration();
+    this.beforeContainers = this.snapshot("container");
+    this.beforeVolumes = this.snapshot("volume");
+    this.beforeNetworks = this.snapshot("network");
+  }
+  private requireHost(): void {
+    expect(readFileSync("/etc/os-release", "utf8")).toContain(
+      'VERSION_ID="26.04"',
+    );
+    expect(process.arch).toBe("x64");
+    Commands.run("docker", ["compose", "version"]);
+    Commands.run("certutil", ["--build-flags"]);
+    expect(this.evidence.fixturesOnly).toBe(true);
+    const policy = new SourcePolicy();
+    expect(
+      policy.inspect(
+        "tests/acceptance/installed-composition.test.ts",
+        readFileSync(import.meta.filename, "utf8"),
+      ),
+    ).toEqual([]);
+  }
+  private requireOwners(): void {
+    expect(Commands.run("git", ["rev-parse", "HEAD"], "packages/cli")).toBe(
+      this.evidence.cli.commit,
+    );
+    for (const owner of Object.values(this.evidence.owners)) {
+      expect(Commands.sha(readFileSync(owner.archive))).toBe(owner.sha256);
+    }
+  }
+  private prepareDirectories(): void {
+    mkdirSync(this.cache, { recursive: true, mode: 0o700 });
+    expect(statSync(this.cache).uid).toBe(process.getuid!());
+    expect(statSync(this.cache).mode & 0o777).toBe(0o700);
+    mkdirSync(this.bundle, { mode: 0o700 });
+    mkdirSync(join(this.bundle, "archives"), { mode: 0o700 });
+    mkdirSync(join(this.bundle, "oci"), { mode: 0o700 });
+  }
+  private copyOwners(): Record<string, string> {
+    const dependencies: Record<string, string> = {};
+    for (const [name, pin] of Object.entries(this.evidence.owners)) {
+      copyFileSync(pin.archive, join(this.bundle, "archives", name + ".tgz"));
+      dependencies["@treeseed-cordis/" + name] =
+        "file:archives/" + name + ".tgz";
+    }
+    return dependencies;
+  }
+  private prepareManifest(): void {
+    const packageJson = {
+      name: "cordis-installed-acceptance-fixture",
+      version: "1.0.0",
+      private: true,
+      dependencies: this.copyOwners(),
+      overrides: new QualifiedFixtureLock(
+        readFileSync("bun.lock", "utf8"),
+      ).overrides(),
+      scripts: { postinstall: "bun script-canary.ts" },
+    };
+    this.writeCanary();
+    Commands.write(join(this.bundle, "package.json"), packageJson);
+    Commands.run(
+      "bun",
+      ["install", "--lockfile-only", "--ignore-scripts"],
+      this.bundle,
+    );
+    QualifiedFixtureLock.finalize(this.bundle);
+    this.verifyFrozenManifest();
+  }
+  private verifyFrozenManifest(): void {
+    const manifest = join(this.bundle, 'package.json');
+    this.packageHash = Commands.sha(readFileSync(manifest));
+    const lockHash = this.lockfileRecord().sha256;
+    Commands.run('bun', ['install', '--frozen-lockfile', '--lockfile-only', '--ignore-scripts'], this.bundle);
+    expect(this.lockfileRecord().sha256).toBe(lockHash);
+    expect(Commands.sha(readFileSync(manifest))).toBe(this.packageHash);
+  }
+  private writeCanary(): void {
+    writeFileSync(
+      join(this.bundle, "script-canary.ts"),
+      "export class ScriptCanary {static run():void {Bun.write('SCRIPT_EXECUTED','unexpected');}} ScriptCanary.run();\n",
+      { mode: 0o600 },
+    );
+  }
+  private async preparePackages(): Promise<void> {
+    const lock = parse(readFileSync(join(this.bundle, "bun.lock"), "utf8")) as {
+      packages: Record<string, unknown[]>;
+    };
+    const qualified = parse(readFileSync("bun.lock", "utf8")) as {
+      packages: Record<string, unknown[]>;
+    };
+    for (const [name, record] of Object.entries(lock.packages)) {
+      if (!/^(@[^/]+\/)?[^/]+$/.test(name))
+        throw new Error("Nested runtime resolution");
+      const own = this.evidence.owners[name.slice("@treeseed-cordis/".length)];
+      const item =
+        name.startsWith("@treeseed-cordis/") && own
+          ? this.ownerPackage(name)
+          : await this.registryPackage(name, record, qualified.packages[name]!);
+      this.releasePackages.push(item);
+    }
+  }
+  private ownerPackage(name: string): InstalledRelease["packages"][number] {
+    const path = "archives/" + name.slice("@treeseed-cordis/".length) + ".tgz";
+    const metadata = this.archiveMetadata(path) as { version: string };
+    return this.packageRecord(name, metadata.version, path);
+  }
+  private archiveMetadata(path: string): unknown {
+    return JSON.parse(
+      Commands.run("tar", [
+        "-xOf",
+        join(this.bundle, path),
+        "package/package.json",
+      ]),
+    );
+  }
+  private packageRecord(
+    name: string,
+    version: string,
+    path: string,
+  ): InstalledRelease["packages"][number] {
+    return {
+      name,
+      version,
+      path,
+      sha256: Commands.sha(readFileSync(join(this.bundle, path))),
+    };
+  }
+  private async registryPackage(
+    name: string,
+    record: unknown[],
+    qualified: unknown[],
+  ): Promise<InstalledRelease["packages"][number]> {
+    expect(record[0]).toBe(qualified[0]);
+    expect(record.at(-1)).toBe(qualified.at(-1));
+    const identity = String(record[0]);
+    if (!identity.startsWith(name + "@"))
+      throw new Error("Unexpected locked identity");
+    const version = identity.slice(name.length + 1);
+    const integrity = String(record.at(-1));
+    const pathName = Commands.sha(name + "@" + version) + ".tgz";
+    const cached = join(this.cache, pathName);
+    if (!existsSync(cached))
+      await this.downloadPackage(name, version, integrity, cached);
+    this.requireIntegrity(cached, integrity);
+    const path = "archives/" + pathName;
+    copyFileSync(cached, join(this.bundle, path));
+    return this.packageRecord(name, version, path);
+  }
+  private async downloadPackage(
+    name: string,
+    version: string,
+    integrity: string,
+    cached: string,
+  ): Promise<void> {
+    const response = await fetch("https://registry.npmjs.org/" + name, {
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!response.ok) throw new Error("Registry fixture metadata unavailable");
+    const registry = (await response.json()) as {
+      versions: Record<
+        string,
+        { dist: { tarball: string; integrity: string } }
+      >;
+    };
+    const dist = registry.versions[version]!.dist;
+    if (dist.integrity !== integrity)
+      throw new Error("Registry integrity differs from lock");
+    const archive = await fetch(dist.tarball, {
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!archive.ok) throw new Error("Registry fixture archive unavailable");
+    writeFileSync(cached, Buffer.from(await archive.arrayBuffer()), {
+      mode: 0o600,
+    });
+  }
+  private requireIntegrity(cached: string, integrity: string): void {
+    const bytes = readFileSync(cached);
+    const algorithm = integrity.split("-")[0]!;
+    expect(
+      algorithm + "-" + createHash(algorithm).update(bytes).digest("base64"),
+    ).toBe(integrity);
+  }
+  private prepareImage(): void {
+    const build = join(this.root, "image-context");
+    mkdirSync(build, { mode: 0o700 });
+    const input = join(this.root, "image-input.json");
+    this.writeImageInput(input, build);
+    const built = Commands.json("node", [
+      fileURLToPath(import.meta.resolve("@treeseed-cordis/api")),
+      "--image-context",
+      input,
+    ]) as ImageContextReceipt;
+    this.assetDigest = built.assetDigest;
+    this.fixtureImage =
+      "cordis-task3b-fixture:" +
+      Commands.sha(CanonicalJson.stringify(built)).slice(0, 16);
+    Commands.run(
+      "docker",
+      ["build", "--network=none", "--tag", this.fixtureImage, build],
+      undefined,
+      180000,
+    );
+  }
+  private writeImageInput(input: string, build: string): void {
+    Commands.write(input, {
+      directory: build,
+      baseImage: this.evidence.images.node,
+      packages: this.releasePackages.map(this.absolutePackage.bind(this)),
+    });
+  }
+  private exportImages(): void {
+    const exporter = new OciFixture(this.cache);
+    for (const role of ["database", "identity", "api", "edge"]) {
+      const image =
+        role === "api" ? this.fixtureImage : this.evidence.images[role]!;
+      this.releaseImages.push(
+        exporter.export(image, join(this.bundle, "oci", role), role),
+      );
+    }
+  }
+  private prepareServices(): void {
+    const classes = [
+      PostgresContainerPlugin,
+      KeycloakContainerPlugin,
+      NodeApiContainerPlugin,
+      CaddyContainerPlugin,
+    ];
+    for (const plugin of classes)
+      this.prepareService(plugin.definition, plugin.declaration);
+    for (const slot of this.releaseSlots)
+      this.recipe.secrets[slot] = { file: ".cordis/credentials/" + slot };
+  }
+  private prepareService(
+    definition: InstalledRelease["composition"]["services"][number]["definition"],
+    provider: ProviderDeclaration,
+  ): void {
+    const role = definition.role;
+    const owner =
+      role === "identity" ? "identity" : role === "api" ? "api" : null;
+    this.releaseServices.push({
+      role,
+      definition,
+      provider,
+      imageId: role,
+      package: owner ? "@treeseed-cordis/" + owner : null,
+      entry: owner
+        ? "dist/src/" + (owner === "api" ? "container" : owner) + ".js"
+        : null,
+    });
+    this.recipe.services[role] = this.serviceRecipe(definition, provider);
+    for (const volume of definition.service.volumes)
+      this.recipe.volumes[volume.source] = {};
+    for (const slot of Object.keys(definition.slots))
+      this.releaseSlots.add(slot);
+  }
+  private serviceRecipe(
+    definition: InstalledRelease["composition"]["services"][number]["definition"],
+    provider: ProviderDeclaration,
+  ): ReturnType<typeof PlatformSchemas.recipe.parse>["services"][string] {
+    const image = this.releaseImages.find(
+      InstalledScene.image.bind(null, definition.role),
+    )!;
+    const service: ReturnType<
+      typeof PlatformSchemas.recipe.parse
+    >["services"][string] = { image: image.reference };
+    const depends: string[] = [];
+    for (const inject of provider.inject) {
+      if (inject.startsWith("container."))
+        depends.push(inject.slice("container.".length));
+    }
+    if (depends.length) service.depends_on = depends;
+    this.serviceResources(service, definition);
+    return service;
+  }
+  private serviceResources(
+    service: ReturnType<
+      typeof PlatformSchemas.recipe.parse
+    >["services"][string],
+    definition: InstalledRelease["composition"]["services"][number]["definition"],
+  ): void {
+    if (definition.service.portTarget) {
+      service.ports = [
+        {
+          target: definition.service.portTarget,
+          published: this.port,
+          host_ip: "127.0.0.1",
+          protocol: "tcp",
+        },
+      ];
+    }
+    if (definition.service.volumes.length)
+      service.volumes = definition.service.volumes.map(InstalledScene.volume);
+    if (definition.service.secrets.length)
+      service.secrets = definition.service.secrets.map(InstalledScene.secret);
+  }
+  private preparePlugins(): void {
+    for (const owner of ["identity", "api", "admin"]) {
+      const item = this.releasePackages.find(
+        InstalledScene.packageName.bind(null, "@treeseed-cordis/" + owner),
+      )!;
+      const metadata = this.archiveMetadata(item.path) as {
+        cordis: ProviderDeclaration;
+      };
+      this.releasePlugins.push({
+        id: metadata.cordis.id,
+        package: item.name,
+        version: item.version,
+        integrity: item.sha256,
+      });
+    }
+  }
+  private prepareInventory(): void {
+    copyFileSync(this.cli, join(this.bundle, "trsd"));
+    const recipe = {
+      path: "compose.json",
+      sha256: Commands.write(join(this.bundle, "compose.json"), this.recipe),
+    };
+    this.inventory = InstalledSchemas.release.parse({
+      formatVersion: 2,
+      packageJson: { path: "package.json", sha256: this.packageHash },
+      lockfile: this.lockfileRecord(),
+      recipe,
+      requiredPluginIds: this.releasePlugins.map(InstalledScene.pluginId),
+      requiredServices: this.requiredServices,
+      packages: this.releasePackages,
+      images: this.releaseImages,
+      composition: this.compositionRecord(),
+    });
+  }
+  private lockfileRecord(): InstalledRelease["lockfile"] {
+    return {
+      path: "bun.lock",
+      sha256: Commands.sha(readFileSync(join(this.bundle, "bun.lock"))),
+    };
+  }
+  private compositionRecord(): InstalledRelease["composition"] {
+    const worker = readFileSync(this.cli);
+    return {
+      profile: "first-installed",
+      assetDigest: this.assetDigest,
+      worker: {
+        path: "trsd",
+        sha256: Commands.sha(worker),
+        size: worker.length,
+      },
+      services: this.releaseServices,
+    };
+  }
+  private prepareConfiguration(): void {
+    const manifestDigest = Commands.write(
+      join(this.bundle, "release.json"),
+      this.inventory,
+    );
+    this.configuration = PlatformSchemas.desired.parse({
+      installationId: this.installationId,
+      engineContext: this.context,
+      installationDirectory: this.installation,
+      origin: "https://localhost:" + this.port,
+      runtimeState: "running",
+      plugins: this.releasePlugins,
+      credentialReferences: [...this.releaseSlots].map(
+        InstalledScene.reference,
+      ),
+      release: { directory: this.bundle, manifestDigest },
+    });
+    Commands.write(join(this.root, "configuration.json"), this.configuration);
+    this.project =
+      "cordis-" +
+      CanonicalJson.digest({
+        installationId: this.installationId,
+        installationDirectory: this.installation,
+      }).slice(0, 16);
+  }
  private absolutePackage(item:InstalledRelease['packages'][number]):InstalledRelease['packages'][number]{return {...item,path:join(this.bundle,item.path)};}
  private static packageName(name:string,item:InstalledRelease['packages'][number]):boolean{return item.name===name;}
  private static image(role:string,item:InstalledRelease['images'][number]):boolean{return role===item.id;}
