@@ -1,0 +1,933 @@
+schemaVersion: architecture/0.1
+view: implementation
+project: project.identity
+objects:
+- id: identity.capability.container.identity.0_3_0_cordis_1
+  kind: capability
+  name: container.identity
+  purpose: Native capability container.identity
+  contract: identity.contract.container.identity.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.container.service
+  kind: capability
+  name: container.service
+  purpose: Native capability container.service
+  contract: identity.contract.container.service
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.identity.oidc
+  kind: capability
+  name: identity.oidc
+  purpose: Native capability identity.oidc
+  contract: identity.contract.identity.oidc
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.identity.sessions
+  kind: capability
+  name: identity.sessions
+  purpose: Native capability identity.sessions
+  contract: identity.contract.identity.sessions
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.identity.store
+  kind: capability
+  name: identity.store
+  purpose: Native capability identity.store
+  contract: identity.contract.identity.store
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.probe.service
+  kind: capability
+  name: probe.service
+  purpose: Native capability probe.service
+  contract: identity.contract.probe.service
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.contract.container.identity.0_3_0_cordis_1
+  kind: contract
+  name: container.identity
+  purpose: Typed capability boundary from native token/declaration
+  project: project.identity
+  version: 0.3.0-cordis.1
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: KeycloakContainerPlugin
+    start: 28
+    end: 42
+    fingerprint: f39d438b2b34f19df31324ce50d0e87bcd3182b18436c1e5e6024d8faaf5d2d0
+- id: identity.contract.container.service
+  kind: contract
+  name: container.service
+  purpose: Boundary supplied for container.service
+  project: project.identity
+  version: 0.4.0-cordis.1
+  operations:
+  - name: identity
+    input: ''
+    output: ServiceIdentity
+  - name: ready
+    input: ''
+    output: Promise<ServiceReadiness>
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+    symbol: KeycloakServicePlugin
+    start: 5
+    end: 20
+    fingerprint: 101fb4379cb5cae526a9843f9f114af7d0de38825805c313d99ac5ababf9da62
+  extensions:
+    architecture:contractInterfaces:
+    - ContainerService
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: identity.contract.identity.oidc
+  kind: contract
+  name: identity.oidc
+  purpose: Boundary supplied for identity.oidc
+  project: project.identity
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: OidcPlugin
+    start: 95
+    end: 101
+    fingerprint: b126c2e81b0249164415156ad0a835a4c27452bc65ebb75f5a6d9cc1dbc57089
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: identity.contract.identity.sessions
+  kind: contract
+  name: identity.sessions
+  purpose: Boundary supplied for identity.sessions
+  project: project.identity
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: SessionPlugin
+    start: 102
+    end: 106
+    fingerprint: 40850c856793d193f5d748ca461a802bc6a7789fac3641f202b48edb29bb7b95
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: identity.contract.identity.store
+  kind: contract
+  name: identity.store
+  purpose: Boundary supplied for identity.store
+  project: project.identity
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: StorePlugin
+    start: 88
+    end: 94
+    fingerprint: c34c1032d9bd2b020240a5e03f4a99a0fab0a9ca07113fecd1b7e5ea3646eeea
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: identity.contract.probe.service
+  kind: contract
+  name: probe.service
+  purpose: Boundary supplied for probe.service
+  project: project.identity
+  version: 0.4.0-cordis.1
+  operations:
+  - name: observe
+    input: context:ProbeContext
+    output: Promise<ServiceReadiness>
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+    symbol: KeycloakReadinessPlugin
+    start: 24
+    end: 32
+    fingerprint: 6934271f5d5f27c840eeaa7a4f8e5d2998a8578a9f5417893ad3fa83b72d987d
+  extensions:
+    architecture:contractInterfaces:
+    - ServiceProbe
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: identity.plugin.KeycloakContainerPlugin
+  kind: component
+  name: KeycloakContainerPlugin
+  purpose: Native plugin supplying container.identity
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.container.identity.0_3_0_cordis_1
+  contracts:
+  - identity.contract.container.identity.0_3_0_cordis_1
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: KeycloakContainerPlugin
+    start: 28
+    end: 42
+    fingerprint: f39d438b2b34f19df31324ce50d0e87bcd3182b18436c1e5e6024d8faaf5d2d0
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: InstalledDeclarations.service('keycloak','container.identity',['deployment.engine','container.database'])
+      definition: null
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      engine: null
+      installationId: null
+      composition: null
+  componentRole: runtime
+- id: identity.plugin.KeycloakReadinessPlugin
+  kind: component
+  name: KeycloakReadinessPlugin
+  purpose: Native plugin declaration supplying probe.service
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.probe.service
+  contracts:
+  - identity.contract.probe.service
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+    symbol: KeycloakReadinessPlugin
+    start: 24
+    end: 32
+    fingerprint: 6934271f5d5f27c840eeaa7a4f8e5d2998a8578a9f5417893ad3fa83b72d987d
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      provide: '[''probe.service'']'
+      inject: '[]'
+      replacement: IdentityProviderPolicy.replacement
+      Config: null
+      declaration: ProviderV4Schemas.declaration.parse({id:'identity.keycloak.discovery',pluginId:'identity',capability:'probe.service',contractVersion:ProviderV4Schemas.version,target:'deployment',provide:this.provide,inject:this.inject})
+      probe: null
+      issuer: null
+  componentRole: runtime
+- id: identity.plugin.KeycloakServicePlugin
+  kind: component
+  name: KeycloakServicePlugin
+  purpose: Native plugin declaration supplying container.service
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.container.service
+  contracts:
+  - identity.contract.container.service
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+    symbol: KeycloakServicePlugin
+    start: 5
+    end: 20
+    fingerprint: 101fb4379cb5cae526a9843f9f114af7d0de38825805c313d99ac5ababf9da62
+  extensions:
+    cordis:inject:
+    - deployment.services
+    - service.context
+    cordis:staticExpressions:
+      provide: '[''container.service'']'
+      inject: '[''deployment.services'',''service.context'']'
+      Config: null
+      replacement: IdentityProviderPolicy.replacement
+      declaration: ProviderV4Schemas.declaration.parse({id:'identity.keycloak.service',pluginId:'identity',capability:'container.service',contractVersion:ProviderV4Schemas.version,target:'deployment',provide:this.provide,inject:this.inject})
+      image: null
+      container: null
+      engine: null
+      execution: null
+  componentRole: runtime
+- id: identity.plugin.OidcPlugin
+  kind: component
+  name: OidcPlugin
+  purpose: Native plugin declaration supplying identity.oidc
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.identity.oidc
+  contracts:
+  - identity.contract.identity.oidc
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: OidcPlugin
+    start: 95
+    end: 101
+    fingerprint: b126c2e81b0249164415156ad0a835a4c27452bc65ebb75f5a6d9cc1dbc57089
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      replacement: IdentityProviderPolicy.replacement
+      declaration: Declaration.server('configured-oidc',ProtocolToken.id,[])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      protocol: null
+  componentRole: runtime
+- id: identity.plugin.SessionPlugin
+  kind: component
+  name: SessionPlugin
+  purpose: Native plugin declaration supplying identity.sessions
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.identity.sessions
+  contracts:
+  - identity.contract.identity.sessions
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: SessionPlugin
+    start: 102
+    end: 106
+    fingerprint: 40850c856793d193f5d748ca461a802bc6a7789fac3641f202b48edb29bb7b95
+  extensions:
+    cordis:inject:
+    - identity.store
+    - identity.oidc
+    cordis:staticExpressions:
+      replacement: IdentityProviderPolicy.replacement
+      declaration: Declaration.server('database-session',IdentitySessionsToken.id,[StoreToken.id,ProtocolToken.id])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+  componentRole: runtime
+- id: identity.plugin.StorePlugin
+  kind: component
+  name: StorePlugin
+  purpose: Native plugin declaration supplying identity.store
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.identity.store
+  contracts:
+  - identity.contract.identity.store
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: StorePlugin
+    start: 88
+    end: 94
+    fingerprint: c34c1032d9bd2b020240a5e03f4a99a0fab0a9ca07113fecd1b7e5ea3646eeea
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      replacement: IdentityProviderPolicy.replacement
+      declaration: Declaration.server('postgres-principals',StoreToken.id,[])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      store: null
+  componentRole: runtime
+- id: identity.provider.KeycloakContainerPlugin
+  kind: provider
+  name: keycloak
+  purpose: Candidate implementation supplied by KeycloakContainerPlugin
+  component: identity.plugin.KeycloakContainerPlugin
+  capabilities:
+  - identity.capability.container.identity.0_3_0_cordis_1
+  contractVersion: 0.3.0-cordis.1
+  nativeId: keycloak
+  artifact: https://github.com/treeseed-ai/identity.git@6758afba8115413a0558155826587172f37e9ebb
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: KeycloakContainerPlugin
+    start: 28
+    end: 42
+    fingerprint: f39d438b2b34f19df31324ce50d0e87bcd3182b18436c1e5e6024d8faaf5d2d0
+  extensions:
+    cordis:manifestDeclaration: {}
+    architecture:readiness: unknown; no execution performed
+    architecture:staticResolution: Reviewed declaration helper/token literals at pinned source; no execution or selection proof
+- id: identity.provider.KeycloakReadinessPlugin
+  kind: provider
+  name: identity.keycloak.discovery
+  purpose: Candidate implementation supplied by KeycloakReadinessPlugin
+  component: identity.plugin.KeycloakReadinessPlugin
+  capabilities:
+  - identity.capability.probe.service
+  contractVersion: 0.4.0-cordis.1
+  nativeId: identity.keycloak.discovery
+  artifact: https://github.com/treeseed-ai/identity.git@6758afba8115413a0558155826587172f37e9ebb
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+    symbol: KeycloakReadinessPlugin
+    start: 24
+    end: 32
+    fingerprint: 6934271f5d5f27c840eeaa7a4f8e5d2998a8578a9f5417893ad3fa83b72d987d
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: identity.keycloak.discovery
+        pluginId: identity
+        capability: probe.service
+        contractVersion: 0.4.0-cordis.1
+        target: deployment
+        provide:
+        - probe.service
+        inject: []
+      entry: dist/src/services.js
+      classExport: KeycloakReadinessPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties:
+          issuer:
+            type: string
+            pattern: ^https:\/\/[^@?#\s]+\/identity\/realms\/cordis$
+        required:
+        - issuer
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+      probe:
+        observationContracts:
+        - identity.oidc
+        schemes:
+        - http
+        maximumDeadlineMs: 120000
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/1/configurationSchema
+  target: deployment
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: identity.provider.KeycloakServicePlugin
+  kind: provider
+  name: identity.keycloak.service
+  purpose: Candidate implementation supplied by KeycloakServicePlugin
+  component: identity.plugin.KeycloakServicePlugin
+  capabilities:
+  - identity.capability.container.service
+  contractVersion: 0.4.0-cordis.1
+  nativeId: identity.keycloak.service
+  artifact: https://github.com/treeseed-ai/identity.git@6758afba8115413a0558155826587172f37e9ebb
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+    symbol: KeycloakServicePlugin
+    start: 5
+    end: 20
+    fingerprint: 101fb4379cb5cae526a9843f9f114af7d0de38825805c313d99ac5ababf9da62
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: identity.keycloak.service
+        pluginId: identity
+        capability: container.service
+        contractVersion: 0.4.0-cordis.1
+        target: deployment
+        provide:
+        - container.service
+        inject:
+        - deployment.services
+        - service.context
+      entry: dist/src/services.js
+      classExport: KeycloakServicePlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+      container:
+        definition:
+          imageId: keycloak
+          user: installation-owner
+          command:
+          - start
+          - --import-realm
+          environment:
+            JAVA_OPTS_KC_HEAP: -Xms128m -Xmx512m
+          ports:
+          - id: http
+            target: 8080
+          volumes: []
+          secrets:
+          - slot: identity-config
+            target: /opt/keycloak/conf/keycloak.conf
+          - slot: identity-realm
+            target: /opt/keycloak/data/import/cordis-realm.json
+          workerSocket: false
+        resources:
+          volumes: []
+          slots:
+            oidc-client:
+              kind: random
+            bootstrap-password:
+              kind: random
+            bootstrap-subject:
+              kind: uuid
+            identity-config:
+              kind: properties
+              value:
+                db: postgres
+                db-url:
+                  $template:
+                  - jdbc:postgresql://
+                  - $endpoint:
+                      dependencyPort: database
+                      portId: postgres
+                      scheme: tcp
+                      path: /
+                      part: authority
+                  - /cordis
+                db-username: cordis
+                db-password:
+                  $secret:
+                    dependencyPort: database
+                    slot: database-password
+                http-enabled: 'true'
+                http-relative-path: /identity
+                hostname:
+                  $template:
+                  - $context: origin
+                  - /identity
+                proxy-headers: xforwarded
+                health-enabled: 'true'
+            identity-realm:
+              kind: json
+              value:
+                realm: cordis
+                enabled: true
+                sslRequired: external
+                registrationAllowed: false
+                loginWithEmailAllowed: false
+                resetPasswordAllowed: false
+                clients:
+                - clientId: cordis-admin
+                  enabled: true
+                  protocol: openid-connect
+                  publicClient: false
+                  secret:
+                    $secret:
+                      slot: oidc-client
+                  standardFlowEnabled: true
+                  directAccessGrantsEnabled: false
+                  redirectUris:
+                  - $template:
+                    - $context: origin
+                    - /admin/callback
+                  attributes:
+                    pkce.code.challenge.method: S256
+                users:
+                - id:
+                    $secret:
+                      slot: bootstrap-subject
+                  username: admin
+                  enabled: true
+                  emailVerified: true
+                  email: admin@localhost
+                  firstName: Installation
+                  lastName: Owner
+                  requiredActions: []
+                  credentials:
+                  - type: password
+                    value:
+                      $secret:
+                        slot: bootstrap-password
+                    temporary: false
+            bootstrap:
+              kind: json
+              value:
+                username: admin
+                password:
+                  $secret:
+                    slot: bootstrap-password
+          grants:
+          - dependencyPort: database
+            slot: database-password
+          authorities: []
+        providedContracts:
+        - port: oidc
+          contractId: identity.oidc
+          contractVersion: 1.0.0
+        dependencies:
+        - port: database
+          contractId: storage.postgres
+          contractVersion: 1.0.0
+        observationContract: identity.oidc
+        transitionPolicy:
+          kind: restart-required
+          stateVersion: 1
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/0/configurationSchema
+  target: deployment
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: identity.provider.OidcPlugin
+  kind: provider
+  name: configured-oidc
+  purpose: Candidate implementation supplied by OidcPlugin
+  component: identity.plugin.OidcPlugin
+  capabilities:
+  - identity.capability.identity.oidc
+  contractVersion: 0.4.0-cordis.1
+  nativeId: configured-oidc
+  artifact: https://github.com/treeseed-ai/identity.git@6758afba8115413a0558155826587172f37e9ebb
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: OidcPlugin
+    start: 95
+    end: 101
+    fingerprint: b126c2e81b0249164415156ad0a835a4c27452bc65ebb75f5a6d9cc1dbc57089
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: configured-oidc
+        pluginId: identity
+        capability: identity.oidc
+        contractVersion: 0.4.0-cordis.1
+        target: api
+        provide:
+        - identity.oidc
+        inject: []
+      entry: dist/src/identity.js
+      classExport: OidcPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties:
+          installationId:
+            type: string
+            minLength: 1
+          origin:
+            type: string
+            pattern: ^https:\/\/(localhost|127\.0\.0\.1|\[::1\])(:[0-9]+)?$
+          issuer:
+            type: string
+            format: uri
+          identityInternalOrigin:
+            type: string
+            format: uri
+          clientId:
+            type: string
+            minLength: 1
+          clientSecret:
+            type: string
+            minLength: 1
+          databaseUrl:
+            type: string
+            minLength: 1
+          bootstrapSubject:
+            type: string
+            minLength: 1
+          workerSocket:
+            type: string
+            pattern: ^\/
+          assetDigest:
+            type: string
+            pattern: ^[a-f0-9]{64}$
+        required:
+        - installationId
+        - origin
+        - issuer
+        - identityInternalOrigin
+        - clientId
+        - clientSecret
+        - databaseUrl
+        - bootstrapSubject
+        - workerSocket
+        - assetDigest
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/3/configurationSchema
+  target: api
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: identity.provider.SessionPlugin
+  kind: provider
+  name: database-session
+  purpose: Candidate implementation supplied by SessionPlugin
+  component: identity.plugin.SessionPlugin
+  capabilities:
+  - identity.capability.identity.sessions
+  contractVersion: 0.4.0-cordis.1
+  nativeId: database-session
+  artifact: https://github.com/treeseed-ai/identity.git@6758afba8115413a0558155826587172f37e9ebb
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: SessionPlugin
+    start: 102
+    end: 106
+    fingerprint: 40850c856793d193f5d748ca461a802bc6a7789fac3641f202b48edb29bb7b95
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: database-session
+        pluginId: identity
+        capability: identity.sessions
+        contractVersion: 0.4.0-cordis.1
+        target: api
+        provide:
+        - identity.sessions
+        inject:
+        - identity.store
+        - identity.oidc
+      entry: dist/src/identity.js
+      classExport: SessionPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/4/configurationSchema
+  target: api
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: identity.provider.StorePlugin
+  kind: provider
+  name: postgres-principals
+  purpose: Candidate implementation supplied by StorePlugin
+  component: identity.plugin.StorePlugin
+  capabilities:
+  - identity.capability.identity.store
+  contractVersion: 0.4.0-cordis.1
+  nativeId: postgres-principals
+  artifact: https://github.com/treeseed-ai/identity.git@6758afba8115413a0558155826587172f37e9ebb
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+    symbol: StorePlugin
+    start: 88
+    end: 94
+    fingerprint: c34c1032d9bd2b020240a5e03f4a99a0fab0a9ca07113fecd1b7e5ea3646eeea
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: postgres-principals
+        pluginId: identity
+        capability: identity.store
+        contractVersion: 0.4.0-cordis.1
+        target: api
+        provide:
+        - identity.store
+        inject: []
+      entry: dist/src/identity.js
+      classExport: StorePlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties:
+          installationId:
+            type: string
+            minLength: 1
+          origin:
+            type: string
+            pattern: ^https:\/\/(localhost|127\.0\.0\.1|\[::1\])(:[0-9]+)?$
+          issuer:
+            type: string
+            format: uri
+          identityInternalOrigin:
+            type: string
+            format: uri
+          clientId:
+            type: string
+            minLength: 1
+          clientSecret:
+            type: string
+            minLength: 1
+          databaseUrl:
+            type: string
+            minLength: 1
+          bootstrapSubject:
+            type: string
+            minLength: 1
+          workerSocket:
+            type: string
+            pattern: ^\/
+          assetDigest:
+            type: string
+            pattern: ^[a-f0-9]{64}$
+        required:
+        - installationId
+        - origin
+        - issuer
+        - identityInternalOrigin
+        - clientId
+        - clientSecret
+        - databaseUrl
+        - bootstrapSubject
+        - workerSocket
+        - assetDigest
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/2/configurationSchema
+  target: api
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: identity.services
+  kind: component
+  name: Services
+  purpose: Provide Keycloak container and readiness boundaries
+  project: project.identity
+  componentKind: object
+  ownedFiles:
+  - src/services.ts
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/services.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: identity.sessions
+  kind: component
+  name: Sessions
+  purpose: Integrate identity, principal persistence and session authority
+  project: project.identity
+  componentKind: object
+  ownedFiles:
+  - src/identity.ts
+  sourceBindings:
+  - project: project.identity
+    revision: 6758afba8115413a0558155826587172f37e9ebb
+    path: src/identity.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: project.identity
+  kind: project
+  name: Identity
+  purpose: Independent identity ownership boundary
+  repository: https://github.com/treeseed-ai/identity.git
+  revision: 6758afba8115413a0558155826587172f37e9ebb
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: observed
+  notes:
+  - Source snapshot is not a qualified assembled release.
+  - Logical-area components group inventory; native plugin components are separate.
+  references:
+  - ../baselines/repositories.json
+  - inventory/identity.json
+  - ../baselines/public-surfaces.json
+  limitations:
+  - Dynamic injection/selection expressions retained in inventory; not evaluated.
+  - No runtime readiness, cleanup or conformance checks executed.
+relationships:
+- kind: provides
+  from: identity.plugin.KeycloakReadinessPlugin
+  to: identity.capability.probe.service
+- kind: implements
+  from: identity.plugin.KeycloakReadinessPlugin
+  to: identity.contract.probe.service
+- kind: provides
+  from: identity.plugin.KeycloakServicePlugin
+  to: identity.capability.container.service
+- kind: implements
+  from: identity.plugin.KeycloakServicePlugin
+  to: identity.contract.container.service
+- kind: provides
+  from: identity.plugin.OidcPlugin
+  to: identity.capability.identity.oidc
+- kind: implements
+  from: identity.plugin.OidcPlugin
+  to: identity.contract.identity.oidc
+- kind: provides
+  from: identity.plugin.SessionPlugin
+  to: identity.capability.identity.sessions
+- kind: implements
+  from: identity.plugin.SessionPlugin
+  to: identity.contract.identity.sessions
+- kind: provides
+  from: identity.plugin.StorePlugin
+  to: identity.capability.identity.store
+- kind: implements
+  from: identity.plugin.StorePlugin
+  to: identity.contract.identity.store
+- kind: provides
+  from: identity.provider.KeycloakReadinessPlugin
+  to: identity.capability.probe.service
+- kind: provides
+  from: identity.provider.KeycloakServicePlugin
+  to: identity.capability.container.service
+- kind: provides
+  from: identity.provider.OidcPlugin
+  to: identity.capability.identity.oidc
+- kind: provides
+  from: identity.provider.SessionPlugin
+  to: identity.capability.identity.sessions
+- kind: provides
+  from: identity.provider.StorePlugin
+  to: identity.capability.identity.store
+- kind: depends-on
+  from: project.identity
+  to: project.sdk
+- kind: provides
+  from: identity.plugin.KeycloakContainerPlugin
+  to: identity.capability.container.identity.0_3_0_cordis_1
+- kind: provides
+  from: identity.provider.KeycloakContainerPlugin
+  to: identity.capability.container.identity.0_3_0_cordis_1
+- kind: implements
+  from: identity.plugin.KeycloakContainerPlugin
+  to: identity.contract.container.identity.0_3_0_cordis_1
+- kind: requires
+  from: identity.plugin.KeycloakServicePlugin
+  to: deployment.capability.deployment.services.0_4_0_cordis_1
+- kind: requires
+  from: identity.plugin.KeycloakServicePlugin
+  to: deployment.capability.service.context.0_4_0_cordis_1
+- kind: requires
+  from: identity.plugin.SessionPlugin
+  to: identity.capability.identity.store
+- kind: requires
+  from: identity.plugin.SessionPlugin
+  to: identity.capability.identity.oidc

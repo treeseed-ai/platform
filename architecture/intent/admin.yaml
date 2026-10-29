@@ -1,0 +1,238 @@
+schemaVersion: architecture/0.1
+view: intent
+project: project.admin
+objects:
+- id: admin.application
+  kind: component
+  name: Application
+  purpose: Compose protected administration routes and identity custody
+  project: project.admin
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: admin.capability.admin.assets
+  kind: capability
+  name: admin.assets
+  purpose: Native capability admin.assets
+  contract: admin.contract.admin.assets
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.actions
+  kind: capability
+  name: admin.browser.actions
+  purpose: Native capability admin.browser.actions
+  contract: admin.contract.admin.browser.actions
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.navigation
+  kind: capability
+  name: admin.browser.navigation
+  purpose: Native capability admin.browser.navigation
+  contract: admin.contract.admin.browser.navigation
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.page
+  kind: capability
+  name: admin.browser.page
+  purpose: Native capability admin.browser.page
+  contract: admin.contract.admin.browser.page
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.presentation
+  kind: capability
+  name: admin.browser.presentation
+  purpose: Native capability admin.browser.presentation
+  contract: admin.contract.admin.browser.presentation
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.status
+  kind: capability
+  name: admin.browser.status
+  purpose: Native capability admin.browser.status
+  contract: admin.contract.admin.browser.status
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.presentation
+  kind: capability
+  name: admin.presentation
+  purpose: Native capability admin.presentation
+  contract: admin.contract.admin.presentation
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.routes
+  kind: capability
+  name: admin.routes
+  purpose: Native capability admin.routes
+  contract: admin.contract.admin.routes
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.contract.admin.assets
+  kind: contract
+  name: admin.assets
+  purpose: Boundary supplied for admin.assets
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.browser.actions
+  kind: contract
+  name: admin.browser.actions
+  purpose: Boundary supplied for admin.browser.actions
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.browser.navigation
+  kind: contract
+  name: admin.browser.navigation
+  purpose: Boundary supplied for admin.browser.navigation
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.browser.page
+  kind: contract
+  name: admin.browser.page
+  purpose: Boundary supplied for admin.browser.page
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.browser.presentation
+  kind: contract
+  name: admin.browser.presentation
+  purpose: Boundary supplied for admin.browser.presentation
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.browser.status
+  kind: contract
+  name: admin.browser.status
+  purpose: Boundary supplied for admin.browser.status
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.presentation
+  kind: contract
+  name: admin.presentation
+  purpose: Boundary supplied for admin.presentation
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.contract.admin.routes
+  kind: contract
+  name: admin.routes
+  purpose: Boundary supplied for admin.routes
+  project: project.admin
+  version: 0.4.0-cordis.1
+- id: admin.plugin.AdminActionsPlugin
+  kind: component
+  name: AdminActionsPlugin
+  purpose: Native plugin declaration supplying admin.browser.actions
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.actions
+  contracts:
+  - admin.contract.admin.browser.actions
+  componentRole: runtime
+- id: admin.plugin.AdminAssetsPlugin
+  kind: component
+  name: AdminAssetsPlugin
+  purpose: Native plugin declaration supplying admin.assets
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.assets
+  contracts:
+  - admin.contract.admin.assets
+  componentRole: runtime
+- id: admin.plugin.AdminBrowserApplication.start.PageConsumer
+  kind: component
+  name: AdminBrowserApplication.start.PageConsumer
+  purpose: Candidate native consumer boundary for review; not automatically approved
+  project: project.admin
+  componentKind: plugin
+  componentRole: runtime
+- id: admin.plugin.AdminBrowserStatePlugin
+  kind: component
+  name: AdminBrowserStatePlugin
+  purpose: Native plugin declaration supplying admin.browser.presentation
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.presentation
+  contracts:
+  - admin.contract.admin.browser.presentation
+  componentRole: runtime
+- id: admin.plugin.AdminNavigationPlugin
+  kind: component
+  name: AdminNavigationPlugin
+  purpose: Native plugin declaration supplying admin.browser.navigation
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.navigation
+  contracts:
+  - admin.contract.admin.browser.navigation
+  componentRole: runtime
+- id: admin.plugin.AdminPlugin
+  kind: component
+  name: AdminPlugin
+  purpose: Native plugin declaration supplying admin.routes
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.routes
+  contracts:
+  - admin.contract.admin.routes
+  componentRole: runtime
+- id: admin.plugin.AdminPresentationPlugin
+  kind: component
+  name: AdminPresentationPlugin
+  purpose: Native plugin declaration supplying admin.presentation
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.presentation
+  contracts:
+  - admin.contract.admin.presentation
+  componentRole: runtime
+- id: admin.plugin.HttpStatusPlugin
+  kind: component
+  name: HttpStatusPlugin
+  purpose: Native plugin declaration supplying admin.browser.status
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.status
+  contracts:
+  - admin.contract.admin.browser.status
+  componentRole: runtime
+- id: admin.plugin.StatusPagePlugin
+  kind: component
+  name: StatusPagePlugin
+  purpose: Native plugin declaration supplying admin.browser.page
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.page
+  contracts:
+  - admin.contract.admin.browser.page
+  componentRole: runtime
+- id: admin.presentation
+  kind: component
+  name: Presentation
+  purpose: Map authorized application data into UI contributions
+  project: project.admin
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: project.admin
+  kind: project
+  name: Admin
+  purpose: Independent admin ownership boundary
+  repository: https://github.com/treeseed-ai/admin.git
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: proposed
+  notes:
+  - Candidate identity/contract map for architectural review; source existence is not architectural acceptance.
+  - No requirement to retain every observed provider implementation; select by approved capability contract.
+  - TreeSeed profile supplies obligations; omitted properties are unspecified.
+  references:
+  - ../profiles/treeseed.yaml
+  - ../profiles/languages.md

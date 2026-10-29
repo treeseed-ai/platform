@@ -13,6 +13,9 @@ archives and the built CLI; see [Task 2 composition](composition/task2.json). Ow
 
 Native Cordis composition and typed provider selection are required across the runtimes. Task 3C delivered extensible container services, package acquisition and reusable UI providers; the four-role limit is historical. Agent manager/worker container plugins belong to Agent, while Deployment supplies bounded host operations. See the durable references above for the approved current boundaries and implementation ledger.
 
+The [architectural language draft](architecture/README.md) records current implementation and
+architectural intent separately, with pinned source inventory and explicit conformance gaps.
+
 Start with these documents in order:
 
 1. [Platform contract](docs/platform-contract.md): initial journeys, deployment/support boundaries, plugin interfaces, public operations, ownership and failure semantics.

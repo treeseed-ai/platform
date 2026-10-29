@@ -1,0 +1,112 @@
+schemaVersion: architecture/0.1
+view: example
+project: project.sample
+objects:
+- id: project.sample
+  kind: project
+  name: project.sample
+  purpose: Illustrative language conformance example
+  repository: https://example.invalid/sample.git
+- id: sample.plugin
+  kind: component
+  name: sample.plugin
+  purpose: Illustrative language conformance example
+  project: project.sample
+  componentKind: plugin
+  capabilities:
+  - sample.capability
+  contracts:
+  - sample.contract
+  componentRole: runtime
+- id: sample.contract
+  kind: contract
+  name: sample.contract
+  purpose: Illustrative language conformance example
+  project: project.sample
+  version: '1'
+  operations:
+  - name: run
+    input: Request
+    output: Result
+- id: sample.capability
+  kind: capability
+  name: sample.capability
+  purpose: Illustrative language conformance example
+  contract: sample.contract
+  cardinality: singleton
+  implementationMode: selectable
+- id: sample.provider
+  kind: provider
+  name: sample.provider
+  purpose: Illustrative language conformance example
+  component: sample.plugin
+  capabilities:
+  - sample.capability
+  contractVersion: '1'
+  nativeId: sample.default
+  replacement:
+    kind: restart
+- id: sample.composition
+  kind: composition
+  name: sample.composition
+  purpose: Illustrative language conformance example
+  project: project.sample
+  target: sample
+  process: sample.process
+  components:
+  - sample.plugin
+  scopes:
+  - id: root
+    lifetime: process
+    requiredCapabilities:
+    - sample.capability
+  registrations:
+  - sample.provider
+  selections:
+  - scope: root
+    capability: sample.capability
+    provider: sample.provider
+- id: sample.flow
+  kind: flow
+  name: sample.flow
+  purpose: Illustrative language conformance example
+  participants:
+  - sample.plugin
+  entry: fork
+  nodes:
+  - id: fork
+    kind: parallel
+    description: Start branches
+    branches:
+    - left
+    - right
+    join: joined
+  - id: left
+    kind: call
+    description: Left branch
+    participant: sample.plugin
+    contract: sample.contract
+    next: joined
+  - id: right
+    kind: call
+    description: Right branch
+    participant: sample.plugin
+    contract: sample.contract
+    next: joined
+  - id: joined
+    kind: join
+    description: Wait for both
+    branches:
+    - left
+    - right
+    next: done
+  - id: done
+    kind: complete
+    description: Complete
+  outcomes:
+  - done
+metadata:
+  baseline: illustrative
+  status: illustrative
+  notes:
+  - Not TreeSeed/TreeDX source evidence.

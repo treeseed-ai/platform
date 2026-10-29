@@ -1,0 +1,1087 @@
+schemaVersion: architecture/0.1
+view: implementation
+project: project.admin
+objects:
+- id: admin.application
+  kind: component
+  name: Application
+  purpose: Compose protected administration routes and identity custody
+  project: project.admin
+  componentKind: object
+  ownedFiles:
+  - src/admin.ts
+  - src/assets.ts
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/assets.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: admin.capability.admin.assets
+  kind: capability
+  name: admin.assets
+  purpose: Native capability admin.assets
+  contract: admin.contract.admin.assets
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.actions
+  kind: capability
+  name: admin.browser.actions
+  purpose: Native capability admin.browser.actions
+  contract: admin.contract.admin.browser.actions
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.navigation
+  kind: capability
+  name: admin.browser.navigation
+  purpose: Native capability admin.browser.navigation
+  contract: admin.contract.admin.browser.navigation
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.page
+  kind: capability
+  name: admin.browser.page
+  purpose: Native capability admin.browser.page
+  contract: admin.contract.admin.browser.page
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.presentation
+  kind: capability
+  name: admin.browser.presentation
+  purpose: Native capability admin.browser.presentation
+  contract: admin.contract.admin.browser.presentation
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.browser.status
+  kind: capability
+  name: admin.browser.status
+  purpose: Native capability admin.browser.status
+  contract: admin.contract.admin.browser.status
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.presentation
+  kind: capability
+  name: admin.presentation
+  purpose: Native capability admin.presentation
+  contract: admin.contract.admin.presentation
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.capability.admin.routes
+  kind: capability
+  name: admin.routes
+  purpose: Native capability admin.routes
+  contract: admin.contract.admin.routes
+  cardinality: singleton
+  implementationMode: selectable
+- id: admin.composition.AdminBrowserApplication.start.handle
+  kind: composition
+  name: AdminBrowserApplication.start.handle
+  purpose: Source composition construction site; configuration-dependent selections remain unresolved
+  project: project.admin
+  target: browser
+  process: admin.composition.AdminBrowserApplication.start.handle.process
+  scopes:
+  - id: admin.composition.AdminBrowserApplication.start.handle.scope
+    lifetime: configuration-dependent; source site only
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    start: 67
+    symbol: AdminBrowserApplication.start.handle
+    end: 67
+    fingerprint: 3fea94742b41d606293116fa5f35b7c37b07189a552c9ffde1cb4d8baf9631f7
+  extensions:
+    architecture:qualification: unknown
+    architecture:processIdentity: symbolic placeholder; source site may be a wrapper within an existing process
+- id: admin.contract.admin.assets
+  kind: contract
+  name: admin.assets
+  purpose: Boundary supplied for admin.assets
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminAssetsPlugin
+    start: 40
+    end: 43
+    fingerprint: 77998a4ed00c55418ecc5c1c0e58a82e6a81d61aa95efd1a2edf4ef93ef4bdd9
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.browser.actions
+  kind: contract
+  name: admin.browser.actions
+  purpose: Boundary supplied for admin.browser.actions
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations:
+  - name: invoke
+    input: actionId:string, input:Readonly<Record<string,string>>
+    output: Promise<UiActionResult>
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminActionsPlugin
+    start: 51
+    end: 55
+    fingerprint: 515acc97004b5e21ddd15b964cbb5f4a07724e814f4d328c13b3a84bb900e91e
+  extensions:
+    architecture:contractInterfaces:
+    - UiActionDispatcher
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.browser.navigation
+  kind: contract
+  name: admin.browser.navigation
+  purpose: Boundary supplied for admin.browser.navigation
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations:
+  - name: navigate
+    input: path:string
+    output: void
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminNavigationPlugin
+    start: 42
+    end: 50
+    fingerprint: 0137ab0a6205ca7fbc6002d2d81cb7a2e25a1acb9de97fbfc06bb6c32538a54f
+  extensions:
+    architecture:contractInterfaces:
+    - AdminNavigation
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.browser.page
+  kind: contract
+  name: admin.browser.page
+  purpose: Boundary supplied for admin.browser.page
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: StatusPagePlugin
+    start: 56
+    end: 60
+    fingerprint: 261d8f96a868760257ae738cd63ccf7682c7c5d4ce58c38fba98f604c9e1cc96
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.browser.presentation
+  kind: contract
+  name: admin.browser.presentation
+  purpose: Boundary supplied for admin.browser.presentation
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminBrowserStatePlugin
+    start: 38
+    end: 41
+    fingerprint: 24a8ec64927f89d3d2e792a670e752c52f8b340824d37815751b63146f5fc063
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.browser.status
+  kind: contract
+  name: admin.browser.status
+  purpose: Boundary supplied for admin.browser.status
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: HttpStatusPlugin
+    start: 28
+    end: 31
+    fingerprint: e0d134439992c3a25a394194c4ae2f60a5207bf3af7d0c8f863fd848e25370bf
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.presentation
+  kind: contract
+  name: admin.presentation
+  purpose: Boundary supplied for admin.presentation
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminPresentationPlugin
+    start: 44
+    end: 48
+    fingerprint: ad898ce07a38d8802c63fa06f7e69629bb451b7aaadd07a7114186f3451c21b4
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.contract.admin.routes
+  kind: contract
+  name: admin.routes
+  purpose: Boundary supplied for admin.routes
+  project: project.admin
+  version: 0.4.0-cordis.1
+  operations: []
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminPlugin
+    start: 49
+    end: 53
+    fingerprint: 112e102def4f7d3bc6047114505517d161dcd30c6b0092b63d7d5a678a98d7b7
+  extensions:
+    architecture:contractInterfaces: []
+    architecture:signatureEvidence: provider surface; imported interface may impose additional obligations
+- id: admin.plugin.AdminActionsPlugin
+  kind: component
+  name: AdminActionsPlugin
+  purpose: Native plugin declaration supplying admin.browser.actions
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.actions
+  contracts:
+  - admin.contract.admin.browser.actions
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminActionsPlugin
+    start: 51
+    end: 55
+    fingerprint: 515acc97004b5e21ddd15b964cbb5f4a07724e814f4d328c13b3a84bb900e91e
+  extensions:
+    cordis:inject:
+    - admin.browser.status
+    - admin.browser.presentation
+    - admin.browser.navigation
+    cordis:staticExpressions:
+      declaration: BrowserDeclaration.create('admin.browser.actions.default',AdminBrowserTokens.actions.id,[AdminBrowserTokens.status.id,AdminBrowserTokens.presentation.id,AdminBrowserTokens.navigation.id])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: BrowserDeclaration.replacement
+  componentRole: runtime
+- id: admin.plugin.AdminAssetsPlugin
+  kind: component
+  name: AdminAssetsPlugin
+  purpose: Native plugin declaration supplying admin.assets
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.assets
+  contracts:
+  - admin.contract.admin.assets
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminAssetsPlugin
+    start: 40
+    end: 43
+    fingerprint: 77998a4ed00c55418ecc5c1c0e58a82e6a81d61aa95efd1a2edf4ef93ef4bdd9
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: AdminDeclaration.create('admin.assets.default',AdminAssetsToken.id,[])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: AdminDeclaration.replacement
+  componentRole: runtime
+- id: admin.plugin.AdminBrowserApplication.start.PageConsumer
+  kind: component
+  name: AdminBrowserApplication.start.PageConsumer
+  purpose: Native injection consumer plugin; supplies no selectable capability
+  project: project.admin
+  componentKind: plugin
+  componentRole: runtime
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminBrowserApplication.start.PageConsumer
+    start: 67
+    end: 67
+    fingerprint: cdb673c25e6a07677a93c77d1ea666c7b563b374e3b3315d0962512f51278740
+  extensions:
+    cordis:injectExpression: '[''cordis.composition'',AdminBrowserTokens.page.id]'
+    architecture:registrationEvidence: See inventory compositionSites for native mounting; dynamic targets not executed
+- id: admin.plugin.AdminBrowserStatePlugin
+  kind: component
+  name: AdminBrowserStatePlugin
+  purpose: Native plugin declaration supplying admin.browser.presentation
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.presentation
+  contracts:
+  - admin.contract.admin.browser.presentation
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminBrowserStatePlugin
+    start: 38
+    end: 41
+    fingerprint: 24a8ec64927f89d3d2e792a670e752c52f8b340824d37815751b63146f5fc063
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: BrowserDeclaration.create('admin.browser.presentation.default',AdminBrowserTokens.presentation.id,[])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: BrowserDeclaration.replacement
+  componentRole: runtime
+- id: admin.plugin.AdminNavigationPlugin
+  kind: component
+  name: AdminNavigationPlugin
+  purpose: Native plugin declaration supplying admin.browser.navigation
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.navigation
+  contracts:
+  - admin.contract.admin.browser.navigation
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminNavigationPlugin
+    start: 42
+    end: 50
+    fingerprint: 0137ab0a6205ca7fbc6002d2d81cb7a2e25a1acb9de97fbfc06bb6c32538a54f
+  extensions:
+    cordis:inject:
+    - admin.browser.presentation
+    cordis:staticExpressions:
+      declaration: BrowserDeclaration.create('admin.browser.navigation.default',AdminBrowserTokens.navigation.id,[AdminBrowserTokens.presentation.id])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: BrowserDeclaration.replacement
+      destination: null
+      timer: null
+  componentRole: runtime
+- id: admin.plugin.AdminPlugin
+  kind: component
+  name: AdminPlugin
+  purpose: Native plugin declaration supplying admin.routes
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.routes
+  contracts:
+  - admin.contract.admin.routes
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminPlugin
+    start: 49
+    end: 53
+    fingerprint: 112e102def4f7d3bc6047114505517d161dcd30c6b0092b63d7d5a678a98d7b7
+  extensions:
+    cordis:inject:
+    - identity.sessions
+    - platform.invoker
+    - admin.assets
+    - admin.presentation
+    cordis:staticExpressions:
+      declaration: AdminDeclaration.create('installed-admin',AdminToken.id,[IdentitySessionsToken.id,ServiceTokens.invoker.id,AdminAssetsToken.id,AdminPresentationToken.id])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: AdminDeclaration.replacement
+  componentRole: runtime
+- id: admin.plugin.AdminPresentationPlugin
+  kind: component
+  name: AdminPresentationPlugin
+  purpose: Native plugin declaration supplying admin.presentation
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.presentation
+  contracts:
+  - admin.contract.admin.presentation
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminPresentationPlugin
+    start: 44
+    end: 48
+    fingerprint: ad898ce07a38d8802c63fa06f7e69629bb451b7aaadd07a7114186f3451c21b4
+  extensions:
+    cordis:inject:
+    - admin.assets
+    cordis:staticExpressions:
+      declaration: AdminDeclaration.create('admin.presentation.default',AdminPresentationToken.id,[AdminAssetsToken.id])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: AdminDeclaration.replacement
+  componentRole: runtime
+- id: admin.plugin.HttpStatusPlugin
+  kind: component
+  name: HttpStatusPlugin
+  purpose: Native plugin declaration supplying admin.browser.status
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.status
+  contracts:
+  - admin.contract.admin.browser.status
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: HttpStatusPlugin
+    start: 28
+    end: 31
+    fingerprint: e0d134439992c3a25a394194c4ae2f60a5207bf3af7d0c8f863fd848e25370bf
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: BrowserDeclaration.create('admin.browser.status.default',AdminBrowserTokens.status.id,[])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: BrowserDeclaration.replacement
+  componentRole: runtime
+- id: admin.plugin.StatusPagePlugin
+  kind: component
+  name: StatusPagePlugin
+  purpose: Native plugin declaration supplying admin.browser.page
+  project: project.admin
+  componentKind: plugin
+  capabilities:
+  - admin.capability.admin.browser.page
+  contracts:
+  - admin.contract.admin.browser.page
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: StatusPagePlugin
+    start: 56
+    end: 60
+    fingerprint: 261d8f96a868760257ae738cd63ccf7682c7c5d4ce58c38fba98f604c9e1cc96
+  extensions:
+    cordis:inject:
+    - admin.browser.status
+    - admin.browser.presentation
+    - admin.browser.actions
+    cordis:staticExpressions:
+      declaration: BrowserDeclaration.create('admin.browser.page.default',AdminBrowserTokens.page.id,[AdminBrowserTokens.status.id,AdminBrowserTokens.presentation.id,AdminBrowserTokens.actions.id])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+      replacement: BrowserDeclaration.replacement
+  componentRole: runtime
+- id: admin.presentation
+  kind: component
+  name: Presentation
+  purpose: Map authorized application data into UI contributions
+  project: project.admin
+  componentKind: object
+  ownedFiles:
+  - src/browser.ts
+  - src/views.ts
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/views.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: admin.provider.AdminActionsPlugin
+  kind: provider
+  name: admin.browser.actions.default
+  purpose: Candidate implementation supplied by AdminActionsPlugin
+  component: admin.plugin.AdminActionsPlugin
+  capabilities:
+  - admin.capability.admin.browser.actions
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.browser.actions.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminActionsPlugin
+    start: 51
+    end: 55
+    fingerprint: 515acc97004b5e21ddd15b964cbb5f4a07724e814f4d328c13b3a84bb900e91e
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.browser.actions.default
+        pluginId: admin
+        capability: admin.browser.actions
+        contractVersion: 0.4.0-cordis.1
+        target: browser
+        provide:
+        - admin.browser.actions
+        inject:
+        - admin.browser.status
+        - admin.browser.presentation
+        - admin.browser.navigation
+      entry: dist/src/browser.js
+      classExport: AdminActionsPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/6/configurationSchema
+  target: browser
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.AdminAssetsPlugin
+  kind: provider
+  name: admin.assets.default
+  purpose: Candidate implementation supplied by AdminAssetsPlugin
+  component: admin.plugin.AdminAssetsPlugin
+  capabilities:
+  - admin.capability.admin.assets
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.assets.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminAssetsPlugin
+    start: 40
+    end: 43
+    fingerprint: 77998a4ed00c55418ecc5c1c0e58a82e6a81d61aa95efd1a2edf4ef93ef4bdd9
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.assets.default
+        pluginId: admin
+        capability: admin.assets
+        contractVersion: 0.4.0-cordis.1
+        target: api
+        provide:
+        - admin.assets
+        inject: []
+      entry: dist/src/admin.js
+      classExport: AdminAssetsPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/1/configurationSchema
+  target: api
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.AdminBrowserStatePlugin
+  kind: provider
+  name: admin.browser.presentation.default
+  purpose: Candidate implementation supplied by AdminBrowserStatePlugin
+  component: admin.plugin.AdminBrowserStatePlugin
+  capabilities:
+  - admin.capability.admin.browser.presentation
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.browser.presentation.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminBrowserStatePlugin
+    start: 38
+    end: 41
+    fingerprint: 24a8ec64927f89d3d2e792a670e752c52f8b340824d37815751b63146f5fc063
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.browser.presentation.default
+        pluginId: admin
+        capability: admin.browser.presentation
+        contractVersion: 0.4.0-cordis.1
+        target: browser
+        provide:
+        - admin.browser.presentation
+        inject: []
+      entry: dist/src/browser.js
+      classExport: AdminBrowserStatePlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/3/configurationSchema
+  target: browser
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.AdminNavigationPlugin
+  kind: provider
+  name: admin.browser.navigation.default
+  purpose: Candidate implementation supplied by AdminNavigationPlugin
+  component: admin.plugin.AdminNavigationPlugin
+  capabilities:
+  - admin.capability.admin.browser.navigation
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.browser.navigation.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: AdminNavigationPlugin
+    start: 42
+    end: 50
+    fingerprint: 0137ab0a6205ca7fbc6002d2d81cb7a2e25a1acb9de97fbfc06bb6c32538a54f
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.browser.navigation.default
+        pluginId: admin
+        capability: admin.browser.navigation
+        contractVersion: 0.4.0-cordis.1
+        target: browser
+        provide:
+        - admin.browser.navigation
+        inject:
+        - admin.browser.presentation
+      entry: dist/src/browser.js
+      classExport: AdminNavigationPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/5/configurationSchema
+  target: browser
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.AdminPlugin
+  kind: provider
+  name: installed-admin
+  purpose: Candidate implementation supplied by AdminPlugin
+  component: admin.plugin.AdminPlugin
+  capabilities:
+  - admin.capability.admin.routes
+  contractVersion: 0.4.0-cordis.1
+  nativeId: installed-admin
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminPlugin
+    start: 49
+    end: 53
+    fingerprint: 112e102def4f7d3bc6047114505517d161dcd30c6b0092b63d7d5a678a98d7b7
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: installed-admin
+        pluginId: admin
+        capability: admin.routes
+        contractVersion: 0.4.0-cordis.1
+        target: api
+        provide:
+        - admin.routes
+        inject:
+        - identity.sessions
+        - platform.invoker
+        - admin.assets
+        - admin.presentation
+      entry: dist/src/admin.js
+      classExport: AdminPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties:
+          installationId:
+            type: string
+            minLength: 1
+          origin:
+            type: string
+            pattern: ^https:\/\/(localhost|127\.0\.0\.1|\[::1\])(:[0-9]+)?$
+          issuer:
+            type: string
+            format: uri
+          identityInternalOrigin:
+            type: string
+            format: uri
+          clientId:
+            type: string
+            minLength: 1
+          clientSecret:
+            type: string
+            minLength: 1
+          databaseUrl:
+            type: string
+            minLength: 1
+          bootstrapSubject:
+            type: string
+            minLength: 1
+          workerSocket:
+            type: string
+            pattern: ^\/
+          assetDigest:
+            type: string
+            pattern: ^[a-f0-9]{64}$
+        required:
+        - installationId
+        - origin
+        - issuer
+        - identityInternalOrigin
+        - clientId
+        - clientSecret
+        - databaseUrl
+        - bootstrapSubject
+        - workerSocket
+        - assetDigest
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/0/configurationSchema
+  target: api
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.AdminPresentationPlugin
+  kind: provider
+  name: admin.presentation.default
+  purpose: Candidate implementation supplied by AdminPresentationPlugin
+  component: admin.plugin.AdminPresentationPlugin
+  capabilities:
+  - admin.capability.admin.presentation
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.presentation.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/admin.ts
+    symbol: AdminPresentationPlugin
+    start: 44
+    end: 48
+    fingerprint: ad898ce07a38d8802c63fa06f7e69629bb451b7aaadd07a7114186f3451c21b4
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.presentation.default
+        pluginId: admin
+        capability: admin.presentation
+        contractVersion: 0.4.0-cordis.1
+        target: api
+        provide:
+        - admin.presentation
+        inject:
+        - admin.assets
+      entry: dist/src/admin.js
+      classExport: AdminPresentationPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/2/configurationSchema
+  target: api
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.HttpStatusPlugin
+  kind: provider
+  name: admin.browser.status.default
+  purpose: Candidate implementation supplied by HttpStatusPlugin
+  component: admin.plugin.HttpStatusPlugin
+  capabilities:
+  - admin.capability.admin.browser.status
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.browser.status.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: HttpStatusPlugin
+    start: 28
+    end: 31
+    fingerprint: e0d134439992c3a25a394194c4ae2f60a5207bf3af7d0c8f863fd848e25370bf
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.browser.status.default
+        pluginId: admin
+        capability: admin.browser.status
+        contractVersion: 0.4.0-cordis.1
+        target: browser
+        provide:
+        - admin.browser.status
+        inject: []
+      entry: dist/src/browser.js
+      classExport: HttpStatusPlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/4/configurationSchema
+  target: browser
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: admin.provider.StatusPagePlugin
+  kind: provider
+  name: admin.browser.page.default
+  purpose: Candidate implementation supplied by StatusPagePlugin
+  component: admin.plugin.StatusPagePlugin
+  capabilities:
+  - admin.capability.admin.browser.page
+  contractVersion: 0.4.0-cordis.1
+  nativeId: admin.browser.page.default
+  artifact: https://github.com/treeseed-ai/admin.git@6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  sourceBindings:
+  - project: project.admin
+    revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+    path: src/browser.ts
+    symbol: StatusPagePlugin
+    start: 56
+    end: 60
+    fingerprint: 261d8f96a868760257ae738cd63ccf7682c7c5d4ce58c38fba98f604c9e1cc96
+  extensions:
+    cordis:manifestDeclaration:
+      declaration:
+        id: admin.browser.page.default
+        pluginId: admin
+        capability: admin.browser.page
+        contractVersion: 0.4.0-cordis.1
+        target: browser
+        provide:
+        - admin.browser.page
+        inject:
+        - admin.browser.status
+        - admin.browser.presentation
+        - admin.browser.actions
+      entry: dist/src/browser.js
+      classExport: StatusPagePlugin
+      configurationSchema:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        type: object
+        properties: {}
+        additionalProperties: false
+      replacement:
+        kind: restart
+        stateVersion: 1
+        qualificationDigest: null
+      commandIds: []
+    architecture:readiness: unknown; no execution performed
+  configurationSchema: package.json#/cordisPackage/providers/7/configurationSchema
+  target: browser
+  replacement:
+    kind: restart
+    stateVersion: 1
+- id: project.admin
+  kind: project
+  name: Admin
+  purpose: Independent admin ownership boundary
+  repository: https://github.com/treeseed-ai/admin.git
+  revision: 6e35ae8e663d5aa8edd9def342880bc511eaa3f5
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: observed
+  notes:
+  - Source snapshot is not a qualified assembled release.
+  - Logical-area components group inventory; native plugin components are separate.
+  references:
+  - ../baselines/repositories.json
+  - inventory/admin.json
+  - ../baselines/public-surfaces.json
+  limitations:
+  - Dynamic injection/selection expressions retained in inventory; not evaluated.
+  - No runtime readiness, cleanup or conformance checks executed.
+relationships:
+- kind: provides
+  from: admin.plugin.AdminActionsPlugin
+  to: admin.capability.admin.browser.actions
+- kind: implements
+  from: admin.plugin.AdminActionsPlugin
+  to: admin.contract.admin.browser.actions
+- kind: provides
+  from: admin.plugin.AdminAssetsPlugin
+  to: admin.capability.admin.assets
+- kind: implements
+  from: admin.plugin.AdminAssetsPlugin
+  to: admin.contract.admin.assets
+- kind: provides
+  from: admin.plugin.AdminBrowserStatePlugin
+  to: admin.capability.admin.browser.presentation
+- kind: implements
+  from: admin.plugin.AdminBrowserStatePlugin
+  to: admin.contract.admin.browser.presentation
+- kind: provides
+  from: admin.plugin.AdminNavigationPlugin
+  to: admin.capability.admin.browser.navigation
+- kind: implements
+  from: admin.plugin.AdminNavigationPlugin
+  to: admin.contract.admin.browser.navigation
+- kind: provides
+  from: admin.plugin.AdminPlugin
+  to: admin.capability.admin.routes
+- kind: implements
+  from: admin.plugin.AdminPlugin
+  to: admin.contract.admin.routes
+- kind: provides
+  from: admin.plugin.AdminPresentationPlugin
+  to: admin.capability.admin.presentation
+- kind: implements
+  from: admin.plugin.AdminPresentationPlugin
+  to: admin.contract.admin.presentation
+- kind: provides
+  from: admin.plugin.HttpStatusPlugin
+  to: admin.capability.admin.browser.status
+- kind: implements
+  from: admin.plugin.HttpStatusPlugin
+  to: admin.contract.admin.browser.status
+- kind: provides
+  from: admin.plugin.StatusPagePlugin
+  to: admin.capability.admin.browser.page
+- kind: implements
+  from: admin.plugin.StatusPagePlugin
+  to: admin.contract.admin.browser.page
+- kind: provides
+  from: admin.provider.AdminActionsPlugin
+  to: admin.capability.admin.browser.actions
+- kind: provides
+  from: admin.provider.AdminAssetsPlugin
+  to: admin.capability.admin.assets
+- kind: provides
+  from: admin.provider.AdminBrowserStatePlugin
+  to: admin.capability.admin.browser.presentation
+- kind: provides
+  from: admin.provider.AdminNavigationPlugin
+  to: admin.capability.admin.browser.navigation
+- kind: provides
+  from: admin.provider.AdminPlugin
+  to: admin.capability.admin.routes
+- kind: provides
+  from: admin.provider.AdminPresentationPlugin
+  to: admin.capability.admin.presentation
+- kind: provides
+  from: admin.provider.HttpStatusPlugin
+  to: admin.capability.admin.browser.status
+- kind: provides
+  from: admin.provider.StatusPagePlugin
+  to: admin.capability.admin.browser.page
+- kind: depends-on
+  from: project.admin
+  to: project.identity
+- kind: depends-on
+  from: project.admin
+  to: project.sdk
+- kind: depends-on
+  from: project.admin
+  to: project.ui
+- kind: requires
+  from: admin.plugin.AdminActionsPlugin
+  to: admin.capability.admin.browser.status
+- kind: requires
+  from: admin.plugin.AdminActionsPlugin
+  to: admin.capability.admin.browser.presentation
+- kind: requires
+  from: admin.plugin.AdminActionsPlugin
+  to: admin.capability.admin.browser.navigation
+- kind: requires
+  from: admin.plugin.AdminNavigationPlugin
+  to: admin.capability.admin.browser.presentation
+- kind: requires
+  from: admin.plugin.AdminPlugin
+  to: identity.capability.identity.sessions
+- kind: requires
+  from: admin.plugin.AdminPlugin
+  to: api.capability.platform.invoker
+- kind: requires
+  from: admin.plugin.AdminPlugin
+  to: admin.capability.admin.assets
+- kind: requires
+  from: admin.plugin.AdminPlugin
+  to: admin.capability.admin.presentation
+- kind: requires
+  from: admin.plugin.AdminPresentationPlugin
+  to: admin.capability.admin.assets
+- kind: requires
+  from: admin.plugin.StatusPagePlugin
+  to: admin.capability.admin.browser.status
+- kind: requires
+  from: admin.plugin.StatusPagePlugin
+  to: admin.capability.admin.browser.presentation
+- kind: requires
+  from: admin.plugin.StatusPagePlugin
+  to: admin.capability.admin.browser.actions

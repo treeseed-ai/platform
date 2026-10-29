@@ -1,0 +1,183 @@
+schemaVersion: architecture/0.1
+view: intent
+project: project.identity
+objects:
+- id: identity.capability.container.identity.0_3_0_cordis_1
+  kind: capability
+  name: container.identity
+  purpose: Native capability container.identity
+  contract: identity.contract.container.identity.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.container.service
+  kind: capability
+  name: container.service
+  purpose: Native capability container.service
+  contract: identity.contract.container.service
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.identity.oidc
+  kind: capability
+  name: identity.oidc
+  purpose: Native capability identity.oidc
+  contract: identity.contract.identity.oidc
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.identity.sessions
+  kind: capability
+  name: identity.sessions
+  purpose: Native capability identity.sessions
+  contract: identity.contract.identity.sessions
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.identity.store
+  kind: capability
+  name: identity.store
+  purpose: Native capability identity.store
+  contract: identity.contract.identity.store
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.capability.probe.service
+  kind: capability
+  name: probe.service
+  purpose: Native capability probe.service
+  contract: identity.contract.probe.service
+  cardinality: singleton
+  implementationMode: selectable
+- id: identity.contract.container.identity.0_3_0_cordis_1
+  kind: contract
+  name: container.identity
+  purpose: Typed capability boundary from native token/declaration
+  project: project.identity
+  version: 0.3.0-cordis.1
+- id: identity.contract.container.service
+  kind: contract
+  name: container.service
+  purpose: Boundary supplied for container.service
+  project: project.identity
+  version: 0.4.0-cordis.1
+- id: identity.contract.identity.oidc
+  kind: contract
+  name: identity.oidc
+  purpose: Boundary supplied for identity.oidc
+  project: project.identity
+  version: 0.4.0-cordis.1
+- id: identity.contract.identity.sessions
+  kind: contract
+  name: identity.sessions
+  purpose: Boundary supplied for identity.sessions
+  project: project.identity
+  version: 0.4.0-cordis.1
+- id: identity.contract.identity.store
+  kind: contract
+  name: identity.store
+  purpose: Boundary supplied for identity.store
+  project: project.identity
+  version: 0.4.0-cordis.1
+- id: identity.contract.probe.service
+  kind: contract
+  name: probe.service
+  purpose: Boundary supplied for probe.service
+  project: project.identity
+  version: 0.4.0-cordis.1
+- id: identity.plugin.KeycloakContainerPlugin
+  kind: component
+  name: KeycloakContainerPlugin
+  purpose: Native plugin declaration supplying dynamically resolved capabilities
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.container.identity.0_3_0_cordis_1
+  contracts:
+  - identity.contract.container.identity.0_3_0_cordis_1
+  componentRole: runtime
+- id: identity.plugin.KeycloakReadinessPlugin
+  kind: component
+  name: KeycloakReadinessPlugin
+  purpose: Native plugin declaration supplying probe.service
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.probe.service
+  contracts:
+  - identity.contract.probe.service
+  componentRole: runtime
+- id: identity.plugin.KeycloakServicePlugin
+  kind: component
+  name: KeycloakServicePlugin
+  purpose: Native plugin declaration supplying container.service
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.container.service
+  contracts:
+  - identity.contract.container.service
+  componentRole: runtime
+- id: identity.plugin.OidcPlugin
+  kind: component
+  name: OidcPlugin
+  purpose: Native plugin declaration supplying identity.oidc
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.identity.oidc
+  contracts:
+  - identity.contract.identity.oidc
+  componentRole: runtime
+- id: identity.plugin.SessionPlugin
+  kind: component
+  name: SessionPlugin
+  purpose: Native plugin declaration supplying identity.sessions
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.identity.sessions
+  contracts:
+  - identity.contract.identity.sessions
+  componentRole: runtime
+- id: identity.plugin.StorePlugin
+  kind: component
+  name: StorePlugin
+  purpose: Native plugin declaration supplying identity.store
+  project: project.identity
+  componentKind: plugin
+  capabilities:
+  - identity.capability.identity.store
+  contracts:
+  - identity.contract.identity.store
+  componentRole: runtime
+- id: identity.services
+  kind: component
+  name: Services
+  purpose: Provide Keycloak container and readiness boundaries
+  project: project.identity
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: identity.sessions
+  kind: component
+  name: Sessions
+  purpose: Integrate identity, principal persistence and session authority
+  project: project.identity
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: project.identity
+  kind: project
+  name: Identity
+  purpose: Independent identity ownership boundary
+  repository: https://github.com/treeseed-ai/identity.git
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: proposed
+  notes:
+  - Candidate identity/contract map for architectural review; source existence is not architectural acceptance.
+  - No requirement to retain every observed provider implementation; select by approved capability contract.
+  - TreeSeed profile supplies obligations; omitted properties are unspecified.
+  references:
+  - ../profiles/treeseed.yaml
+  - ../profiles/languages.md

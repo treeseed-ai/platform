@@ -1,0 +1,247 @@
+schemaVersion: architecture/0.1
+view: intent
+project: project.api
+objects:
+- id: api.capability.api.host
+  kind: capability
+  name: api.host
+  purpose: Native capability api.host
+  contract: api.contract.api.host
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.api.http
+  kind: capability
+  name: api.http
+  purpose: Native capability api.http
+  contract: api.contract.api.http
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.api.routes
+  kind: capability
+  name: api.routes
+  purpose: Native capability api.routes
+  contract: api.contract.api.routes
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.container.api.0_3_0_cordis_1
+  kind: capability
+  name: container.api
+  purpose: Native capability container.api
+  contract: api.contract.container.api.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.container.service
+  kind: capability
+  name: container.service
+  purpose: Native capability container.service
+  contract: api.contract.container.service
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.identity.principal
+  kind: capability
+  name: identity.principal
+  purpose: Native capability identity.principal
+  contract: api.contract.identity.principal
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.platform.invoker
+  kind: capability
+  name: platform.invoker
+  purpose: Native capability platform.invoker
+  contract: api.contract.platform.invoker
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.capability.probe.service
+  kind: capability
+  name: probe.service
+  purpose: Native capability probe.service
+  contract: api.contract.probe.service
+  cardinality: singleton
+  implementationMode: selectable
+- id: api.contract.api.host
+  kind: contract
+  name: api.host
+  purpose: Boundary supplied for api.host
+  project: project.api
+  version: 0.4.0-cordis.1
+- id: api.contract.api.http
+  kind: contract
+  name: api.http
+  purpose: Boundary supplied for api.http
+  project: project.api
+  version: 0.4.0-cordis.1
+- id: api.contract.api.routes
+  kind: contract
+  name: api.routes
+  purpose: Boundary supplied for api.routes
+  project: project.api
+  version: 0.4.0-cordis.1
+- id: api.contract.container.api.0_3_0_cordis_1
+  kind: contract
+  name: container.api
+  purpose: Typed capability boundary from native token/declaration
+  project: project.api
+  version: 0.3.0-cordis.1
+- id: api.contract.container.service
+  kind: contract
+  name: container.service
+  purpose: Boundary supplied for container.service
+  project: project.api
+  version: 0.4.0-cordis.1
+- id: api.contract.identity.principal
+  kind: contract
+  name: identity.principal
+  purpose: Boundary supplied for identity.principal
+  project: project.api
+  version: unresolved
+- id: api.contract.platform.invoker
+  kind: contract
+  name: platform.invoker
+  purpose: Boundary supplied for platform.invoker
+  project: project.api
+  version: 0.4.0-cordis.1
+- id: api.contract.probe.service
+  kind: contract
+  name: probe.service
+  purpose: Boundary supplied for probe.service
+  project: project.api
+  version: 0.4.0-cordis.1
+- id: api.operations
+  kind: component
+  name: Operations
+  purpose: Expose authorized operations through API composition and public owner clients
+  project: project.api
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: api.plugin.ApiReadinessPlugin
+  kind: component
+  name: ApiReadinessPlugin
+  purpose: Native plugin declaration supplying probe.service
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.probe.service
+  contracts:
+  - api.contract.probe.service
+  componentRole: runtime
+- id: api.plugin.HostPlugin
+  kind: component
+  name: HostPlugin
+  purpose: Native plugin declaration supplying api.host
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.api.host
+  contracts:
+  - api.contract.api.host
+  componentRole: runtime
+- id: api.plugin.HttpPlugin
+  kind: component
+  name: HttpPlugin
+  purpose: Native plugin declaration supplying api.http
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.api.http
+  contracts:
+  - api.contract.api.http
+  componentRole: runtime
+- id: api.plugin.InvokerPlugin
+  kind: component
+  name: InvokerPlugin
+  purpose: Native plugin declaration supplying platform.invoker
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.platform.invoker
+  contracts:
+  - api.contract.platform.invoker
+  componentRole: runtime
+- id: api.plugin.NodeApiContainerPlugin
+  kind: component
+  name: NodeApiContainerPlugin
+  purpose: Native plugin declaration supplying dynamically resolved capabilities
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.container.api.0_3_0_cordis_1
+  contracts:
+  - api.contract.container.api.0_3_0_cordis_1
+  componentRole: runtime
+- id: api.plugin.NodeApiServicePlugin
+  kind: component
+  name: NodeApiServicePlugin
+  purpose: Native plugin declaration supplying container.service
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.container.service
+  contracts:
+  - api.contract.container.service
+  componentRole: runtime
+- id: api.plugin.RequestActionPlugin
+  kind: component
+  name: RequestActionPlugin
+  purpose: Candidate native consumer boundary for review; not automatically approved
+  project: project.api
+  componentKind: plugin
+  componentRole: runtime
+- id: api.plugin.RequestPrincipalPlugin
+  kind: component
+  name: RequestPrincipalPlugin
+  purpose: Native plugin declaration supplying identity.principal
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.identity.principal
+  contracts:
+  - api.contract.identity.principal
+  componentRole: runtime
+- id: api.plugin.RouterPlugin
+  kind: component
+  name: RouterPlugin
+  purpose: Native plugin declaration supplying api.routes
+  project: project.api
+  componentKind: plugin
+  capabilities:
+  - api.capability.api.routes
+  contracts:
+  - api.contract.api.routes
+  componentRole: runtime
+- id: api.presentation
+  kind: component
+  name: Presentation
+  purpose: Map application state to public presentation views
+  project: project.api
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: api.services
+  kind: component
+  name: Services
+  purpose: Declare container service and image boundaries
+  project: project.api
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: project.api
+  kind: project
+  name: Api
+  purpose: Independent api ownership boundary
+  repository: https://github.com/treeseed-ai/api.git
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: proposed
+  notes:
+  - Candidate identity/contract map for architectural review; source existence is not architectural acceptance.
+  - No requirement to retain every observed provider implementation; select by approved capability contract.
+  - TreeSeed profile supplies obligations; omitted properties are unspecified.
+  references:
+  - ../profiles/treeseed.yaml
+  - ../profiles/languages.md

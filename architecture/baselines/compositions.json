@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "architecture-compositions/0.1",
+  "project": "project.platform",
+  "revision": "df3ea72d48d45517d98075439c6cf1e1e315144f",
+  "records": {
+    "composition/task1.json": {
+      "schemaVersion": 1,
+      "scope": "Task 1 diagnostic executable and seven SDK contracts only",
+      "parentSetup": "b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e",
+      "owners": {
+        "sdk": {
+          "repository": "https://github.com/treeseed-ai/sdk.git",
+          "commit": "d7503cb5ff5d62b331c3ba9386e46706bcaee3ec",
+          "baseline": "395286a3268a1d9990046011d1145702df052ddf",
+          "archiveSha256": "18950f68895cf5bf229240760cbc49cda7427384dbdcc4a4b5411f808f926c00",
+          "tree": "bbc923a5e128bb9a88abaa3740d9f8ef30dfaa49"
+        },
+        "deployment": {
+          "repository": "https://github.com/treeseed-ai/deployment.git",
+          "commit": "997ca86f516169cb3a0a0c2bd40527b3b453928d",
+          "baseline": "1b904ade5fd5f3ec0945db7bef59274185d92dde",
+          "archiveSha256": "bc042a167b3d9ca7ab2a58d4536caf84fecf88cdb650c759ba9ea92712fcb5b7",
+          "tree": "4771e45d98be41de9a6b7b26c9faff4e304ce160"
+        },
+        "cli": {
+          "repository": "https://github.com/treeseed-ai/cli.git",
+          "commit": "66f69587a68df35ad6c5259a583a622b866cfa75",
+          "baseline": "612c2871b43e7b0868532f1705c4e4dd5c9b6f75",
+          "artifactSha256": "ad809c4a057df4af497a23796ecb5feb360078d4733c28508dd1f7630a738ac9",
+          "tree": "b708817f3e997568391296f73b11ee992ed2db87"
+        }
+      },
+      "toolchain": {
+        "bun": "1.4.4+38afee6c8",
+        "typescript": "5.9.3",
+        "zod": "4.6.7",
+        "node": "24.19.0",
+        "cordisCandidate": "35fdc969e4b6c48c48ed44717c7a018324e4dd88"
+      },
+      "nativeQualification": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "architecture": "x64",
+        "docker": "29.9.1",
+        "compose": "5.6.0",
+        "context": "default",
+        "endpoint": "unix:///var/run/docker.sock",
+        "commands": [
+          "bun run verify (SDK, Deployment, CLI)",
+          "node --test tests/skills/*.test.mts tests/task1-composition.test.mts"
+        ],
+        "unqualified": [
+          "macOS",
+          "WSL2",
+          "ARM64",
+          "installation/apply",
+          "remote transports",
+          "Cordis host"
+        ]
+      },
+      "pullRequests": {
+        "sdk": "https://github.com/treeseed-ai/sdk/pull/451",
+        "deployment": "https://github.com/treeseed-ai/deployment/pull/901",
+        "cli": "https://github.com/treeseed-ai/cli/pull/310"
+      }
+    },
+    "composition/task2.json": {
+      "schemaVersion": 1,
+      "scope": "Task 2 non-activating local deployment planning plus Task 1 diagnostics and seven SDK contracts",
+      "parentSetup": "b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e",
+      "owners": {
+        "sdk": {
+          "repository": "https://github.com/treeseed-ai/sdk.git",
+          "commit": "39fac9eaf924a48abe4bc00f6af3a9f2929a36aa",
+          "baseline": "ce6ab80fd759e7ac97489e02a6534badf292bc57",
+          "archiveSha256": "f6b892a0a27fac37d5c1742bbbf7d58b7a8f6d320019d3d244c03173042f73dd",
+          "tree": "a68c69c11abb2ab07a08444beee7021ce875021d"
+        },
+        "deployment": {
+          "repository": "https://github.com/treeseed-ai/deployment.git",
+          "commit": "88fb64ac82ea4eedacba4f9a1e5f8a6bfb354796",
+          "baseline": "b25635233bb2c61a344cf6717ce4ff1d2e0c21c0",
+          "archiveSha256": "96e0b9cadf93c02d538b83f1835b63bef9ca4ec6a1218483ff0abf09367d9239",
+          "tree": "0f748af88ce06dd3a185347dcb82e59b19ca42fa"
+        },
+        "cli": {
+          "repository": "https://github.com/treeseed-ai/cli.git",
+          "commit": "6e5ecae5698d8cec1c016977dc16004f614737a7",
+          "baseline": "f28c5d8fcd08fb3adabaa6ca4688b193e9f98c01",
+          "artifactSha256": "dd85f1477e160c03ebbd21ba9e6178506a4801b83ea41d6da06edcefe5d9c02e",
+          "tree": "a22e5e26a7a3f2be46df8961cfca8004bc0fc9f5"
+        }
+      },
+      "toolchain": {
+        "bun": "1.4.4+38afee6c8",
+        "typescript": "5.9.3",
+        "zod": "4.6.7",
+        "node": "24.19.0",
+        "cordisCandidate": "35fdc969e4b6c48c48ed44717c7a018324e4dd88"
+      },
+      "nativeQualification": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "architecture": "x64",
+        "docker": "29.9.1",
+        "compose": "5.6.0",
+        "context": "default",
+        "endpoint": "unix:///var/run/docker.sock",
+        "commands": [
+          "bun run verify (SDK, Deployment, CLI)",
+          "node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts"
+        ],
+        "unqualified": [
+          "macOS",
+          "WSL2",
+          "ARM64",
+          "installation/apply",
+          "remote transports",
+          "Cordis host",
+          "production application composition"
+        ]
+      }
+    },
+    "composition/task3a.json": {
+      "schemaVersion": 1,
+      "scope": "Task 3A native CLI/Deployment composition, verified prepared provider loading, and retained Task 1\u20132 behavior",
+      "parentSetup": "b9b96dfeaaa8e3e38643beb71562f9d833a8ce5e",
+      "owners": {
+        "sdk": {
+          "repository": "https://github.com/treeseed-ai/sdk.git",
+          "commit": "6bb7a34ab2851fc72ae4324eefe7150e6d48c2ef",
+          "baseline": "472c49192ef395abfbc75122e396926bb6fb5018",
+          "archiveSha256": "5590d341746379f3b7e49985e37a7d17993970ef8e7bd5f9afc37e01e01606d3",
+          "tree": "fc8dec4b8d693e8d2013d4d517880a5bebc013d3"
+        },
+        "deployment": {
+          "repository": "https://github.com/treeseed-ai/deployment.git",
+          "commit": "a51a64d695d8900cdea46dbe1288a38d17a40dce",
+          "baseline": "e8460bb0913805473af39698fdfd0da146cf6a9a",
+          "archiveSha256": "e75b33cf64fd3fc64f38dc7bee572ba1dd53b11a591b65603ff8edcebd94b87a",
+          "tree": "4c0343a82778eaeeec8fef4dcd4b535155d3798c"
+        },
+        "cli": {
+          "repository": "https://github.com/treeseed-ai/cli.git",
+          "commit": "7e2c1c0ee861ad141bb65664c9ca0fa8f0680cba",
+          "baseline": "81a5017f41af03b0012f28b3160783d9d96d78c9",
+          "artifactSha256": "dde6a299af6d22ce8aee1d6e608d8a85cc30040ab4ac07d2fda086e4b5e25f7f",
+          "tree": "319469c8d4426bd797679dbc21a4b7c36c707e16"
+        }
+      },
+      "toolchain": {
+        "bun": "1.4.4+38afee6c8",
+        "typescript": "5.9.3",
+        "zod": "4.6.7",
+        "node": "24.19.0"
+      },
+      "nativeQualification": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "architecture": "x64",
+        "docker": "29.9.1",
+        "compose": "5.6.0",
+        "context": "default",
+        "endpoint": "unix:///var/run/docker.sock",
+        "commands": [
+          "bun run verify (SDK 18, Deployment 24, CLI 13 tests)",
+          "node --test --test-concurrency=1 tests/skills/*.test.mts tests/task1-composition.test.mts tests/task2-planning.test.mts tests/task3a-composition.test.mts"
+        ],
+        "unqualified": [
+          "macOS",
+          "WSL2",
+          "ARM64",
+          "installation/apply",
+          "remote transports",
+          "production application composition"
+        ],
+        "scope": "Native Cordis roots, scoped leases and prepared ESM loading in standalone CLI; no live swap/installer/apply"
+      },
+      "parentArchitecture": "8974d196318d542eb795f15eaa54150fbd9e08fd",
+      "framework": {
+        "package": "cordis",
+        "version": "4.0.0-rc.12",
+        "gitHead": "01b396240ce47cf2779c40af9bc445bb748fe112",
+        "integrity": "sha512-/ZtRivYxr5sffTULPewHuX5kEy5sWi8oADHSpnt0KjAd8uKRIj+kv4fh3lxtutIfVlgwJVFVXWOQp/gYa+kIOQ==",
+        "optionalPeers": "loader/include absent; native class composition only"
+      }
+    },
+    "composition/task3b.json": {
+      "formatVersion": 1,
+      "task": "3B",
+      "fixturesOnly": true,
+      "cli": {
+        "repository": "https://github.com/treeseed-ai/cli.git",
+        "commit": "89fb78b6fd362a8de9dec9d238a310f65545175b",
+        "acceptedCandidate": "5dd94c174bce3905f5fe873fbe892da80d971c99"
+      },
+      "owners": {
+        "sdk": {
+          "repository": "https://github.com/treeseed-ai/sdk.git",
+          "commit": "f44ede394a58814b5d6e73146ba9ed7246b4f2ca",
+          "archive": "packages/cli/vendor/sdk.tgz",
+          "sha256": "16d3d7f699c55795b97972ca538bfeedeafdc6bfc4c32ed01708871ea02fe75c"
+        },
+        "deployment": {
+          "repository": "https://github.com/treeseed-ai/deployment.git",
+          "commit": "6a861aa81f3786b74752191b461d1bcddf99fce5",
+          "archive": "packages/cli/vendor/deployment.tgz",
+          "sha256": "7015e2447eb4d98f9979e8f10a3b33480c8ca80818384e2cbf939eba550ab65d"
+        },
+        "api": {
+          "repository": "https://github.com/treeseed-ai/api.git",
+          "commit": "0d8037475ccecea8bfe7462c803799d4a4a445bf",
+          "archive": "vendor/task3b/api.tgz",
+          "sha256": "35d3ea37325edbe8538090132f5931aaa0e782a32f9c384699f8be2060effebc"
+        },
+        "identity": {
+          "repository": "https://github.com/treeseed-ai/identity.git",
+          "commit": "906d64e1dc9219786444f5f793968592bb8abd96",
+          "archive": "vendor/task3b/identity.tgz",
+          "sha256": "dd3131499b01b8ad8d4c8aa78d0cb99de69da86c4fbad1da0670439c3d8bdddc"
+        },
+        "admin": {
+          "repository": "https://github.com/treeseed-ai/admin.git",
+          "commit": "5b30c2af69c5d273936cfddd480e7f5891c75db9",
+          "archive": "vendor/task3b/admin.tgz",
+          "sha256": "a7750c6f38187e44b2823eb778f66b73c4596983226dd80c2204208f96848e28"
+        }
+      },
+      "images": {
+        "database": "postgres@sha256:eee6c6e1b0894fa4fe0075eb054af9fd1cf39a35321c2d4110626cfe506411fb",
+        "identity": "quay.io/keycloak/keycloak@sha256:ff4257d0d64efbe99ed1ddfaf07765cc3c36dc7518bf8324d41961327f441c54",
+        "edge": "caddy@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d",
+        "node": "node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553"
+      },
+      "verification": {
+        "local": {
+          "host": "Ubuntu 26.04.1 x64",
+          "bun": "1.4.4",
+          "node": "24.19.0",
+          "docker": "29.9.1",
+          "compose": "5.6.0",
+          "installedScene": {
+            "assertions": 311,
+            "result": "pass",
+            "priorReviewedCandidateAssertions": 293,
+            "qualification": "Polling changes the total assertion count; the same behavioral assertions and authenticated missing-application regression pass.",
+            "mergedCliBeforeAuthorityRegressions": 292
+          },
+          "owners": {
+            "sdk": 20,
+            "deployment": 32,
+            "cli": 14,
+            "api": 6,
+            "identity": 3,
+            "admin": 3
+          },
+          "historicalAssembledAndSkills": 15
+        },
+        "runtimeEffectBoundary": "Only accepted fixture-owned resources; no legacy service or production publication",
+        "historicalFormats": "Format 1 preserved; format 2 explicit; generalized recovery deferred",
+        "ownerPushCI": {
+          "sdk": 40145937270,
+          "deployment": 40145938719,
+          "cli": 40145937906,
+          "api": 40145938326,
+          "identity": 40145937927,
+          "admin": 40145937419
+        },
+        "platformInitialPushCI": 40139784766,
+        "qualification": {
+          "runtimeClosure": "Registry identities and SRI must match committed Platform bun.lock; fresh resolution drift fails visibly",
+          "ociCache": "Key includes current image identity; only selected native manifest/config/layers are copied",
+          "hostMounts": "Private descriptor ownership/identity checked before and after the Docker mount operation; daemon bind sources use verified installation paths",
+          "negativeMountQualification": "Docker 29.9.1 / Compose 5.6.0 / local Unix context / Ubuntu 26.04 x64: proc descriptor bind source rejected by runc; fixed installation paths qualify successfully"
+        },
+        "review": {
+          "missingApplication": "Authenticated missing application regression reproduced HTTP 503 before fix; real installed scene now returns safe 404.",
+          "policy": "API #621 restored exact approved policy blob b1a687db754ee2fac141919e6c63052d12bf2812; both runtime PRs pass normal base-owned authorization.",
+          "documentation": "Owner links target cordis and survive task-branch deletion.",
+          "hostAuthority": "Built CLI apply rejects changed daemon identity and stale composition before activation; a separate built worker cannot take an existing writer lock. No new containers, networks, volumes or credentials."
+        },
+        "ownerIntegration": {
+          "sdk": {
+            "num": 459,
+            "issue": 457,
+            "branch": "feature/457-task3b-installed-composition",
+            "head": "f44ede394a58814b5d6e73146ba9ed7246b4f2ca",
+            "merge": "285e95407fddb233abd198da8c80f74c077372f9",
+            "tree": "d787132bc96b837c1ad24e4c8b5482b8ff134a90"
+          },
+          "deployment": {
+            "num": 909,
+            "issue": 908,
+            "branch": "feature/908-task3b-installed-composition",
+            "head": "6a861aa81f3786b74752191b461d1bcddf99fce5",
+            "merge": "a34a62ed2445130547e15e2c90bb80c9e6fa4b07",
+            "tree": "b0d54b6200ee47bc5992074c00d3d72dc9fac9af"
+          },
+          "cli": {
+            "num": 316,
+            "issue": 315,
+            "branch": "feature/315-task3b-installed-composition",
+            "head": "5dd94c174bce3905f5fe873fbe892da80d971c99",
+            "merge": "89fb78b6fd362a8de9dec9d238a310f65545175b",
+            "tree": "8fa89ccbaf362ffbc91e25f97b00840f5e4ef9b9"
+          },
+          "identity": {
+            "num": 45,
+            "issue": 44,
+            "branch": "feature/44-task3b-installed-composition",
+            "head": "906d64e1dc9219786444f5f793968592bb8abd96",
+            "merge": "7a294b9e9f5e19f5b90a69d3d4adaa7eac0205a8",
+            "tree": "0f7a24017c33f08f222fd7d64172bc8efe12aa35"
+          },
+          "admin": {
+            "num": 136,
+            "issue": 135,
+            "branch": "feature/135-task3b-installed-composition",
+            "head": "5b30c2af69c5d273936cfddd480e7f5891c75db9",
+            "merge": "b12651bcc8a8c7efab48377b65d6174915cf5dbe",
+            "tree": "7dfc221f4d18768ede870d5b24870b59ce152e57"
+          },
+          "api": {
+            "num": 619,
+            "issue": 617,
+            "branch": "feature/617-task3b-api-server",
+            "head": "0d8037475ccecea8bfe7462c803799d4a4a445bf",
+            "merge": "942a2c441b09cd61ba8e5b2a5946c272752e626d",
+            "tree": "f049f1a3c4acaaf9babb1fdc23b2138cb24a4273"
+          }
+        },
+        "platformReviewCI": 40146085024
+      }
+    },
+    "composition/task3c-ui-artifact-files.json": {
+      "formatVersion": 1,
+      "owners": {
+        "admin": {
+          "sha256": "d72213d3ce0c04280c86069e6040a91609cf79588ffd1e241073aefdbaee4a4d",
+          "files": [
+            {
+              "path": "LICENSE",
+              "sha256": "bba6b55981791caed2ccd0a23b84857e8091de52585bac76d09fee658cfee969",
+              "size": 567,
+              "mode": 416
+            },
+            {
+              "path": "README.md",
+              "sha256": "b2a5fd05495c04360f80e62a1d5b7f0f176775921c341e8aeaddfb3410f9a0d5",
+              "size": 9290,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/admin.d.ts",
+              "sha256": "18c2a77748271bf23ae374793c85268739db515d4a8018ccb8e33a29f494c4a8",
+              "size": 5358,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/admin.js",
+              "sha256": "053e31c87b82eae7559a2b04be9ea29c12cb84cdc84730f92b700c555be833dd",
+              "size": 12731,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/assets.d.ts",
+              "sha256": "259b8b3cd4df174a36a2e4d64bf17606b67a8703e370b3e367da18bee195a521",
+              "size": 644,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/assets.js",
+              "sha256": "139608fe78ded2c28863ce48c9edae184092dde380bb011d63ccebfcc5739fa1",
+              "size": 4417,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/browser.bundle.js",
+              "sha256": "a80a0c8ff4b67866dda1530184cee0a3c286d81a96b608b0b1a308a3bbb194d3",
+              "size": 990552,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/browser.d.ts",
+              "sha256": "094ce4f49418bf760200429e9691dfe05233096cc1e3197957118f752dbd6559",
+              "size": 6841,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/browser.js",
+              "sha256": "09215a1a8a037d20bb328d963c961b30da89f395940a62c51b262c013758932b",
+              "size": 11228,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/views.d.ts",
+              "sha256": "aaf2675ecdabd951627b7c1e14355017d310a1f3665dbf8aee7eac1623d32845",
+              "size": 376,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/views.js",
+              "sha256": "f5e261ce1b361d396783e1775f4d57676471942debf587fd002212d90c5f93bd",
+              "size": 1875,
+              "mode": 416
+            },
+            {
+              "path": "package.json",
+              "sha256": "a2e39e84a04a39302c5c2d54531e5529186b9894bab860cf51aa5c141d5965bc",
+              "size": 11778,
+              "mode": 416
+            }
+          ]
+        },
+        "api": {
+          "sha256": "2909e9dc3b73df54b655b0f5251575e10078af144791dd9f32faffd942414751",
+          "files": [
+            {
+              "path": "LICENSE",
+              "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+              "size": 34523,
+              "mode": 416
+            },
+            {
+              "path": "README.md",
+              "sha256": "79aa016884504e8a2561180c5dafe62d000130df4e48413ecbeff07a17da8627",
+              "size": 16594,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/application-view.d.ts",
+              "sha256": "9f20b69a5b9d340f9c0ff18973f82b5fce63d67cfa38d573d3f7a127ab588dfb",
+              "size": 190,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/application-view.js",
+              "sha256": "a60ac640b784ca47318815d01d7139b479b12116f55ab68af26c035df7bb4892",
+              "size": 519,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/configuration.d.ts",
+              "sha256": "fd7c7e7876dad8c184047cb41b1b21576506c70f240ebc7e1ec4c3ce96a7677f",
+              "size": 1066,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/configuration.js",
+              "sha256": "f872691a8c31ed232dd07d2be53e7451e07a1d6053a6d88121a18556096eac56",
+              "size": 880,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/container.d.ts",
+              "sha256": "ebcd5632a07e40c4c7ce1de6819a5df4013727b55e96aac3226681d2332ffce2",
+              "size": 976,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/container.js",
+              "sha256": "ea105fa7e82f6820fdba622fe8d598d0feb1eabf13be1d0d360f66a46a1072b0",
+              "size": 2869,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/image-context.d.ts",
+              "sha256": "fa527f6e971e770fa2d4e609dc724f2e8762595956ab08e76326d429373e712b",
+              "size": 401,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/image-context.js",
+              "sha256": "29cb6cef4be41e54689c05387fcf9fe50df60f2023e080be1259c6e86bdbf1c9",
+              "size": 5141,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/json.d.ts",
+              "sha256": "e49c615ae18dbe7499ffe0e3fc5ce6d177bb16e2807a99e90086f495c688b043",
+              "size": 79,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/json.js",
+              "sha256": "416ee87f664352181fd40f9c5d3cd8e4400a627adac0a3746125ebb6aa68b1b0",
+              "size": 957,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/runtime-audit.d.ts",
+              "sha256": "2592d06c4f344213df5e9d93ecbdd88e3a3bf050bea2e76425d8be4086db69f0",
+              "size": 662,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/runtime-audit.js",
+              "sha256": "62be354514b2089bfbfc82451e4e2db0c02ac4b71417d14802920852a1f19c07",
+              "size": 10980,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/server.d.ts",
+              "sha256": "03779e9069048b51de9bcc468686807925b9186ab1bd0e1c8e405f0ddedf0a17",
+              "size": 8345,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/server.js",
+              "sha256": "eeaee934ef882d9878e0571966b5351c26367e9986a28d00d6b802685f30044f",
+              "size": 27793,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/services.d.ts",
+              "sha256": "db54c09bd97197ca85b50b57994f7dd09f41378fec1b33fc19e16f4980828bb7",
+              "size": 2376,
+              "mode": 416
+            },
+            {
+              "path": "dist/src/services.js",
+              "sha256": "6fb17d7509e4a2c1f5e792a698f4fd58136b83b69d936b0099f2600a20c04f93",
+              "size": 7414,
+              "mode": 416
+            },
+            {
+              "path": "dist/tests/installed-root-fixture.d.ts",
+              "sha256": "fefee99c7150194edc3119201a9cbc99ada2dd8b089b9852980ff3344aef7b23",
+              "size": 765,
+              "mode": 416
+            },
+            {
+              "path": "dist/tests/installed-root-fixture.js",
+              "sha256": "6781d426e0f3e75a61ac829bbe03c66e57a18fca869ee0e507f42ce807c63b2f",
+              "size": 13868,
+              "mode": 416
+            },
+            {
+              "path": "dist/tests/runtime-packages.d.ts",
+              "sha256": "3e1f8d8e00aa192353a319d37e51b4a6fbaab8ff7c5760edb6ff260e1fabc459",
+              "size": 846,
+              "mode": 416
+            },
+            {
+              "path": "dist/tests/runtime-packages.js",
+              "sha256": "1c7b47fc4be5d141892cd3494dd2cb378705616a1fcc2e7c061bcff430ad987b",
+              "size": 7065,
+              "mode": 416
+            },
+            {
+              "path": "package.json",
+              "sha256": "c20814649264f3868bc4ce584c3d3db4b5b47ff4386eda310d7600b6eae4d74a",
+              "size": 23690,
+              "mode": 416
+            }
+          ]
+        }
+      }
+    },
+    "composition/task3c.json": {
+      "formatVersion": 1,
+      "task": "3C",
+      "fixturesOnly": true,
+      "contracts": {
+        "release": 3,
+        "providerManifest": 2,
+        "packageDescriptor": 4,
+        "operationProjection": "0.5.0-cordis.1",
+        "provider": "0.4.0-cordis.1"
+      },
+      "cli": {
+        "repository": "https://github.com/treeseed-ai/cli.git",
+        "commit": "7b773b74c7c9af64a2aee17bc334ce67e3066e0e",
+        "checkout": "packages/cli",
+        "binary": "packages/cli/dist/trsd-linux-x64",
+        "sha256": "2b395c9399c13680bdefb0d9036c24c7fadfce36cf5faee120f5e014c28b1bf7"
+      },
+      "owners": {
+        "sdk": {
+          "repository": "https://github.com/treeseed-ai/sdk.git",
+          "commit": "4c0ecd2a0fc28545dbf677cc988ce69f0cf2f15d",
+          "version": "0.0.0-cordis.16",
+          "checkout": "packages/sdk",
+          "archive": "vendor/task3c/sdk.tgz",
+          "sha256": "4084aa8dbe9767984fac9fef7f5cea30a0bec93ed416138d32c804e6389fdba5"
+        },
+        "deployment": {
+          "repository": "https://github.com/treeseed-ai/deployment.git",
+          "commit": "5ea1b2e76abd2b5531a765049f3afbef47abe8d4",
+          "version": "0.0.0-cordis.76",
+          "checkout": "packages/deployment",
+          "archive": "vendor/task3c/deployment.tgz",
+          "sha256": "021a67e0fb488114a12654667f72ebfefa5cbe95fc187a108c9694f1935ffbdf"
+        },
+        "api": {
+          "repository": "https://github.com/treeseed-ai/api.git",
+          "commit": "0e7bc2cfe5163c6209de507dab535e3eaabd5f0c",
+          "version": "0.0.0-cordis.6",
+          "checkout": "packages/api",
+          "archive": "vendor/task3c/api.tgz",
+          "sha256": "0c5ed5cabb5010e3163c373cbc4422ca694872f27f1862c7cc2205fdbf91fb1b"
+        },
+        "identity": {
+          "repository": "https://github.com/treeseed-ai/identity.git",
+          "commit": "f29824578d0aa8fc7725a195b72c698b476da429",
+          "version": "0.0.0-cordis.7",
+          "checkout": "packages/identity",
+          "archive": "vendor/task3c/identity.tgz",
+          "sha256": "90ac95f3e1d953f0aeddb5d0da01e9e596b226bbbc806bff3566d274a34f22d6"
+        },
+        "admin": {
+          "repository": "https://github.com/treeseed-ai/admin.git",
+          "commit": "227011825a885f184f1b2540d72d830a905ba8a2",
+          "version": "0.0.0-cordis.10",
+          "checkout": "packages/admin",
+          "archive": "vendor/task3c/admin.tgz",
+          "sha256": "4891b1e51515ae79827ae801cc14abad4e7b66f3cd6d924860113e934c92cfe5"
+        },
+        "ui": {
+          "repository": "https://github.com/treeseed-ai/ui.git",
+          "commit": "4d20cc65af0a83dd47b3ac436dc44c438d24b250",
+          "version": "0.0.0-cordis.16",
+          "checkout": "packages/ui",
+          "archive": "vendor/task3c/ui.tgz",
+          "sha256": "0251c6ff1f5c4b6a628d85113d1e10b9ab019f26d1dda38c7aad3c12f84ef571"
+        }
+      },
+      "images": {
+        "postgres": "postgres@sha256:e4cb93687b062cd25a0e8f672d85a7708235009d70d31f8a7698d9370092a9c4",
+        "caddy": "caddy@sha256:d8c17a862962def15cde69863a3a463f25a2664942eafd7bdbf050e9c3116b83",
+        "keycloak": "quay.io/keycloak/keycloak@sha256:88943b6ad06d6293a239f0dfca5acec64218c9b3ab327bf9c936acf408a6ae3b",
+        "node": "node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553"
+      },
+      "uiQualification": {
+        "fixture": {
+          "version": "0.0.0-cordis.16.fixture.1",
+          "source": {
+            "repository": "https://github.com/treeseed-ai/ui.git",
+            "baseCommit": "4bc3511b661e832531c60ab37980fed6dcc8aba6",
+            "treeDigest": "0e6d4b062ebf22b04fd41c2e46fba18b37837dd82fb91396da08c1f8522e837e"
+          },
+          "recipeDigest": "d3cc07f8b0c9ef9b1a058492a76961a1280d6572a63a0ba7459957ed45a1e1da",
+          "archive": "vendor/task3c/ui-fixture.tgz",
+          "sha256": "8952846090b0d2aacef43a478f5d4d47bfb7afe1d2ceca5b07c99e45832a737b"
+        },
+        "expectedArtifacts": {
+          "admin": {
+            "sha256": "d72213d3ce0c04280c86069e6040a91609cf79588ffd1e241073aefdbaee4a4d"
+          },
+          "api": {
+            "sha256": "2909e9dc3b73df54b655b0f5251575e10078af144791dd9f32faffd942414751",
+            "lockSha256": "652ccc0b9c89f728c22c5b70e6a98b6721f0388758c7e4d4de6f8b4fa45a3fee"
+          },
+          "cli": {
+            "sha256": "57e5939d0fc3978a4a2017ca2446fa06b9c58751be373e82cd517dd92c3f3aa1"
+          }
+        }
+      },
+      "runtimeLock": {
+        "path": "vendor/task3c/api.bun.lock",
+        "sha256": "9a308e4eb17e600bb496d8bebd71874ba144e62ce1b923cab4d9e5f5707b235b"
+      }
+    }
+  },
+  "qualification": "Historical declarations retained verbatim; no fresh runtime qualification."
+}
