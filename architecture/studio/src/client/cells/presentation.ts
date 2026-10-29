@@ -33,12 +33,15 @@ export class CellPresentation {
     return this.layout.connectors.map(this.edge.bind(this));
   }
   private node(cell: LayoutResult["cells"][number]): CellNode {
-    const ports = this.layout.ports.filter(
-      CellPresentation.owner.bind(null, cell.id),
-    );
+    const ports = this.layout.ports
+      .filter(CellPresentation.owner.bind(null, cell.id))
+      .map(this.port.bind(this));
     return {
       id: cell.id,
       type: "cell",
+      selected:
+        cell.id === this.options.selected ||
+        cell.children.includes(this.options.selected),
       position: this.options.positions[cell.id] || { x: cell.x, y: cell.y },
       style: { width: cell.width, height: cell.height },
       data: {
@@ -49,6 +52,16 @@ export class CellPresentation {
         ghost: this.options.ghosts.has(cell.id),
       },
     };
+  }
+  private port(
+    port: LayoutResult["ports"][number],
+  ): LayoutResult["ports"][number] {
+    const ids: string[] = [];
+    for (const edge of this.layout.connectors)
+      if (edge.sourcePort === port.id || edge.targetPort === port.id)
+        for (const relationship of edge.relationships)
+          ids.push(relationship.id);
+    return { ...port, comparison: this.options.comparison.relationships(ids) };
   }
   private edge(connector: RoutedConnector): CellEdge {
     return {

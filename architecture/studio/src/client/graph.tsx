@@ -1,3 +1,4 @@
+import { CellToolbar, CellBreadcrumbs } from "./cells/navigation.js";
 import { CellMeasurement } from "./cells/measurement.js";
 import { SceneComparison } from "../scene/comparison.js";
 import { LayoutSession } from "../scene/layout-session.js";
@@ -340,9 +341,16 @@ export class GraphCanvas extends Component<Props, State> {
     this.setState({ connection: undefined });
   }
   private changes(changes: NodeChange<CellNode>[]): void {
-    for (const change of changes)
+    for (const change of changes) {
+      if (change.type === "select" && change.selected) {
+        const cell = this.scene?.cells.find(
+          GraphCanvas.id.bind(null, change.id),
+        );
+        if (cell) this.props.onSelect(cell.subject);
+      }
       if (change.type === "position" && change.position && !change.dragging)
         this.services.navigation.move(change.id, change.position);
+    }
     this.setState({ nodes: applyNodeChanges(changes, this.state.nodes) });
   }
   private selected(_event: React.MouseEvent, node: CellNode): void {
@@ -472,37 +480,26 @@ export class GraphCanvas extends Component<Props, State> {
   }
   private toolbar(): React.ReactNode {
     return (
-      <div className="graph-tools">
-        <button onClick={this.arrange.bind(this)} disabled={this.state.busy}>
-          Arrange by connections
-        </button>
-        <button disabled={this.state.busy} onClick={this.undo.bind(this)}>
-          Undo layout
-        </button>
-        <button disabled={this.state.busy} onClick={this.save.bind(this)}>
-          Save layout
-        </button>
-        <button onClick={this.fit.bind(this)}>Fit map</button>
-        <button onClick={this.focus.bind(this)}>Focus selection</button>
-        {this.props.view === "Flows" && this.activeFlow() && (
-          <button onClick={this.props.onSelect.bind(null, "")}>
-            Flow overview
-          </button>
-        )}
-        {this.state.busy && <span>Routing…</span>}
-        {this.contextSelectors()}
-      </div>
+      <CellToolbar
+        busy={this.state.busy}
+        flow={this.props.view === "Flows" && !!this.activeFlow()}
+        context={this.contextSelectors()}
+        onArrange={this.arrange.bind(this)}
+        onUndo={this.undo.bind(this)}
+        onSave={this.save.bind(this)}
+        onFit={this.fit.bind(this)}
+        onFocus={this.focus.bind(this)}
+        onFlowOverview={this.props.onSelect.bind(null, "")}
+      />
     );
   }
   private breadcrumbs(): React.ReactNode {
     return (
-      <nav className="cell-breadcrumbs" aria-label="Architecture location">
-        <button onClick={this.portfolio.bind(this)}>Portfolio</button>
-        {this.props.project !== "*" && (
-          <span> / {this.props.project.replace("project.", "")}</span>
-        )}
-        {this.props.selected && <span> / {this.props.selected}</span>}
-      </nav>
+      <CellBreadcrumbs
+        project={this.props.project}
+        selected={this.props.selected}
+        onPortfolio={this.portfolio.bind(this)}
+      />
     );
   }
   private contextSelectors(): React.ReactNode {

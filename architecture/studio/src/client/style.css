@@ -690,3 +690,7 @@ a {
   .command-bar { height: auto; min-height: 43px; }
   .sidebar { padding: 12px 8px; }
 }
+
+.cell-port.added button { color:#80dbad; }
+.cell-port.removed button { color:#ed9daf; text-decoration:line-through; }
+.cell-port.removed .react-flow__handle { border-style:dashed; }

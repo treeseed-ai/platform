@@ -26,11 +26,12 @@ static validation does not certify them. Migration export never modifies source 
 
 ## Working in Studio
 
-1. Select a project and choose Portfolio, Integration seams, Components or Flows. Integration
-   seams initially shows the selected object and its immediate neighbors. Show all objects
-   expands the map. Focus selection, fit, minimap and zoom controls navigate larger diagrams.
+1. Start in Portfolio, then enter a project and choose Integration seams, Components or Flows.
+   Boundary connectors retain their original subjects. Focus selection, fit, minimap and zoom
+   controls navigate larger diagrams; search reveals internal subjects in their owning project.
 2. Use Inspect implementation for pinned, read-only architecture. Switch to Edit intent before
-   creating from the palette, dragging nodes, connecting typed handles or editing properties.
+   creating from the palette, connecting typed handles or editing properties. Dragging changes
+   presentation only and is also available while inspecting implementation.
    The Connect dialog and Remove connection controls also work entirely from the keyboard.
 3. Edit YAML applies only schema-valid documents. Unresolved relationships remain diagnostics;
    invalid text remains in the editor. Undo/redo includes structured edits, connections and
@@ -116,3 +117,7 @@ writes only `.studio/layout.json` with expected-content-hash protection. The new
 `studio-layout/0.2` format stores each view's positions, viewport, selection and
 expansion. Imported 0.1 coordinates remain under `legacy`; they are not applied to
 the nested map. Saving intent no longer saves diagram positions implicitly.
+
+Keyboard: focus a cell, press Enter to select it, then use arrow keys to move it.
+Enter-project and expand-provider buttons are keyboard accessible. The inspector
+Connect dialog supplies keyboard endpoint selection and validation.

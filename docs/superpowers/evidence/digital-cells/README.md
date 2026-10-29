@@ -8,14 +8,14 @@ Cordis composition contract in that disposable workspace.
 - `npm run check`: strict TypeScript, class architecture and shared canonical
   readability check passed; no baseline/exception additions.
 - `npm run build`: frontend, layout worker and local companion built successfully.
-- `npm test`: 21 unit, 7 integration and 3 built-browser acceptance cases passed.
-  An additional crossing benchmark subsequently passed with the complete 22-case
-  unit tier. Studio's regression tier is explicitly empty.
+- `npm test`: 23 unit, 7 integration and 3 built-browser acceptance cases passed.
+  Studio's regression tier is explicitly empty.
 - Shared test-layout/discovery check passed, including the CI specification inventory.
 - Browser: project seam → original Agent plugin → nested provider → SDK; search
   reveals the SDK contract; editing its intent highlights cross-project impact.
 - Browser: overview → Agent → expansion → overview → Agent restores expansion;
-  arrange → undo → layout save → reload preserves architecture document bytes.
+  keyboard movement and dragging → arrange → undo → layout save → reload preserve
+  architecture document bytes.
 - Browser: existing create/connect/undo/redo/save/migration workflow passed.
 - Integration: layout 0.2 publication rejects stale hashes and leaves blueprints
   unchanged; existing interrupted-save and path-escape cases still pass.

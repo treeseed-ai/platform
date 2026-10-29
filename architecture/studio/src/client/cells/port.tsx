@@ -11,14 +11,7 @@ export class BoundaryPort extends Component<Props> {
     const { port } = this.props;
     const out = port.direction === "out";
     return (
-      <div
-        className={
-          "cell-port " +
-          (out ? "out" : "in") +
-          (this.props.changed ? " impacted" : "")
-        }
-        style={{ top: port.y }}
-      >
+      <div className={this.classes()} style={{ top: port.y }}>
         <Handle
           id={port.id}
           type={port.attachment || (out ? "source" : "target")}
@@ -27,6 +20,15 @@ export class BoundaryPort extends Component<Props> {
         {this.label()}
       </div>
     );
+  }
+  private classes(): string {
+    const { port, changed } = this.props;
+    return [
+      "cell-port",
+      port.direction === "out" ? "out" : "in",
+      port.comparison || "",
+      changed ? "impacted" : "",
+    ].join(" ");
   }
   private label(): React.ReactNode {
     const { port } = this.props;
@@ -40,6 +42,8 @@ export class BoundaryPort extends Component<Props> {
       >
         {port.direction === "neutral" ? "◇ " : out ? "↗ " : "↙ "}
         {port.label} <span>{port.count}</span>
+        {["added", "removed"].includes(port.comparison || "") &&
+          " · " + port.comparison}
       </button>
     );
   }

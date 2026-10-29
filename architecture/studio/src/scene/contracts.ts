@@ -93,7 +93,9 @@ export interface Section {
   bendPoints?: Point[];
 }
 export interface CellGeometry extends Cell, Point {}
-export interface PortGeometry extends Port, Point {}
+export interface PortGeometry extends Port, Point {
+  comparison?: string;
+}
 export interface RoutedConnector extends Connector {
   sections: Section[];
 }

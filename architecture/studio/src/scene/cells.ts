@@ -16,6 +16,7 @@ export class CellCatalog {
   private visible(object: ArchitectureObject): boolean {
     if (!this.context.project) return object.kind === "project";
     if (this.facts.project(object.id) !== this.context.project) return false;
+    if (this.context.view === "Integration seams") return false;
     if (object.kind === "provider")
       return !this.facts.providerOwners.has(object.id);
     if (this.context.view === "Flows") return object.kind === "flow";

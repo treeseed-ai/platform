@@ -8,7 +8,7 @@ export class BoundaryConnections {
   readonly connectors = new Map<string, Connector>();
   constructor(private catalog: CellCatalog) {}
   project(edge: SceneRelationship): void {
-    if (edge.kind === "owns") return;
+    if (edge.kind === "owns" || !this.seam(edge)) return;
     const source = this.catalog.boundary(edge.from),
       target = this.catalog.boundary(edge.to);
     if (source === target || !this.relevant(source, target)) return;
@@ -22,6 +22,15 @@ export class BoundaryConnections {
     const targetPort = this.port(target, face, edge, "in");
     const id = SceneFacts.identity(edge.kind, sourcePort.id, targetPort.id);
     this.bundle(edge, source, target, sourcePort, targetPort, id);
+  }
+  private seam(edge: SceneRelationship): boolean {
+    if (this.catalog.context.view !== "Integration seams") return true;
+    const facts = this.catalog.facts;
+    return (
+      facts.project(edge.from) !== facts.project(edge.to) ||
+      !!facts.interface(edge.from) ||
+      !!facts.interface(edge.to)
+    );
   }
   private bundle(
     edge: SceneRelationship,
