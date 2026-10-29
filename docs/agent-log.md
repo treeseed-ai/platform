@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-29 12:12 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-29 12:51 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -47,6 +47,7 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 11:04 | 0 | 14 | **0/14 = 0%** | +0/+0; API651 blocked before scenes by exit1 despite2558passing assertions; existing retained Reviewer diagnostics recovery admitted to group discussion; no new implementation/adoption/release |
 | 11:38 | 0 | 14 | **0/14 = 0%** | +0/+0; Reviewer team modernized through MCP;4/5valid first planning products,1preserved model omission; shared agent-authored hub open, no formal estimates/acting/release |
 | 12:12 | 0 | 14 | **0/14 = 0%** | +0/+0; exact retained Reviewer product passes218tests/128scene steps in draft129; coordinator discussion edit invalidated first formal cohort; normal scoped closeout, no integration/release |
+| 12:51 | 0 | 14 | **0/14 = 0%** | +0/+0; five healthy formal estimates exposed overlap; agent-authored source-bound successor selected through MCP and old hub superseded; five healthy planning products, no acting integration/release |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
 - [Agent528](https://github.com/treeseed-ai/agent/pull/528): protected `53fd4a9d22e0ecc2f6d389b0f3399b1a2b697837`;61 released, locally adopted.
@@ -58,7 +59,41 @@ The first7coordinator integrations are SDK484, API640/641 and Deployment1012/101
 
 - [API650](https://github.com/treeseed-ai/api/pull/650): coordinator bootstrap selected-objective/source-context repair, protected `248deb3935c235fcdaaab74cfa4a6f89afd30441`, checked/adopted.
 
-## Current delivery — Oct29 12:12 UTC
+## Current delivery — Oct29 12:51 UTC
+
+[Platform830 / complete12:13checkpoint](https://github.com/treeseed-ai/platform/blob/b86b4f7fba03f43bb817b1a19ccf018b5a2dba8d/docs/agent-log.md), blob0c4d8dee4033a3cc353676f7cf64aa46ec7ee0eb, retains exact qualification artifacts and coordinator-induced stale-cohort failures. Sourcee3ed9be2b85ecdd7e50715eab41b08df74ad008e/checked5d3a8a009bc842f00bbadb16737c60d6024b4a2f/protected sharetree92b994a26b62f98f0b9238d7903322142dc238f6. Verify40871529424/job123439522820 passed requiredverify/all3Platformchecks/exactskillslock/noartifacts; logSHAdcd491c4a1c89bcddcd495b9376af225b7bfa6145e1453b0204cbc110a606719. Protectedreadback/ownedlogcheckout+localbranchcleanup complete. Root userfiles untouched.
+
+**Five healthy formal estimates, not a coherent approved plan.** After prior77d8cohort closedcancelled12:14:35.201 with all claims released, fresh signed workdayffa40f74-1ccc-45d1-bb18-72e74f149c0e started12:16/default6/project-reviewer+workday-closeout/exactTesterhubv3/currentobjective/simulationplanningOnly/estimating/max1/14400s. Actual grants included new explicit discussion64d8/336580 plus priorc811/0c4728, proving new feedback delivery, not broader history. All five initial formal turns completed/released with valid first/final clocks; actual result/source/active seconds:
+
+| Subscriber / assignment | Result / source | Active s |
+| --- | --- | ---: |
+| Architect W8nOt46dpVpKTH5zQLk_Uu2oENbZ-AMA | 6ab0c751121a969b1c636183 /4bb93b3f6ebe68d62a94c76e5b1853ef6b92db1f |88.390637926|
+| Engineer RS1DZEnczA63IzJLIoHkHKctkI_q9z6r |94671674cec88a27ccb8ef60 /11cf6a0ab0380d5b66256ca5f0192888deaad080|52.252701364|
+| Releaser QnyC8sxPrctnw1GrA57cjEIw8eZaP5Bb |87f510a4d8f348f510713047 /801d7ec493640755154498a239a311bba6ffc551|71.239437853|
+| Writer 2bT81ZxXgBZ1n2CNicBTEwOBo6NloC40 |b9625ebbf298aa4d39c13fb3 /99ece7bfca209113c3b7d296ede71bd008faf678|77.497791393|
+| Tester RUF7YDpwhf2s2yK4AQTSkOdzJpiduf1v |02e75160c90a39829ed41621 /33597e9c492c6bb440b34f2bb1d601b6449731df|51.191420005|
+
+Assignment IDs use assignment_ prefix and results result-. These are native formal estimates, not implementation products. Initial round totals340.571988541active/344summed elapsed seconds,2489914input/2231168cached/20797output, costunknown. One automatic Tester refinement_7aVQUrxUsey8zuRwk3cAG88zn0KFG4xo/result5b427ec1cc4af9949db1f961/sourcec9cbe6faf6778988310696eee6545077e47a90be added69.894993247active/70elapsed,797487input703232cached4795output/5validclocks; it linked Tester after Engineer despite intended test-first order. Normal signed stop12:28:50.811 closedcancelled12:34:05.444; all7claims completed/released including Reporter_-Hn_rOOBMuPdvso7wM2K7sKiweQnAxfI/report97d7c6494fba55f2355f6248/source31a5d02783b689ec2603a519e7c21248b43a3164. Reportedteardown/0stopsettlementerrors do not prove historicalunknownsettlement or independentphysicalcleanup.
+
+Old hub reachedv9/source13f699aabad5b82b2dfc602c76f1a380ee3915fa/digestdd7973605331e751d8ebd1dcd50f0c90b294171c83a97ff23fd375434b3d538c,6rows but unverified originalcontract contribution; overlapping architecture and duplicate Engineer/Tester regression plus incomplete dependencies prevented approval. Architect discussion send-65c81b2aab2285140eaa682b5ed22f96 completed/response7de61cd6a51dc115fae5d6b7. It recommended onecontract→operatorguide→Testerregression→necessaryEngineerrepair→integration building on b09. Read-only code inspection confirmed Agent mergeSubscriberEstimateOutput preserves omitted prior IDs, including owned rows; there is no removal field. A coherent new agent-authored request avoids coordinator row deletion or a new runtime model.
+
+**Prospective team improvement through MCP, not agent-state surgery.** Workspace558d01f4-cbf2-4429-a6a4-ef47b3ebf5e9/review6af75725-0951-452b-9273-7408297bdd2f/source d9714596f5c1ef756a7634ffdea1655e432b62bf changed exactly agents/architect.mdx and the existing objective. Semantic comparison proved only Architect planning.prompt.system and estimating.prompt.system changed: whole-group synthesis, stable IDs, no peer estimates/overlapping supplements, honest exact retained source in INITIAL proposals, successor when omission cannot retire obsolete work. The human objective adds actual b09 qualification/source evidence and latest discussion6a05dbbe66854239ae76769382bc3cb6/00be634fe8f1b91382ccc8f107a6822c493d5666, with no work rows or estimates. Other profiles, groups, permissions, handlers and issued snapshots unchanged. Publicationfd341016-3851-41cd-a951-42a4639ca823/operation199b0a50-9800-449b-8dda-e13c750d491e succeeded, staging954b2665f1176f74c6a0a7b48f743df0af3684ba/sourceClosurec46b20fc7e151db319f63e804eb05d8973b023984b55733d0650497694c8e1e0/push confirmed. agents.list/readback matchesd971; exact objective bytes match authored definition, blob8b1d3bd811777f72e2c00d7731c413a16fe675b7/digest4173ae686fe6161a5ccfd5cf57b4791cc55c7f0c9d9380aab14f0939c3c6f56d.
+
+**Current source-bound planning:5/5 healthy, canonical request selected.** Signed workday1b08e6da-8302-4b15-9cdb-baeb32e2e51c started12:41/default6/samegroups+objective/planning/max1/normal14400s. Actual grant binds full profile/current objective atd971; objective evidence is still not recursively readable. All five first planning turns completed/released with valid clocks:
+
+| Subscriber / assignment | Result / source | Active s |
+| --- | --- | ---: |
+| Architect dRt_fE8nLffo0x9xr5V9LJEYEjh0sWTu |bafcca30878412be1faeb604 /2b188f687c30fc5eb6a010bf7f8803e6528656de|78.292288622|
+| Engineer 4-hbKNQHMTpNM_aySCCaw-Gccd6hlZ4_ |f4ab12f33765900700f149bd /b6805043033407e1f00a2de2959b61f7cea1ba69|55.996283419|
+| Releaser LsMuxKZvYc4y2v2g1nW3BDJ5CUHYAYZj |c8b5b067507c240d78d06f8e /18c594dc1e9cabb8cb4b49c24a605f2fb9802e32|55.546258818|
+| Writer kpaxFJmRVqa_ZWcEcS5XLEfIomtvMscW |858d2f49241247eee8a2c2a0 /3fd94a408b2c2f58b07e3592ab3c54980968989a|53.589825075|
+| Tester KTibZje9VE6b8st9KxEBHlD10RJbZCHx |a44598ac88123836cf92632d /15d3697d3ec89b5736e43ed2d95c94bab98beb9b|65.564593449|
+
+Totals308.989249383active/312summed elapsed,1702252input/1489024cached/21477output, costunknown; Engineer/Releaser/Tester produced planning Notes, not acting or review. Architect draft coherently bound b09 but also selected legacyrelease-repair, requiring7participants including CodeReviewer/PlatformArchitect; it remains draft/unapproved, with no membership changes to evade participation. The Writer independently authored a coherent project-reviewer-only request with INITIAL Git b09 evidenceRef, INITIAL discussion6a05/00be and current objective atd971, no executionPlan/copied estimates. Selected assignment_kpaxFJmRVqa_ZWcEcS5XLEfIomtvMscW:proposalv1/source3fd94a408b2c2f58b07e3592ab3c54980968989a/digest96169791bc379f30ecc125c50e9f26734e32b271809fc1bf89e2734972a521bc was opened normally. Native supersession12:48:55.914 closed old Testerhubv9 as superseded, preserving SAMEhash/source/estimates/history and linking the real successor. No manual proposal transcription, plan-row edits or reused authority. Fresh successor estimates/approval/acting/review are still pending; source binding in INITIAL content is proven, actual future b09 checkout is not yet proven.
+
+Normal signed stop closingAt12:49:45.284 reported5completed/0failed/0unfinished/0settlementerrors. Later read-back is FAILED, completedAt12:49:35.447 (before stop closingAt), error{}, operator-stopped summary, appliedPlan stillclosing and no stored reportRef. All6admitted claims are completed/released, including Reporter_owq5d1aHfiryV6ID0-79He_HMh_zPVE8/reportd80f2755b6aa6b0c72127a28/sourceb657f675e73dfd2306886fd6d2c6ae300ab0b866, completed12:50:27.353. All323public events were read; no explicit failed/error/warning event explains the run status. Preserve this as an unresolved lifecycle discrepancy, not a successful workday or known timeout. No private status edit, forced closure or further workday yet. Source-derived execution.reconcile preview99384→99385/actual99387 changed86nodes,0added/completed/blocked/stale/edge changes; no project filter, manual per-node edits or claim release. Retained Reviewer129 qualification unchanged/unmerged/unreviewed. API651 source/workflow and runtime unchanged; only source/config inspection occurred, no new campaign/dependency pin/edit. Final Agentv13 retained work remains unintegrated. **0team/14coordinator=0%;0ordinary MCP simulated releases.**
+
+## Previous delivery — Oct29 12:12 UTC
 
 [Platform829 checkpoint](https://github.com/treeseed-ai/platform/blob/ba22b8f046855b25862447dd8e3c3ca2eeb798a1/docs/agent-log.md), blob1faf5e4e84c3c5010333fcd4c74fd2010f19fe36, preserves complete11:38history. Its source2acdf895ff141cf425c6a8f87258e8efc14eed94/checked917216610bfd7e4debb952667b6e1538d6d23842/protected sharetree21185113de3c8eb368f1f6341b81a25e7ec7cdcc. Verify40867089089/job123424483546 passed all3Platformchecks/exactskillslock; full logSHA27e6186566a4f91d04ab8fa554b1c7910c532ab90101c915cee162584f54721f. Owned checkout/localbranch cleaned; root userfiles untouched.
 
