@@ -18,7 +18,7 @@
 - Native Cordis resolves providers/effects/lifetimes. The locator and metadata catalogues are not parallel resolvers, caches or schedulers. Contexts do not cross processes or provide isolation.
 - New/changed methods, constructors and accessors: at most 20 canonically formatted body lines, excluding blank/comment-only lines and outer delimiters; exact reviewed exceptions only. Refactor affected behavior/context and explicitly directed cleanup scope. Declarative schemas/data are outside the behavioral count; do not compress statements or invent trivial wrapper classes.
 - Offline setup by default; only declared destinations allowed by host policy and assignment grants. No ambient lifecycle script runs in the live install.
-- Every issue including #678 stays open. PRs target cordis and are handed back for review; no merge, production publication or cutover authorization.
+- Every issue including #678 stays open. PRs target cordis. The original implementation request required review handoff; later maintainer instructions separately authorize qualified cordis merges and verified task-branch cleanup. Neither grants production publication or cutover authority.
 - Permanent tests use tests/acceptance, tests/regression, tests/integration and tests/unit with behavior names; support contains no registrations. Keep historical artifact bytes and provenance unchanged.
 - Real Kata acceptance requires a qualified Ubuntu 26.04 x64 KVM venue. GitHub-hosted ubuntu-26.04 passed the initial KVM/real-Kata-guest/cleanup qualification through Platform #791/#792 (run 40594996161); general unsupported nested-VM status does not prove inability. Use hosted Ubuntu for full Agent qualification. If a required configuration later proves unsuitable, isolated self-hosted provisioning (labels self-hosted/linux/x64/cordis-kata) remains an explicit fallback prerequisite. Do not register the workstation implicitly. The full runtime gate cannot be replaced by schema-only checks.
 
@@ -117,20 +117,23 @@ owner/artifact/hosted/review gates; only verified merged task branches are clean
 including #678, stay open. Real Work/models remain Task 10; no legacy/production/cutover changes.
 This ledger records owner qualification, not a completed assembled Capacity Provider.
 
+The [runtime and journal evidence reference](../../runtime-custody-evidence.md) records current
+accepted producer/archive identities and the twenty Agent provider classes. It distinguishes
+independent owner qualification from the final assembled closure, which is still required.
+
 | Boundary | Accepted evidence | Next obligation |
 | --- | --- | --- |
-| Critical architecture policy | All nine owner instruction/checker candidates integrated; touched methods pass the 20-line rule without new baseline debt/exemptions | Continue contextual refactoring and unchanged historical provenance |
-| SDK contracts | #493–#498/#500–#502 integrated; .39 has 188 owner cases, generated portable projections, exact public Node/declaration consumers and seven unchanged global operations | Consume one exact accepted SDK closure in remaining owners and final assembly |
-| Native Agent probe/guest | #530/#531 and subsequent #533–#544 integrated; actual Node and standalone GNU guest, native seams, trusted full dispatch, cancellation/fencing and immutable chunked runtime | Run this actual binary through a persistent Kata session; deliver separate manager/worker programs |
-| Existing-team connection | #545 signing and #547 status connection integrated. Agent .21 has 68 cases, real default TLS/crypto receiver, foreign/replacement identity denial and source-free public consumption | Approved credential/enrollment lifecycle, heartbeat/revocation and isolated Keycloak/live authority; status is not a grant |
-| Kata lifecycle and setup | Deployment #1022/#1024/#1027 integrated; real hosted Ubuntu 26.04 x64/KVM, scoped custody, one-use assignment, offline setup/verification and physical destruction | Exact GNU guest image/session, exclusive actual pool/refill/quarantine, allowlisted egress and generation transitions |
-| Private sandbox control | Deployment #1028 integrated as 09878d332ce8b1764ee86cb0c2736a81041494cc; .95 has 139 lower cases, genuine public Unix-peer consumer and two full hosted runs with real channel/Kata | Installed named grants/socket projections and actual Agent worker consumption; observer stays separate |
-| Guest payload admission | Deployment #1033 draft: bounded archive/chunk/gzip/ELF checks, 144 local cases and actual Agent .20 archive read-back | Retained hosted Git-installed prerequisite failure blocks acceptance; requalify after safe evidence transport. No VM execution claim |
-| Docker prerequisite investigation | #1030/#1034/#1035 integrated safe read-back/invocation/cause evidence; #1029 remains open. A distinct post-handoff child observation remains #1032 | Shared fixture formatter follow-up and causal diagnosis; do not select a green duplicate or silently retry failed heads |
-| Preserved Agent components | #532 and the 57-case integration remain unmerged; fixture pool/environment collaborators are not production evidence | Reconcile useful components into real default collaborators without resetting original work |
-| UI and API | UI #105 compatibility integrated (46 cases); API #645 seed sequencing remains draft (20 focused cases) | Current owner closures, default seed authority/artifacts/custody/journal, idempotent partial recovery and CLI/UI integration |
+| Critical architecture policy | All nine owner instruction/checker candidates integrated; changed methods pass the twenty-line rule without new baseline debt or exceptions | Continue contextual refactoring and retained baseline provenance |
+| SDK contracts and clients | SDK .44 includes extensible profiles/environments/leases, exact guest artifacts and real TLS availability create/refresh/close; seven global operations remain unchanged | Consume one exact compatible closure in final owner and assembled verification |
+| Separate Agent programs | Agent .35 includes built manager, worker and frozen guest programs with twenty native providers; hosted readiness includes a real Kata guest | Actual manager kernel, worker pool, guest run/cancel and installed container/readiness plugins |
+| Runtime custody and boot | Deployment .133 includes exact archive/component/alias custody, complete effective policy, image-aware finite bounds and real QEMU observation | Draft #1070 must join that retained policy to an actual finite launch before profile/pool admission; failed creation is not qualification |
+| Private sandbox control | Authenticated scoped channel, one-use assignment, offline setup/verification and verified destruction are accepted owner capabilities | Installed named grants/socket projections, qualified profile admission, exclusive pool/refill, declared egress and generation transitions |
+| Existing-team connection | Accepted native signing, status, registration, approved credentials/token adapters and SDK transport retain exact identity | Live enrollment/heartbeat/revocation, actual team-management authority and isolated Keycloak/control-plane qualification; registration status is not a grant |
+| Seed journal | API .16 includes the default native journal over Deployment installation records | Live headless coordinator, resource owners, policy/artifact preparation and resumable installed reconciliation |
+| Presentation and final assembly | UI .24, Identity .10 and Admin .13 preserve mobile-first React/Cordis and Keycloak; historical assembly is unchanged | CLI project/profile/seed/capacity integration and one exact installed, replacement/read-back/cleanup assembly |
+| Preserved Agent components | Environment draft #532 and the 57-case pool integration remain preserved; their collaborators are fixtures | Refactor useful behavior into real providers without resetting original work or claiming fixture-only qualification |
 
-### Current accepted private artifacts
+### Historical accepted private artifacts — guest-channel checkpoint
 
 | Artifact | Exact producer source | SHA-256 | Qualification limit |
 | --- | --- | --- | --- |
@@ -140,9 +143,9 @@ This ledger records owner qualification, not a completed assembled Capacity Prov
 
 These are immutable private artifacts from reviewed producer commits. Squash integration commits
 are different identities; owner PRs retain both. This table does not change composition selections,
-peer pins, historical acceptance archives or production channels. Agent's development-only auditor
-still selects Deployment .88 with the same SDK .39; final assembly must record its own exact
-compatible owner closure and run genuine archive acceptance.
+peer pins, historical acceptance archives or production channels. These earlier selections remain historical: current Agent .35 selects Deployment .127 and
+API .16 selects .130. Final assembly must record its own exact compatible owner closure and run
+genuine archive acceptance; do not relabel the older pins as that result.
 
 ### Historical private artifacts — initial checkpoint
 
