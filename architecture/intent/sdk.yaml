@@ -1,0 +1,97 @@
+schemaVersion: architecture/0.1
+view: intent
+project: project.sdk
+objects:
+- id: project.sdk
+  kind: project
+  name: Sdk
+  purpose: Independent sdk ownership boundary
+  repository: https://github.com/treeseed-ai/sdk.git
+  language: typescript
+  external: false
+- id: sdk.capability.cordis.composition
+  kind: capability
+  name: cordis.composition
+  purpose: Native capability cordis.composition
+  contract: sdk.contract.cordis.composition
+  cardinality: singleton
+  implementationMode: fixed
+  coherentInvariant: One native resolver/handle owns this process-local composition; swapping it independently would invalidate leases and lifecycle ownership.
+- id: sdk.capacity
+  kind: component
+  name: Capacity
+  purpose: Publish agent, capacity, environment and provider-control contracts
+  project: project.sdk
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: sdk.contract.cordis.composition
+  kind: contract
+  name: cordis.composition
+  purpose: Boundary supplied for cordis.composition
+  project: project.sdk
+  version: unresolved
+- id: sdk.contracts
+  kind: component
+  name: Contracts
+  purpose: Publish portable schemas and public cross-project contracts
+  project: project.sdk
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: sdk.plugin.CompositionHandle.start.ReadinessConsumer
+  kind: component
+  name: CompositionHandle.start.ReadinessConsumer
+  purpose: Candidate native consumer boundary for review; not automatically approved
+  project: project.sdk
+  componentKind: plugin
+  componentRole: runtime
+- id: sdk.plugin.CompositionKernel
+  kind: component
+  name: CompositionKernel
+  purpose: Native plugin declaration supplying cordis.composition
+  project: project.sdk
+  componentKind: plugin
+  capabilities:
+  - sdk.capability.cordis.composition
+  contracts:
+  - sdk.contract.cordis.composition
+  componentRole: runtime
+- id: sdk.plugin.CordisScope.mount.Gateway
+  kind: component
+  name: CordisScope.mount.Gateway
+  purpose: Candidate native consumer boundary for review; not automatically approved
+  project: project.sdk
+  componentKind: plugin
+  componentRole: runtime
+- id: sdk.policy
+  kind: component
+  name: Policy
+  purpose: Provide development-only source policy checks
+  project: project.sdk
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: sdk.runtime
+  kind: component
+  name: Runtime
+  purpose: Supply native Cordis composition, selection facade and provider leases
+  project: project.sdk
+  componentKind: object
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+metadata:
+  baseline: cordis-2026-10-29
+  status: proposed
+  notes:
+  - Candidate identity/contract map for architectural review; source existence is not architectural acceptance.
+  - No requirement to retain every observed provider implementation; select by approved capability contract.
+  - TreeSeed profile supplies obligations; omitted properties are unspecified.
+  references:
+  - ../profiles/treeseed.yaml
+  - ../profiles/languages.md
+relationships: []

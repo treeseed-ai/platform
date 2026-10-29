@@ -1,0 +1,243 @@
+schemaVersion: architecture/0.1
+view: profile
+project: project.platform
+objects:
+- id: rule.treeseed.classes
+  kind: rule
+  name: Classes
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: class-behavior
+  parameters:
+    languages:
+    - typescript
+    - tsx
+    standaloneApplicationFunctions: false
+  verification: source
+  severity: error
+- id: rule.treeseed.method-size
+  kind: rule
+  name: Method Size
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: formatted-body-lines
+  parameters:
+    max: 20
+    formatter: prettier@3.6.2
+    exclude:
+    - blank
+    - comment-only
+    - outer-delimiters
+    rejectCompression: true
+  verification: source
+  severity: error
+- id: rule.treeseed.plugins
+  kind: rule
+  name: Plugins
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: native-plugin-components
+  parameters:
+    exemptRoles:
+    - logical-area
+    - contract
+    - data
+    - internal-helper
+    - development-policy
+  verification: source
+  severity: error
+- id: rule.treeseed.contracts
+  kind: rule
+  name: Contracts
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: typed-seams
+  parameters: {}
+  verification: source
+  severity: error
+- id: rule.treeseed.selection
+  kind: rule
+  name: Selection
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: singleton-selection
+  parameters:
+    count: 1
+    compatibleContractVersion: exact
+  verification: source
+  severity: error
+- id: rule.treeseed.lifecycle
+  kind: rule
+  name: Lifecycle
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: native-lifecycle
+  parameters:
+    resolver: Cordis
+    crossProcessContexts: false
+  verification: source
+  severity: error
+- id: rule.treeseed.replacement
+  kind: rule
+  name: Replacement
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: qualified-replacement
+  parameters:
+    unprovenAction: restart-or-migration
+    preserve:
+    - generation
+    - grant
+    - resource-owner
+    - cleanup-receipt
+  verification: runtime
+  severity: error
+- id: rule.treeseed.test-layout
+  kind: rule
+  name: Test Layout
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: test-tier-placement
+  parameters:
+    tiers:
+    - acceptance
+    - regression
+    - integration
+    - unit
+    supportRegistrations: false
+  verification: source
+  severity: error
+- id: rule.treeseed.cohesion
+  kind: rule
+  name: Cohesion
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: cohesive-responsibility
+  parameters: {}
+  verification: review
+  severity: review
+- id: rule.treeseed.orchestration
+  kind: rule
+  name: Orchestration
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: readable-capability-sequence
+  parameters: {}
+  verification: review
+  severity: review
+- id: rule.treeseed.abstractions
+  kind: rule
+  name: Abstractions
+  purpose: TreeSeed architectural obligation; see profiles/treeseed.md
+  subjects:
+  - project.platform
+  - project.admin
+  - project.agent
+  - project.api
+  - project.cli
+  - project.deployment
+  - project.identity
+  - project.sdk
+  - project.ui
+  ruleType: useful-abstraction
+  parameters:
+    noTrivialWrappers: true
+    noArtificialSplitting: true
+  verification: review
+  severity: review
+metadata:
+  baseline: cordis-2026-10-29
+  status: accepted
+  notes:
+  - Requirements transcribed from maintainer-approved guidance; this is not implementation conformity.
+  - Profile overlays both views without copying intent into observations.

@@ -1,0 +1,110 @@
+[
+  {
+    "project": "platform",
+    "revision": "df3ea72d48d45517d98075439c6cf1e1e315144f",
+    "files": 118,
+    "declarations": 1429,
+    "sourceFiles": 0,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 0,
+    "sourcePluginClasses": 0,
+    "providerObjects": 0
+  },
+  {
+    "project": "admin",
+    "revision": "6e35ae8e663d5aa8edd9def342880bc511eaa3f5",
+    "files": 53,
+    "declarations": 762,
+    "sourceFiles": 4,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 8,
+    "sourcePluginClasses": 9,
+    "providerObjects": 8
+  },
+  {
+    "project": "agent",
+    "revision": "8c64ec213fc732023e677900afdb36f4d8b76a4f",
+    "files": 118,
+    "declarations": 2941,
+    "sourceFiles": 21,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 20,
+    "sourcePluginClasses": 21,
+    "providerObjects": 20
+  },
+  {
+    "project": "api",
+    "revision": "92331d397e8c813de8b834ac54b134adba450ba0",
+    "files": 77,
+    "declarations": 1247,
+    "sourceFiles": 8,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 6,
+    "sourcePluginClasses": 9,
+    "providerObjects": 8
+  },
+  {
+    "project": "cli",
+    "revision": "26efbdea603a8cc27783742ad309924cd420709b",
+    "files": 50,
+    "declarations": 1023,
+    "sourceFiles": 2,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 0,
+    "sourcePluginClasses": 5,
+    "providerObjects": 4
+  },
+  {
+    "project": "deployment",
+    "revision": "deb0f4b88d58823437ad4d8ce9a1c58036e0856f",
+    "files": 350,
+    "declarations": 12316,
+    "sourceFiles": 71,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 4,
+    "sourcePluginClasses": 28,
+    "providerObjects": 25
+  },
+  {
+    "project": "identity",
+    "revision": "6758afba8115413a0558155826587172f37e9ebb",
+    "files": 54,
+    "declarations": 640,
+    "sourceFiles": 2,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 5,
+    "sourcePluginClasses": 6,
+    "providerObjects": 6
+  },
+  {
+    "project": "sdk",
+    "revision": "519611d2496fa6e8a7d6aa29d7585a487c0bfb07",
+    "files": 173,
+    "declarations": 3729,
+    "sourceFiles": 22,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 0,
+    "sourcePluginClasses": 3,
+    "providerObjects": 0
+  },
+  {
+    "project": "ui",
+    "revision": "4823e73fd9e56f18ef3fd3ae8d2c32e3ed0217ae",
+    "files": 79,
+    "declarations": 1591,
+    "sourceFiles": 10,
+    "unclassified": [],
+    "parseDiagnostics": [],
+    "manifestProviders": 12,
+    "sourcePluginClasses": 14,
+    "providerObjects": 13
+  }
+]

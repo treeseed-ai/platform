@@ -1,0 +1,79 @@
+schemaVersion: architecture/0.1
+view: example
+project: project.sample
+objects:
+- id: project.sample
+  kind: project
+  name: project.sample
+  purpose: Illustrative language conformance example
+  repository: https://example.invalid/sample.git
+  language: typescript
+- id: sample.plugin
+  kind: component
+  name: sample.plugin
+  purpose: Illustrative language conformance example
+  project: project.sample
+  componentKind: plugin
+  capabilities:
+  - sample.capability
+  contracts:
+  - sample.contract
+  sourceBindings:
+  - project: project.sample
+    revision: '0000000000000000000000000000000000000000'
+    path: src/runner.ts
+    symbol: Runner.run
+  componentRole: runtime
+- id: sample.contract
+  kind: contract
+  name: sample.contract
+  purpose: Illustrative language conformance example
+  project: project.sample
+  version: '1'
+  operations:
+  - name: run
+    input: Request
+    output: Result
+- id: sample.capability
+  kind: capability
+  name: sample.capability
+  purpose: Illustrative language conformance example
+  contract: sample.contract
+  cardinality: singleton
+  implementationMode: selectable
+- id: sample.provider
+  kind: provider
+  name: sample.provider
+  purpose: Illustrative language conformance example
+  component: sample.plugin
+  capabilities:
+  - sample.capability
+  contractVersion: '1'
+  nativeId: sample.default
+  replacement:
+    kind: restart
+- id: sample.composition
+  kind: composition
+  name: sample.composition
+  purpose: Illustrative language conformance example
+  project: project.sample
+  target: sample
+  process: sample.process
+  components:
+  - sample.plugin
+  scopes:
+  - id: root
+    lifetime: process
+    requiredCapabilities:
+    - sample.capability
+  registrations:
+  - sample.provider
+  selections:
+  - scope: root
+    capability: sample.capability
+    provider: sample.provider
+metadata:
+  baseline: illustrative
+  status: illustrative
+  notes:
+  - Not TreeSeed/TreeDX source evidence.

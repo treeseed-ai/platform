@@ -1,0 +1,363 @@
+[
+  {
+    "subject": "api.provider.NodeApiContainerPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('node-api','container.api',['deployment.engine','container.database','container.identity'])",
+      "definition": null,
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "engine": null,
+      "installationId": null,
+      "composition": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "cli.provider.CommandsPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "CoreDeclarations.define('core-commands','cli.commands',['cordis.composition','deployment','cli.configuration','cli.plugins'])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "cli.provider.ConfigurationPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "CoreDeclarations.define('json-file','cli.configuration')",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "cli.provider.OutputPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "CoreDeclarations.define('terminal','cli.output')",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "cli.provider.PluginCommandsPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "CoreDeclarations.define('installed-plugins','cli.plugins',['cli.configuration'])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.CaddyContainerPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('caddy','container.edge',[InstalledTokens.engine.id,InstalledTokens.api.id])",
+      "definition": null,
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "engine": null,
+      "installationId": null,
+      "composition": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.CommandsPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "Declarations.define('docker-cli','deployment.commands')",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.DeploymentPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "Declarations.define('compose','deployment',[commandsToken.id,systemToken.id,portsToken.id])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.EnginePlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('local-compose-engine',InstalledTokens.engine.id,[JournalToken.id,InspectionToken.id])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "engine": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.GitSourcePlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[GitSourceToken.instance.id]",
+      "inject": "['cordis.composition',InstallationAuthorityToken.instance.id,PluginBuildToken.instance.id]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({id:'deployment.git-source',pluginId:'deployment',capability:GitSourceToken.instance.id,contractVersion:ProviderV4Schemas.version,target:'deployment',provide:this.provide,inject:this.inject})"
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.HostSocketPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[HostTransportToken.instance.id]",
+      "inject": "['cordis.composition', InstallationAuthorityToken.instance.id, ServiceApplicationToken.host.id, PluginManagerToken.instance.id]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({ id: 'deployment.private-unix-protocol', pluginId: 'deployment', capability: HostTransportToken.instance.id, contractVersion: ProviderV4Schemas.version, target: 'deployment', provide: this.provide, inject: this.inject })",
+      "sockets": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.InspectionPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('local-engine-inspection',InspectionToken.id,[])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.InstallationAuthorityPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[InstallationAuthorityToken.instance.id]",
+      "inject": "[]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({ id: 'deployment.installation-authority', pluginId: 'deployment', capability: InstallationAuthorityToken.instance.id, contractVersion: ProviderV4Schemas.version, target: 'deployment', provide: this.provide, inject: this.inject })",
+      "authority": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.JournalPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('private-journal',JournalToken.id,[InspectionToken.id])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "journal": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.NpmSourcePlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[PackageSourceTokens.npm.id]",
+      "inject": "[InstallationAuthorityToken.instance.id]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({ id: 'deployment.npm-source', pluginId: 'deployment', capability: PackageSourceTokens.npm.id, contractVersion: ProviderV4Schemas.version, target: 'deployment', provide: this.provide, inject: this.inject })"
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.PluginBuildPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[PluginBuildToken.instance.id]",
+      "inject": "[InstallationAuthorityToken.instance.id]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({ id: 'deployment.plugin-build', pluginId: 'deployment', capability: PluginBuildToken.instance.id, contractVersion: ProviderV4Schemas.version, target: 'deployment', provide: this.provide, inject: this.inject })"
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.PluginManagerPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[PluginManagerToken.instance.id]",
+      "inject": "['cordis.composition', InstallationAuthorityToken.instance.id, PackageSourceTokens.npm.id, GitSourceToken.instance.id, ServiceApplicationToken.host.id]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({ id: 'deployment.plugin-manager', pluginId: 'deployment', capability: PluginManagerToken.instance.id, contractVersion: ProviderV4Schemas.version, target: 'deployment', provide: this.provide, inject: this.inject })",
+      "manager": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.PortsPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "Declarations.define('loopback','deployment.ports')",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.PostgresContainerPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('postgres','container.database',[InstalledTokens.engine.id])",
+      "definition": null,
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "engine": null,
+      "installationId": null,
+      "composition": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.ProtocolPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('private-worker-protocol',ProtocolToken.id,[JournalToken.id])",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "protocol": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.ServiceApplicationPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[ServiceApplicationToken.host.id]",
+      "inject": "['cordis.composition', InstallationAuthorityToken.instance.id]",
+      "Config": null,
+      "declaration": "ProviderV4Schemas.declaration.parse({ id: 'deployment.application-host', pluginId: 'deployment', capability: ServiceApplicationToken.host.id, contractVersion: ProviderV4Schemas.version, target: 'deployment', provide: this.provide, inject: this.inject })",
+      "host": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.ServiceNativeScope.open.ContextPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[ServiceTokens.context.id]",
+      "inject": "[]",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.ServiceNativeScope.open.EnginePlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[ServiceTokens.engine.id]",
+      "inject": "['cordis.composition', ServiceTokens.probe().id]",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "deployment.provider.SystemPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "Declarations.define('local-host','deployment.system')",
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "identity.provider.KeycloakContainerPlugin",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "declaration": "InstalledDeclarations.service('keycloak','container.identity',['deployment.engine','container.database'])",
+      "definition": null,
+      "provide": "this.declaration.provide",
+      "inject": "this.declaration.inject",
+      "Config": null,
+      "engine": null,
+      "installationId": null,
+      "composition": null
+    },
+    "disposition": "resolved-static-identity",
+    "resolution": "Reviewed source declaration helpers and capability token literals; dynamic runtime selection still unverified"
+  },
+  {
+    "subject": "ui.provider.ComponentProvider",
+    "category": "insufficient-evidence",
+    "expected": "Resolve dynamic provided capability",
+    "observed": {
+      "provide": "[]",
+      "inject": "[]",
+      "Config": null,
+      "replacement": "UiProviderPolicy.replacement",
+      "component": null,
+      "schema": null
+    },
+    "disposition": "resolved-as-supporting-class",
+    "resolution": "Abstract base remains in source inventory, removed from runtime plugin/provider objects"
+  }
+]

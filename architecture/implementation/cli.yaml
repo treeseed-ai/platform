@@ -1,0 +1,405 @@
+schemaVersion: architecture/0.1
+view: implementation
+project: project.cli
+objects:
+- id: cli.capability.cli.commands.0_3_0_cordis_1
+  kind: capability
+  name: cli.commands
+  purpose: Native capability cli.commands
+  contract: cli.contract.cli.commands.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.capability.cli.configuration.0_3_0_cordis_1
+  kind: capability
+  name: cli.configuration
+  purpose: Native capability cli.configuration
+  contract: cli.contract.cli.configuration.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.capability.cli.output.0_3_0_cordis_1
+  kind: capability
+  name: cli.output
+  purpose: Native capability cli.output
+  contract: cli.contract.cli.output.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.capability.cli.plugins.0_3_0_cordis_1
+  kind: capability
+  name: cli.plugins
+  purpose: Native capability cli.plugins
+  contract: cli.contract.cli.plugins.0_3_0_cordis_1
+  cardinality: singleton
+  implementationMode: selectable
+- id: cli.composition.CliApplication.invoke
+  kind: composition
+  name: CliApplication.invoke
+  purpose: Source composition construction site; configuration-dependent selections remain unresolved
+  project: project.cli
+  target: cli
+  process: cli.composition.CliApplication.invoke.process
+  scopes:
+  - id: cli.composition.CliApplication.invoke.scope
+    lifetime: configuration-dependent; source site only
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    start: 159
+    symbol: CliApplication.invoke
+    end: 165
+    fingerprint: 6ee7a4bb8895baea9849eedc29c5661101c28ca161877092bfa82ea9b7456022
+  extensions:
+    architecture:qualification: unknown
+    architecture:processIdentity: symbolic placeholder; source site may be a wrapper within an existing process
+- id: cli.contract.cli.commands.0_3_0_cordis_1
+  kind: contract
+  name: cli.commands
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: CommandsPlugin
+    start: 126
+    end: 129
+    fingerprint: 1326379b3a13e884766505eb23420e92702befe3ca893fb28cbd1b7212abe7cc
+- id: cli.contract.cli.configuration.0_3_0_cordis_1
+  kind: contract
+  name: cli.configuration
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: ConfigurationPlugin
+    start: 122
+    end: 125
+    fingerprint: e34a1facd8e2ac786330ef323379c390bdd5ce13605f2311041f285153fadfc4
+- id: cli.contract.cli.output.0_3_0_cordis_1
+  kind: contract
+  name: cli.output
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: OutputPlugin
+    start: 134
+    end: 137
+    fingerprint: 884e606a6874ca038dab1fbf2d26577b682a5a77271d5060dff98a516b198995
+- id: cli.contract.cli.plugins.0_3_0_cordis_1
+  kind: contract
+  name: cli.plugins
+  purpose: Typed capability boundary from native token/declaration
+  project: project.cli
+  version: 0.3.0-cordis.1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: PluginCommandsPlugin
+    start: 130
+    end: 133
+    fingerprint: 8069602f409857bf4964153de1aeb6b2d6ab1fa27965db67cc6a5f718138b78b
+- id: cli.plugin.CommandsPlugin
+  kind: component
+  name: CommandsPlugin
+  purpose: Native plugin supplying cli.commands
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.commands.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.commands.0_3_0_cordis_1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: CommandsPlugin
+    start: 126
+    end: 129
+    fingerprint: 1326379b3a13e884766505eb23420e92702befe3ca893fb28cbd1b7212abe7cc
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: CoreDeclarations.define('core-commands','cli.commands',['cordis.composition','deployment','cli.configuration','cli.plugins'])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+  componentRole: runtime
+- id: cli.plugin.ConfigurationPlugin
+  kind: component
+  name: ConfigurationPlugin
+  purpose: Native plugin supplying cli.configuration
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.configuration.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.configuration.0_3_0_cordis_1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: ConfigurationPlugin
+    start: 122
+    end: 125
+    fingerprint: e34a1facd8e2ac786330ef323379c390bdd5ce13605f2311041f285153fadfc4
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: CoreDeclarations.define('json-file','cli.configuration')
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+  componentRole: runtime
+- id: cli.plugin.InvocationPlugin
+  kind: component
+  name: InvocationPlugin
+  purpose: Native injection consumer plugin; supplies no selectable capability
+  project: project.cli
+  componentKind: plugin
+  componentRole: runtime
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: InvocationPlugin
+    start: 139
+    end: 139
+    fingerprint: f11946ffbbd640f92cf5fa41b7cc17ba2292d06d6c260a70d13ebb2bc1cb9095
+  extensions:
+    cordis:injectExpression: '[''cordis.composition'',''cli.commands'',''cli.output'']'
+    architecture:registrationEvidence: See inventory compositionSites for native mounting; dynamic targets not executed
+- id: cli.plugin.OutputPlugin
+  kind: component
+  name: OutputPlugin
+  purpose: Native plugin supplying cli.output
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.output.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.output.0_3_0_cordis_1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: OutputPlugin
+    start: 134
+    end: 137
+    fingerprint: 884e606a6874ca038dab1fbf2d26577b682a5a77271d5060dff98a516b198995
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: CoreDeclarations.define('terminal','cli.output')
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+  componentRole: runtime
+- id: cli.plugin.PluginCommandsPlugin
+  kind: component
+  name: PluginCommandsPlugin
+  purpose: Native plugin supplying cli.plugins
+  project: project.cli
+  componentKind: plugin
+  capabilities:
+  - cli.capability.cli.plugins.0_3_0_cordis_1
+  contracts:
+  - cli.contract.cli.plugins.0_3_0_cordis_1
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: PluginCommandsPlugin
+    start: 130
+    end: 133
+    fingerprint: 8069602f409857bf4964153de1aeb6b2d6ab1fa27965db67cc6a5f718138b78b
+  extensions:
+    cordis:inject: []
+    cordis:staticExpressions:
+      declaration: CoreDeclarations.define('installed-plugins','cli.plugins',['cli.configuration'])
+      provide: this.declaration.provide
+      inject: this.declaration.inject
+      Config: null
+  componentRole: runtime
+- id: cli.program
+  kind: component
+  name: Program
+  purpose: Run operator commands and invoke public owner capabilities
+  project: project.cli
+  componentKind: object
+  ownedFiles:
+  - src/main.ts
+  - src/plugins.ts
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/plugins.ts
+  extensions:
+    architecture:role: logical-area; not a claim of one runtime class or plugin
+  componentRole: logical-area
+- id: cli.provider.CommandsPlugin
+  kind: provider
+  name: core-commands
+  purpose: Candidate implementation supplied by CommandsPlugin
+  component: cli.plugin.CommandsPlugin
+  capabilities:
+  - cli.capability.cli.commands.0_3_0_cordis_1
+  contractVersion: 0.3.0-cordis.1
+  nativeId: core-commands
+  artifact: https://github.com/treeseed-ai/cli.git@26efbdea603a8cc27783742ad309924cd420709b
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: CommandsPlugin
+    start: 126
+    end: 129
+    fingerprint: 1326379b3a13e884766505eb23420e92702befe3ca893fb28cbd1b7212abe7cc
+  extensions:
+    cordis:manifestDeclaration: {}
+    architecture:readiness: unknown; no execution performed
+    architecture:staticResolution: Reviewed declaration helper/token literals at pinned source; no execution or selection proof
+- id: cli.provider.ConfigurationPlugin
+  kind: provider
+  name: json-file
+  purpose: Candidate implementation supplied by ConfigurationPlugin
+  component: cli.plugin.ConfigurationPlugin
+  capabilities:
+  - cli.capability.cli.configuration.0_3_0_cordis_1
+  contractVersion: 0.3.0-cordis.1
+  nativeId: json-file
+  artifact: https://github.com/treeseed-ai/cli.git@26efbdea603a8cc27783742ad309924cd420709b
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: ConfigurationPlugin
+    start: 122
+    end: 125
+    fingerprint: e34a1facd8e2ac786330ef323379c390bdd5ce13605f2311041f285153fadfc4
+  extensions:
+    cordis:manifestDeclaration: {}
+    architecture:readiness: unknown; no execution performed
+    architecture:staticResolution: Reviewed declaration helper/token literals at pinned source; no execution or selection proof
+- id: cli.provider.OutputPlugin
+  kind: provider
+  name: terminal
+  purpose: Candidate implementation supplied by OutputPlugin
+  component: cli.plugin.OutputPlugin
+  capabilities:
+  - cli.capability.cli.output.0_3_0_cordis_1
+  contractVersion: 0.3.0-cordis.1
+  nativeId: terminal
+  artifact: https://github.com/treeseed-ai/cli.git@26efbdea603a8cc27783742ad309924cd420709b
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: OutputPlugin
+    start: 134
+    end: 137
+    fingerprint: 884e606a6874ca038dab1fbf2d26577b682a5a77271d5060dff98a516b198995
+  extensions:
+    cordis:manifestDeclaration: {}
+    architecture:readiness: unknown; no execution performed
+    architecture:staticResolution: Reviewed declaration helper/token literals at pinned source; no execution or selection proof
+- id: cli.provider.PluginCommandsPlugin
+  kind: provider
+  name: installed-plugins
+  purpose: Candidate implementation supplied by PluginCommandsPlugin
+  component: cli.plugin.PluginCommandsPlugin
+  capabilities:
+  - cli.capability.cli.plugins.0_3_0_cordis_1
+  contractVersion: 0.3.0-cordis.1
+  nativeId: installed-plugins
+  artifact: https://github.com/treeseed-ai/cli.git@26efbdea603a8cc27783742ad309924cd420709b
+  sourceBindings:
+  - project: project.cli
+    revision: 26efbdea603a8cc27783742ad309924cd420709b
+    path: src/main.ts
+    symbol: PluginCommandsPlugin
+    start: 130
+    end: 133
+    fingerprint: 8069602f409857bf4964153de1aeb6b2d6ab1fa27965db67cc6a5f718138b78b
+  extensions:
+    cordis:manifestDeclaration: {}
+    architecture:readiness: unknown; no execution performed
+    architecture:staticResolution: Reviewed declaration helper/token literals at pinned source; no execution or selection proof
+- id: project.cli
+  kind: project
+  name: Cli
+  purpose: Independent cli ownership boundary
+  repository: https://github.com/treeseed-ai/cli.git
+  revision: 26efbdea603a8cc27783742ad309924cd420709b
+  language: typescript
+  external: false
+metadata:
+  baseline: cordis-2026-10-29
+  status: observed
+  notes:
+  - Source snapshot is not a qualified assembled release.
+  - Logical-area components group inventory; native plugin components are separate.
+  references:
+  - ../baselines/repositories.json
+  - inventory/cli.json
+  - ../baselines/public-surfaces.json
+  limitations:
+  - Dynamic injection/selection expressions retained in inventory; not evaluated.
+  - No runtime readiness, cleanup or conformance checks executed.
+relationships:
+- kind: depends-on
+  from: project.cli
+  to: project.deployment
+- kind: depends-on
+  from: project.cli
+  to: project.sdk
+- kind: depends-on
+  from: project.cli
+  to: project.ui
+- kind: provides
+  from: cli.plugin.CommandsPlugin
+  to: cli.capability.cli.commands.0_3_0_cordis_1
+- kind: provides
+  from: cli.provider.CommandsPlugin
+  to: cli.capability.cli.commands.0_3_0_cordis_1
+- kind: implements
+  from: cli.plugin.CommandsPlugin
+  to: cli.contract.cli.commands.0_3_0_cordis_1
+- kind: provides
+  from: cli.plugin.ConfigurationPlugin
+  to: cli.capability.cli.configuration.0_3_0_cordis_1
+- kind: provides
+  from: cli.provider.ConfigurationPlugin
+  to: cli.capability.cli.configuration.0_3_0_cordis_1
+- kind: implements
+  from: cli.plugin.ConfigurationPlugin
+  to: cli.contract.cli.configuration.0_3_0_cordis_1
+- kind: provides
+  from: cli.plugin.OutputPlugin
+  to: cli.capability.cli.output.0_3_0_cordis_1
+- kind: provides
+  from: cli.provider.OutputPlugin
+  to: cli.capability.cli.output.0_3_0_cordis_1
+- kind: implements
+  from: cli.plugin.OutputPlugin
+  to: cli.contract.cli.output.0_3_0_cordis_1
+- kind: provides
+  from: cli.plugin.PluginCommandsPlugin
+  to: cli.capability.cli.plugins.0_3_0_cordis_1
+- kind: provides
+  from: cli.provider.PluginCommandsPlugin
+  to: cli.capability.cli.plugins.0_3_0_cordis_1
+- kind: implements
+  from: cli.plugin.PluginCommandsPlugin
+  to: cli.contract.cli.plugins.0_3_0_cordis_1
