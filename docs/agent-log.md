@@ -1,6 +1,6 @@
 # TreeSeed agent delivery log
 
-Updated: 2026-10-30 00:18 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
+Updated: 2026-10-30 00:33 UTC. Issues own plans/status; Actions own verification; Git and TreeDX own products. Unknown usage, cost and closure stay unknown.
 
 [Prior 16:02 checkpoint](https://github.com/treeseed-ai/platform/blob/15b37ce46b0b99fe66f108f37bf1664109b9815a/docs/agent-log.md) preserves the earlier rosters and pending observations. Current team revisions below supersede those configurations for future work only.
 
@@ -58,7 +58,6 @@ Primary ratio = team-origin integrated implementation PRs / all origin-classifie
 | 20:31 | 0 | 16 | **0/16 = 0%** | +0/+0; exact installed API adopted; original Releaser plan recovered through MCP and old workday closed normally |
 | 21:04 | 0 | 16 | **0/16 = 0%** | +0/+0; Architect correctsv16;4useful plan/notes,1unadopted competing draft; API659 closeout repair qualifying |
 | 22:55 | 0 | 16 | **0/16 = 0%** | +0/+0;659 first native fixture failure retained/corrected; changed-candidate full verify:direct passed, coded scenes pending |
-
 | Oct30 00:18 | 0 | 17 | **0/17 = 0%** | +0/+1 API659 qualified/adopted; original planning recovered;5real self-estimates and native approval complete; closeout failed and initial acting admission selected0, preserved/unstarted |
 
 The first7coordinator integrations are SDK484, API640/641 and Deployment1012/1015/1016/1017; protected commits, failed publications and adopted versions remain in the frozen checkpoint. Newest:
@@ -90,6 +89,12 @@ Fresh estimating workday4d2d1520-d7a9-4863-b010-9eca6538528f (default6/project-d
 API Architect source discussion send-3002b1d375eb28f39bff563a76dbd851 completed at exactd08, assignmenthVQ44g/result response42de85ae443aeefabc25e2e6. It independently identified applyOperationalState terminal-workday early return preserving old authority; accepted source/projector supply the Decision and preflight correctly denies absent authority. Suggested minimum never-issued refresh with definitive assignment history, preserve all issued/completed authority. Actual100.669654666active/100.703887984elapsed,1075230input988544cached8988output6613reasoning; cost/independentsettlement unknown. Code-only bootstrap under625 is authorized; test-first exact regression/integration/scene required before delivery. No forced ready/empty acting/new proposal/state edits.
 
 Cache35382/loop17 remains fenced, original unmount cause UNKNOWN. Reviewer129 independent review, normal simulation origin +file/OCIproduct publication/readback, and original retained Agentv13 ordinary release remain unproved. No unmount/restart/fenceclear/unknownusagezeroing. Next: repair only this admission owner, qualify/adopt, then native accepted group acting/separate reviews.
+
+## Initial acting handoff repair — Oct30 00:33 UTC
+
+[API660](https://github.com/treeseed-ai/api/pull/660) source b6d00a1ffff2c6668aef08903ddbbc15872836e8 qualifies in original Verify40979452800/job123815552596; native prerequisites running, authorization/submission contract passed. It is unmerged/unadopted and earns no implementation unit yet. Test-first bcd3a88e65 reproduced the lost Decision; minimum two-file reconciliation change refreshes only never-issued candidates, retains stale state until normal preflight selection, and preserves issued authority. Final19focused/caller tests3files, standard strictbuild, structural policies and whitespace passed. Existing native Decision/public simulation preflight case and three coded cases were strengthened; full native/suites/scenes and live repair remain pending. The failed local missing-PostgreSQL invocation and incorrect standalone tsc attempts are preserved in the PR, not counted as passes. No changed budgets, new execution path or duplicate campaign.
+
+Native measurement of the actual five successful estimators:173reportedactive/elapsed seconds;171.349188751nativeactive/171.503993966nativeelapsed;1420267input/1187072cached/13536output/7788reasoning tokens. Reporter separately7.540389809nativeactive/8reportedelapsed,0reportedmodeltokens. Cost, independent settlement and physical cleanup remain unknown. The six assignments remain completed/released while the workday remains FAILED; this disagreement is retained. Metrics model/configuration/group fields are null/empty even though the assignment's exact context was independently read; no values are invented.
 
 ## Retained target and next work
 
