@@ -16,7 +16,8 @@
     "test:integration": "node --test tests/integration/*.test.mts",
     "test:unit": "node --test tests/unit/*.test.mts",
     "check:readability": "bun .agents/skills/release-workflow/scripts/source-readability.ts",
-    "check": "bun run check:test-layout && bun run check:readability"
+    "check": "bun run check:test-layout && bun run check:readability",
+    "test:artifact-diagnostics": "bun test tests/acceptance/artifact-diagnostics.test.mts"
   },
   "devDependencies": {
     "@treeseed-cordis/sdk": "file:packages/cli/vendor/sdk.tgz",

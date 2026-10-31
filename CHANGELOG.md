@@ -9,7 +9,7 @@
 - Platform: record verified capacity foundations and remaining Agent service gates (#773).
 
 ### Fixed
-- Platform: keep qualification dependency caches outside test discovery (#871).
+- Platform: make declared qualification setup pass the real baseline (#871).
 - Platform: preserve qualified dependencies in installed assembly fixtures (#840).
 - Platform: observe transient application read-back failures within the existing readiness deadline (#796).
 

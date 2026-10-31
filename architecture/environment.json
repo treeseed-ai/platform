@@ -17,13 +17,19 @@
   ],
   "setup": [
     {
+      "command": "node",
+      "args": [
+        "tests/support/assembly/prepare-archive-permissions.mts"
+      ]
+    },
+    {
       "command": "bun",
       "args": [
         "install",
         "--frozen-lockfile",
         "--ignore-scripts",
         "--cache-dir",
-        ".qualification/cache/root"
+        "node_modules/.cache/arcnexus/root"
       ]
     },
     {
@@ -35,15 +41,14 @@
         "--frozen-lockfile",
         "--ignore-scripts",
         "--cache-dir",
-        ".qualification/cache/assembly"
+        "../../../node_modules/.cache/arcnexus/assembly"
       ]
     }
   ],
   "generatedDirectories": [
     "node_modules",
     "tests/support/assembly/node_modules",
-    ".qualification",
-    "tests/support/assembly/.qualification"
+    ".qualification"
   ],
   "workspace": {
     "primary": {
