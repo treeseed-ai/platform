@@ -30,3 +30,8 @@ Acceptance is non-activating: catalog validation, ownership/scope checks, existi
 policy/layout checks and artifact inspection through public package APIs. Normal
 repository CI remains an integration gate; focused checks are not a substitute for
 full platform CI. Runtime/provider changes belong to their package owners.
+
+The existing `architecture/workspace.yaml`, intent/implementation blueprints and
+language schemas remain the architectural specification. ArcNexus JSON definitions
+are an execution-specific ownership/scope projection referencing those sources;
+they do not replace the language, Studio, or observed-versus-intended distinction.
