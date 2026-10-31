@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- platform: declare bounded artifact diagnostics operation for ArcNexus (#874).
+
 ### Changed
 - Platform: remove the retired Architecture Studio and blueprint language (#867).
 - Platform: refresh runtime custody, native Agent provider catalogue and seed-journal evidence with explicit pending admission gates (#773).

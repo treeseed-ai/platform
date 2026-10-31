@@ -14,3 +14,12 @@ using code-point lexical ordering. Entries contain public archive metadata, not 
 contents. Archive validation uses Deployment's public `PackageArchiveInspector`.
 This diagnostic does not activate packages or change the accepted selection.
 Historical composition evidence remains immutable.
+
+## ArcNexus steward operation
+
+The version-2 Luna profile plans once before execution. The diagnostics owner may
+invoke the fixed `artifact-diagnostics-tests` operation through the host bridge.
+It runs `bun run test:artifact-diagnostics` with the caller-bound toolchain after a
+functional Bun subprocess probe. The operation grants no package write authority,
+starts no services, and does not replace required host verification. Existing CLI
+and SDK dependency pins and historical composition evidence remain unchanged.
