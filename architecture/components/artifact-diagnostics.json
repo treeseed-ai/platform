@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "repository": "platform",
+  "role": "systems-engineer",
+  "executionProfile": "luna",
+  "path": "tests/support/assembly/artifact-inventory.mts",
+  "objectives": [
+    "Keep architectural ownership explicit and independently verified"
+  ],
+  "constraints": [
+    "Preserve independent repository boundaries; Platform does not own SDK or Deployment implementations",
+    "Read the existing architecture/intent and implementation blueprints; this catalog is an execution projection",
+    "Use strict TypeScript classes and normal formatting; changed methods must satisfy the existing readability gate",
+    "No commits, branch changes, deployment, production publication or changes to historical composition pins"
+  ],
+  "questions": [],
+  "patterns": [
+    "Document intent, observable acceptance, implementation, independent review",
+    "Use public package APIs and exact artifacts, never cross-checkout source imports"
+  ],
+  "interfaces": [
+    "ArtifactFiles command: selected owner, candidate archive, JSON difference output"
+  ],
+  "documentation": [
+    "docs/artifact-diagnostics.md"
+  ],
+  "tests": [
+    "tests/acceptance/artifact-diagnostics.test.mts"
+  ],
+  "relatedIds": [
+    "sdk-contracts"
+  ],
+  "allowedWritePaths": [
+    "tests/support/assembly/artifact-inventory.mts",
+    "tests/acceptance/artifact-diagnostics.test.mts",
+    "docs/artifact-diagnostics.md"
+  ],
+  "access": {
+    "readPaths": [
+      "."
+    ],
+    "writeDirectories": [
+      "tests/support/assembly",
+      "tests/acceptance",
+      "docs"
+    ]
+  },
+  "verification": [
+    {
+      "command": "node",
+      "args": [
+        "--test",
+        "tests/acceptance/arcnexus-catalog.test.mts"
+      ]
+    },
+    {
+      "command": "bun",
+      "args": [
+        "run",
+        "check:test-layout"
+      ]
+    },
+    {
+      "command": "bun",
+      "args": [
+        "run",
+        "check:readability"
+      ]
+    },
+    {
+      "command": "bun",
+      "args": [
+        "test",
+        "tests/acceptance/artifact-diagnostics.test.mts"
+      ]
+    }
+  ],
+  "id": "artifact-diagnostics",
+  "type": "library",
+  "parentId": "platform-integration",
+  "purpose": "Explain differences between selected package artifacts without disclosing file bodies or changing package owners"
+}

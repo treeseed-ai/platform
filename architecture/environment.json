@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "prerequisites": [
+    {
+      "command": "node",
+      "args": [
+        "-e",
+        "if(process.versions.node!=='24.19.0')process.exit(2)"
+      ]
+    },
+    {
+      "command": "bun",
+      "args": [
+        "--version"
+      ]
+    }
+  ],
+  "setup": [
+    {
+      "command": "bun",
+      "args": [
+        "install",
+        "--frozen-lockfile",
+        "--ignore-scripts",
+        "--cache-dir",
+        ".qualification/cache/root"
+      ]
+    },
+    {
+      "command": "bun",
+      "args": [
+        "install",
+        "--cwd",
+        "tests/support/assembly",
+        "--frozen-lockfile",
+        "--ignore-scripts",
+        "--cache-dir",
+        ".qualification/cache/assembly"
+      ]
+    }
+  ],
+  "generatedDirectories": [
+    "node_modules",
+    "tests/support/assembly/node_modules",
+    ".qualification",
+    "tests/support/assembly/.qualification"
+  ],
+  "workspace": {
+    "primary": {
+      "id": "platform",
+      "repository": "https://github.com/treeseed-ai/platform.git"
+    },
+    "dependencies": [
+      {
+        "id": "cli",
+        "repository": "https://github.com/treeseed-ai/cli.git",
+        "commit": "89fb78b6fd362a8de9dec9d238a310f65545175b",
+        "path": "packages/cli",
+        "prerequisites": [],
+        "setup": [],
+        "generatedDirectories": []
+      },
+      {
+        "id": "sdk",
+        "repository": "https://github.com/treeseed-ai/sdk.git",
+        "commit": "4c0ecd2a0fc28545dbf677cc988ce69f0cf2f15d",
+        "path": "packages/sdk",
+        "prerequisites": [],
+        "setup": [],
+        "generatedDirectories": []
+      }
+    ]
+  }
+}

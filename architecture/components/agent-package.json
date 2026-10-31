@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "repository": "agent",
+  "role": "systems-engineer",
+  "executionProfile": "luna",
+  "path": ".",
+  "objectives": [
+    "Keep architectural ownership explicit and independently verified"
+  ],
+  "constraints": [
+    "Preserve independent repository boundaries; Platform does not own SDK or Deployment implementations",
+    "Read the existing architecture/intent and implementation blueprints; this catalog is an execution projection",
+    "Use strict TypeScript classes and normal formatting; changed methods must satisfy the existing readability gate",
+    "No commits, branch changes, deployment, production publication or changes to historical composition pins"
+  ],
+  "questions": [],
+  "patterns": [
+    "Document intent, observable acceptance, implementation, independent review",
+    "Use public package APIs and exact artifacts, never cross-checkout source imports"
+  ],
+  "interfaces": [],
+  "documentation": [
+    "README.md"
+  ],
+  "tests": [
+    "tests"
+  ],
+  "relatedIds": [],
+  "allowedWritePaths": [
+    "."
+  ],
+  "access": {
+    "readPaths": [
+      "."
+    ],
+    "writeDirectories": [
+      "."
+    ]
+  },
+  "verification": [],
+  "id": "agent-package",
+  "type": "package",
+  "parentId": "treeseed",
+  "purpose": "Own agent public capabilities in its independent repository",
+  "members": {
+    "foundations": [],
+    "dependencies": [],
+    "gateways": [],
+    "libraries": [],
+    "releases": []
+  }
+}

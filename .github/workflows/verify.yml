@@ -38,6 +38,7 @@ jobs:
       - name: Strictly type-check assembled verification
         run: bun node_modules/typescript/bin/tsc --strict --noEmit --allowImportingTsExtensions --module nodenext --target es2022 --skipLibCheck --typeRoots node_modules/@types --types node ../../tests/acceptance/package-composition.test.mts ../../tests/acceptance/deployment-planning.test.mts ../../tests/acceptance/native-composition.test.mts
         working-directory: packages/cli
+      - run: node --test tests/acceptance/arcnexus-catalog.test.mts
       - run: node --test --test-concurrency=1 tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts tests/acceptance/native-composition.test.mts tests/integration/package-composition.test.mts tests/integration/native-composition.test.mts tests/unit/package-composition.test.mts tests/regression/package-composition.test.mts
 
   installed-composition:
@@ -77,3 +78,20 @@ jobs:
           docker pull caddy@sha256:4c6e91c6ed0e2fa03efd5b44747b625fec79bc9cd06ac5235a779726618e530d
           docker pull node@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553
       - run: bun run test:installed
+
+  arcnexus-qualification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - run: bun install --cwd tests/support/assembly --frozen-lockfile --ignore-scripts
+      - run: node --test tests/acceptance/arcnexus-catalog.test.mts
+      - run: bun test tests/acceptance/artifact-diagnostics.test.mts
