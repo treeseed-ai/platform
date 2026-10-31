@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "id": "artifact-diagnostics-tests",
+  "purpose": "Inspect real prepared artifact differences through the bound Bun toolchain",
+  "kind": "command",
+  "repository": "platform",
+  "cwd": ".",
+  "category": "unit-test",
+  "activities": [
+    "research",
+    "testing",
+    "implementation",
+    "review"
+  ],
+  "command": "bun",
+  "args": [
+    "run",
+    "test:artifact-diagnostics"
+  ],
+  "timeoutSeconds": 120,
+  "generatedDirectories": [],
+  "artifacts": [],
+  "probes": [
+    {
+      "command": "bun",
+      "args": [
+        "-e",
+        "const child=Bun.spawnSync([process.execPath,'--version']);console.log(Bun.version);if(child.exitCode!==0)process.exit(1)"
+      ]
+    }
+  ]
+}

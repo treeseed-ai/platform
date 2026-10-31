@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "repository": "platform",
   "role": "systems-engineer",
   "executionProfile": "luna",
@@ -79,5 +79,8 @@
   "id": "artifact-diagnostics",
   "type": "library",
   "parentId": "platform-integration",
-  "purpose": "Explain differences between selected package artifacts without disclosing file bodies or changing package owners"
+  "purpose": "Explain differences between selected package artifacts without disclosing file bodies or changing package owners",
+  "operationIds": [
+    "artifact-diagnostics-tests"
+  ]
 }
