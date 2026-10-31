@@ -39,7 +39,7 @@ jobs:
         run: bun node_modules/typescript/bin/tsc --strict --noEmit --allowImportingTsExtensions --module nodenext --target es2022 --skipLibCheck --typeRoots node_modules/@types --types node ../../tests/acceptance/package-composition.test.mts ../../tests/acceptance/deployment-planning.test.mts ../../tests/acceptance/native-composition.test.mts
         working-directory: packages/cli
       - run: node --test tests/acceptance/arcnexus-catalog.test.mts
-      - run: node --test --test-concurrency=1 tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts tests/acceptance/native-composition.test.mts tests/integration/package-composition.test.mts tests/integration/native-composition.test.mts tests/unit/package-composition.test.mts tests/regression/package-composition.test.mts
+      - run: node --test --test-concurrency=1 tests/regression/retired-studio.test.mts tests/regression/authoring-policy.test.mts tests/regression/github-policy.test.mts tests/acceptance/package-composition.test.mts tests/acceptance/deployment-planning.test.mts tests/acceptance/native-composition.test.mts tests/integration/package-composition.test.mts tests/integration/native-composition.test.mts tests/unit/package-composition.test.mts tests/regression/package-composition.test.mts
 
   installed-composition:
     runs-on: ubuntu-26.04

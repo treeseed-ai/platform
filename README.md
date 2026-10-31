@@ -13,11 +13,8 @@ archives and the built CLI; see [Task 2 composition](composition/task2.json). Ow
 
 Native Cordis composition and typed provider selection are required across the runtimes. Task 3C delivered extensible container services, package acquisition and reusable UI providers; the four-role limit is historical. Agent manager/worker container plugins belong to Agent, while Deployment supplies bounded host operations. See the durable references above for the approved current boundaries and implementation ledger.
 
-The [architectural language draft](architecture/README.md) records current implementation and
-architectural intent separately, with pinned source inventory and explicit conformance gaps.
-[Architecture Studio](architecture/studio/README.md) provides a local React workspace for design,
-validation, comparison and migration export. Run `npm --prefix architecture/studio ci`,
-`npm --prefix architecture/studio run build`, then `npm --prefix architecture/studio start`.
+Architecture Studio and its separate intent/implementation blueprint language are retired.
+Platform ownership is described by the maintained contracts and real repository interfaces below.
 
 Start with these documents in order:
 
