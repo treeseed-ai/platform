@@ -23,6 +23,20 @@ class ArcNexusCatalogTests {
     }
   }
 
+  operations(): void {
+    const profile = this.read("architecture/execution-profiles/luna.json");
+    const diagnostics = this.read("architecture/components/artifact-diagnostics.json");
+    const operation = this.read("architecture/operations/artifact-diagnostics-tests.json");
+    assert.equal(profile.schemaVersion, 2);
+    assert.equal(profile.maxTurns, 4);
+    assert.deepEqual(diagnostics.operationIds, [operation.id]);
+    assert.equal(operation.repository, "platform");
+    assert.equal(operation.cwd, ".");
+    assert.deepEqual(operation.args, ["run", "test:artifact-diagnostics"]);
+    assert.ok(operation.probes.length > 0);
+    assert.equal(operation.kind, "command");
+  }
+
   exactDependencies(): void {
     const environment = this.read("architecture/environment.json");
     const selection = this.read("composition/arcnexus-qualification.json");
@@ -37,3 +51,5 @@ const suite = new ArcNexusCatalogTests();
 test("ArcNexus execution scope preserves package ownership", suite.ownership.bind(suite));
 test("ArcNexus setup pins independent dependency worktrees", suite.exactDependencies.bind(suite));
 test("ArcNexus catalog has no retired blueprint authority", suite.noRetiredBlueprintAuthority.bind(suite));
+
+test("ArcNexus operations use the bound toolchain without wider ownership", suite.operations.bind(suite));
