@@ -40,9 +40,9 @@ The diagnostics steward can edit the assembly helper directory, but its installe
 `tests/support/assembly/node_modules` subtree is explicitly read-only. Dependency
 implementations and installed verification tools do not acquire write authority.
 
-Dependency caches belong under the primary workspace's `.qualification/cache`,
-never beneath `tests/`. Bun resolves `--cache-dir` relative to its selected `--cwd`;
-the assembly installation therefore uses `../../../.qualification/cache/assembly`.
+Dependency caches belong under the primary workspace's `node_modules/.cache/arcnexus`,
+which test discovery excludes, never beneath `tests/` or a scanned cache directory. Bun resolves `--cache-dir` relative to its selected `--cwd`;
+the assembly installation therefore uses `../../../node_modules/.cache/arcnexus/assembly`.
 The qualification CI job runs `tests/support/assembly/prepare-qualification.mts`,
 which executes the same declared prerequisite/setup commands from the repository
 root, then runs the diagnostics component's complete baseline verification.
