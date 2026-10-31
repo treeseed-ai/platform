@@ -39,3 +39,10 @@ platform contracts and owner public interfaces supply related engineering contex
 The diagnostics steward can edit the assembly helper directory, but its installed
 `tests/support/assembly/node_modules` subtree is explicitly read-only. Dependency
 implementations and installed verification tools do not acquire write authority.
+
+Dependency caches belong under the primary workspace's `.qualification/cache`,
+never beneath `tests/`. Bun resolves `--cache-dir` relative to its selected `--cwd`;
+the assembly installation therefore uses `../../../.qualification/cache/assembly`.
+The qualification CI job runs `tests/support/assembly/prepare-qualification.mts`,
+which executes the same declared prerequisite/setup commands from the repository
+root, then runs the diagnostics component's complete baseline verification.
