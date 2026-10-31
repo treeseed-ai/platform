@@ -39,3 +39,17 @@ platform contracts and owner public interfaces supply related engineering contex
 The diagnostics steward can edit the assembly helper directory, but its installed
 `tests/support/assembly/node_modules` subtree is explicitly read-only. Dependency
 implementations and installed verification tools do not acquire write authority.
+
+Dependency caches belong under the primary workspace's `node_modules/.cache/arcnexus`,
+which test discovery excludes, never beneath `tests/` or a scanned cache directory. Bun resolves `--cache-dir` relative to its selected `--cwd`;
+the assembly installation therefore uses `../../../node_modules/.cache/arcnexus/assembly`.
+The qualification CI job runs `tests/support/assembly/prepare-qualification.mts`,
+which executes the same declared prerequisite/setup commands from the repository
+root, then runs the diagnostics component's complete baseline verification.
+
+Preparation also removes group/other write permission from the candidate root and
+its committed Task 3C archive path. Public archive inspection rejects writable
+ancestor directories and archives even when Git reports clean content; a fresh
+checkout under a permissive host umask otherwise fails this existing safety check.
+This declared setup changes no file content or Git executable bits and rejects
+symlinks in the archive path. Owner source checkouts are never changed.

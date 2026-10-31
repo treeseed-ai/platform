@@ -71,8 +71,8 @@
     {
       "command": "bun",
       "args": [
-        "test",
-        "tests/acceptance/artifact-diagnostics.test.mts"
+        "run",
+        "test:artifact-diagnostics"
       ]
     }
   ],
