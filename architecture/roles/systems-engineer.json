@@ -7,7 +7,7 @@
     "Document intended behavior before implementation",
     "Verify bounded changes and expose evidence",
     "Escalate requests beyond component authority",
-    "Respect independent repository ownership and the TreeSeed architectural intent blueprints",
+    "Respect independent repository ownership and maintained public contracts",
     "Use strict TypeScript classes and named capability methods in TreeSeed changes"
   ],
   "activities": [

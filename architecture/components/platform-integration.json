@@ -9,7 +9,7 @@
   ],
   "constraints": [
     "Preserve independent repository boundaries; Platform does not own SDK or Deployment implementations",
-    "Read the existing architecture/intent and implementation blueprints; this catalog is an execution projection",
+    "Use maintained platform contracts and owner public interfaces as engineering context",
     "Use strict TypeScript classes and normal formatting; changed methods must satisfy the existing readability gate",
     "No commits, branch changes, deployment, production publication or changes to historical composition pins"
   ],
