@@ -35,3 +35,7 @@ ArcNexus definitions describe real repository ownership, purpose, constraints an
 bounded execution permissions. They do not depend on the retired Architecture Studio,
 its architectural language, or separate intent/implementation blueprints. Maintained
 platform contracts and owner public interfaces supply related engineering context.
+
+The diagnostics steward can edit the assembly helper directory, but its installed
+`tests/support/assembly/node_modules` subtree is explicitly read-only. Dependency
+implementations and installed verification tools do not acquire write authority.
