@@ -31,7 +31,7 @@ policy/layout checks and artifact inspection through public package APIs. Normal
 repository CI remains an integration gate; focused checks are not a substitute for
 full platform CI. Runtime/provider changes belong to their package owners.
 
-The existing `architecture/workspace.yaml`, intent/implementation blueprints and
-language schemas remain the architectural specification. ArcNexus JSON definitions
-are an execution-specific ownership/scope projection referencing those sources;
-they do not replace the language, Studio, or observed-versus-intended distinction.
+ArcNexus definitions describe real repository ownership, purpose, constraints and
+bounded execution permissions. They do not depend on the retired Architecture Studio,
+its architectural language, or separate intent/implementation blueprints. Maintained
+platform contracts and owner public interfaces supply related engineering context.
