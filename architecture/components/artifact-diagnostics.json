@@ -37,7 +37,8 @@
   ],
   "access": {
     "readPaths": [
-      "."
+      ".",
+      "tests/support/assembly/node_modules"
     ],
     "writeDirectories": [
       "tests/support/assembly",
