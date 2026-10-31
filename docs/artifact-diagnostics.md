@@ -7,10 +7,10 @@ identity only. Unknown owners or inconsistent selected baseline evidence fail wi
 `ARTIFACT_SELECTION_REQUIRED`.
 
 The JSON result includes owner, expected and actual archive SHA-256 identities and
-file changes with `path`, `before` and `after` inventory entries. Entries contain
-public archive metadata, not file contents. Archive validation uses Deployment's
-public `PackageArchiveInspector`. This diagnostic does not activate packages or
-change the accepted selection. Historical composition evidence remains immutable.
-
-The ArcNexus qualification assignment will extend these diagnostics with explicit
-change kinds and deterministic ordering, with independent acceptance before integration.
+file changes with `path`, `before` and `after` inventory entries. Each change also
+has a `kind`: `added` when `before` is null, `removed` when `after` is null, and
+`modified` when both entries are present. The `changes` array is ordered by `path`
+using code-point lexical ordering. Entries contain public archive metadata, not file
+contents. Archive validation uses Deployment's public `PackageArchiveInspector`.
+This diagnostic does not activate packages or change the accepted selection.
+Historical composition evidence remains immutable.
