@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Non-activating ArcNexus qualification; historical selections retained",
+  "cli": {
+    "repository": "https://github.com/treeseed-ai/cli.git",
+    "commit": "89fb78b6fd362a8de9dec9d238a310f65545175b",
+    "acceptedCandidate": "5dd94c174bce3905f5fe873fbe892da80d971c99"
+  },
+  "sdk": {
+    "repository": "https://github.com/treeseed-ai/sdk.git",
+    "commit": "4c0ecd2a0fc28545dbf677cc988ce69f0cf2f15d",
+    "version": "0.0.0-cordis.16",
+    "checkout": "packages/sdk",
+    "archive": "vendor/task3c/sdk.tgz",
+    "sha256": "4084aa8dbe9767984fac9fef7f5cea30a0bec93ed416138d32c804e6389fdba5"
+  },
+  "archiveInputs": [
+    "vendor/task3c/sdk.tgz",
+    "vendor/task3c/deployment.tgz",
+    "vendor/task3c/admin.tgz",
+    "vendor/task3c/api.tgz"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "repository": "deployment",
+  "role": "systems-engineer",
+  "executionProfile": "luna",
+  "path": ".",
+  "objectives": [
+    "Keep architectural ownership explicit and independently verified"
+  ],
+  "constraints": [
+    "Preserve independent repository boundaries; Platform does not own SDK or Deployment implementations",
+    "Use maintained platform contracts and owner public interfaces as engineering context",
+    "Use strict TypeScript classes and normal formatting; changed methods must satisfy the existing readability gate",
+    "No commits, branch changes, deployment, production publication or changes to historical composition pins"
+  ],
+  "questions": [],
+  "patterns": [
+    "Document intent, observable acceptance, implementation, independent review",
+    "Use public package APIs and exact artifacts, never cross-checkout source imports"
+  ],
+  "interfaces": [],
+  "documentation": [
+    "README.md"
+  ],
+  "tests": [
+    "tests"
+  ],
+  "relatedIds": [],
+  "allowedWritePaths": [
+    "."
+  ],
+  "access": {
+    "readPaths": [
+      "."
+    ],
+    "writeDirectories": [
+      "."
+    ]
+  },
+  "verification": [],
+  "id": "deployment-package",
+  "type": "package",
+  "parentId": "treeseed",
+  "purpose": "Own deployment public capabilities in its independent repository",
+  "members": {
+    "foundations": [],
+    "dependencies": [],
+    "gateways": [],
+    "libraries": [],
+    "releases": []
+  }
+}

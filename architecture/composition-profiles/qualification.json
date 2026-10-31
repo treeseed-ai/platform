@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "qualification",
+  "platformId": "treeseed",
+  "packageIds": [
+    "platform-integration",
+    "sdk-package",
+    "cli-package"
+  ]
+}

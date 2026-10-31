@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "repository": "sdk",
+  "role": "systems-engineer",
+  "executionProfile": "luna",
+  "path": "src",
+  "objectives": [
+    "Keep architectural ownership explicit and independently verified"
+  ],
+  "constraints": [
+    "Preserve independent repository boundaries; Platform does not own SDK or Deployment implementations",
+    "Use maintained platform contracts and owner public interfaces as engineering context",
+    "Use strict TypeScript classes and normal formatting; changed methods must satisfy the existing readability gate",
+    "No commits, branch changes, deployment, production publication or changes to historical composition pins"
+  ],
+  "questions": [],
+  "patterns": [
+    "Document intent, observable acceptance, implementation, independent review",
+    "Use public package APIs and exact artifacts, never cross-checkout source imports"
+  ],
+  "interfaces": [
+    "Portable SDK contracts consumed by Platform and capability owners"
+  ],
+  "documentation": [
+    "docs"
+  ],
+  "tests": [
+    "tests"
+  ],
+  "relatedIds": [],
+  "allowedWritePaths": [
+    "src",
+    "tests",
+    "docs"
+  ],
+  "access": {
+    "readPaths": [
+      "."
+    ],
+    "writeDirectories": [
+      "src",
+      "tests",
+      "docs"
+    ]
+  },
+  "verification": [],
+  "id": "sdk-contracts",
+  "type": "library",
+  "parentId": "sdk-package",
+  "purpose": "Own portable SDK contract schemas and exported interfaces; consumers may request changes but cannot implement them in Platform"
+}
