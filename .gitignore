@@ -41,9 +41,3 @@ Thumbs.db
 
 # Documentation 
 /docs/.astro/
-
-# Local architectural observation history and recoverable write journals.
-/architecture/.studio/snapshots/
-/architecture/.studio/active-inventory.json
-/architecture/.studio/transaction.json
-*.studio-tmp
