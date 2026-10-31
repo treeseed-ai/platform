@@ -17,6 +17,7 @@
 - Platform: preserve primary presentation failures while attempting every cleanup step (#796).
 
 ### Added
+- Platform: sort and classify public artifact diagnostics (#870).
 
 - platform: declare ArcNexus qualification ownership and workspace setup (#866).
 - Platform: add Architecture Studio designer, validator and migration handoff (#839).
