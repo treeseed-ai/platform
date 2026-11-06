@@ -75,3 +75,38 @@ legacy-promotion request, new eligible child setup with a differing license, exc
 TreeDX setup, existing dirty child setup, one-PR inspection, and unchanged-evidence reuse.
 Inspect concrete next actions and stopping points. Reader walkthroughs and package
 checks do not prove downstream runtime behavior or execute the initializer.
+
+## Recorded validation
+
+The installed-package acceptance failed before migration on embedded examples and the
+missing twelfth skill; preservation checks already passed. The old authoring/GitHub
+regressions passed on the original package, then failed on the expected requirements for
+removed examples/resources. Their replacements preserve rejection controls rather than
+requiring sample implementations or foreign installer flags.
+
+Local validation used the repository CI versions, Bun 1.4.4 and Node 24.19.0, from a
+temporary tool cache. No project dependency, archive, composition pin or lockfile changed.
+The workstation's Node 22 could not directly load these .mts tests; that prerequisite
+failure was not treated as a failing guidance acceptance test.
+
+- Installed guidance acceptance: three passing checks, including exact hashes for the
+  five retained root sections, initializer/UI metadata and both enforcement helpers.
+- Complete existing regression command: 28 passing tests across Node and Bun suites,
+  including authoring/GitHub rejection controls, fixture locks, assembly selection,
+  test discovery, built presentation cleanup and transient read-back.
+- Readability acceptance: ten passing checks, including changed-method, compression,
+  provenance, baseline-tampering and exact-exception rejection.
+- ArcNexus catalog acceptance: four passing checks; existing ownership remains intact.
+- Normal test-layout/readability checks and strict type checking of the new/changed
+  guidance test files: exit zero. All twelve skill packages pass metadata validation;
+  local Markdown target paths resolve and the diff passes whitespace checks.
+- Independent read-only comparison and eight reader walkthroughs found no actionable
+  regression. A targeted preservation follow-up restored explicit live integration-ref
+  verification/synchronization and evidence refresh before merging. These were instruction/decision reviews, not live agent or initializer
+  execution. The retained historical Task 3A resumption constraint remains explicit;
+  this update does not resolve the separately tracked milestone issue #724.
+
+These 45 distinct local tests do not prove the full installed/runtime product. Live
+Docker/browser/Kata acceptance and other owner runtime suites were not run for this
+instruction change. Hosted checks and required review remain separately observable
+integration gates; no documentation-only CI waiver is inherited from Scaffold or SAIP.

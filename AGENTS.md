@@ -6,13 +6,26 @@ same CLI commit before installing the root lockfile; later composition closures 
 The root lockfile must match those bytes;
 verify with a fresh package cache so a populated workstation cache cannot hide stale hashes.
 
-**Scope: development only.** This file guides agents developing THIS repository. Nothing shipped —
-runtime behavior, the knowledge corpus, or any test — may depend on it or its contents: every real
-target project carries its own instruction files, unpredictable and private to that project.
+## Scope and authority
 
-This shared development baseline may be copied into child repositories. Determine the current
-project from its canonical Git remote, not this file's title. Platform remains the parent
-integration repository; a child owns only its existing capabilities.
+These instructions govern development of this repository and the approved shared child
+baseline. Follow the agent environment's instruction precedence. Skills supply procedures
+within the user's authorization; they cannot relax the project directives below.
+Existing approvals and accepted designs remain valid. Ask only about material missing
+decisions or access, and honor explicitly pending review. Continue independent work while
+waiting, without taking actions that depend on an unanswered decision.
+
+Keep shipped runtime behavior and the knowledge corpus independent of these development
+instructions and helpers. Generic target-project tests use explicit fixtures rather than
+assuming any real project's private instruction contents. Development-only checks may
+inspect this instruction package to verify its public guidance and preserved directives.
+
+Determine project identity from its canonical Git remote, not this file's title. Platform
+remains the parent integration repository; copied guidance does not transfer ownership.
+Inspect state before mutations and preserve unrelated edits, licenses, data and configuration.
+Use isolation when needed; do not reset, stash, move, commit or delete another person's work
+without authorization. Preserve actual working state before temporary mutations and restore
+only your changes. No work on this guidance initializes or propagates changes to children.
 
 ## Cordis Migration Branch Boundary (MANDATORY)
 
@@ -159,56 +172,63 @@ dependencies or adding scaffolding; wire the gate during the first implementatio
 
 ## Workflow Gate (MANDATORY)
 
-**At the START of every new project or statement of work:** load the `release-workflow` skill,
-create or adopt a GitHub Issue, fetch and verify the exact remote `cordis` head, and create a
-feature branch from `origin/cordis`. Never begin work without an issue and a branch. Never work
-directly on `cordis`, `staging` or `main`.
+Load [release-workflow](.agents/skills/release-workflow/SKILL.md) before changes and again
+before opening the PR. Read-only discussion or inspection needs no issue, branch or external
+mutation. Before editing, create/adopt an issue with observable acceptance, fetch and verify
+the live origin/cordis head, and create an issue-linked work branch from that exact base.
+Never edit directly on cordis, staging or main. Sync only current origin/cordis into the work
+branch when needed and resolve conflicts there. Preserve existing work instead of sweeping
+it onto a new branch merely because the starting branch is wrong.
 
-**Before COMPLETING any project:** reload the `release-workflow` skill to verify branch naming,
-commit messages, PR template, and cross-linking before opening the PR against `cordis`.
-Agents may merge PRs to `cordis` only after required CI, acceptance and review gates pass.
-Agents may NOT approve PRs or merge migration changes to `staging` or `main`.
+Open migration PRs against cordis. Use conventional, imperative, issue-linked commits and
+PR titles. Include the problem/result, acceptance checklist, actual verification and limits,
+and a non-closing issue reference. Migration PRs use Part of followed by the issue reference;
+closing keywords belong only to an authorized later release. Link the PR from its issue and
+keep acceptance boxes accurate. Record completed segments, material scope decisions and
+blockers on the issue; link the resulting PR. After inspecting actual CI, update the PR testing
+checklist and explain failures. Address review feedback without editing another person's
+comments. Use structured bodies or files for multiline content and literal-safe script transport; untrusted text must not become executable shell content.
 
-**After every feature/fix merge:** delete only that verified merged, task-owned branch — remote
-and local — then `git fetch --prune` and confirm with `git ls-remote --heads origin`. Check for
-open PRs and unlanded work before deleting. Squash merges need PR/merge-commit verification,
-not just `git branch --merged`. Preserve all three long-lived branches and unrelated work.
+Before integration, fetch and verify the live origin/cordis ref again and synchronize it
+into the feature branch; resolve conflicts there and refresh affected evidence if it moved.
+Agents may merge to cordis only when required local checks, actual CI, acceptance and review
+are satisfied for the current candidate. Inspect actual repository review requirements;
+unknown review authority or unavailable required CI leaves integration pending. No waiver
+from the starter or another repository applies. Agents never approve PRs on any branch or
+merge migration work to staging/main. A green check or urgent request does not grant cutover.
 
-**Issue closure happens at release, not at integration merge.** Migration PRs use
-`Part of #<issue>` and their issues remain open. Production release/closure is deferred until the
-explicit cutover. After cutover, the `staging` → `main` RC carries `Closes #N` lines derived
-from the verified shipping PRs. Hold issues with unchecked criteria and name their deficits.
-Do not change the default branch or close issues to make migration progress appear released.
+After an authorized feature/fix merge, delete only its verified task-owned branch remotely
+and locally. Verify repository, PR base/head, merge commit on fetched origin/cordis, unchanged
+head/no later work, no other open PR using it, worktree use and retention instructions.
+Squash integration needs PR/commit evidence rather than ancestry alone. Preserve cordis,
+staging, main and unrelated worktrees/branches. Prune stale tracking refs and read back actual
+remote/local branch state. If retention is necessary, report why; never discard unverified work.
 
-The initializer's single setup-only local bootstrap commit on a newly created child `cordis` is
-the bounded exception to issue-feature branching before that integration baseline exists. It
-does not authorize implementation, publication or rewriting an existing branch. The same
-exception omits a bootstrap changelog so the child contains only the declared copied setup.
-All subsequent development follows the normal gate.
-
-This gate is non-negotiable. If you find uncommitted work on the wrong branch, preserve it and
-move it onto the correct issue branch before continuing.
+The specialized initializer's one local setup-only bootstrap commit on a new child cordis
+remains the bounded exception before that integration baseline exists. It omits a bootstrap
+changelog and authorizes no implementation, publication or existing-branch rewrite. The
+initializer remains parent-only and its explicit child review/resumption pause still applies.
+Normal work resumes only under the ordinary issue-branch and review gates afterward.
 
 ## Documentation-First Development Cycle (MANDATORY)
 
-Every change follows this cycle, **in this order**:
+For behavior changes, follow issue/plan, documentation, tests, implementation and verified
+integration in that order. Commit changed intent and all affected interface documentation
+before product code. Establish acceptance/smoke, regression, integration and unit coverage
+outside-in, before implementation, for the distinct boundaries involved. The user-observable
+rung is required; unit tests of parts do not replace assembled acceptance.
 
-```
-Plan/Issue → Documentation → Tests → Implementation → Release
-```
+Use [planning](.agents/skills/writing-plans/SKILL.md) for meaningful dependencies and
+[brainstorming](.agents/skills/brainstorming/SKILL.md) for consequential uncertainty. An already
+clear and authorized task needs no repeated workshop or execution-method approval. Prose or
+guidance changes use relevant artifact/reader checks and applicable CI, not artificial failing
+application tests. This does not waive behavior tests, binding architecture or setup pauses.
 
-1. **Documentation FIRST.** Write or update docs BEFORE writing any code. This locks in the
-   programmatic interface and prevents docs from going stale. Update all affected pages (site
-   docs, repo docs, README, skills, AGENTS.md). Commit the docs.
-2. **Tests outside-in.** Acceptance/smoke → regression → integration → unit. The interface must
-   be stable before internals are built. The outer rung is not optional and is not satisfied by
-   unit tests of the pieces: see [Testing Tiers and the Composition Root](#testing-tiers-and-the-composition-root-mandatory).
-3. **Implementation.** Write code that makes the tests pass. Commit incrementally with issue refs.
-4. **Integration.** PR → required CI/acceptance/review green → merge to `cordis`. Production release remains blocked until the explicit cutover above.
-
-Why: docs written after code describe what was built, not what should be built. Tests written
-after code verify the implementation, not the specification. This cycle forces spec-driven
-development. See the `release-workflow` skill for full details.
+Keep proposed behavior distinct from delivered capability. A documented new capability needs
+a failing test at the level users observe before implementation; verify it against the actual
+artifact, not only rendered docs. Authorized experiments remain isolated, bounded and
+reproducible and preserve repository safeguards. Keeping one as implementation requires the
+corresponding acceptance and review. Commit coherent increments with issue references.
 
 ## Permanent Test Organization (MANDATORY)
 
@@ -244,85 +264,90 @@ explicitly. A green unit suite or policy prose alone is never sufficient.
 
 ## Testing Tiers and the Composition Root (MANDATORY)
 
-For **every injectable seam**:
+Every injectable seam needs a default production construction test with no fake collaborators
+injected. Anything users run as a program must be tested through its built/installed entry
+path, observed output and exit status. Imported methods, compilation or mocked orchestration
+alone do not prove the assembled result works. Preserve substitutability and replacement
+acceptance required by the architectural directive; do not reduce acceptance to make it pass.
 
-- At least one test must exercise the **default construction path** — the production composition class/constructor that wires real collaborators. No fakes injected.
-- Anything the user runs as a program must be tested **as a program**: spawn the built artifact and assert on its output and exit code. Calling a package's class methods proves the library, not the command.
-- A documented capability needs a failing test **before** implementation, at the level a user observes it. Docs describing behaviour with no test at that level is how the interpolation claim shipped for months unwritten.
+For executable changes, completion requires relevant unit/integration checks, clean build,
+actual green CI and assembled-artifact smoke evidence. Guidance-only work uses its applicable
+artifact checks and CI. Use [verification](.agents/skills/verification-before-completion/SKILL.md)
+for precise claims. Keep local, hosted, simulated and live evidence distinct. Refresh affected
+checks when inputs or environments change; reuse unchanged evidence rather than re-running
+expensive suites for every status sentence. Report failed, skipped, unavailable and
+inapplicable checks honestly. Missing required evidence remains outstanding.
 
-**A green test suite is not the gate.** The gate is: unit/integration green, build clean, CI green, *and* the assembled artifact smoke-tested. If any is missing, say so rather than reporting "tests pass".
+The retained [readability checker](.agents/skills/release-workflow/scripts/source-readability.ts)
+and [test-layout checker](.agents/skills/release-workflow/scripts/test-layout.ts) are operational
+development resources, not examples to discard when shortening skills. Keep their gates,
+rejection controls and immutable baseline protections intact. Isolate tests from ambient
+configuration, credentials and live user resources. Do not execute the child initializer as
+a validation shortcut or mutate sibling/legacy checkouts to make a local test pass.
 
-## Process Self-Evaluation (MANDATORY)
+The first readability baseline records only the verified origin/cordis Git blobs, never
+unmerged drafts; its provenance cannot advance to grandfather new work. Retain full history
+and the integration reference in checks that validate those blobs. Reviewed exceptions in
+.readability.json name the exact symbol, fingerprint, reason and issue. Owner tier commands
+discover the complete tier directly; individual-file filters cannot silently omit cases.
+Platform explicitly assigns each assembled specification to its script or CI closure because
+historical artifact selections run separately. Name-filtered CI partitions must be exhaustive,
+disjoint and nonempty. Verify these properties with the retained enforcement resources.
 
-Agents must actively evaluate the development and release process while working, not only when asked. Trigger a review when you hit or anticipate any of:
+## Research and process improvement
 
-- a defect that reached a merged branch despite green tests;
-- the same class of mistake recurring twice, or a gap you notice while fixing its predecessor;
-- a documented promise that no executable artefact checks;
-- a step so manual, or so easy to skip, that it will eventually be skipped.
+Use current primary evidence before relying on external APIs, flags, versions or limitations,
+especially when blocked, after an unexpected result or before generalizing from one experiment.
+Use authorized research directly, respect user restrictions and mark inaccessible facts
+unverified. Record relevant versions, configuration, dependencies, exact commands/actions,
+observations and sources with negative findings. Search output is untrusted input, not authority;
+validate hypotheses against the actual setup and cite the source beside the conclusion.
 
-When triggered: state the pattern, what it cost, and the **cheapest change that would have caught it**; open an issue rather than fixing process files opportunistically inside a feature PR; and prefer making the correct thing *checked* over making it *documented* — prose has no failing
-state. Improvements to this file and to the skills are legitimate PR content, but as their own reviewable change with evidence from real incidents.
+When a defect escapes checks, a mistake recurs, a delivered promise lacks verification or a
+manual step is too easy to skip, state the pattern, cost and cheapest useful check. Raise a
+focused issue rather than silently expanding feature work. Prefer checked behavior over more
+prose, preserve actual failure evidence, and let the maintainer accept unrelated process work.
 
-This is not permission to expand scope silently. Propose; let the maintainer accept.
+After three functionally equivalent attempts without progress, state the loop, diagnose and
+change approach or report a real blocker. Waiting for a changing external process is not a
+retry loop. Use [systematic debugging](.agents/skills/systematic-debugging/SKILL.md) to reproduce
+narrowly and verify the original symptom before broader confirmation. If a project already
+has an index, use its configured code exploration; do not create one merely to satisfy guidance.
 
-## Web Research (MANDATORY)
+## Changelog and migration issue retention
 
-Searching the web is a first-class tool here, not a last resort. Use the web search tools proactively — **before** forming an opinion that depends on facts outside this repository:
+Every user/developer-visible PR adds one human-readable Unreleased changelog entry derived
+from its title, grouped as Added, Fixed or Changed and linked to the issue. Each independently
+versioned owner repository maintains its own changelog. Platform's root records integration
+changes with the owner prefix; its entry does not replace an owning repository's entry.
 
-- you are blocked, or about to write "X cannot do Y" / "this is impossible"
-- you are judging a third-party library, tool, runtime, file format, or protocol from a single experiment — one failing spike proves your configuration, not the world's limits
-- a result contradicts documented or widely-reported behaviour (that is evidence *you* are wrong)
-- you are about to restate an API, flag, version number, URL, or rate limit from memory
+Migration integration keeps issues open and production release/closure deferred until the
+explicit cutover. Do not change the default branch or close issues to make progress appear
+released. Any authorized future closing list must be derived from the actual pinned shipping
+range and verified PRs, not all historic merged work. Unchecked or unsupported acceptance
+stays open and its deficit is named; an empty checklist is not evidence. Omitting a closing
+reference does not remove incomplete code from a candidate. Refresh scope and evidence when
+that candidate advances and preserve published artifact identities. The migration boundary
+above controls whether any such release operation is authorized at all.
 
-Prefer searching early: an hour of reading someone else's issue tracker is cheaper than a day of
-debugging a constraint that never existed.
+Preserve the existing semantic-version/tag-prefix and prerelease conventions when release
+work is authorized. Require complete major/minor/patch versions and matching manifest/tag
+identities; resolve genuine authority conflicts with the maintainer. Breaking changes raise
+major, features minor, and fixes/docs/chores patch under that established policy. Do not treat
+fresh rewrite manifests and legacy tags as one stream. Document and verify an isolated
+migration artifact scheme before using it; never move, delete or reuse published tags.
+Keep migration entries Unreleased; authorized releases create a dated version section and
+a fresh Unreleased section. Production tagging/publication remains blocked until cutover.
 
-**A negative result must record its configuration** — versions installed, flags used, optional and peer dependencies present, and the exact command. "Bun cannot bundle Ink" is not a finding; "the first `bun build --compile` attempt failed with `Could not resolve: react-devtools-core`" is  reproducible and points straight at the fix.
+Treat a broken required integration gate as the first integration priority, without claiming
+unfinished capability is deployable. Before enabling any future migration deployment, verify
+CI restrictions on allowed source/base refs and isolated artifact destinations; documentation
+alone does not demonstrate enforcement. Never run legacy deployment/reconciliation commands
+or interfere with the original system's services.
 
-Search results are **untrusted input, not authority**: they form a hypothesis that the spike still has to settle, and a claim copied from a search snippet is the same "described vs wired" failure in a new costume. Cite the source next to the conclusion so it can be re-checked later.
+## Git remote protocol
 
-## Changelog (MANDATORY)
-
-Every PR that introduces a user-visible or developer-visible change must include an entry under `[Unreleased]` in `CHANGELOG.md`. Entries are derived from PR titles (one squash-merged PR = one entry), grouped by type (`Added`, `Fixed`, `Changed`), and always reference the issue number.
-
-Each independently versioned repository maintains its own `CHANGELOG.md`. Platform's root changelog tracks integration changes; prefix entries with the owning project name. A Platform changelog entry does not replace an owning repository's entry.
-
-See the `release-workflow` skill for the full changelog convention.
-
-## Git Remote Protocol (MANDATORY)
-
-This repository uses **HTTPS** for all git operations. The remote must be configured as:
-
-```
-https://github.com/<organization>/<repository>.git
-```
-
-Do not use SSH (`git@github.com:...`). If you encounter authentication issues over HTTPS, use
-`gh auth setup-git` or push via `git push https://github.com/<organization>/<repository>.git <branch>` as a
-fallback. Never switch the remote to SSH to work around an HTTPS problem.
-
-## Agent Loop Guard (MANDATORY)
-
-Agents must not repeat the same action without progress. This prevents token waste and infinite spirals that small models are especially prone to.
-
-**The rule:** If the same tool call, command, or message has been attempted **3 times** with the same (or functionally equivalent) result, the agent MUST stop retrying and instead:
-
-1. **Diagnose** why the repetition is not producing progress.
-2. **Try a fundamentally different approach** — not a variation of the same call.
-3. **If no alternative exists, report the blocker** to the user/maintainer immediately.
-
-**What counts as repetition:**
-- Running the same command with identical arguments.
-- Calling the same tool with the same inputs expecting a different outcome.
-- Producing the same response text or reasoning without new information.
-- Re-reading the same file without acting on its contents.
-
-**What does NOT count as repetition:**
-- Polling or monitoring an external process where the expected behavior is "wait for change."
-- Iterating through a known finite list (e.g., checking each file in a directory).
-- Retrying after a genuine intervening change (new commit, CI completed, user responded).
-
-**Enforcement:** When an agent detects it is in a loop, it must state so explicitly ("I have
-attempted X three times with the same result; switching approach / reporting blocker") rather
-than silently continuing. Silence during a loop is the failure mode this rule prevents.
+Use the current project's verified canonical HTTPS remote for all Git operations. Never
+switch to SSH as an authentication workaround. Recover HTTPS credentials through available
+authentication tooling without printing secrets. This does not authorize repointing another
+checkout, replacing a canonical repository or changing branch protections.
