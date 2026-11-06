@@ -1,80 +1,53 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { join } from 'node:path';
 import { test } from 'node:test';
+import { GuidanceDocument, GuidancePackage } from '../support/agent-guidance.ts';
 
+/** Regressions for unavailable dependencies, stale resources and prescriptive examples. */
 class AuthoringSkillPolicy {
-  readonly root = resolve(process.env.SKILL_REVIEW_ROOT ?? process.cwd());
-  readonly skills = resolve(this.root, '.agents/skills');
-  readonly names = ['brainstorming', 'writing-plans', 'writing-skills', 'documentation-writer', 'find-skills'];
+  readonly package = new GuidancePackage();
 
-  documents(): Map<string, string> {
-    const documents = new Map<string, string>();
-    for (const name of this.names) {
-      const path = resolve(this.skills, name, 'SKILL.md');
-      documents.set(path, readFileSync(path, 'utf8'));
+  installedReferences(): void {
+    for (const document of this.package.documents()) {
+      assert.deepEqual(document.absentSkills(this.package.root), [], document.path);
+      assert.deepEqual(document.links(), [], document.path);
     }
-    const reference = resolve(this.skills, 'writing-skills/testing-skills-with-subagents.md');
-    documents.set(reference, readFileSync(reference, 'utf8'));
-    return documents;
   }
 
-  requiredSkillsExist(): void {
-    const missing: string[] = [];
-    for (const [path, source] of this.documents()) {
-      for (const match of source.matchAll(/superpowers:([a-z-]+)/g)) {
-        if (!existsSync(resolve(this.skills, match[1], 'SKILL.md'))) missing.push(`${path}: ${match[0]}`);
-      }
-    }
-    assert.deepEqual(missing, [], 'Named execution/background skill packages must exist locally');
+  missingResourcesRejected(): void {
+    const document = this.fixture('[missing](./missing-guidance-resource.md)');
+    assert.deepEqual(document.links(), ['./missing-guidance-resource.md']);
+    assert.deepEqual(this.fixture('superpowers:uninstalled-framework').absentSkills(this.package.root), ['uninstalled-framework']);
   }
 
-  localReferencesExist(): void {
-    const missing: string[] = [];
-    for (const [path, source] of this.documents()) {
-      for (const link of source.matchAll(/\]\(([^)#]+)(?:#[^)]*)?\)/g)) {
-        if (!link[1].includes('://') && !existsSync(resolve(dirname(path), link[1]))) {
-          missing.push(`${path}: ${link[1]}`);
-        }
-      }
+  examplesRejected(): void {
+    for (const source of ['```ts\nclass Example {}\n```', '~~~sh\ncommand\n~~~', '    sample implementation']) {
+      assert.deepEqual(this.fixture(source).examples(), ['embedded code example']);
     }
-    assert.deepEqual(missing, [], 'Local skill links must resolve');
+    for (const document of this.package.documents()) assert.deepEqual(document.examples(), [], document.path);
   }
 
-  planningExamplesUseClasses(): void {
-    const source = readFileSync(resolve(this.skills, 'writing-plans/SKILL.md'), 'utf8');
-    assert.doesNotMatch(source, /```python\b|\bdef test_\w+\(/, 'Implementation templates must follow Cordis TypeScript class policy');
-    assert.match(source, /class\s+\w+/, 'Provide a usable class-based example');
+  invalidMetadataRejected(): void {
+    assert.notDeepEqual(this.fixture('no metadata').metadata(), []);
+    assert.notDeepEqual(this.fixture('---\nname: wrong\ndescription: valid\n---\n').metadata(), []);
+    assert.deepEqual(this.fixture('---\nname: writing-skills\ndescription: Use for skill work.\n---\n').metadata(), []);
   }
 
-  planningExamplesUseTiers(): void {
-    const source = readFileSync(resolve(this.skills, 'writing-plans/SKILL.md'), 'utf8');
-    const paths = [...source.matchAll(/tests\/[a-z0-9/-]+\.test\.[cm]?tsx?/g)];
-    assert.ok(paths.length > 0, 'The planning guide must retain concrete executable test examples');
-    for (const match of paths) assert.match(match[0], /^tests\/(acceptance|regression|integration|unit)\//, 'Planning examples must use the permanent test tiers');
+  discoveryRemainsProjectSpecific(): void {
+    const document = new GuidanceDocument(join(this.package.root, '.agents/skills/find-skills/SKILL.md'));
+    assert.match(document.source, /Discover the target's skill location/);
+    assert.match(document.source, /verify installed resources and discovery/);
+    assert.doesNotMatch(document.source, /--dir\s|npx\s|bunx\s/);
   }
 
-  installationPathsResolve(): void {
-    const path = resolve(this.skills, 'find-skills/SKILL.md');
-    const source = readFileSync(path, 'utf8');
-    const destinations: string[] = [];
-    for (const match of source.matchAll(/--dir\s+([.\w/-]+)/g)) {
-      destinations.push(resolve(this.root, match[1]));
-    }
-    for (const link of source.matchAll(/\[\.agents\/skills\/\]\(([^)]+)\)/g)) {
-      destinations.push(resolve(dirname(path), link[1]));
-    }
-    assert.ok(destinations.length > 0, 'The installer instructions must identify the project destination');
-    for (const destination of destinations) {
-      assert.equal(destination, this.skills, 'Project skill examples must select the discoverable project directory');
-      assert.ok(existsSync(destination), destination);
-    }
+  fixture(source: string): GuidanceDocument {
+    return new GuidanceDocument(join(this.package.root, '.agents/skills/writing-skills/SKILL.md'), source);
   }
 }
 
 const policy = new AuthoringSkillPolicy();
-test("regression: Authoring instructions reference available skill packages", policy.requiredSkillsExist.bind(policy));
-test("regression: Authoring skill local references resolve", policy.localReferencesExist.bind(policy));
-test("regression: Planning implementation examples use TypeScript classes", policy.planningExamplesUseClasses.bind(policy));
-test("regression: Planning test examples use permanent tier directories", policy.planningExamplesUseTiers.bind(policy));
-test("regression: Skill installation examples select the discoverable project directory", policy.installationPathsResolve.bind(policy));
+test('regression: installed authoring dependencies and resources resolve', policy.installedReferences.bind(policy));
+test('regression: missing resources and unavailable frameworks are rejected', policy.missingResourcesRejected.bind(policy));
+test('regression: embedded code examples are rejected across the installed package', policy.examplesRejected.bind(policy));
+test('regression: invalid skill metadata is rejected', policy.invalidMetadataRejected.bind(policy));
+test('regression: discovery uses the actual project destination and resources', policy.discoveryRemainsProjectSpecific.bind(policy));
